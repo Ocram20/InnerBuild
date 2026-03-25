@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "./useAuth";
 import { useSubscription } from "./useSubscription";
+import { useAdminAccess } from "./useAdminAccess";
 import { supabase } from "@/integrations/supabase/client";
-
-// Emails that always have premium access
-const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
 
 // Free tier limits
 export const FREE_LIMITS = {
@@ -14,17 +12,17 @@ export const FREE_LIMITS = {
 
 export function usePremiumLimits() {
   const { user, loading: authLoading } = useAuth();
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
+  const { hasAdminRole } = useAdminAccess();
   
   const { subscription, loading: subLoading } = useSubscription({
-    enabled: !!user && !isAllowedEmail,
+    enabled: !!user && !hasAdminRole,
   });
 
   const [counts, setCounts] = useState({ habits: 0, totalChallengesCreated: 0 });
   const [countsLoading, setCountsLoading] = useState(true);
 
-  const isPremium = isAllowedEmail || subscription.subscribed;
-  const loading = authLoading || (!isAllowedEmail && subLoading) || countsLoading;
+  const isPremium = hasAdminRole || subscription.subscribed;
+  const loading = authLoading || (!hasAdminRole && subLoading) || countsLoading;
 
   useEffect(() => {
     const fetchCounts = async () => {

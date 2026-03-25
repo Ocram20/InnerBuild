@@ -1,10 +1,24 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
+
+const RequestSchema = z.object({
+  phase_id: z.string().max(50),
+  phase_name: z.string().max(100),
+  effective_days: z.number().int().min(0).max(9999),
+  success_count: z.number().int().min(0).max(99999),
+  failure_count: z.number().int().min(0).max(99999),
+  debrief_count: z.number().int().min(0).max(99999),
+  recent_consecutive_failures: z.number().int().min(0).max(9999).optional().default(0),
+  progress_in_phase: z.number().min(0).max(100),
+  language: z.enum(["en", "it"]).optional().default("en"),
+});
 
 const SYSTEM_PROMPT = `You are a compassionate, science-informed recovery coach. The user is on a porn recovery journey tracked via daily check-ins (success or setback).
 
@@ -28,25 +42,46 @@ serve(async (req) => {
   }
 
   try {
+    // Validate auth with getClaims
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+
+    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Validate request body with Zod
+    const body = await req.json();
+    const parsed = RequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ error: "Invalid request data" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const {
-      phase_id,
-      phase_name,
-      effective_days,
-      success_count,
-      failure_count,
-      debrief_count,
-      recent_consecutive_failures,
-      progress_in_phase,
-      language,
-    } = await req.json();
+      phase_id, phase_name, effective_days, success_count,
+      failure_count, debrief_count, recent_consecutive_failures,
+      progress_in_phase, language,
+    } = parsed.data;
 
     const lang = language === "it" ? "Italian" : "English";
 
@@ -60,7 +95,7 @@ Effective recovery days: ${effective_days}
 Progress through current phase: ${progress_in_phase}%
 Successful days logged: ${success_count}
 Setbacks logged: ${failure_count}
-Recent consecutive failures: ${recent_consecutive_failures || 0}
+Recent consecutive failures: ${recent_consecutive_failures}
 Failure debriefs completed: ${debrief_count}
 
 Please provide a personalized phase insight for this user. Respond entirely in ${lang}.`;
@@ -83,8 +118,7 @@ Please provide a personalized phase insight for this user. Respond entirely in $
     });
 
     if (!response.ok) {
-      const errText = await response.text();
-      console.error("Groq API error:", response.status, errText);
+      console.error("Groq API error:", response.status);
 
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: "Rate limited. Try again shortly." }), {
@@ -103,7 +137,7 @@ Please provide a personalized phase insight for this user. Respond entirely in $
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("recovery-phase-insight error:", error);
+    console.error("recovery-phase-insight error:", error instanceof Error ? error.message : "Unknown");
     return new Response(
       JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
       {

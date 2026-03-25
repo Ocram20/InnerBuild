@@ -17,15 +17,8 @@ serve(async (req) => {
     const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
 
     if (!supabaseUrl || !supabaseAnonKey) {
-      console.error("Missing backend env vars", {
-        hasSupabaseUrl: !!supabaseUrl,
-        hasSupabaseAnonKey: !!supabaseAnonKey,
-      });
-
       return new Response(
-        JSON.stringify({
-          error: "Backend configuration missing: SUPABASE_URL / SUPABASE_ANON_KEY",
-        }),
+        JSON.stringify({ error: "Backend configuration missing" }),
         {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 500,
@@ -33,16 +26,37 @@ serve(async (req) => {
       );
     }
 
-    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+    // Validate auth using getClaims (not getUser)
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
-    const authHeader = req.headers.get("Authorization")!;
+    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
     const token = authHeader.replace("Bearer ", "");
-    const {
-      data: { user },
-    } = await supabaseClient.auth.getUser(token);
+    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
 
-    if (!user?.email) {
-      throw new Error("User not authenticated");
+    if (claimsError || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const userEmail = claimsData.claims.email as string;
+    const userId = claimsData.claims.sub as string;
+
+    if (!userEmail) {
+      return new Response(JSON.stringify({ error: "No email associated with account" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const stripe = new Stripe(Deno.env.get("STRIPE_API_KEY") || "", {
@@ -51,7 +65,7 @@ serve(async (req) => {
 
     // Check if customer already exists
     const customers = await stripe.customers.list({
-      email: user.email,
+      email: userEmail,
       limit: 1,
     });
 
@@ -67,12 +81,18 @@ serve(async (req) => {
       });
 
       if (subscriptions.data.length > 0) {
-        throw new Error("You already have an active subscription");
+        return new Response(
+          JSON.stringify({ error: "You already have an active subscription" }),
+          {
+            status: 400,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          },
+        );
       }
     } else {
       const customer = await stripe.customers.create({
-        email: user.email,
-        metadata: { supabase_user_id: user.id },
+        email: userEmail,
+        metadata: { supabase_user_id: userId },
       });
       customerId = customer.id;
     }
@@ -119,14 +139,12 @@ serve(async (req) => {
       cancel_url: `${baseUrl}/pricing?canceled=true`,
     });
 
-    console.log("Checkout session created:", session.id);
-
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error: unknown) {
-    console.error("Error creating checkout session:", error);
+    console.error("Checkout error:", error instanceof Error ? error.message : "Unknown");
     const message = error instanceof Error ? error.message : "An error occurred";
     return new Response(JSON.stringify({ error: message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

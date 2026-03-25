@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,7 +37,21 @@ serve(async (req) => {
     }
 
     const userId = claimsData.claims.sub as string;
-    const { feeling, location, alone, language } = await req.json();
+    const body = await req.json();
+    const RequestSchema = z.object({
+      feeling: z.string().max(500).optional().default(""),
+      location: z.string().max(200).optional().default(""),
+      alone: z.boolean().optional().default(true),
+      language: z.enum(["en", "it"]).optional().default("en"),
+    });
+    const parsed = RequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ error: "Invalid request" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { feeling, location, alone, language } = parsed.data;
     const lang = language === "it" ? "Italian" : "English";
 
     // Fetch user's personal reasons to quit

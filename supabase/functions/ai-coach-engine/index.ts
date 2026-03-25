@@ -89,7 +89,7 @@ serve(async (req) => {
     const startDateStr = startDate.toISOString().split('T')[0];
     const endDateStr = endDate.toISOString().split('T')[0];
 
-    console.log(`Fetching data for user ${user_id} from ${startDateStr} to ${endDateStr}`);
+    console.log("Fetching user data for AI analysis");
 
     // Fetch habits and their logs
     const { data: habits, error: habitsError } = await supabase

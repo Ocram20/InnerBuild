@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { useTranslation } from "react-i18next";
 import { 
   Brain, Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon
@@ -11,17 +12,17 @@ import BottomNavigation from "@/components/BottomNavigation";
 import PaywallModal from "@/components/PaywallModal";
 import { Button } from "@/components/ui/button";
 
-const ALLOWED_EMAILS = ['info@innerbuild.it', 'marra.federica95@gmail.com', 'inner.build07@gmail.com'];
+
 
 const Explore = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { subscription } = useSubscription();
+  const { hasAdminRole } = useAdminAccess();
   const [showPaywall, setShowPaywall] = useState(false);
   const { t } = useTranslation();
   
-  const userEmail = user?.email;
-  const isPremium = subscription.subscribed || (userEmail && ALLOWED_EMAILS.includes(userEmail));
+  const isPremium = hasAdminRole || subscription.subscribed;
 
   const freeTools = [
     { id: "habits", title: t("explore.tools.habits"), description: t("explore.tools.habits_desc"), icon: Target, path: "/habits", iconBg: "bg-emerald-500/15", iconColor: "text-emerald-500" },

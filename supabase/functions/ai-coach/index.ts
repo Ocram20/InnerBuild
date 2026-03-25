@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -69,7 +70,21 @@ serve(async (req) => {
     }
 
     const userId = claimsData.claims.sub as string;
-    const { messages } = await req.json();
+    const body = await req.json();
+    const MessagesSchema = z.object({
+      messages: z.array(z.object({
+        role: z.enum(["user", "assistant"]),
+        content: z.string().max(5000),
+      })).min(1).max(30),
+    });
+    const parsed = MessagesSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ error: "Invalid request" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { messages } = parsed.data;
 
     // Fetch user context data in parallel
     const [

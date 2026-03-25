@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -75,13 +76,18 @@ serve(async (req) => {
     }
 
     const user_id = claimsData.claims.sub as string;
-    const { challenge_id, day_number } = await req.json();
-
-    if (!challenge_id || !day_number) {
-      return new Response(JSON.stringify({ error: 'Missing challenge_id or day_number' }), {
+    const body = await req.json();
+    const RequestSchema = z.object({
+      challenge_id: z.string().uuid(),
+      day_number: z.number().int().min(1).max(365),
+    });
+    const parsed = RequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ error: "Invalid request data" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    const { challenge_id, day_number } = parsed.data;
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 

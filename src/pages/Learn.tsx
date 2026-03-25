@@ -11,53 +11,22 @@ import { LearnLockedPreview } from "@/components/learn/LearnLockedPreview";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
-import { supabase } from "@/integrations/supabase/client";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { useTranslation } from "react-i18next";
 
-// Emails that always have premium access
-const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
 
 export default function Learn() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("articles");
   const { user, loading: authLoading } = useAuth();
-  const [hasAdminRole, setHasAdminRole] = useState(false);
-  const [roleLoading, setRoleLoading] = useState(true);
+  const { hasAdminRole, loading: roleLoading } = useAdminAccess();
   const { t } = useTranslation();
   
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
-  const { subscription, loading: subLoading } = useSubscription({ enabled: !!user && !isAllowedEmail && !hasAdminRole });
+  const { subscription, loading: subLoading } = useSubscription({ enabled: !!user && !hasAdminRole });
 
-  useEffect(() => {
-    const checkAdminRole = async () => {
-      if (!user) {
-        setRoleLoading(false);
-        return;
-      }
-
-      try {
-        const { data, error } = await supabase.rpc('has_role', {
-          _user_id: user.id,
-          _role: 'admin'
-        });
-
-        if (!error && data) {
-          setHasAdminRole(true);
-        }
-      } catch (err) {
-        console.error("Error checking admin role:", err);
-      } finally {
-        setRoleLoading(false);
-      }
-    };
-
-    checkAdminRole();
-  }, [user]);
-
-  const hasBypassAccess = hasAdminRole || isAllowedEmail;
-  const isPremium = hasBypassAccess || subscription.subscribed;
-  const isLoading = authLoading || roleLoading || (!hasBypassAccess && subLoading);
+  const isPremium = hasAdminRole || subscription.subscribed;
+  const isLoading = authLoading || roleLoading || (!hasAdminRole && subLoading);
   const fromExplore = location.state?.from === "explore";
   const handleBack = () => navigate(fromExplore ? "/explore" : "/dashboard");
 
