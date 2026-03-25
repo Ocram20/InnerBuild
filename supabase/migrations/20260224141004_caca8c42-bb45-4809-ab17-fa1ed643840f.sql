@@ -1,0 +1,1 @@
+ALTER TABLE public.detox_challenges ADD COLUMN IF NOT EXISTS jokers_remaining integer NOT NULL DEFAULT 3;

@@ -1,0 +1,37 @@
+project_id = "wnccdrqispatsmlzhfvu"
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.check-subscription]
+verify_jwt = false
+
+[functions.create-portal]
+verify_jwt = false
+
+[functions.ai-coach]
+verify_jwt = false
+
+[functions.ai-coach-engine]
+verify_jwt = false
+
+[functions.analyze-habit-report]
+verify_jwt = false
+
+[functions.analyze-trigger-report]
+verify_jwt = false
+
+[functions.whats-working]
+verify_jwt = false
+
+[functions.emergency-urge]
+verify_jwt = false
+
+[functions.debrief-suggestions]
+verify_jwt = false
+
+[functions.challenge-daily-content]
+verify_jwt = false
+
+[functions.recovery-phase-insight]
+verify_jwt = false

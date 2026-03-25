@@ -1,0 +1,368 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+interface TriggerLog {
+  id: string;
+  logged_at: string;
+  impulse_intensity: number;
+  emotion: string;
+  situation: string;
+  time_context: string;
+  location_context: string | null;
+  was_alone: boolean;
+  notes: string | null;
+}
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    // Verify authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(JSON.stringify({ error: 'Missing authorization' }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
+    
+    // Create auth client to verify the user
+    const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await authClient.auth.getClaims(token);
+    
+    if (claimsError || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Use the authenticated user's ID - never trust userId from request body
+    const userId = claimsData.claims.sub as string;
+
+    // Create service client for database operations
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Fetch last 30 days of trigger logs
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const { data: logs, error: logsError } = await supabase
+      .from("trigger_logs")
+      .select("*")
+      .eq("user_id", userId)
+      .gte("logged_at", thirtyDaysAgo.toISOString())
+      .order("logged_at", { ascending: false });
+
+    if (logsError) throw logsError;
+
+    if (!logs || logs.length < 3) {
+      return new Response(
+        JSON.stringify({ 
+          insights: [],
+          message: "Not enough data to generate insights. Keep logging your triggers."
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Analyze patterns locally first
+    const patterns = analyzePatterns(logs as TriggerLog[]);
+
+    // If we have Lovable AI, generate deeper insights
+    let aiInsights: string[] = [];
+    if (lovableApiKey && logs.length >= 5) {
+      try {
+        aiInsights = await generateAIInsights(lovableApiKey, logs as TriggerLog[], patterns);
+      } catch (e) {
+        console.error("AI insight generation failed:", e);
+      }
+    }
+
+    // Combine local patterns with AI insights
+    const allInsights = [
+      ...patterns.map(p => ({
+        insight_type: p.type,
+        title: p.title,
+        description: p.description,
+        pattern_data: p.data,
+      })),
+      ...aiInsights.map(insight => ({
+        insight_type: "suggestion",
+        title: "AI Suggestion",
+        description: insight,
+        pattern_data: null,
+      })),
+    ];
+
+    // Store insights in database (replace old ones)
+    await supabase
+      .from("trigger_insights")
+      .delete()
+      .eq("user_id", userId);
+
+    if (allInsights.length > 0) {
+      await supabase
+        .from("trigger_insights")
+        .insert(allInsights.map(i => ({
+          user_id: userId,
+          ...i,
+        })));
+    }
+
+    // Fetch updated insights
+    const { data: savedInsights } = await supabase
+      .from("trigger_insights")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false });
+
+    return new Response(
+      JSON.stringify({ 
+        insights: savedInsights || [],
+        patterns,
+        logsCount: logs.length,
+      }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  } catch (error) {
+    console.error("Error in analyze-triggers function:", error);
+    return new Response(
+      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+});
+
+interface PatternResult {
+  type: "pattern" | "warning" | "suggestion";
+  title: string;
+  description: string;
+  data: Record<string, unknown>;
+}
+
+function analyzePatterns(logs: TriggerLog[]): PatternResult[] {
+  const patterns: PatternResult[] = [];
+
+  // Time pattern analysis
+  const timeContextCounts: Record<string, { count: number; avgIntensity: number; intensities: number[] }> = {};
+  const emotionCounts: Record<string, number> = {};
+  const situationCounts: Record<string, number> = {};
+  const aloneCounts = { alone: 0, notAlone: 0 };
+  const hourCounts: Record<number, number> = {};
+  const dayOfWeekCounts: Record<number, number> = {};
+
+  for (const log of logs) {
+    // Time context
+    if (!timeContextCounts[log.time_context]) {
+      timeContextCounts[log.time_context] = { count: 0, avgIntensity: 0, intensities: [] };
+    }
+    timeContextCounts[log.time_context].count++;
+    timeContextCounts[log.time_context].intensities.push(log.impulse_intensity);
+
+    // Emotions
+    emotionCounts[log.emotion] = (emotionCounts[log.emotion] || 0) + 1;
+
+    // Situations
+    situationCounts[log.situation] = (situationCounts[log.situation] || 0) + 1;
+
+    // Alone status
+    if (log.was_alone) aloneCounts.alone++;
+    else aloneCounts.notAlone++;
+
+    // Hour of day
+    const hour = new Date(log.logged_at).getHours();
+    hourCounts[hour] = (hourCounts[hour] || 0) + 1;
+
+    // Day of week
+    const dayOfWeek = new Date(log.logged_at).getDay();
+    dayOfWeekCounts[dayOfWeek] = (dayOfWeekCounts[dayOfWeek] || 0) + 1;
+  }
+
+  // Calculate averages
+  for (const tc of Object.keys(timeContextCounts)) {
+    const data = timeContextCounts[tc];
+    data.avgIntensity = data.intensities.reduce((a, b) => a + b, 0) / data.intensities.length;
+  }
+
+  // Find peak time
+  const peakTime = Object.entries(timeContextCounts)
+    .sort((a, b) => b[1].count - a[1].count)[0];
+  
+  if (peakTime && peakTime[1].count >= 2) {
+    const timeLabel = getTimeLabel(peakTime[0]);
+    patterns.push({
+      type: "pattern",
+      title: `Peak ${timeLabel}`,
+      description: `You logged ${peakTime[1].count} impulses ${timeLabel} (avg intensity: ${peakTime[1].avgIntensity.toFixed(1)}/10). This is your most vulnerable time.`,
+      data: { timeContext: peakTime[0], count: peakTime[1].count, avgIntensity: peakTime[1].avgIntensity },
+    });
+  }
+
+  // Find dominant emotion
+  const topEmotion = Object.entries(emotionCounts)
+    .sort((a, b) => b[1] - a[1])[0];
+  
+  if (topEmotion && topEmotion[1] >= 2) {
+    patterns.push({
+      type: "pattern",
+      title: `Dominant emotion: ${topEmotion[0]}`,
+      description: `"${topEmotion[0]}" appears in ${topEmotion[1]} of your ${logs.length} logs. Working on this emotion could help.`,
+      data: { emotion: topEmotion[0], count: topEmotion[1] },
+    });
+  }
+
+  // Alone pattern
+  const alonePercent = (aloneCounts.alone / logs.length) * 100;
+  if (alonePercent >= 70 && logs.length >= 3) {
+    patterns.push({
+      type: "warning",
+      title: "Loneliness pattern",
+      description: `${alonePercent.toFixed(0)}% of your impulses happen when you're alone. Consider planning social activities during critical times.`,
+      data: { alonePercent, aloneCount: aloneCounts.alone, total: logs.length },
+    });
+  }
+
+  // Peak hour
+  const peakHour = Object.entries(hourCounts)
+    .sort((a, b) => b[1] - a[1])[0];
+  
+  if (peakHour && parseInt(peakHour[0]) >= 22) {
+    patterns.push({
+      type: "warning",
+      title: "Evening/night risk",
+      description: `Many impulses occur after 10 PM. Suggestion: avoid screens after this time or practice 3 minutes of journaling before bed.`,
+      data: { peakHour: parseInt(peakHour[0]), count: peakHour[1] },
+    });
+  }
+
+  // Weekend vs weekday
+  const weekendCount = (dayOfWeekCounts[0] || 0) + (dayOfWeekCounts[6] || 0);
+  const weekdayCount = logs.length - weekendCount;
+  const weekendPercent = (weekendCount / logs.length) * 100;
+  
+  if (weekendPercent >= 50 && logs.length >= 4) {
+    patterns.push({
+      type: "pattern",
+      title: "Weekend pattern",
+      description: `${weekendPercent.toFixed(0)}% of impulses happen on weekends. Plan activities for Saturday and Sunday.`,
+      data: { weekendPercent, weekendCount, weekdayCount },
+    });
+  }
+
+  return patterns;
+}
+
+function getTimeLabel(timeContext: string): string {
+  const labels: Record<string, string> = {
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night",
+  };
+  return labels[timeContext] || timeContext;
+}
+
+async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatterns: PatternResult[]): Promise<string[]> {
+  const summary = {
+    totalLogs: logs.length,
+    avgIntensity: logs.reduce((a, b) => a + b.impulse_intensity, 0) / logs.length,
+    topEmotions: getTopItems(logs.map(l => l.emotion), 3),
+    topSituations: getTopItems(logs.map(l => l.situation), 3),
+    timeBreakdown: getTopItems(logs.map(l => l.time_context), 4),
+    alonePercent: (logs.filter(l => l.was_alone).length / logs.length) * 100,
+    localPatterns: localPatterns.map(p => p.title),
+  };
+
+  const systemPrompt = `You are a recovery coach for addictions. Analyze the user's trigger patterns and generate 2-3 practical, actionable suggestions in English.
+
+Rules:
+- Be empathetic but direct
+- Suggest specific actions (e.g., "3 minutes of breathing", "call a friend", "micro-exercise")
+- Reference the user's specific patterns
+- Each suggestion should be brief (1-2 sentences)
+- Don't repeat already identified patterns, add value`;
+
+  const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "google/gemini-2.5-flash",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: `Here is the user's data:\n${JSON.stringify(summary, null, 2)}\n\nGenerate 2-3 practical suggestions.` },
+      ],
+      tools: [
+        {
+          type: "function",
+          function: {
+            name: "provide_suggestions",
+            description: "Provide practical suggestions for the user",
+            parameters: {
+              type: "object",
+              properties: {
+                suggestions: {
+                  type: "array",
+                  items: { type: "string" },
+                  description: "List of 2-3 practical suggestions",
+                },
+              },
+              required: ["suggestions"],
+            },
+          },
+        },
+      ],
+      tool_choice: { type: "function", function: { name: "provide_suggestions" } },
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    console.error("AI error:", response.status, text);
+    return [];
+  }
+
+  const data = await response.json();
+  const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
+  
+  if (toolCall?.function?.arguments) {
+    try {
+      const args = JSON.parse(toolCall.function.arguments);
+      return args.suggestions || [];
+    } catch {
+      return [];
+    }
+  }
+
+  return [];
+}
+
+function getTopItems(items: string[], limit: number): { item: string; count: number }[] {
+  const counts: Record<string, number> = {};
+  for (const item of items) {
+    counts[item] = (counts[item] || 0) + 1;
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([item, count]) => ({ item, count }));
+}
