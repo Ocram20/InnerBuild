@@ -5,6 +5,10 @@ import { z } from "https://esm.sh/zod@3.23.8";
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-XSS-Protection': '1; mode=block',
 };
 
 function getSystemPrompt(language: string) {
