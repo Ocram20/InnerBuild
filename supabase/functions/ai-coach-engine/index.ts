@@ -83,6 +83,10 @@ serve(async (req) => {
 
     const user_id = claimsData.claims.sub as string;
 
+    // Parse language from request body
+    const reqBody = await req.json().catch(() => ({}));
+    const language = reqBody.language === "it" ? "it" : "en";
+
     if (!GROQ_API_KEY) {
       throw new Error("GROQ_API_KEY is not configured");
     }
