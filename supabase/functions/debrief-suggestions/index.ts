@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -44,7 +45,26 @@ serve(async (req) => {
       throw new Error("GROQ_API_KEY not configured");
     }
 
-    const { debriefData, language } = await req.json();
+    const body = await req.json();
+    const RequestSchema = z.object({
+      debriefData: z.object({
+        mood: z.string().max(100).optional(),
+        time_of_day: z.string().max(50).optional(),
+        context: z.string().max(500).optional(),
+        trigger: z.string().max(500).optional(),
+        ignored_signal: z.string().max(500).optional(),
+        signal_details: z.string().max(1000).optional(),
+      }),
+      language: z.enum(["en", "it"]).optional().default("en"),
+    });
+    const parsed = RequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ error: "Invalid request" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { debriefData, language } = parsed.data;
     const lang = language === "it" ? "Italian" : "English";
 
     const prompt = `You are a supportive recovery coach helping someone who had a setback. Based on their debrief, provide 3 SHORT, actionable, and encouraging suggestions for what they can do differently next time.

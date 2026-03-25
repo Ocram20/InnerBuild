@@ -13,30 +13,48 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
-    );
+    const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
 
-    const authHeader = req.headers.get("Authorization")!;
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user } } = await supabaseClient.auth.getUser(token);
-
-    if (!user?.email) {
-      throw new Error("User not authenticated");
+    // Validate auth using getClaims
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
+
+    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
+
+    if (claimsError || !claimsData?.claims || !claimsData.claims.email) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const userEmail = claimsData.claims.email as string;
 
     const stripe = new Stripe(Deno.env.get("STRIPE_API_KEY") || "", {
       apiVersion: "2023-10-16",
     });
 
     const customers = await stripe.customers.list({
-      email: user.email,
+      email: userEmail,
       limit: 1,
     });
 
     if (customers.data.length === 0) {
-      throw new Error("No customer found");
+      return new Response(JSON.stringify({ error: "No customer found" }), {
+        status: 404,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const { origin } = new URL(req.url);
@@ -47,14 +65,12 @@ serve(async (req) => {
       return_url: `${baseUrl}/dashboard`,
     });
 
-    console.log("Portal session created:", session.id);
-
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error: unknown) {
-    console.error("Error creating portal session:", error);
+    console.error("Portal error:", error instanceof Error ? error.message : "Unknown");
     const message = error instanceof Error ? error.message : "An error occurred";
     return new Response(
       JSON.stringify({ error: message }),
