@@ -6,11 +6,18 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const SYSTEM_PROMPT = `You are an AI Wellness Coach analyzing user habit and trigger data. Your role is to:
+function getSystemPrompt(language: string) {
+  const langInstruction = language === "it"
+    ? "IMPORTANT: You MUST respond entirely in Italian. All text fields must be written in Italian."
+    : "Respond in English.";
+
+  return `You are an AI Wellness Coach analyzing user habit and trigger data. Your role is to:
 
 1. **Habit Analysis**: Review habit completion rates and suggest simplified versions for struggling habits (e.g., "Read 1 hour" → "Read 15 minutes")
 2. **Trigger Pattern Detection**: Identify when triggers occur most frequently (day/time patterns) and common emotional/situational causes
 3. **Actionable Insights**: Provide practical, encouraging recommendations
+
+${langInstruction}
 
 Response Format (JSON):
 {
@@ -37,6 +44,7 @@ Response Format (JSON):
 }
 
 Be warm, supportive, and non-judgmental. Focus on progress, not perfection.`;
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
