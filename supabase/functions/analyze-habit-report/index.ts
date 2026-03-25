@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -89,7 +90,9 @@ serve(async (req) => {
       });
     }
 
-    const { language = "en" } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const langParsed = z.object({ language: z.enum(["en", "it"]).optional().default("en") }).safeParse(body);
+    const language = langParsed.success ? langParsed.data.language : "en";
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
@@ -128,7 +131,7 @@ serve(async (req) => {
     const startDateStr = startDate.toISOString().split('T')[0];
     const endDateStr = endDate.toISOString().split('T')[0];
 
-    console.log(`Fetching habit data for user ${userId} from ${startDateStr} to ${endDateStr}`);
+    console.log("Fetching habit data for analysis");
 
     // Fetch habits
     const { data: habits, error: habitsError } = await supabase
