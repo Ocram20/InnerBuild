@@ -5,6 +5,10 @@ import { z } from "https://esm.sh/zod@3.23.8";
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-XSS-Protection': '1; mode=block',
 };
 
 const BASE_SYSTEM_PROMPT = `You are a warm, supportive AI coach specialized EXCLUSIVELY in personal growth, habit building, addiction recovery, and mental wellness. You are part of an app that helps users build positive habits, break negative patterns (including porn addiction recovery), track triggers, and cultivate self-awareness.
