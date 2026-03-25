@@ -13,7 +13,7 @@ interface WhatsWorkingData {
 }
 
 export function WhatsWorkingSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);
