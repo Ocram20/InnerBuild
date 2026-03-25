@@ -67,7 +67,7 @@ export function WhatsWorkingSection() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
         }
       );
 

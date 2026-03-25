@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { format, formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
+import { it, enUS } from "date-fns/locale";
+import { useTranslation } from "react-i18next";
 import { 
   Brain, 
   Sparkles, 
@@ -17,6 +19,8 @@ import { Badge } from "@/components/ui/badge";
 import { useAIInsights, HabitAdaptation, TriggerPattern } from "@/hooks/useAIInsights";
 
 export default function AICoachInsightCard() {
+  const { t, i18n } = useTranslation();
+  const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
   const { 
     latestInsight, 
     loading, 
@@ -33,7 +37,7 @@ export default function AICoachInsightCard() {
         <CardContent className="py-8">
           <div className="flex items-center justify-center gap-3">
             <Brain className="h-6 w-6 text-primary/50" />
-            <span className="text-muted-foreground">Loading AI insights...</span>
+            <span className="text-muted-foreground">{t("ai_coach_insight.loading")}</span>
           </div>
         </CardContent>
       </Card>
@@ -51,12 +55,12 @@ export default function AICoachInsightCard() {
             </div>
             <div>
               <h3 className="font-semibold text-foreground">
-                {latestInsight ? "Time for a New Report" : "Get Your AI Coach Report"}
+                {latestInsight ? t("ai_coach_insight.time_for_new") : t("ai_coach_insight.get_report")}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
                 {latestInsight 
-                  ? "It's been 4 days since your last analysis"
-                  : "Analyze your habits and triggers from the last 4 days"
+                  ? t("ai_coach_insight.days_since_last")
+                  : t("ai_coach_insight.analyze_last_days")
                 }
               </p>
             </div>
@@ -68,12 +72,12 @@ export default function AICoachInsightCard() {
               {generating ? (
                 <>
                   <RefreshCw className="h-4 w-4 animate-spin" />
-                  Analyzing...
+                  {t("common.analyzing")}
                 </>
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  Generate Report
+                  {t("trigger_tracking.generate_report")}
                 </>
               )}
             </Button>
@@ -97,15 +101,15 @@ export default function AICoachInsightCard() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CardTitle className="text-base">AI Coach Report</CardTitle>
+                <CardTitle className="text-base">{t("ai_coach_insight.title")}</CardTitle>
                 {!is_read && (
                   <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                    New
+                    {t("ai_coach_insight.new")}
                   </Badge>
                 )}
               </div>
               <p className="text-xs text-muted-foreground">
-                {formatDistanceToNow(new Date(created_at), { addSuffix: true })}
+                {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dateLocale })}
               </p>
             </div>
           </div>
@@ -124,36 +128,32 @@ export default function AICoachInsightCard() {
       </CardHeader>
 
       <CardContent className="pt-0 space-y-4">
-        {/* Summary */}
         <p className="text-sm text-foreground/90 leading-relaxed">
           {summary}
         </p>
 
-        {/* Quick Stats */}
         <div className="flex gap-2 flex-wrap">
           {habitAdaptations.length > 0 && (
             <Badge variant="outline" className="gap-1 text-orange-600 border-orange-200 bg-orange-50/50">
               <TrendingDown className="h-3 w-3" />
-              {habitAdaptations.length} habit{habitAdaptations.length > 1 ? 's' : ''} need attention
+              {t("ai_coach_insight.habits_need_attention", { count: habitAdaptations.length })}
             </Badge>
           )}
           {triggerPatterns.length > 0 && (
             <Badge variant="outline" className="gap-1 text-blue-600 border-blue-200 bg-blue-50/50">
               <AlertTriangle className="h-3 w-3" />
-              {triggerPatterns.length} pattern{triggerPatterns.length > 1 ? 's' : ''} detected
+              {t("ai_coach_insight.patterns_detected", { count: triggerPatterns.length })}
             </Badge>
           )}
         </div>
 
-        {/* Expanded Details */}
         {expanded && (
           <div className="space-y-4 pt-2 border-t border-border/50">
-            {/* Habit Adaptations */}
             {habitAdaptations.length > 0 && (
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <TrendingDown className="h-4 w-4 text-orange-500" />
-                  Suggested Habit Adjustments
+                  {t("ai_coach_insight.suggested_adjustments")}
                 </h4>
                 <div className="space-y-2">
                   {habitAdaptations.map((adaptation: HabitAdaptation, idx: number) => (
@@ -164,7 +164,7 @@ export default function AICoachInsightCard() {
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium">{adaptation.habit_title}</span>
                         <Badge variant="secondary" className="text-xs">
-                          {adaptation.current_completion_rate}% completed
+                          {t("ai_coach_insight.completed", { rate: adaptation.current_completion_rate })}
                         </Badge>
                       </div>
                       <p className="text-muted-foreground text-xs mb-2">
@@ -180,12 +180,11 @@ export default function AICoachInsightCard() {
               </div>
             )}
 
-            {/* Trigger Patterns */}
             {triggerPatterns.length > 0 && (
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-blue-500" />
-                  Trigger Patterns
+                  {t("ai_coach_insight.trigger_patterns")}
                 </h4>
                 <div className="space-y-2">
                   {triggerPatterns.map((pattern: TriggerPattern, idx: number) => (
@@ -197,7 +196,7 @@ export default function AICoachInsightCard() {
                       <p className="text-xs text-muted-foreground mb-2">
                         {pattern.frequency}
                         {pattern.common_emotions?.length > 0 && (
-                          <> • Common emotions: {pattern.common_emotions.join(', ')}</>
+                          <> • {t("ai_coach_insight.common_emotions", { emotions: pattern.common_emotions.join(', ') })}</>
                         )}
                       </p>
                       <div className="flex items-center gap-2 text-primary">
@@ -210,12 +209,11 @@ export default function AICoachInsightCard() {
               </div>
             )}
 
-            {/* Top Recommendations */}
             {recommendations && recommendations.length > 0 && (
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-primary" />
-                  Top Recommendations
+                  {t("ai_coach_insight.top_recommendations")}
                 </h4>
                 <ul className="space-y-1.5">
                   {recommendations.map((rec: string, idx: number) => (
@@ -228,7 +226,6 @@ export default function AICoachInsightCard() {
               </div>
             )}
 
-            {/* Generate New Report Button */}
             <Button
               variant="outline"
               size="sm"
@@ -239,12 +236,12 @@ export default function AICoachInsightCard() {
               {generating ? (
                 <>
                   <RefreshCw className="h-4 w-4 animate-spin" />
-                  Generating...
+                  {t("common.generating")}
                 </>
               ) : (
                 <>
                   <RefreshCw className="h-4 w-4" />
-                  Generate New Report
+                  {t("ai_coach_insight.generate_new")}
                 </>
               )}
             </Button>
