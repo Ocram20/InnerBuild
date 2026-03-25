@@ -206,21 +206,67 @@
     },
     "premium_deep_dive": {
       "porn_recovery_desc": "Non si tratta di forza di volontà. Il programma è basato sulle neuroscienze — ti aiuta a capire esattamente perché il tuo cervello si è agganciato, e come ricablarlo passo dopo passo.",
-      "porn_recovery_features": ["Tracciamento serie scientifico", "Check-in giornalieri e progressi", "Strumenti debrief e apprendimento", "Gestione impulsi d'emergenza", "Educazione neuroscientifica", "Motivazioni e ragioni personali"],
+      "porn_recovery_features": [
+        "Tracciamento serie scientifico",
+        "Check-in giornalieri e progressi",
+        "Strumenti debrief e apprendimento",
+        "Gestione impulsi d'emergenza",
+        "Educazione neuroscientifica",
+        "Motivazioni e ragioni personali"
+      ],
       "trigger_tracking_desc": "La maggior parte delle ricadute sembra casuale — ma non lo è. Il Tracciamento Trigger rivela i pattern nascosti dietro i tuoi momenti peggiori.",
-      "trigger_tracking_features": ["Registra impulsi ed emozioni in secondi", "Heatmap visiva dei tuoi pattern", "Report insight generati dall'AI", "Identificazione cause primarie", "Strategie di prevenzione personalizzate", "Analisi tempi e contesto"],
+      "trigger_tracking_features": [
+        "Registra impulsi ed emozioni in secondi",
+        "Heatmap visiva dei tuoi pattern",
+        "Report insight generati dall'AI",
+        "Identificazione cause primarie",
+        "Strategie di prevenzione personalizzate",
+        "Analisi tempi e contesto"
+      ],
       "ai_coach_desc": "Immagina di avere un coach che conosce le tue abitudini, le tue difficoltà e i tuoi obiettivi — disponibile alle 3 di notte quando arriva una voglia.",
-      "ai_coach_features": ["Consigli personalizzati sulle abitudini", "Supporto per voglie e impulsi", "Guida prevenzione ricadute", "Disponibile 24/7, sempre", "Cronologia chat completa", "Su misura per il tuo percorso"],
+      "ai_coach_features": [
+        "Consigli personalizzati sulle abitudini",
+        "Supporto per voglie e impulsi",
+        "Guida prevenzione ricadute",
+        "Disponibile 24/7, sempre",
+        "Cronologia chat completa",
+        "Su misura per il tuo percorso"
+      ],
       "learn_desc": "Comprendi la scienza dietro le tue abitudini, la dopamina e il recupero cerebrale.",
       "learn_features": ["Articoli approfonditi", "Guide di recovery", "Timeline guarigione cerebrale"],
       "habit_adaptation_desc": "L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti.",
-      "habit_adaptation_features": ["Rilevamento pattern", "Scalabilità intelligente della difficoltà", "Raccomandazioni personalizzate dall'AI"],
+      "habit_adaptation_features": [
+        "Rilevamento pattern",
+        "Scalabilità intelligente della difficoltà",
+        "Raccomandazioni personalizzate dall'AI"
+      ],
       "porn_recovery_mobile_desc": "Basato sulle neuroscienze — capisci perché il tuo cervello si è agganciato e ricablalo passo dopo passo.",
-      "porn_recovery_mobile_features": ["Tracciamento serie scientifico", "Check-in giornalieri e progressi", "Strumenti debrief", "Gestione impulsi d'emergenza", "Educazione neuroscientifica", "Motivazioni personali"],
+      "porn_recovery_mobile_features": [
+        "Tracciamento serie scientifico",
+        "Check-in giornalieri e progressi",
+        "Strumenti debrief",
+        "Gestione impulsi d'emergenza",
+        "Educazione neuroscientifica",
+        "Motivazioni personali"
+      ],
       "trigger_tracking_mobile_desc": "Le ricadute sembrano casuali — ma non lo sono. Rivela pattern nascosti e ottieni report AI per prevedere e prevenire.",
-      "trigger_tracking_mobile_features": ["Registra impulsi ed emozioni in secondi", "Heatmap visiva dei pattern", "Report insight AI", "Identificazione cause primarie", "Strategie di prevenzione", "Analisi tempi e contesto"],
+      "trigger_tracking_mobile_features": [
+        "Registra impulsi ed emozioni in secondi",
+        "Heatmap visiva dei pattern",
+        "Report insight AI",
+        "Identificazione cause primarie",
+        "Strategie di prevenzione",
+        "Analisi tempi e contesto"
+      ],
       "ai_coach_mobile_desc": "Un coach disponibile alle 3 di notte quando arriva una voglia. Non giudica — ti guida e ti fa andare avanti.",
-      "ai_coach_mobile_features": ["Consigli personalizzati", "Supporto voglie e impulsi", "Prevenzione ricadute", "Disponibile 24/7", "Cronologia chat completa", "Su misura per te"],
+      "ai_coach_mobile_features": [
+        "Consigli personalizzati",
+        "Supporto voglie e impulsi",
+        "Prevenzione ricadute",
+        "Disponibile 24/7",
+        "Cronologia chat completa",
+        "Su misura per te"
+      ],
       "learn_mobile_desc": "La scienza dietro le abitudini, la dopamina e il recupero cerebrale. La conoscenza rende ogni sforzo significativo.",
       "learn_mobile_features": ["Articoli approfonditi", "Guide di recovery", "Timeline guarigione cerebrale"],
       "habit_adaptation_mobile_desc": "L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti.",
@@ -293,18 +339,43 @@
       "understanding_reward_desc": "la gratificazione immediata",
       "laws_title": "Le Quattro Leggi del Cambiamento Comportamentale",
       "law1_title": "1ª Legge: Rendilo Ovvio",
-      "law1_items": ["Usa intenzioni di implementazione: \"Farò [comportamento] alle [ora] in [luogo]\"", "Usa l'impilamento delle abitudini: \"Dopo [abitudine attuale], farò [nuova abitudine]\"", "Progetta il tuo ambiente — rendi i segnali visibili"],
+      "law1_items": [
+        "Usa intenzioni di implementazione: \"Farò [comportamento] alle [ora] in [luogo]\"",
+        "Usa l'impilamento delle abitudini: \"Dopo [abitudine attuale], farò [nuova abitudine]\"",
+        "Progetta il tuo ambiente — rendi i segnali visibili"
+      ],
       "law2_title": "2ª Legge: Rendilo Attraente",
-      "law2_items": ["Usa il bundling della tentazione: abbina un'abitudine necessaria con una desiderata", "Unisciti a una cultura dove il comportamento desiderato è la norma", "Crea un rituale motivazionale prima di un'abitudine difficile"],
+      "law2_items": [
+        "Usa il bundling della tentazione: abbina un'abitudine necessaria con una desiderata",
+        "Unisciti a una cultura dove il comportamento desiderato è la norma",
+        "Crea un rituale motivazionale prima di un'abitudine difficile"
+      ],
       "law3_title": "3ª Legge: Rendilo Facile",
-      "law3_items": ["Riduci la frizione — diminuisci i passi tra te e le buone abitudini", "Usa la Regola dei Due Minuti: inizia con soli 2 minuti", "Automatizza le abitudini usando la tecnologia quando possibile"],
+      "law3_items": [
+        "Riduci la frizione — diminuisci i passi tra te e le buone abitudini",
+        "Usa la Regola dei Due Minuti: inizia con soli 2 minuti",
+        "Automatizza le abitudini usando la tecnologia quando possibile"
+      ],
       "law4_title": "4ª Legge: Rendilo Soddisfacente",
-      "law4_items": ["Usa il rinforzo — datti una ricompensa immediata", "Usa un tracciatore di abitudini — \"non rompere la catena\"", "Non mancare mai due volte — torna in carreggiata velocemente"],
+      "law4_items": [
+        "Usa il rinforzo — datti una ricompensa immediata",
+        "Usa un tracciatore di abitudini — \"non rompere la catena\"",
+        "Non mancare mai due volte — torna in carreggiata velocemente"
+      ],
       "breaking_title": "Rompere le Cattive Abitudini",
       "breaking_intro": "Inverti le quattro leggi:",
-      "breaking_items": ["Rendilo invisibile (rimuovi i segnali)", "Rendilo poco attraente (riformula la mentalità)", "Rendilo difficile (aumenta la frizione)", "Rendilo insoddisfacente (aggiungi responsabilità)"],
+      "breaking_items": [
+        "Rendilo invisibile (rimuovi i segnali)",
+        "Rendilo poco attraente (riformula la mentalità)",
+        "Rendilo difficile (aumenta la frizione)",
+        "Rendilo insoddisfacente (aggiungi responsabilità)"
+      ],
       "advanced_title": "Strategie Avanzate",
-      "advanced_items": ["La Regola Goldilocks: mantieni la motivazione lavorando su compiti di difficoltà gestibile", "Il lato negativo delle buone abitudini: non lasciarle andare in automatico — continua a rivederle e migliorarle", "I geni non determinano il destino: determinano le aree di opportunità. Scegli abitudini che si adattano ai tuoi punti di forza naturali."],
+      "advanced_items": [
+        "La Regola Goldilocks: mantieni la motivazione lavorando su compiti di difficoltà gestibile",
+        "Il lato negativo delle buone abitudini: non lasciarle andare in automatico — continua a rivederle e migliorarle",
+        "I geni non determinano il destino: determinano le aree di opportunità. Scegli abitudini che si adattano ai tuoi punti di forza naturali."
+      ],
       "final_title": "Pensiero Finale",
       "final_p1": "Il successo non è un obiettivo da raggiungere. È un sistema da costruire.",
       "final_p2": "Piccoli cambiamenti. Risultati straordinari. Un'abitudine alla volta."
@@ -342,16 +413,36 @@
       "inversion_title": "La Strategia dell'Inversione",
       "inversion_intro": "Per rompere una cattiva abitudine, inverti le quattro leggi del cambiamento comportamentale:",
       "inv1_title": "Rendilo Invisibile",
-      "inv1_items": ["Rimuovi i trigger dal tuo ambiente", "Smetti di seguire account che promuovono il comportamento", "Cambia la tua routine per evitare l'esposizione ai segnali"],
+      "inv1_items": [
+        "Rimuovi i trigger dal tuo ambiente",
+        "Smetti di seguire account che promuovono il comportamento",
+        "Cambia la tua routine per evitare l'esposizione ai segnali"
+      ],
       "inv2_title": "Rendilo Poco Attraente",
-      "inv2_items": ["Evidenzia i veri costi del comportamento", "Riformula la tua identità: \"Non sono qualcuno che fa questo\"", "Associa l'abitudine a risultati negativi"],
+      "inv2_items": [
+        "Evidenzia i veri costi del comportamento",
+        "Riformula la tua identità: \"Non sono qualcuno che fa questo\"",
+        "Associa l'abitudine a risultati negativi"
+      ],
       "inv3_title": "Rendilo Difficile",
-      "inv3_items": ["Aggiungi frizione tra te e la cattiva abitudine", "Usa dispositivi di impegno (blocchi, responsabilità)", "Crea barriere fisiche"],
+      "inv3_items": [
+        "Aggiungi frizione tra te e la cattiva abitudine",
+        "Usa dispositivi di impegno (blocchi, responsabilità)",
+        "Crea barriere fisiche"
+      ],
       "inv4_title": "Rendilo Insoddisfacente",
-      "inv4_items": ["Crea un partner o sistema di responsabilità", "Rendi le conseguenze immediate", "Usa una scheda delle abitudini per tracciare gli scivoloni"],
+      "inv4_items": [
+        "Crea un partner o sistema di responsabilità",
+        "Rendi le conseguenze immediate",
+        "Usa una scheda delle abitudini per tracciare gli scivoloni"
+      ],
       "replacement_title": "Sostituisci, Non Solo Rimuovere",
       "replacement_p1": "La strategia più efficace non è solo fermarsi — è sostituire. Quando senti l'impulso, reindirizza verso un'alternativa più sana che soddisfi lo stesso desiderio.",
-      "replacement_items": ["Annoiato? → Fai un allenamento rapido o attività creativa", "Stressato? → Prova respirazione profonda o journaling", "Solo? → Chiama un amico o visita una comunità"],
+      "replacement_items": [
+        "Annoiato? → Fai un allenamento rapido o attività creativa",
+        "Stressato? → Prova respirazione profonda o journaling",
+        "Solo? → Chiama un amico o visita una comunità"
+      ],
       "mindset_title": "Il Cambio di Mentalità",
       "mindset_p1": "Non concentrarti su ciò che stai rinunciando. Concentrati su ciò che stai guadagnando: libertà, chiarezza, rispetto di sé e una vita allineata ai tuoi valori.",
       "mindset_p2": "Ogni momento di resistenza sta costruendo la persona che vuoi diventare.",
@@ -947,7 +1038,7 @@
     "terms_of_service": "Termini di Servizio",
     "support": "Supporto",
     "follow_us": "Seguici",
-    "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita."
+    "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3."
   },
 
   "nav": {
@@ -1719,7 +1810,10 @@
       "meditate_15min": { "title": "Medita 15 minuti", "description": "Concentrazione profonda e rilassamento" },
       "exercise_30min": { "title": "Esercizio 30 minuti", "description": "Costruisci forza e resistenza" },
       "sleep_8hrs": { "title": "Dormi 8 ore", "description": "Dai priorità al riposo di qualità" },
-      "no_phone_1hr": { "title": "Niente telefono per la prima ora", "description": "Inizia la giornata con consapevolezza" }
+      "no_phone_1hr": {
+        "title": "Niente telefono per la prima ora",
+        "description": "Inizia la giornata con consapevolezza"
+      }
     }
   },
   "emergency_urge": {

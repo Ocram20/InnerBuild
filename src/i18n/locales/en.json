@@ -206,25 +206,71 @@
     },
     "premium_deep_dive": {
       "porn_recovery_desc": "This isn't about willpower. The program is built on neuroscience — helping you understand exactly why your brain got hooked, and how to rewire it step by step.",
-      "porn_recovery_features": ["Science-based streak tracking", "Daily check-ins & progress", "Failure debrief & learning tools", "Emergency urge management", "Brain science education", "Personal motivations & reasons"],
+      "porn_recovery_features": [
+        "Science-based streak tracking",
+        "Daily check-ins & progress",
+        "Failure debrief & learning tools",
+        "Emergency urge management",
+        "Brain science education",
+        "Personal motivations & reasons"
+      ],
       "trigger_tracking_desc": "Most relapses feel random — but they're not. Trigger Tracking reveals the hidden patterns behind your worst moments.",
-      "trigger_tracking_features": ["Log impulses & emotions in seconds", "Visual heatmap of your patterns", "AI-generated insight reports", "Primary cause identification", "Personalized prevention strategies", "Timing & context analysis"],
+      "trigger_tracking_features": [
+        "Log impulses & emotions in seconds",
+        "Visual heatmap of your patterns",
+        "AI-generated insight reports",
+        "Primary cause identification",
+        "Personalized prevention strategies",
+        "Timing & context analysis"
+      ],
       "ai_coach_desc": "Imagine having a coach who knows your habits, your struggles, and your goals — available at 3am when a craving hits.",
-      "ai_coach_features": ["Personalized habit advice", "Craving & urge support", "Relapse prevention guidance", "Available 24/7, anytime", "Full chat history saved", "Tailored to your journey"],
+      "ai_coach_features": [
+        "Personalized habit advice",
+        "Craving & urge support",
+        "Relapse prevention guidance",
+        "Available 24/7, anytime",
+        "Full chat history saved",
+        "Tailored to your journey"
+      ],
       "learn_desc": "Understand the science behind your habits, dopamine, and brain recovery.",
       "learn_features": ["In-depth articles", "Recovery guides", "Brain healing timeline"],
       "habit_adaptation_desc": "The AI analyzes your real completion patterns and suggests smarter adjustments.",
       "habit_adaptation_features": ["Pattern detection", "Smart difficulty scaling", "AI-tailored recommendations"],
       "porn_recovery_mobile_desc": "Built on neuroscience — understand why your brain got hooked, and rewire it step by step.",
-      "porn_recovery_mobile_features": ["Science-based streak tracking", "Daily check-ins & progress", "Failure debrief tools", "Emergency urge management", "Brain science education", "Personal motivations"],
+      "porn_recovery_mobile_features": [
+        "Science-based streak tracking",
+        "Daily check-ins & progress",
+        "Failure debrief tools",
+        "Emergency urge management",
+        "Brain science education",
+        "Personal motivations"
+      ],
       "trigger_tracking_mobile_desc": "Relapses feel random — but they're not. Reveal hidden patterns and get AI reports to predict and prevent.",
-      "trigger_tracking_mobile_features": ["Log impulses & emotions in seconds", "Visual heatmap of patterns", "AI-generated insight reports", "Primary cause identification", "Prevention strategies", "Timing & context analysis"],
+      "trigger_tracking_mobile_features": [
+        "Log impulses & emotions in seconds",
+        "Visual heatmap of patterns",
+        "AI-generated insight reports",
+        "Primary cause identification",
+        "Prevention strategies",
+        "Timing & context analysis"
+      ],
       "ai_coach_mobile_desc": "A coach available at 3am when a craving hits. It doesn't judge — it guides and keeps you moving forward.",
-      "ai_coach_mobile_features": ["Personalized habit advice", "Craving & urge support", "Relapse prevention", "Available 24/7", "Full chat history", "Tailored to your journey"],
+      "ai_coach_mobile_features": [
+        "Personalized habit advice",
+        "Craving & urge support",
+        "Relapse prevention",
+        "Available 24/7",
+        "Full chat history",
+        "Tailored to your journey"
+      ],
       "learn_mobile_desc": "The science behind habits, dopamine, and brain recovery. Knowledge makes every effort meaningful.",
       "learn_mobile_features": ["In-depth articles", "Recovery guides", "Brain healing timeline"],
       "habit_adaptation_mobile_desc": "The AI analyzes your real completion patterns and suggests smarter adjustments.",
-      "habit_adaptation_mobile_features": ["Pattern detection", "Smart difficulty scaling", "AI-tailored recommendations"]
+      "habit_adaptation_mobile_features": [
+        "Pattern detection",
+        "Smart difficulty scaling",
+        "AI-tailored recommendations"
+      ]
     }
   },
 
@@ -293,18 +339,43 @@
       "understanding_reward_desc": "the immediate gratification",
       "laws_title": "The Four Laws of Behavior Change",
       "law1_title": "1st Law: Make It Obvious",
-      "law1_items": ["Use implementation intentions: \"I will [behavior] at [time] in [location]\"", "Use habit stacking: \"After [current habit], I will [new habit]\"", "Design your environment — make cues visible"],
+      "law1_items": [
+        "Use implementation intentions: \"I will [behavior] at [time] in [location]\"",
+        "Use habit stacking: \"After [current habit], I will [new habit]\"",
+        "Design your environment — make cues visible"
+      ],
       "law2_title": "2nd Law: Make It Attractive",
-      "law2_items": ["Use temptation bundling: pair a habit you need with one you want", "Join a culture where your desired behavior is normal", "Create a motivation ritual before a difficult habit"],
+      "law2_items": [
+        "Use temptation bundling: pair a habit you need with one you want",
+        "Join a culture where your desired behavior is normal",
+        "Create a motivation ritual before a difficult habit"
+      ],
       "law3_title": "3rd Law: Make It Easy",
-      "law3_items": ["Reduce friction — decrease steps between you and good habits", "Use the Two-Minute Rule: start with just 2 minutes", "Automate habits using technology when possible"],
+      "law3_items": [
+        "Reduce friction — decrease steps between you and good habits",
+        "Use the Two-Minute Rule: start with just 2 minutes",
+        "Automate habits using technology when possible"
+      ],
       "law4_title": "4th Law: Make It Satisfying",
-      "law4_items": ["Use reinforcement — give yourself an immediate reward", "Use a habit tracker — \"don't break the chain\"", "Never miss twice — get back on track quickly"],
+      "law4_items": [
+        "Use reinforcement — give yourself an immediate reward",
+        "Use a habit tracker — \"don't break the chain\"",
+        "Never miss twice — get back on track quickly"
+      ],
       "breaking_title": "Breaking Bad Habits",
       "breaking_intro": "Invert the four laws:",
-      "breaking_items": ["Make it invisible (remove cues)", "Make it unattractive (reframe mindset)", "Make it difficult (increase friction)", "Make it unsatisfying (add accountability)"],
+      "breaking_items": [
+        "Make it invisible (remove cues)",
+        "Make it unattractive (reframe mindset)",
+        "Make it difficult (increase friction)",
+        "Make it unsatisfying (add accountability)"
+      ],
       "advanced_title": "Advanced Strategies",
-      "advanced_items": ["The Goldilocks Rule: stay motivated by working on tasks of just-manageable difficulty", "Downside of good habits: don't let them run on autopilot — keep reviewing and improving", "Genes don't determine destiny: they determine areas of opportunity. Pick habits that suit your natural strengths."],
+      "advanced_items": [
+        "The Goldilocks Rule: stay motivated by working on tasks of just-manageable difficulty",
+        "Downside of good habits: don't let them run on autopilot — keep reviewing and improving",
+        "Genes don't determine destiny: they determine areas of opportunity. Pick habits that suit your natural strengths."
+      ],
       "final_title": "Final Thought",
       "final_p1": "Success is not a goal to reach. It is a system to build.",
       "final_p2": "Small changes. Remarkable results. One habit at a time."
@@ -342,16 +413,36 @@
       "inversion_title": "The Inversion Strategy",
       "inversion_intro": "To break a bad habit, invert the four laws of behavior change:",
       "inv1_title": "Make It Invisible",
-      "inv1_items": ["Remove triggers from your environment", "Unfollow accounts that promote the behavior", "Change your routine to avoid cue exposure"],
+      "inv1_items": [
+        "Remove triggers from your environment",
+        "Unfollow accounts that promote the behavior",
+        "Change your routine to avoid cue exposure"
+      ],
       "inv2_title": "Make It Unattractive",
-      "inv2_items": ["Highlight the true costs of the behavior", "Reframe your identity: \"I'm not someone who does this\"", "Associate the habit with negative outcomes"],
+      "inv2_items": [
+        "Highlight the true costs of the behavior",
+        "Reframe your identity: \"I'm not someone who does this\"",
+        "Associate the habit with negative outcomes"
+      ],
       "inv3_title": "Make It Difficult",
-      "inv3_items": ["Add friction between you and the bad habit", "Use commitment devices (blockers, accountability)", "Create physical barriers"],
+      "inv3_items": [
+        "Add friction between you and the bad habit",
+        "Use commitment devices (blockers, accountability)",
+        "Create physical barriers"
+      ],
       "inv4_title": "Make It Unsatisfying",
-      "inv4_items": ["Create an accountability partner or system", "Make the consequences immediate", "Use a habit scorecard to track slip-ups"],
+      "inv4_items": [
+        "Create an accountability partner or system",
+        "Make the consequences immediate",
+        "Use a habit scorecard to track slip-ups"
+      ],
       "replacement_title": "Replace, Don't Just Remove",
       "replacement_p1": "The most effective strategy isn't just stopping — it's replacing. When you feel the urge, redirect to a healthier alternative that satisfies the same craving.",
-      "replacement_items": ["Bored? → Do a quick workout or creative activity", "Stressed? → Try deep breathing or journaling", "Lonely? → Call a friend or visit a community"],
+      "replacement_items": [
+        "Bored? → Do a quick workout or creative activity",
+        "Stressed? → Try deep breathing or journaling",
+        "Lonely? → Call a friend or visit a community"
+      ],
       "mindset_title": "The Mindset Shift",
       "mindset_p1": "Don't focus on what you're giving up. Focus on what you're gaining: freedom, clarity, self-respect, and a life aligned with your values.",
       "mindset_p2": "Every moment of resistance is building the person you want to become.",
@@ -992,7 +1083,7 @@
     "terms_of_service": "Terms of Service",
     "support": "Support",
     "follow_us": "Follow Us",
-    "copyright": "© {{year}} InnerBuild. All rights reserved. Built with love for your growth."
+    "copyright": "© {{year}} InnerBuild. All rights reserved. Built with love for your growth. <3"
   },
 
   "nav": {
@@ -2113,4 +2204,3 @@
     "generate_new": "Generate New Report"
   }
 }
-
