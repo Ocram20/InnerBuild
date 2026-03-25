@@ -88,7 +88,7 @@ export default function Profile() {
                     <p className="font-medium text-foreground">{isPremium ? t("profile.premium_plan") : t("profile.free_plan")}</p>
                     <p className="text-xs text-muted-foreground">
                       {isPremium
-                        ? isAllowedEmail && !subscription.subscribed
+                        ? hasAdminRole && !subscription.subscribed
                           ? t("profile.admin_access")
                           : subscription.cancelAtPeriodEnd
                             ? t("profile.cancels_on", { date: new Date(subscription.currentPeriodEnd!).toLocaleDateString() })
