@@ -11,37 +11,22 @@ import TriggerReportCard from "@/components/TriggerReportCard";
 import { useTriggerTracking } from "@/hooks/useTriggerTracking";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
-import { supabase } from "@/integrations/supabase/client";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { TriggerLockedPreview } from "@/components/triggers/TriggerLockedPreview";
 import { useTranslation } from "react-i18next";
 
-const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
+
 
 export default function TriggerTracking() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
   const { subscription, loading: subLoading } = useSubscription();
-  const [hasAdminRole, setHasAdminRole] = useState(false);
-  const [roleLoading, setRoleLoading] = useState(true);
+  const { hasAdminRole, loading: roleLoading } = useAdminAccess();
   const fromExplore = location.state?.from === "explore";
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const checkAdminRole = async () => {
-      if (!user) { setRoleLoading(false); return; }
-      try {
-        const { data, error } = await supabase.rpc('has_role', { _user_id: user.id, _role: 'admin' });
-        if (!error && data) setHasAdminRole(true);
-      } catch (err) { console.error("Error checking admin role:", err); }
-      finally { setRoleLoading(false); }
-    };
-    checkAdminRole();
-  }, [user]);
-
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
-  const hasBypassAccess = hasAdminRole || isAllowedEmail;
-  const isPremium = hasBypassAccess || subscription.subscribed;
+  const isPremium = hasAdminRole || subscription.subscribed;
   const accessLoading = subLoading || roleLoading;
 
   const { logs, insights, loading, analyzing, logTrigger, analyzePatterns, getHeatmapData, deleteTrigger } = useTriggerTracking();

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,10 +24,9 @@ interface ProfileData {
 
 export default function Profile() {
   const { user, loading: authLoading } = useAuth();
-  const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
+  const { hasAdminRole } = useAdminAccess();
   const { subscription, openPortal } = useSubscription();
-  const isPremium = isAllowedEmail || subscription.subscribed;
+  const isPremium = hasAdminRole || subscription.subscribed;
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation();

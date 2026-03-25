@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Shield, TrendingUp, AlertTriangle } from "lucide-r
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { useRecoveryJourney } from "@/hooks/useRecoveryJourney";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslation } from "react-i18next";
@@ -24,7 +25,7 @@ import { EmergencyUrgeModal } from "@/components/recovery/EmergencyUrgeModal";
 import { RecoveryJourneyPath } from "@/components/recovery/RecoveryJourneyPath";
 import { useRecoveryPhase } from "@/hooks/useRecoveryPhase";
 
-const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
+
 
 export default function PornRecovery() {
   const navigate = useNavigate();
@@ -36,8 +37,8 @@ export default function PornRecovery() {
   const { phaseProgress, loading: phaseLoading } = useRecoveryPhase(journey?.started_at || null, journey?.id || null);
   const { t } = useTranslation();
 
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
-  const isPremium = isAllowedEmail || subscription.subscribed;
+  const { hasAdminRole } = useAdminAccess();
+  const isPremium = hasAdminRole || subscription.subscribed;
   const loading = subLoading || journeyLoading || phaseLoading;
   const fromExplore = location.state?.from === "explore";
   const handleBack = () => navigate(fromExplore ? "/explore" : "/dashboard");

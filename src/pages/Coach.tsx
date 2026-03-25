@@ -9,12 +9,13 @@ import { Send, Bot, User, Loader2, ArrowLeft, Sparkles, Target, Flame, Lightbulb
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
+import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { toast } from "sonner";
 import { CoachLockedPreview } from "@/components/coach/CoachLockedPreview";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useTranslation } from "react-i18next";
 
-const ALLOWED_EMAILS = ["inner.build07@gmail.com"];
+
 
 type Message = { id?: string; role: "user" | "assistant"; content: string; };
 
@@ -23,8 +24,7 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-coach`;
 export default function Coach() {
   const { user } = useAuth();
   const { subscription, loading: subLoading } = useSubscription();
-  const [hasAdminRole, setHasAdminRole] = useState(false);
-  const [roleLoading, setRoleLoading] = useState(true);
+  const { hasAdminRole, loading: roleLoading } = useAdminAccess();
   const navigate = useNavigate();
   const location = useLocation();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -50,21 +50,7 @@ export default function Coach() {
   const fromExplore = location.state?.from === "explore";
   const handleBack = () => navigate(fromExplore ? "/explore" : "/dashboard");
 
-  useEffect(() => {
-    const checkAdminRole = async () => {
-      if (!user) { setRoleLoading(false); return; }
-      try {
-        const { data, error } = await supabase.rpc('has_role', { _user_id: user.id, _role: 'admin' });
-        if (!error && data) setHasAdminRole(true);
-      } catch (err) { console.error("Error checking admin role:", err); }
-      finally { setRoleLoading(false); }
-    };
-    checkAdminRole();
-  }, [user]);
-
-  const isAllowedEmail = !!(user?.email && ALLOWED_EMAILS.includes(user.email));
-  const hasBypassAccess = hasAdminRole || isAllowedEmail;
-  const isPremium = hasBypassAccess || subscription.subscribed;
+  const isPremium = hasAdminRole || subscription.subscribed;
   const accessLoading = subLoading || roleLoading;
 
   useEffect(() => { if (user && isPremium) loadMessages(); }, [user, isPremium]);
