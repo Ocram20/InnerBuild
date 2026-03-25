@@ -13,7 +13,7 @@ interface WhatsWorkingData {
 }
 
 export function WhatsWorkingSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ export function WhatsWorkingSection() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
         }
       );
 

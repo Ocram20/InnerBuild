@@ -95,6 +95,11 @@ serve(async (req) => {
       return { title: h.title, rate: Math.round((completions / 7) * 100) };
     });
 
+    // Parse language from request body
+    const reqBody = await req.json().catch(() => ({}));
+    const language = reqBody.language === "it" ? "it" : "en";
+    const lang = language === "it" ? "Italian" : "English";
+
     const prompt = `You are a supportive wellness coach. Based on this user's last 7 days of data, provide exactly 3 insights in JSON:
 
 Data:
@@ -115,7 +120,8 @@ Rules:
 - Be warm, supportive, never judgmental
 - Focus on progress, not perfection
 - Be specific to the data, not generic
-- Clinical but human tone`;
+- Clinical but human tone
+- IMPORTANT: Respond entirely in ${lang}`;
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",

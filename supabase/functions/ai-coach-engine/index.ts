@@ -6,11 +6,18 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const SYSTEM_PROMPT = `You are an AI Wellness Coach analyzing user habit and trigger data. Your role is to:
+function getSystemPrompt(language: string) {
+  const langInstruction = language === "it"
+    ? "IMPORTANT: You MUST respond entirely in Italian. All text fields must be written in Italian."
+    : "Respond in English.";
+
+  return `You are an AI Wellness Coach analyzing user habit and trigger data. Your role is to:
 
 1. **Habit Analysis**: Review habit completion rates and suggest simplified versions for struggling habits (e.g., "Read 1 hour" → "Read 15 minutes")
 2. **Trigger Pattern Detection**: Identify when triggers occur most frequently (day/time patterns) and common emotional/situational causes
 3. **Actionable Insights**: Provide practical, encouraging recommendations
+
+${langInstruction}
 
 Response Format (JSON):
 {
@@ -37,6 +44,7 @@ Response Format (JSON):
 }
 
 Be warm, supportive, and non-judgmental. Focus on progress, not perfection.`;
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -74,6 +82,10 @@ serve(async (req) => {
     }
 
     const user_id = claimsData.claims.sub as string;
+
+    // Parse language from request body
+    const reqBody = await req.json().catch(() => ({}));
+    const language = reqBody.language === "it" ? "it" : "en";
 
     if (!GROQ_API_KEY) {
       throw new Error("GROQ_API_KEY is not configured");
@@ -176,7 +188,7 @@ Return your analysis as valid JSON matching the format specified in the system p
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: getSystemPrompt(language) },
           { role: "user", content: analysisPrompt }
         ],
         temperature: 0.7,

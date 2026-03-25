@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
+import { it, enUS } from "date-fns/locale";
+import { useTranslation } from "react-i18next";
 import { 
   Brain, 
   Sparkles, 
@@ -18,8 +20,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
-import { useAuth } from "@/hooks/useAuth";
-import { useSubscription } from "@/hooks/useSubscription";
 import { usePremiumLimits } from "@/hooks/usePremiumLimits";
 import PaywallModal from "@/components/PaywallModal";
 
@@ -32,6 +32,7 @@ function SuggestionItem({
   onAccept: () => void;
   onDismiss: () => void;
 }) {
+  const { t } = useTranslation();
   const isHandled = suggestion.status === "accepted" || suggestion.status === "dismissed";
 
   return (
@@ -43,7 +44,7 @@ function SuggestionItem({
           <span className="font-medium block truncate">{suggestion.habit_title}</span>
         </div>
         <Badge variant="secondary" className="text-xs shrink-0">
-          {suggestion.current_completion_rate}% completed
+          {suggestion.current_completion_rate}% {t("common.completed")}
         </Badge>
       </div>
       <p className="text-muted-foreground text-xs mb-2">
@@ -59,22 +60,13 @@ function SuggestionItem({
       
       {!isHandled ? (
         <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            className="h-7 px-3 gap-1"
-            onClick={onAccept}
-          >
+          <Button size="sm" className="h-7 px-3 gap-1" onClick={onAccept}>
             <Check className="h-3 w-3" />
-            Accept
+            {t("common.accept")}
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-7 px-3 gap-1"
-            onClick={onDismiss}
-          >
+          <Button size="sm" variant="outline" className="h-7 px-3 gap-1" onClick={onDismiss}>
             <X className="h-3 w-3" />
-            Dismiss
+            {t("common.dismiss")}
           </Button>
         </div>
       ) : (
@@ -84,8 +76,8 @@ function SuggestionItem({
             : "text-muted-foreground"
         }>
           {suggestion.status === "accepted" ? (
-            <><CheckCircle2 className="h-3 w-3 mr-1" /> Applied</>
-          ) : "Dismissed"}
+            <><CheckCircle2 className="h-3 w-3 mr-1" /> {t("common.applied")}</>
+          ) : t("common.dismissed")}
         </Badge>
       )}
     </div>
@@ -93,6 +85,8 @@ function SuggestionItem({
 }
 
 export default function HabitReportCard() {
+  const { t, i18n } = useTranslation();
+  const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
   const { isPremium } = usePremiumLimits();
   const { 
     report, 
@@ -113,13 +107,12 @@ export default function HabitReportCard() {
       <div className="rounded-2xl border border-border/60 bg-card p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
           <Brain className="h-6 w-6 text-primary/50" />
-          <span className="text-muted-foreground">Loading habit insights...</span>
+          <span className="text-muted-foreground">{t("habit_report.loading_insights")}</span>
         </div>
       </div>
     );
   }
 
-  // Free user — show locked teaser
   if (!isPremium) {
     return (
       <>
@@ -132,26 +125,18 @@ export default function HabitReportCard() {
               </div>
             </div>
             <div>
-              <h2 className="text-base font-semibold text-foreground">Habit Analysis</h2>
+              <h2 className="text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Get AI-powered insights on your habits and personalized suggestions to improve your routine.
+                {t("habit_report.locked_desc")}
               </p>
             </div>
-            <Button
-              onClick={() => setShowPaywall(true)}
-              className="gap-2"
-              variant="outline"
-            >
+            <Button onClick={() => setShowPaywall(true)} className="gap-2" variant="outline">
               <Crown className="h-4 w-4 text-primary" />
-              Unlock with Premium
+              {t("habit_report.unlock_premium")}
             </Button>
           </div>
         </div>
-        <PaywallModal
-          open={showPaywall}
-          onOpenChange={setShowPaywall}
-          reason="advanced_stats"
-        />
+        <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason="advanced_stats" />
       </>
     );
   }
@@ -161,7 +146,6 @@ export default function HabitReportCard() {
   const pendingSuggestions = habitSuggestions.filter(s => s.status !== "accepted" && s.status !== "dismissed");
   const daysUntilNext = getDaysUntilNextReport();
 
-  // No report yet
   if (!report) {
     return (
       <div className="rounded-2xl border border-border/60 bg-card p-5">
@@ -170,25 +154,21 @@ export default function HabitReportCard() {
             <Brain className="h-7 w-7 text-primary" />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-foreground">Get Your Habit Report</h2>
+            <h2 className="text-base font-semibold text-foreground">{t("habit_report.get_report")}</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Analyze your habits from the last 4 days
+              {t("habit_report.analyze_last_days")}
             </p>
           </div>
-          <Button
-            onClick={generateReport}
-            disabled={generating}
-            className="gap-2"
-          >
+          <Button onClick={generateReport} disabled={generating} className="gap-2">
             {generating ? (
               <>
                 <RefreshCw className="h-4 w-4 animate-spin" />
-                Analyzing...
+                {t("common.analyzing")}
               </>
             ) : (
               <>
                 <Sparkles className="h-4 w-4" />
-                Generate Report
+                {t("trigger_tracking.generate_report")}
               </>
             )}
           </Button>
@@ -208,15 +188,15 @@ export default function HabitReportCard() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-semibold text-foreground">Habit Analysis</h2>
+              <h2 className="text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
               {!is_read && (
                 <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                  New
+                  {t("common.new")}
                 </Badge>
               )}
             </div>
             <p className="text-xs text-muted-foreground">
-              {formatDistanceToNow(new Date(created_at), { addSuffix: true })}
+              {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dateLocale })}
             </p>
           </div>
         </div>
@@ -234,14 +214,12 @@ export default function HabitReportCard() {
       </div>
 
       <div className="space-y-4">
-        <p className="text-sm text-foreground/90 leading-relaxed">
-          {summary}
-        </p>
+        <p className="text-sm text-foreground/90 leading-relaxed">{summary}</p>
 
         {pendingSuggestions.length > 0 && (
           <Badge variant="outline" className="gap-1 text-primary border-primary/20">
             <TrendingDown className="h-3 w-3" />
-            {pendingSuggestions.length} suggestion{pendingSuggestions.length > 1 ? 's' : ''} for you
+            {t("habit_report.suggestions_for_you", { count: pendingSuggestions.length })}
           </Badge>
         )}
 
@@ -251,7 +229,7 @@ export default function HabitReportCard() {
               <div>
                 <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <TrendingDown className="h-4 w-4 text-primary" />
-                  Suggested Habit Adjustments
+                  {t("habit_report.suggested_adjustments")}
                 </h3>
                 <div className="space-y-2">
                   {habitSuggestions.map((suggestion, idx) => (
@@ -274,7 +252,7 @@ export default function HabitReportCard() {
               <div>
                 <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-primary" />
-                  Tips
+                  {t("habit_report.tips")}
                 </h3>
                 <ul className="space-y-1.5">
                   {tips.map((tip, idx) => (
@@ -299,19 +277,19 @@ export default function HabitReportCard() {
                   {generating ? (
                     <>
                       <RefreshCw className="h-4 w-4 animate-spin" />
-                      Generating...
+                      {t("common.generating")}
                     </>
                   ) : (
                     <>
                       <RefreshCw className="h-4 w-4" />
-                      Generate New Report
+                      {t("habit_report.generate_new")}
                     </>
                   )}
                 </Button>
               ) : (
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground py-2">
                   <Clock className="h-4 w-4" />
-                  Next report available in {daysUntilNext} day{daysUntilNext !== 1 ? 's' : ''}
+                  {t("habit_report.next_report_in", { days: daysUntilNext })}
                 </div>
               )}
             </div>

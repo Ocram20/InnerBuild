@@ -82,14 +82,18 @@ serve(async (req) => {
       );
     }
 
+    // Parse language from request body
+    const reqBody = await req.json().catch(() => ({}));
+    const language = reqBody.language === "it" ? "it" : "en";
+
     // Analyze patterns locally first
-    const patterns = analyzePatterns(logs as TriggerLog[]);
+    const patterns = analyzePatterns(logs as TriggerLog[], language);
 
     // If we have Lovable AI, generate deeper insights
     let aiInsights: string[] = [];
     if (lovableApiKey && logs.length >= 5) {
       try {
-        aiInsights = await generateAIInsights(lovableApiKey, logs as TriggerLog[], patterns);
+        aiInsights = await generateAIInsights(lovableApiKey, logs as TriggerLog[], patterns, language);
       } catch (e) {
         console.error("AI insight generation failed:", e);
       }
@@ -157,8 +161,9 @@ interface PatternResult {
   data: Record<string, unknown>;
 }
 
-function analyzePatterns(logs: TriggerLog[]): PatternResult[] {
+function analyzePatterns(logs: TriggerLog[], language: string): PatternResult[] {
   const patterns: PatternResult[] = [];
+  const isIt = language === "it";
 
   // Time pattern analysis
   const timeContextCounts: Record<string, { count: number; avgIntensity: number; intensities: number[] }> = {};
@@ -169,90 +174,85 @@ function analyzePatterns(logs: TriggerLog[]): PatternResult[] {
   const dayOfWeekCounts: Record<number, number> = {};
 
   for (const log of logs) {
-    // Time context
     if (!timeContextCounts[log.time_context]) {
       timeContextCounts[log.time_context] = { count: 0, avgIntensity: 0, intensities: [] };
     }
     timeContextCounts[log.time_context].count++;
     timeContextCounts[log.time_context].intensities.push(log.impulse_intensity);
 
-    // Emotions
     emotionCounts[log.emotion] = (emotionCounts[log.emotion] || 0) + 1;
-
-    // Situations
     situationCounts[log.situation] = (situationCounts[log.situation] || 0) + 1;
 
-    // Alone status
     if (log.was_alone) aloneCounts.alone++;
     else aloneCounts.notAlone++;
 
-    // Hour of day
     const hour = new Date(log.logged_at).getHours();
     hourCounts[hour] = (hourCounts[hour] || 0) + 1;
 
-    // Day of week
     const dayOfWeek = new Date(log.logged_at).getDay();
     dayOfWeekCounts[dayOfWeek] = (dayOfWeekCounts[dayOfWeek] || 0) + 1;
   }
 
-  // Calculate averages
   for (const tc of Object.keys(timeContextCounts)) {
     const data = timeContextCounts[tc];
     data.avgIntensity = data.intensities.reduce((a, b) => a + b, 0) / data.intensities.length;
   }
 
-  // Find peak time
   const peakTime = Object.entries(timeContextCounts)
     .sort((a, b) => b[1].count - a[1].count)[0];
   
   if (peakTime && peakTime[1].count >= 2) {
-    const timeLabel = getTimeLabel(peakTime[0]);
+    const timeLabel = getTimeLabel(peakTime[0], isIt);
     patterns.push({
       type: "pattern",
-      title: `Peak ${timeLabel}`,
-      description: `You logged ${peakTime[1].count} impulses ${timeLabel} (avg intensity: ${peakTime[1].avgIntensity.toFixed(1)}/10). This is your most vulnerable time.`,
+      title: isIt ? `Picco ${timeLabel}` : `Peak ${timeLabel}`,
+      description: isIt 
+        ? `Hai registrato ${peakTime[1].count} impulsi ${timeLabel} (intensità media: ${peakTime[1].avgIntensity.toFixed(1)}/10). Questo è il tuo momento più vulnerabile.`
+        : `You logged ${peakTime[1].count} impulses ${timeLabel} (avg intensity: ${peakTime[1].avgIntensity.toFixed(1)}/10). This is your most vulnerable time.`,
       data: { timeContext: peakTime[0], count: peakTime[1].count, avgIntensity: peakTime[1].avgIntensity },
     });
   }
 
-  // Find dominant emotion
   const topEmotion = Object.entries(emotionCounts)
     .sort((a, b) => b[1] - a[1])[0];
   
   if (topEmotion && topEmotion[1] >= 2) {
     patterns.push({
       type: "pattern",
-      title: `Dominant emotion: ${topEmotion[0]}`,
-      description: `"${topEmotion[0]}" appears in ${topEmotion[1]} of your ${logs.length} logs. Working on this emotion could help.`,
+      title: isIt ? `Emozione dominante: ${topEmotion[0]}` : `Dominant emotion: ${topEmotion[0]}`,
+      description: isIt
+        ? `"${topEmotion[0]}" appare in ${topEmotion[1]} dei tuoi ${logs.length} log. Lavorare su questa emozione potrebbe aiutarti.`
+        : `"${topEmotion[0]}" appears in ${topEmotion[1]} of your ${logs.length} logs. Working on this emotion could help.`,
       data: { emotion: topEmotion[0], count: topEmotion[1] },
     });
   }
 
-  // Alone pattern
   const alonePercent = (aloneCounts.alone / logs.length) * 100;
   if (alonePercent >= 70 && logs.length >= 3) {
     patterns.push({
       type: "warning",
-      title: "Loneliness pattern",
-      description: `${alonePercent.toFixed(0)}% of your impulses happen when you're alone. Consider planning social activities during critical times.`,
+      title: isIt ? "Pattern di solitudine" : "Loneliness pattern",
+      description: isIt
+        ? `${alonePercent.toFixed(0)}% dei tuoi impulsi avvengono quando sei solo. Considera di pianificare attività sociali durante i momenti critici.`
+        : `${alonePercent.toFixed(0)}% of your impulses happen when you're alone. Consider planning social activities during critical times.`,
       data: { alonePercent, aloneCount: aloneCounts.alone, total: logs.length },
     });
   }
 
-  // Peak hour
   const peakHour = Object.entries(hourCounts)
     .sort((a, b) => b[1] - a[1])[0];
   
   if (peakHour && parseInt(peakHour[0]) >= 22) {
     patterns.push({
       type: "warning",
-      title: "Evening/night risk",
-      description: `Many impulses occur after 10 PM. Suggestion: avoid screens after this time or practice 3 minutes of journaling before bed.`,
+      title: isIt ? "Rischio serale/notturno" : "Evening/night risk",
+      description: isIt
+        ? `Molti impulsi avvengono dopo le 22:00. Suggerimento: evita gli schermi dopo quest'ora o pratica 3 minuti di journaling prima di andare a letto.`
+        : `Many impulses occur after 10 PM. Suggestion: avoid screens after this time or practice 3 minutes of journaling before bed.`,
       data: { peakHour: parseInt(peakHour[0]), count: peakHour[1] },
     });
   }
 
-  // Weekend vs weekday
   const weekendCount = (dayOfWeekCounts[0] || 0) + (dayOfWeekCounts[6] || 0);
   const weekdayCount = logs.length - weekendCount;
   const weekendPercent = (weekendCount / logs.length) * 100;
@@ -260,8 +260,10 @@ function analyzePatterns(logs: TriggerLog[]): PatternResult[] {
   if (weekendPercent >= 50 && logs.length >= 4) {
     patterns.push({
       type: "pattern",
-      title: "Weekend pattern",
-      description: `${weekendPercent.toFixed(0)}% of impulses happen on weekends. Plan activities for Saturday and Sunday.`,
+      title: isIt ? "Pattern del weekend" : "Weekend pattern",
+      description: isIt
+        ? `${weekendPercent.toFixed(0)}% degli impulsi avvengono nel weekend. Pianifica attività per sabato e domenica.`
+        : `${weekendPercent.toFixed(0)}% of impulses happen on weekends. Plan activities for Saturday and Sunday.`,
       data: { weekendPercent, weekendCount, weekdayCount },
     });
   }
@@ -269,17 +271,19 @@ function analyzePatterns(logs: TriggerLog[]): PatternResult[] {
   return patterns;
 }
 
-function getTimeLabel(timeContext: string): string {
-  const labels: Record<string, string> = {
-    morning: "in the morning",
-    afternoon: "in the afternoon",
-    evening: "in the evening",
-    night: "at night",
+function getTimeLabel(timeContext: string, isIt: boolean): string {
+  const labels: Record<string, Record<string, string>> = {
+    morning: { en: "in the morning", it: "di mattina" },
+    afternoon: { en: "in the afternoon", it: "di pomeriggio" },
+    evening: { en: "in the evening", it: "di sera" },
+    night: { en: "at night", it: "di notte" },
   };
-  return labels[timeContext] || timeContext;
+  const lang = isIt ? "it" : "en";
+  return labels[timeContext]?.[lang] || timeContext;
 }
 
-async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatterns: PatternResult[]): Promise<string[]> {
+async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatterns: PatternResult[], language: string): Promise<string[]> {
+  const isIt = language === "it";
   const summary = {
     totalLogs: logs.length,
     avgIntensity: logs.reduce((a, b) => a + b.impulse_intensity, 0) / logs.length,
@@ -290,14 +294,16 @@ async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatte
     localPatterns: localPatterns.map(p => p.title),
   };
 
-  const systemPrompt = `You are a recovery coach for addictions. Analyze the user's trigger patterns and generate 2-3 practical, actionable suggestions in English.
+  const lang = isIt ? "Italian" : "English";
+  const systemPrompt = `You are a recovery coach for addictions. Analyze the user's trigger patterns and generate 2-3 practical, actionable suggestions.
 
 Rules:
 - Be empathetic but direct
 - Suggest specific actions (e.g., "3 minutes of breathing", "call a friend", "micro-exercise")
 - Reference the user's specific patterns
 - Each suggestion should be brief (1-2 sentences)
-- Don't repeat already identified patterns, add value`;
+- Don't repeat already identified patterns, add value
+- IMPORTANT: Respond entirely in ${lang}`;
 
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",

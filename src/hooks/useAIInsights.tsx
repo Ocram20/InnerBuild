@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
@@ -39,6 +40,7 @@ export interface AIInsight {
 export function useAIInsights() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { i18n } = useTranslation();
   const [latestInsight, setLatestInsight] = useState<AIInsight | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -96,7 +98,7 @@ export function useAIInsights() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
         }
       );
 
