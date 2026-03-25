@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { it as itLocale, enUS } from "date-fns/locale";
 import { Trash2, Clock, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,8 @@ const getIntensityColor = (intensity: number) => {
 };
 
 export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCardProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dateLocale = i18n.language?.startsWith("it") ? itLocale : enUS;
   const recentLogs = logs.slice(0, 10);
 
   const getEmotionLabel = (emotion: string) => {
@@ -80,7 +82,7 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-3 w-3" />
-                  {format(new Date(log.logged_at), "d MMM, HH:mm")}
+                  {format(new Date(log.logged_at), "d MMM, HH:mm", { locale: dateLocale })}
                 </span>
               </div>
               {log.notes && (
