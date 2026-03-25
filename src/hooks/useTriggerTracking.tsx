@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -36,6 +37,7 @@ export interface HeatmapData {
 export function useTriggerTracking() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { i18n } = useTranslation();
   const [logs, setLogs] = useState<TriggerLog[]>([]);
   const [insights, setInsights] = useState<TriggerInsight[]>([]);
   const [loading, setLoading] = useState(true);
@@ -136,7 +138,7 @@ export function useTriggerTracking() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({}), // userId is derived from auth token server-side
+          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
         }
       );
 
