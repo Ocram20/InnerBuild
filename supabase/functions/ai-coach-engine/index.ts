@@ -188,7 +188,7 @@ Return your analysis as valid JSON matching the format specified in the system p
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: getSystemPrompt(language) },
           { role: "user", content: analysisPrompt }
         ],
         temperature: 0.7,
