@@ -2048,5 +2048,23 @@
       "title": "6. Contattaci",
       "content": "Se hai domande su questi Termini di Servizio, contattaci a"
     }
+  },
+
+  "ai_coach_insight": {
+    "title": "Report Coach AI",
+    "loading": "Caricamento insight AI...",
+    "time_for_new": "È ora di un Nuovo Report",
+    "get_report": "Ottieni il Tuo Report Coach AI",
+    "days_since_last": "Sono passati 4 giorni dalla tua ultima analisi",
+    "analyze_last_days": "Analizza le tue abitudini e trigger degli ultimi 4 giorni",
+    "new": "Nuovo",
+    "habits_need_attention": "{{count}} abitudine/i richiedono attenzione",
+    "patterns_detected": "{{count}} pattern rilevati",
+    "suggested_adjustments": "Aggiustamenti Abitudini Suggeriti",
+    "completed": "{{rate}}% completato",
+    "trigger_patterns": "Pattern Trigger",
+    "common_emotions": "Emozioni comuni: {{emotions}}",
+    "top_recommendations": "Raccomandazioni Principali",
+    "generate_new": "Genera Nuovo Report"
   }
 }

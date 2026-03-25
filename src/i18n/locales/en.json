@@ -2093,6 +2093,24 @@
       "title": "6. Contact Us",
       "content": "If you have any questions about these Terms of Service, please contact us at"
     }
+  },
+
+  "ai_coach_insight": {
+    "title": "AI Coach Report",
+    "loading": "Loading AI insights...",
+    "time_for_new": "Time for a New Report",
+    "get_report": "Get Your AI Coach Report",
+    "days_since_last": "It's been 4 days since your last analysis",
+    "analyze_last_days": "Analyze your habits and triggers from the last 4 days",
+    "new": "New",
+    "habits_need_attention": "{{count}} habit(s) need attention",
+    "patterns_detected": "{{count}} pattern(s) detected",
+    "suggested_adjustments": "Suggested Habit Adjustments",
+    "completed": "{{rate}}% completed",
+    "trigger_patterns": "Trigger Patterns",
+    "common_emotions": "Common emotions: {{emotions}}",
+    "top_recommendations": "Top Recommendations",
+    "generate_new": "Generate New Report"
   }
 }
 
