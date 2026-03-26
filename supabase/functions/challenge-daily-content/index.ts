@@ -178,8 +178,8 @@ Generate today's content.`;
     const content = groqData.choices?.[0]?.message?.content;
     if (!content) throw new Error("No response from Groq");
 
-    let parsed;
-    try { parsed = JSON.parse(content); } catch {
+    let aiContent;
+    try { aiContent = JSON.parse(content); } catch {
       throw new Error("Failed to parse AI response");
     }
 
