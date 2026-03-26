@@ -99,6 +99,7 @@ export function FailureDebriefWizard({
   getAISuggestions,
   saving,
 }: FailureDebriefWizardProps) {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [loadingSuggestions, setLoadingSuggestions] = useState(false);
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
@@ -164,7 +165,6 @@ export function FailureDebriefWizard({
   };
 
   const handleBack = () => {
-  const { t } = useTranslation();
     if (step > 1) {
       setStep(step - 1);
     }

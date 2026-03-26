@@ -14,6 +14,7 @@ interface ArticleDetailProps {
 }
 
 export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps) {
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
 
   if (isLoading) {
@@ -131,7 +132,6 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
             }
 
             const renderInlineFormatting = (text: string) => {
-  const { i18n } = useTranslation();
               const parts = text.split(/(\*\*[^*]+\*\*)/g);
               return parts.map((part, i) => {
                 if (part.startsWith('**') && part.endsWith('**')) {

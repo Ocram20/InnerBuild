@@ -46,6 +46,7 @@ const challengeTemplates: ChallengeTemplate[] = [
 ];
 
 function useSuggestedChallenges(): SuggestedChallenge[] {
+  const { t } = useTranslation();
   return challengeTemplates.map((tmpl) => ({
     ...tmpl,
     title: t(`suggested_challenges_content.${tmpl.id}.title`),
@@ -75,7 +76,6 @@ const categoryColors = {
 };
 
 export default function SuggestedChallengesList({ category, onStartChallenge, disabled }: SuggestedChallengesListProps) {
-  const { t } = useTranslation();
   const suggestedChallenges = useSuggestedChallenges();
 
   const filteredChallenges = category === "all" 

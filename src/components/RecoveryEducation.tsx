@@ -28,9 +28,9 @@ const articleMeta: Article[] = [
 ];
 
 export function RecoveryEducation() {
+  const { t } = useTranslation();
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
   const toggleArticle = (id: string) => {
-  const { t } = useTranslation();
     setExpandedArticle(expandedArticle === id ? null : id);
   };
 

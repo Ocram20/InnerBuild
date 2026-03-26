@@ -25,6 +25,7 @@ export interface LocalizedArticle {
 }
 
 function localizeArticle(article: Article, lang: string): LocalizedArticle {
+  const { i18n } = useTranslation();
   const isIt = lang === "it";
   return {
     id: article.id,
@@ -38,7 +39,6 @@ function localizeArticle(article: Article, lang: string): LocalizedArticle {
 }
 
 export function useArticles() {
-  const { i18n } = useTranslation();
   return useQuery({
     queryKey: ["articles", i18n.language],
     queryFn: async () => {
