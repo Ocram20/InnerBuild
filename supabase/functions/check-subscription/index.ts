@@ -17,30 +17,51 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
-    );
-
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Missing Authorization header" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
     }
 
-    const token = authHeader.replace("Bearer ", "");
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+      { global: { headers: { Authorization: authHeader } } },
+    );
+
     const {
       data: { user },
       error: userError,
-    } = await supabaseClient.auth.getUser(token);
+    } = await supabaseClient.auth.getUser();
 
     if (userError || !user?.email) {
       return new Response(JSON.stringify({ error: "User not authenticated" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
+    }
+
+    // Check if user is admin — admins get full access without Stripe
+    const adminClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    );
+    const { data: isAdmin } = await adminClient.rpc("has_role", {
+      _user_id: user.id,
+      _role: "admin",
+    });
+
+    if (isAdmin) {
+      return new Response(
+        JSON.stringify({
+          subscribed: true,
+          status: "active",
+          isAdmin: true,
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     const stripe = new Stripe(Deno.env.get("STRIPE_API_KEY") || "", {
