@@ -274,6 +274,62 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
     }
   };
 
+  const handlePasswordChange = async () => {
+    if (newPassword !== confirmPassword) {
+      toast({
+        title: "Le password non corrispondono",
+        description: "La nuova password e la conferma devono essere uguali.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast({
+        title: "Password troppo corta",
+        description: "La password deve essere di almeno 6 caratteri.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setPasswordSaving(true);
+    try {
+      // Verify current password by re-signing in
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: user?.email || "",
+        password: currentPassword,
+      });
+      if (signInError) {
+        toast({
+          title: "Password attuale errata",
+          description: "La password attuale inserita non è corretta.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      toast({
+        title: "Password aggiornata",
+        description: "La tua password è stata modificata con successo.",
+      });
+    } catch (error: any) {
+      console.error("Error updating password:", error);
+      toast({
+        title: "Aggiornamento fallito",
+        description: error.message || "Impossibile aggiornare la password.",
+        variant: "destructive",
+      });
+    } finally {
+      setPasswordSaving(false);
+    }
+  };
+
   const getInitials = () => {
     if (formData.first_name && formData.last_name) {
       return `${formData.first_name[0]}${formData.last_name[0]}`.toUpperCase();
@@ -479,7 +535,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               </>
             )}
           </Button>
-
+        </div>
         <Button 
           onClick={handleSave} 
           disabled={saving || !canSave} 
