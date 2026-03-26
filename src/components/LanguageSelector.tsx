@@ -89,9 +89,9 @@ export default function LanguageSelector() {
 
     if (langCode === "it") {
       // Reset to original language
-      const banner = document.querySelector<HTMLElement>(".goog-te-banner-frame");
-      if (banner) {
-        const restoreBtn = banner.contentDocument?.querySelector<HTMLElement>(".goog-te-banner .goog-te-button button");
+      const banner = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
+      if (banner?.contentDocument) {
+        const restoreBtn = banner.contentDocument.querySelector<HTMLElement>(".goog-te-banner .goog-te-button button");
         restoreBtn?.click();
       }
       // Also try via combo
