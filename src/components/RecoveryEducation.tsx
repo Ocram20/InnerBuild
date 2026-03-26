@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
+import { useTranslation } from "react-i18next";
   BookOpen, 
   Brain, 
   Heart, 
@@ -29,6 +30,7 @@ const articleMeta: Article[] = [
 export function RecoveryEducation() {
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
   const toggleArticle = (id: string) => {
+  const { t } = useTranslation();
     setExpandedArticle(expandedArticle === id ? null : id);
   };
 

@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 export interface FailureDebrief {
   id: string;
   debrief_date: string;
@@ -48,6 +49,7 @@ interface TodayContext {
 }
 
 export function useFailureDebrief() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [debriefs, setDebriefs] = useState<FailureDebrief[]>([]);

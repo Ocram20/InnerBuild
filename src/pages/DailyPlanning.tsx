@@ -9,7 +9,9 @@ import { NotToDoSection } from "@/components/daily-planning/NotToDoSection";
 import { ActiveHabitsSection } from "@/components/daily-planning/ActiveHabitsSection";
 import { EveningReminderBanner } from "@/components/daily-planning/EveningReminderBanner";
 import BottomNavigation from "@/components/BottomNavigation";
+import { useTranslation } from "react-i18next";
 const DailyPlanning = () => {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

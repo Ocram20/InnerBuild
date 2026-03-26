@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Moon, Heart, Lightbulb, Save, Plus, X, Check, PartyPopper } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 interface DailyReflection {
   id?: string;
@@ -33,6 +34,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
+  const { t } = useTranslation();
   const { toast } = useToast();
   const MOTIVATIONAL_MESSAGES =
     t("evening_reflection_section.motivation_messages", { returnObjects: true }) as string[];

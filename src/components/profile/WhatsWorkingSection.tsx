@@ -3,6 +3,7 @@ import { Sparkles, Loader2, RefreshCw, TrendingUp, Shield, Lightbulb } from "luc
 import { useAuth } from "@/hooks/useAuth";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface WhatsWorkingData {
   improving: string;
@@ -12,6 +13,7 @@ interface WhatsWorkingData {
 }
 
 export function WhatsWorkingSection() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);

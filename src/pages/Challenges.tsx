@@ -13,6 +13,7 @@ import CreateChallengeModal from "@/components/CreateChallengeModal";
 import PaywallModal from "@/components/PaywallModal";
 import BottomNavigation from "@/components/BottomNavigation";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 interface Challenge {
   id: string; title: string; description: string | null; duration_days: number; start_date: string;
@@ -21,6 +22,7 @@ interface Challenge {
 }
 
 export default function Challenges() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { isPremium, canCreateChallenge, challengesRemaining, refetch: refetchLimits } = usePremiumLimits();
   const navigate = useNavigate();

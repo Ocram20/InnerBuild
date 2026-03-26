@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
+import { useTranslation } from "react-i18next";
 
 export interface HabitAdaptation {
   habit_title: string;
@@ -38,6 +39,7 @@ export interface AIInsight {
 }
 
 export function useAIInsights() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [latestInsight, setLatestInsight] = useState<AIInsight | null>(null);

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/collapsible";
 import { X, ChevronDown, Calendar, CloudRain, AlertTriangle, Lightbulb } from "lucide-react";
 import { FailureDebrief } from "@/hooks/useFailureDebrief";
+import { useTranslation } from "react-i18next";
 interface FailureDebriefHistoryProps {
   debriefs: FailureDebrief[];
   onClose: () => void;

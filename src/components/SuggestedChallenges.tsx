@@ -1,4 +1,5 @@
 import {
+import { useTranslation } from "react-i18next";
   Smartphone,
   Brain,
   Shield,

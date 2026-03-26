@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface QuoteData {
   id: number;

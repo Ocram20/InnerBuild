@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 export interface TriggerLog {
   id: string;
@@ -35,6 +36,7 @@ export interface HeatmapData {
 }
 
 export function useTriggerTracking() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [logs, setLogs] = useState<TriggerLog[]>([]);

@@ -21,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
 import { usePremiumLimits } from "@/hooks/usePremiumLimits";
 import PaywallModal from "@/components/PaywallModal";
+import { useTranslation } from "react-i18next";
 
 function SuggestionItem({
   suggestion,
@@ -84,6 +85,7 @@ function SuggestionItem({
 
 export default function HabitReportCard() {
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
+  const { i18n } = useTranslation();
   const { isPremium } = usePremiumLimits();
   const { 
     report, 

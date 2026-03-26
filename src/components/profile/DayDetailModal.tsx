@@ -7,6 +7,7 @@ import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { 
+import { useTranslation } from "react-i18next";
   Loader2, 
   Flame, 
   Heart, 
@@ -59,6 +60,7 @@ interface DayData {
 
 export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
   const dateLocale = i18n.language === "it" ? it : enUS;
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [dayData, setDayData] = useState<DayData | null>(null);

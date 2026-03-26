@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import {
+import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -40,6 +41,7 @@ interface ChallengeCardProps {
 }
 
 export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);

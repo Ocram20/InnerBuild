@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
 type Step = "feeling" | "location" | "alone" | "loading" | "guidance";
 
 const feelingKeys = [
@@ -27,6 +28,7 @@ interface EmergencyUrgeModalProps {
 }
 
 export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [step, setStep] = useState<Step>("feeling");
   const [feeling, setFeeling] = useState("");

@@ -10,6 +10,7 @@ import JourneyRoadmap from "@/components/challenge-journey/JourneyRoadmap";
 import DailyContentCard from "@/components/challenge-journey/DailyContentCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import BottomNavigation from "@/components/BottomNavigation";
+import { useTranslation } from "react-i18next";
 interface Challenge {
   id: string;
   title: string;
@@ -38,6 +39,7 @@ interface DailyEntry {
 }
 
 export default function ChallengeJourney() {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const navigate = useNavigate();

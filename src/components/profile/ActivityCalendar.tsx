@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DayDetailModal } from "./DayDetailModal";
+import { useTranslation } from "react-i18next";
 
 interface DayActivity {
   date: string;
@@ -28,6 +29,7 @@ interface DayActivity {
 
 export function ActivityCalendar() {
   const dateLocale = i18n.language === "it" ? it : enUS;
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [activities, setActivities] = useState<Map<string, DayActivity>>(new Map());

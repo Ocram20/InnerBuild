@@ -12,6 +12,7 @@ import CreateHabitModal from "@/components/CreateHabitModal";
 import BottomNavigation from "@/components/BottomNavigation";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 
 interface Habit {
   id: string;
@@ -26,6 +27,7 @@ interface Habit {
 }
 
 export default function Habits() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();

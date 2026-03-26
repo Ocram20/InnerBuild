@@ -28,6 +28,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
+import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -74,6 +75,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDetailCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();

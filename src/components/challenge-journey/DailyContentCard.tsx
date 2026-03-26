@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Brain, Footprints, MessageCircle, Check, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
+import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -42,6 +43,7 @@ const checkinOptions = [
 ];
 
 export default function DailyContentCard({ entry, isLoading, isCurrentDay, challengeId, jokersRemaining = 3, onUpdate }: DailyContentCardProps) {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [savingMission, setSavingMission] = useState<string | null>(null);
   const [savingCheckin, setSavingCheckin] = useState(false);

@@ -36,8 +36,10 @@ import {
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import LanguageSelector from "@/components/LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 export default function Landing() {
+  const { t } = useTranslation();
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();

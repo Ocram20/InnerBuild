@@ -5,6 +5,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { LocalizedArticle } from "@/hooks/useArticles";
+import { useTranslation } from "react-i18next";
 
 interface ArticleDetailProps {
   article: LocalizedArticle | null | undefined;
@@ -130,6 +131,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
             }
 
             const renderInlineFormatting = (text: string) => {
+  const { i18n } = useTranslation();
               const parts = text.split(/(\*\*[^*]+\*\*)/g);
               return parts.map((part, i) => {
                 if (part.startsWith('**') && part.endsWith('**')) {

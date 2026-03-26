@@ -9,6 +9,7 @@ import { Plus, Trash2, Edit2, Check, X, ListTodo, GripVertical } from "lucide-re
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
+import { useTranslation } from "react-i18next";
 
 interface Task {
   id: string;
@@ -32,6 +33,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
   const [editingTitle, setEditingTitle] = useState("");
   const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const { t } = useTranslation();
   const { toast } = useToast();
   const SUGGESTED_TASKS = t("todo_section.suggested_tasks", { returnObjects: true }) as string[];
 

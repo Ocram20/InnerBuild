@@ -5,6 +5,7 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const languages = [
   { code: "en", label: "English", flag: "🇬🇧" },

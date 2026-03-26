@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from "react-i18next";
 interface Habit {
   id: string;
   title: string;
@@ -65,6 +66,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProgressCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);

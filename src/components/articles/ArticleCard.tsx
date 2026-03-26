@@ -4,6 +4,7 @@ import { Calendar, Clock, ChevronRight } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import type { LocalizedArticle } from "@/hooks/useArticles";
+import { useTranslation } from "react-i18next";
 
 interface ArticleCardProps {
   article: LocalizedArticle;

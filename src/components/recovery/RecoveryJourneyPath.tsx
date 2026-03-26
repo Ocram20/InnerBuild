@@ -6,6 +6,7 @@ import { RECOVERY_PHASES, type PhaseProgress } from "@/hooks/useRecoveryPhase";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 interface Props {
   progress: PhaseProgress;
 }
@@ -18,6 +19,7 @@ interface CachedInsight {
 }
 
 export function RecoveryJourneyPath({ progress }: Props) {
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [aiInsight, setAiInsight] = useState<string | null>(null);
   const [aiLoading, setAiLoading] = useState(false);

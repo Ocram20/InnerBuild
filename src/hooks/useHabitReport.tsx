@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
+import { useTranslation } from "react-i18next";
 export interface HabitSuggestion {
   habit_id: string;
   habit_title: string;
@@ -32,6 +33,7 @@ export interface HabitReport {
 }
 
 export function useHabitReport() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [report, setReport] = useState<HabitReport | null>(null);

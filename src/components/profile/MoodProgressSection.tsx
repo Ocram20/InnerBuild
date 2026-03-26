@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { Heart, BookOpen } from "lucide-react";
 import type { MoodProgressDetail } from "@/hooks/useProgressData";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   data: MoodProgressDetail;

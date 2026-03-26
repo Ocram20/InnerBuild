@@ -36,6 +36,7 @@ import HabitReportCard from "@/components/HabitReportCard";
 import QuickAccessTodos from "@/components/QuickAccessTodos";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { EmergencyUrgeModal } from "@/components/recovery/EmergencyUrgeModal";
+import { useTranslation } from "react-i18next";
 
 interface Habit {
   id: string;
@@ -47,6 +48,7 @@ interface Habit {
 }
 
 export default function Dashboard() {
+  const { i18n } = useTranslation();
   const { user, signOut } = useAuth();
   const { subscription, openPortal } = useSubscription();
   const { isPremium } = usePremiumLimits();

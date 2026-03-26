@@ -29,6 +29,7 @@ import {
   Check,
 } from "lucide-react";
 import { DebriefFormData } from "@/hooks/useFailureDebrief";
+import { useTranslation } from "react-i18next";
 interface TodayContext {
   recentTriggers: Array<{
     emotion: string;
@@ -163,6 +164,7 @@ export function FailureDebriefWizard({
   };
 
   const handleBack = () => {
+  const { t } = useTranslation();
     if (step > 1) {
       setStep(step - 1);
     }

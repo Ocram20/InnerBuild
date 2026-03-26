@@ -4,6 +4,7 @@ import { Trash2, Clock, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TriggerLog } from "@/hooks/useTriggerTracking";
+import { useTranslation } from "react-i18next";
 interface RecentTriggersCardProps {
   logs: TriggerLog[];
   onDelete: (id: string) => void;
@@ -17,6 +18,7 @@ const emotionEmojis: Record<string, string> = {
 };
 
 const getIntensityColor = (intensity: number) => {
+  const { i18n } = useTranslation();
   if (intensity >= 7) return "text-red-500 bg-red-500/10";
   if (intensity >= 4) return "text-orange-500 bg-orange-500/10";
   return "text-yellow-500 bg-yellow-500/10";

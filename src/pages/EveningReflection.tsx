@@ -13,7 +13,9 @@ import { enUS, it as itLocale } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
 import { EveningReflectionSection } from "@/components/daily-planning/EveningReflectionSection";
 import BottomNavigation from "@/components/BottomNavigation";
+import { useTranslation } from "react-i18next";
 const EveningReflectionPage = () => {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
