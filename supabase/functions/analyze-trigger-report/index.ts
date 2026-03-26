@@ -92,6 +92,7 @@ serve(async (req) => {
       });
     }
 
+    const userId = user.id;
 
     const body = await req.json().catch(() => ({}));
     const langParsed = z.object({ language: z.enum(["en", "it"]).optional().default("en") }).safeParse(body);
