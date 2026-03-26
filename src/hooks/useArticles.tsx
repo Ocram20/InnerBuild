@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useTranslation } from "react-i18next";
 
 export interface Article {
@@ -43,8 +43,7 @@ export function useArticles() {
   return useQuery({
     queryKey: ["articles", i18n.language],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("articles")
+      const { data, error } = await untypedTable("articles")
         .select("*")
         .order("published_at", { ascending: false });
 
@@ -61,8 +60,7 @@ export function useArticle(id: string | undefined) {
     queryFn: async () => {
       if (!id) return null;
       
-      const { data, error } = await supabase
-        .from("articles")
+      const { data, error } = await untypedTable("articles")
         .select("*")
         .eq("id", id)
         .single();

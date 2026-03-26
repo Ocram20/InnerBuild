@@ -110,8 +110,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       updates.status = "paused";
     }
 
-    await supabase
-      .from("detox_challenges")
+    await untypedTable("detox_challenges")
       .update(updates)
       .eq("id", challengeId);
 

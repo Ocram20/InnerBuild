@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -49,8 +50,7 @@ export function useTriggerTracking() {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    const { data, error } = await supabase
-      .from("trigger_logs")
+    const { data, error } = await untypedTable("trigger_logs")
       .select("*")
       .eq("user_id", user.id)
       .gte("logged_at", thirtyDaysAgo.toISOString())
@@ -67,8 +67,7 @@ export function useTriggerTracking() {
   const fetchInsights = useCallback(async () => {
     if (!user) return;
 
-    const { data, error } = await supabase
-      .from("trigger_insights")
+    const { data, error } = await untypedTable("trigger_insights")
       .select("*")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
@@ -92,8 +91,7 @@ export function useTriggerTracking() {
   }) => {
     if (!user) return false;
 
-    const { error } = await supabase
-      .from("trigger_logs")
+    const { error } = await untypedTable("trigger_logs")
       .insert({
         user_id: user.id,
         ...data,
@@ -194,8 +192,7 @@ export function useTriggerTracking() {
   const deleteTrigger = useCallback(async (id: string) => {
     if (!user) return;
 
-    const { error } = await supabase
-      .from("trigger_logs")
+    const { error } = await untypedTable("trigger_logs")
       .delete()
       .eq("id", id)
       .eq("user_id", user.id);

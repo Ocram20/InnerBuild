@@ -4,6 +4,7 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isFuture,
 import { it, enUS } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react";
@@ -81,8 +82,8 @@ export function ActivityCalendar() {
         supabase.from("not_to_do_items").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
         supabase.from("detox_challenges").select("last_check_in, status").eq("user_id", user.id).eq("status", "active"),
         supabase.from("recovery_checkins").select("checkin_date, status").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        supabase.from("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        supabase.from("challenge_daily_entries").select("created_at, checkin_response, is_failure").eq("user_id", user.id),
+        untypedTable("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
+        untypedTable("challenge_daily_entries").select("created_at, checkin_response, is_failure").eq("user_id", user.id),
       ]);
 
       const totalHabits = habitsRes.data?.length || 0;

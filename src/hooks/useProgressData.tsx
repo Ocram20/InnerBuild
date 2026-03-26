@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { format, subDays } from "date-fns";
 
@@ -103,11 +104,11 @@ export function useProgressData(days: number = 14) {
         supabase.from("habits").select("id, title").eq("user_id", user.id).eq("is_active", true),
         supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", currentStart),
         supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", previousStart).lt("completed_at", currentStart),
-        supabase.from("trigger_logs").select("id, logged_at, emotion, time_context, impulse_intensity").eq("user_id", user.id).gte("logged_at", subDays(now, days).toISOString()),
-        supabase.from("trigger_logs").select("id").eq("user_id", user.id).gte("logged_at", subDays(now, days * 2).toISOString()).lt("logged_at", subDays(now, days).toISOString()),
+        untypedTable("trigger_logs").select("id, logged_at, emotion, time_context, impulse_intensity").eq("user_id", user.id).gte("logged_at", subDays(now, days).toISOString()),
+        untypedTable("trigger_logs").select("id").eq("user_id", user.id).gte("logged_at", subDays(now, days * 2).toISOString()).lt("logged_at", subDays(now, days).toISOString()),
         supabase.from("detox_challenges").select("id, title, category, status, current_streak, duration_days, start_date").eq("user_id", user.id),
-        supabase.from("daily_checkins").select("checkin_date, mood, energy_level").eq("user_id", user.id).gte("checkin_date", currentStart),
-        supabase.from("daily_checkins").select("checkin_date, mood").eq("user_id", user.id).gte("checkin_date", previousStart).lt("checkin_date", currentStart),
+        untypedTable("daily_checkins").select("checkin_date, mood, energy_level").eq("user_id", user.id).gte("checkin_date", currentStart),
+        untypedTable("daily_checkins").select("checkin_date, mood").eq("user_id", user.id).gte("checkin_date", previousStart).lt("checkin_date", currentStart),
         supabase.from("daily_reflections").select("reflection_date").eq("user_id", user.id).gte("reflection_date", currentStart),
       ]);
 

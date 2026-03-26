@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 
 
@@ -90,8 +91,7 @@ export function useRecoveryPhase(journeyStartedAt: string | null, journeyId: str
           .eq("user_id", user.id)
           .eq("journey_id", journeyId)
           .order("checkin_date", { ascending: false }),
-        supabase
-          .from("failure_debriefs")
+        untypedTable("failure_debriefs")
           .select("id, is_completed")
           .eq("user_id", user.id)
           .eq("is_completed", true),

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Sparkles, Loader2, RefreshCw, TrendingUp, Shield, Lightbulb } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Button } from "@/components/ui/button";
 
 interface WhatsWorkingData {
@@ -23,8 +23,7 @@ export function WhatsWorkingSection() {
     if (!user) return;
     setLoading(true);
     try {
-      const { data: insights } = await supabase
-        .from("ai_insights")
+      const { data: insights } = await untypedTable("ai_insights")
         .select("*")
         .eq("user_id", user.id)
         .eq("insight_type", "whats_working")

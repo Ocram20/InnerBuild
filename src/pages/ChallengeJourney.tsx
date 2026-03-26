@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Flame, ShieldAlert } from "lucide-react";
@@ -79,8 +80,7 @@ export default function ChallengeJourney() {
   const fetchEntries = useCallback(async () => {
     if (!id) return;
 
-    const { data } = await supabase
-      .from("challenge_daily_entries")
+    const { data } = await untypedTable("challenge_daily_entries")
       .select("*")
       .eq("challenge_id", id)
       .order("day_number", { ascending: true });
