@@ -23,10 +23,10 @@ interface FailureDebriefHistoryProps {
 }
 
 export function FailureDebriefHistory({
-  const { t, i18n } = useTranslation();
   debriefs,
   onClose,
 }: FailureDebriefHistoryProps) {
+  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
 
   return (

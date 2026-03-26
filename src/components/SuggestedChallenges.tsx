@@ -62,7 +62,6 @@ interface SuggestedChallengesListProps {
 }
 
 const difficultyColors = {
-  const { t } = useTranslation();
   beginner: "bg-primary/10 text-primary",
   intermediate: "bg-accent/10 text-accent",
   advanced: "bg-xp/10 text-xp",
@@ -76,6 +75,7 @@ const categoryColors = {
 };
 
 export default function SuggestedChallengesList({ category, onStartChallenge, disabled }: SuggestedChallengesListProps) {
+  const { t } = useTranslation();
   const suggestedChallenges = useSuggestedChallenges();
 
   const filteredChallenges = category === "all" 

@@ -49,7 +49,6 @@ interface RecoveryTrackerProps {
 }
 
 export function RecoveryTracker({ 
-  const { i18n } = useTranslation();
   startedAt, 
   checkIns, 
   onCheckIn, 
@@ -62,6 +61,7 @@ export function RecoveryTracker({
   jokersRemaining,
   status,
 }: RecoveryTrackerProps) {
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const successDays = checkIns.filter(c => c.status === "success").length;
   const failedDays = checkIns.filter(c => c.status === "failed").length;

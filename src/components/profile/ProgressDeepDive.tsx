@@ -32,7 +32,6 @@ const sectionMeta: Record<Section, { key: string; icon: typeof Leaf }> = {
 };
 
 export function ProgressDeepDive({
-  const { t } = useTranslation();
   section,
   onClose,
   habitDetails,
@@ -41,6 +40,7 @@ export function ProgressDeepDive({
   moodDetails,
   days = 14,
 }: Props) {
+  const { t } = useTranslation();
   const meta = sectionMeta[section];
   const Icon = meta.icon;
 
