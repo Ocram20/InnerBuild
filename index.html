@@ -34,10 +34,12 @@
     <!-- Prevent theme flash on page load -->
     <script>
       (function() {
-        const theme = localStorage.getItem('innerbloom-theme');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
+        var theme = localStorage.getItem('innerbloom-theme');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        // Keep page title from being translated by Google Translate
+        new MutationObserver(function() {
+          if (document.title !== 'InnerBuild') document.title = 'InnerBuild';
+        }).observe(document.querySelector('title'), { childList: true, characterData: true, subtree: true });
       })();
     </script>
   </head>
