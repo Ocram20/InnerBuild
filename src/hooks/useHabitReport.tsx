@@ -51,7 +51,7 @@ export function useHabitReport() {
         .eq('insight_type', 'habit_report')
         .order('created_at', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (error && error.code !== 'PGRST116') {
         console.error("Error fetching habit report:", error);
