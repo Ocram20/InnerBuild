@@ -148,7 +148,10 @@ export default function Dashboard() {
     if (hour < 12) greeting = "Buongiorno";
     else if (hour < 18) greeting = "Buon pomeriggio";
     else greeting = "Buonasera";
-    return firstName ? `${greeting}, ${firstName}` : greeting;
+    if (firstName) {
+      return <>{greeting}, <span className="notranslate" translate="no">{firstName}</span></>;
+    }
+    return greeting;
   };
 
   const completedCount = habits.filter(h => h.completed_today).length;
