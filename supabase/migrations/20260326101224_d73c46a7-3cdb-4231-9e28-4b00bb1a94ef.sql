@@ -1,0 +1,1 @@
+ALTER TABLE public.trigger_logs ADD COLUMN IF NOT EXISTS situation text; ALTER TABLE public.recovery_journey ADD COLUMN IF NOT EXISTS jokers_remaining integer NOT NULL DEFAULT 0; ALTER TABLE public.failure_debriefs ADD COLUMN IF NOT EXISTS context text;

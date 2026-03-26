@@ -347,6 +347,7 @@ export type Database = {
         Row: {
           action_plan: string | null
           ai_suggestions: Json | null
+          context: string | null
           created_at: string
           id: string
           journey_id: string | null
@@ -360,6 +361,7 @@ export type Database = {
         Insert: {
           action_plan?: string | null
           ai_suggestions?: Json | null
+          context?: string | null
           created_at?: string
           id?: string
           journey_id?: string | null
@@ -373,6 +375,7 @@ export type Database = {
         Update: {
           action_plan?: string | null
           ai_suggestions?: Json | null
+          context?: string | null
           created_at?: string
           id?: string
           journey_id?: string | null
@@ -619,6 +622,7 @@ export type Database = {
           current_streak: number
           id: string
           is_active: boolean
+          jokers_remaining: number
           started_at: string
           updated_at: string
           user_id: string
@@ -628,6 +632,7 @@ export type Database = {
           current_streak?: number
           id?: string
           is_active?: boolean
+          jokers_remaining?: number
           started_at?: string
           updated_at?: string
           user_id: string
@@ -637,6 +642,7 @@ export type Database = {
           current_streak?: number
           id?: string
           is_active?: boolean
+          jokers_remaining?: number
           started_at?: string
           updated_at?: string
           user_id?: string
@@ -683,6 +689,7 @@ export type Database = {
           location_context: string | null
           logged_at: string
           notes: string | null
+          situation: string | null
           time_context: string | null
           user_id: string
         }
@@ -695,6 +702,7 @@ export type Database = {
           location_context?: string | null
           logged_at?: string
           notes?: string | null
+          situation?: string | null
           time_context?: string | null
           user_id: string
         }
@@ -707,6 +715,7 @@ export type Database = {
           location_context?: string | null
           logged_at?: string
           notes?: string | null
+          situation?: string | null
           time_context?: string | null
           user_id?: string
         }
