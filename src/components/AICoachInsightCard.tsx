@@ -194,7 +194,7 @@ export default function AICoachInsightCard() {
                       <p className="text-xs text-muted-foreground mb-2">
                         {pattern.frequency}
                         {pattern.common_emotions?.length > 0 && (
-                          <> • {`Emozioni comuni: ${pattern.common_emotions.join('}`}</>
+                          <> • {`Emozioni comuni: ${pattern.common_emotions.join(', ')}`}</>
                         )}
                       </p>
                       <div className="flex items-center gap-2 text-primary">

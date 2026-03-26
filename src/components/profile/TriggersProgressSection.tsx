@@ -33,7 +33,7 @@ export function TriggersProgressSection({ data, days = 14 }: Props) {
           <p className="text-xs text-muted-foreground">{`Frequenza trigger (${days} giorni)`}</p>
           {hasAnyData && (
             <p className="text-xs text-muted-foreground">
-              {`Totale: ${data.dailyData.reduce((s}`}
+              {`Totale: ${data.dailyData.reduce((sum, d) => sum + d.count, 0)} trigger`}
             </p>
           )}
         </div>

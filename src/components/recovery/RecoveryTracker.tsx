@@ -77,7 +77,7 @@ export function RecoveryTracker({
             <div>
               <CardTitle className="text-xl">{"Sfida di Recovery"}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                {`Iniziato ${format(new Date(startedAt), "dd MMM yyyy", { locale: it })}`}}
+                {`Iniziato ${format(new Date(startedAt), "dd MMM yyyy", { locale: it })}`}
               </p>
             </div>
           </div>
