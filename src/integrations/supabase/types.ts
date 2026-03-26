@@ -59,6 +59,48 @@ export type Database = {
         }
         Relationships: []
       }
+      articles: {
+        Row: {
+          content: string
+          content_it: string | null
+          created_at: string
+          id: string
+          is_published: boolean
+          published_at: string
+          summary: string
+          summary_it: string | null
+          title: string
+          title_it: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          content_it?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          published_at?: string
+          summary?: string
+          summary_it?: string | null
+          title: string
+          title_it?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          content_it?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          published_at?: string
+          summary?: string
+          summary_it?: string | null
+          title?: string
+          title_it?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       challenge_daily_entries: {
         Row: {
           behavioral_mission: string | null
