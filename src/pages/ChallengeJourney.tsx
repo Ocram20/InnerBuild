@@ -147,7 +147,7 @@ export default function ChallengeJourney() {
       await fetchEntries();
 
       if (ch) {
-        const day = computeCurrentDay(ch as Challenge);
+        const day = computeCurrentDay(ch as unknown as Challenge);
         setSelectedDay(day);
       }
       setLoading(false);

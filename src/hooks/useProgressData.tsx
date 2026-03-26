@@ -214,12 +214,12 @@ export function useProgressData(days: number = 14) {
       const topMoodEmotions = Object.entries(moodEmotionMap).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0]);
 
       const moodDailyData: { date: string; moodScore: number; mood: string }[] = [];
-      const checkinsByDate = new Map(currentCheckins.map(c => [c.checkin_date, c]));
+      const checkinsByDate = new Map((currentCheckins as any[]).map((c: any) => [c.checkin_date, c]));
       for (let i = days - 1; i >= 0; i--) {
         const d = format(subDays(now, i), "yyyy-MM-dd");
         const checkin = checkinsByDate.get(d);
         if (checkin) {
-          moodDailyData.push({ date: d, moodScore: MOOD_SCORES[checkin.mood] || 3, mood: checkin.mood });
+          moodDailyData.push({ date: d, moodScore: MOOD_SCORES[(checkin as any).mood] || 3, mood: (checkin as any).mood });
         }
       }
 
