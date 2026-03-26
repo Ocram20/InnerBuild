@@ -246,6 +246,30 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
     }
   };
 
+  const handleEmailChange = async () => {
+    if (!formData.email || formData.email === originalEmail) return;
+    setEmailSaving(true);
+    try {
+      const { error } = await supabase.auth.updateUser({
+        email: formData.email,
+      });
+      if (error) throw error;
+      toast({
+        title: t("profile_info_section.email_update_sent", "Confirmation sent"),
+        description: t("profile_info_section.email_update_sent_desc", "Check your new email inbox to confirm the change"),
+      });
+    } catch (error: any) {
+      console.error("Error updating email:", error);
+      toast({
+        title: t("profile_info_section.email_update_failed", "Email update failed"),
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setEmailSaving(false);
+    }
+  };
+
   const getInitials = () => {
     if (formData.first_name && formData.last_name) {
       return `${formData.first_name[0]}${formData.last_name[0]}`.toUpperCase();
