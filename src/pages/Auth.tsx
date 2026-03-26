@@ -73,6 +73,8 @@ export default function Auth() {
         if (error) {
           if (error.message.includes("Invalid login credentials")) {
             toast({ title: t("auth.login_failed"), description: t("auth.invalid_credentials"), variant: "destructive" });
+          } else if (error.message.includes("Email not confirmed")) {
+            toast({ title: t("auth.email_not_verified_title"), description: t("auth.email_not_verified_desc"), variant: "destructive" });
           } else {
             toast({ title: t("auth.login_failed"), description: error.message, variant: "destructive" });
           }
@@ -89,8 +91,7 @@ export default function Auth() {
             toast({ title: t("auth.signup_failed"), description: error.message, variant: "destructive" });
           }
         } else {
-          toast({ title: t("auth.welcome_innerbuild"), description: t("auth.account_created") });
-          navigate("/dashboard");
+          toast({ title: t("auth.welcome_innerbuild"), description: t("auth.verify_email_desc") });
         }
       }
     } finally {
