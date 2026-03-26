@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/hooks/use-toast";
-import { Camera, Save, Loader2, User, Lock, Clock } from "lucide-react";
+import { Camera, Save, Loader2, User, Clock, Mail } from "lucide-react";
 import { differenceInDays } from "date-fns";
 
 interface ProfileData {
@@ -32,6 +32,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [originalUsername, setOriginalUsername] = useState(profile?.username || "");
+  const [originalEmail, setOriginalEmail] = useState(user?.email || "");
+  const [emailSaving, setEmailSaving] = useState(false);
   const [originalData, setOriginalData] = useState({
     first_name: profile?.first_name || "",
     last_name: profile?.last_name || "",
@@ -57,6 +59,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       };
       setFormData(newData);
       setOriginalUsername(profile.username || "");
+      setOriginalEmail(user?.email || "");
       setOriginalData({
         first_name: profile.first_name || "",
         last_name: profile.last_name || "",
@@ -243,6 +246,30 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
     }
   };
 
+  const handleEmailChange = async () => {
+    if (!formData.email || formData.email === originalEmail) return;
+    setEmailSaving(true);
+    try {
+      const { error } = await supabase.auth.updateUser({
+        email: formData.email,
+      });
+      if (error) throw error;
+      toast({
+        title: t("profile_info_section.email_update_sent", "Confirmation sent"),
+        description: t("profile_info_section.email_update_sent_desc", "Check your new email inbox to confirm the change"),
+      });
+    } catch (error: any) {
+      console.error("Error updating email:", error);
+      toast({
+        title: t("profile_info_section.email_update_failed", "Email update failed"),
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setEmailSaving(false);
+    }
+  };
+
   const getInitials = () => {
     if (formData.first_name && formData.last_name) {
       return `${formData.first_name[0]}${formData.last_name[0]}`.toUpperCase();
@@ -348,17 +375,35 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         <div className="space-y-2">
           <Label htmlFor="email" className="flex items-center gap-2">
             {t("profile_info_section.email_label")}
-            <Lock className="h-3 w-3 text-muted-foreground" />
+            <Mail className="h-3 w-3 text-muted-foreground" />
           </Label>
-          <Input
-            id="email"
-            type="email"
-            value={formData.email}
-            disabled
-            className="bg-muted/50 cursor-not-allowed"
-          />
+          <div className="flex gap-2">
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              placeholder={t("profile_info_section.email_placeholder", "Enter your email")}
+              className="flex-1"
+            />
+            {formData.email !== originalEmail && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleEmailChange}
+                disabled={emailSaving || !formData.email}
+                className="shrink-0"
+              >
+                {emailSaving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  t("profile_info_section.update_email", "Update")
+                )}
+              </Button>
+            )}
+          </div>
           <p className="text-xs text-muted-foreground">
-            {t("profile_info_section.email_readonly")}
+            {t("profile_info_section.email_change_hint", "A confirmation link will be sent to the new email address")}
           </p>
         </div>
 
