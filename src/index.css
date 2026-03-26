@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
+/* Hide Google Translate toolbar/banner */
+.goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+}
+body { top: 0 !important; }
+.skiptranslate { display: none !important; }
+body > .skiptranslate { display: none !important; }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
