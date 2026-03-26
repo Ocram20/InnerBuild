@@ -351,17 +351,35 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         <div className="space-y-2">
           <Label htmlFor="email" className="flex items-center gap-2">
             {t("profile_info_section.email_label")}
-            <Lock className="h-3 w-3 text-muted-foreground" />
+            <Mail className="h-3 w-3 text-muted-foreground" />
           </Label>
-          <Input
-            id="email"
-            type="email"
-            value={formData.email}
-            disabled
-            className="bg-muted/50 cursor-not-allowed"
-          />
+          <div className="flex gap-2">
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              placeholder={t("profile_info_section.email_placeholder", "Enter your email")}
+              className="flex-1"
+            />
+            {formData.email !== originalEmail && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleEmailChange}
+                disabled={emailSaving || !formData.email}
+                className="shrink-0"
+              >
+                {emailSaving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  t("profile_info_section.update_email", "Update")
+                )}
+              </Button>
+            )}
+          </div>
           <p className="text-xs text-muted-foreground">
-            {t("profile_info_section.email_readonly")}
+            {t("profile_info_section.email_change_hint", "A confirmation link will be sent to the new email address")}
           </p>
         </div>
 
