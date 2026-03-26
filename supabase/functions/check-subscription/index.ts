@@ -11,6 +11,31 @@ const corsHeaders = {
   "X-XSS-Protection": "1; mode=block",
 };
 
+const jsonHeaders = {
+  ...corsHeaders,
+  "Content-Type": "application/json",
+};
+
+const getRequiredEnv = (name: string) => {
+  const value = Deno.env.get(name)?.trim();
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+};
+
+const createStripeClient = () => {
+  const stripeApiKey = getRequiredEnv("STRIPE_API_KEY");
+
+  if (!stripeApiKey.startsWith("sk_")) {
+    throw new Error("STRIPE_API_KEY must be a Stripe secret key starting with sk_");
+  }
+
+  return new Stripe(stripeApiKey, {
+    apiVersion: "2023-10-16",
+  });
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -20,16 +45,18 @@ serve(async (req) => {
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Missing Authorization header" }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
         status: 401,
       });
     }
 
-    const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
-      { global: { headers: { Authorization: authHeader } } },
-    );
+    const supabaseUrl = getRequiredEnv("SUPABASE_URL");
+    const supabaseAnonKey = getRequiredEnv("SUPABASE_ANON_KEY");
+    const serviceRoleKey = getRequiredEnv("SUPABASE_SERVICE_ROLE_KEY");
+
+    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
 
     const {
       data: { user },
@@ -38,16 +65,12 @@ serve(async (req) => {
 
     if (userError || !user?.email) {
       return new Response(JSON.stringify({ error: "User not authenticated" }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
         status: 401,
       });
     }
 
-    // Check if user is admin — admins get full access without Stripe
-    const adminClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
-    );
+    const adminClient = createClient(supabaseUrl, serviceRoleKey);
     const { data: isAdmin } = await adminClient.rpc("has_role", {
       _user_id: user.id,
       _role: "admin",
@@ -60,14 +83,11 @@ serve(async (req) => {
           status: "active",
           isAdmin: true,
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        { headers: jsonHeaders },
       );
     }
 
-    const stripe = new Stripe(Deno.env.get("STRIPE_API_KEY") || "", {
-      apiVersion: "2023-10-16",
-    });
-
+    const stripe = createStripeClient();
     const customers = await stripe.customers.list({
       email: user.email,
       limit: 1,
@@ -75,7 +95,7 @@ serve(async (req) => {
 
     if (customers.data.length === 0) {
       return new Response(JSON.stringify({ subscribed: false, status: "free" }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -94,19 +114,25 @@ serve(async (req) => {
           currentPeriodEnd: new Date(sub.current_period_end * 1000).toISOString(),
           cancelAtPeriodEnd: sub.cancel_at_period_end,
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        { headers: jsonHeaders },
       );
     }
 
     return new Response(JSON.stringify({ subscribed: false, status: "free" }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      headers: jsonHeaders,
     });
   } catch (error: unknown) {
-    console.error("Error checking subscription:", error);
     const message = error instanceof Error ? error.message : "An error occurred";
+    console.error("Error checking subscription:", message);
+
+    const isConfigError =
+      message.includes("Missing required environment variable") ||
+      message.includes("STRIPE_API_KEY must be a Stripe secret key") ||
+      message.includes("Invalid API Key provided");
+
     return new Response(JSON.stringify({ error: message }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 400,
+      headers: jsonHeaders,
+      status: isConfigError ? 500 : 400,
     });
   }
 });
