@@ -191,9 +191,9 @@ Generate today's content.`;
         user_id,
         day_number,
         phase_name: phase.name,
-        coach_message: parsed.coach_message,
-        mental_mission: parsed.mental_mission,
-        behavioral_mission: parsed.behavioral_mission,
+        coach_message: aiContent.coach_message,
+        mental_mission: aiContent.mental_mission,
+        behavioral_mission: aiContent.behavioral_mission,
       }, { onConflict: 'challenge_id,day_number' })
       .select()
       .single();
