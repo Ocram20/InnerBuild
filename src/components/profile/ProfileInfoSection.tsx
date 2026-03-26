@@ -413,9 +413,72 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             )}
           </div>
           <p className="text-xs text-muted-foreground">
-            {"Un link di conferma verrà inviato alla tua email attuale"}
-          </p>
+          {"Un link di conferma verrà inviato alla tua email attuale"}
+        </p>
         </div>
+
+        {/* Change Password Section */}
+        <div className="space-y-3 border-t border-border/30 pt-4">
+          <Label className="flex items-center gap-2 text-sm font-semibold">
+            <Lock className="h-4 w-4 text-primary" />
+            {"Modifica Password"}
+          </Label>
+          <div className="space-y-2">
+            <div className="relative">
+              <Input
+                type={showCurrentPassword ? "text" : "password"}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                placeholder="Password attuale"
+              />
+              <button
+                type="button"
+                onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+            <div className="relative">
+              <Input
+                type={showNewPassword ? "text" : "password"}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Nuova password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowNewPassword(!showNewPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+            <Input
+              type={showNewPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Conferma nuova password"
+            />
+          </div>
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled={passwordSaving || !currentPassword || !newPassword || !confirmPassword}
+            onClick={handlePasswordChange}
+          >
+            {passwordSaving ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {"Aggiornamento..."}
+              </>
+            ) : (
+              <>
+                <Lock className="mr-2 h-4 w-4" />
+                {"Aggiorna Password"}
+              </>
+            )}
+          </Button>
 
         <Button 
           onClick={handleSave} 
