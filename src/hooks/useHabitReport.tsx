@@ -231,7 +231,6 @@ export function useHabitReport() {
       );
 
       const { error } = await untypedTable('ai_insights')
-        .from('ai_insights')
         .update({
           detailed_analysis: {
             tips: report.detailed_analysis.tips,
