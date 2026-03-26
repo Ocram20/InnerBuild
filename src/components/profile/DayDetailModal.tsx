@@ -60,7 +60,6 @@ interface DayData {
 
 export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
   const dateLocale = i18n.language === "it" ? it : enUS;
-  const { i18n } = useTranslation();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [dayData, setDayData] = useState<DayData | null>(null);

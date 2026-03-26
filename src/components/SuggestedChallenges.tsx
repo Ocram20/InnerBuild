@@ -46,7 +46,6 @@ const challengeTemplates: ChallengeTemplate[] = [
 ];
 
 function useSuggestedChallenges(): SuggestedChallenge[] {
-  const { t } = useTranslation();
   return challengeTemplates.map((tmpl) => ({
     ...tmpl,
     title: t(`suggested_challenges_content.${tmpl.id}.title`),

@@ -29,7 +29,6 @@ interface DayActivity {
 
 export function ActivityCalendar() {
   const dateLocale = i18n.language === "it" ? it : enUS;
-  const { i18n } = useTranslation();
   const { user } = useAuth();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [activities, setActivities] = useState<Map<string, DayActivity>>(new Map());

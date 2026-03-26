@@ -28,7 +28,6 @@ export default function AICoachInsightCard() {
     markAsRead,
     shouldShowNewReport 
   } = useAIInsights();
-  const { i18n } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
   if (loading) {

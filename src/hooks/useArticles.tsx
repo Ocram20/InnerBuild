@@ -25,7 +25,6 @@ export interface LocalizedArticle {
 }
 
 function localizeArticle(article: Article, lang: string): LocalizedArticle {
-  const { i18n } = useTranslation();
   const isIt = lang === "it";
   return {
     id: article.id,

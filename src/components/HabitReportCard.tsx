@@ -85,7 +85,6 @@ function SuggestionItem({
 
 export default function HabitReportCard() {
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
-  const { i18n } = useTranslation();
   const { isPremium } = usePremiumLimits();
   const { 
     report, 
