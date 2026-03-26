@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/hooks/use-toast";
-import { Camera, Save, Loader2, User, Clock, Mail } from "lucide-react";
+import { Camera, Save, Loader2, User, Clock, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { differenceInDays } from "date-fns";
 
 interface ProfileData {
