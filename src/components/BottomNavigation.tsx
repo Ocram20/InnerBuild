@@ -16,6 +16,7 @@ const navItems = [
 
 const BottomNavigation = () => {
   const location = useLocation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const isActive = (path: string) => {
     if (path === "/explore") {

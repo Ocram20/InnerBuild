@@ -38,6 +38,7 @@ function localizeArticle(article: Article, lang: string): LocalizedArticle {
 }
 
 export function useArticles() {
+  const { i18n } = useTranslation();
   return useQuery({
     queryKey: ["articles", i18n.language],
     queryFn: async () => {

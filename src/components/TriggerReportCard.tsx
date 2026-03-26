@@ -30,6 +30,7 @@ export default function TriggerReportCard() {
     canGenerateReport,
     getDaysUntilNextReport,
   } = useTriggerReport();
+  const { i18n } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
   if (loading) {

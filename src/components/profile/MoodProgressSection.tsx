@@ -24,6 +24,7 @@ const MOOD_COLORS: Record<string, string> = {
 };
 
 export function MoodProgressSection({ data }: Props) {
+  const { t } = useTranslation();
   const getMoodLabel = (mood: string) => t(`day_detail_modal.mood.${mood}`, mood);
 
   if (data.dailyData.length === 0) {

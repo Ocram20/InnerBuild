@@ -30,6 +30,7 @@ const featureKeys = [
 ];
 
 export default function PaywallModal({ open, onOpenChange, reason = "general" }: PaywallModalProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const reasonTitleKey = `paywall.${reason}_title`;
   const reasonDescKey = `paywall.${reason}_desc`;

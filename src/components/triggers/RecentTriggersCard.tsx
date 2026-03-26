@@ -18,7 +18,7 @@ const emotionEmojis: Record<string, string> = {
 };
 
 const getIntensityColor = (intensity: number) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
   if (intensity >= 7) return "text-red-500 bg-red-500/10";
   if (intensity >= 4) return "text-orange-500 bg-orange-500/10";
   return "text-yellow-500 bg-yellow-500/10";

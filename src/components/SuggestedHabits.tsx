@@ -47,6 +47,7 @@ interface SuggestedHabitsProps {
 }
 
 const difficultyColors = {
+  const { t } = useTranslation();
   easy: "bg-primary/10 text-primary border-primary/20",
   medium: "bg-accent/10 text-accent border-accent/20",
   hard: "bg-xp/10 text-xp border-xp/20",

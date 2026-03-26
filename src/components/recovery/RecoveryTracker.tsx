@@ -49,6 +49,7 @@ interface RecoveryTrackerProps {
 }
 
 export function RecoveryTracker({ 
+  const { i18n } = useTranslation();
   startedAt, 
   checkIns, 
   onCheckIn, 

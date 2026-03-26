@@ -23,6 +23,7 @@ interface FailureDebriefHistoryProps {
 }
 
 export function FailureDebriefHistory({
+  const { t, i18n } = useTranslation();
   debriefs,
   onClose,
 }: FailureDebriefHistoryProps) {

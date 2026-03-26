@@ -12,6 +12,7 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, onClick }: ArticleCardProps) {
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const publishedDate = new Date(article.published_at);
   const isRecent = Date.now() - publishedDate.getTime() < 7 * 24 * 60 * 60 * 1000;

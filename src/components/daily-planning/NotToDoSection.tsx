@@ -8,6 +8,7 @@ import { Plus, Trash2, ShieldX, ShieldCheck, ShieldAlert, GripVertical } from "l
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
+import { useTranslation } from "react-i18next";
 
 interface NotToDoItem {
   id: string;
@@ -25,6 +26,7 @@ const SUGGESTED_NOT_TO_DO_KEY = "not_to_do_section.suggested_items";
 
 
 export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
+  const { t } = useTranslation();
   const [items, setItems] = useState<NotToDoItem[]>([]);
   const [newItem, setNewItem] = useState("");
   const [loading, setLoading] = useState(true);

@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Leaf, Check, ArrowLeft, Loader2, LogOut, Crown, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 export default function Pricing() {
   const { user, signOut } = useAuth();
   const { subscription, loading, createCheckout } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const freeFeatures = [
     "Fino a 5 abitudini", "1 sfida detox attiva", "Tracciamento abitudini base con serie",

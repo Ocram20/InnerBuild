@@ -62,6 +62,7 @@ interface SuggestedChallengesListProps {
 }
 
 const difficultyColors = {
+  const { t } = useTranslation();
   beginner: "bg-primary/10 text-primary",
   intermediate: "bg-accent/10 text-accent",
   advanced: "bg-xp/10 text-xp",
