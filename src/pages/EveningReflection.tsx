@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +47,7 @@ const EveningReflectionPage = () => {
     if (!user) return;
     setLoading(true);
     try {
-      const { data, error } = await supabase.from("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", todayStr).maybeSingle();
+      const { data, error } = await untypedTable("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", todayStr).maybeSingle();
       if (error) throw error;
       if (data) { setMood(data.mood); setEnergyLevel([data.energy_level]); setCheckedIn(true); }
     } catch (error) { console.error("Error loading check-in:", error); }
@@ -58,7 +59,7 @@ const EveningReflectionPage = () => {
     if (!user) return;
     setSaving(true);
     try {
-      const { error } = await supabase.from("daily_checkins").upsert({ user_id: user.id, checkin_date: todayStr, mood, energy_level: energyLevel[0] }, { onConflict: "user_id,checkin_date" });
+      const { error } = await untypedTable("daily_checkins").upsert({ user_id: user.id, checkin_date: todayStr, mood, energy_level: energyLevel[0] }, { onConflict: "user_id,checkin_date" });
       if (error) throw error;
       setCheckedIn(true);
       toast({ title: t("evening_reflection.checkin_complete"), description: t("evening_reflection.checkin_saved") });

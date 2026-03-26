@@ -10,6 +10,7 @@ import { ArrowLeft, Plus, Pencil, Trash2, FileText, Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import BottomNavigation from "@/components/BottomNavigation";
 import {
@@ -64,8 +65,7 @@ export default function Admin() {
   // Fetch all articles (including unpublished via service - admin has RLS access)
   const fetchArticles = async () => {
     setLoadingArticles(true);
-    const { data, error } = await supabase
-      .from("articles")
+    const { data, error } = await untypedTable("articles")
       .select("*")
       .order("published_at", { ascending: false });
     if (!error && data) setArticles(data as Article[]);
@@ -96,9 +96,9 @@ export default function Admin() {
 
     let error;
     if (editingArticle.id) {
-      ({ error } = await supabase.from("articles").update(payload).eq("id", editingArticle.id));
+      ({ error } = await untypedTable("articles").update(payload).eq("id", editingArticle.id));
     } else {
-      ({ error } = await supabase.from("articles").insert(payload));
+      ({ error } = await untypedTable("articles").insert(payload));
     }
 
     if (error) {
@@ -112,7 +112,7 @@ export default function Admin() {
   };
 
   const handleDelete = async (id: string) => {
-    const { error } = await supabase.from("articles").delete().eq("id", id);
+    const { error } = await untypedTable("articles").delete().eq("id", id);
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } else {

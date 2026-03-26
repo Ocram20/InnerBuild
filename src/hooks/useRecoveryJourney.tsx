@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
 import { format } from "date-fns";
@@ -54,7 +55,7 @@ export function useRecoveryJourney() {
       if (journeyError) throw journeyError;
 
       if (journeyData) {
-        setJourney(journeyData as Journey);
+        setJourney(journeyData as unknown as Journey);
 
         const { data: checkInsData, error: checkInsError } = await supabase
           .from("recovery_checkins")
@@ -76,8 +77,7 @@ export function useRecoveryJourney() {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from("recovery_journey")
+      const { data, error } = await untypedTable("recovery_journey")
         .insert({
           user_id: user.id,
           jokers_remaining: 3,
@@ -90,7 +90,7 @@ export function useRecoveryJourney() {
 
       if (error) throw error;
 
-      setJourney(data as Journey);
+      setJourney(data as unknown as Journey);
       setCheckIns([]);
       toast({
         title: "Challenge Started",
@@ -133,8 +133,7 @@ export function useRecoveryJourney() {
         const newStreak = journey.current_streak + 1;
         const newLongest = Math.max(newStreak, journey.longest_streak);
 
-        await supabase
-          .from("recovery_journey")
+        await untypedTable("recovery_journey")
           .update({
             current_streak: newStreak,
             longest_streak: newLongest,
@@ -165,8 +164,7 @@ export function useRecoveryJourney() {
           updates.status = "paused";
         }
 
-        await supabase
-          .from("recovery_journey")
+        await untypedTable("recovery_journey")
           .update(updates)
           .eq("id", journey.id);
 
@@ -222,8 +220,7 @@ export function useRecoveryJourney() {
     if (!user || !journey) return;
 
     try {
-      await supabase
-        .from("recovery_journey")
+      await untypedTable("recovery_journey")
         .update({ status: "active" })
         .eq("id", journey.id);
 

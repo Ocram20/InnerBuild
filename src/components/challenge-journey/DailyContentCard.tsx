@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useToast } from "@/hooks/use-toast";
 import { Brain, Footprints, MessageCircle, Check, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -68,8 +68,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
     const field = type === "mental" ? "mental_mission_completed" : "behavioral_mission_completed";
     const current = type === "mental" ? entry.mental_mission_completed : entry.behavioral_mission_completed;
 
-    await supabase
-      .from("challenge_daily_entries")
+    await untypedTable("challenge_daily_entries")
       .update({ [field]: !current })
       .eq("id", entry.id);
 
@@ -81,8 +80,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
     if (!isCurrentDay || entry.checkin_response) return;
     setSavingCheckin(true);
 
-    await supabase
-      .from("challenge_daily_entries")
+    await untypedTable("challenge_daily_entries")
       .update({ checkin_response: value })
       .eq("id", entry.id);
 
@@ -99,8 +97,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
     setSavingCheckin(true);
 
     // Mark entry as failure
-    await supabase
-      .from("challenge_daily_entries")
+    await untypedTable("challenge_daily_entries")
       .update({ is_failure: true, checkin_response: "setback" })
       .eq("id", entry.id);
 
@@ -113,8 +110,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       updates.status = "paused";
     }
 
-    await supabase
-      .from("detox_challenges")
+    await untypedTable("detox_challenges")
       .update(updates)
       .eq("id", challengeId);
 

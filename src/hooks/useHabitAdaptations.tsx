@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -27,8 +28,7 @@ export function useHabitAdaptations() {
   const fetchAdaptations = useCallback(async () => {
     if (!user) return;
 
-    const { data } = await supabase
-      .from("habit_adaptations")
+    const { data } = await untypedTable("habit_adaptations")
       .select("*, habits(title)")
       .eq("user_id", user.id)
       .eq("status", "pending")
@@ -98,8 +98,7 @@ export function useHabitAdaptations() {
     // Optimistic UI update - remove immediately
     setAdaptations(prev => prev.filter(a => a.id !== adaptationId));
 
-    const { error } = await supabase
-      .from("habit_adaptations")
+    const { error } = await untypedTable("habit_adaptations")
       .update({ status, updated_at: new Date().toISOString() })
       .eq("id", adaptationId)
       .eq("user_id", user.id);

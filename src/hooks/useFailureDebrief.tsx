@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
@@ -61,8 +62,7 @@ export function useFailureDebrief() {
   const fetchDebriefs = useCallback(async () => {
     if (!user) return;
 
-    const { data, error } = await supabase
-      .from("failure_debriefs")
+    const { data, error } = await untypedTable("failure_debriefs")
       .select("*")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
@@ -82,8 +82,7 @@ export function useFailureDebrief() {
     const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
 
     // Fetch recent triggers (last 24 hours)
-    const { data: triggers } = await supabase
-      .from("trigger_logs")
+    const { data: triggers } = await untypedTable("trigger_logs")
       .select("emotion, situation, time_context, impulse_intensity")
       .eq("user_id", user.id)
       .gte("logged_at", yesterday)
@@ -91,8 +90,7 @@ export function useFailureDebrief() {
       .limit(5);
 
     // Fetch today's checkin
-    const { data: checkin } = await supabase
-      .from("daily_checkins")
+    const { data: checkin } = await untypedTable("daily_checkins")
       .select("mood, energy_level")
       .eq("user_id", user.id)
       .eq("checkin_date", today)
@@ -127,8 +125,7 @@ export function useFailureDebrief() {
 
     setSaving(true);
     try {
-      const { data, error } = await supabase
-        .from("failure_debriefs")
+      const { data, error } = await untypedTable("failure_debriefs")
         .insert({
           user_id: user.id,
         })
@@ -162,8 +159,7 @@ export function useFailureDebrief() {
 
     setSaving(true);
     try {
-      const { error } = await supabase
-        .from("failure_debriefs")
+      const { error } = await untypedTable("failure_debriefs")
         .update(updates)
         .eq("id", debriefId)
         .eq("user_id", user.id);
@@ -229,8 +225,7 @@ export function useFailureDebrief() {
     if (!user) return false;
 
     try {
-      const { error } = await supabase
-        .from("failure_debriefs")
+      const { error } = await untypedTable("failure_debriefs")
         .delete()
         .eq("id", debriefId)
         .eq("user_id", user.id);

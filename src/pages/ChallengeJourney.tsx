@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Flame, ShieldAlert } from "lucide-react";
@@ -72,15 +73,14 @@ export default function ChallengeJourney() {
       return;
     }
 
-    setChallenge(data as Challenge);
+    setChallenge(data as unknown as Challenge);
     return data;
   }, [user, id]);
 
   const fetchEntries = useCallback(async () => {
     if (!id) return;
 
-    const { data } = await supabase
-      .from("challenge_daily_entries")
+    const { data } = await untypedTable("challenge_daily_entries")
       .select("*")
       .eq("challenge_id", id)
       .order("day_number", { ascending: true });
@@ -147,7 +147,7 @@ export default function ChallengeJourney() {
       await fetchEntries();
 
       if (ch) {
-        const day = computeCurrentDay(ch as Challenge);
+        const day = computeCurrentDay(ch as unknown as Challenge);
         setSelectedDay(day);
       }
       setLoading(false);
