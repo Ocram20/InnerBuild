@@ -94,7 +94,11 @@ export function useTriggerTracking() {
     const { error } = await untypedTable("trigger_logs")
       .insert({
         user_id: user.id,
-        ...data,
+        impulse_intensity: data.impulse_intensity,
+        emotion: data.emotion,
+        time_context: data.time_context,
+        location: data.location_context || null,
+        notes: data.notes || null,
       });
 
     if (error) {
