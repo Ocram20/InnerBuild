@@ -11,6 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+
 export interface SuggestedChallenge {
   id: string;
   title: string;

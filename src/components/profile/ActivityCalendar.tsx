@@ -7,6 +7,7 @@ import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react";
+import i18n from "i18next";
 import { cn } from "@/lib/utils";
 import { DayDetailModal } from "./DayDetailModal";
 import { useTranslation } from "react-i18next";
