@@ -97,10 +97,10 @@ export default function RecoveryStreakCard({
           </div>
 
           {!hasCheckedInToday && (
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <Button
                 size="sm"
-                className="flex-1 h-8 text-xs sm:text-sm"
+                className="h-8 w-full text-xs sm:flex-1 sm:text-sm"
                 onClick={() => onCheckIn("success")}
               >
                 <Check className="h-3 w-3 mr-1" />
@@ -109,7 +109,7 @@ export default function RecoveryStreakCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-8 text-xs sm:text-sm px-2 sm:px-3"
+                className="h-8 w-full px-2 text-xs sm:w-auto sm:px-3 sm:text-sm"
                 onClick={() => onCheckIn("failed")}
               >
                 <X className="h-3 w-3 mr-1" />

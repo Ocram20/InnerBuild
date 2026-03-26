@@ -183,18 +183,18 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
   return (
     <div className="rounded-2xl border border-border/60 bg-card p-5">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-2">
           <div className="p-2 rounded-lg bg-primary/10">
             <ListTodo className="h-5 w-5 text-primary" />
           </div>
-          <h2 className="text-base font-semibold text-foreground">{t("dashboard.daily_planning")}</h2>
+          <h2 className="truncate text-base font-semibold text-foreground">{t("dashboard.daily_planning")}</h2>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => navigate("/daily-planning")}
-          className="h-8 text-muted-foreground hover:text-foreground"
+          className="h-8 self-start text-muted-foreground hover:text-foreground sm:self-auto"
         >
           {t("common.view_all")}
           <ChevronRight className="ml-1 h-4 w-4" />
