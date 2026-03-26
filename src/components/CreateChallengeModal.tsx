@@ -22,7 +22,7 @@ interface CreateChallengeModalProps {
 export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: CreateChallengeModalProps) {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { isPremium, canCreateChallenge, challengesRemaining, refetch: refetchLimits } = usePremiumLimits();
+  const { isPremium, canCreateChallenge, challengesRemaining, totalChallengeCount, refetch: refetchLimits } = usePremiumLimits();
   const { t } = useTranslation();
 
   const durationOptions = [
@@ -65,7 +65,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
       const { error } = await supabase.from("detox_challenges").insert({ user_id: user.id, title: title.trim(), description: description.trim() || null, duration_days: duration, category, daily_steps: filteredSteps.length > 0 ? filteredSteps : null, start_date: today });
       if (error) throw error;
       // Increment lifetime challenge counter for free tier limit
-      await supabase.from("profiles").update({ total_challenges_created: counts.totalChallengesCreated + 1 } as any).eq("user_id", user.id);
+      await supabase.from("profiles").update({ total_challenges_created: totalChallengeCount + 1 } as any).eq("user_id", user.id);
       toast({ title: t("create_challenge.challenge_started"), description: t("create_challenge.challenge_started_desc", { days: duration }) });
       resetForm(); refetchLimits(); onOpenChange(false); onSuccess();
     } catch (error) {
