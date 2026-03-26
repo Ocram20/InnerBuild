@@ -11,31 +11,45 @@ const corsHeaders = {
   "X-XSS-Protection": "1; mode=block",
 };
 
+const jsonHeaders = {
+  ...corsHeaders,
+  "Content-Type": "application/json",
+};
+
+const getRequiredEnv = (name: string) => {
+  const value = Deno.env.get(name)?.trim();
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+};
+
+const createStripeClient = () => {
+  const stripeApiKey = getRequiredEnv("STRIPE_API_KEY");
+
+  if (!stripeApiKey.startsWith("sk_")) {
+    throw new Error("STRIPE_API_KEY must be a Stripe secret key starting with sk_");
+  }
+
+  return new Stripe(stripeApiKey, {
+    apiVersion: "2023-10-16",
+  });
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    const supabaseUrl = getRequiredEnv("SUPABASE_URL");
+    const supabaseAnonKey = getRequiredEnv("SUPABASE_ANON_KEY");
 
-    if (!supabaseUrl || !supabaseAnonKey) {
-      return new Response(
-        JSON.stringify({ error: "Backend configuration missing" }),
-        {
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-          status: 500,
-        },
-      );
-    }
-
-    // Validate auth using getClaims (not getUser)
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -43,12 +57,15 @@ serve(async (req) => {
       global: { headers: { Authorization: authHeader } },
     });
 
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    const {
+      data: { user },
+      error: userError,
+    } = await supabaseClient.auth.getUser();
 
     if (userError || !user) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -58,15 +75,11 @@ serve(async (req) => {
     if (!userEmail) {
       return new Response(JSON.stringify({ error: "No email associated with account" }), {
         status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
-    const stripe = new Stripe(Deno.env.get("STRIPE_API_KEY") || "", {
-      apiVersion: "2023-10-16",
-    });
-
-    // Check if customer already exists
+    const stripe = createStripeClient();
     const customers = await stripe.customers.list({
       email: userEmail,
       limit: 1,
@@ -76,7 +89,6 @@ serve(async (req) => {
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
 
-      // Check for active subscription
       const subscriptions = await stripe.subscriptions.list({
         customer: customerId,
         status: "active",
@@ -88,7 +100,7 @@ serve(async (req) => {
           JSON.stringify({ error: "You already have an active subscription" }),
           {
             status: 400,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            headers: jsonHeaders,
           },
         );
       }
@@ -100,7 +112,6 @@ serve(async (req) => {
       customerId = customer.id;
     }
 
-    // Create a product and price for InnerBuild subscription
     const products = await stripe.products.list({ active: true, limit: 100 });
     let product = products.data.find((p: { name: string }) => p.name === "InnerBuild Pro");
 
@@ -125,7 +136,7 @@ serve(async (req) => {
     if (!price) {
       price = await stripe.prices.create({
         product: product.id,
-        unit_amount: 999, // €9.99
+        unit_amount: 999,
         currency: "eur",
         recurring: { interval: "month" },
       });
@@ -143,15 +154,21 @@ serve(async (req) => {
     });
 
     return new Response(JSON.stringify({ url: session.url }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      headers: jsonHeaders,
       status: 200,
     });
   } catch (error: unknown) {
-    console.error("Checkout error:", error instanceof Error ? error.message : "Unknown");
     const message = error instanceof Error ? error.message : "An error occurred";
+    console.error("Checkout error:", message);
+
+    const isConfigError =
+      message.includes("Missing required environment variable") ||
+      message.includes("STRIPE_API_KEY must be a Stripe secret key") ||
+      message.includes("Invalid API Key provided");
+
     return new Response(JSON.stringify({ error: message }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 400,
+      headers: jsonHeaders,
+      status: isConfigError ? 500 : 400,
     });
   }
 });
