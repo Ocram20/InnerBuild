@@ -178,8 +178,8 @@ Generate today's content.`;
     const content = groqData.choices?.[0]?.message?.content;
     if (!content) throw new Error("No response from Groq");
 
-    let parsed;
-    try { parsed = JSON.parse(content); } catch {
+    let aiContent;
+    try { aiContent = JSON.parse(content); } catch {
       throw new Error("Failed to parse AI response");
     }
 
@@ -191,9 +191,9 @@ Generate today's content.`;
         user_id,
         day_number,
         phase_name: phase.name,
-        coach_message: parsed.coach_message,
-        mental_mission: parsed.mental_mission,
-        behavioral_mission: parsed.behavioral_mission,
+        coach_message: aiContent.coach_message,
+        mental_mission: aiContent.mental_mission,
+        behavioral_mission: aiContent.behavioral_mission,
       }, { onConflict: 'challenge_id,day_number' })
       .select()
       .single();

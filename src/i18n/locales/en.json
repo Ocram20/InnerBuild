@@ -397,7 +397,8 @@
       "all": "All",
       "digital_detox": "Digital Detox",
       "mental_reset": "Mental Reset",
-      "porn_detox": "Recovery"
+      "porn_detox": "Recovery",
+      "general": "General"
     },
     "challenge_started": "Challenge started! 🔥",
     "challenge_started_desc": "Your {{days}}-day journey begins today!",
