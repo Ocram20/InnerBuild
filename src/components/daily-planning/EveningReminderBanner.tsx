@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";import { useTranslation } from "react-i18next";import { Card } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, BellOff, Clock, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
