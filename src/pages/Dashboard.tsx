@@ -173,7 +173,7 @@ export default function Dashboard() {
             <div>
               <h1 className="font-bold text-foreground">{getGreeting()}</h1>
               <p className="text-xs text-muted-foreground">
-                {new Date().toLocaleDateString(i18n.language === "it" ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long" })}
+                {new Date().toLocaleDateString(i18n.language?.startsWith("it") ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long" })}
               </p>
             </div>
           </div>
