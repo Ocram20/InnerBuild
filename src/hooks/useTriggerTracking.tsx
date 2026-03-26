@@ -96,8 +96,10 @@ export function useTriggerTracking() {
         user_id: user.id,
         impulse_intensity: data.impulse_intensity,
         emotion: data.emotion,
+        situation: data.situation,
         time_context: data.time_context,
         location_context: data.location_context || null,
+        was_alone: data.was_alone,
         notes: data.notes || null,
       });
 
