@@ -32,6 +32,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [originalUsername, setOriginalUsername] = useState(profile?.username || "");
+  const [originalEmail, setOriginalEmail] = useState(user?.email || "");
+  const [emailSaving, setEmailSaving] = useState(false);
   const [originalData, setOriginalData] = useState({
     first_name: profile?.first_name || "",
     last_name: profile?.last_name || "",
