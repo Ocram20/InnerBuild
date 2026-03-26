@@ -984,7 +984,46 @@
     }
   },
 
-  "habit_report": {
+  "locked_preview": {
+    "unlock_premium": "Sblocca Premium",
+    "trigger": {
+      "log_triggers": "Registra trigger e impulsi",
+      "visual_heatmap": "Analisi heatmap visuale",
+      "ai_insights": "Insight AI sui pattern",
+      "track_timing": "Traccia tempi e contesto",
+      "preview_text": "Anteprima del tracciamento trigger:",
+      "description": "Registra i tuoi impulsi, scopri pattern con l'analisi AI e ottieni strategie di prevenzione personalizzate."
+    },
+    "recovery": {
+      "title": "Strumenti di Recupero",
+      "description": "Sblocca strategie di recupero basate sulla scienza, strumenti di gestione delle voglie e monitoraggio personale.",
+      "science_education": "Educazione basata sulla scienza",
+      "craving_tools": "Strumenti contro le voglie",
+      "anti_trigger_plan": "Piano anti-trigger personale",
+      "motivation_tracking": "Monitoraggio motivazione"
+    },
+    "coach": {
+      "title": "Coach AI",
+      "description": "Ricevi guida personalizzata, suggerimenti sulle abitudini e motivazione dal tuo coach AI personale.",
+      "habit_suggestions": "Suggerimenti abitudini personalizzati",
+      "custom_challenges": "Creazione sfide personalizzate",
+      "reflection_guidance": "Guida all'auto-riflessione",
+      "daily_motivation": "Motivazione giornaliera",
+      "preview_text": "Anteprima del tuo Coach AI:",
+      "preview_msg_1": "Puoi suggerirmi un'abitudine sana...",
+      "preview_msg_2": "In base ai tuoi pattern, ti consiglierei...",
+      "preview_msg_3": "Aiutami a restare motivato oggi..."
+    },
+    "learn": {
+      "title": "Centro Apprendimento",
+      "description": "Articoli scientifici, guide educative e una timeline completa del recupero — tutto in un unico posto.",
+      "scientific_articles": "Articoli scientifici sul recupero",
+      "educational_guides": "Guide educative approfondite",
+      "recovery_timeline": "Timeline e traguardi del recupero"
+    }
+  },
+
+
     "habit_analysis": "Analisi Abitudini",
     "loading_insights": "Caricamento insight abitudini...",
     "locked_desc": "Ottieni insight AI sulle tue abitudini e suggerimenti personalizzati per migliorare la tua routine.",
