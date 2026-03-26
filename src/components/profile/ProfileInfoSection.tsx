@@ -253,8 +253,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       });
       if (error) throw error;
       toast({
-        title: "Confirmation sent",
-        description: "Check your new email inbox to confirm the change",
+        title: "Conferma inviata",
+        description: "Controlla la tua email attuale per confermare il cambio di indirizzo.",
       });
     } catch (error: any) {
       console.error("Error updating email:", error);
@@ -395,13 +395,13 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                 {emailSaving ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  "Update"
+                  "Aggiorna"
                 )}
               </Button>
             )}
           </div>
           <p className="text-xs text-muted-foreground">
-            {"A confirmation link will be sent to the new email address"}
+            {"Un link di conferma verrà inviato alla tua email attuale"}
           </p>
         </div>
 
