@@ -142,6 +142,36 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_checkins: {
+        Row: {
+          checkin_date: string
+          created_at: string
+          energy_level: number | null
+          id: string
+          mood: string | null
+          notes: string | null
+          user_id: string
+        }
+        Insert: {
+          checkin_date?: string
+          created_at?: string
+          energy_level?: number | null
+          id?: string
+          mood?: string | null
+          notes?: string | null
+          user_id: string
+        }
+        Update: {
+          checkin_date?: string
+          created_at?: string
+          energy_level?: number | null
+          id?: string
+          mood?: string | null
+          notes?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       daily_reflections: {
         Row: {
           created_at: string
@@ -544,6 +574,42 @@ export type Database = {
           mood?: string | null
           prompt?: string
           reflection_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      trigger_logs: {
+        Row: {
+          created_at: string
+          emotion: string | null
+          id: string
+          impulse_intensity: number | null
+          location: string | null
+          logged_at: string
+          notes: string | null
+          time_context: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          emotion?: string | null
+          id?: string
+          impulse_intensity?: number | null
+          location?: string | null
+          logged_at?: string
+          notes?: string | null
+          time_context?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          emotion?: string | null
+          id?: string
+          impulse_intensity?: number | null
+          location?: string | null
+          logged_at?: string
+          notes?: string | null
+          time_context?: string | null
           user_id?: string
         }
         Relationships: []
