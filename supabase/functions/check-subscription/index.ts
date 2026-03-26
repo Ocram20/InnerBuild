@@ -87,6 +87,23 @@ serve(async (req) => {
       );
     }
 
+    // Check for manual premium override in profiles table
+    const { data: profile } = await adminClient
+      .from("profiles")
+      .select("subscription_status")
+      .eq("user_id", user.id)
+      .single();
+
+    if (profile?.subscription_status === "active" || profile?.subscription_status === "premium") {
+      return new Response(
+        JSON.stringify({
+          subscribed: true,
+          status: "active",
+        }),
+        { headers: jsonHeaders },
+      );
+    }
+
     const stripe = createStripeClient();
     const customers = await stripe.customers.list({
       email: user.email,
