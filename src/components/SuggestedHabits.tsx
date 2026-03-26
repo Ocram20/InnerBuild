@@ -1,5 +1,4 @@
 import {
-import { useTranslation } from "react-i18next";
   Droplets,
   BookOpen,
   Footprints,
@@ -11,6 +10,7 @@ import { useTranslation } from "react-i18next";
   Clock,
   Sun,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 interface SuggestedHabit {
   title: string;
   description: string;

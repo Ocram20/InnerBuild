@@ -16,7 +16,6 @@ import {
 import { format } from "date-fns";
 import { enUS, it } from "date-fns/locale";
 import {
-import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -27,6 +26,7 @@ import { useTranslation } from "react-i18next";
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from "react-i18next";
 
 interface CheckIn {
   id: string;

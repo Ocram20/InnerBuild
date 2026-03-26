@@ -28,7 +28,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
-import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -38,6 +37,7 @@ import { useTranslation } from "react-i18next";
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from "react-i18next";
 
 interface Challenge {
   id: string;

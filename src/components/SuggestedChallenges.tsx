@@ -1,5 +1,4 @@
 import {
-import { useTranslation } from "react-i18next";
   Smartphone,
   Brain,
   Shield,
@@ -11,6 +10,7 @@ import { useTranslation } from "react-i18next";
   Eye,
   Zap,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 export interface SuggestedChallenge {
   id: string;
   title: string;

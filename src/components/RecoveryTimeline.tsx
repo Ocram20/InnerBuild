@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-import { useTranslation } from "react-i18next";
   Flame,
   Shield,
   Sparkles,
   Crown,
   Circle,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 interface PhaseMeta {
   id: string;
   icon: React.ReactNode;

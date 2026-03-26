@@ -6,8 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { 
-import { useTranslation } from "react-i18next";
+import {
   Loader2, 
   Flame, 
   Heart, 
@@ -19,6 +18,7 @@ import { useTranslation } from "react-i18next";
   Battery,
   Shield
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Small checkmark icon component
 const SmallCheck = () => (

@@ -4,7 +4,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Brain, Footprints, MessageCircle, Check, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-import { useTranslation } from "react-i18next";
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -14,6 +13,7 @@ import { useTranslation } from "react-i18next";
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from "react-i18next";
 interface DailyEntry {
   id: string;
   day_number: number;

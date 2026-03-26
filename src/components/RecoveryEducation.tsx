@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-import { useTranslation } from "react-i18next";
+import {
   BookOpen, 
   Brain, 
   Heart, 
@@ -14,6 +13,7 @@ import { useTranslation } from "react-i18next";
   ChevronUp,
   Lightbulb
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 interface Article {
   id: string;
   icon: React.ReactNode;
