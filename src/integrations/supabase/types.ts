@@ -14,6 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_insights: {
+        Row: {
+          created_at: string
+          detailed_analysis: Json | null
+          id: string
+          insight_type: string
+          is_read: boolean
+          period_end: string | null
+          period_start: string | null
+          recommendations: string[] | null
+          summary: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          detailed_analysis?: Json | null
+          id?: string
+          insight_type: string
+          is_read?: boolean
+          period_end?: string | null
+          period_start?: string | null
+          recommendations?: string[] | null
+          summary?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          detailed_analysis?: Json | null
+          id?: string
+          insight_type?: string
+          is_read?: boolean
+          period_end?: string | null
+          period_start?: string | null
+          recommendations?: string[] | null
+          summary?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      challenge_daily_entries: {
+        Row: {
+          behavioral_mission: string | null
+          behavioral_mission_completed: boolean
+          challenge_id: string
+          checkin_response: string | null
+          coach_message: string | null
+          created_at: string
+          day_number: number
+          id: string
+          is_failure: boolean
+          mental_mission: string | null
+          mental_mission_completed: boolean
+          phase_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          behavioral_mission?: string | null
+          behavioral_mission_completed?: boolean
+          challenge_id: string
+          checkin_response?: string | null
+          coach_message?: string | null
+          created_at?: string
+          day_number: number
+          id?: string
+          is_failure?: boolean
+          mental_mission?: string | null
+          mental_mission_completed?: boolean
+          phase_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          behavioral_mission?: string | null
+          behavioral_mission_completed?: boolean
+          challenge_id?: string
+          checkin_response?: string | null
+          coach_message?: string | null
+          created_at?: string
+          day_number?: number
+          id?: string
+          is_failure?: boolean
+          mental_mission?: string | null
+          mental_mission_completed?: boolean
+          phase_name?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_daily_entries_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "detox_challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       chat_messages: {
         Row: {
           content: string
@@ -311,6 +415,7 @@ export type Database = {
           last_name: string | null
           stripe_customer_id: string | null
           subscription_status: string | null
+          total_challenges_created: number
           updated_at: string
           user_id: string
           username: string | null
@@ -325,6 +430,7 @@ export type Database = {
           last_name?: string | null
           stripe_customer_id?: string | null
           subscription_status?: string | null
+          total_challenges_created?: number
           updated_at?: string
           user_id: string
           username?: string | null
@@ -339,6 +445,7 @@ export type Database = {
           last_name?: string | null
           stripe_customer_id?: string | null
           subscription_status?: string | null
+          total_challenges_created?: number
           updated_at?: string
           user_id?: string
           username?: string | null
