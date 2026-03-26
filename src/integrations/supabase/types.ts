@@ -349,13 +349,21 @@ export type Database = {
           ai_suggestions: Json | null
           context: string | null
           created_at: string
+          debrief_date: string
           id: string
+          ignored_signal: string | null
+          is_completed: boolean
           journey_id: string | null
           lesson_learned: string | null
+          location: string | null
           mood: string | null
+          signal_details: string | null
+          time_of_day: string | null
+          trigger: string | null
           trigger_description: string | null
           updated_at: string
           user_id: string
+          was_alone: boolean
           what_happened: string | null
         }
         Insert: {
@@ -363,13 +371,21 @@ export type Database = {
           ai_suggestions?: Json | null
           context?: string | null
           created_at?: string
+          debrief_date?: string
           id?: string
+          ignored_signal?: string | null
+          is_completed?: boolean
           journey_id?: string | null
           lesson_learned?: string | null
+          location?: string | null
           mood?: string | null
+          signal_details?: string | null
+          time_of_day?: string | null
+          trigger?: string | null
           trigger_description?: string | null
           updated_at?: string
           user_id: string
+          was_alone?: boolean
           what_happened?: string | null
         }
         Update: {
@@ -377,13 +393,21 @@ export type Database = {
           ai_suggestions?: Json | null
           context?: string | null
           created_at?: string
+          debrief_date?: string
           id?: string
+          ignored_signal?: string | null
+          is_completed?: boolean
           journey_id?: string | null
           lesson_learned?: string | null
+          location?: string | null
           mood?: string | null
+          signal_details?: string | null
+          time_of_day?: string | null
+          trigger?: string | null
           trigger_description?: string | null
           updated_at?: string
           user_id?: string
+          was_alone?: boolean
           what_happened?: string | null
         }
         Relationships: [
@@ -623,7 +647,10 @@ export type Database = {
           id: string
           is_active: boolean
           jokers_remaining: number
+          last_check_in: string | null
+          longest_streak: number
           started_at: string
+          status: string
           updated_at: string
           user_id: string
         }
@@ -633,7 +660,10 @@ export type Database = {
           id?: string
           is_active?: boolean
           jokers_remaining?: number
+          last_check_in?: string | null
+          longest_streak?: number
           started_at?: string
+          status?: string
           updated_at?: string
           user_id: string
         }
@@ -643,7 +673,10 @@ export type Database = {
           id?: string
           is_active?: boolean
           jokers_remaining?: number
+          last_check_in?: string | null
+          longest_streak?: number
           started_at?: string
+          status?: string
           updated_at?: string
           user_id?: string
         }
@@ -679,6 +712,42 @@ export type Database = {
         }
         Relationships: []
       }
+      trigger_insights: {
+        Row: {
+          created_at: string
+          description: string
+          generated_at: string
+          id: string
+          insight_type: string
+          is_read: boolean
+          pattern_data: Json | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          generated_at?: string
+          id?: string
+          insight_type: string
+          is_read?: boolean
+          pattern_data?: Json | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          generated_at?: string
+          id?: string
+          insight_type?: string
+          is_read?: boolean
+          pattern_data?: Json | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       trigger_logs: {
         Row: {
           created_at: string
@@ -692,6 +761,7 @@ export type Database = {
           situation: string | null
           time_context: string | null
           user_id: string
+          was_alone: boolean
         }
         Insert: {
           created_at?: string
@@ -705,6 +775,7 @@ export type Database = {
           situation?: string | null
           time_context?: string | null
           user_id: string
+          was_alone?: boolean
         }
         Update: {
           created_at?: string
@@ -718,6 +789,7 @@ export type Database = {
           situation?: string | null
           time_context?: string | null
           user_id?: string
+          was_alone?: boolean
         }
         Relationships: []
       }
