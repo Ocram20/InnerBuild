@@ -23,6 +23,7 @@ const phaseMeta: PhaseMeta[] = [
 ];
 
 export function RecoveryTimeline() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-6">
       <div className="relative">

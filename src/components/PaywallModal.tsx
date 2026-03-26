@@ -4,6 +4,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Crown, Sparkles, Target, Flame, Bot, Heart, BarChart3, Trophy, Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type PaywallReason = "habit_limit" | "challenge_limit" | "ai_coach" | "recovery" | "advanced_stats" | "general";
 

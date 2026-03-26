@@ -10,6 +10,7 @@ import type {
   ChallengeProgressDetail,
   MoodProgressDetail,
 } from "@/hooks/useProgressData";
+import { useTranslation } from "react-i18next";
 
 type Section = "habits" | "triggers" | "challenges" | "mood";
 
@@ -31,6 +32,7 @@ const sectionMeta: Record<Section, { key: string; icon: typeof Leaf }> = {
 };
 
 export function ProgressDeepDive({
+  const { t } = useTranslation();
   section,
   onClose,
   habitDetails,

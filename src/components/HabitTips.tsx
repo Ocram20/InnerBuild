@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Lightbulb, X, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 const tipKeys = [
   { titleKey: "habit_tips.tips.start_small_title", contentKey: "habit_tips.tips.start_small" },
   { titleKey: "habit_tips.tips.stack_title", contentKey: "habit_tips.tips.stack" },
@@ -14,6 +15,7 @@ const tipKeys = [
 ];
 
 export default function HabitTips() {
+  const { t } = useTranslation();
   const [currentTip, setCurrentTip] = useState(0);
   const [dismissed, setDismissed] = useState(false);
   useEffect(() => {

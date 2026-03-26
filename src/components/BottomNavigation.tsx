@@ -6,6 +6,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 const navItems = [
   { path: "/dashboard", labelKey: "nav.home", icon: LayoutDashboard },
   { path: "/explore", labelKey: "nav.tools", icon: Compass },
