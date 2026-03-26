@@ -558,68 +558,157 @@ supabase gen types typescript --project-id <TUO_PROJECT_ID> > src/integrations/s
 
 ---
 
-## 🌐 Step 9: Deploy dell'Applicazione
+## 🌐 Step 9: Deploy su Vercel
 
-### Opzione A: Vercel (consigliato)
+### 9.1 Deploy con Lovable ancora attivo (Fase transitoria)
 
-1. Vai su [vercel.com](https://vercel.com)
-2. Importa il repository da GitHub
-3. **Framework Preset**: Vite
-4. **Build Command**: `npm run build`
-5. **Output Directory**: `dist`
-6. Aggiungi le variabili d'ambiente:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_PUBLISHABLE_KEY`
-   - `VITE_SUPABASE_PROJECT_ID`
-7. Deploy!
+In questa fase continui a usare Lovable per le modifiche, ma il deploy in produzione avviene su Vercel.
 
-> ⚠️ Per SPA con client-side routing, aggiungi un file `vercel.json`:
-> ```json
-> {
->   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-> }
-> ```
+1. **Connetti GitHub a Vercel**:
+   - Vai su [vercel.com](https://vercel.com) → **New Project**
+   - Importa il repository GitHub collegato a Lovable
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
 
-### Opzione B: Netlify
+2. **Configura le variabili d'ambiente su Vercel**:
 
-1. Vai su [netlify.com](https://netlify.com)
-2. Importa da GitHub
-3. **Build command**: `npm run build`
-4. **Publish directory**: `dist`
-5. Aggiungi le variabili d'ambiente
-6. Aggiungi un file `netlify.toml`:
-   ```toml
-   [[redirects]]
-     from = "/*"
-     to = "/index.html"
-     status = 200
-   ```
-7. Deploy!
+   Vai su **Project Settings → Environment Variables** e aggiungi:
 
-### Opzione C: Self-hosted (VPS, Docker, ecc.)
+   | Variabile | Valore | Dove trovarla |
+   |-----------|--------|---------------|
+   | `VITE_SUPABASE_URL` | `https://rksmsdzgwkmbhakcgalb.supabase.co` | Supabase Dashboard → Settings → API |
+   | `VITE_SUPABASE_PUBLISHABLE_KEY` | La tua anon key (`eyJ...`) | Supabase Dashboard → Settings → API |
+   | `VITE_SUPABASE_PROJECT_ID` | `rksmsdzgwkmbhakcgalb` | Supabase Dashboard → Settings → General |
 
-```bash
-npm run build
-# Servi la cartella 'dist' con Nginx, Apache, Caddy, ecc.
-```
+   > ⚠️ **IMPORTANTE**: Queste sono chiavi **pubbliche** (anon key). Le chiavi segrete (Stripe, Groq, Service Role) vanno **SOLO** nei Supabase Secrets, **MAI** su Vercel! Le edge functions accedono automaticamente ai Supabase Secrets.
 
-Esempio configurazione Nginx:
-```nginx
-server {
-    listen 80;
-    server_name tuodominio.com;
-    root /var/www/innerbuild/dist;
-    index index.html;
+3. **Il file `vercel.json`** è già nel progetto con:
+   - Rewrites per SPA (tutte le route → `index.html`)
+   - Security headers (CSP, X-Frame-Options, X-Content-Type-Options)
 
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
+4. **Deploy!** Vercel farà il build automaticamente ad ogni push su GitHub.
+
+5. **Configura il dominio**:
+   - Vercel Settings → Domains → aggiungi il tuo dominio personalizzato
+   - Aggiorna i redirect URL in Supabase (vedi Step 6.3) con il nuovo dominio
+
+6. **Aggiorna Google OAuth**:
+   - In Google Cloud Console, aggiungi il nuovo dominio Vercel/custom agli **Authorized JavaScript Origins**
+   - Il **Redirect URI** Supabase resta lo stesso: `https://rksmsdzgwkmbhakcgalb.supabase.co/auth/v1/callback`
+
+### 9.2 Riepilogo: Dove vanno i Secrets
+
+| Secret | Dove va | Perché |
+|--------|---------|--------|
+| `VITE_SUPABASE_URL` | Vercel Env Vars | Usata dal frontend (build-time) |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Vercel Env Vars | Usata dal frontend (build-time) |
+| `VITE_SUPABASE_PROJECT_ID` | Vercel Env Vars | Usata dal frontend (build-time) |
+| `STRIPE_API_KEY` | Supabase Secrets | Usata dalle Edge Functions (server-side) |
+| `GROQ_API_KEY` | Supabase Secrets | Usata dalle Edge Functions (server-side) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Secrets (auto) | Mai nel frontend! |
+
+> 💡 **Regola d'oro**: Su Vercel metti SOLO le variabili `VITE_*` (pubbliche, usate nel frontend). I segreti privati stanno SOLO nei Supabase Edge Function Secrets.
 
 ---
 
-## 🔒 Step 10: Riepilogo Secrets e Servizi
+## 🔧 Step 10: Rimuovere Lovable completamente
+
+Quando sei pronto a staccarti da Lovable:
+
+### 10.1 Rimuovi le dipendenze Lovable
+
+```bash
+npm uninstall @lovable.dev/cloud-auth-js lovable-tagger
+```
+
+### 10.2 Elimina i file Lovable
+
+```bash
+rm -rf src/integrations/lovable/
+```
+
+### 10.3 Modifica `vite.config.ts`
+
+Rimuovi il `lovable-tagger`:
+
+```typescript
+// RIMUOVI questa riga:
+import { componentTagger } from "lovable-tagger";
+
+// RIMUOVI questa riga dai plugins:
+mode === "development" && componentTagger(),
+```
+
+Il file finale:
+```typescript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { VitePWA } from "vite-plugin-pwa";
+
+export default defineConfig(({ mode }) => ({
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [
+    react(),
+    VitePWA({
+      // ... configurazione PWA invariata
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));
+```
+
+### 10.4 Aggiorna il Google OAuth (se usavi Lovable OAuth)
+
+Se il tuo `Auth.tsx` usa `lovable.auth.signInWithOAuth`, sostituiscilo con la chiamata diretta Supabase:
+
+```typescript
+// PRIMA (con Lovable):
+import { lovable } from "@/integrations/lovable";
+await lovable.auth.signInWithOAuth("google");
+
+// DOPO (senza Lovable):
+import { supabase } from "@/integrations/supabase/client";
+await supabase.auth.signInWithOAuth({
+  provider: "google",
+  options: { redirectTo: `${window.location.origin}/dashboard` },
+});
+```
+
+### 10.5 Rigenera i tipi TypeScript
+
+```bash
+npx supabase gen types typescript --project-id rksmsdzgwkmbhakcgalb > src/integrations/supabase/types.ts
+```
+
+Dopo aver rigenerato i tipi, puoi rimuovere `src/integrations/supabase/untyped-client.ts` e aggiornare tutti gli import che lo usano.
+
+### 10.6 Testa tutto!
+
+```bash
+npm run build
+npm run preview
+```
+
+Verifica:
+- [ ] Login con email funziona
+- [ ] Login con Google funziona  
+- [ ] Dashboard si carica correttamente
+- [ ] AI Coach risponde
+- [ ] Checkout Stripe funziona
+- [ ] PWA installabile
+
+---
+
+## 🔒 Step 11: Riepilogo Secrets e Servizi
 
 ### Secrets nelle Edge Functions di Supabase
 
@@ -630,7 +719,7 @@ server {
 
 > ℹ️ `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_ROLE_KEY` sono **automaticamente disponibili** in ogni edge function di Supabase — non serve aggiungerli manualmente.
 
-### Variabili d'Ambiente Frontend (.env)
+### Variabili d'Ambiente Frontend (Vercel)
 
 | Variabile | Dove ottenerla |
 |-----------|----------------|
@@ -659,28 +748,32 @@ server {
 - [ ] SMTP personalizzato configurato (Gmail/Resend/altro)
 - [ ] Template email personalizzati (benvenuto, reset password, cambio email)
 - [ ] URL di redirect configurati (Site URL + Redirect URLs incluso `/reset-password`)
-- [ ] Test registrazione email + ricezione email di benvenuto + conferma ✅
-- [ ] Test login Google ✅
-- [ ] Test reset password (invio email + click link + reset + login con nuova password) ✅
 
 ### Pagamenti
-- [ ] `STRIPE_API_KEY` configurato nei secrets
-- [ ] Edge functions Stripe deployate (create-checkout, create-portal, check-subscription)
+- [ ] `STRIPE_API_KEY` configurato nei Supabase Secrets
+- [ ] Edge functions Stripe deployate
 - [ ] Test checkout in modalità test (`sk_test_...`)
-- [ ] Verifica che il prodotto "InnerBuild Pro" venga creato automaticamente
 
 ### AI
-- [ ] `GROQ_API_KEY` configurato nei secrets
-- [ ] Tutte le 11 edge functions AI deployate
+- [ ] `GROQ_API_KEY` configurato nei Supabase Secrets
+- [ ] Tutte le edge functions AI deployate
 - [ ] Test AI Coach (chat funzionante)
-- [ ] Test generazione report (habit/trigger)
 
-### Deploy
-- [ ] Variabili d'ambiente configurate sul hosting
-- [ ] Build di produzione riuscita (`npm run build`)
-- [ ] Routing SPA configurato (rewrites per index.html)
-- [ ] HTTPS attivo
-- [ ] PWA funzionante (manifest, service worker, icone)
+### Deploy Vercel
+- [ ] Variabili `VITE_*` configurate su Vercel
+- [ ] `vercel.json` presente con rewrites e security headers
+- [ ] Build riuscita
+- [ ] HTTPS attivo (automatico con Vercel)
+- [ ] Dominio personalizzato configurato
+- [ ] Google OAuth aggiornato con il nuovo dominio
+
+### Rimozione Lovable (quando pronto)
+- [ ] `@lovable.dev/cloud-auth-js` e `lovable-tagger` rimossi
+- [ ] `src/integrations/lovable/` eliminata
+- [ ] `vite.config.ts` pulito
+- [ ] OAuth migrato a Supabase diretto
+- [ ] Tipi TypeScript rigenerati
+- [ ] Build pulita senza errori
 
 ---
 
@@ -693,41 +786,26 @@ server {
 ### Google Login non funziona
 - Verifica che il **Redirect URI** in Google Console sia: `https://<PROJECT_ID>.supabase.co/auth/v1/callback`
 - Verifica che il provider Google sia **abilitato** in Supabase Auth
-- Controlla che gli **Authorized JavaScript Origins** includano il tuo dominio
+- Controlla che gli **Authorized JavaScript Origins** includano il tuo dominio Vercel
 
-### Email di benvenuto non arrivano
+### Email non arrivano
 - Verifica la configurazione SMTP in Supabase Dashboard → Authentication → SMTP Settings
-- Per Gmail: assicurati di usare una **App Password** (non la password normale) e che la 2FA sia attiva
+- Per Gmail: assicurati di usare una **App Password** (non la password normale)
 - Controlla la cartella spam/junk
-- Verifica i limiti del provider (Gmail: 500/giorno, Supabase default senza SMTP: 2/ora)
-- Prova a inviare un'email di test dal tuo provider SMTP per verificare che le credenziali funzionino
-
-### Email di reset password non arrivano
-- Stesse verifiche SMTP di sopra
-- Assicurati che l'email sia effettivamente registrata nel sistema
-- Controlla che il **Redirect URL** in Authentication → URL Configuration includa `https://tuodominio.com/reset-password`
-
-### Reset password: "Link non valido o scaduto"
-- Il link di reset scade dopo 1 ora — l'utente deve richiederne uno nuovo
-- Verifica che il **Site URL** in Supabase corrisponda al dominio dell'app
-- Assicurati che i redirect URL siano configurati correttamente (vedi Step 6.3)
 
 ### Stripe checkout non funziona
-- Verifica che `STRIPE_API_KEY` sia configurato correttamente
+- Verifica che `STRIPE_API_KEY` sia nei **Supabase Secrets** (NON su Vercel)
 - In sviluppo usa `sk_test_...`, in produzione `sk_live_...`
-- Controlla i log della edge function nel Supabase Dashboard → Edge Functions → Logs
+- Controlla i log della edge function nel Supabase Dashboard
 
 ### Errore 404 su refresh delle pagine
-- Configura i redirect per SPA (vedi Step 9 per Vercel/Netlify/Nginx)
-- Tutte le route devono puntare a `/index.html`
+- Il `vercel.json` con i rewrites dovrebbe risolvere questo problema
+- Verifica che il file sia presente nella root del progetto
 
-### Database vuoto dopo le migrazioni
-- Le migrazioni creano solo la **struttura**, non i dati
-- Importa i dati esportati dal vecchio progetto (Step 2.4)
-
-### Edge Function restituisce errore CORS
-- Verifica che ogni edge function abbia gli header CORS configurati
-- Controlla che il metodo OPTIONS sia gestito
+### Build fallisce su Vercel
+- Verifica che le variabili `VITE_*` siano configurate su Vercel
+- Controlla che il Framework Preset sia "Vite"
+- Controlla i build logs su Vercel per errori specifici
 
 ---
 
@@ -742,4 +820,4 @@ server {
 
 ---
 
-*Guida aggiornata il 24 Febbraio 2026*
+*Guida aggiornata il 26 Marzo 2026*
