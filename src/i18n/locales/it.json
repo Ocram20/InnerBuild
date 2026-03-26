@@ -1023,7 +1023,7 @@
     }
   },
 
-
+  "habit_report": {
     "habit_analysis": "Analisi Abitudini",
     "loading_insights": "Caricamento insight abitudini...",
     "locked_desc": "Ottieni insight AI sulle tue abitudini e suggerimenti personalizzati per migliorare la tua routine.",
