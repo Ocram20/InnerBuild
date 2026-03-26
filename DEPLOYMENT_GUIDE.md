@@ -74,15 +74,15 @@ Ecco come funziona il flusso di lavoro:
 
 Prima di iniziare, assicurati di avere:
 
-| Cosa | Dove | Stato |
-|------|------|-------|
-| Account Lovable | [lovable.dev](https://lovable.dev) | ✅ Già attivo |
-| Account GitHub | [github.com](https://github.com) | Necessario |
-| Account Vercel | [vercel.com](https://vercel.com) | Necessario (gratuito) |
-| Account Supabase | [supabase.com](https://supabase.com) | ✅ Già configurato |
-| Account Stripe | [stripe.com](https://stripe.com) | ✅ Già configurato |
-| Account Groq | [console.groq.com](https://console.groq.com) | ✅ Già configurato |
-| Un provider SMTP | Gmail / Resend / Mailgun | Necessario per email |
+| Cosa             | Dove                                         | Stato                 |
+| ---------------- | -------------------------------------------- | --------------------- |
+| Account Lovable  | [lovable.dev](https://lovable.dev)           | ✅ Già attivo         |
+| Account GitHub   | [github.com](https://github.com)             | Necessario            |
+| Account Vercel   | [vercel.com](https://vercel.com)             | Necessario (gratuito) |
+| Account Supabase | [supabase.com](https://supabase.com)         | ✅ Già configurato    |
+| Account Stripe   | [stripe.com](https://stripe.com)             | ✅ Già configurato    |
+| Account Groq     | [console.groq.com](https://console.groq.com) | ✅ Già configurato    |
+| Un provider SMTP | Gmail / Resend / Mailgun                     | Necessario per email  |
 
 ---
 
@@ -143,14 +143,14 @@ Se non l'hai già fatto, devi collegare il tuo progetto Lovable a un repository 
 
 Nella schermata di configurazione del progetto, imposta questi valori:
 
-| Impostazione | Valore |
-|-------------|--------|
-| **Project Name** | `innerbuild` (o quello che preferisci) |
-| **Framework Preset** | **Vite** |
-| **Root Directory** | `./ ` (lascia il default) |
-| **Build Command** | `npm run build` (default per Vite) |
-| **Output Directory** | `dist` (default per Vite) |
-| **Install Command** | `npm install` (default) |
+| Impostazione         | Valore                                 |
+| -------------------- | -------------------------------------- |
+| **Project Name**     | `innerbuild` (o quello che preferisci) |
+| **Framework Preset** | **Vite**                               |
+| **Root Directory**   | `./ ` (lascia il default)              |
+| **Build Command**    | `npm run build` (default per Vite)     |
+| **Output Directory** | `dist` (default per Vite)              |
+| **Install Command**  | `npm install` (default)                |
 
 ### 2.4 NON fare ancora il deploy!
 
@@ -168,13 +168,14 @@ Questa è la parte più importante. Devi dire a Vercel dove trovare il tuo backe
 
 Vai su **Supabase Dashboard** → **Project Settings** → **API**:
 
-| Dato | Dove trovarlo |
-|------|---------------|
-| **Project URL** | Sezione "Project URL" — inizia con `https://` |
-| **Anon Key** | Sezione "Project API keys" → `anon` `public` — inizia con `eyJ` |
-| **Project ID** | Nella URL della dashboard: `https://supabase.com/dashboard/project/QUESTO_QUI` |
+| Dato            | Dove trovarlo                                                                  |
+| --------------- | ------------------------------------------------------------------------------ |
+| **Project URL** | Sezione "Project URL" — inizia con `https://`                                  |
+| **Anon Key**    | Sezione "Project API keys" → `anon` `public` — inizia con `eyJ`                |
+| **Project ID**  | Nella URL della dashboard: `https://supabase.com/dashboard/project/QUESTO_QUI` |
 
 Per il tuo progetto specifico:
+
 - **Project URL**: `https://rksmsdzgwkmbhakcgalb.supabase.co`
 - **Project ID**: `rksmsdzgwkmbhakcgalb`
 - **Anon Key**: la chiave che inizia con `eyJhbGci...` (la trovi nel tuo `.env` o nella dashboard Supabase)
@@ -186,37 +187,37 @@ Per il tuo progetto specifico:
 
 #### Variabile 1: VITE_SUPABASE_URL
 
-| Campo | Valore |
-|-------|--------|
-| **Key** | `VITE_SUPABASE_URL` |
-| **Value** | `https://rksmsdzgwkmbhakcgalb.supabase.co` |
-| **Environment** | ✅ Production, ✅ Preview, ✅ Development |
+| Campo           | Valore                                     |
+| --------------- | ------------------------------------------ |
+| **Key**         | `VITE_SUPABASE_URL`                        |
+| **Value**       | `https://rksmsdzgwkmbhakcgalb.supabase.co` |
+| **Environment** | ✅ Production, ✅ Preview, ✅ Development  |
 
 #### Variabile 2: VITE_SUPABASE_PUBLISHABLE_KEY
 
-| Campo | Valore |
-|-------|--------|
-| **Key** | `VITE_SUPABASE_PUBLISHABLE_KEY` |
-| **Value** | La tua anon key (inizia con `eyJhbGci...`) |
-| **Environment** | ✅ Production, ✅ Preview, ✅ Development |
+| Campo           | Valore                                     |
+| --------------- | ------------------------------------------ |
+| **Key**         | `VITE_SUPABASE_PUBLISHABLE_KEY`            |
+| **Value**       | La tua anon key (inizia con `eyJhbGci...`) |
+| **Environment** | ✅ Production, ✅ Preview, ✅ Development  |
 
 #### Variabile 3: VITE_SUPABASE_PROJECT_ID
 
-| Campo | Valore |
-|-------|--------|
-| **Key** | `VITE_SUPABASE_PROJECT_ID` |
-| **Value** | `rksmsdzgwkmbhakcgalb` |
+| Campo           | Valore                                    |
+| --------------- | ----------------------------------------- |
+| **Key**         | `VITE_SUPABASE_PROJECT_ID`                |
+| **Value**       | `rksmsdzgwkmbhakcgalb`                    |
 | **Environment** | ✅ Production, ✅ Preview, ✅ Development |
 
 ### 3.3 Cosa NON mettere su Vercel
 
 > 🚨 **ATTENZIONE SICUREZZA**: Le seguenti chiavi **NON DEVONO MAI** essere aggiunte su Vercel:
 
-| Chiave | Perché NON va su Vercel |
-|--------|------------------------|
-| `STRIPE_API_KEY` | È una chiave segreta server-side → va nei Supabase Secrets |
-| `GROQ_API_KEY` | È una chiave segreta server-side → va nei Supabase Secrets |
-| `SUPABASE_SERVICE_ROLE_KEY` | Dà accesso admin al database → va nei Supabase Secrets |
+| Chiave                      | Perché NON va su Vercel                                    |
+| --------------------------- | ---------------------------------------------------------- |
+| `STRIPE_API_KEY`            | È una chiave segreta server-side → va nei Supabase Secrets |
+| `GROQ_API_KEY`              | È una chiave segreta server-side → va nei Supabase Secrets |
+| `SUPABASE_SERVICE_ROLE_KEY` | Dà accesso admin al database → va nei Supabase Secrets     |
 
 **Regola d'oro**: Su Vercel vanno **SOLO** le variabili che iniziano con `VITE_` (sono pubbliche e finiscono nel bundle JavaScript del browser). Tutto il resto va nei **Supabase Edge Function Secrets**.
 
@@ -230,6 +231,7 @@ Dopo aver configurato le variabili:
 4. Attendi 1-2 minuti per il build
 
 Se tutto è configurato correttamente, vedrai:
+
 - ✅ Build completato con successo
 - ✅ Un URL del tipo `innerbuild-xxxx.vercel.app`
 
@@ -246,8 +248,8 @@ Dopo il primo deploy, Vercel ti assegna un URL (es. `innerbuild.vercel.app`). De
 1. Vai su **Supabase Dashboard** → **Authentication** → **URL Configuration**
 2. Configura:
 
-| Campo | Valore |
-|-------|--------|
+| Campo        | Valore                                                    |
+| ------------ | --------------------------------------------------------- |
 | **Site URL** | `https://innerbuild.vercel.app` (o il tuo dominio custom) |
 
 3. Nella sezione **Redirect URLs**, aggiungi TUTTI questi URL:
@@ -277,22 +279,22 @@ Le Edge Functions di Supabase sono già deployate da Lovable. Verifica che funzi
 1. Vai su **Supabase Dashboard** → **Edge Functions**
 2. Dovresti vedere tutte le funzioni:
 
-| Funzione | Scopo | Stato atteso |
-|----------|-------|-------------|
-| `ai-coach` | Chat AI Coach | ✅ Active |
-| `ai-coach-engine` | Report AI settimanali | ✅ Active |
-| `analyze-habits` | Analisi abitudini real-time | ✅ Active |
-| `analyze-habit-report` | Report dettagliato abitudini | ✅ Active |
-| `analyze-triggers` | Analisi trigger real-time | ✅ Active |
-| `analyze-trigger-report` | Report dettagliato trigger | ✅ Active |
-| `challenge-daily-content` | Contenuto giornaliero sfide | ✅ Active |
-| `check-subscription` | Verifica abbonamento | ✅ Active |
-| `create-checkout` | Sessione checkout Stripe | ✅ Active |
-| `create-portal` | Portale clienti Stripe | ✅ Active |
-| `debrief-suggestions` | Suggerimenti debrief | ✅ Active |
-| `emergency-urge` | Supporto emergenza | ✅ Active |
-| `recovery-phase-insight` | Insight fase recupero | ✅ Active |
-| `whats-working` | Report "cosa funziona" | ✅ Active |
+| Funzione                  | Scopo                        | Stato atteso |
+| ------------------------- | ---------------------------- | ------------ |
+| `ai-coach`                | Chat AI Coach                | ✅ Active    |
+| `ai-coach-engine`         | Report AI settimanali        | ✅ Active    |
+| `analyze-habits`          | Analisi abitudini real-time  | ✅ Active    |
+| `analyze-habit-report`    | Report dettagliato abitudini | ✅ Active    |
+| `analyze-triggers`        | Analisi trigger real-time    | ✅ Active    |
+| `analyze-trigger-report`  | Report dettagliato trigger   | ✅ Active    |
+| `challenge-daily-content` | Contenuto giornaliero sfide  | ✅ Active    |
+| `check-subscription`      | Verifica abbonamento         | ✅ Active    |
+| `create-checkout`         | Sessione checkout Stripe     | ✅ Active    |
+| `create-portal`           | Portale clienti Stripe       | ✅ Active    |
+| `debrief-suggestions`     | Suggerimenti debrief         | ✅ Active    |
+| `emergency-urge`          | Supporto emergenza           | ✅ Active    |
+| `recovery-phase-insight`  | Insight fase recupero        | ✅ Active    |
+| `whats-working`           | Report "cosa funziona"       | ✅ Active    |
 
 3. Se una funzione non è attiva o manca, chiedi a Lovable di rideploy-arla.
 
@@ -301,13 +303,13 @@ Le Edge Functions di Supabase sono già deployate da Lovable. Verifica che funzi
 1. Vai su **Supabase Dashboard** → **Project Settings** → **Edge Functions** → **Secrets**
 2. Verifica che questi secrets siano configurati:
 
-| Secret | Stato atteso |
-|--------|-------------|
-| `STRIPE_API_KEY` | ✅ Configurato |
-| `GROQ_API_KEY` | ✅ Configurato (se usi AI) |
+| Secret                      | Stato atteso                    |
+| --------------------------- | ------------------------------- |
+| `STRIPE_API_KEY`            | ✅ Configurato                  |
+| `GROQ_API_KEY`              | ✅ Configurato (se usi AI)      |
 | `SUPABASE_SERVICE_ROLE_KEY` | ✅ Auto-configurato da Supabase |
-| `SUPABASE_URL` | ✅ Auto-configurato da Supabase |
-| `SUPABASE_ANON_KEY` | ✅ Auto-configurato da Supabase |
+| `SUPABASE_URL`              | ✅ Auto-configurato da Supabase |
+| `SUPABASE_ANON_KEY`         | ✅ Auto-configurato da Supabase |
 
 > ℹ️ `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_ROLE_KEY` sono automaticamente disponibili in ogni Edge Function — non serve aggiungerli manualmente.
 
@@ -380,10 +382,10 @@ https://rksmsdzgwkmbhakcgalb.supabase.co/auth/v1/callback
 1. Vai su [Stripe Dashboard](https://dashboard.stripe.com) → **Developers** → **API Keys**
 2. Avrai due set di chiavi:
 
-| Tipo | Formato | Quando usarla |
-|------|---------|---------------|
+| Tipo     | Formato                       | Quando usarla       |
+| -------- | ----------------------------- | ------------------- |
 | **Test** | `sk_test_...` e `pk_test_...` | Durante lo sviluppo |
-| **Live** | `sk_live_...` e `pk_live_...` | In produzione |
+| **Live** | `sk_live_...` e `pk_live_...` | In produzione       |
 
 > 💡 **Consiglio**: Inizia con le chiavi **test** (`sk_test_...`). Passa a quelle live solo quando sei pronto per accettare pagamenti reali.
 
@@ -424,11 +426,11 @@ L'app usa tre Edge Functions per Stripe:
 └─────────────────────────────────────────────────────────┘
 ```
 
-| Edge Function | Cosa fa |
-|--------------|---------|
-| `create-checkout` | Crea una sessione Stripe Checkout per l'abbonamento InnerBuild Pro (€9.99/mese). Crea automaticamente il prodotto e il prezzo se non esistono. |
-| `create-portal` | Apre il portale clienti Stripe dove l'utente può gestire/cancellare il suo abbonamento. |
-| `check-subscription` | Verifica in tempo reale se l'utente ha un abbonamento attivo su Stripe. |
+| Edge Function        | Cosa fa                                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `create-checkout`    | Crea una sessione Stripe Checkout per l'abbonamento InnerBuild Pro (€9.99/mese). Crea automaticamente il prodotto e il prezzo se non esistono. |
+| `create-portal`      | Apre il portale clienti Stripe dove l'utente può gestire/cancellare il suo abbonamento.                                                        |
+| `check-subscription` | Verifica in tempo reale se l'utente ha un abbonamento attivo su Stripe.                                                                        |
 
 > 💡 **Non serve creare prodotti su Stripe manualmente!** La funzione `create-checkout` crea automaticamente il prodotto "InnerBuild Pro" e il prezzo al primo checkout.
 
@@ -440,12 +442,12 @@ L'app usa tre Edge Functions per Stripe:
 4. Clicca su "Abbonati"
 5. Nella pagina Stripe Checkout, usa questa carta di test:
 
-| Campo | Valore |
-|-------|--------|
-| Numero carta | `4242 4242 4242 4242` |
-| Scadenza | Qualsiasi data futura (es. `12/30`) |
-| CVC | Qualsiasi 3 cifre (es. `123`) |
-| Nome | Qualsiasi nome |
+| Campo        | Valore                              |
+| ------------ | ----------------------------------- |
+| Numero carta | `4242 4242 4242 4242`               |
+| Scadenza     | Qualsiasi data futura (es. `12/30`) |
+| CVC          | Qualsiasi 3 cifre (es. `123`)       |
+| Nome         | Qualsiasi nome                      |
 
 6. Dopo il pagamento, dovresti tornare alla dashboard come utente Premium
 
@@ -488,27 +490,27 @@ Per gestire automaticamente eventi come cancellazioni:
 
 L'app usa il modello **`llama-3.3-70b-versatile`** tramite Groq per:
 
-| Funzionalità | Edge Function | Quando si attiva |
-|-------------|--------------|-----------------|
-| Chat AI Coach | `ai-coach` | Quando l'utente chatta con il coach |
-| Report AI settimanali | `ai-coach-engine` | Automaticamente ogni 7 giorni |
-| Analisi abitudini | `analyze-habits` | In tempo reale quando ci sono dati |
-| Report abitudini | `analyze-habit-report` | Ogni 4 giorni se ci sono abbastanza dati |
-| Analisi trigger | `analyze-triggers` | In tempo reale quando ci sono trigger |
-| Report trigger | `analyze-trigger-report` | Ogni 4 giorni se ci sono abbastanza dati |
-| Contenuto sfide | `challenge-daily-content` | Ogni giorno per sfide attive |
-| Suggerimenti debrief | `debrief-suggestions` | Dopo una ricaduta |
-| Supporto emergenza | `emergency-urge` | Quando l'utente preme il bottone SOS |
-| Insight recupero | `recovery-phase-insight` | Basato sulla fase di recupero |
-| Cosa funziona | `whats-working` | Ogni 7 giorni |
+| Funzionalità          | Edge Function             | Quando si attiva                         |
+| --------------------- | ------------------------- | ---------------------------------------- |
+| Chat AI Coach         | `ai-coach`                | Quando l'utente chatta con il coach      |
+| Report AI settimanali | `ai-coach-engine`         | Automaticamente ogni 7 giorni            |
+| Analisi abitudini     | `analyze-habits`          | In tempo reale quando ci sono dati       |
+| Report abitudini      | `analyze-habit-report`    | Ogni 4 giorni se ci sono abbastanza dati |
+| Analisi trigger       | `analyze-triggers`        | In tempo reale quando ci sono trigger    |
+| Report trigger        | `analyze-trigger-report`  | Ogni 4 giorni se ci sono abbastanza dati |
+| Contenuto sfide       | `challenge-daily-content` | Ogni giorno per sfide attive             |
+| Suggerimenti debrief  | `debrief-suggestions`     | Dopo una ricaduta                        |
+| Supporto emergenza    | `emergency-urge`          | Quando l'utente preme il bottone SOS     |
+| Insight recupero      | `recovery-phase-insight`  | Basato sulla fase di recupero            |
+| Cosa funziona         | `whats-working`           | Ogni 7 giorni                            |
 
 ### 7.4 Limiti di Groq
 
-| Piano Groq | Limite | Consiglio |
-|-----------|--------|-----------|
-| **Free** | ~30 req/min, ~14.400 req/giorno | OK per sviluppo e pochi utenti |
-| **Developer** | Limiti più alti | Consigliato per beta testing |
-| **Production** | Limiti custom | Necessario per lancio pubblico |
+| Piano Groq     | Limite                          | Consiglio                      |
+| -------------- | ------------------------------- | ------------------------------ |
+| **Free**       | ~30 req/min, ~14.400 req/giorno | OK per sviluppo e pochi utenti |
+| **Developer**  | Limiti più alti                 | Consigliato per beta testing   |
+| **Production** | Limiti custom                   | Necessario per lancio pubblico |
 
 > 💡 Se raggiungi i limiti gratuiti, l'AI Coach mostrerà errori temporanei. Passa a un piano a pagamento Groq o considera provider alternativi (OpenAI, Anthropic).
 
@@ -528,14 +530,14 @@ Supabase invia email per: registrazione, reset password, cambio email. Il server
 4. Genera una **App Password** per "Mail"
 5. Configurazione:
 
-| Campo | Valore |
-|-------|--------|
-| **Host** | `smtp.gmail.com` |
-| **Port** | `465` |
-| **Username** | `innerbuild.app@gmail.com` (email completa) |
-| **Password** | La App Password (16 caratteri, senza spazi) |
-| **Sender email** | `innerbuild.app@gmail.com` |
-| **Sender name** | `InnerBuild` |
+| Campo            | Valore                                      |
+| ---------------- | ------------------------------------------- |
+| **Host**         | `smtp.gmail.com`                            |
+| **Port**         | `465`                                       |
+| **Username**     | `innerbuild.app@gmail.com` (email completa) |
+| **Password**     | La App Password (16 caratteri, senza spazi) |
+| **Sender email** | `innerbuild.app@gmail.com`                  |
+| **Sender name**  | `InnerBuild`                                |
 
 #### Opzione B: Resend (consigliato per produzione)
 
@@ -544,14 +546,14 @@ Supabase invia email per: registrazione, reset password, cambio email. Il server
 3. Genera una API Key
 4. Configurazione:
 
-| Campo | Valore |
-|-------|--------|
-| **Host** | `smtp.resend.com` |
-| **Port** | `465` |
-| **Username** | `resend` |
-| **Password** | La tua API Key (inizia con `re_`) |
-| **Sender email** | `noreply@tuodominio.com` |
-| **Sender name** | `InnerBuild` |
+| Campo            | Valore                            |
+| ---------------- | --------------------------------- |
+| **Host**         | `smtp.resend.com`                 |
+| **Port**         | `465`                             |
+| **Username**     | `resend`                          |
+| **Password**     | La tua API Key (inizia con `re_`) |
+| **Sender email** | `noreply@tuodominio.com`          |
+| **Sender name**  | `InnerBuild`                      |
 
 ### 8.2 Configura SMTP su Supabase
 
@@ -589,10 +591,10 @@ I template da personalizzare sono 3:
 3. Inserisci il tuo dominio (es. `innerbuild.com` o `app.innerbuild.com`)
 4. Vercel ti mostrerà i record DNS da configurare:
 
-| Tipo | Nome | Valore |
-|------|------|--------|
+| Tipo      | Nome  | Valore                 |
+| --------- | ----- | ---------------------- |
 | **CNAME** | `www` | `cname.vercel-dns.com` |
-| **A** | `@` | `76.76.21.21` |
+| **A**     | `@`   | `76.76.21.21`          |
 
 5. Vai nel pannello del tuo registrar DNS (Cloudflare, Namecheap, GoDaddy, ecc.) e aggiungi questi record
 6. Attendi la propagazione DNS (da pochi minuti a 48 ore)
@@ -604,15 +606,15 @@ Dopo aver configurato il dominio, devi aggiornare:
 
 #### In Supabase (Authentication → URL Configuration):
 
-| Campo | Nuovo valore |
-|-------|-------------|
-| **Site URL** | `https://tuodominio.com` |
+| Campo             | Nuovo valore                                                    |
+| ----------------- | --------------------------------------------------------------- |
+| **Site URL**      | `https://tuodominio.com`                                        |
 | **Redirect URLs** | Aggiungi: `https://tuodominio.com`, `https://tuodominio.com/**` |
 
 #### In Google Cloud Console (Credentials → OAuth Client):
 
-| Campo | Aggiungi |
-|-------|---------|
+| Campo                             | Aggiungi                 |
+| --------------------------------- | ------------------------ |
 | **Authorized JavaScript Origins** | `https://tuodominio.com` |
 
 > ⚠️ Il **Redirect URI** di Supabase (`https://rksmsdzgwkmbhakcgalb.supabase.co/auth/v1/callback`) **resta invariato** — non cambia con il dominio custom.
@@ -628,12 +630,14 @@ Aggiorna l'URL del webhook se necessario.
 Dopo aver configurato tutto, esegui questa checklist di test completa:
 
 ### Test 1: Landing Page
+
 - [ ] Apri `https://tuodominio.com` (o l'URL Vercel)
 - [ ] La landing page si carica correttamente
 - [ ] Le immagini e i font si caricano
 - [ ] Il menu di navigazione funziona
 
 ### Test 2: Registrazione
+
 - [ ] Vai su `/auth?mode=signup`
 - [ ] Crea un account con email e password
 - [ ] Ricevi l'email di conferma
@@ -641,12 +645,14 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Sei reindirizzato alla dashboard con sessione attiva
 
 ### Test 3: Login/Logout
+
 - [ ] Fai logout
 - [ ] Fai login con email e password
 - [ ] Fai login con Google (se configurato)
 - [ ] La sessione persiste dopo il refresh della pagina
 
 ### Test 4: Reset Password
+
 - [ ] Vai su `/forgot-password`
 - [ ] Inserisci la tua email
 - [ ] Ricevi l'email di reset
@@ -655,6 +661,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Fai login con la nuova password
 
 ### Test 5: Dashboard e Funzionalità Core
+
 - [ ] La dashboard si carica con i dati corretti
 - [ ] Puoi creare/modificare/eliminare abitudini
 - [ ] Puoi completare abitudini (check-in)
@@ -662,12 +669,14 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] I task giornalieri funzionano
 
 ### Test 6: AI Coach (richiede GROQ_API_KEY)
+
 - [ ] Vai alla sezione AI Coach
 - [ ] Invia un messaggio
 - [ ] Ricevi una risposta dall'AI in italiano
 - [ ] La conversazione viene salvata
 
 ### Test 7: Stripe (richiede STRIPE_API_KEY)
+
 - [ ] Vai alla pagina Pricing
 - [ ] Clicca "Abbonati"
 - [ ] Completa il checkout con carta test `4242 4242 4242 4242`
@@ -675,16 +684,19 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Le funzionalità Premium sono sbloccate
 
 ### Test 8: PWA (Progressive Web App)
+
 - [ ] Su mobile, il browser propone "Installa app"
 - [ ] Dopo l'installazione, l'app funziona come app nativa
 - [ ] L'icona dell'app è corretta
 
 ### Test 9: Recovery e Trigger (Premium)
+
 - [ ] La sezione Recovery funziona
 - [ ] Il tracking dei trigger funziona
 - [ ] I report AI vengono generati
 
 ### Test 10: Sicurezza
+
 - [ ] Verifica che non ci siano chiavi segrete nel codice sorgente (Ctrl+U nel browser)
 - [ ] Verifica che i security headers siano presenti (DevTools → Network → seleziona una richiesta → Headers)
 - [ ] Verifica che le pagine protette reindirizzino al login se non autenticato
@@ -707,22 +719,22 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 
 ### Preview vs Produzione
 
-| Ambiente | URL | Quando si aggiorna |
-|----------|-----|-------------------|
-| **Lovable Preview** | `https://id-preview--*.lovable.app` | Istantaneamente mentre lavori |
-| **Vercel Preview** | `https://progetto-git-branch.vercel.app` | Ad ogni push su branch non-main |
-| **Vercel Production** | `https://tuodominio.com` | Ad ogni push su `main` |
+| Ambiente              | URL                                      | Quando si aggiorna              |
+| --------------------- | ---------------------------------------- | ------------------------------- |
+| **Lovable Preview**   | `https://id-preview--*.lovable.app`      | Istantaneamente mentre lavori   |
+| **Vercel Preview**    | `https://progetto-git-branch.vercel.app` | Ad ogni push su branch non-main |
+| **Vercel Production** | `https://tuodominio.com`                 | Ad ogni push su `main`          |
 
 ### Quando serve intervenire manualmente?
 
-| Situazione | Azione |
-|-----------|--------|
-| Modifica al codice frontend | Nessuna — automatico via Lovable → GitHub → Vercel |
-| Modifica a Edge Function | Nessuna — Lovable le deploya automaticamente su Supabase |
-| Modifica allo schema del database | Lovable crea la migration e la applica automaticamente |
-| Nuova variabile d'ambiente `VITE_*` | Devi aggiungerla manualmente su Vercel |
-| Nuovo Supabase Secret | Lovable te lo chiede e lo aggiunge |
-| Cambio dominio | Devi aggiornare Vercel + Supabase + Google OAuth |
+| Situazione                          | Azione                                                   |
+| ----------------------------------- | -------------------------------------------------------- |
+| Modifica al codice frontend         | Nessuna — automatico via Lovable → GitHub → Vercel       |
+| Modifica a Edge Function            | Nessuna — Lovable le deploya automaticamente su Supabase |
+| Modifica allo schema del database   | Lovable crea la migration e la applica automaticamente   |
+| Nuova variabile d'ambiente `VITE_*` | Devi aggiungerla manualmente su Vercel                   |
+| Nuovo Supabase Secret               | Lovable te lo chiede e lo aggiunge                       |
+| Cambio dominio                      | Devi aggiornare Vercel + Supabase + Google OAuth         |
 
 ---
 
@@ -730,25 +742,25 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 
 ### Dove controllare se qualcosa non va
 
-| Cosa controllare | Dove |
-|-----------------|------|
-| Build errors frontend | Vercel → Deployments → clicca sull'ultimo deploy → Build Logs |
+| Cosa controllare      | Dove                                                            |
+| --------------------- | --------------------------------------------------------------- |
+| Build errors frontend | Vercel → Deployments → clicca sull'ultimo deploy → Build Logs   |
 | Errori Edge Functions | Supabase Dashboard → Edge Functions → seleziona funzione → Logs |
-| Errori database | Supabase Dashboard → Database → Logs |
-| Errori autenticazione | Supabase Dashboard → Authentication → Logs |
-| Errori Stripe | Stripe Dashboard → Developers → Logs |
-| Performance frontend | Vercel → Analytics (se abilitato) |
-| Errori runtime JS | DevTools del browser → Console |
+| Errori database       | Supabase Dashboard → Database → Logs                            |
+| Errori autenticazione | Supabase Dashboard → Authentication → Logs                      |
+| Errori Stripe         | Stripe Dashboard → Developers → Logs                            |
+| Performance frontend  | Vercel → Analytics (se abilitato)                               |
+| Errori runtime JS     | DevTools del browser → Console                                  |
 
 ### Manutenzione periodica
 
-| Cosa | Ogni quanto | Come |
-|------|-------------|------|
-| Controlla i log delle Edge Functions | Settimanalmente | Supabase Dashboard |
-| Verifica lo stato dei pagamenti Stripe | Settimanalmente | Stripe Dashboard |
-| Controlla l'utilizzo Groq | Mensilmente | Groq Console |
-| Aggiorna le dipendenze npm | Mensilmente | Lovable o `npm audit` |
-| Controlla i security headers | Dopo ogni modifica al `vercel.json` | [securityheaders.com](https://securityheaders.com) |
+| Cosa                                   | Ogni quanto                         | Come                                               |
+| -------------------------------------- | ----------------------------------- | -------------------------------------------------- |
+| Controlla i log delle Edge Functions   | Settimanalmente                     | Supabase Dashboard                                 |
+| Verifica lo stato dei pagamenti Stripe | Settimanalmente                     | Stripe Dashboard                                   |
+| Controlla l'utilizzo Groq              | Mensilmente                         | Groq Console                                       |
+| Aggiorna le dipendenze npm             | Mensilmente                         | Lovable o `npm audit`                              |
+| Controlla i security headers           | Dopo ogni modifica al `vercel.json` | [securityheaders.com](https://securityheaders.com) |
 
 ---
 
@@ -756,30 +768,30 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 
 ### 🟢 Su Vercel (variabili pubbliche, frontend)
 
-| Variabile | Valore | Tipo |
-|-----------|--------|------|
-| `VITE_SUPABASE_URL` | `https://rksmsdzgwkmbhakcgalb.supabase.co` | Pubblico |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | `eyJhbGci...` (anon key) | Pubblico |
-| `VITE_SUPABASE_PROJECT_ID` | `rksmsdzgwkmbhakcgalb` | Pubblico |
+| Variabile                       | Valore                                     | Tipo     |
+| ------------------------------- | ------------------------------------------ | -------- |
+| `VITE_SUPABASE_URL`             | `https://rksmsdzgwkmbhakcgalb.supabase.co` | Pubblico |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | `eyJhbGci...` (anon key)                   | Pubblico |
+| `VITE_SUPABASE_PROJECT_ID`      | `rksmsdzgwkmbhakcgalb`                     | Pubblico |
 
 ### 🔴 Su Supabase Secrets (chiavi private, server-side)
 
-| Secret | Dove ottenerlo | Usato da |
-|--------|----------------|----------|
-| `STRIPE_API_KEY` | [Stripe Dashboard → API Keys](https://dashboard.stripe.com/apikeys) | `create-checkout`, `create-portal`, `check-subscription` |
-| `GROQ_API_KEY` | [Groq Console → API Keys](https://console.groq.com/keys) | Tutte le Edge Functions AI |
-| `SUPABASE_SERVICE_ROLE_KEY` | ✅ Auto-configurato | Alcune Edge Functions |
-| `SUPABASE_URL` | ✅ Auto-configurato | Tutte le Edge Functions |
-| `SUPABASE_ANON_KEY` | ✅ Auto-configurato | Tutte le Edge Functions |
+| Secret                      | Dove ottenerlo                                                      | Usato da                                                 |
+| --------------------------- | ------------------------------------------------------------------- | -------------------------------------------------------- |
+| `STRIPE_API_KEY`            | [Stripe Dashboard → API Keys](https://dashboard.stripe.com/apikeys) | `create-checkout`, `create-portal`, `check-subscription` |
+| `GROQ_API_KEY`              | [Groq Console → API Keys](https://console.groq.com/keys)            | Tutte le Edge Functions AI                               |
+| `SUPABASE_SERVICE_ROLE_KEY` | ✅ Auto-configurato                                                 | Alcune Edge Functions                                    |
+| `SUPABASE_URL`              | ✅ Auto-configurato                                                 | Tutte le Edge Functions                                  |
+| `SUPABASE_ANON_KEY`         | ✅ Auto-configurato                                                 | Tutte le Edge Functions                                  |
 
 ### 🔵 Configurazioni Esterne
 
-| Servizio | Dove configurarlo | Cosa configurare |
-|----------|-------------------|-----------------|
-| **Google OAuth** | [Google Cloud Console](https://console.cloud.google.com) + Supabase Auth Providers | Client ID, Client Secret, Redirect URI |
-| **SMTP Email** | Supabase Auth → SMTP Settings | Host, Port, Username, Password |
-| **Stripe** | [Stripe Dashboard](https://dashboard.stripe.com) | API Keys, (opzionale: Webhooks) |
-| **Supabase Auth URLs** | Supabase Auth → URL Configuration | Site URL, Redirect URLs |
+| Servizio               | Dove configurarlo                                                                  | Cosa configurare                       |
+| ---------------------- | ---------------------------------------------------------------------------------- | -------------------------------------- |
+| **Google OAuth**       | [Google Cloud Console](https://console.cloud.google.com) + Supabase Auth Providers | Client ID, Client Secret, Redirect URI |
+| **SMTP Email**         | Supabase Auth → SMTP Settings                                                      | Host, Port, Username, Password         |
+| **Stripe**             | [Stripe Dashboard](https://dashboard.stripe.com)                                   | API Keys, (opzionale: Webhooks)        |
+| **Supabase Auth URLs** | Supabase Auth → URL Configuration                                                  | Site URL, Redirect URLs                |
 
 ---
 
@@ -788,10 +800,12 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 ### ❌ Il build su Vercel fallisce
 
 **Errore: "Cannot find module..."**
+
 - Verifica che le variabili `VITE_*` siano configurate su Vercel
 - Prova a fare **Redeploy** dalla dashboard Vercel
 
 **Errore: "Type error..."**
+
 - Questo è un errore nel codice TypeScript — chiedi a Lovable di fixarlo
 - Controlla i build logs per il file e la riga specifici
 
@@ -804,11 +818,13 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 ### ❌ Login con Google non funziona
 
 **Errore "redirect_uri_mismatch"**:
+
 - Verifica che il Redirect URI in Google Console sia esattamente:
   `https://rksmsdzgwkmbhakcgalb.supabase.co/auth/v1/callback`
 - Verifica che il tuo dominio Vercel sia negli **Authorized JavaScript Origins**
 
 **Errore "This app isn't verified"**:
+
 - Questo è normale in fase di sviluppo
 - Clicca "Advanced" → "Go to InnerBuild (unsafe)" per procedere
 - Per rimuovere l'avviso, completa la verifica dell'app in Google Cloud Console
@@ -858,6 +874,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 ## ✅ Checklist Finale Pre-Launch
 
 ### Infrastruttura
+
 - [ ] GitHub collegato a Lovable
 - [ ] Vercel collegato a GitHub
 - [ ] Build Vercel riuscita
@@ -866,6 +883,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Dominio personalizzato configurato (opzionale)
 
 ### Variabili e Secrets
+
 - [ ] `VITE_SUPABASE_URL` su Vercel ✅
 - [ ] `VITE_SUPABASE_PUBLISHABLE_KEY` su Vercel ✅
 - [ ] `VITE_SUPABASE_PROJECT_ID` su Vercel ✅
@@ -874,6 +892,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Nessuna chiave segreta esposta nel frontend ✅
 
 ### Autenticazione
+
 - [ ] Login con email funziona
 - [ ] Login con Google funziona
 - [ ] Reset password funziona
@@ -882,6 +901,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] Template email personalizzati
 
 ### Funzionalità
+
 - [ ] Dashboard si carica correttamente
 - [ ] Abitudini: crea, modifica, completa
 - [ ] AI Coach risponde in italiano
@@ -891,6 +911,7 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 - [ ] PWA installabile su mobile
 
 ### Sicurezza
+
 - [ ] Security headers attivi (CSP, X-Frame-Options, ecc.)
 - [ ] Nessuna chiave segreta nel codice sorgente
 - [ ] RLS policies attive su tutte le tabelle
@@ -900,16 +921,16 @@ Dopo aver configurato tutto, esegui questa checklist di test completa:
 
 ## 📞 Risorse Utili
 
-| Risorsa | Link |
-|---------|------|
-| Supabase Docs | [supabase.com/docs](https://supabase.com/docs) |
-| Vercel Docs | [vercel.com/docs](https://vercel.com/docs) |
-| Stripe Docs | [stripe.com/docs](https://stripe.com/docs) |
-| Groq Docs | [console.groq.com/docs](https://console.groq.com/docs) |
+| Risorsa           | Link                                                                                      |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| Supabase Docs     | [supabase.com/docs](https://supabase.com/docs)                                            |
+| Vercel Docs       | [vercel.com/docs](https://vercel.com/docs)                                                |
+| Stripe Docs       | [stripe.com/docs](https://stripe.com/docs)                                                |
+| Groq Docs         | [console.groq.com/docs](https://console.groq.com/docs)                                    |
 | Google OAuth Docs | [developers.google.com/identity](https://developers.google.com/identity/protocols/oauth2) |
-| Lovable Docs | [docs.lovable.dev](https://docs.lovable.dev) |
+| Lovable Docs      | [docs.lovable.dev](https://docs.lovable.dev)                                              |
 
 ---
 
-*Guida creata il 26 Marzo 2026 — Specifica per il progetto InnerBuild*
-*Per la guida all'esportazione completa (rimozione Lovable), vedi `EXPORT_GUIDE.md`*
+_Guida creata il 26 Marzo 2026 — Specifica per il progetto InnerBuild_
+_Per la guida all'esportazione completa (rimozione Lovable), vedi `EXPORT_GUIDE.md`_
