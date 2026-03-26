@@ -59,6 +59,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       };
       setFormData(newData);
       setOriginalUsername(profile.username || "");
+      setOriginalEmail(user?.email || "");
       setOriginalData({
         first_name: profile.first_name || "",
         last_name: profile.last_name || "",
