@@ -97,7 +97,7 @@ export function useTriggerTracking() {
         impulse_intensity: data.impulse_intensity,
         emotion: data.emotion,
         time_context: data.time_context,
-        location: data.location_context || null,
+        location_context: data.location_context || null,
         notes: data.notes || null,
       });
 
