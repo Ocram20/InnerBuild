@@ -38,7 +38,7 @@ const BottomNavigation = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-t border-border/50 safe-area-bottom">
-      <div className="flex items-center justify-around h-16 max-w-lg mx-auto px-4">
+      <div className="flex items-center justify-between h-16 max-w-lg mx-auto px-2 sm:px-4 gap-1">
         {navItems.map((item) => {
           const active = isActive(item.path);
           const Icon = item.icon;
@@ -48,7 +48,7 @@ const BottomNavigation = () => {
               key={item.path}
               onClick={() => navigate(item.path)}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 px-4 py-2 rounded-xl transition-all duration-200 min-w-[64px]",
+                "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 transition-all duration-200 sm:px-3",
                 active 
                   ? "text-primary" 
                   : "text-muted-foreground hover:text-foreground"
@@ -64,7 +64,7 @@ const BottomNavigation = () => {
                 )} />
               </div>
               <span className={cn(
-                "text-[10px] font-medium transition-all duration-200",
+                "max-w-full truncate text-[10px] font-medium transition-all duration-200",
                 active && "font-semibold"
               )}>
                 {t(item.labelKey)}

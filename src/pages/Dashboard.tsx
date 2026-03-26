@@ -156,29 +156,29 @@ export default function Dashboard() {
   const progressPercent = totalHabits > 0 ? Math.round((completedCount / totalHabits) * 100) : 0;
 
   const SectionTitle = ({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) => (
-    <div className="flex items-center justify-between mb-3">
+    <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       <h2 className="text-base font-semibold text-foreground">{children}</h2>
       {action}
     </div>
   );
 
   return (
-    <div className="min-h-screen pb-24 bg-background">
+    <div className="min-h-screen overflow-x-hidden pb-24 bg-background">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="flex items-center justify-between p-4 max-w-lg mx-auto">
-          <div className="flex items-center gap-3">
+        <div className="flex max-w-lg flex-col gap-3 p-4 mx-auto sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
               <Leaf className="h-5 w-5 text-primary" />
             </div>
-            <div>
-              <h1 className="font-bold text-foreground">{getGreeting()}</h1>
-              <p className="text-xs text-muted-foreground">
+            <div className="min-w-0">
+              <h1 className="font-bold text-foreground break-words">{getGreeting()}</h1>
+              <p className="text-xs text-muted-foreground break-words">
                 {new Date().toLocaleDateString(i18n.language?.startsWith("it") ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long" })}
               </p>
             </div>
           </div>
           
-          <div className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center justify-end gap-1 self-end sm:self-auto">
             {subscription.subscribed && (
               <button onClick={handleManageSubscription} className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center gap-1 hover:bg-primary/20 transition-colors">
                 <Crown className="h-3 w-3" />
@@ -228,7 +228,7 @@ export default function Dashboard() {
             <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
               <SectionTitle
                 action={
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <Button size="sm" variant="ghost" onClick={() => navigate("/habits")} className="h-8 text-muted-foreground">
                       <Target className="h-4 w-4 mr-1" />
                       {t("common.all")}

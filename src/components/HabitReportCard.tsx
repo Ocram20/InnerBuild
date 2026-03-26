@@ -180,17 +180,17 @@ export default function HabitReportCard() {
   const { summary, created_at, is_read, id } = report;
 
   return (
-    <div className={`rounded-2xl border border-border/60 bg-card p-5 ${!is_read ? 'ring-2 ring-primary/30' : ''}`}>
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-3">
+    <div className={`rounded-2xl border border-border/60 bg-card p-5 overflow-hidden ${!is_read ? 'ring-2 ring-primary/30' : ''}`}>
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
             <Brain className="h-5 w-5 text-primary" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="break-words text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
               {!is_read && (
-                <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
+                <Badge variant="secondary" className="shrink-0 text-xs bg-primary/10 text-primary">
                   {t("common.new")}
                 </Badge>
               )}
@@ -214,10 +214,10 @@ export default function HabitReportCard() {
       </div>
 
       <div className="space-y-4">
-        <p className="text-sm text-foreground/90 leading-relaxed">{summary}</p>
+        <p className="break-words text-sm text-foreground/90 leading-relaxed">{summary}</p>
 
         {pendingSuggestions.length > 0 && (
-          <Badge variant="outline" className="gap-1 text-primary border-primary/20">
+          <Badge variant="outline" className="max-w-full gap-1 border-primary/20 text-primary whitespace-normal">
             <TrendingDown className="h-3 w-3" />
             {t("habit_report.suggestions_for_you", { count: pendingSuggestions.length })}
           </Badge>
