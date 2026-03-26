@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { TrendingUp, TrendingDown, Minus, Leaf, Zap, Shield, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ProgressOverview } from "@/hooks/useProgressData";
@@ -23,17 +22,16 @@ const TrendArrow = ({ trend }: { trend: "up" | "down" | "stable" }) => {
 };
 
 export function ProgressOverviewCards({ overview, onCardTap, timeRange = "recent" }: Props) {
-  const { t } = useTranslation();
-  const periodLabel = timeRange === "recent" ? t("common.last_14_days", "Last 14 days") : t("common.last_365_days", "Last 365 days");
-  const vsLabel = timeRange === "recent" ? t("progress_overview_cards.vs_previous") : t("progress_overview_cards.vs_previous");
+  const periodLabel = timeRange === "recent" ? "Last 14 days" : "Last 365 days";
+  const vsLabel = timeRange === "recent" ? "rispetto al periodo precedente" : "rispetto al periodo precedente";
   const cards = [
     {
       key: "habits" as const,
       icon: Leaf,
-      title: t("progress_overview_cards.positive_habits"),
+      title: "Abitudini positive",
       value: overview.habits.trend === "stable"
-        ? t("progress_overview_cards.holding_steady")
-        : `${overview.habits.trend === "up" ? "+" : "−"}${overview.habits.trendValue}% ${t("progress_overview_cards.consistency")}`,
+        ? "Stabile"
+        : `${overview.habits.trend === "up" ? "+" : "−"}${overview.habits.trendValue}% ${"costanza"}`,
       subtitle: periodLabel,
       trend: overview.habits.trend,
       trendColor: overview.habits.trend === "up"
@@ -45,14 +43,14 @@ export function ProgressOverviewCards({ overview, onCardTap, timeRange = "recent
     {
       key: "triggers" as const,
       icon: Zap,
-      title: t("progress_overview_cards.triggers"),
+      title: "Trigger",
       value: overview.triggers.currentCount === 0 && overview.triggers.previousCount === 0
-        ? t("progress_overview_cards.no_data")
+        ? "Nessun dato"
         : overview.triggers.trend === "up"
-          ? `−${overview.triggers.trendValue}% ${t("progress_overview_cards.frequency")}`
+          ? `−${overview.triggers.trendValue}% ${"frequenza"}`
           : overview.triggers.trend === "down"
-            ? `+${overview.triggers.trendValue}% ${t("progress_overview_cards.frequency")}`
-            : t("progress_overview_cards.stable"),
+            ? `+${overview.triggers.trendValue}% ${"frequenza"}`
+            : "Stabile",
       subtitle: vsLabel,
       trend: overview.triggers.trend,
       trendColor: overview.triggers.trend === "up"
@@ -64,8 +62,8 @@ export function ProgressOverviewCards({ overview, onCardTap, timeRange = "recent
     {
       key: "challenges" as const,
       icon: Shield,
-      title: t("progress_overview_cards.detox_challenges"),
-      value: `${overview.challenges.completed} ${t("progress_overview_cards.completed")} · ${overview.challenges.active} ${t("progress_overview_cards.active")}`,
+      title: "Sfide detox",
+      value: `${overview.challenges.completed} ${"completate"} · ${overview.challenges.active} ${"attive"}`,
       subtitle: "",
       trend: "stable" as const,
       trendColor: "text-primary",
@@ -73,16 +71,16 @@ export function ProgressOverviewCards({ overview, onCardTap, timeRange = "recent
     {
       key: "mood" as const,
       icon: Heart,
-      title: t("progress_overview_cards.emotional_awareness"),
+      title: "Consapevolezza emotiva",
       value: overview.mood.currentAvg === 0
-        ? t("progress_overview_cards.start_tracking")
+        ? "Inizia a monitorare"
         : overview.mood.trend === "up"
-          ? `${t("progress_overview_cards.average_mood")} ↑`
+          ? `${"Umore medio"} ↑`
           : overview.mood.trend === "down"
-            ? `${t("progress_overview_cards.average_mood")} ↓`
-            : `${t("progress_overview_cards.average_mood")} →`,
+            ? `${"Umore medio"} ↓`
+            : `${"Umore medio"} →`,
       subtitle: overview.mood.reflectionDays > 0
-        ? `${overview.mood.reflectionDays} ${t("progress_overview_cards.reflections")}`
+        ? `${overview.mood.reflectionDays} ${"riflessioni"}`
         : "",
       trend: overview.mood.trend,
       trendColor: overview.mood.trend === "up"

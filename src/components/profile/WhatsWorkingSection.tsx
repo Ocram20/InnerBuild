@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { Sparkles, Loader2, RefreshCw, TrendingUp, Shield, Lightbulb } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
@@ -13,7 +12,6 @@ interface WhatsWorkingData {
 }
 
 export function WhatsWorkingSection() {
-  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -24,7 +22,7 @@ export function WhatsWorkingSection() {
     setLoading(true);
     try {
       const { data: insights } = await untypedTable("ai_insights")
-        .select("*")
+        .selec"*"
         .eq("user_id", user.id)
         .eq("insight_type", "whats_working")
         .order("created_at", { ascending: false })
@@ -55,7 +53,7 @@ export function WhatsWorkingSection() {
     if (!user) return;
     setGenerating(true);
     try {
-      const { data: sessionData } = await (await import("@/integrations/supabase/client")).supabase.auth.getSession();
+      const { data: sessionData } = await (await impor"@/integrations/supabase/client").supabase.auth.getSession();
       const token = sessionData.session?.access_token;
 
       const res = await fetch(
@@ -99,7 +97,7 @@ export function WhatsWorkingSection() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-accent" />
-          <h2 className="text-lg font-semibold text-foreground">{t("whats_working_section.title")}</h2>
+          <h2 className="text-lg font-semibold text-foreground">{"Cosa sta funzionando"}</h2>
         </div>
         {canGenerate ? (
           <Button
@@ -114,11 +112,11 @@ export function WhatsWorkingSection() {
             ) : (
               <RefreshCw className="h-3 w-3 mr-1" />
             )}
-            {data ? t("whats_working_section.refresh") : t("whats_working_section.generate")}
+            {data ? "Aggiorna" : "Genera"}
           </Button>
         ) : (
           <span className="text-[10px] text-muted-foreground">
-            {t("whats_working_section.available_in", { days: daysUntilAvailable })}
+            {`Disponibile in ${daysUntilAvailable} gg`}
           </span>
         )}
       </div>
@@ -130,7 +128,7 @@ export function WhatsWorkingSection() {
               <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">{t("whats_working_section.improving")}</p>
+              <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">{"Continua così – stai costruendo slancio."}</p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.improving}</p>
             </div>
           </div>
@@ -140,7 +138,7 @@ export function WhatsWorkingSection() {
               <Shield className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-primary uppercase tracking-wider mb-0.5">{t("whats_working_section.protect")}</p>
+              <p className="text-[10px] font-medium text-primary uppercase tracking-wider mb-0.5">{"La tua costanza è la tua risorsa più grande."}</p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.protect}</p>
             </div>
           </div>
@@ -150,7 +148,7 @@ export function WhatsWorkingSection() {
               <Lightbulb className="h-4 w-4 text-accent" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-accent uppercase tracking-wider mb-0.5">{t("whats_working_section.adjustment")}</p>
+              <p className="text-[10px] font-medium text-accent uppercase tracking-wider mb-0.5">{"Prova a modificare una piccola cosa questa settimana."}</p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.adjustment}</p>
             </div>
           </div>
@@ -158,7 +156,7 @@ export function WhatsWorkingSection() {
       ) : (
         <div className="glass rounded-2xl p-6 text-center">
           <Sparkles className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-          <p className="text-sm text-muted-foreground">{t("whats_working_section.empty_prompt")}</p>
+          <p className="text-sm text-muted-foreground">{"Traccia le tue abitudini per una settimana per sbloccare approfondimenti personalizzati"}</p>
         </div>
       )}
     </section>

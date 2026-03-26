@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,6 @@ interface ProfileInfoSectionProps {
 }
 
 export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSectionProps) {
-  const { t } = useTranslation();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [saving, setSaving] = useState(false);
@@ -73,7 +71,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       if (!user) return;
       const { data } = await supabase
         .from("profiles")
-        .select("username_changed_at")
+        .selec"username_changed_at"
         .eq("user_id", user.id)
         .maybeSingle();
       
@@ -98,8 +96,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (!file.type.startsWith("image/")) {
       toast({
-        title: t("profile_info_section.invalid_file_type"),
-        description: t("profile_info_section.upload_image_file"),
+        title: "Tipo di file non valido",
+        description: "Per favore carica un'immagine.",
         variant: "destructive",
       });
       return;
@@ -107,8 +105,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (file.size > 5 * 1024 * 1024) {
       toast({
-        title: t("profile_info_section.file_too_large"),
-        description: t("profile_info_section.file_size_limit"),
+        title: "File troppo grande",
+        description: "Per favore carica un'immagine inferiore a 5MB.",
         variant: "destructive",
       });
       return;
@@ -116,7 +114,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     setUploading(true);
     try {
-      const fileExt = file.name.split(".").pop();
+      const fileExt = file.name.spli".".pop();
       const filePath = `${user.id}/avatar.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
@@ -142,14 +140,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       onProfileUpdate();
       
       toast({
-        title: t("profile_info_section.avatar_updated"),
-        description: t("profile_info_section.avatar_updated_desc"),
+        title: "Avatar aggiornato",
+        description: "La tua immagine del profilo è stata aggiornata.",
       });
     } catch (error: any) {
       console.error("Error uploading avatar:", error);
       toast({
-        title: t("profile_info_section.upload_failed"),
-        description: error.message || t("profile_info_section.upload_failed_desc"),
+        title: "Caricamento fallito",
+        description: error.message || "Impossibile caricare l'avatar.",
         variant: "destructive",
       });
     } finally {
@@ -185,8 +183,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (isUsernameChanged && !canChangeUsername) {
       toast({
-        title: t("profile_info_section.username_restricted"),
-        description: t("profile_info_section.username_cooldown_msg", { days: daysRemaining }),
+        title: "Cambio username limitato",
+        description: `Puoi cambiare il tuo username di nuovo tra ${daysRemaining} giorni.`,
         variant: "destructive",
       });
       return;
@@ -231,14 +229,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
       onProfileUpdate();
       toast({
-        title: t("profile_info_section.profile_updated"),
-        description: t("profile_info_section.profile_saved"),
+        title: "Profilo aggiornato",
+        description: "Le tue informazioni del profilo sono state salvate.",
       });
     } catch (error: any) {
       console.error("Error saving profile:", error);
       toast({
-        title: t("profile_info_section.save_failed"),
-        description: error.message || t("profile_info_section.save_failed_desc"),
+        title: "Salvataggio fallito",
+        description: error.message || "Impossibile salvare il profilo.",
         variant: "destructive",
       });
     } finally {
@@ -255,13 +253,13 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       });
       if (error) throw error;
       toast({
-        title: t("profile_info_section.email_update_sent", "Confirmation sent"),
-        description: t("profile_info_section.email_update_sent_desc", "Check your new email inbox to confirm the change"),
+        title: "Confirmation sent",
+        description: "Check your new email inbox to confirm the change",
       });
     } catch (error: any) {
       console.error("Error updating email:", error);
       toast({
-        title: t("profile_info_section.email_update_failed", "Email update failed"),
+        title: "Email update failed",
         description: error.message,
         variant: "destructive",
       });
@@ -282,10 +280,10 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <User className="h-5 w-5 text-primary" />
-          {t("profile_info_section.title")}
+          {"Informazioni profilo"}
         </CardTitle>
         <CardDescription>
-          {t("profile_info_section.manage_info_desc", "Manage your personal information and profile picture")}
+          {"Gestisci le tue informazioni personali e l'immagine del profilo"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -322,39 +320,39 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             />
           </div>
           <p className="text-sm text-muted-foreground">
-            {t("profile_info_section.upload_hint", "Click the camera icon to upload a new photo")}
+            {"Clicca sull'icona della fotocamera per caricare una nuova foto"}
           </p>
         </div>
 
         {/* Form Fields */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="first_name">{t("profile_info_section.first_name")}</Label>
+            <Label htmlFor="first_name">{"Nome"}</Label>
             <Input
               id="first_name"
               value={formData.first_name}
               onChange={(e) => handleInputChange("first_name", e.target.value)}
-              placeholder={t("profile_info_section.first_name_placeholder", "Enter your first name")}
+              placeholder={"Inserisci il tuo nome"}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="last_name">{t("profile_info_section.last_name")}</Label>
+            <Label htmlFor="last_name">{"Cognome"}</Label>
             <Input
               id="last_name"
               value={formData.last_name}
               onChange={(e) => handleInputChange("last_name", e.target.value)}
-              placeholder={t("profile_info_section.last_name_placeholder", "Enter your last name")}
+              placeholder={"Inserisci il tuo cognome"}
             />
           </div>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="username" className="flex items-center gap-2">
-            {t("profile_info_section.username")}
+            {"Username"}
             {isUsernameChanged && !canChangeUsername && (
               <span className="flex items-center gap-1 text-xs text-amber-500 font-normal">
                 <Clock className="h-3 w-3" />
-                {t("profile_info_section.cooldown_active")}
+                {"Cooldown attivo"}
               </span>
             )}
           </Label>
@@ -362,19 +360,19 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             id="username"
             value={formData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
-            placeholder={t("profile_info_section.username_placeholder")}
+            placeholder={"Scegli un username unico"}
           />
           {isUsernameChanged && !canChangeUsername && (
             <p className="text-xs text-amber-500 flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              {t("profile_info_section.username_cooldown_msg", { days: daysRemaining })}
+              {`Puoi cambiare il tuo username di nuovo tra ${daysRemaining} giorni.`}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="email" className="flex items-center gap-2">
-            {t("profile_info_section.email_label")}
+            {"Indirizzo Email"}
             <Mail className="h-3 w-3 text-muted-foreground" />
           </Label>
           <div className="flex gap-2">
@@ -383,7 +381,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               type="email"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
-              placeholder={t("profile_info_section.email_placeholder", "Enter your email")}
+              placeholder={"Enter your email"}
               className="flex-1"
             />
             {formData.email !== originalEmail && (
@@ -397,13 +395,13 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                 {emailSaving ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  t("profile_info_section.update_email", "Update")
+                  "Update"
                 )}
               </Button>
             )}
           </div>
           <p className="text-xs text-muted-foreground">
-            {t("profile_info_section.email_change_hint", "A confirmation link will be sent to the new email address")}
+            {"A confirmation link will be sent to the new email address"}
           </p>
         </div>
 
@@ -415,12 +413,12 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           {saving ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {t("common.saving")}
+              {"Salvataggio..."}
             </>
           ) : (
             <>
               <Save className="mr-2 h-4 w-4" />
-              {t("profile_info_section.save")}
+              {"Salva Modifiche"}
             </>
           )}
         </Button>

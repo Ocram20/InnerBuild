@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -35,8 +34,6 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
   const [showMotivation, setShowMotivation] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
   const { toast } = useToast();
-  const { t } = useTranslation();
-
   const MOTIVATIONAL_MESSAGES =
     t("evening_reflection_section.motivation_messages", { returnObjects: true }) as string[];
 
@@ -51,7 +48,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
 
     const { data, error } = await supabase
       .from("daily_reflections")
-      .select("*")
+      .selec"*"
       .eq("user_id", userId)
       .eq("reflection_date", reflectionDate)
       .maybeSingle();
@@ -128,7 +125,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     }
 
     if (error) {
-      toast({ title: t("common.error"), description: t("evening_reflection_section.reflection_save_error"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile salvare la riflessione", variant: "destructive" });
     } else {
       setHasUnsavedChanges(false);
       
@@ -138,8 +135,8 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
       setShowMotivation(true);
       
       toast({
-        title: t("evening_reflection_section.reflection_saved"),
-        description: t("evening_reflection_section.motivation_note"),
+        title: "Riflessione salvata!",
+        description: "Ottimo lavoro nel riflettere sulla tua giornata",
       });
 
 
@@ -162,11 +159,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="p-2 rounded-lg gradient-calm">
               <Moon className="h-5 w-5 text-primary-foreground" />
             </div>
-            {t("evening_reflection_section.title")}
+            {"Riflessione Serale"}
           </CardTitle>
           <div className="flex items-center gap-2">
             {hasUnsavedChanges && (
-              <span className="text-xs text-muted-foreground">{t("common.unsaved")}</span>
+              <span className="text-xs text-muted-foreground">{"Non salvato"}</span>
             )}
           </div>
         </div>
@@ -188,10 +185,10 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Moon className="h-4 w-4 text-muted-foreground" />
-                {t("evening_reflection_section.day_summary_label")}
+                {"Com'è andata la tua giornata?"}
               </label>
               <Textarea
-                placeholder={t("evening_reflection_section.day_summary_placeholder")}
+                placeholder={"Descrivi brevemente come è andata la tua giornata..."}
                 value={reflection.day_summary || ""}
                 onChange={(e) => updateField("day_summary", e.target.value)}
                 className="min-h-20 resize-none"
@@ -202,11 +199,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Heart className="h-4 w-4 text-pink-500" />
-                {t("evening_reflection_section.grateful_for_label")}
+                {"Di cosa sei grato oggi? (1-3 cose)"}
               </label>
               <div className="flex gap-2">
                 <Input
-                  placeholder={t("evening_reflection_section.grateful_placeholder")}
+                  placeholder={"Aggiungi qualcosa per cui sei grato..."}
                   value={newGratitude}
                   onChange={(e) => setNewGratitude(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && addGratitude()}
@@ -245,10 +242,10 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Lightbulb className="h-4 w-4 text-yellow-500" />
-                {t("evening_reflection_section.lessons_label")}
+                {"Cosa hai imparato o cosa puoi migliorare?"}
               </label>
               <Textarea
-                placeholder={t("evening_reflection_section.lessons_placeholder")}
+                placeholder={"Scrivi una lezione imparata o un'area di miglioramento..."}
                 value={reflection.lessons_learned || ""}
                 onChange={(e) => updateField("lessons_learned", e.target.value)}
                 className="min-h-20 resize-none"
@@ -263,11 +260,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                 className="gap-2"
               >
                 {saving ? (
-                  <>{t("common.saving")}</>
+                  <>{"Salvataggio..."}</>
                 ) : (
                   <>
                     <Save className="h-4 w-4" />
-                    {t("evening_reflection_section.save_reflection")}
+                    {"Salva Riflessione"}
                   </>
                 )}
               </Button>

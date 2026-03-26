@@ -1,5 +1,4 @@
 import { Quote } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 
 interface QuoteData {
@@ -9,7 +8,6 @@ interface QuoteData {
 }
 
 export default function DailyQuote() {
-  const { t, i18n } = useTranslation();
   const [quotes, setQuotes] = useState<QuoteData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -66,7 +64,7 @@ export default function DailyQuote() {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-medium">
-            {t("dashboard.quote_of_the_day")}
+            {"Citazione del Giorno"}
           </p>
           <p className="text-foreground font-medium italic leading-relaxed">
             "{dailyQuote}"

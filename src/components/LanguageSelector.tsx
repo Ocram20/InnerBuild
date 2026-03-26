@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import {
   Select,
   SelectContent,
@@ -13,7 +12,6 @@ const languages = [
 ];
 
 export default function LanguageSelector() {
-  const { i18n } = useTranslation();
   const currentLang = languages.find(lang => lang.code === (i18n.language?.substring(0, 2) || "en"));
 
   return (

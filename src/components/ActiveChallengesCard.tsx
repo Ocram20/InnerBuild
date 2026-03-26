@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Flame, ChevronRight, CheckCircle2 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { useTranslation } from "react-i18next";
-
 interface Challenge {
   id: string;
   title: string;
@@ -17,8 +15,6 @@ interface ActiveChallengesCardProps {
 
 export default function ActiveChallengesCard({ challenges }: ActiveChallengesCardProps) {
   const navigate = useNavigate();
-  const { t } = useTranslation();
-  
   if (challenges.length === 0) {
     return null;
   }
@@ -30,13 +26,13 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
           <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
             <Flame className="h-4 w-4 text-primary" />
           </div>
-          <h2 className="truncate text-base font-semibold text-foreground">{t("recovery.active_challenges")}</h2>
+          <h2 className="truncate text-base font-semibold text-foreground">{"Sfide Attive"}</h2>
         </div>
         <button
           onClick={() => navigate("/challenges")}
           className="flex items-center gap-1 self-start text-xs text-muted-foreground hover:text-foreground sm:self-auto"
         >
-          {t("common.view_all")}
+          {"Vedi tutto"}
           <ChevronRight className="h-3 w-3" />
         </button>
       </div>
@@ -57,7 +53,7 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
                 <div className="flex items-center gap-1 ml-2">
                   <CheckCircle2 className="h-3 w-3 text-primary" />
                   <span className="text-xs font-semibold text-primary">
-                    {challenge.current_streak}{t("common.days_short")}
+                    {challenge.current_streak}{"g"}
                   </span>
                 </div>
               </div>

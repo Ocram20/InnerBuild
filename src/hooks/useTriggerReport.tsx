@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
@@ -54,7 +53,7 @@ export function useTriggerReport() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .select('*')
+        .selec"*"
         .eq('user_id', user.id)
         .eq('insight_type', 'trigger_report')
         .order('created_at', { ascending: false })
@@ -106,9 +105,6 @@ export function useTriggerReport() {
     
     return Math.max(0, 4 - daysSinceReport);
   }, [report]);
-
-  const { i18n } = useTranslation();
-
   const generateReport = async () => {
     if (!user) return;
 

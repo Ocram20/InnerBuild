@@ -12,7 +12,6 @@ import {
   Moon,
   Heart
 } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const strategies = [
@@ -103,90 +102,88 @@ const strategies = [
 ];
 
 export function StrategiesSection() {
-  const { t } = useTranslation();
-
   const strategies = [
     {
       icon: Shield,
-      title: t("strategies_section.remove_access_title"),
-      description: t("strategies_section.remove_access_desc"),
+      title: "Rimuovi l'accesso",
+      description: "Installa blocchi su tutti i dispositivi. Elimina i contenuti salvati. Rendi difficile l'accesso.",
       color: "text-rose-500",
       bgColor: "bg-rose-500/10",
     },
     {
       icon: MapPin,
-      title: t("strategies_section.change_env_title"),
-      description: t("strategies_section.change_env_desc"),
+      title: "Cambia ambiente",
+      description: "Sposta i dispositivi in aree pubbliche. Evita di essere da solo con gli schermi. Cambia la tua routine.",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
     },
     {
       icon: Flame,
-      title: t("strategies_section.track_streak_title"),
-      description: t("strategies_section.track_streak_desc"),
+      title: "Traccia la tua serie",
+      description: "Usa un contatore giornaliero. Celebra i traguardi. Visualizza i tuoi progressi ogni giorno.",
       color: "text-amber-500",
       bgColor: "bg-amber-500/10",
     },
     {
       icon: Dumbbell,
-      title: t("strategies_section.exercise_title"),
-      description: t("strategies_section.exercise_desc"),
+      title: "Esercizio regolare",
+      description: "L'attività fisica rilascia dopamina sana e riduce gli impulsi. Anche 20 minuti aiutano.",
       color: "text-emerald-500",
       bgColor: "bg-emerald-500/10",
     },
     {
       icon: Brain,
-      title: t("strategies_section.meditation_title"),
-      description: t("strategies_section.meditation_desc"),
+      title: "Meditazione e Consapevolezza",
+      description: "Pratica l'osservazione degli impulsi senza agire. Anche 5-10 minuti al giorno rafforzano il controllo mentale.",
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
     },
     {
       icon: Dumbbell,
-      title: t("strategies_section.cold_showers_title"),
-      description: t("strategies_section.cold_showers_desc"),
+      title: "Docce fredde",
+      description: "Costruisce disciplina e forza di volontà. Scuote il sistema durante i desideri. Inizia con 30 secondi.",
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10",
     },
     {
       icon: PenLine,
-      title: t("strategies_section.journaling_title"),
-      description: t("strategies_section.journaling_desc"),
+      title: "Diario",
+      description: "Scrivi di trigger, sentimenti e vittorie. La consapevolezza di sé è fondamentale per il recupero.",
       color: "text-pink-500",
       bgColor: "bg-pink-500/10",
     },
     {
       icon: Users,
-      title: t("strategies_section.social_title"),
-      description: t("strategies_section.social_desc"),
+      title: "Connessione sociale",
+      description: "Passa tempo con le persone. L'isolamento alimenta la dipendenza. La connessione reale guarisce.",
       color: "text-indigo-500",
       bgColor: "bg-indigo-500/10",
     },
     {
       icon: TreePine,
-      title: t("strategies_section.nature_title"),
-      description: t("strategies_section.nature_desc"),
+      title: "Tempo nella natura",
+      description: "La natura calma il sistema nervoso e fornisce dopamina sana attraverso la bellezza e lo stupore.",
       color: "text-green-500",
       bgColor: "bg-green-500/10",
     },
     {
       icon: Gamepad2,
-      title: t("strategies_section.hobbies_title"),
-      description: t("strategies_section.hobbies_desc"),
+      title: "Hobby sani",
+      description: "Sostituisci l'abitudine con qualcosa di coinvolgente: musica, sport, apprendimento, creazione.",
       color: "text-orange-500",
       bgColor: "bg-orange-500/10",
     },
     {
       icon: Moon,
-      title: t("strategies_section.prioritize_sleep_title"),
-      description: t("strategies_section.prioritize_sleep_desc"),
+      title: "Dai priorità al sonno",
+      description: "La stanchezza indebolisce la forza di volontà. Niente schermi un'ora prima di dormire. Mira a 7-9 ore.",
       color: "text-slate-500",
       bgColor: "bg-slate-500/10",
     },
     {
       icon: Heart,
-      title: t("strategies_section.self_compassion_title"),
-      description: t("strategies_section.self_compassion_desc"),
+      title: "Auto-compassione",
+      description: "Gli inciampi accadono. La colpa alimenta le ricadute. Trattati con la gentilezza che riserveresti a un amico.",
       color: "text-rose-400",
       bgColor: "bg-rose-400/10",
     },
@@ -197,12 +194,12 @@ export function StrategiesSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Lightbulb className="h-5 w-5 text-primary" />
-          {t("strategies_section.title")}
+          {"Strategie di Recupero Pratiche"}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground text-sm mb-4">
-          {t("strategies_section.description")}
+          {"Il recupero non riguarda solo smettere: riguarda costruire una vita in cui non hai bisogno della fuga. Queste strategie affrontano sia il comportamento che i bisogni sottostanti."}
         </p>
         
         <div className="grid gap-3">

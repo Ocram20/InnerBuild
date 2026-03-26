@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Heart, Plus, Trash2, Loader2, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,6 @@ import { useToast } from "@/hooks/use-toast";
 const suggestedReasons = [] as string[]; // will be populated inside component
 
 export function ReasonsSection() {
-  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [reasons, setReasons] = useState<string[]>([]);
@@ -20,14 +18,14 @@ export function ReasonsSection() {
   const [newReason, setNewReason] = useState("");
 
   const suggestedReasons = [
-    t("reasons_section.sr1"),
-    t("reasons_section.sr2"),
-    t("reasons_section.sr3"),
-    t("reasons_section.sr4"),
-    t("reasons_section.sr5"),
-    t("reasons_section.sr6"),
-    t("reasons_section.sr7"),
-    t("reasons_section.sr8"),
+    "Migliore salute fisica e mentale",
+    "Libertà da dipendenza e compulsione",
+    "Relazioni più profonde e autentiche",
+    "Più tempo ed energia per ciò che conta",
+    "Maggiore concentrazione e produttività",
+    "Controllo sulla mia vita e decisioni",
+    "Migliore autostima e fiducia",
+    "Essere presente con le persone che amo",
   ];
 
   useEffect(() => {
@@ -42,7 +40,7 @@ export function ReasonsSection() {
     try {
       const { data } = await supabase
         .from("journal_entries")
-        .select("*")
+        .selec"*"
         .eq("user_id", user.id)
         .eq("entry_date", "quit-reasons")
         .maybeSingle();
@@ -69,7 +67,7 @@ export function ReasonsSection() {
     try {
       const { data: existing } = await supabase
         .from("journal_entries")
-        .select("id")
+        .selec"id"
         .eq("user_id", user.id)
         .eq("entry_date", "quit-reasons")
         .maybeSingle();
@@ -92,8 +90,8 @@ export function ReasonsSection() {
       setReasons(updatedReasons);
     } catch (error) {
       toast({
-        title: t("reasons_section.error_saving_title", "Error saving"),
-        description: t("reasons_section.error_saving_desc", "Failed to save your reasons. Please try again."),
+        title: "Errore salvataggio",
+        description: "Impossibile salvare i tuoi motivi. Per favore riprova.",
         variant: "destructive",
       });
     } finally {
@@ -105,8 +103,8 @@ export function ReasonsSection() {
     if (!reason.trim()) return;
     if (reasons.includes(reason.trim())) {
       toast({
-        title: t("reasons_section.already_added_title", "Already added"),
-        description: t("reasons_section.already_added_desc", "This reason is already in your list."),
+        title: "Già aggiunto",
+        description: "Questo motivo è già nella tua lista.",
       });
       return;
     }
@@ -136,12 +134,12 @@ export function ReasonsSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Heart className="h-5 w-5 text-primary" />
-          {t("reasons_section.title")}
+          {"I miei motivi per smettere"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-muted-foreground text-sm">
-          {t("reasons_section.description")}
+          {"Le tue motivazioni personali sono il tuo ancoraggio. Leggile durante i desideri per ricordare perché hai iniziato."}
         </p>
 
         {/* User's reasons */}
@@ -170,7 +168,7 @@ export function ReasonsSection() {
         {/* Add custom reason */}
         <div className="space-y-2">
           <Textarea
-            placeholder={t("reasons_section.new_placeholder", "Write your own reason...")}
+            placeholder={"Scrivi il tuo motivo..."}
             value={newReason}
             onChange={(e) => setNewReason(e.target.value)}
             className="min-h-[60px] text-sm"
@@ -186,13 +184,13 @@ export function ReasonsSection() {
             ) : (
               <Plus className="h-4 w-4 mr-2" />
             )}
-            {t("reasons_section.add_my_reason")}
+            {"Aggiungi il mio motivo"}
           </Button>
         </div>
 
         {/* Suggested reasons */}
         <div>
-          <p className="text-xs text-muted-foreground mb-2">{t("reasons_section.suggested_prompt")}</p>
+          <p className="text-xs text-muted-foreground mb-2">{"Oppure tocca per aggiungere un motivo suggerito:"}</p>
           <div className="flex flex-wrap gap-2">
             {suggestedReasons
               .filter(r => !reasons.includes(r))

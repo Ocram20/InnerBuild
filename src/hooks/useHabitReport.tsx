@@ -3,8 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
-import { useTranslation } from "react-i18next";
-
 export interface HabitSuggestion {
   habit_id: string;
   habit_title: string;
@@ -36,7 +34,6 @@ export interface HabitReport {
 export function useHabitReport() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { i18n } = useTranslation();
   const [report, setReport] = useState<HabitReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -46,7 +43,7 @@ export function useHabitReport() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .select('*')
+        .selec"*"
         .eq('user_id', user.id)
         .eq('insight_type', 'habit_report')
         .order('created_at', { ascending: false })

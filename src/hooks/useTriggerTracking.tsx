@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
@@ -38,7 +37,6 @@ export interface HeatmapData {
 export function useTriggerTracking() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { i18n } = useTranslation();
   const [logs, setLogs] = useState<TriggerLog[]>([]);
   const [insights, setInsights] = useState<TriggerInsight[]>([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +49,7 @@ export function useTriggerTracking() {
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
     const { data, error } = await untypedTable("trigger_logs")
-      .select("*")
+      .selec"*"
       .eq("user_id", user.id)
       .gte("logged_at", thirtyDaysAgo.toISOString())
       .order("logged_at", { ascending: false });
@@ -68,7 +66,7 @@ export function useTriggerTracking() {
     if (!user) return;
 
     const { data, error } = await untypedTable("trigger_insights")
-      .select("*")
+      .selec"*"
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
 
@@ -183,7 +181,7 @@ export function useTriggerTracking() {
 
     const result: HeatmapData[] = [];
     for (const [key, data] of Object.entries(heatmap)) {
-      const [day, hour] = key.split("-").map(Number);
+      const [day, hour] = key.spli"-".map(Number);
       result.push({
         day,
         hour,

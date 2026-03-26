@@ -6,8 +6,6 @@ import {
   BookOpen
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
-
 const navItems = [
   { path: "/dashboard", labelKey: "nav.home", icon: LayoutDashboard },
   { path: "/explore", labelKey: "nav.tools", icon: Compass },
@@ -18,8 +16,6 @@ const navItems = [
 const BottomNavigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation();
-
   const isActive = (path: string) => {
     if (path === "/explore") {
       return [

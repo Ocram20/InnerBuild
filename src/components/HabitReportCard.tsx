@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
 import { 
   Brain, 
   Sparkles, 
@@ -32,7 +31,6 @@ function SuggestionItem({
   onAccept: () => void;
   onDismiss: () => void;
 }) {
-  const { t } = useTranslation();
   const isHandled = suggestion.status === "accepted" || suggestion.status === "dismissed";
 
   return (
@@ -44,7 +42,7 @@ function SuggestionItem({
           <span className="font-medium block truncate">{suggestion.habit_title}</span>
         </div>
         <Badge variant="secondary" className="text-xs shrink-0">
-          {suggestion.current_completion_rate}% {t("common.completed")}
+          {suggestion.current_completion_rate}% {"completato"}
         </Badge>
       </div>
       <p className="text-muted-foreground text-xs mb-2">
@@ -62,11 +60,11 @@ function SuggestionItem({
         <div className="flex items-center gap-2">
           <Button size="sm" className="h-7 px-3 gap-1" onClick={onAccept}>
             <Check className="h-3 w-3" />
-            {t("common.accept")}
+            {"Accetta"}
           </Button>
           <Button size="sm" variant="outline" className="h-7 px-3 gap-1" onClick={onDismiss}>
             <X className="h-3 w-3" />
-            {t("common.dismiss")}
+            {"Ignora"}
           </Button>
         </div>
       ) : (
@@ -76,8 +74,8 @@ function SuggestionItem({
             : "text-muted-foreground"
         }>
           {suggestion.status === "accepted" ? (
-            <><CheckCircle2 className="h-3 w-3 mr-1" /> {t("common.applied")}</>
-          ) : t("common.dismissed")}
+            <><CheckCircle2 className="h-3 w-3 mr-1" /> {"Applicato"}</>
+          ) : "Ignorato"}
         </Badge>
       )}
     </div>
@@ -85,7 +83,6 @@ function SuggestionItem({
 }
 
 export default function HabitReportCard() {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
   const { isPremium } = usePremiumLimits();
   const { 
@@ -107,7 +104,7 @@ export default function HabitReportCard() {
       <div className="rounded-2xl border border-border/60 bg-card p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
           <Brain className="h-6 w-6 text-primary/50" />
-          <span className="text-muted-foreground">{t("habit_report.loading_insights")}</span>
+          <span className="text-muted-foreground">{"Caricamento insight abitudini..."}</span>
         </div>
       </div>
     );
@@ -125,14 +122,14 @@ export default function HabitReportCard() {
               </div>
             </div>
             <div>
-              <h2 className="text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
+              <h2 className="text-base font-semibold text-foreground">{"Analisi Abitudini"}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                {t("habit_report.locked_desc")}
+                {"Ottieni insight AI sulle tue abitudini e suggerimenti personalizzati per migliorare la tua routine."}
               </p>
             </div>
             <Button onClick={() => setShowPaywall(true)} className="gap-2" variant="outline">
               <Crown className="h-4 w-4 text-primary" />
-              {t("habit_report.unlock_premium")}
+              {"Sblocca con Premium"}
             </Button>
           </div>
         </div>
@@ -154,21 +151,21 @@ export default function HabitReportCard() {
             <Brain className="h-7 w-7 text-primary" />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-foreground">{t("habit_report.get_report")}</h2>
+            <h2 className="text-base font-semibold text-foreground">{"Ottieni il Tuo Report Abitudini"}</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              {t("habit_report.analyze_last_days")}
+              {"Analizza le tue abitudini degli ultimi 4 giorni"}
             </p>
           </div>
           <Button onClick={generateReport} disabled={generating} className="gap-2">
             {generating ? (
               <>
                 <RefreshCw className="h-4 w-4 animate-spin" />
-                {t("common.analyzing")}
+                {"Analisi..."}
               </>
             ) : (
               <>
                 <Sparkles className="h-4 w-4" />
-                {t("trigger_tracking.generate_report")}
+                {"Genera Report"}
               </>
             )}
           </Button>
@@ -188,10 +185,10 @@ export default function HabitReportCard() {
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="break-words text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
+              <h2 className="break-words text-base font-semibold text-foreground">{"Analisi Abitudini"}</h2>
               {!is_read && (
                 <Badge variant="secondary" className="shrink-0 text-xs bg-primary/10 text-primary">
-                  {t("common.new")}
+                  {"Nuovo"}
                 </Badge>
               )}
             </div>
@@ -219,7 +216,7 @@ export default function HabitReportCard() {
         {pendingSuggestions.length > 0 && (
           <Badge variant="outline" className="max-w-full gap-1 border-primary/20 text-primary whitespace-normal">
             <TrendingDown className="h-3 w-3" />
-            {t("habit_report.suggestions_for_you", { count: pendingSuggestions.length })}
+            {`${pendingSuggestions.length} suggerimento/i per te`}
           </Badge>
         )}
 
@@ -229,7 +226,7 @@ export default function HabitReportCard() {
               <div>
                 <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <TrendingDown className="h-4 w-4 text-primary" />
-                  {t("habit_report.suggested_adjustments")}
+                  {"Aggiustamenti Abitudini Suggeriti"}
                 </h3>
                 <div className="space-y-2">
                   {habitSuggestions.map((suggestion, idx) => (
@@ -252,7 +249,7 @@ export default function HabitReportCard() {
               <div>
                 <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-primary" />
-                  {t("habit_report.tips")}
+                  {"Consigli"}
                 </h3>
                 <ul className="space-y-1.5">
                   {tips.map((tip, idx) => (
@@ -277,19 +274,19 @@ export default function HabitReportCard() {
                   {generating ? (
                     <>
                       <RefreshCw className="h-4 w-4 animate-spin" />
-                      {t("common.generating")}
+                      {"Generazione..."}
                     </>
                   ) : (
                     <>
                       <RefreshCw className="h-4 w-4" />
-                      {t("habit_report.generate_new")}
+                      {"Genera Nuovo Report"}
                     </>
                   )}
                 </Button>
               ) : (
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground py-2">
                   <Clock className="h-4 w-4" />
-                  {t("habit_report.next_report_in", { days: daysUntilNext })}
+                  {`Prossimo report disponibile tra ${daysUntilNext} giorno/i`}
                 </div>
               )}
             </div>

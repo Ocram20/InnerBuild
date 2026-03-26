@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
@@ -41,7 +40,6 @@ export interface AIInsight {
 export function useAIInsights() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { i18n } = useTranslation();
   const [latestInsight, setLatestInsight] = useState<AIInsight | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -51,7 +49,7 @@ export function useAIInsights() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .select('*')
+        .selec"*"
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
         .limit(1)

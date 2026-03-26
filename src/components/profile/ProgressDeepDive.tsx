@@ -13,8 +13,6 @@ import type {
 
 type Section = "habits" | "triggers" | "challenges" | "mood";
 
-import { useTranslation } from "react-i18next";
-
 interface Props {
   section: Section;
   onClose: () => void;
@@ -41,7 +39,6 @@ export function ProgressDeepDive({
   moodDetails,
   days = 14,
 }: Props) {
-  const { t } = useTranslation();
   const meta = sectionMeta[section];
   const Icon = meta.icon;
 

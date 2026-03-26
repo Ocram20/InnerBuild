@@ -5,8 +5,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useTranslation } from "react-i18next";
-
 interface Habit {
   id: string;
   title: string;
@@ -29,8 +27,6 @@ interface TodayOverviewProps {
 }
 
 export default function TodayOverview({ habits, onToggleHabit, getAdaptationForHabit }: TodayOverviewProps) {
-  const { t } = useTranslation();
-
   const completedCount = habits.filter(h => h.completed_today).length;
   const totalCount = habits.length;
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
@@ -106,13 +102,13 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
             })}
             {habits.length > 5 && (
               <p className="text-xs text-muted-foreground text-center pt-1">
-                {t("today_overview.more_habits", { count: habits.length - 5 })}
+                {`+${habits.length - 5} altre abitudini`}
               </p>
             )}
           </div>
         ) : (
           <p className="text-sm text-muted-foreground text-center py-4">
-            {t("today_overview.no_habits")}
+            {"Nessuna abitudine ancora. Creane una per iniziare!"}
           </p>
         )}
 
@@ -120,10 +116,10 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
         {habits.length > 0 && (
           <p className="text-sm text-muted-foreground mt-4 text-center">
             {allComplete
-              ? t("today_overview.all_done")
+              ? "Tutto fatto per oggi! Lavoro fantastico!"
               : completedCount === 0
-                ? t("today_overview.lets_go")
-                : t("today_overview.left_count", { count: totalCount - completedCount })}
+                ? "Facciamo contare la giornata!"
+                : `${totalCount - completedCount} rimaste — ce la farai!`}
           </p>
         )}
       </div>

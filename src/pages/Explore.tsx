@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminAccess } from "@/hooks/useAdminAccess";
-import { useTranslation } from "react-i18next";
 import { 
   Brain, Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon
 } from "lucide-react";
@@ -20,21 +19,19 @@ const Explore = () => {
   const { subscription } = useSubscription();
   const { hasAdminRole } = useAdminAccess();
   const [showPaywall, setShowPaywall] = useState(false);
-  const { t } = useTranslation();
-  
   const isPremium = hasAdminRole || subscription.subscribed;
 
   const freeTools = [
-    { id: "habits", title: t("explore.tools.habits"), description: t("explore.tools.habits_desc"), icon: Target, path: "/habits", iconBg: "bg-emerald-500/15", iconColor: "text-emerald-500" },
-    { id: "challenges", title: t("explore.tools.detox_challenges"), description: t("explore.tools.detox_challenges_desc"), icon: Flame, path: "/challenges", iconBg: "bg-amber-500/15", iconColor: "text-amber-500" },
-    { id: "evening-reflection", title: t("explore.tools.evening_reflection"), description: t("explore.tools.evening_reflection_desc"), icon: Moon, path: "/evening-reflection", iconBg: "bg-indigo-500/15", iconColor: "text-indigo-500" },
-    { id: "daily-planning", title: t("explore.tools.daily_planning"), description: t("explore.tools.daily_planning_desc"), icon: Calendar, path: "/daily-planning", iconBg: "bg-primary/15", iconColor: "text-primary" },
+    { id: "habits", title: "Abitudini", description: "Traccia e costruisci abitudini quotidiane", icon: Target, path: "/habits", iconBg: "bg-emerald-500/15", iconColor: "text-emerald-500" },
+    { id: "challenges", title: "Sfide Detox", description: "Sfide per rompere le cattive abitudini", icon: Flame, path: "/challenges", iconBg: "bg-amber-500/15", iconColor: "text-amber-500" },
+    { id: "evening-reflection", title: "Riflessione Serale", description: "Check-in giornaliero e gratitudine", icon: Moon, path: "/evening-reflection", iconBg: "bg-indigo-500/15", iconColor: "text-indigo-500" },
+    { id: "daily-planning", title: "Pianificazione Giornaliera", description: "Lista cose da fare e obiettivi", icon: Calendar, path: "/daily-planning", iconBg: "bg-primary/15", iconColor: "text-primary" },
   ];
 
   const premiumTools = [
-    { id: "trigger-tracking", title: t("explore.tools.trigger_tracking"), description: t("explore.tools.trigger_tracking_desc"), icon: Zap, path: "/trigger-tracking", iconBg: "bg-orange-500/15", iconColor: "text-orange-500", premium: true },
-    { id: "porn-recovery", title: t("explore.tools.porn_recovery"), description: t("explore.tools.porn_recovery_desc"), icon: Brain, path: "/porn-recovery", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", premium: true },
-    { id: "coach", title: t("explore.tools.ai_coach"), description: t("explore.tools.ai_coach_desc"), icon: Bot, path: "/coach", iconBg: "bg-blue-500/15", iconColor: "text-blue-500", premium: true },
+    { id: "trigger-tracking", title: "Tracciamento Trigger", description: "Registra impulsi e analisi AI dei pattern", icon: Zap, path: "/trigger-tracking", iconBg: "bg-orange-500/15", iconColor: "text-orange-500", premium: true },
+    { id: "porn-recovery", title: "Porn Recovery", description: "Percorso scientifico verso la libertà", icon: Brain, path: "/porn-recovery", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", premium: true },
+    { id: "coach", title: "Coach AI", description: "Guida personale basata sull'AI", icon: Bot, path: "/coach", iconBg: "bg-blue-500/15", iconColor: "text-blue-500", premium: true },
   ];
 
   const handleNavigate = (path: string, premium: boolean) => {
@@ -88,15 +85,15 @@ const Explore = () => {
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div>
-            <h1 className="font-bold text-foreground">{t("explore.title")}</h1>
-            <p className="text-xs text-muted-foreground">{t("explore.subtitle")}</p>
+            <h1 className="font-bold text-foreground">{"Strumenti"}</h1>
+            <p className="text-xs text-muted-foreground">{"Tutto ciò che serve per crescere"}</p>
           </div>
         </div>
       </header>
 
       <div className="w-full max-w-lg mx-auto px-4 pt-6 space-y-6">
         <section className="animate-fade-in" style={{ animationDelay: "50ms" }}>
-          <h2 className="text-sm font-medium text-muted-foreground mb-3 px-1">{t("explore.free_tools")}</h2>
+          <h2 className="text-sm font-medium text-muted-foreground mb-3 px-1">{"Strumenti Gratuiti"}</h2>
           <div className="space-y-3">
             {freeTools.map((item) => (
               <ToolCard key={item.id} item={item as any} premium={false} />
@@ -106,10 +103,10 @@ const Explore = () => {
 
         <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
           <div className="flex items-center gap-2 mb-3 px-1">
-            <h2 className="text-sm font-medium text-muted-foreground">{t("explore.premium_tools")}</h2>
+            <h2 className="text-sm font-medium text-muted-foreground">{"Strumenti Premium"}</h2>
             {!isPremium && (
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                {t("common.pro")}
+                {"Pro"}
               </span>
             )}
           </div>
@@ -128,7 +125,7 @@ const Explore = () => {
             >
               <div className="flex items-center justify-center gap-2 text-primary">
                 <Sparkles className="h-4 w-4" />
-                <span className="font-medium text-sm">{t("explore.unlock_all")}</span>
+                <span className="font-medium text-sm">{"Sblocca tutti gli strumenti con Premium"}</span>
               </div>
             </button>
           </section>

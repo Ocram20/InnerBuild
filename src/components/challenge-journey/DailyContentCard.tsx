@@ -13,8 +13,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useTranslation } from "react-i18next";
-
 interface DailyEntry {
   id: string;
   day_number: number;
@@ -45,7 +43,6 @@ const checkinOptions = [
 
 export default function DailyContentCard({ entry, isLoading, isCurrentDay, challengeId, jokersRemaining = 3, onUpdate }: DailyContentCardProps) {
   const { toast } = useToast();
-  const { t } = useTranslation();
   const [savingMission, setSavingMission] = useState<string | null>(null);
   const [savingCheckin, setSavingCheckin] = useState(false);
   const [showSetbackDialog, setShowSetbackDialog] = useState(false);
@@ -85,8 +82,8 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       .eq("id", entry.id);
 
     toast({
-      title: t("daily_content.checkin_saved"),
-      description: t("daily_content.great_reflecting"),
+      title: "Check-in salvato",
+      description: "Ottimo lavoro nel riflettere sulla tua giornata.",
     });
     onUpdate();
     setSavingCheckin(false);
@@ -152,7 +149,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-1">
-                  {t("daily_content.your_coach")}
+                  {"Il Tuo Coach"}
                 </p>
                 <p className="text-sm text-foreground leading-relaxed">{entry.coach_message}</p>
               </div>
@@ -179,7 +176,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
-                  {t("daily_content.mental_mission")}
+                  {"Missione Mentale"}
                 </p>
                 <p className="text-sm text-foreground">{entry.mental_mission}</p>
               </div>
@@ -203,7 +200,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
-                  {t("daily_content.behavioral_mission")}
+                  {"Missione Comportamentale"}
                 </p>
                 <p className="text-sm text-foreground">{entry.behavioral_mission}</p>
               </div>
@@ -217,7 +214,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
         <Card className="glass rounded-2xl border-none shadow-soft">
           <CardContent className="p-4">
             <p className="text-sm font-medium text-foreground mb-3">
-              {t("daily_content.how_was_today")}
+              {"Com'è andata oggi?"}
             </p>
             <div className="flex gap-2">
               {checkinOptions.map(opt => (
@@ -239,7 +236,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               disabled={savingCheckin}
               className="w-full mt-3 py-2 text-xs text-muted-foreground hover:text-destructive transition-colors"
             >
-              {t("daily_content.setback_today")}
+              {"Ho avuto una ricaduta oggi"}
             </button>
           </CardContent>
         </Card>
@@ -249,7 +246,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       {entry.checkin_response && entry.checkin_response !== "setback" && (
         <div className="text-center py-2">
           <p className="text-xs text-muted-foreground">
-            {t("daily_content.you_checked_in")}{" "}
+            {"Hai fatto il check-in:"}{" "}
             <span className="font-medium text-foreground">
               {checkinOptions.find(o => o.value === entry.checkin_response)?.emoji}{" "}
               {t(
@@ -264,7 +261,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       {entry.is_failure && (
         <div className="text-center py-3 px-4 rounded-xl bg-muted/50">
           <p className="text-xs text-muted-foreground">
-            {t("daily_content.setback_message")}
+            {"Hai avuto una ricaduta questo giorno. Un jolly è stato usato — riproverai questo giorno. 🤍"}
           </p>
         </div>
       )}
@@ -273,19 +270,19 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       <AlertDialog open={showSetbackDialog} onOpenChange={setShowSetbackDialog}>
         <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>{t("daily_content.setback_confirm_title")}</AlertDialogTitle>
+            <AlertDialogTitle>{"Sei sicuro?"}</AlertDialogTitle>
             <AlertDialogDescription className="text-sm leading-relaxed">
-              {t("daily_content.setback_confirm_desc", { remaining: jokersRemaining })}{" "}
+              {`Segnalare una ricaduta userà 1 jolly (${jokersRemaining} rimanenti). Il giorno non avanzerà — riproverai questo giorno.`}{" "}
               {jokersRemaining <= 1 && (
                 <span className="block mt-2 font-medium text-destructive">
-                  {t("daily_content.last_joker_warning")}
+                  {"⚠️ Questo è il tuo ultimo jolly. Usarlo metterà in pausa la sfida."}
                 </span>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl">
-              {t("daily_content.go_back")}
+              {"Torna indietro"}
             </AlertDialogCancel>
             <AlertDialogAction 
               onClick={() => {
@@ -294,7 +291,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               }} 
               className="rounded-xl bg-destructive/80 hover:bg-destructive text-destructive-foreground"
             >
-              {t("daily_content.yes_setback")}
+              {"Sì, ho avuto una ricaduta"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

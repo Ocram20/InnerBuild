@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
 import { 
   Zap, 
   Sparkles, 
@@ -20,7 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { useTriggerReport, TriggerCause, TimingPattern, TriggerSolution } from "@/hooks/useTriggerReport";
 
 export default function TriggerReportCard() {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
   const { 
     report, 
@@ -39,7 +37,7 @@ export default function TriggerReportCard() {
         <CardContent className="py-8">
           <div className="flex items-center justify-center gap-3">
             <Zap className="h-6 w-6 text-blue-500/50" />
-            <span className="text-muted-foreground">{t("trigger_tracking.loading_insights")}</span>
+            <span className="text-muted-foreground">{"Caricamento insight trigger..."}</span>
           </div>
         </CardContent>
       </Card>
@@ -62,9 +60,9 @@ export default function TriggerReportCard() {
               <Zap className="h-7 w-7 text-blue-500" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">{t("trigger_tracking.get_trigger_report")}</h3>
+              <h3 className="font-semibold text-foreground">{"Ottieni il Tuo Report Trigger"}</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                {t("trigger_tracking.analyze_patterns")}
+                {"Analizza i tuoi pattern trigger degli ultimi 4 giorni"}
               </p>
             </div>
             <Button
@@ -75,12 +73,12 @@ export default function TriggerReportCard() {
               {generating ? (
                 <>
                   <RefreshCw className="h-4 w-4 animate-spin" />
-                  {t("common.analyzing")}
+                  {"Analisi..."}
                 </>
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  {t("trigger_tracking.generate_report")}
+                  {"Genera Report"}
                 </>
               )}
             </Button>
@@ -102,10 +100,10 @@ export default function TriggerReportCard() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CardTitle className="text-base">{t("trigger_tracking.trigger_analysis")}</CardTitle>
+                <CardTitle className="text-base">{"Analisi Trigger"}</CardTitle>
                 {!is_read && (
                   <Badge variant="secondary" className="text-xs bg-blue-500/10 text-blue-500">
-                    {t("common.new")}
+                    {"Nuovo"}
                   </Badge>
                 )}
               </div>
@@ -139,8 +137,8 @@ export default function TriggerReportCard() {
           <Badge variant="outline" className="gap-1 text-blue-600 border-blue-200 bg-blue-50/50">
             <AlertTriangle className="h-3 w-3" />
             {mainCauses.length > 1
-              ? t("trigger_tracking.causes_identified_plural", { count: mainCauses.length })
-              : t("trigger_tracking.causes_identified", { count: mainCauses.length })}
+              ? `${mainCauses.length} cause principali identificate`
+              : `${mainCauses.length} causa principale identificata`}
           </Badge>
         )}
 
@@ -152,7 +150,7 @@ export default function TriggerReportCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-blue-500" />
-                  {t("trigger_tracking.main_causes")}
+                  {"Cause Principali"}
                 </h4>
                 <div className="space-y-2">
                   {mainCauses.map((cause: TriggerCause, idx: number) => (
@@ -180,7 +178,7 @@ export default function TriggerReportCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-purple-500" />
-                  {t("trigger_tracking.when_it_happens")}
+                  {"Quando Succede"}
                 </h4>
                 <div className="space-y-2">
                   {timingPatterns.map((pattern: TimingPattern, idx: number) => (
@@ -203,7 +201,7 @@ export default function TriggerReportCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-green-500" />
-                  {t("trigger_tracking.suggested_solutions")}
+                  {"Soluzioni Suggerite"}
                 </h4>
                 <div className="space-y-2">
                   {solutions.map((solution: TriggerSolution, idx: number) => (
@@ -212,7 +210,7 @@ export default function TriggerReportCard() {
                       className="rounded-lg bg-green-50/50 dark:bg-green-950/20 p-3 text-sm"
                     >
                       <div className="text-xs text-muted-foreground mb-1">
-                        {t("trigger_tracking.for_cause", { cause: solution.for_cause })}
+                        {`Per: ${solution.for_cause}`}
                       </div>
                       <div className="font-medium mb-1">{solution.strategy}</div>
                       <p className="text-xs text-muted-foreground">
@@ -247,19 +245,19 @@ export default function TriggerReportCard() {
                   {generating ? (
                     <>
                       <RefreshCw className="h-4 w-4 animate-spin" />
-                      {t("common.generating")}
+                      {"Generazione..."}
                     </>
                   ) : (
                     <>
                       <RefreshCw className="h-4 w-4" />
-                      {t("trigger_tracking.generate_new_report")}
+                      {"Genera Nuovo Report"}
                     </>
                   )}
                 </Button>
               ) : (
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground py-2">
                   <Clock className="h-4 w-4" />
-                  {t("trigger_tracking.next_report_in", { days: daysUntilNext })}
+                  {`Prossimo report disponibile tra ${daysUntilNext} giorno/i`}
                 </div>
               )}
             </div>

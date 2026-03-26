@@ -10,8 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
-
 interface Habit {
   id: string;
   title: string;
@@ -29,7 +27,6 @@ interface HabitCardProps {
 export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleCompletion = async () => {
@@ -37,7 +34,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
     
     setIsLoading(true);
     try {
-      const today = new Date().toISOString().split("T")[0];
+      const today = new Date().toISOString().spli"T"[0];
       
       if (habit.completed_today) {
         // Remove completion
@@ -60,8 +57,8 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.failed_update_habit"),
+        title: "Errore",
+        description: "Aggiornamento abitudine fallito",
         variant: "destructive",
       });
     } finally {
@@ -79,15 +76,15 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
         .eq("id", habit.id);
       
       toast({
-        title: t("habit_card.habit_deleted"),
-        description: t("habit_card.habit_removed"),
+        title: "Abitudine eliminata",
+        description: "L'abitudine è stata rimossa",
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.failed_update_habit"),
+        title: "Errore",
+        description: "Aggiornamento abitudine fallito",
         variant: "destructive",
       });
     }

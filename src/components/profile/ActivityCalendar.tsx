@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isFuture, startOfToday, isBefore } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -28,7 +27,6 @@ interface DayActivity {
 }
 
 export function ActivityCalendar() {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const { user } = useAuth();
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -75,15 +73,15 @@ export function ActivityCalendar() {
         dailyCheckInsRes,
         challengeEntriesRes,
       ] = await Promise.all([
-        supabase.from("habits").select("id").eq("user_id", user.id).eq("is_active", true),
-        supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
-        supabase.from("daily_reflections").select("reflection_date").eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
-        supabase.from("daily_tasks").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("not_to_do_items").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("detox_challenges").select("last_check_in, status").eq("user_id", user.id).eq("status", "active"),
-        supabase.from("recovery_checkins").select("checkin_date, status").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        untypedTable("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        untypedTable("challenge_daily_entries").select("created_at, checkin_response, is_failure").eq("user_id", user.id),
+        supabase.from("habits").selec"id".eq("user_id", user.id).eq("is_active", true),
+        supabase.from("habit_logs").selec"habit_id, completed_at".eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
+        supabase.from("daily_reflections").selec"reflection_date".eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
+        supabase.from("daily_tasks").selec"target_date".eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
+        supabase.from("not_to_do_items").selec"target_date".eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
+        supabase.from("detox_challenges").selec"last_check_in, status".eq("user_id", user.id).eq("status", "active"),
+        supabase.from("recovery_checkins").selec"checkin_date, status".eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
+        untypedTable("daily_checkins").selec"checkin_date".eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
+        untypedTable("challenge_daily_entries").selec"created_at, checkin_response, is_failure".eq("user_id", user.id),
       ]);
 
       const totalHabits = habitsRes.data?.length || 0;
@@ -195,10 +193,10 @@ export function ActivityCalendar() {
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Calendar className="h-5 w-5 text-primary" />
-                {t("activity_calendar.title")}
+                {"Cronologia dei progressi"}
               </CardTitle>
               <p className="text-xs text-muted-foreground mt-1">
-                {t("activity_calendar.subtitle")}
+                {"Clicca su un giorno per vedere il log"}
               </p>
             </div>
             
@@ -207,14 +205,14 @@ export function ActivityCalendar() {
                 <svg className="h-3 w-3 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.done")}</span>
+                <span className="text-xs text-muted-foreground">{"Fatto"}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <svg className="h-3 w-3 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.not_done")}</span>
+                <span className="text-xs text-muted-foreground">{"Non fatto"}</span>
               </div>
             </div>
           </div>

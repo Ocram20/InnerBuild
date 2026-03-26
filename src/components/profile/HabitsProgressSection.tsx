@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 import { Leaf, ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,14 +29,11 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
     }
     return weeks;
   }, [habit, isAnnual]);
-
-  const { t } = useTranslation();
-
   if (!habit) {
     return (
       <div className="glass rounded-2xl p-6 text-center animate-fade-in">
         <Leaf className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-        <p className="text-sm text-muted-foreground">{t("habits_progress_section.no_active_habits")}</p>
+        <p className="text-sm text-muted-foreground">{"Nessuna abitudine attiva"}</p>
       </div>
     );
   }
@@ -56,7 +52,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
         <div className="flex-1 text-center">
           <p className="font-semibold text-sm truncate">{habit.title}</p>
           <p className="text-xs text-muted-foreground">
-            {t("habits_progress_section.habit_position", { current: activeIndex + 1, total: habits.length })}
+            {`${activeIndex + 1} di ${habits.length}`}
           </p>
         </div>
         <button
@@ -72,7 +68,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
       <div className="flex gap-4 justify-center">
         <div className="text-center">
           <p className="text-2xl font-bold text-primary">{habit.completionRate}%</p>
-          <p className="text-[10px] text-muted-foreground">{t("habits_progress_section.completion")}</p>
+          <p className="text-[10px] text-muted-foreground">{"Completamento"}</p>
         </div>
         {habit.streak > 0 && (
           <div className="text-center">
@@ -80,7 +76,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
               <Flame className="h-5 w-5" />
               {habit.streak}
             </p>
-            <p className="text-[10px] text-muted-foreground">{t("habits_progress_section.day_streak")}</p>
+            <p className="text-[10px] text-muted-foreground">{"Serie di giorni"}</p>
           </div>
         )}
       </div>

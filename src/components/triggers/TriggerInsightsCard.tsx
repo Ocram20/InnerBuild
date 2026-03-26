@@ -2,8 +2,6 @@ import { AlertTriangle, Lightbulb, TrendingUp, Sparkles, RefreshCw } from "lucid
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TriggerInsight } from "@/hooks/useTriggerTracking";
-import { useTranslation } from "react-i18next";
-
 interface TriggerInsightsCardProps {
   insights: TriggerInsight[];
   analyzing: boolean;
@@ -29,7 +27,6 @@ export default function TriggerInsightsCard({
   onAnalyze,
   logsCount,
 }: TriggerInsightsCardProps) {
-  const { t } = useTranslation();
   return (
     <Card className="glass rounded-2xl border-primary/20">
       <CardHeader className="pb-3">
@@ -39,9 +36,9 @@ export default function TriggerInsightsCard({
               <Sparkles className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <CardTitle className="text-base">{t("trigger_tracking.ai_insights")}</CardTitle>
+              <CardTitle className="text-base">{"Insight AI"}</CardTitle>
               <p className="text-xs text-muted-foreground">
-                {t("trigger_tracking.triggers_logged", { count: logsCount })}
+                {`${logsCount} trigger registrati`}
               </p>
             </div>
           </div>
@@ -53,7 +50,7 @@ export default function TriggerInsightsCard({
             className="h-8"
           >
             <RefreshCw className={`h-4 w-4 mr-1 ${analyzing ? "animate-spin" : ""}`} />
-            {analyzing ? t("common.analyzing") : t("trigger_tracking.analyze")}
+            {analyzing ? "Analisi..." : "Analizza"}
           </Button>
         </div>
       </CardHeader>
@@ -64,16 +61,16 @@ export default function TriggerInsightsCard({
               <TrendingUp className="h-6 w-6 text-muted-foreground" />
             </div>
             <p className="text-sm text-muted-foreground">
-              {t("trigger_tracking.log_3_triggers")}
+              {"Registra almeno 3 trigger per sbloccare gli insight AI"}
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              {t("trigger_tracking.more_needed", { count: 3 - logsCount })}
+              {`${3 - logsCount} altri necessari`}
             </p>
           </div>
         ) : insights.length === 0 ? (
           <div className="text-center py-6">
             <p className="text-sm text-muted-foreground">
-              {t("trigger_tracking.press_analyze")}
+              {"Premi \"Analizza\" per generare insight dai tuoi pattern"}
             </p>
           </div>
         ) : (

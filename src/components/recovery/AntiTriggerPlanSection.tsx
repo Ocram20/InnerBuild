@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Shield, Plus, Trash2, Save, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,6 @@ interface AntiTriggerPlan {
 }
 
 export function AntiTriggerPlanSection() {
-  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [plans, setPlans] = useState<AntiTriggerPlan[]>([]);
@@ -36,7 +34,7 @@ export function AntiTriggerPlanSection() {
     try {
       const { data } = await supabase
         .from("journal_entries")
-        .select("*")
+        .selec"*"
         .eq("user_id", user.id)
         .eq("entry_date", "anti-trigger-plans")
         .maybeSingle();
@@ -63,7 +61,7 @@ export function AntiTriggerPlanSection() {
     try {
       const { data: existing } = await supabase
         .from("journal_entries")
-        .select("id")
+        .selec"id"
         .eq("user_id", user.id)
         .eq("entry_date", "anti-trigger-plans")
         .maybeSingle();
@@ -86,8 +84,8 @@ export function AntiTriggerPlanSection() {
       setPlans(updatedPlans);
     } catch (error) {
       toast({
-        title: t("anti_trigger_plan.error_saving_title", "Error saving"),
-        description: t("anti_trigger_plan.error_saving_desc", "Failed to save your plan. Please try again."),
+        title: "Errore salvataggio",
+        description: "Impossibile salvare il tuo piano. Per favore riprova.",
         variant: "destructive",
       });
     } finally {
@@ -98,8 +96,8 @@ export function AntiTriggerPlanSection() {
   const addPlan = () => {
     if (!newPlan.trigger || !newPlan.action || !newPlan.benefit) {
       toast({
-        title: t("anti_trigger_plan.incomplete_title", "Incomplete plan"),
-        description: t("anti_trigger_plan.incomplete_desc", "Please fill in all three fields."),
+        title: "Piano incompleto",
+        description: "Per favore compila tutti e tre i campi.",
         variant: "destructive",
       });
       return;
@@ -135,12 +133,12 @@ export function AntiTriggerPlanSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Shield className="h-5 w-5 text-primary" />
-          {t("anti_trigger_plan.title")}
+          {"Piano Personale Anti-Trigger"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-muted-foreground text-sm">
-          {t("anti_trigger_plan.description")}
+          {"Crea piani if-then per i tuoi trigger specifici. Avere una risposta predefinita rende più facile agire quando arriva il momento."}
         </p>
 
         {/* Existing plans */}
@@ -153,7 +151,7 @@ export function AntiTriggerPlanSection() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm">
-                    {t("anti_trigger_plan.template", { trigger: plan.trigger, action: plan.action, benefit: plan.benefit })}
+                    {`Quando ${plan.trigger}, farò ${plan.action}, perché mi dà ${plan.benefit}.`}
                   </p>
                   <Button
                     variant="ghost"
@@ -171,28 +169,28 @@ export function AntiTriggerPlanSection() {
 
         {/* Add new plan */}
         <div className="space-y-3 p-4 rounded-lg bg-primary/5 border border-primary/20">
-          <p className="text-sm font-medium text-foreground">{t("anti_trigger_plan.add_new")}</p>
+          <p className="text-sm font-medium text-foreground">{"Aggiungi un nuovo piano:"}</p>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.when")}</span>
+              <span className="text-sm text-muted-foreground shrink-0">{"Quando"}</span>
               <Input
-                placeholder={t("anti_trigger_plan.trigger_placeholder", "I feel bored at night")}
+                placeholder={"Mi sento annoiato di notte"}
                 value={newPlan.trigger}
                 onChange={(e) => setNewPlan(prev => ({ ...prev, trigger: e.target.value }))}
                 className="h-8 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.i_will")}</span>
+              <span className="text-sm text-muted-foreground shrink-0">{"Farò"}</span>
               <Input
-                placeholder={t("anti_trigger_plan.action_placeholder", "go for a walk or call a friend")}
+                placeholder={"andare a fare una passeggiata o chiamare un amico"}
                 value={newPlan.action}
                 onChange={(e) => setNewPlan(prev => ({ ...prev, action: e.target.value }))}
                 className="h-8 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.because_gives_me")}</span>
+              <span className="text-sm text-muted-foreground shrink-0">{"Perché mi dà"}</span>
               <Input
                 placeholder="clarity and connection"
                 value={newPlan.benefit}

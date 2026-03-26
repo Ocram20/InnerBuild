@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,8 +30,6 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
   const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const { toast } = useToast();
-  const { t } = useTranslation();
-
   useEffect(() => {
     if (userId) {
       fetchItems();
@@ -44,7 +41,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
     
     const { data, error } = await supabase
       .from("not_to_do_items")
-      .select("*")
+      .selec"*"
       .eq("user_id", userId)
       .eq("target_date", targetDate)
       .order("created_at", { ascending: true });
@@ -78,12 +75,12 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .single();
 
     if (error) {
-      toast({ title: t("common.error"), description: t("not_to_do_section.error_add"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile aggiungere l'elemento", variant: "destructive" });
     } else if (data) {
       setItems([...items, { ...data, status: data.status as "pending" | "avoided" | "broken" }]);
       setNewItem("");
       setShowSuggestions(false);
-      toast({ title: t("not_to_do_section.item_added"), description: t("not_to_do_section.avoid_behavior") });
+      toast({ title: "Elemento aggiunto!", description: "Evita questo comportamento domani" });
     }
   };
 
@@ -94,13 +91,13 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .eq("id", item.id);
 
     if (error) {
-      toast({ title: t("common.error"), description: t("not_to_do_section.error_update"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile aggiornare lo stato", variant: "destructive" });
     } else {
       setItems(items.map(i => 
         i.id === item.id ? { ...i, status: newStatus } : i
       ));
       if (newStatus === "avoided") {
-        toast({ title: t("common.success"), description: t("not_to_do_section.avoid_behavior") });
+        toast({ title: "Successo", description: "Evita questo comportamento domani" });
       }
     }
   };
@@ -112,7 +109,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .eq("id", id);
 
     if (error) {
-      toast({ title: t("common.error"), description: t("not_to_do_section.error_delete"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile eliminare l'elemento", variant: "destructive" });
     } else {
       setItems(items.filter(i => i.id !== id));
     }
@@ -175,7 +172,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             variant={item.status === "avoided" ? "default" : "ghost"}
             onClick={() => updateStatus(item, "avoided")}
             className={`h-8 w-8 ${item.status === "avoided" ? "bg-success hover:bg-success/90" : ""}`}
-            title={t("not_to_do_section.avoided", "Avoided")}
+            title={"Evitato"}
           >
             <ShieldCheck className="h-4 w-4" />
           </Button>
@@ -184,7 +181,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             variant={item.status === "broken" ? "default" : "ghost"}
             onClick={() => updateStatus(item, "broken")}
             className={`h-8 w-8 ${item.status === "broken" ? "bg-destructive hover:bg-destructive/90" : ""}`}
-            title={t("not_to_do_section.not_avoided", "Not avoided")}
+            title={"Non evitato"}
           >
             <ShieldAlert className="h-4 w-4" />
           </Button>
@@ -209,20 +206,20 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             <div className="p-2 rounded-lg bg-destructive/10">
               <ShieldX className="h-5 w-5 text-destructive" />
             </div>
-            {t("not_to_do_section.title")}
+            {"Cose da evitare"}
           </CardTitle>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <span className="font-semibold text-success">{avoidedCount}</span>
             <span>/</span>
             <span>{items.length}</span>
-            <span className="ml-1">{t("not_to_do_section.avoided")}</span>
+            <span className="ml-1">{"Evitato"}</span>
           </div>
         </div>
         {items.length > 0 && (
           <div className="mt-3">
             <Progress value={progressPercent} className="h-2" />
             <p className="text-xs text-muted-foreground mt-1 text-right">
-              {Math.round(progressPercent)}% {t("not_to_do_section.avoided").toLowerCase()}
+              {Math.round(progressPercent)}% {"Evitato".toLowerCase()}
             </p>
           </div>
         )}
@@ -230,7 +227,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <Input
-            placeholder={t("daily_planning.what_to_avoid", "What to avoid tomorrow...")}
+            placeholder={"Cosa evitare domani..."}
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && addItem()}
@@ -244,7 +241,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
         {showSuggestions && availableSuggestions.length > 0 && (
           <div className="p-3 rounded-lg bg-destructive/5 border border-destructive/10">
             <p className="text-xs font-medium text-muted-foreground mb-2">
-              {t("not_to_do_section.quick_suggestions")}
+              {"Aggiungi velocemente suggerimenti:"}
             </p>
             <div className="flex flex-wrap gap-2">
               {availableSuggestions.map((suggestion) => (
@@ -282,8 +279,8 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
                 ) : items.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <ShieldX className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>{t("not_to_do_section.no_behaviors")}</p>
-                    <p className="text-sm">{t("not_to_do_section.add_negative_habits")}</p>
+                    <p>{"Nessun comportamento da evitare"}</p>
+                    <p className="text-sm">{"Aggiungi abitudini negative da evitare"}</p>
                   </div>
                 ) : (
                     items.map((item, index) => (

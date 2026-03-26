@@ -16,8 +16,6 @@ import {
 } from "@/components/ui/collapsible";
 import { X, ChevronDown, Calendar, CloudRain, AlertTriangle, Lightbulb } from "lucide-react";
 import { FailureDebrief } from "@/hooks/useFailureDebrief";
-import { useTranslation } from "react-i18next";
-
 interface FailureDebriefHistoryProps {
   debriefs: FailureDebrief[];
   onClose: () => void;
@@ -27,7 +25,6 @@ export function FailureDebriefHistory({
   debriefs,
   onClose,
 }: FailureDebriefHistoryProps) {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
 
   return (
@@ -36,14 +33,14 @@ export function FailureDebriefHistory({
         <DialogHeader className="p-4 pb-2 border-b border-border/50 relative">
           <div className="flex items-center justify-between gap-2">
             <DialogTitle className="text-lg font-semibold flex-1">
-              {t("failure_debrief.history_title")}
+              {"Cronologia Debrief"}
             </DialogTitle>
             <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8 shrink-0 -mr-2">
               <X className="w-4 h-4" />
             </Button>
           </div>
           <p className="text-sm text-muted-foreground mt-1">
-            {t("failure_debrief.history_desc")}
+            {"Rivedi i tuoi debrief passati e individua i pattern"}
           </p>
         </DialogHeader>
 
@@ -51,7 +48,7 @@ export function FailureDebriefHistory({
           <div className="p-4 space-y-3">
             {debriefs.length === 0 ? (
               <p className="text-center text-muted-foreground py-8">
-                {t("failure_debrief.no_debriefs")}
+                {"Nessun debrief completato ancora."}
               </p>
             ) : (
               debriefs.map((debrief) => (
@@ -67,7 +64,7 @@ export function FailureDebriefHistory({
                             </span>
                             {debrief.mood && (
                               <span className="text-sm">
-                                {t(`failure_debrief.moods.${debrief.mood}`, "").split(" ")[0] || debrief.mood}
+                                {t(`failure_debrief.moods.${debrief.mood}`, "").spli" "[0] || debrief.mood}
                               </span>
                             )}
                           </div>
@@ -81,23 +78,23 @@ export function FailureDebriefHistory({
                         <div className="space-y-1">
                           <div className="flex items-center gap-1.5 text-xs text-muted-foreground uppercase tracking-wide">
                             <CloudRain className="w-3 h-3" />
-                            {t("failure_debrief.step1_title")}
+                            {"Cosa è successo?"}
                           </div>
                           {debrief.mood && (
                             <p className="text-sm">
-                              <span className="text-muted-foreground">{t("failure_debrief.history_mood")}:</span>{" "}
+                              <span className="text-muted-foreground">{"Umore"}:</span>{" "}
                               {t(`failure_debrief.moods.${debrief.mood}`, debrief.mood)}
                             </p>
                           )}
                           {debrief.context && (
                             <p className="text-sm">
-                              <span className="text-muted-foreground">{t("failure_debrief.history_context")}:</span>{" "}
+                              <span className="text-muted-foreground">{"Contesto"}:</span>{" "}
                               {debrief.context}
                             </p>
                           )}
                           {debrief.trigger && (
                             <p className="text-sm">
-                              <span className="text-muted-foreground">{t("failure_debrief.history_trigger")}:</span>{" "}
+                              <span className="text-muted-foreground">{"Trigger"}:</span>{" "}
                               {debrief.trigger}
                             </p>
                           )}
@@ -108,7 +105,7 @@ export function FailureDebriefHistory({
                           <div className="space-y-1">
                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground uppercase tracking-wide">
                               <AlertTriangle className="w-3 h-3" />
-                              {t("failure_debrief.step2_title")}
+                              {"Primo segnale ignorato"}
                             </div>
                             <p className="text-sm">
                               {t(`failure_debrief.signals.${debrief.ignored_signal}`, debrief.ignored_signal)}
@@ -126,7 +123,7 @@ export function FailureDebriefHistory({
                           <div className="space-y-1">
                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground uppercase tracking-wide">
                               <Lightbulb className="w-3 h-3" />
-                              {t("failure_debrief.action_plan_label")}
+                              {"Il tuo piano d'azione per la prossima volta"}
                             </div>
                             <p className="text-sm bg-green-500/10 p-2 rounded border border-green-500/20">
                               {debrief.action_plan}
@@ -138,7 +135,7 @@ export function FailureDebriefHistory({
                         {debrief.ai_suggestions && debrief.ai_suggestions.length > 0 && (
                           <div className="space-y-1">
                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground uppercase tracking-wide">
-                              ✨ {t("failure_debrief.ai_suggestions_title")}
+                              ✨ {"Suggerimenti del Coach AI"}
                             </div>
                             <div className="space-y-1">
                               {debrief.ai_suggestions.map((suggestion, i) => (

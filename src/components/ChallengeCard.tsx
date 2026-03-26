@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -43,11 +42,10 @@ interface ChallengeCardProps {
 export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProps) {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().spli"T"[0];
   const checkedInToday = challenge.last_check_in === today;
   const currentDay = challenge.current_streak;
   const progressPercent = Math.min((currentDay / challenge.duration_days) * 100, 100);
@@ -77,20 +75,20 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
       
       if (completed) {
         toast({
-          title: t("challenge_card.challenge_complete"),
-          description: t("challenge_card.completed_challenge", { days: challenge.duration_days }),
+          title: "🎉 Sfida Completata!",
+          description: `Hai completato la sfida di ${challenge.duration_days} giorni!`,
         });
       } else {
         toast({
-          title: t("challenge_card.day_checked"),
-          description: t("challenge_card.day_done", { day: newStreak }),
+          title: "Giorno registrato! 🔥",
+          description: `Giorno ${newStreak} fatto. Continua così!`,
         });
       }
       
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
+        title: "Errore",
         description: t("challenge_card.failed_checkin", { defaultValue: "Failed to check in" }),
         variant: "destructive",
       });
@@ -116,14 +114,14 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
         .eq("id", challenge.id);
       
       toast({
-        title: t("challenge_card.fresh_start"),
-        description: t("challenge_card.fresh_start_desc"),
+        title: "Nuovo inizio",
+        description: "Jolly ripristinati. Ogni giorno è una nuova opportunità. 💪",
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
+        title: "Errore",
         description: t("challenge_card.failed_reset", { defaultValue: "Failed to reset challenge" }),
         variant: "destructive",
       });
@@ -140,15 +138,15 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
         .update({ status: "active" })
         .eq("id", challenge.id);
       toast({
-        title: t("challenge_card.challenge_resumed"),
+        title: "Sfida ripresa",
         description: jokers > 0
-          ? t("challenge_card.lets_keep_going")
-          : t("challenge_card.no_jokers_warning"),
+          ? "Continuiamo!"
+          : "Nessun jolly rimasto — qualsiasi ricaduta metterà in pausa.",
       });
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
+        title: "Errore",
         description: t("challenge_card.failed_resume", { defaultValue: "Failed to resume" }),
         variant: "destructive",
       });
@@ -165,16 +163,16 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
         .eq("id", challenge.id);
       toast({
         title: newStatus === "paused"
-          ? t("challenge_card.challenge_paused")
-          : t("challenge_card.challenge_resumed"),
+          ? "Sfida in pausa"
+          : "Sfida ripresa",
         description: newStatus === "paused"
-          ? t("challenge_card.take_time")
-          : t("challenge_card.lets_keep_going"),
+          ? "Prenditi il tempo necessario"
+          : "Continuiamo!",
       });
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
+        title: "Errore",
         description: t("challenge_card.failed_update", { defaultValue: "Failed to update challenge" }),
         variant: "destructive",
       });
@@ -194,7 +192,7 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
+        title: "Errore",
         description: t("challenge_card.failed_delete", { defaultValue: "Failed to delete challenge" }),
         variant: "destructive",
       });
@@ -218,13 +216,13 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
             <div className="text-sm text-muted-foreground">
               {isCompleted ? (
                 <span className="text-accent font-medium">
-                  {t("challenge_card.complete_excl")}
+                  {"Completata!"}
                 </span>
               ) : (
                 <>
                   {currentDay === 1
-                    ? t("challenge_card.day_completed")
-                    : t("challenge_card.days_completed")}
+                    ? "giorno completato"
+                    : "giorni completati"}
                 </>
               )}
             </div>
@@ -249,23 +247,23 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
                     {challenge.status === "paused" ? (
                       <>
                         <Play className="h-4 w-4 mr-2" />
-                        {t("challenge_card.resume")}
+                        {"Riprendi"}
                       </>
                     ) : (
                       <>
                         <Pause className="h-4 w-4 mr-2" />
-                        {t("challenge_card.pause")}
+                        {"Pausa"}
                       </>
                     )}
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem onClick={() => setShowResetDialog(true)}>
                   <RefreshCw className="h-4 w-4 mr-2" />
-                  {t("challenge_card.reset")}
+                  {"Reset"}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={deleteChallenge} className="text-destructive focus:text-destructive">
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {t("challenge_card.delete")}
+                  {"Elimina"}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -278,14 +276,11 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
           
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
             <span>
-              {t("challenge_card.day_of", {
-                current: currentDay,
-                total: challenge.duration_days,
-              })}
+              {`Giorno ${currentDay} / ${challenge.duration_days}`}
             </span>
             {challenge.status === "paused" && (
               <span className="px-2 py-0.5 bg-muted rounded-full text-xs">
-                {t("challenge_card.paused")}
+                {"In pausa"}
               </span>
             )}
           </div>
@@ -304,28 +299,28 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
               <div className="flex items-center justify-center gap-2">
                 <ShieldAlert className="h-4 w-4 text-destructive" />
                 <p className="text-sm font-medium text-foreground">
-                  {t("challenge_card.all_jokers_used")}
+                  {"Tutti i jolly usati"}
                 </p>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                {t("challenge_card.paused_at_day", { day: currentDay })}
+                {`In pausa al giorno ${currentDay}. Riprendi senza jolly o ricomincia.`}
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={handleResume}
                   className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium"
                 >
-                  {t("challenge_card.resume_detox")}
+                  {"Riprendi detox"}
                 </button>
                 <button
                   onClick={() => setShowResetDialog(true)}
                   className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground text-sm font-medium"
                 >
-                  {t("challenge_card.reset_detox")}
+                  {"Reset detox"}
                 </button>
               </div>
               <p className="text-[10px] text-muted-foreground/70">
-                {t("challenge_card.resume_no_jokers")}
+                {"La ripresa continua senza jolly — qualsiasi ricaduta metterà di nuovo in pausa."}
               </p>
             </div>
           )}
@@ -343,12 +338,12 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
               {checkedInToday ? (
                 <>
                   <Check className="h-5 w-5" />
-                  {t("challenge_card.checked_in_today")}
+                  {"Check-in fatto oggi"}
                 </>
               ) : (
                 <>
                   <Zap className="h-5 w-5" />
-                  {t("challenge_card.check_in_today")}
+                  {"Check-in per oggi"}
                 </>
               )}
             </button>
@@ -356,7 +351,7 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
           
           {!isCompleted && !checkedInToday && challenge.status === "active" && (
             <p className="text-center text-xs text-muted-foreground mt-3">
-              {t("challenge_card.days_to_go", { days: daysLeft })}
+              {`${daysLeft} giorni rimasti — ce la farai!`}
             </p>
           )}
         </div>
@@ -365,17 +360,17 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
         <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>{t("challenge_card.start_fresh_title")}</AlertDialogTitle>
+            <AlertDialogTitle>{"Ricominciare?"}</AlertDialogTitle>
             <AlertDialogDescription>
-              {t("challenge_card.start_fresh_desc")}
+              {"Questo resetterà i tuoi progressi e ripristinerà tutti e 3 i jolly."}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl">
-              {t("challenge_card.keep_going")}
+              {"Continua"}
             </AlertDialogCancel>
             <AlertDialogAction onClick={resetChallenge} className="rounded-xl gradient-primary text-primary-foreground">
-              {t("challenge_card.fresh_start")}
+              {"Nuovo inizio"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

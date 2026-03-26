@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import { useTranslation } from "react-i18next";
-
 type Step = "feeling" | "location" | "alone" | "loading" | "guidance";
 
 const feelingKeys = [
@@ -30,7 +28,6 @@ interface EmergencyUrgeModalProps {
 
 export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
   const { user } = useAuth();
-  const { t, i18n } = useTranslation();
   const [step, setStep] = useState<Step>("feeling");
   const [feeling, setFeeling] = useState("");
   const [location, setLocation] = useState("");
@@ -80,12 +77,12 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
       console.error("Emergency guidance error:", e);
       setGuidance({
         immediate_actions: [
-          t("emergency_urge.fallback_action_1"),
-          t("emergency_urge.fallback_action_2"),
-          t("emergency_urge.fallback_action_3"),
+          "Fai una doccia fredda",
+          "Esci a camminare o correre",
+          "Fai esercizio fisico",
         ],
-        personal_reminder: t("emergency_urge.personal_reminder"),
-        calming_message: t("emergency_urge.calming_message"),
+        personal_reminder: "Sei più forte di questo momento.",
+        calming_message: "Questo impulso è intenso ma temporaneo. Passerà entro 15-20 minuti. Respira e lascia che l'onda passi.",
       });
       setStep("guidance");
     }
@@ -113,7 +110,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
               <Shield className="w-4 h-4 text-rose-500" />
             </div>
             <span className="font-semibold text-foreground">
-              {t("emergency_urge.header")}
+              {"Supporto d'emergenza"}
             </span>
           </div>
           <Button 
@@ -135,10 +132,10 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
             <div className="space-y-4 animate-in fade-in duration-200">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
-                  {t("emergency_urge.feeling_title")}
+                  {"Come ti senti in questo momento?"}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {t("emergency_urge.feeling_subtitle")}
+                  {"Nessun giudizio — dimmi cosa sta succedendo."}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -168,10 +165,10 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
             <div className="space-y-4 animate-in fade-in duration-200">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
-                  {t("emergency_urge.location_title")}
+                  {"Dove ti trovi?"}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {t("emergency_urge.location_subtitle")}
+                  {"Questo mi aiuta a suggerirti le azioni giuste."}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -197,10 +194,10 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
             <div className="space-y-4 animate-in fade-in duration-200">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">
-                  {t("emergency_urge.alone_title")}
+                  {"Sei da solo in questo momento?"}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {t("emergency_urge.alone_subtitle")}
+                  {"Questo aiuta a personalizzare i consigli per te."}
                 </p>
               </div>
               <div className="flex gap-3">
@@ -213,7 +210,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                     fetchGuidance();
                   }}
                 >
-                  {t("emergency_urge.yes_alone")}
+                  {"Sì, sono solo"}
                 </Button>
                 <Button
                   variant="outline"
@@ -224,7 +221,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                     fetchGuidance();
                   }}
                 >
-                  {t("emergency_urge.no_with_others")}
+                  {"No, con altre persone"}
                 </Button>
               </div>
             </div>
@@ -236,10 +233,10 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
               <div className="text-center">
                 <p className="font-medium text-foreground">
-                  {t("emergency_urge.loading_title")}
+                  {"Sto preparando i tuoi consigli..."}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {t("emergency_urge.loading_subtitle")}
+                  {"Fai un respiro profondo mentre preparo tutto."}
                 </p>
               </div>
             </div>
@@ -264,7 +261,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
               <div>
                 <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-amber-500" />
-                  {t("emergency_urge.actions_title")}
+                  {"Fai questo adesso"}
                 </h4>
                 <div className="space-y-2">
                   {guidance.immediate_actions.map((action, i) => (
@@ -288,7 +285,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                     <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-1">
-                        {t("emergency_urge.remember_why")}
+                        {"Ricorda il tuo perché"}
                       </p>
                       <p className="text-sm text-foreground leading-relaxed">
                         {guidance.personal_reminder}
@@ -305,10 +302,10 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                   handleClose();
                 }}
               >
-                {t("emergency_urge.close_button")}
+                {"Mi sento meglio"}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                {t("emergency_urge.footer_note")}
+                {"L'impulso passerà. Ce la puoi fare. 💪"}
               </p>
             </div>
           )}

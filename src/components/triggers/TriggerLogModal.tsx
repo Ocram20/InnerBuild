@@ -9,8 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useTranslation } from "react-i18next";
-
 interface TriggerLogModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -26,7 +24,6 @@ interface TriggerLogModalProps {
 }
 
 export default function TriggerLogModal({ open, onOpenChange, onSubmit }: TriggerLogModalProps) {
-  const { t } = useTranslation();
   const [intensity, setIntensity] = useState(5);
   const [emotion, setEmotion] = useState("");
   const [situation, setSituation] = useState("");
@@ -36,32 +33,32 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
   const [submitting, setSubmitting] = useState(false);
 
   const emotions = [
-    { id: "stress", label: t("trigger_tracking.emotions.stress"), emoji: "😰" },
-    { id: "boredom", label: t("trigger_tracking.emotions.boredom"), emoji: "😑" },
-    { id: "sadness", label: t("trigger_tracking.emotions.sadness"), emoji: "😢" },
-    { id: "anxiety", label: t("trigger_tracking.emotions.anxiety"), emoji: "😟" },
-    { id: "anger", label: t("trigger_tracking.emotions.anger"), emoji: "😠" },
-    { id: "loneliness", label: t("trigger_tracking.emotions.loneliness"), emoji: "😔" },
-    { id: "tiredness", label: t("trigger_tracking.emotions.tiredness"), emoji: "😴" },
-    { id: "excitement", label: t("trigger_tracking.emotions.excitement"), emoji: "🤩" },
+    { id: "stress", label: "Stress", emoji: "😰" },
+    { id: "boredom", label: "Noia", emoji: "😑" },
+    { id: "sadness", label: "Tristezza", emoji: "😢" },
+    { id: "anxiety", label: "Ansia", emoji: "😟" },
+    { id: "anger", label: "Rabbia", emoji: "😠" },
+    { id: "loneliness", label: "Solitudine", emoji: "😔" },
+    { id: "tiredness", label: "Stanchezza", emoji: "😴" },
+    { id: "excitement", label: "Eccitazione", emoji: "🤩" },
   ];
 
   const situations = [
-    { id: "social_media", label: t("trigger_tracking.situations.social_media") },
-    { id: "video_streaming", label: t("trigger_tracking.situations.video_streaming") },
-    { id: "after_argument", label: t("trigger_tracking.situations.after_argument") },
-    { id: "before_sleep", label: t("trigger_tracking.situations.before_sleep") },
-    { id: "work_break", label: t("trigger_tracking.situations.work_break") },
-    { id: "weekend", label: t("trigger_tracking.situations.weekend") },
-    { id: "procrastination", label: t("trigger_tracking.situations.procrastination") },
-    { id: "other", label: t("trigger_tracking.situations.other") },
+    { id: "social_media", label: "Social media" },
+    { id: "video_streaming", label: "Video/streaming" },
+    { id: "after_argument", label: "Dopo un litigio" },
+    { id: "before_sleep", label: "Prima di dormire" },
+    { id: "work_break", label: "Pausa lavoro" },
+    { id: "weekend", label: "Weekend libero" },
+    { id: "procrastination", label: "Procrastinazione" },
+    { id: "other", label: "Altro" },
   ];
 
   const locations = [
-    { id: "home", label: t("trigger_tracking.locations.home") },
-    { id: "work", label: t("trigger_tracking.locations.work") },
-    { id: "commute", label: t("trigger_tracking.locations.commute") },
-    { id: "other", label: t("trigger_tracking.situations.other") },
+    { id: "home", label: "Casa" },
+    { id: "work", label: "Lavoro" },
+    { id: "commute", label: "Tragitto" },
+    { id: "other", label: "Altro" },
   ];
 
   const getTimeContext = (): string => {
@@ -106,7 +103,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            {t("trigger_tracking.log_trigger")}
+            {"Registra Trigger"}
           </DialogTitle>
         </DialogHeader>
 
@@ -114,7 +111,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           <div className="space-y-3">
             <label className="text-sm font-medium flex items-center gap-2">
               <Zap className="h-4 w-4 text-orange-500" />
-              {t("trigger_tracking.impulse_intensity")}: {intensity}/10
+              {"Intensità impulso"}: {intensity}/10
             </label>
             <Slider
               value={[intensity]}
@@ -125,15 +122,15 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
               className="py-2"
             />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>{t("trigger_tracking.heatmap_legend.mild")}</span>
-              <span>{t("trigger_tracking.heatmap_legend.strong")}</span>
+              <span>{"Lieve (1-3)"}</span>
+              <span>{"Forte (7-10)"}</span>
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <Heart className="h-4 w-4 text-rose-500" />
-              {t("trigger_tracking.how_feel")}
+              {"Come ti senti? *"}
             </label>
             <div className="grid grid-cols-4 gap-2">
               {emotions.map((e) => (
@@ -154,7 +151,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">{t("trigger_tracking.situation")} *</label>
+            <label className="text-sm font-medium">{"Situazione *"} *</label>
             <div className="grid grid-cols-2 gap-2">
               {situations.map((s) => (
                 <button
@@ -175,7 +172,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <MapPin className="h-4 w-4 text-blue-500" />
-              {t("trigger_tracking.where_are_you")}
+              {"Dove sei?"}
             </label>
             <div className="flex gap-2 flex-wrap">
               {locations.map((l) => (
@@ -197,7 +194,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <Users className="h-4 w-4 text-purple-500" />
-              {t("trigger_tracking.are_you_alone")}
+              {"Sei solo?"}
             </label>
             <div className="flex gap-2">
               <button
@@ -208,7 +205,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                     : "bg-muted/50 hover:bg-muted"
                 }`}
               >
-                {t("trigger_tracking.yes_alone")}
+                {"Sì, solo"}
               </button>
               <button
                 onClick={() => setWasAlone(false)}
@@ -218,7 +215,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                     : "bg-muted/50 hover:bg-muted"
                 }`}
               >
-                {t("trigger_tracking.no_with_others")}
+                {"No, con altri"}
               </button>
             </div>
           </div>
@@ -226,12 +223,12 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <FileText className="h-4 w-4 text-gray-500" />
-              {t("trigger_tracking.notes_optional")}
+              {"Note (opzionale)"}
             </label>
             <Textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder={t("trigger_tracking.notes_placeholder")}
+              placeholder={"Cosa stava succedendo? Cosa stavi pensando?"}
               className="resize-none"
               rows={2}
             />
@@ -242,7 +239,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
             disabled={!isValid || submitting}
             className="w-full gradient-primary text-primary-foreground"
           >
-            {submitting ? t("common.saving") : t("trigger_tracking.log_trigger")}
+            {submitting ? "Salvataggio..." : "Registra Trigger"}
           </Button>
         </div>
       </DialogContent>

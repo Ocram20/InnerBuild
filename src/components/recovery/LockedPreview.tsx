@@ -2,17 +2,13 @@ import { Lock, Brain, Target, Heart, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
 export function LockedPreview() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
-
   const features = [
-    { icon: Brain, label: t("locked_preview.recovery.science_education") },
-    { icon: Target, label: t("locked_preview.recovery.craving_tools") },
-    { icon: Shield, label: t("locked_preview.recovery.anti_trigger_plan") },
-    { icon: Heart, label: t("locked_preview.recovery.motivation_tracking") },
+    { icon: Brain, label: "Educazione basata sulla scienza" },
+    { icon: Target, label: "Strumenti contro le voglie" },
+    { icon: Shield, label: "Piano anti-trigger personale" },
+    { icon: Heart, label: "Monitoraggio motivazione" },
   ];
 
   return (
@@ -23,8 +19,8 @@ export function LockedPreview() {
             <Lock className="h-8 w-8 text-primary" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">{t("locked_preview.recovery.title")}</h2>
-            <p className="text-muted-foreground text-sm">{t("locked_preview.recovery.description")}</p>
+            <h2 className="text-2xl font-semibold">{"Strumenti di Recupero"}</h2>
+            <p className="text-muted-foreground text-sm">{"Sblocca strategie di recupero basate sulla scienza, strumenti di gestione delle voglie e monitoraggio personale."}</p>
           </div>
           <div className="grid grid-cols-2 gap-3 py-4">
             {features.map((feature) => (
@@ -38,10 +34,10 @@ export function LockedPreview() {
             <div className="flex items-center justify-center gap-1">
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-lg font-semibold">€4.99</span>
-              <span className="text-muted-foreground text-sm">/{t("common.month")}</span>
+              <span className="text-muted-foreground text-sm">/{"mese"}</span>
             </div>
             <Button onClick={() => navigate("/pricing")} className="w-full">
-              {t("locked_preview.unlock_premium")}
+              {"Sblocca Premium"}
             </Button>
           </div>
         </CardContent>

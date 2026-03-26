@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Zap, Droplets, Footprints, Dumbbell, Phone, Users, Check } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -48,47 +47,46 @@ const actions = [
 ];
 
 export function CravingActionsSection() {
-  const { t } = useTranslation();
   const [completedActions, setCompletedActions] = useState<string[]>([]);
 
   const actions = [
     {
       id: "cold-shower",
       icon: Droplets,
-      title: t("craving_actions.cold_shower_title"),
-      description: t("craving_actions.cold_shower_desc"),
+      title: "Fai una doccia fredda",
+      description: "30 secondi‑2 minuti. Scuoti il sistema dal desiderio.",
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10",
     },
     {
       id: "walk",
       icon: Footprints,
-      title: t("craving_actions.walk_title"),
-      description: t("craving_actions.walk_desc"),
+      title: "Vai a fare una passeggiata o corsa",
+      description: "Lascia il telefono. Esci fuori. Il movimento reindirizza l’energia.",
       color: "text-emerald-500",
       bgColor: "bg-emerald-500/10",
     },
     {
       id: "exercise",
       icon: Dumbbell,
-      title: t("craving_actions.exercise_title"),
-      description: t("craving_actions.exercise_desc"),
+      title: "Fai esercizio fisico",
+      description: "Flessioni, squat, jumping jacks. Esaurisci fisicamente l’impulso.",
       color: "text-amber-500",
       bgColor: "bg-amber-500/10",
     },
     {
       id: "contact",
       icon: Phone,
-      title: t("craving_actions.contact_title"),
-      description: t("craving_actions.contact_desc"),
+      title: "Contatta qualcuno di fiducia",
+      description: "Invia un messaggio o chiama un amico, un familiare o un partner di responsabilità.",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
     },
     {
       id: "people",
       icon: Users,
-      title: t("craving_actions.people_title"),
-      description: t("craving_actions.people_desc"),
+      title: "Stai tra altre persone",
+      description: "Vai in uno spazio pubblico. L’isolamento alimenta l’impulso. La connessione lo spezza.",
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
     },
@@ -111,18 +109,18 @@ export function CravingActionsSection() {
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            {t("craving_actions.title")}
+            {"Cosa fare durante un desiderio"}
           </CardTitle>
           {completedActions.length > 0 && (
             <Button variant="ghost" size="sm" onClick={resetActions} className="text-xs">
-              {t("common.reset")}
+              {"Reset"}
             </Button>
           )}
         </div>
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground text-sm mb-4">
-          {t("craving_actions.description")}
+          {"I desideri sono intensi ma temporanei – solitamente 15-20 minuti. Usa queste azioni per cavalcare l’onda finché passa."}
         </p>
         
         <div className="space-y-2">
@@ -157,7 +155,7 @@ export function CravingActionsSection() {
         </div>
         
         <p className="text-xs text-muted-foreground/70 mt-4 text-center italic">
-          {t("craving_actions.footer_hint")}
+          {"Tocca ogni azione man mano che la completi. Il desiderio passerà."}
         </p>
       </CardContent>
     </Card>

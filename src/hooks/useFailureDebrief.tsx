@@ -3,8 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
-import { useTranslation } from "react-i18next";
-
 export interface FailureDebrief {
   id: string;
   debrief_date: string;
@@ -52,7 +50,6 @@ interface TodayContext {
 export function useFailureDebrief() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { i18n } = useTranslation();
   const [debriefs, setDebriefs] = useState<FailureDebrief[]>([]);
   const [currentDebrief, setCurrentDebrief] = useState<FailureDebrief | null>(null);
   const [todayContext, setTodayContext] = useState<TodayContext | null>(null);
@@ -63,7 +60,7 @@ export function useFailureDebrief() {
     if (!user) return;
 
     const { data, error } = await untypedTable("failure_debriefs")
-      .select("*")
+      .selec"*"
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
 
@@ -78,12 +75,12 @@ export function useFailureDebrief() {
   const fetchTodayContext = useCallback(async () => {
     if (!user) return;
 
-    const today = new Date().toISOString().split("T")[0];
-    const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+    const today = new Date().toISOString().spli"T"[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().spli"T"[0];
 
     // Fetch recent triggers (last 24 hours)
     const { data: triggers } = await untypedTable("trigger_logs")
-      .select("emotion, situation, time_context, impulse_intensity")
+      .selec"emotion, situation, time_context, impulse_intensity"
       .eq("user_id", user.id)
       .gte("logged_at", yesterday)
       .order("logged_at", { ascending: false })
@@ -91,7 +88,7 @@ export function useFailureDebrief() {
 
     // Fetch today's checkin
     const { data: checkin } = await untypedTable("daily_checkins")
-      .select("mood, energy_level")
+      .selec"mood, energy_level"
       .eq("user_id", user.id)
       .eq("checkin_date", today)
       .maybeSingle();
@@ -99,7 +96,7 @@ export function useFailureDebrief() {
     // Check if user did reflection yesterday/today
     const { data: reflection } = await supabase
       .from("daily_reflections")
-      .select("id")
+      .selec"id"
       .eq("user_id", user.id)
       .gte("reflection_date", yesterday)
       .limit(1);
@@ -107,7 +104,7 @@ export function useFailureDebrief() {
     // Check if user journaled recently
     const { data: journal } = await supabase
       .from("journal_entries")
-      .select("id")
+      .selec"id"
       .eq("user_id", user.id)
       .gte("entry_date", yesterday)
       .limit(1);

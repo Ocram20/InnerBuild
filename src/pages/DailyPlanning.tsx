@@ -9,14 +9,11 @@ import { NotToDoSection } from "@/components/daily-planning/NotToDoSection";
 import { ActiveHabitsSection } from "@/components/daily-planning/ActiveHabitsSection";
 import { EveningReminderBanner } from "@/components/daily-planning/EveningReminderBanner";
 import BottomNavigation from "@/components/BottomNavigation";
-import { useTranslation } from "react-i18next";
-
 const DailyPlanning = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const fromExplore = location.state?.from === "explore";
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
 
   const today = new Date();
@@ -34,10 +31,10 @@ const DailyPlanning = () => {
               <div className="min-w-0 flex-1">
                 <h1 className="text-base sm:text-xl font-bold flex items-center gap-2">
                   <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                  <span className="truncate">{t("daily_planning.title")}</span>
+                  <span className="truncate">{"Pianificazione Giornaliera"}</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                  {t("daily_planning.tomorrow")}, {format(tomorrow, "EEEE, MMMM d", { locale: dateLocale })}
+                  {"Domani"}, {format(tomorrow, "EEEE, MMMM d", { locale: dateLocale })}
                 </p>
               </div>
             </div>
