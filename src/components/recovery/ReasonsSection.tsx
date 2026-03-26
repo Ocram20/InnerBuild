@@ -40,7 +40,7 @@ export function ReasonsSection() {
     try {
       const { data } = await supabase
         .from("journal_entries")
-        .selec"*"
+        .select("*")
         .eq("user_id", user.id)
         .eq("entry_date", "quit-reasons")
         .maybeSingle();
@@ -67,7 +67,7 @@ export function ReasonsSection() {
     try {
       const { data: existing } = await supabase
         .from("journal_entries")
-        .selec"id"
+        .select("id")
         .eq("user_id", user.id)
         .eq("entry_date", "quit-reasons")
         .maybeSingle();

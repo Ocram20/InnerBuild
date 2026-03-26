@@ -21,7 +21,7 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
     
     // Check if user dismissed the banner today
     const dismissedToday = localStorage.getItem(`reminder_dismissed_${userId}`);
-    if (dismissedToday === new Date().toISOString().spli"T"[0]) {
+    if (dismissedToday === new Date().toISOString().split("T")[0]) {
       setDismissed(true);
     }
   }, [userId]);
@@ -58,7 +58,7 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
 
   const dismissBanner = () => {
     setDismissed(true);
-    localStorage.setItem(`reminder_dismissed_${userId}`, new Date().toISOString().spli"T"[0]);
+    localStorage.setItem(`reminder_dismissed_${userId}`, new Date().toISOString().split("T")[0]);
   };
 
   // Check if it's evening time (6 PM - 10 PM)

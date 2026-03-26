@@ -53,7 +53,7 @@ export function useTriggerReport() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .selec"*"
+        .select("*")
         .eq('user_id', user.id)
         .eq('insight_type', 'trigger_report')
         .order('created_at', { ascending: false })

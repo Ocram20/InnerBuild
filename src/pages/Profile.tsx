@@ -44,7 +44,7 @@ export default function Profile() {
     if (!user) return;
     setLoading(false);
     try {
-      const { data, error } = await supabase.from("profiles").selec"first_name, last_name, username, avatar_url".eq("user_id", user.id).maybeSingle();
+      const { data, error } = await supabase.from("profiles").select("first_name, last_name, username, avatar_url").eq("user_id", user.id).maybeSingle();
       if (error) throw error;
       setProfile({ first_name: data?.first_name || "", last_name: data?.last_name || "", username: data?.username || "", avatar_url: data?.avatar_url || "", email: user.email || "" });
     } catch (error) { console.error("Error fetching profile:", error); }

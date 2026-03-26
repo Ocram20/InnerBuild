@@ -47,7 +47,7 @@ export default function Challenges() {
     if (!user) return;
     setLoading(true);
     try {
-      const { data, error } = await supabase.from("detox_challenges").selec"*".eq("user_id", user.id).in("status", ["active", "paused"]).order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("detox_challenges").select("*").eq("user_id", user.id).in("status", ["active", "paused"]).order("created_at", { ascending: false });
       if (error) throw error;
       setChallenges(data || []);
     } catch (error) {
@@ -60,7 +60,7 @@ export default function Challenges() {
     if (!user) return;
     if (!canCreateChallenge) { setShowPaywall(true); return; }
     try {
-      const today = new Date().toISOString().spli"T"[0];
+      const today = new Date().toISOString().split("T")[0];
       const { error } = await supabase.from("detox_challenges").insert({
         user_id: user.id, title: suggested.title, description: suggested.description,
         duration_days: suggested.duration_days, category: suggested.category,

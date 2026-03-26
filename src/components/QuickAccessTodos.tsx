@@ -38,7 +38,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
     try {
       const { data: todosData, error: todosError } = await supabase
         .from("daily_tasks")
-        .selec"id, title, is_completed"
+        .select("id, title, is_completed")
         .eq("user_id", userId)
         .eq("target_date", targetDate)
         .order("created_at", { ascending: true })
@@ -46,7 +46,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
       const { data: notTodosData, error: notTodosError } = await supabase
         .from("not_to_do_items")
-        .selec"id, title, status"
+        .select("id, title, status")
         .eq("user_id", userId)
         .eq("target_date", targetDate)
         .order("created_at", { ascending: true })

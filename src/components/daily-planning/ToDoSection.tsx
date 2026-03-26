@@ -46,7 +46,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
     
     const { data, error } = await supabase
       .from("daily_tasks")
-      .selec"*"
+      .select("*")
       .eq("user_id", userId)
       .eq("target_date", targetDate)
       .order("created_at", { ascending: true });

@@ -22,7 +22,7 @@ export function WhatsWorkingSection() {
     setLoading(true);
     try {
       const { data: insights } = await untypedTable("ai_insights")
-        .selec"*"
+        .select("*")
         .eq("user_id", user.id)
         .eq("insight_type", "whats_working")
         .order("created_at", { ascending: false })
@@ -53,7 +53,7 @@ export function WhatsWorkingSection() {
     if (!user) return;
     setGenerating(true);
     try {
-      const { data: sessionData } = await (await impor"@/integrations/supabase/client").supabase.auth.getSession();
+      const { data: sessionData } = await (await import("@/integrations/supabase/client")).supabase.auth.getSession();
       const token = sessionData.session?.access_token;
 
       const res = await fetch(

@@ -53,7 +53,7 @@ export default function Coach() {
   const loadMessages = async () => {
     if (!user) return;
     setLoadingMessages(true);
-    const { data, error } = await supabase.from("chat_messages").selec"*".eq("user_id", user.id).order("created_at", { ascending: true });
+    const { data, error } = await supabase.from("chat_messages").select("*").eq("user_id", user.id).order("created_at", { ascending: true });
     if (error) console.error("Error loading messages:", error);
     else setMessages(data.map(m => ({ id: m.id, role: m.role as "user" | "assistant", content: m.content })));
     setLoadingMessages(false);

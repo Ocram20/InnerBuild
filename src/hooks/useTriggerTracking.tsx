@@ -49,7 +49,7 @@ export function useTriggerTracking() {
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
     const { data, error } = await untypedTable("trigger_logs")
-      .selec"*"
+      .select("*")
       .eq("user_id", user.id)
       .gte("logged_at", thirtyDaysAgo.toISOString())
       .order("logged_at", { ascending: false });
@@ -66,7 +66,7 @@ export function useTriggerTracking() {
     if (!user) return;
 
     const { data, error } = await untypedTable("trigger_insights")
-      .selec"*"
+      .select("*")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
 
@@ -181,7 +181,7 @@ export function useTriggerTracking() {
 
     const result: HeatmapData[] = [];
     for (const [key, data] of Object.entries(heatmap)) {
-      const [day, hour] = key.spli"-".map(Number);
+      const [day, hour] = key.split("-").map(Number);
       result.push({
         day,
         hour,

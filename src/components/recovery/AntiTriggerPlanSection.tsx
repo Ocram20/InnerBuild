@@ -34,7 +34,7 @@ export function AntiTriggerPlanSection() {
     try {
       const { data } = await supabase
         .from("journal_entries")
-        .selec"*"
+        .select("*")
         .eq("user_id", user.id)
         .eq("entry_date", "anti-trigger-plans")
         .maybeSingle();
@@ -61,7 +61,7 @@ export function AntiTriggerPlanSection() {
     try {
       const { data: existing } = await supabase
         .from("journal_entries")
-        .selec"id"
+        .select("id")
         .eq("user_id", user.id)
         .eq("entry_date", "anti-trigger-plans")
         .maybeSingle();

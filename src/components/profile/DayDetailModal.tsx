@@ -87,15 +87,15 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
         dailyCheckInRes,
         challengeEntriesRes,
       ] = await Promise.all([
-        supabase.from("habits").selec"id, title".eq("user_id", user.id).eq("is_active", true),
-        supabase.from("habit_logs").selec"habit_id".eq("user_id", user.id).eq("completed_at", dateStr),
-        supabase.from("daily_reflections").selec"day_summary, grateful_for, lessons_learned".eq("user_id", user.id).eq("reflection_date", dateStr).maybeSingle(),
-        supabase.from("detox_challenges").selec"id, title, current_streak, status, last_check_in".eq("user_id", user.id),
-        supabase.from("recovery_checkins").selec"status, notes".eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
-        supabase.from("daily_tasks").selec"title, is_completed".eq("user_id", user.id).eq("target_date", dateStr),
-        supabase.from("not_to_do_items").selec"title, status".eq("user_id", user.id).eq("target_date", dateStr),
-        untypedTable("daily_checkins").selec"mood, energy_level".eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
-        untypedTable("challenge_daily_entries").selec"challenge_id, created_at, checkin_response, is_failure, mental_mission_completed, behavioral_mission_completed".eq("user_id", user.id),
+        supabase.from("habits").select("id, title").eq("user_id", user.id).eq("is_active", true),
+        supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("completed_at", dateStr),
+        supabase.from("daily_reflections").select("day_summary, grateful_for, lessons_learned").eq("user_id", user.id).eq("reflection_date", dateStr).maybeSingle(),
+        supabase.from("detox_challenges").select("id, title, current_streak, status, last_check_in").eq("user_id", user.id),
+        supabase.from("recovery_checkins").select("status, notes").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
+        supabase.from("daily_tasks").select("title, is_completed").eq("user_id", user.id).eq("target_date", dateStr),
+        supabase.from("not_to_do_items").select("title, status").eq("user_id", user.id).eq("target_date", dateStr),
+        untypedTable("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
+        untypedTable("challenge_daily_entries").select("challenge_id, created_at, checkin_response, is_failure, mental_mission_completed, behavioral_mission_completed").eq("user_id", user.id),
       ]);
 
       const completedHabitIds = new Set(habitLogsRes.data?.map(log => log.habit_id) || []);

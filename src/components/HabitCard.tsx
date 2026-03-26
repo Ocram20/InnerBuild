@@ -34,7 +34,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
     
     setIsLoading(true);
     try {
-      const today = new Date().toISOString().spli"T"[0];
+      const today = new Date().toISOString().split("T")[0];
       
       if (habit.completed_today) {
         // Remove completion

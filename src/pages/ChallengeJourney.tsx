@@ -55,7 +55,7 @@ export default function ChallengeJourney() {
 
     const { data, error } = await supabase
       .from("detox_challenges")
-      .selec"*"
+      .select("*")
       .eq("id", id)
       .eq("user_id", user.id)
       .single();
@@ -77,7 +77,7 @@ export default function ChallengeJourney() {
     if (!id) return;
 
     const { data } = await untypedTable("challenge_daily_entries")
-      .selec"*"
+      .select("*")
       .eq("challenge_id", id)
       .order("day_number", { ascending: true });
 
@@ -91,7 +91,7 @@ export default function ChallengeJourney() {
     // current_streak = number of successful check-ins = last completed day
     // The "current day" to show/work on is current_streak + 1 (the next day)
     // But if already checked in today, current day = current_streak (show completed day)
-    const today = new Date().toISOString().spli"T"[0];
+    const today = new Date().toISOString().split("T")[0];
     const checkedInToday = ch.last_check_in === today;
     return checkedInToday ? ch.current_streak : ch.current_streak + 1;
   }, []);
@@ -189,7 +189,7 @@ export default function ChallengeJourney() {
 
   const handleReset = async () => {
     if (!challenge) return;
-    const today = new Date().toISOString().spli"T"[0];
+    const today = new Date().toISOString().split("T")[0];
     await supabase
       .from("detox_challenges")
       .update({

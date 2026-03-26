@@ -73,7 +73,7 @@ export default function Dashboard() {
 
   const fetchProfile = async () => {
     if (!user) return;
-    const { data } = await supabase.from("profiles").selec"first_name".eq("user_id", user.id).single();
+    const { data } = await supabase.from("profiles").select("first_name").eq("user_id", user.id).single();
     if (data?.first_name) setFirstName(data.first_name);
   };
 
@@ -95,11 +95,11 @@ export default function Dashboard() {
     if (!silent) setLoading(true);
     try {
       const today = format(new Date(), "yyyy-MM-dd");
-      const { data: habitsData } = await supabase.from("habits").selec"*".eq("user_id", user.id).eq("is_active", true).order("created_at", { ascending: false });
-      const { data: logsData } = await supabase.from("habit_logs").selec"habit_id".eq("user_id", user.id).eq("completed_at", today);
+      const { data: habitsData } = await supabase.from("habits").select("*").eq("user_id", user.id).eq("is_active", true).order("created_at", { ascending: false });
+      const { data: logsData } = await supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("completed_at", today);
       const completedIds = new Set(logsData?.map(l => l.habit_id) || []);
       setHabits((habitsData || []).map(h => ({ ...h, completed_today: completedIds.has(h.id) })));
-      const { data: challengesData } = await supabase.from("detox_challenges").selec"*".eq("user_id", user.id).eq("status", "active").order("created_at", { ascending: false }).limit(3);
+      const { data: challengesData } = await supabase.from("detox_challenges").select("*").eq("user_id", user.id).eq("status", "active").order("created_at", { ascending: false }).limit(3);
       setChallenges(challengesData || []);
     } catch (error) {
       console.error("Error fetching data:", error);

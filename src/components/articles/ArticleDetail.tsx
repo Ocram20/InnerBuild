@@ -84,7 +84,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
         <Separator />
 
         <div className="space-y-4">
-          {article.content.spli"\\n\\n".map((block, index) => {
+          {article.content.split("\\n\\n").map((block, index) => {
             const trimmed = block.trim();
             
             if (trimmed.startsWith('## ')) {
@@ -111,10 +111,10 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
               );
             }
 
-            if (trimmed.spli"\\n".every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
+            if (trimmed.split("\\n").every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
               return (
                 <ul key={index} className="list-disc pl-5 space-y-1 text-foreground/90 leading-relaxed text-sm">
-                  {trimmed.spli"\\n".filter(l => l.trim()).map((item, i) => (
+                  {trimmed.split("\\n").filter(l => l.trim()).map((item, i) => (
                     <li key={i}>{item.replace(/^[\-\*]\s*/, '')}</li>
                   ))}
                 </ul>

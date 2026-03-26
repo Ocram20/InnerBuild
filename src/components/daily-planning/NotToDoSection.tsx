@@ -41,7 +41,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
     
     const { data, error } = await supabase
       .from("not_to_do_items")
-      .selec"*"
+      .select("*")
       .eq("user_id", userId)
       .eq("target_date", targetDate)
       .order("created_at", { ascending: true });

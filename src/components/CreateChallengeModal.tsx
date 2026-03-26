@@ -56,7 +56,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
     if (!canCreateChallenge) { setShowPaywall(true); return; }
     setIsLoading(true);
     try {
-      const today = new Date().toISOString().spli"T"[0];
+      const today = new Date().toISOString().split("T")[0];
       const filteredSteps = dailySteps.filter(s => s.trim());
       const { error } = await supabase.from("detox_challenges").insert({ user_id: user.id, title: title.trim(), description: description.trim() || null, duration_days: duration, category, daily_steps: filteredSteps.length > 0 ? filteredSteps : null, start_date: today });
       if (error) throw error;

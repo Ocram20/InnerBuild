@@ -78,7 +78,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
     
     setIsLoading(true);
     try {
-      const today = new Date().toISOString().spli"T"[0];
+      const today = new Date().toISOString().split("T")[0];
       
       if (habit.completed_today) {
         await supabase
@@ -163,7 +163,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
           {habit.completed_today ? (
             <Check className="h-5 w-5 text-primary-foreground" />
           ) : (
-            <Icon className={`h-5 w-5 ${colorClass.spli" "[0]}`} />
+            <Icon className={`h-5 w-5 ${colorClass.split(" ")[0]}`} />
           )}
         </button>
         

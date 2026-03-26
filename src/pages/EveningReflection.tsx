@@ -44,7 +44,7 @@ const EveningReflectionPage = () => {
     if (!user) return;
     setLoading(true);
     try {
-      const { data, error } = await untypedTable("daily_checkins").selec"mood, energy_level".eq("user_id", user.id).eq("checkin_date", todayStr).maybeSingle();
+      const { data, error } = await untypedTable("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", todayStr).maybeSingle();
       if (error) throw error;
       if (data) { setMood(data.mood); setEnergyLevel([data.energy_level]); setCheckedIn(true); }
     } catch (error) { console.error("Error loading check-in:", error); }

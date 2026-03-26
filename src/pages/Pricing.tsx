@@ -27,10 +27,10 @@ export default function Pricing() {
   ];
 
   useEffect(() => {
-    if (searchParams.ge"success" === "true") {
+    if (searchParams.get("success") === "true") {
       toast({ title: "Benvenuto su InnerBuild Premium!", description: "Il tuo abbonamento è ora attivo. Buon utilizzo!" });
       navigate("/dashboard", { replace: true });
-    } else if (searchParams.ge"canceled" === "true") {
+    } else if (searchParams.get("canceled") === "true") {
       toast({ title: "Checkout annullato", description: "Nessun problema - puoi abbonarti in qualsiasi momento." });
     }
   }, [searchParams, toast, navigate, t]);

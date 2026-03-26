@@ -45,7 +45,7 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
   const [isLoading, setIsLoading] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
 
-  const today = new Date().toISOString().spli"T"[0];
+  const today = new Date().toISOString().split("T")[0];
   const checkedInToday = challenge.last_check_in === today;
   const currentDay = challenge.current_streak;
   const progressPercent = Math.min((currentDay / challenge.duration_days) * 100, 100);

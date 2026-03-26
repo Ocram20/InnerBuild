@@ -71,7 +71,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       if (!user) return;
       const { data } = await supabase
         .from("profiles")
-        .selec"username_changed_at"
+        .select("username_changed_at")
         .eq("user_id", user.id)
         .maybeSingle();
       
@@ -114,7 +114,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     setUploading(true);
     try {
-      const fileExt = file.name.spli".".pop();
+      const fileExt = file.name.split(".").pop();
       const filePath = `${user.id}/avatar.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage

@@ -43,7 +43,7 @@ export function useHabitReport() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .selec"*"
+        .select("*")
         .eq('user_id', user.id)
         .eq('insight_type', 'habit_report')
         .order('created_at', { ascending: false })

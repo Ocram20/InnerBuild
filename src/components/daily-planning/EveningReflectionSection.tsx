@@ -48,7 +48,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
 
     const { data, error } = await supabase
       .from("daily_reflections")
-      .selec"*"
+      .select("*")
       .eq("user_id", userId)
       .eq("reflection_date", reflectionDate)
       .maybeSingle();

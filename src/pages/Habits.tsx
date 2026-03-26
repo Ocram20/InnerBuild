@@ -56,19 +56,19 @@ export default function Habits() {
     if (!user) return;
     setLoading(true);
     try {
-      const today = new Date().toISOString().spli"T"[0];
+      const today = new Date().toISOString().split("T")[0];
       const startOfWeek = new Date();
       startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-      const weekStart = startOfWeek.toISOString().spli"T"[0];
+      const weekStart = startOfWeek.toISOString().split("T")[0];
 
       const { data: habitsData, error: habitsError } = await supabase
-        .from("habits").selec"*".eq("user_id", user.id).eq("is_active", true).order("created_at", { ascending: false });
+        .from("habits").select("*").eq("user_id", user.id).eq("is_active", true).order("created_at", { ascending: false });
       if (habitsError) throw habitsError;
 
-      const { data: todayLogs } = await supabase.from("habit_logs").selec"habit_id".eq("user_id", user.id).eq("completed_at", today);
+      const { data: todayLogs } = await supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("completed_at", today);
       const todayCompletedIds = new Set(todayLogs?.map(l => l.habit_id) || []);
 
-      const { data: weeklyLogs } = await supabase.from("habit_logs").selec"habit_id, completed_at".eq("user_id", user.id).gte("completed_at", weekStart).lte("completed_at", today);
+      const { data: weeklyLogs } = await supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", weekStart).lte("completed_at", today);
       const weeklyProgressMap: Record<string, number> = {};
       weeklyLogs?.forEach(log => { weeklyProgressMap[log.habit_id] = (weeklyProgressMap[log.habit_id] || 0) + 1; });
 
@@ -78,7 +78,7 @@ export default function Habits() {
           let streak = 0;
           let checkDate = new Date();
           for (let i = 0; i < 30; i++) {
-            const dateStr = checkDate.toISOString().spli"T"[0];
+            const dateStr = checkDate.toISOString().split("T")[0];
             const hasLog = weeklyLogs?.some(l => l.habit_id === habit.id && l.completed_at === dateStr);
             if (hasLog || (i === 0 && !todayCompletedIds.has(habit.id))) {
               if (hasLog) streak++;

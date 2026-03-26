@@ -37,7 +37,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
     // Fetch active habits
     const { data: habitsData, error: habitsError } = await supabase
       .from("habits")
-      .selec"*"
+      .select("*")
       .eq("user_id", userId)
       .eq("is_active", true)
       .order("created_at", { ascending: true });
@@ -51,7 +51,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
     // Fetch logs for target date
     const { data: logsData } = await supabase
       .from("habit_logs")
-      .selec"habit_id"
+      .select("habit_id")
       .eq("user_id", userId)
       .eq("completed_at", targetDate);
 

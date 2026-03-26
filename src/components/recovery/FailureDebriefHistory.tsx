@@ -64,7 +64,7 @@ export function FailureDebriefHistory({
                             </span>
                             {debrief.mood && (
                               <span className="text-sm">
-                                {t(`failure_debrief.moods.${debrief.mood}`, "").spli" "[0] || debrief.mood}
+                                {t(`failure_debrief.moods.${debrief.mood}`, "").split(" ")[0] || debrief.mood}
                               </span>
                             )}
                           </div>

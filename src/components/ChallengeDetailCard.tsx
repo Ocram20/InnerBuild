@@ -81,7 +81,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const today = new Date().toISOString().spli"T"[0];
+  const today = new Date().toISOString().split("T")[0];
   const checkedInToday = challenge.last_check_in === today;
   // Day is based on check-in count, not calendar
   const currentDay = challenge.current_streak;

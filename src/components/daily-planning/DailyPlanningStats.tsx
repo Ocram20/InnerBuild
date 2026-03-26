@@ -54,12 +54,12 @@ export function DailyPlanningStats({ userId }: DailyPlanningStatsProps) {
     try {
       const { data: tasks } = await supabase
         .from("daily_tasks")
-        .selec"is_completed, target_date"
+        .select("is_completed, target_date")
         .eq("user_id", userId);
 
       const { data: reflections } = await supabase
         .from("daily_reflections")
-        .selec"reflection_date"
+        .select("reflection_date")
         .eq("user_id", userId);
 
       const tasksCompleted = (tasks || []).filter(t => t.is_completed).length;

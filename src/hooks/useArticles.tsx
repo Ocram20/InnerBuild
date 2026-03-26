@@ -41,7 +41,7 @@ export function useArticles() {
     queryKey: ["articles", i18n.language],
     queryFn: async () => {
       const { data, error } = await untypedTable("articles")
-        .selec"*"
+        .select("*")
         .order("published_at", { ascending: false });
 
       if (error) throw error;
@@ -57,7 +57,7 @@ export function useArticle(id: string | undefined) {
       if (!id) return null;
       
       const { data, error } = await untypedTable("articles")
-        .selec"*"
+        .select("*")
         .eq("id", id)
         .single();
 

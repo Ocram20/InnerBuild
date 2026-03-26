@@ -73,15 +73,15 @@ export function ActivityCalendar() {
         dailyCheckInsRes,
         challengeEntriesRes,
       ] = await Promise.all([
-        supabase.from("habits").selec"id".eq("user_id", user.id).eq("is_active", true),
-        supabase.from("habit_logs").selec"habit_id, completed_at".eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
-        supabase.from("daily_reflections").selec"reflection_date".eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
-        supabase.from("daily_tasks").selec"target_date".eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("not_to_do_items").selec"target_date".eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("detox_challenges").selec"last_check_in, status".eq("user_id", user.id).eq("status", "active"),
-        supabase.from("recovery_checkins").selec"checkin_date, status".eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        untypedTable("daily_checkins").selec"checkin_date".eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
-        untypedTable("challenge_daily_entries").selec"created_at, checkin_response, is_failure".eq("user_id", user.id),
+        supabase.from("habits").select("id").eq("user_id", user.id).eq("is_active", true),
+        supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
+        supabase.from("daily_reflections").select("reflection_date").eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
+        supabase.from("daily_tasks").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
+        supabase.from("not_to_do_items").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
+        supabase.from("detox_challenges").select("last_check_in, status").eq("user_id", user.id).eq("status", "active"),
+        supabase.from("recovery_checkins").select("checkin_date, status").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
+        untypedTable("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
+        untypedTable("challenge_daily_entries").select("created_at, checkin_response, is_failure").eq("user_id", user.id),
       ]);
 
       const totalHabits = habitsRes.data?.length || 0;

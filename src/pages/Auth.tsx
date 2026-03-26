@@ -36,7 +36,7 @@ export default function Auth() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const mode = params.ge"mode";
+    const mode = params.get("mode");
     if (mode === "signup") {
       setIsLogin(false);
     }
