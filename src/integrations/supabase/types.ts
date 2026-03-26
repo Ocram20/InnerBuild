@@ -343,6 +343,56 @@ export type Database = {
         }
         Relationships: []
       }
+      failure_debriefs: {
+        Row: {
+          action_plan: string | null
+          ai_suggestions: Json | null
+          created_at: string
+          id: string
+          journey_id: string | null
+          lesson_learned: string | null
+          mood: string | null
+          trigger_description: string | null
+          updated_at: string
+          user_id: string
+          what_happened: string | null
+        }
+        Insert: {
+          action_plan?: string | null
+          ai_suggestions?: Json | null
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          lesson_learned?: string | null
+          mood?: string | null
+          trigger_description?: string | null
+          updated_at?: string
+          user_id: string
+          what_happened?: string | null
+        }
+        Update: {
+          action_plan?: string | null
+          ai_suggestions?: Json | null
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          lesson_learned?: string | null
+          mood?: string | null
+          trigger_description?: string | null
+          updated_at?: string
+          user_id?: string
+          what_happened?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "failure_debriefs_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "recovery_journey"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       habit_logs: {
         Row: {
           completed_at: string
@@ -566,6 +616,7 @@ export type Database = {
       recovery_journey: {
         Row: {
           created_at: string
+          current_streak: number
           id: string
           is_active: boolean
           started_at: string
@@ -574,6 +625,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          current_streak?: number
           id?: string
           is_active?: boolean
           started_at?: string
@@ -582,6 +634,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          current_streak?: number
           id?: string
           is_active?: boolean
           started_at?: string
@@ -627,6 +680,7 @@ export type Database = {
           id: string
           impulse_intensity: number | null
           location: string | null
+          location_context: string | null
           logged_at: string
           notes: string | null
           time_context: string | null
@@ -638,6 +692,7 @@ export type Database = {
           id?: string
           impulse_intensity?: number | null
           location?: string | null
+          location_context?: string | null
           logged_at?: string
           notes?: string | null
           time_context?: string | null
@@ -649,6 +704,7 @@ export type Database = {
           id?: string
           impulse_intensity?: number | null
           location?: string | null
+          location_context?: string | null
           logged_at?: string
           notes?: string | null
           time_context?: string | null
