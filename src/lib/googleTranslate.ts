@@ -8,7 +8,7 @@ declare global {
   interface Window {
     google?: {
       translate: {
-        TranslateElement: new (options: unknown, elementId: string) => void;
+        TranslateElement: new (options: any, elementId: string) => void;
       };
     };
     googleTranslateElementInit?: () => void;

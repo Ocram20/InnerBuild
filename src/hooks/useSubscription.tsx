@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
+import { getPreferredTranslationLanguage } from "@/lib/googleTranslate";
 
 interface SubscriptionStatus {
   subscribed: boolean;
@@ -29,7 +30,6 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
       return;
     }
 
-    // Wait for auth to finish loading before checking subscription
     if (authLoading) {
       return;
     }
@@ -62,7 +62,6 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
         },
       });
 
-      // Handle auth errors gracefully - user might have logged out or session expired
       if (error) {
         console.warn("Subscription check failed:", error);
         setSubscription({ subscribed: false, status: "free" });
@@ -72,7 +71,6 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
       setSubscription(data);
     } catch (error) {
       console.warn("Error checking subscription:", error);
-      // Default to free on error so user isn't stuck
       setSubscription({ subscribed: false, status: "free" });
     } finally {
       setLoading(false);
@@ -86,6 +84,7 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
 
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { locale: getPreferredTranslationLanguage() },
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },

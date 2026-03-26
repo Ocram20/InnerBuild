@@ -16,6 +16,9 @@ const jsonHeaders = {
   "Content-Type": "application/json",
 };
 
+const supportedLocales = ["it", "en", "de", "fr", "es", "ru", "ro"] as const;
+type SupportedLocale = (typeof supportedLocales)[number];
+
 const getRequiredEnv = (name: string) => {
   const value = Deno.env.get(name)?.trim();
   if (!value) {
@@ -36,12 +39,21 @@ const createStripeClient = () => {
   });
 };
 
+const getStripeLocale = (locale: unknown): SupportedLocale | "auto" => {
+  return typeof locale === "string" && supportedLocales.includes(locale as SupportedLocale)
+    ? (locale as SupportedLocale)
+    : "auto";
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    const requestBody = await req.json().catch(() => ({}));
+    const checkoutLocale = getStripeLocale(requestBody?.locale);
+
     const supabaseUrl = getRequiredEnv("SUPABASE_URL");
     const supabaseAnonKey = getRequiredEnv("SUPABASE_ANON_KEY");
 
@@ -149,6 +161,7 @@ serve(async (req) => {
       customer: customerId,
       line_items: [{ price: price.id, quantity: 1 }],
       mode: "subscription",
+      locale: checkoutLocale,
       success_url: `${baseUrl}/dashboard?success=true`,
       cancel_url: `${baseUrl}/pricing?canceled=true`,
     });
