@@ -11,7 +11,6 @@ import {
   Zap,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
 export interface SuggestedChallenge {
   id: string;
   title: string;
@@ -47,7 +46,6 @@ const challengeTemplates: ChallengeTemplate[] = [
 ];
 
 function useSuggestedChallenges(): SuggestedChallenge[] {
-  const { t } = useTranslation();
   return challengeTemplates.map((tmpl) => ({
     ...tmpl,
     title: t(`suggested_challenges_content.${tmpl.id}.title`),
@@ -77,7 +75,6 @@ const categoryColors = {
 };
 
 export default function SuggestedChallengesList({ category, onStartChallenge, disabled }: SuggestedChallengesListProps) {
-  const { t } = useTranslation();
   const suggestedChallenges = useSuggestedChallenges();
 
   const filteredChallenges = category === "all" 
@@ -117,11 +114,11 @@ export default function SuggestedChallengesList({ category, onStartChallenge, di
                 <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    {t("suggested_challenges.days", { count: challenge.duration_days })}
+                    {`${challenge.duration_days} giorni`}
                   </span>
                   <span className="flex items-center gap-1">
                     <Users className="h-3 w-3" />
-                    {t("suggested_challenges.joined", { count: challenge.participants })}
+                    {`${challenge.participants} iscritti`}
                   </span>
                 </div>
               </div>

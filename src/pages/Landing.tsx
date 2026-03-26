@@ -35,16 +35,15 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 export default function Landing() {
+  const { t } = useTranslation();
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const isFirstLoad = useFirstLoad();
-  const { t } = useTranslation();
-
   useEffect(() => {
     if (!loading && user && isFirstLoad) {
       navigate("/dashboard", { replace: true });
@@ -72,62 +71,62 @@ export default function Landing() {
   const mainFeatures = [
     {
       icon: Target,
-      title: t("landing.features.smart_habit_tracking"),
-      description: t("landing.features.smart_habit_desc"),
+      title: "Tracciamento Abitudini Smart",
+      description: "Traccia le abitudini quotidiane con progressi visivi, serie e suggerimenti AI intelligenti che si adattano ai tuoi schemi reali.",
       color: "text-emerald-500",
       bgColor: "bg-emerald-500/10",
     },
     {
       icon: Flame,
-      title: t("landing.features.detox_challenges"),
-      description: t("landing.features.detox_challenges_desc"),
+      title: "Sfide Detox",
+      description: "Liberati dalla dipendenza digitale, dalle cattive abitudini e dai pattern negativi con sfide basate sulla scienza (da 3 a 90 giorni).",
       color: "text-orange-500",
       bgColor: "bg-orange-500/10",
     },
     {
       icon: Eye,
-      title: t("landing.features.porn_recovery"),
-      description: t("landing.features.porn_recovery_desc"),
+      title: "Programma Porn Recovery",
+      description: "Un programma dedicato e basato sulla scienza con tracciamento serie, check-in giornalieri, analisi trigger e supporto specializzato.",
       color: "text-violet-500",
       bgColor: "bg-violet-500/10",
     },
     {
       icon: Bot,
-      title: t("landing.features.ai_coach"),
-      description: t("landing.features.ai_coach_desc"),
+      title: "Coach AI Personale",
+      description: "Compagno AI disponibile 24/7 che ti motiva, suggerisce abitudini personalizzate, aiuta con le voglie e guida la tua trasformazione.",
       color: "text-primary",
       bgColor: "bg-primary/10",
     },
     {
       icon: ShieldAlert,
-      title: t("landing.features.trigger_tracking"),
-      description: t("landing.features.trigger_tracking_desc"),
+      title: "Tracciamento & Analisi Trigger",
+      description: "Registra e analizza cosa scatena i tuoi impulsi. Identifica pattern e ottieni insight AI per costruire difese più forti.",
       color: "text-rose-500",
       bgColor: "bg-rose-500/10",
     },
     {
       icon: CalendarCheck,
-      title: t("landing.features.daily_planning"),
-      description: t("landing.features.daily_planning_desc"),
+      title: "Pianificazione & Riflessione Quotidiana",
+      description: "Pianifica la tua giornata con liste di cose da fare e da non fare. Concludi ogni giorno con gratitudine, check-in dell'umore e auto-riflessione.",
       color: "text-indigo-500",
       bgColor: "bg-indigo-500/10",
     },
   ];
 
   const additionalFeatures = [
-    { icon: Brain, title: t("landing.features.ai_habit_adaptation"), description: t("landing.features.ai_habit_adaptation_desc") },
-    { icon: BookOpen, title: t("landing.features.learn_section"), description: t("landing.features.learn_section_desc") },
-    { icon: Shield, title: t("landing.features.streak_tracking"), description: t("landing.features.streak_tracking_desc") },
-    { icon: Zap, title: t("landing.features.micro_actions"), description: t("landing.features.micro_actions_desc") },
-    { icon: Ban, title: t("landing.features.not_to_do_list"), description: t("landing.features.not_to_do_desc") },
-    { icon: Clock, title: t("landing.features.recovery_timeline"), description: t("landing.features.recovery_timeline_desc") },
+    { icon: Brain, title: "Adattamento Abitudini AI", description: "Suggerisce versioni più facili quando fai fatica" },
+    { icon: BookOpen, title: "Sezione Impara", description: "Educazione su dopamina e ricablaggio cerebrale" },
+    { icon: Shield, title: "Tracciamento Serie", description: "Progressi visivi e traguardi" },
+    { icon: Zap, title: "Micro-Azioni", description: "Piccole vittorie quotidiane in pochi secondi" },
+    { icon: Ban, title: "Lista Non-Fare", description: "Traccia i comportamenti da evitare" },
+    { icon: Clock, title: "Timeline Recovery", description: "Vedi i progressi di guarigione del cervello" },
   ];
 
   const stats = [
-    { value: "90+", label: t("landing.stats.recovery_days") },
-    { value: "50+", label: t("landing.stats.suggested_habits") },
-    { value: "12+", label: t("landing.stats.challenge_templates") },
-    { value: "24/7", label: t("landing.stats.ai_coach_available") },
+    { value: "90+", label: "Giorni di contenuti recovery" },
+    { value: "50+", label: "Abitudini suggerite" },
+    { value: "12+", label: "Template sfide" },
+    { value: "24/7", label: "Coach AI disponibile" },
   ];
 
   return (
@@ -157,7 +156,7 @@ export default function Landing() {
                 onClick={() => navigate("/dashboard")}
                 className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
               >
-                {t("landing.dashboard")}
+                {"Dashboard"}
               </Button>
             ) : (
               <>
@@ -166,13 +165,13 @@ export default function Landing() {
                   onClick={() => navigate("/auth")}
                   className="hidden sm:inline-flex hover:bg-muted transition-all duration-300 text-xs md:text-sm px-2 md:px-3 h-9 md:h-10"
                 >
-                  {t("auth.sign_in")}
+                  {"Accedi"}
                 </Button>
                 <Button
                   onClick={() => navigate("/auth?mode=signup")}
                   className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
                 >
-                  {t("landing.get_started")}
+                  {"Inizia Ora"}
                 </Button>
               </>
             )}
@@ -186,19 +185,19 @@ export default function Landing() {
           <ScrollReveal className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm">
               <Sparkles className="h-4 w-4 mr-2" />
-              {t("landing.your_companion")}
+              {"Il tuo compagno completo per la crescita personale"}
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-6">
-              {t("landing.hero_title_1")}{" "}
+              {"Costruisci la vita che meriti,"}{" "}
               <span className="relative inline-block">
-                <span className="text-primary">{t("landing.hero_title_2")}</span>
+                <span className="text-primary">{"un'abitudine alla volta"}</span>
                 <span className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full animate-underline-slide"></span>
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {t("landing.hero_description")}
+              {"InnerBuild combina tracciamento abitudini, sfide detox, strumenti di recovery e un coach AI per aiutarti a liberarti da ciò che ti trattiene e diventare la versione migliore di te."}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -207,7 +206,7 @@ export default function Landing() {
                 onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
                 className="gradient-primary text-primary-foreground rounded-xl h-14 px-8 text-lg shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                {t("landing.start_your_journey")}
+                {"Inizia il Tuo Percorso"}
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
@@ -216,7 +215,7 @@ export default function Landing() {
                 onClick={() => navigate("/pricing")}
                 className="rounded-xl h-14 px-8 text-lg hover:bg-muted transition-all duration-300 hover:scale-105 active:scale-95 border-primary/20 hover:border-primary/50"
               >
-                {t("landing.view_pricing")}
+                {"Vedi Prezzi"}
               </Button>
             </div>
           </ScrollReveal>
@@ -227,10 +226,10 @@ export default function Landing() {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {t("landing.everything_transform")}
+                {"Tutto ciò che serve per trasformarti"}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t("landing.complete_toolkit")}
+                {"Un toolkit completo progettato per supportare il tuo percorso dal primo giorno"}
               </p>
             </ScrollReveal>
 
@@ -258,7 +257,7 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {t("common.swipe_explore")} <span>→</span>
+                <span>←</span> {"scorri per esplorare"} <span>→</span>
               </p>
             </ScrollReveal>
 
@@ -290,7 +289,7 @@ export default function Landing() {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {t("landing.and_more")}
+                {"E molto altro ancora"}
               </h2>
             </ScrollReveal>
 
@@ -330,8 +329,8 @@ export default function Landing() {
         <section className="px-4 py-16 bg-muted/30">
           <div className="max-w-5xl mx-auto">
             <ScrollReveal className="text-center mb-12">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{t("landing.testimonials")}</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t("landing.real_people")}</h2>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{"Testimonianze"}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{"Persone reali, progressi reali"}</h2>
             </ScrollReveal>
 
             {/* Mobile: swipeable carousel — Desktop: grid */}
@@ -339,12 +338,12 @@ export default function Landing() {
               <Carousel opts={{ align: "center", loop: true }}>
                 <CarouselContent>
                   {[
-                    { stars: 5, quote: t("landing.testimonials_data.t1"), author: "Marco B." },
-                    { stars: 5, quote: t("landing.testimonials_data.t2"), author: "Sara L." },
-                    { stars: 5, quote: t("landing.testimonials_data.t3"), author: "Luca M." },
-                    { stars: 4, quote: t("landing.testimonials_data.t4"), author: "Alex R." },
-                    { stars: 5, quote: t("landing.testimonials_data.t5"), author: "Davide F." },
-                    { stars: 4, quote: t("landing.testimonials_data.t6"), author: "Giulia T." },
+                    { stars: 5, quote: "Il coach AI è come avere un terapeuta in tasca. Mi ha davvero aiutato a capire perché continuavo a ricadere.", author: "Marco B." },
+                    { stars: 5, quote: "Finalmente un'app che tratta il recovery seriamente con la scienza, non solo con la forza di volontà. La sezione sulla scienza del cervello ha cambiato la mia prospettiva.", author: "Sara L." },
+                    { stars: 5, quote: "Il tracciamento dei trigger mi ha aiutato a notare pattern che non avevo mai visto prima. Ora posso davvero anticipare i giorni difficili.", author: "Luca M." },
+                    { stars: 4, quote: "Ho provato molte app per le abitudini. Questa funziona perché la pianificazione giornaliera è naturale, non un peso.", author: "Alex R." },
+                    { stars: 5, quote: "58 giorni pulito. Il tracciamento delle serie mi ha tenuto responsabile anche quando diventa difficile.", author: "Davide F." },
+                    { stars: 4, quote: "Le sfide detox sono ben strutturate. Ho fatto il detox social media di 30 giorni e mi sono sentito davvero più calmo dopo due settimane.", author: "Giulia T." },
                   ].map((review, index) => (
                     <CarouselItem key={index} className="basis-[85%]">
                       <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
@@ -361,19 +360,19 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {t("common.swipe_read_more")} <span>→</span>
+                <span>←</span> {"scorri per leggere"} <span>→</span>
               </p>
             </ScrollReveal>
 
             {/* Desktop: grid layout */}
             <div className="hidden md:grid md:grid-cols-3 gap-6">
               {[
-                { stars: 5, quote: t("landing.testimonials_data.t1"), author: "Marco B." },
-                { stars: 5, quote: t("landing.testimonials_data.t2"), author: "Sara L." },
-                { stars: 5, quote: t("landing.testimonials_data.t3"), author: "Luca M." },
-                { stars: 4, quote: t("landing.testimonials_data.t4"), author: "Alex R." },
-                { stars: 5, quote: t("landing.testimonials_data.t5"), author: "Davide F." },
-                { stars: 4, quote: t("landing.testimonials_data.t6"), author: "Giulia T." },
+                { stars: 5, quote: "Il coach AI è come avere un terapeuta in tasca. Mi ha davvero aiutato a capire perché continuavo a ricadere.", author: "Marco B." },
+                { stars: 5, quote: "Finalmente un'app che tratta il recovery seriamente con la scienza, non solo con la forza di volontà. La sezione sulla scienza del cervello ha cambiato la mia prospettiva.", author: "Sara L." },
+                { stars: 5, quote: "Il tracciamento dei trigger mi ha aiutato a notare pattern che non avevo mai visto prima. Ora posso davvero anticipare i giorni difficili.", author: "Luca M." },
+                { stars: 4, quote: "Ho provato molte app per le abitudini. Questa funziona perché la pianificazione giornaliera è naturale, non un peso.", author: "Alex R." },
+                { stars: 5, quote: "58 giorni pulito. Il tracciamento delle serie mi ha tenuto responsabile anche quando diventa difficile.", author: "Davide F." },
+                { stars: 4, quote: "Le sfide detox sono ben strutturate. Ho fatto il detox social media di 30 giorni e mi sono sentito davvero più calmo dopo due settimane.", author: "Giulia T." },
               ].map((review, index) => (
                 <ScrollReveal key={index} delay={index * 80} variant="scale">
                   <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
@@ -397,15 +396,15 @@ export default function Landing() {
             <ScrollReveal className="text-center mb-4">
               <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
                 <Crown className="h-3.5 w-3.5 mr-2 text-accent" />
-                {t("common.premium")}
+                {"Premium"}
               </Badge>
             </ScrollReveal>
             <ScrollReveal className="text-center mb-14" delay={100}>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {t("landing.tools_change_lives")}
+                {"Strumenti che cambiano davvero la vita"}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-                {t("landing.tools_description")}
+                {"Non sono solo funzionalità. Sono gli strumenti che fanno la differenza tra provare e trasformarsi davvero."}
               </p>
             </ScrollReveal>
 
@@ -421,12 +420,12 @@ export default function Landing() {
                           <Eye className="h-6 w-6 text-violet-500" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
-                          <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
+                          <h3 className="text-lg font-bold text-foreground">{"Programma Porn Recovery"}</h3>
+                          <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{"Più Impattante"}</Badge>
                         </div>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.porn_recovery_mobile_desc")}
+                        {"Basato sulle neuroscienze — capisci perché il tuo cervello si è agganciato e ricablalo passo dopo passo."}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.porn_recovery_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -445,10 +444,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center flex-shrink-0">
                           <BarChart3 className="h-6 w-6 text-rose-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.trigger_tracking")}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{"Tracciamento & Analisi Trigger"}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.trigger_tracking_mobile_desc")}
+                        {"Le ricadute sembrano casuali — ma non lo sono. Rivela pattern nascosti e ottieni report AI per prevedere e prevenire."}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.trigger_tracking_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -467,10 +466,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <Bot className="h-6 w-6 text-primary" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_coach")}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{"Coach AI Personale"}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.ai_coach_mobile_desc")}
+                        {"Un coach disponibile alle 3 di notte quando arriva una voglia. Non giudica — ti guida e ti fa andare avanti."}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.ai_coach_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -489,10 +488,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                           <BookOpen className="h-6 w-6 text-indigo-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.learn_section")}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{"Sezione Impara"}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.learn_mobile_desc")}
+                        {"La scienza dietro le abitudini, la dopamina e il recupero cerebrale. La conoscenza rende ogni sforzo significativo."}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.learn_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -511,10 +510,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                           <Brain className="h-6 w-6 text-emerald-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_habit_adaptation")}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{"Adattamento Abitudini AI"}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.habit_adaptation_mobile_desc")}
+                        {"L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti."}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.habit_adaptation_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -528,7 +527,7 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {t("common.swipe_explore")} <span>→</span>
+                <span>←</span> {"scorri per esplorare"} <span>→</span>
               </p>
             </ScrollReveal>
 
@@ -543,11 +542,11 @@ export default function Landing() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
-                        <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
+                        <h3 className="text-xl font-bold text-foreground">{"Programma Porn Recovery"}</h3>
+                        <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{"Più Impattante"}</Badge>
                       </div>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {t("landing.premium_deep_dive.porn_recovery_desc")}
+                        {"Non si tratta di forza di volontà. Il programma è basato sulle neuroscienze — ti aiuta a capire esattamente perché il tuo cervello si è agganciato, e come ricablarlo passo dopo passo."}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.porn_recovery_features", { returnObjects: true }) as string[]).map((item) => (
@@ -569,9 +568,9 @@ export default function Landing() {
                       <BarChart3 className="h-7 w-7 text-rose-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.trigger_tracking")}</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{"Tracciamento & Analisi Trigger"}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {t("landing.premium_deep_dive.trigger_tracking_desc")}
+                        {"La maggior parte delle ricadute sembra casuale — ma non lo è. Il Tracciamento Trigger rivela i pattern nascosti dietro i tuoi momenti peggiori."}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.trigger_tracking_features", { returnObjects: true }) as string[]).map((item) => (
@@ -593,9 +592,9 @@ export default function Landing() {
                       <Bot className="h-7 w-7 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.ai_coach")}</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{"Coach AI Personale"}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {t("landing.premium_deep_dive.ai_coach_desc")}
+                        {"Immagina di avere un coach che conosce le tue abitudini, le tue difficoltà e i tuoi obiettivi — disponibile alle 3 di notte quando arriva una voglia."}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.ai_coach_features", { returnObjects: true }) as string[]).map((item) => (
@@ -618,9 +617,9 @@ export default function Landing() {
                         <BookOpen className="h-6 w-6 text-indigo-500" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.learn_section")}</h3>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{"Sezione Impara"}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                          {t("landing.premium_deep_dive.learn_desc")}
+                          {"Comprendi la scienza dietro le tue abitudini, la dopamina e il recupero cerebrale."}
                         </p>
                         <div className="space-y-1.5">
                           {(t("landing.premium_deep_dive.learn_features", { returnObjects: true }) as string[]).map((item) => (
@@ -641,9 +640,9 @@ export default function Landing() {
                         <Brain className="h-6 w-6 text-emerald-500" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.ai_habit_adaptation")}</h3>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{"Adattamento Abitudini AI"}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                          {t("landing.premium_deep_dive.habit_adaptation_desc")}
+                          {"L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti."}
                         </p>
                         <div className="space-y-1.5">
                           {(t("landing.premium_deep_dive.habit_adaptation_features", { returnObjects: true }) as string[]).map((item) => (
@@ -661,15 +660,15 @@ export default function Landing() {
 
             {/* Pricing CTA inside premium section */}
             <ScrollReveal className="text-center mt-14" delay={300}>
-              <p className="text-sm text-muted-foreground mb-2">{t("landing.all_premium_for")}</p>
-              <p className="text-4xl font-bold text-foreground mb-1">€9.99<span className="text-lg text-muted-foreground font-normal">/{t("common.month")}</span></p>
+              <p className="text-sm text-muted-foreground mb-2">{"Tutte le funzionalità premium per"}</p>
+              <p className="text-4xl font-bold text-foreground mb-1">€9.99<span className="text-lg text-muted-foreground font-normal">/{"mese"}</span></p>
               <Button
                 size="lg"
                 onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
                 className="mt-4 gradient-accent text-accent-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
               >
                 <Crown className="h-5 w-5 mr-2" />
-                {t("landing.unlock_premium")}
+                {"Sblocca Premium"}
               </Button>
             </ScrollReveal>
           </div>
@@ -679,17 +678,17 @@ export default function Landing() {
         <section className="px-4 py-20">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t("landing.ready_to_start")}
+              {"Pronto per iniziare a costruire?"}
             </h2>
             <p className="text-muted-foreground mb-8">
-              {t("landing.join_thousands")}
+              {"Unisciti a migliaia di persone che stanno trasformando la propria vita con InnerBuild. Il tuo percorso verso abitudini migliori inizia oggi."}
             </p>
             <Button
               size="lg"
               onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
               className="gradient-primary text-primary-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
             >
-              {t("landing.get_started_free")}
+              {"Inizia Gratis"}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </ScrollReveal>

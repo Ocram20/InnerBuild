@@ -11,8 +11,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2, Sparkles, Plus, X, Crown } from "lucide-react";
 import PaywallModal from "@/components/PaywallModal";
-import { useTranslation } from "react-i18next";
-
 interface CreateChallengeModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -23,21 +21,19 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
   const { user } = useAuth();
   const { toast } = useToast();
   const { isPremium, canCreateChallenge, challengesRemaining, totalChallengeCount, refetch: refetchLimits } = usePremiumLimits();
-  const { t } = useTranslation();
-
   const durationOptions = [
-    { value: 3, label: t("create_challenge.durations.3_days"), description: t("create_challenge.durations.3_desc") },
-    { value: 7, label: t("create_challenge.durations.7_days"), description: t("create_challenge.durations.7_desc") },
-    { value: 21, label: t("create_challenge.durations.21_days"), description: t("create_challenge.durations.21_desc") },
-    { value: 30, label: t("create_challenge.durations.30_days"), description: t("create_challenge.durations.30_desc") },
-    { value: 90, label: t("create_challenge.durations.90_days"), description: t("create_challenge.durations.90_desc") },
+    { value: 3, label: "3 Giorni", description: "Reset veloce" },
+    { value: 7, label: "7 Giorni", description: "Sfida di una settimana" },
+    { value: 21, label: "21 Giorni", description: "Formazione abitudine" },
+    { value: 30, label: "30 Giorni", description: "Sfida mensile" },
+    { value: 90, label: "90 Giorni", description: "Trasformazione profonda" },
   ];
 
   const categories = [
-    { value: "digital_detox", label: t("challenges.categories.digital_detox") },
-    { value: "mental_reset", label: t("challenges.categories.mental_reset") },
-    { value: "porn_detox", label: t("challenges.categories.porn_detox") },
-    { value: "general", label: t("habits.categories.general") },
+    { value: "digital_detox", label: "Detox Digitale" },
+    { value: "mental_reset", label: "Reset Mentale" },
+    { value: "porn_detox", label: "Recovery" },
+    { value: "general", label: "Generale" },
   ];
 
   const [title, setTitle] = useState("");
@@ -66,11 +62,11 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
       if (error) throw error;
       // Increment lifetime challenge counter for free tier limit
       await supabase.from("profiles").update({ total_challenges_created: totalChallengeCount + 1 } as any).eq("user_id", user.id);
-      toast({ title: t("create_challenge.challenge_started"), description: t("create_challenge.challenge_started_desc", { days: duration }) });
+      toast({ title: "Sfida iniziata! 🔥", description: `La tua sfida di ${duration} giorni inizia oggi. Ce la farai!` });
       resetForm(); refetchLimits(); onOpenChange(false); onSuccess();
     } catch (error) {
       console.error("Error creating challenge:", error);
-      toast({ title: t("common.error"), description: t("create_challenge.failed_create"), variant: "destructive" });
+      toast({ title: "Errore", description: "Creazione sfida fallita", variant: "destructive" });
     } finally { setIsLoading(false); }
   };
 
@@ -81,7 +77,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
       <Dialog open={open && !showPaywall} onOpenChange={(isOpen) => { if (!isOpen) resetForm(); onOpenChange(isOpen); }}>
         <DialogContent className="rounded-2xl max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-accent" />{t("create_challenge.title")}</DialogTitle>
+            <DialogTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-accent" />{"Crea Sfida Personalizzata"}</DialogTitle>
           </DialogHeader>
           
           {!isPremium && (
@@ -89,29 +85,29 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
               <div className="flex items-center gap-2">
                 <Crown className="h-4 w-4 text-accent" />
                 <span className="text-sm text-muted-foreground">
-                  {challengesRemaining === 0 ? t("create_challenge.free_challenge_used") : t("create_challenge.free_challenge_available", { remaining: challengesRemaining })}
+                  {challengesRemaining === 0 ? "Hai usato la tua sfida gratuita" : `${challengesRemaining} sfida gratuita disponibile`}
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{t("create_challenge.free_limit_note")}</p>
+              <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{"Gli account gratuiti hanno 1 sfida totale. Una volta usata, avrai bisogno del Premium per crearne altre — anche se la elimini o la completi."}</p>
             </div>
           )}
         
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">{t("create_challenge.challenge_name")}</Label>
-              <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t("create_challenge.challenge_placeholder")} className="rounded-xl" required maxLength={100} />
+              <Label htmlFor="title">{"Nome sfida *"}</Label>
+              <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={"es., Detox social media"} className="rounded-xl" required maxLength={100} />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-2">
-                <Label htmlFor="category">{t("create_challenge.category")}</Label>
+                <Label htmlFor="category">{"Categoria"}</Label>
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{categories.map((cat) => (<SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>))}</SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="duration">{t("create_challenge.duration")}</Label>
+                <Label htmlFor="duration">{"Durata"}</Label>
                 <Select value={duration.toString()} onValueChange={(v) => setDuration(parseInt(v))}>
                   <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{durationOptions.map((opt) => (<SelectItem key={opt.value} value={opt.value.toString()}>{opt.label}</SelectItem>))}</SelectContent>
@@ -120,16 +116,16 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="description">{t("create_challenge.description")}</Label>
-              <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t("create_challenge.description_placeholder")} className="rounded-xl resize-none" rows={2} maxLength={500} />
+              <Label htmlFor="description">{"Descrizione (opzionale)"}</Label>
+              <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={"A cosa stai rinunciando? Perché è importante per te?"} className="rounded-xl resize-none" rows={2} maxLength={500} />
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label>{t("create_challenge.daily_steps")}</Label>
+                <Label>{"Passi Giornalieri (opzionale)"}</Label>
                 {dailySteps.length < 7 && (
                   <button type="button" onClick={addStep} className="text-xs text-primary hover:underline flex items-center gap-1">
-                    <Plus className="h-3 w-3" />{t("common.add_step")}
+                    <Plus className="h-3 w-3" />{"Aggiungi passo"}
                   </button>
                 )}
               </div>
@@ -137,7 +133,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
                 {dailySteps.map((step, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-medium flex-shrink-0">{index + 1}</span>
-                    <Input value={step} onChange={(e) => updateStep(index, e.target.value)} placeholder={`${t("common.step")} ${index + 1}...`} className="rounded-xl flex-1" maxLength={200} />
+                    <Input value={step} onChange={(e) => updateStep(index, e.target.value)} placeholder={`${"Passo"} ${index + 1}...`} className="rounded-xl flex-1" maxLength={200} />
                     {dailySteps.length > 1 && (
                       <button type="button" onClick={() => removeStep(index)} className="p-1 hover:bg-muted rounded-full transition-colors"><X className="h-4 w-4 text-muted-foreground" /></button>
                     )}
@@ -147,9 +143,9 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
             </div>
             
             <div className="flex gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">{t("common.cancel")}</Button>
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">{"Annulla"}</Button>
               <Button type="submit" disabled={!title.trim() || isLoading} className="flex-1 gradient-accent text-accent-foreground rounded-xl shadow-soft">
-                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("create_challenge.start_challenge")}
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Inizia Sfida"}
               </Button>
             </div>
           </form>

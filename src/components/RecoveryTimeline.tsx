@@ -8,7 +8,6 @@ import {
   Circle,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
 interface PhaseMeta {
   id: string;
   icon: React.ReactNode;
@@ -25,7 +24,6 @@ const phaseMeta: PhaseMeta[] = [
 
 export function RecoveryTimeline() {
   const { t } = useTranslation();
-
   return (
     <div className="space-y-6">
       <div className="relative">
@@ -66,7 +64,7 @@ export function RecoveryTimeline() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs font-medium text-muted-foreground mb-2">
-                        {t("recovery_timeline.what_to_expect")}
+                        {"Cosa Aspettarsi"}
                       </p>
                       <ul className="space-y-1">
                         {Array.isArray(symptoms) && symptoms.map((symptom, i) => (
@@ -79,7 +77,7 @@ export function RecoveryTimeline() {
                     </div>
                     <div>
                       <p className="text-xs font-medium text-muted-foreground mb-2">
-                        {t("recovery_timeline.tips_for_success")}
+                        {"Consigli per il Successo"}
                       </p>
                       <ul className="space-y-1">
                         {Array.isArray(tips) && tips.map((tip, i) => (

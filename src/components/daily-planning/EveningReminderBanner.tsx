@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";import { useTranslation } from "react-i18next";import { Card } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, BellOff, Clock, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -11,8 +12,6 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
   const [reminderEnabled, setReminderEnabled] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const { toast } = useToast();
-  const { t } = useTranslation();
-
   useEffect(() => {
     // Check localStorage for reminder preference
     const savedPreference = localStorage.getItem(`evening_reminder_${userId}`);
@@ -38,21 +37,21 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
         Notification.requestPermission().then(permission => {
           if (permission === "granted") {
             toast({
-              title: t("evening_reminder_banner.reminder_enabled_title"),
-              description: t("evening_reminder_banner.reminder_enabled_desc"),
+              title: "Promemoria abilitato!",
+              description: "Riceverai una notifica alle 20 per pianificare domani.",
             });
           }
         });
       } else {
         toast({
-          title: t("evening_reminder_banner.reminder_enabled_title"),
-          description: t("evening_reminder_banner.reminder_enabled_desc"),
+          title: "Promemoria abilitato!",
+          description: "Riceverai una notifica alle 20 per pianificare domani.",
         });
       }
     } else {
       toast({
-        title: t("evening_reminder_banner.reminder_disabled_title"),
-        description: t("evening_reminder_banner.reminder_disabled_desc"),
+        title: "Promemoria disabilitato",
+        description: "Non riceverai promemoria serali.",
       });
     }
   };
@@ -76,9 +75,9 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
             <Clock className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <p className="font-medium text-sm">{t("evening_reminder_banner.title")}</p>
+            <p className="font-medium text-sm">{"È tempo di pianificare la sera"}</p>
             <p className="text-xs text-muted-foreground">
-              {t("evening_reminder_banner.description")}
+              {"Prenditi un momento per pianificare domani e riflettere su oggi"}
             </p>
           </div>
         </div>
@@ -92,12 +91,12 @@ export function EveningReminderBanner({ userId }: EveningReminderBannerProps) {
             {reminderEnabled ? (
               <>
                 <BellOff className="h-4 w-4" />
-                <span className="hidden sm:inline">{t("evening_reminder_banner.disable")}</span>
+                <span className="hidden sm:inline">{"Disabilita"}</span>
               </>
             ) : (
               <>
                 <Bell className="h-4 w-4" />
-                <span className="hidden sm:inline">{t("evening_reminder_banner.remind_me")}</span>
+                <span className="hidden sm:inline">{"Ricordamelo"}</span>
               </>
             )}
           </Button>

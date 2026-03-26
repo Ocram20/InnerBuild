@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -32,8 +31,6 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
   const [habits, setHabits] = useState<Habit[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  const { t } = useTranslation();
-
   const fetchHabits = useCallback(async () => {
     if (!userId) return;
 
@@ -103,7 +100,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
         .eq("completed_at", targetDate);
 
       if (error) {
-        toast({ title: t("common.error"), description: t("active_habits_section.error_remove"), variant: "destructive" });
+        toast({ title: "Errore", description: "Impossibile rimuovere il completamento", variant: "destructive" });
         return;
       }
     } else {
@@ -117,7 +114,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
         });
 
       if (error) {
-        toast({ title: t("common.error"), description: t("active_habits_section.error_mark"), variant: "destructive" });
+        toast({ title: "Errore", description: "Impossibile contrassegnare come completato", variant: "destructive" });
         return;
       }
     }
@@ -137,7 +134,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
             <div className="p-2 rounded-lg bg-accent/10">
               <Repeat className="h-5 w-5 text-accent" />
             </div>
-            {t("active_habits_section.title")}
+            {"Abitudini Attive"}
           </CardTitle>
           <div className="flex items-center gap-2 text-sm">
             <div className="flex items-center gap-1 text-muted-foreground">
@@ -145,7 +142,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
               <span className="font-semibold text-success">{completedCount}</span>
               <span>/</span>
               <span>{habits.length}</span>
-              <span className="ml-1">{t("active_habits_section.completed")}</span>
+              <span className="ml-1">{"completati"}</span>
             </div>
           </div>
         </div>

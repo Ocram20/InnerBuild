@@ -7,7 +7,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
-
 interface Props {
   progress: PhaseProgress;
 }
@@ -20,8 +19,8 @@ interface CachedInsight {
 }
 
 export function RecoveryJourneyPath({ progress }: Props) {
-  const { user } = useAuth();
   const { t, i18n } = useTranslation();
+  const { user } = useAuth();
   const [aiInsight, setAiInsight] = useState<string | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -134,7 +133,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
         {/* Title */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-semibold text-foreground">{t("recovery_journey.title")}</h3>
+            <h3 className="text-sm font-semibold text-foreground">{"Percorso di Recovery"}</h3>
             <p className="text-xs text-muted-foreground">
               {t("recovery_journey.day_phase", { day: progress.successCount, phase: t(`recovery_journey.phases.${progress.currentPhase.id}.name`) })}
             </p>
@@ -185,7 +184,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
                   <text x={pos.x} y={pos.y + 1} textAnchor="middle" dominantBaseline="central" fontSize="14" className={isFuture ? "opacity-40" : ""}>{phase.icon}</text>
                   <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y - 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-foreground" fontSize="11" fontWeight={isActive ? "600" : "400"} opacity={isFuture ? 0.4 : 1}>{t(`recovery_journey.phases.${phase.id}.name`)}</text>
                   <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y + 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-muted-foreground" fontSize="9" opacity={isFuture ? 0.3 : 0.7}>
-                    {phase.maxDays < 999 ? `${t("recovery_journey.day_label")} ${phase.minDays}–${phase.maxDays}` : `${t("recovery_journey.day_label")} ${phase.minDays}+`}
+                    {phase.maxDays < 999 ? `${"Giorno"} ${phase.minDays}–${phase.maxDays}` : `${"Giorno"} ${phase.minDays}+`}
                   </text>
                 </g>
               );
@@ -197,15 +196,15 @@ export function RecoveryJourneyPath({ progress }: Props) {
         <div className="grid grid-cols-3 gap-2 text-center">
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.successCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.clean_days")}</p>
+            <p className="text-[10px] text-muted-foreground">{"Giorni puliti"}</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.failureCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.setbacks")}</p>
+            <p className="text-[10px] text-muted-foreground">{"Ricadute"}</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.debriefCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.debriefs")}</p>
+            <p className="text-[10px] text-muted-foreground">{"Debrief"}</p>
           </div>
         </div>
 
@@ -217,7 +216,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
           className="w-full gap-2 text-xs"
         >
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          {alreadyUsedToday ? t("recovery_journey.view_insight") : t("recovery_journey.ai_insight")}
+          {alreadyUsedToday ? "Vedi l'insight di oggi" : "Insight AI sulla fase"}
           {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
         </Button>
 
@@ -226,12 +225,12 @@ export function RecoveryJourneyPath({ progress }: Props) {
             {aiLoading ? (
               <div className="flex items-center justify-center gap-2 py-3">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                <span className="text-xs text-muted-foreground">{t("recovery_journey.analyzing")}</span>
+                <span className="text-xs text-muted-foreground">{"Analisi del tuo percorso in corso…"}</span>
               </div>
             ) : aiInsight ? (
               <p className="text-xs text-foreground leading-relaxed whitespace-pre-line">{aiInsight}</p>
             ) : (
-              <p className="text-xs text-muted-foreground">{t("recovery_journey.insight_error")}</p>
+              <p className="text-xs text-muted-foreground">{"Impossibile caricare l'insight. Riprova più tardi."}</p>
             )}
           </div>
         )}

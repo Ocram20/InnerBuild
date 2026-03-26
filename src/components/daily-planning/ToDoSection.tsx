@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,7 @@ import { Plus, Trash2, Edit2, Check, X, ListTodo, GripVertical } from "lucide-re
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
+import { useTranslation } from "react-i18next";
 
 interface Task {
   id: string;
@@ -33,9 +33,8 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
   const [editingTitle, setEditingTitle] = useState("");
   const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const { toast } = useToast();
   const { t } = useTranslation();
-
+  const { toast } = useToast();
   const SUGGESTED_TASKS = t("todo_section.suggested_tasks", { returnObjects: true }) as string[];
 
   useEffect(() => {
@@ -79,12 +78,12 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
       .single();
 
     if (error) {
-      toast({ title: t("common.error"), description: t("todo_section.error_add"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile aggiungere il task", variant: "destructive" });
     } else if (data) {
       setTasks([...tasks, data]);
       setNewTask("");
       setShowSuggestions(false);
-      toast({ title: t("todo_section.task_added"), description: t("todo_section.plan_tomorrow") });
+      toast({ title: "Task aggiunto!", description: "Pianifica il tuo domani" });
     }
   };
 
@@ -100,7 +99,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
       .eq("id", task.id);
 
     if (error) {
-      toast({ title: t("common.error"), description: t("todo_section.error_update"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile aggiornare il task", variant: "destructive" });
     } else {
       setTasks(tasks.map(t => 
         t.id === task.id ? { ...t, is_completed: newCompleted } : t
@@ -115,7 +114,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
       .eq("id", id);
 
     if (error) {
-      toast({ title: t("common.error"), description: t("todo_section.error_delete"), variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile eliminare il task", variant: "destructive" });
     } else {
       setTasks(tasks.filter(t => t.id !== id));
     }
@@ -245,7 +244,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
             <div className={`p-2 rounded-lg ${allTasksComplete ? 'bg-success/20' : 'bg-primary/10'}`}>
               <ListTodo className={`h-5 w-5 ${allTasksComplete ? 'text-success' : 'text-primary'}`} />
             </div>
-            {t("todo_section.title")}
+            {"To-Do per domani"}
           </CardTitle>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <span className="font-semibold text-primary">{completedCount}</span>
@@ -257,7 +256,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
           <div className="mt-3">
             <Progress value={progressPercent} className={`h-2 ${allTasksComplete ? '[&>div]:bg-success' : ''}`} />
             <p className="text-xs text-muted-foreground mt-1 text-right">
-              {Math.round(progressPercent)}% {t("todo_section.tasks_done", "complete")}
+              {Math.round(progressPercent)}% {"completati"}
             </p>
           </div>
         )}
@@ -265,7 +264,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <Input
-            placeholder={t("todo_section.add_task")}
+            placeholder={"Aggiungi task"}
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && addTask()}
@@ -279,7 +278,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
         {showSuggestions && availableSuggestions.length > 0 && (
           <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
             <p className="text-xs font-medium text-muted-foreground mb-2">
-              {t("todo_section.quick_add_suggestions")}
+              {"Suggerimenti rapidi:"}
             </p>
             <div className="flex flex-wrap gap-2">
               {availableSuggestions.map((suggestion) => (
@@ -317,8 +316,8 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
                 ) : tasks.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <ListTodo className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>{t("todo_section.no_tasks")}</p>
-                    <p className="text-sm">{t("todo_section.add_goals")}</p>
+                    <p>{"Nessun compito pianificato per questo giorno"}</p>
+                    <p className="text-sm">{"Aggiungi i tuoi obiettivi per domani"}</p>
                   </div>
                 ) : (
                   tasks.map((task, index) => (

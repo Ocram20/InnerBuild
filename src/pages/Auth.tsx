@@ -8,14 +8,11 @@ import { useToast } from "@/hooks/use-toast";
 import { Leaf, Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Auth() {
-  const { t } = useTranslation();
-
-  const emailSchema = z.string().email(t("auth_validation.invalid_email"));
-  const passwordSchema = z.string().min(6, t("auth_validation.password_min"));
+  const emailSchema = z.string().email("Inserisci un indirizzo email valido");
+  const passwordSchema = z.string().min(6, "La password deve avere almeno 6 caratteri");
 
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -72,11 +69,11 @@ export default function Auth() {
         const { error } = await signIn(email, password);
         if (error) {
           if (error.message.includes("Invalid login credentials")) {
-            toast({ title: t("auth.login_failed"), description: t("auth.invalid_credentials"), variant: "destructive" });
+            toast({ title: "Accesso fallito", description: "Email o password non validi. Riprova.", variant: "destructive" });
           } else if (error.message.includes("Email not confirmed")) {
-            toast({ title: t("auth.email_not_verified_title"), description: t("auth.email_not_verified_desc"), variant: "destructive" });
+            toast({ title: "Email non verificata", description: "Devi prima verificare la tua email. Controlla la tua casella di posta e clicca sul link di conferma ricevuto.", variant: "destructive" });
           } else {
-            toast({ title: t("auth.login_failed"), description: error.message, variant: "destructive" });
+            toast({ title: "Accesso fallito", description: error.message, variant: "destructive" });
           }
         } else {
           navigate("/dashboard");
@@ -85,13 +82,13 @@ export default function Auth() {
         const { error } = await signUp(email, password, fullName);
         if (error) {
           if (error.message.includes("already registered")) {
-            toast({ title: t("auth.account_exists"), description: t("auth.email_already_registered"), variant: "destructive" });
+            toast({ title: "Account esistente", description: "Questa email è già registrata. Accedi invece.", variant: "destructive" });
             setIsLogin(true);
           } else {
-            toast({ title: t("auth.signup_failed"), description: error.message, variant: "destructive" });
+            toast({ title: "Registrazione fallita", description: error.message, variant: "destructive" });
           }
         } else {
-          toast({ title: t("auth.welcome_innerbuild"), description: t("auth.verify_email_desc") });
+          toast({ title: "Benvenuto su InnerBuild!", description: "Controlla la tua casella email e clicca sul link di verifica per attivare il tuo account." });
         }
       }
     } finally {
@@ -107,11 +104,11 @@ export default function Auth() {
         options: { redirectTo: window.location.origin },
       });
       if (error) {
-        toast({ title: t("auth.google_signin_failed"), description: error.message, variant: "destructive" });
+        toast({ title: "Accesso Google fallito", description: error.message, variant: "destructive" });
         setIsGoogleLoading(false);
       }
     } catch (err) {
-      toast({ title: t("auth.google_signin_failed"), description: t("auth.unexpected_error"), variant: "destructive" });
+      toast({ title: "Accesso Google fallito", description: "Si è verificato un errore. Riprova.", variant: "destructive" });
       setIsGoogleLoading(false);
     }
   };
@@ -121,7 +118,7 @@ export default function Auth() {
       <header className="p-4 flex items-center justify-between">
         <Button variant="ghost" size="sm" onClick={() => navigate("/")} className="gap-2 text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
-          {t("common.back")}
+          {"Indietro"}
         </Button>
         <LanguageSelector />
       </header>
@@ -133,10 +130,10 @@ export default function Auth() {
               <Leaf className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
-              {isLogin ? t("auth.welcome_back") : t("auth.start_journey")}
+              {isLogin ? "Bentornato" : "Inizia il tuo percorso"}
             </h1>
             <p className="text-muted-foreground mt-2">
-              {isLogin ? t("auth.sign_in_continue") : t("auth.create_account_begin")}
+              {isLogin ? "Accedi per continuare la tua crescita" : "Crea un account per iniziare la trasformazione"}
             </p>
           </div>
 
@@ -144,15 +141,15 @@ export default function Auth() {
             <div className="glass rounded-2xl p-6 space-y-4 shadow-card">
               {!isLogin && (
                 <div className="space-y-2">
-                  <Label htmlFor="fullName">{t("auth.full_name")}</Label>
-                  <Input id="fullName" type="text" placeholder={t("auth.your_name")} value={fullName} onChange={(e) => setFullName(e.target.value)} className="h-12 rounded-xl" />
+                  <Label htmlFor="fullName">{"Nome Completo"}</Label>
+                  <Input id="fullName" type="text" placeholder={"Il tuo nome"} value={fullName} onChange={(e) => setFullName(e.target.value)} className="h-12 rounded-xl" />
                 </div>
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">{t("auth.email")}</Label>
+                <Label htmlFor="email">{"Email"}</Label>
                 <Input
-                  id="email" type="email" placeholder={t("auth.email_placeholder")} value={email}
+                  id="email" type="email" placeholder={"tu@esempio.com"} value={email}
                   onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors((prev) => ({ ...prev, email: undefined })); }}
                   className={`h-12 rounded-xl ${errors.email ? "border-destructive" : ""}`}
                 />
@@ -161,10 +158,10 @@ export default function Auth() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">{t("auth.password")}</Label>
+                  <Label htmlFor="password">{"Password"}</Label>
                   {isLogin && (
                     <button type="button" onClick={() => navigate("/forgot-password")} className="text-sm text-primary hover:underline">
-                      {t("auth.forgot_password")}
+                      {"Password dimenticata?"}
                     </button>
                   )}
                 </div>
@@ -183,13 +180,13 @@ export default function Auth() {
             </div>
 
             <Button type="submit" className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft" disabled={isLoading || isGoogleLoading}>
-              {isLoading ? t("common.please_wait") : isLogin ? t("auth.sign_in") : t("auth.create_account")}
+              {isLoading ? "Attendere..." : isLogin ? "Accedi" : "Crea Account"}
             </Button>
           </form>
 
           <div className="flex items-center gap-4 my-4">
             <div className="flex-1 h-px bg-border" />
-            <span className="text-sm text-muted-foreground">{t("common.or")}</span>
+            <span className="text-sm text-muted-foreground">{"oppure"}</span>
             <div className="flex-1 h-px bg-border" />
           </div>
 
@@ -197,7 +194,7 @@ export default function Auth() {
             {isGoogleLoading ? (
               <>
                 <Loader2 className="h-5 w-5 animate-spin" />
-                <span>{t("common.connecting")}</span>
+                <span>{"Connessione..."}</span>
               </>
             ) : (
               <>
@@ -207,15 +204,15 @@ export default function Auth() {
                   <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                   <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                 </svg>
-                <span>{t("auth.continue_google")}</span>
+                <span>{"Continua con Google"}</span>
               </>
             )}
           </Button>
 
           <p className="text-center mt-6 text-muted-foreground">
-            {isLogin ? t("auth.no_account") : t("auth.have_account")}{" "}
+            {isLogin ? "Non hai un account?" : "Hai già un account?"}{" "}
             <button type="button" onClick={() => { setIsLogin(!isLogin); setErrors({}); }} className="text-primary font-medium hover:underline">
-              {isLogin ? t("auth.sign_up") : t("auth.sign_in")}
+              {isLogin ? "Registrati" : "Accedi"}
             </button>
           </p>
         </div>

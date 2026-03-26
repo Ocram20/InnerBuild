@@ -5,8 +5,6 @@ import { ListTodo, ShieldAlert, ChevronRight, CheckCircle2, Circle } from "lucid
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { format, addDays } from "date-fns";
-import { useTranslation } from "react-i18next";
-
 interface Task {
   id: string;
   title: string;
@@ -30,8 +28,6 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
   const { toast } = useToast();
   const navigate = useNavigate();
   const pollingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const { t } = useTranslation();
-
   const today = new Date();
   const tomorrow = addDays(today, 1);
   const targetDate = format(tomorrow, "yyyy-MM-dd");
@@ -114,8 +110,8 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
       ));
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.could_not_update"),
+        title: "Errore",
+        description: "Impossibile aggiornare il task",
         variant: "destructive",
       });
     }
@@ -138,14 +134,14 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
       if (newStatus === "avoided") {
         toast({
-          title: t("dashboard.great_job"),
-          description: t("dashboard.avoided_behavior"),
+          title: "Ottimo lavoro!",
+          description: "Hai evitato questo comportamento",
         });
       }
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.could_not_update_status"),
+        title: "Errore",
+        description: "Impossibile aggiornare lo stato",
         variant: "destructive",
       });
     }
@@ -162,15 +158,15 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
           <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3">
             <ListTodo className="h-6 w-6 text-primary" />
           </div>
-          <h2 className="text-base font-semibold text-foreground mb-1">{t("dashboard.start_daily_plan")}</h2>
+          <h2 className="text-base font-semibold text-foreground mb-1">{"Inizia il Tuo Piano Giornaliero"}</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            {t("dashboard.start_daily_plan_desc")}
+            {"Crea le tue liste di cose da fare e da non fare per domani"}
           </p>
           <Button
             onClick={() => navigate("/daily-planning")}
             className="w-full"
           >
-            {t("dashboard.open_daily_planning")}
+            {"Apri Pianificazione"}
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
@@ -188,7 +184,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
           <div className="p-2 rounded-lg bg-primary/10">
             <ListTodo className="h-5 w-5 text-primary" />
           </div>
-          <h2 className="truncate text-base font-semibold text-foreground">{t("dashboard.daily_planning")}</h2>
+          <h2 className="truncate text-base font-semibold text-foreground">{"Pianificazione Giornaliera"}</h2>
         </div>
         <Button
           variant="ghost"
@@ -196,7 +192,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
           onClick={() => navigate("/daily-planning")}
           className="h-8 self-start text-muted-foreground hover:text-foreground sm:self-auto"
         >
-          {t("common.view_all")}
+          {"Vedi tutto"}
           <ChevronRight className="ml-1 h-4 w-4" />
         </Button>
       </div>
@@ -206,7 +202,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
         {todos.length > 0 && (
           <div>
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
-              <span>{t("dashboard.todo_list")}</span>
+              <span>{"Lista Da Fare"}</span>
               <span className="text-xs">
                 {completedTodos}/{todos.length}
               </span>
@@ -246,7 +242,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
         {notTodos.length > 0 && (
           <div>
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
-              <span>{t("dashboard.not_todo_list")}</span>
+              <span>{"Lista Da Non Fare"}</span>
               <span className="text-xs">
                 {avoidedItems}/{notTodos.length}
               </span>
@@ -288,7 +284,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
           onClick={() => navigate("/daily-planning")}
         >
           <ChevronRight className="mr-2 h-4 w-4" />
-          {t("dashboard.edit_full_plan")}
+          {"Modifica Piano Completo"}
         </Button>
       </div>
     </div>

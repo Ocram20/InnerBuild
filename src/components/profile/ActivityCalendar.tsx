@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isFuture, startOfToday, isBefore } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -10,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DayDetailModal } from "./DayDetailModal";
+import { useTranslation } from "react-i18next";
 
 interface DayActivity {
   date: string;
@@ -28,7 +28,6 @@ interface DayActivity {
 }
 
 export function ActivityCalendar() {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const { user } = useAuth();
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -195,10 +194,10 @@ export function ActivityCalendar() {
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Calendar className="h-5 w-5 text-primary" />
-                {t("activity_calendar.title")}
+                {"Cronologia dei progressi"}
               </CardTitle>
               <p className="text-xs text-muted-foreground mt-1">
-                {t("activity_calendar.subtitle")}
+                {"Clicca su un giorno per vedere il log"}
               </p>
             </div>
             
@@ -207,14 +206,14 @@ export function ActivityCalendar() {
                 <svg className="h-3 w-3 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.done")}</span>
+                <span className="text-xs text-muted-foreground">{"Fatto"}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <svg className="h-3 w-3 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.not_done")}</span>
+                <span className="text-xs text-muted-foreground">{"Non fatto"}</span>
               </div>
             </div>
           </div>

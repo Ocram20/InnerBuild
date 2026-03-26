@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
+import { useTranslation } from "react-i18next";
 
 export interface TriggerCause {
   cause: string;
@@ -43,6 +43,7 @@ export interface TriggerReport {
 }
 
 export function useTriggerReport() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [report, setReport] = useState<TriggerReport | null>(null);
@@ -54,7 +55,7 @@ export function useTriggerReport() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .select('*')
+        .select("*")
         .eq('user_id', user.id)
         .eq('insight_type', 'trigger_report')
         .order('created_at', { ascending: false })
@@ -106,9 +107,6 @@ export function useTriggerReport() {
     
     return Math.max(0, 4 - daysSinceReport);
   }, [report]);
-
-  const { i18n } = useTranslation();
-
   const generateReport = async () => {
     if (!user) return;
 

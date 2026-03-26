@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +26,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from "react-i18next";
 
 interface CheckIn {
   id: string;
@@ -61,7 +61,7 @@ export function RecoveryTracker({
   jokersRemaining,
   status,
 }: RecoveryTrackerProps) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const successDays = checkIns.filter(c => c.status === "success").length;
   const failedDays = checkIns.filter(c => c.status === "failed").length;
@@ -77,9 +77,9 @@ export function RecoveryTracker({
               <Flame className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t("recovery_tracker.title")}</CardTitle>
+              <CardTitle className="text-xl">{"Sfida di Recovery"}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                {t("recovery_tracker.started", { date: format(new Date(startedAt), "PPP", { locale: dateLocale }) })}
+                {`Iniziato ${format(new Date(startedAt), "dd MMM yyyy", { locale: it })}`}
               </p>
             </div>
           </div>
@@ -95,7 +95,7 @@ export function RecoveryTracker({
                 />
               ))}
             </div>
-            <Badge variant="secondary">{t("porn_recovery.day_n", { n: successDays })}</Badge>
+            <Badge variant="secondary">{`Giorno ${successDays}`}</Badge>
           </div>
         </div>
       </CardHeader>
@@ -105,22 +105,22 @@ export function RecoveryTracker({
           <div className="text-center p-3 bg-muted/50 rounded-lg">
             <Flame className="h-5 w-5 text-orange-500 mx-auto mb-1" />
             <p className="text-2xl font-bold">{currentStreak}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.current_streak")}</p>
+            <p className="text-xs text-muted-foreground">{"Serie corrente"}</p>
           </div>
           <div className="text-center p-3 bg-muted/50 rounded-lg">
             <Trophy className="h-5 w-5 text-yellow-500 mx-auto mb-1" />
             <p className="text-2xl font-bold">{longestStreak}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.longest_streak")}</p>
+            <p className="text-xs text-muted-foreground">{"Serie più lunga"}</p>
           </div>
           <div className="text-center p-3 bg-muted/50 rounded-lg">
             <CheckCircle2 className="h-5 w-5 text-green-500 mx-auto mb-1" />
             <p className="text-2xl font-bold">{successDays}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.success_days")}</p>
+            <p className="text-xs text-muted-foreground">{"Giorni di successo"}</p>
           </div>
           <div className="text-center p-3 bg-muted/50 rounded-lg">
             <XCircle className="h-5 w-5 text-red-500 mx-auto mb-1" />
             <p className="text-2xl font-bold">{failedDays}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.failed_days")}</p>
+            <p className="text-xs text-muted-foreground">{"Giorni falliti"}</p>
           </div>
         </div>
 
@@ -129,38 +129,38 @@ export function RecoveryTracker({
           <div className="p-4 rounded-xl bg-destructive/5 border border-destructive/20 text-center space-y-3">
             <div className="flex items-center justify-center gap-2">
               <ShieldAlert className="h-4 w-4 text-destructive" />
-              <p className="text-sm font-medium text-foreground">{t("challenge_card.all_jokers_used", "All jokers used")}</p>
+              <p className="text-sm font-medium text-foreground">{"Tutti i jolly usati"}</p>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              {t("challenge_card.paused_at_day", { day: currentStreak })}
+              {`In pausa al giorno ${currentStreak}. Riprendi senza jolly o ricomincia.`}
             </p>
             <div className="flex gap-2">
               <button
                 onClick={onResume}
                 className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium"
               >
-                {t("challenge_card.resume", "Resume")}
+                {"Riprendi"}
               </button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <button className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground text-sm font-medium">
-                    {t("common.reset")}
+                    {"Reset"}
                   </button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>{t("recovery_tracker.start_fresh_title")}</AlertDialogTitle>
-                    <AlertDialogDescription>{t("recovery_tracker.start_fresh_desc")}</AlertDialogDescription>
+                    <AlertDialogTitle>{"Partire da zero?"}</AlertDialogTitle>
+                    <AlertDialogDescription>{"Questo reimposterà il tuo percorso attuale e ne inizierà uno nuovo. I tuoi dati precedenti saranno archiviati."}</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
-                    <AlertDialogAction onClick={onReset}>{t("recovery_tracker.start_fresh")}</AlertDialogAction>
+                    <AlertDialogCancel>{"Annulla"}</AlertDialogCancel>
+                    <AlertDialogAction onClick={onReset}>{"Parti da zero"}</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
             </div>
             <p className="text-[10px] text-muted-foreground/70">
-              {t("challenge_card.resume_no_jokers", "Resume continues without jokers — any setback pauses again.")}
+              {"La ripresa continua senza jolly — qualsiasi ricaduta metterà di nuovo in pausa."}
             </p>
           </div>
         )}
@@ -170,13 +170,13 @@ export function RecoveryTracker({
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{t("recovery_tracker.todays_checkin")}</span>
+              <span className="text-sm font-medium">{"Check-in di oggi"}</span>
             </div>
             
             {hasCheckedInToday ? (
               <div className="p-4 bg-muted/50 rounded-lg text-center">
                 <CheckCircle2 className="h-8 w-8 text-primary mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">{t("recovery_tracker.already_checked_in")}</p>
+                <p className="text-sm text-muted-foreground">{"Hai già fatto il check-in oggi"}</p>
               </div>
             ) : status === "active" ? (
               <div className="flex gap-3">
@@ -185,7 +185,7 @@ export function RecoveryTracker({
                   className="flex-1 bg-green-600 hover:bg-green-700"
                 >
                   <CheckCircle2 className="h-4 w-4 mr-2" />
-                  {t("recovery_tracker.success")}
+                  {"Successo"}
                 </Button>
                 <Button 
                   onClick={() => onCheckIn("failed")} 
@@ -193,7 +193,7 @@ export function RecoveryTracker({
                   className="flex-1"
                 >
                   <XCircle className="h-4 w-4 mr-2" />
-                  {t("recovery_tracker.failed")}
+                  {"Fallito"}
                 </Button>
               </div>
             ) : null}
@@ -206,19 +206,19 @@ export function RecoveryTracker({
             <AlertDialogTrigger asChild>
               <Button variant="ghost" size="sm" className="text-muted-foreground">
                 <RotateCcw className="h-4 w-4 mr-2" />
-                {t("recovery_tracker.start_fresh")}
+                {"Parti da zero"}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>{t("recovery_tracker.start_fresh_title")}</AlertDialogTitle>
+                <AlertDialogTitle>{"Partire da zero?"}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  {t("recovery_tracker.start_fresh_desc")}
+                  {"Questo reimposterà il tuo percorso attuale e ne inizierà uno nuovo. I tuoi dati precedenti saranno archiviati."}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
-                <AlertDialogAction onClick={onReset}>{t("recovery_tracker.start_fresh")}</AlertDialogAction>
+                <AlertDialogCancel>{"Annulla"}</AlertDialogCancel>
+                <AlertDialogAction onClick={onReset}>{"Parti da zero"}</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -227,20 +227,20 @@ export function RecoveryTracker({
             <AlertDialogTrigger asChild>
               <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive">
                 <LogOut className="h-4 w-4 mr-2" />
-                {t("recovery_tracker.abandon")}
+                {"Abbandona"}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>{t("recovery_tracker.abandon_title")}</AlertDialogTitle>
+                <AlertDialogTitle>{"Abbandonare la sfida?"}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  {t("recovery_tracker.abandon_desc")}
+                  {"Questo terminerà la tua sfida attuale. Puoi iniziarne una nuova in qualsiasi momento."}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                <AlertDialogCancel>{"Annulla"}</AlertDialogCancel>
                 <AlertDialogAction onClick={onAbandon} className="bg-destructive hover:bg-destructive/90">
-                  {t("recovery_tracker.abandon")}
+                  {"Abbandona"}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>

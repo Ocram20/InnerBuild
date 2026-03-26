@@ -25,7 +25,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useTranslation } from "react-i18next";
-
 interface Habit {
   id: string;
   title: string;
@@ -67,9 +66,9 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProgressCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
-  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -106,8 +105,8 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.failed_update_habit"),
+        title: "Errore",
+        description: "Aggiornamento abitudine fallito",
         variant: "destructive",
       });
     } finally {
@@ -125,15 +124,15 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
         .eq("id", habit.id);
       
       toast({
-        title: t("habit_card.habit_deleted"),
-        description: t("habit_card.habit_removed"),
+        title: "Abitudine eliminata",
+        description: "L'abitudine è stata rimossa",
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: t("common.error"),
-        description: t("dashboard.failed_update_habit"),
+        title: "Errore",
+        description: "Aggiornamento abitudine fallito",
         variant: "destructive",
       });
     }
@@ -192,7 +191,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
                 {habit.streak && habit.streak > 0 && (
                   <span className="text-xs text-accent flex items-center gap-0.5">
                     <Flame className="h-3 w-3" />
-                    {t("habit_card.day_streak", { count: habit.streak })}
+                    {`serie di ${habit.streak} giorni`}
                   </span>
                 )}
               </div>

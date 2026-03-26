@@ -10,10 +10,9 @@ import type {
   ChallengeProgressDetail,
   MoodProgressDetail,
 } from "@/hooks/useProgressData";
+import { useTranslation } from "react-i18next";
 
 type Section = "habits" | "triggers" | "challenges" | "mood";
-
-import { useTranslation } from "react-i18next";
 
 interface Props {
   section: Section;

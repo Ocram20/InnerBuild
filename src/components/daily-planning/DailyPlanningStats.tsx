@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Trophy, Flame, Target } from "lucide-react";
@@ -10,8 +9,6 @@ interface DailyPlanningStatsProps {
 }
 
 export function DailyPlanningStats({ userId }: DailyPlanningStatsProps) {
-  const { t } = useTranslation();
-
   const [stats, setStats] = useState({
     planningStreak: 0,
     tasksCompleted: 0,
@@ -106,19 +103,19 @@ export function DailyPlanningStats({ userId }: DailyPlanningStatsProps) {
       <Card className="p-4 glass shadow-card text-center relative overflow-hidden">
         <Flame className={`h-6 w-6 mx-auto mb-2 ${stats.planningStreak >= 3 ? 'text-orange-500 animate-pulse' : 'text-orange-500'}`} />
         <p className="text-2xl font-bold">{stats.planningStreak}</p>
-        <p className="text-xs text-muted-foreground">{t("daily_planning_stats.day_streak")}</p>
+        <p className="text-xs text-muted-foreground">{"Serie Giornaliera"}</p>
       </Card>
 
       <Card className="p-4 glass shadow-card text-center">
         <Trophy className="h-6 w-6 mx-auto mb-2 text-yellow-500" />
         <p className="text-2xl font-bold">{stats.tasksCompleted}</p>
-        <p className="text-xs text-muted-foreground">{t("daily_planning_stats.tasks_done")}</p>
+        <p className="text-xs text-muted-foreground">{"Task completati"}</p>
       </Card>
 
       <Card className="p-4 glass shadow-card text-center">
         <Target className="h-6 w-6 mx-auto mb-2 text-primary" />
         <p className="text-2xl font-bold">{stats.perfectDays}</p>
-        <p className="text-xs text-muted-foreground">{t("daily_planning_stats.perfect_days")}</p>
+        <p className="text-xs text-muted-foreground">{"Giorni perfetti"}</p>
       </Card>
     </div>
   );

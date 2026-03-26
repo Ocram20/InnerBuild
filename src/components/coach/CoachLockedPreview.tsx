@@ -2,30 +2,26 @@ import { Lock, Bot, Target, Flame, Lightbulb, Zap, Sparkles } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
 export function CoachLockedPreview() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
-
   const features = [
-    { icon: Target, label: t("locked_preview.coach.habit_suggestions") },
-    { icon: Flame, label: t("locked_preview.coach.custom_challenges") },
-    { icon: Lightbulb, label: t("locked_preview.coach.reflection_guidance") },
-    { icon: Zap, label: t("locked_preview.coach.daily_motivation") },
+    { icon: Target, label: "Suggerimenti abitudini personalizzati" },
+    { icon: Flame, label: "Creazione sfide personalizzate" },
+    { icon: Lightbulb, label: "Guida all'auto-riflessione" },
+    { icon: Zap, label: "Motivazione giornaliera" },
   ];
 
   const previewMessages = [
-    { role: "user", text: t("locked_preview.coach.preview_msg_1") },
-    { role: "assistant", text: t("locked_preview.coach.preview_msg_2") },
-    { role: "user", text: t("locked_preview.coach.preview_msg_3") },
+    { role: "user", text: "Puoi suggerirmi un'abitudine sana..." },
+    { role: "assistant", text: "In base ai tuoi pattern, ti consiglierei..." },
+    { role: "user", text: "Aiutami a restare motivato oggi..." },
   ];
 
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 space-y-8">
       <div className="w-full max-w-md space-y-3 relative">
         <p className="text-sm text-muted-foreground text-center mb-4">
-          {t("locked_preview.coach.preview_text")}
+          {"Anteprima del tuo Coach AI:"}
         </p>
         {previewMessages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -45,8 +41,8 @@ export function CoachLockedPreview() {
             <Bot className="h-8 w-8 text-primary" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">{t("locked_preview.coach.title")}</h2>
-            <p className="text-muted-foreground text-sm">{t("locked_preview.coach.description")}</p>
+            <h2 className="text-2xl font-semibold">{"Coach AI"}</h2>
+            <p className="text-muted-foreground text-sm">{"Ricevi guida personalizzata, suggerimenti sulle abitudini e motivazione dal tuo coach AI personale."}</p>
           </div>
           <div className="flex flex-col gap-2 py-4">
             {features.map((feature) => (
@@ -60,10 +56,10 @@ export function CoachLockedPreview() {
             <div className="flex items-center justify-center gap-1">
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-lg font-semibold">€9.99</span>
-              <span className="text-muted-foreground text-sm">/{t("common.month")}</span>
+              <span className="text-muted-foreground text-sm">/{"mese"}</span>
             </div>
             <Button onClick={() => navigate("/pricing")} className="w-full">
-              {t("locked_preview.unlock_premium")}
+              {"Sblocca Premium"}
             </Button>
           </div>
         </CardContent>

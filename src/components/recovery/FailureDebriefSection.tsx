@@ -5,10 +5,7 @@ import { Heart, ChevronRight, History } from "lucide-react";
 import { useFailureDebrief } from "@/hooks/useFailureDebrief";
 import { FailureDebriefWizard } from "./FailureDebriefWizard";
 import { FailureDebriefHistory } from "./FailureDebriefHistory";
-import { useTranslation } from "react-i18next";
-
 export function FailureDebriefSection() {
-  const { t } = useTranslation();
   const {
     debriefs,
     todayContext,
@@ -63,12 +60,12 @@ export function FailureDebriefSection() {
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
               <Heart className="w-4 h-4 text-primary" />
             </div>
-            {t("failure_debrief.title")}
+            {"Debrief dopo la ricaduta"}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            {t("failure_debrief.description")}
+            {"Hai avuto una ricaduta? Va bene—fa parte del percorso. Trasformiamo questa esperienza in un'occasione di crescita."}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
@@ -77,7 +74,7 @@ export function FailureDebriefSection() {
               disabled={saving}
               className="flex-1 bg-primary/90 hover:bg-primary"
             >
-              {incompleteDebrief ? t("failure_debrief.continue") : t("failure_debrief.start")}
+              {incompleteDebrief ? "Continua Debrief" : "Inizia Debrief"}
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
 
@@ -88,7 +85,7 @@ export function FailureDebriefSection() {
                 className="flex items-center gap-2"
               >
                 <History className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("failure_debrief.history")}</span>
+                <span className="hidden sm:inline">{"Cronologia"}</span>
                 <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
                   {completedDebriefs.length}
                 </span>
@@ -98,7 +95,7 @@ export function FailureDebriefSection() {
 
           {incompleteDebrief && (
             <p className="text-xs text-amber-600 dark:text-amber-400">
-              {t("failure_debrief.unfinished_notice")}
+              {"Hai un debrief non completato. Continua quando sei pronto."}
             </p>
           )}
         </CardContent>

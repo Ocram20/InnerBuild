@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 import { enUS, it } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -7,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { 
+import {
   Loader2, 
   Flame, 
   Heart, 
@@ -19,6 +18,7 @@ import {
   Battery,
   Shield
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Small checkmark icon component
 const SmallCheck = () => (
@@ -59,7 +59,6 @@ interface DayData {
 }
 
 export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
@@ -160,11 +159,11 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
   const hasChallengeEntries = dayData?.challengeEntries && dayData.challengeEntries.length > 0;
 
   const moodLabels: Record<string, { label: string; emoji: string }> = {
-    great: { label: t("day_detail_modal.mood.great", "Great"), emoji: "😊" },
-    good: { label: t("day_detail_modal.mood.good", "Good"), emoji: "🙂" },
-    okay: { label: t("day_detail_modal.mood.okay", "Okay"), emoji: "😐" },
-    struggling: { label: t("day_detail_modal.mood.struggling", "Struggling"), emoji: "😔" },
-    difficult: { label: t("day_detail_modal.mood.difficult", "Difficult"), emoji: "😣" },
+    great: { label: "Ottimo", emoji: "😊" },
+    good: { label: "Buono", emoji: "🙂" },
+    okay: { label: "Così così", emoji: "😐" },
+    struggling: { label: "In difficoltà", emoji: "😔" },
+    difficult: { label: "Difficile", emoji: "😣" },
   };
 
   // Section component for consistent styling
@@ -213,31 +212,31 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
             <div className="p-6 space-y-6">
               
               {/* DAILY CHECK-IN SECTION */}
-              <Section icon={Sparkles} title={t("day_detail_modal.daily_checkin")} iconColor="text-rose-500">
+              <Section icon={Sparkles} title={"Check-in Quotidiano"} iconColor="text-rose-500">
                 {hasDailyCheckIn ? (
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{moodLabels[dayData?.dailyCheckIn?.mood || ""]?.emoji}</span>
                       <span className="text-sm text-foreground">
-                        {t("day_detail_modal.mood_label")}: {moodLabels[dayData?.dailyCheckIn?.mood || ""]?.label || dayData?.dailyCheckIn?.mood}
+                        {"Umore"}: {moodLabels[dayData?.dailyCheckIn?.mood || ""]?.label || dayData?.dailyCheckIn?.mood}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Battery className="h-4 w-4 text-amber-500" />
                       <span className="text-sm text-foreground">
-                        {t("day_detail_modal.energy_label")}: {dayData?.dailyCheckIn?.energy_level}/10
+                        {"Livello di Energia"}: {dayData?.dailyCheckIn?.energy_level}/10
                       </span>
                     </div>
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_daily_checkin", "No daily check-in recorded")} />
+                  <NotRecorded message={"Nessun check-in quotidiano registrato"} />
                 )}
               </Section>
 
               <Separator className="bg-border/50" />
               
               {/* HABITS SECTION */}
-              <Section icon={Check} title={t("day_detail_modal.habits")} iconColor="text-emerald-500">
+              <Section icon={Check} title={"Abitudini"} iconColor="text-emerald-500">
                 {hasHabits ? (
                   <div className="space-y-3">
                     {completedHabits.length > 0 && (
@@ -262,14 +261,14 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     )}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_habits")} />
+                  <NotRecorded message={"Nessuna abitudine registrata questo giorno"} />
                 )}
               </Section>
 
               <Separator className="bg-border/50" />
 
               {/* DAILY TASKS SECTION */}
-              <Section icon={ListTodo} title={t("day_detail_modal.daily_tasks")} iconColor="text-blue-500">
+              <Section icon={ListTodo} title={"Compiti Giornalieri"} iconColor="text-blue-500">
                 {hasTasks ? (
                   <div className="space-y-3">
                     {completedTasks.length > 0 && (
@@ -294,14 +293,14 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     )}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_tasks")} />
+                  <NotRecorded message={"Nessun compito pianificato per questo giorno"} />
                 )}
               </Section>
 
               <Separator className="bg-border/50" />
 
               {/* NOT-TO-DO SECTION */}
-              <Section icon={Ban} title={t("day_detail_modal.things_to_avoid")} iconColor="text-orange-500">
+              <Section icon={Ban} title={"Cose da Evitare"} iconColor="text-orange-500">
                 {hasNotToDo ? (
                   <div className="space-y-1.5">
                     {dayData?.notToDo.map((item, i) => (
@@ -317,21 +316,21 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                             : "text-muted-foreground"
                         }`}>
                           {item.title}
-                          {item.status === "avoided" && ` — ${t("day_detail_modal.avoided")}`}
-                          {item.status === "failed" && ` — ${t("day_detail_modal.not_avoided")}`}
+                          {item.status === "avoided" && ` — ${"evitato"}`}
+                          {item.status === "failed" && ` — ${"non evitato"}`}
                         </span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_not_to_do", "No avoidance goals set for this day")} />
+                  <NotRecorded message={"Nessun obiettivo da evitare impostato per questo giorno"} />
                 )}
               </Section>
 
               <Separator className="bg-border/50" />
 
               {/* DETOX CHALLENGES SECTION */}
-              <Section icon={Flame} title={t("day_detail_modal.detox_challenges")} iconColor="text-amber-500">
+              <Section icon={Flame} title={"Sfide Detox"} iconColor="text-amber-500">
                 {hasChallenges ? (
                   <div className="space-y-3">
                     {dayData?.detoxChallenges
@@ -348,18 +347,18 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                             </div>
                             <p className="text-xs text-muted-foreground ml-5">
                               {wasCheckedThisDay 
-                                ? t("day_detail_modal.streak_continued", { day: challenge.current_streak })
-                                : t("day_detail_modal.no_checkin_recorded")}
+                                ? `Serie continuata — Giorno ${challenge.current_streak}`
+                                : "Nessun check-in registrato"}
                             </p>
                           </div>
                         );
                       })}
                     {dayData?.detoxChallenges.filter(c => c.status === "active").length === 0 && (
-                      <NotRecorded message={t("day_detail_modal.no_challenges", "No active challenges this day")} />
+                      <NotRecorded message={"Nessuna sfida attiva questo giorno"} />
                     )}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_challenges")} />
+                  <NotRecorded message={"Nessuna sfida attiva questo giorno"} />
                 )}
 
                 {/* Recovery check-in */}
@@ -372,7 +371,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                       <span className={`text-sm ${
                         dayData?.recoveryCheckIn?.status === "success" ? "text-emerald-600" : "text-red-500/80"
                       }`}>
-                        {dayData?.recoveryCheckIn?.status === "success" ? t("day_detail_modal.clean_day") : t("day_detail_modal.relapse_occurred")}
+                        {dayData?.recoveryCheckIn?.status === "success" ? "Giorno pulito" : "Ricaduta avvenuta"}
                       </span>
                     </div>
                     {dayData?.recoveryCheckIn?.notes && (
@@ -387,7 +386,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
               <Separator className="bg-border/50" />
 
               {/* CHALLENGE JOURNEY ENTRIES */}
-              <Section icon={Shield} title={t("day_detail_modal.challenge_journey")} iconColor="text-purple-500">
+              <Section icon={Shield} title={"Percorso Sfida"} iconColor="text-purple-500">
                 {hasChallengeEntries ? (
                   <div className="space-y-3">
                     {dayData?.challengeEntries.map((entry, i) => (
@@ -395,7 +394,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                         <div className="flex items-center gap-2">
                           {entry.is_failure ? <SmallX /> : <SmallCheck />}
                           <span className={`text-sm ${entry.is_failure ? "text-muted-foreground" : "text-foreground"}`}>
-                            {entry.is_failure ? t("day_detail_modal.setback") : (entry.checkin_response || t("day_detail_modal.checked_in"))}
+                            {entry.is_failure ? "Ricaduta" : (entry.checkin_response || "Check-in effettuato")}
                           </span>
                         </div>
                         <div className="flex items-center gap-3 ml-5">
@@ -410,19 +409,19 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     ))}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_challenge_activity", "No challenge journey activity this day")} />
+                  <NotRecorded message={"Nessuna attività della sfida questo giorno"} />
                 )}
               </Section>
 
               <Separator className="bg-border/50" />
 
               {/* EVENING REFLECTION */}
-              <Section icon={Moon} title={t("day_detail_modal.evening_reflection")} iconColor="text-indigo-500">
+              <Section icon={Moon} title={"Riflessione Serale"} iconColor="text-indigo-500">
                 {hasDailyReflection ? (
                   <div className="space-y-4">
                     {dayData?.dailyReflection?.day_summary && (
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">{t("day_detail_modal.how_was_your_day")}</p>
+                        <p className="text-xs text-muted-foreground mb-1">{"Com'è andata la tua giornata?"}</p>
                         <p className="text-sm text-foreground leading-relaxed">
                           {dayData.dailyReflection.day_summary}
                         </p>
@@ -431,7 +430,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     
                     {dayData?.dailyReflection?.grateful_for && dayData.dailyReflection.grateful_for.length > 0 && (
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">{t("day_detail_modal.grateful_for")}</p>
+                        <p className="text-xs text-muted-foreground mb-1">{"Grato per"}</p>
                         <ul className="space-y-1">
                           {dayData.dailyReflection.grateful_for.map((item, i) => (
                             <li key={i} className="text-sm text-foreground">• {item}</li>
@@ -442,7 +441,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     
                     {dayData?.dailyReflection?.lessons_learned && (
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">{t("day_detail_modal.lessons_learned")}</p>
+                        <p className="text-xs text-muted-foreground mb-1">{"Lezioni apprese"}</p>
                         <p className="text-sm text-foreground leading-relaxed">
                           {dayData.dailyReflection.lessons_learned}
                         </p>
@@ -450,7 +449,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     )}
                   </div>
                 ) : (
-                  <NotRecorded message={t("day_detail_modal.no_evening_reflection", "No evening reflection written this day")} />
+                  <NotRecorded message={"Nessuna riflessione serale scritta questo giorno"} />
                 )}
               </Section>
 

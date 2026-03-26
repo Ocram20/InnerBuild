@@ -30,7 +30,6 @@ import {
 } from "lucide-react";
 import { DebriefFormData } from "@/hooks/useFailureDebrief";
 import { useTranslation } from "react-i18next";
-
 interface TodayContext {
   recentTriggers: Array<{
     emotion: string;
@@ -192,15 +191,15 @@ export function FailureDebriefWizard({
   ];
 
   const stepTitles = [
-    t("failure_debrief.step1_title"),
-    t("failure_debrief.step2_title"),
-    t("failure_debrief.step3_title"),
+    "Cosa è successo?",
+    "Primo segnale ignorato",
+    "Cosa cambiare",
   ];
 
   const stepDescriptions = [
-    t("failure_debrief.step1_desc"),
-    t("failure_debrief.step2_desc"),
-    t("failure_debrief.step3_desc"),
+    "Cerchiamo di capire il contesto di questa ricaduta",
+    "Spesso c'è un segnale di allarme che ci sfugge",
+    "Trasforma questa esperienza in un apprendimento concreto",
   ];
 
   return (
@@ -212,7 +211,7 @@ export function FailureDebriefWizard({
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 {stepIcons[step - 1]}
               </div>
-              {t("failure_debrief.step_label", { step })}: {stepTitles[step - 1]}
+              {`Passo ${step}`}: {stepTitles[step - 1]}
             </DialogTitle>
             <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
               <X className="w-4 h-4" />
@@ -234,7 +233,7 @@ export function FailureDebriefWizard({
           {step === 1 && (
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label>{t("failure_debrief.feeling_label")}</Label>
+                <Label>{"Come ti sentivi?"}</Label>
                 <div className="grid grid-cols-4 gap-2">
                   {MOOD_KEYS.map((mood) => (
                     <button
@@ -255,13 +254,13 @@ export function FailureDebriefWizard({
               </div>
 
               <div className="space-y-2">
-                <Label>{t("failure_debrief.when_label")}</Label>
+                <Label>{"Quando è successo?"}</Label>
                 <Select
                   value={formData.time_of_day}
                   onValueChange={(v) => setFormData((prev) => ({ ...prev, time_of_day: v }))}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder={t("failure_debrief.time_placeholder")} />
+                    <SelectValue placeholder={"Seleziona il momento della giornata"} />
                   </SelectTrigger>
                   <SelectContent>
                     {TIME_KEYS.map((key) => (
@@ -274,9 +273,9 @@ export function FailureDebriefWizard({
               </div>
 
               <div className="space-y-2">
-                <Label>{t("failure_debrief.context_label")}</Label>
+                <Label>{"Cosa stava succedendo? (contesto)"}</Label>
                 <Textarea
-                  placeholder={t("failure_debrief.context_placeholder")}
+                  placeholder={"es. Ero solo a casa dopo una giornata stressante..."}
                   value={formData.context}
                   onChange={(e) => setFormData((prev) => ({ ...prev, context: e.target.value }))}
                   className="min-h-[80px]"
@@ -284,9 +283,9 @@ export function FailureDebriefWizard({
               </div>
 
               <div className="space-y-2">
-                <Label>{t("failure_debrief.trigger_label")}</Label>
+                <Label>{"Un trigger specifico?"}</Label>
                 <Textarea
-                  placeholder={t("failure_debrief.trigger_placeholder")}
+                  placeholder={"es. Ho visto un'immagine provocante, mi sono sentito rifiutato..."}
                   value={formData.trigger}
                   onChange={(e) => setFormData((prev) => ({ ...prev, trigger: e.target.value }))}
                   className="min-h-[60px]"
@@ -301,13 +300,13 @@ export function FailureDebriefWizard({
               <Card className="border-amber-500/30 bg-amber-500/5">
                 <CardContent className="p-3">
                   <p className="text-sm text-amber-700 dark:text-amber-300">
-                    💡 {t("failure_debrief.signal_hint")}
+                    💡 {"Guardando indietro, di solito c'è un piccolo segnale che abbiamo ignorato. Identificarlo ci aiuta a coglierlo la prossima volta."}
                   </p>
                 </CardContent>
               </Card>
 
               <div className="space-y-2">
-                <Label>{t("failure_debrief.signal_label")}</Label>
+                <Label>{"Quale segnale hai ignorato?"}</Label>
                 <div className="grid gap-2">
                   {SIGNAL_KEYS.map((key) => (
                     <button
@@ -330,9 +329,9 @@ export function FailureDebriefWizard({
 
               {formData.ignored_signal === "other" && (
                 <div className="space-y-2">
-                  <Label>{t("failure_debrief.tell_more_label")}</Label>
+                  <Label>{"Dimmi di più"}</Label>
                   <Textarea
-                    placeholder={t("failure_debrief.tell_more_placeholder")}
+                    placeholder={"Qual era il segnale che hai notato ma su cui non hai agito?"}
                     value={formData.signal_details}
                     onChange={(e) =>
                       setFormData((prev) => ({ ...prev, signal_details: e.target.value }))
@@ -347,33 +346,33 @@ export function FailureDebriefWizard({
                 <Card className="border-border/50 bg-muted/30">
                   <CardHeader className="p-3 pb-1">
                     <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide">
-                      {t("failure_debrief.data_noticed_title")}
+                      {"Cosa abbiamo notato dai tuoi dati"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-3 pt-0 space-y-1">
                     {!todayContext.hasReflection && (
                       <p className="text-sm flex items-center gap-2">
                         <span className="text-amber-500">⚠️</span>
-                        {t("failure_debrief.no_reflection")}
+                        {"Nessuna riflessione serale registrata di recente"}
                       </p>
                     )}
                     {!todayContext.hasJournal && (
                       <p className="text-sm flex items-center gap-2">
                         <span className="text-amber-500">⚠️</span>
-                        {t("failure_debrief.no_journal")}
+                        {"Nessuna voce del diario registrata di recente"}
                       </p>
                     )}
                     {todayContext.recentTriggers.length > 0 && (
                       <p className="text-sm flex items-center gap-2">
                         <span className="text-amber-500">⚠️</span>
-                        {t("failure_debrief.triggers_logged", { count: todayContext.recentTriggers.length })}
+                        {`${todayContext.recentTriggers.length} trigger registrati di recente`}
                       </p>
                     )}
                     {todayContext.hasReflection &&
                       todayContext.hasJournal &&
                       todayContext.recentTriggers.length === 0 && (
                         <p className="text-sm text-muted-foreground">
-                          {t("failure_debrief.no_patterns")}
+                          {"Nessun pattern evidente rilevato—va bene così!"}
                         </p>
                       )}
                   </CardContent>
@@ -390,7 +389,7 @@ export function FailureDebriefWizard({
                   <CardContent className="p-4 flex items-center justify-center gap-3">
                     <Loader2 className="w-5 h-5 animate-spin text-primary" />
                     <span className="text-sm text-muted-foreground">
-                      {t("failure_debrief.loading_suggestions")}
+                      {"Preparazione suggerimenti personalizzati..."}
                     </span>
                   </CardContent>
                 </Card>
@@ -399,7 +398,7 @@ export function FailureDebriefWizard({
                   <CardHeader className="p-3 pb-1">
                     <CardTitle className="text-sm flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-primary" />
-                      {t("failure_debrief.ai_suggestions_title")}
+                      {"Suggerimenti del Coach AI"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-3 pt-0 space-y-2">
@@ -418,15 +417,15 @@ export function FailureDebriefWizard({
               <Card className="border-green-500/30 bg-green-500/5">
                 <CardContent className="p-3">
                   <p className="text-sm text-green-700 dark:text-green-300">
-                    🌱 {t("failure_debrief.encouragement")}
+                    🌱 {"Ogni battuta d'arresto è la preparazione per un ritorno. Cosa farai diversamente la prossima volta?"}
                   </p>
                 </CardContent>
               </Card>
 
               <div className="space-y-2">
-                <Label>{t("failure_debrief.action_plan_label")}</Label>
+                <Label>{"Il tuo piano d'azione per la prossima volta"}</Label>
                 <Textarea
-                  placeholder={t("failure_debrief.action_plan_placeholder")}
+                  placeholder={"es. Quando mi sentirò solo di sera, chiamerò un amico o uscirò a fare una passeggiata..."}
                   value={formData.action_plan}
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, action_plan: e.target.value }))
@@ -438,7 +437,7 @@ export function FailureDebriefWizard({
               <Card className="border-border/50 bg-muted/30">
                 <CardContent className="p-3">
                   <p className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">{t("failure_debrief.remember_label")}:</strong> {t("failure_debrief.remember_message")}
+                    <strong className="text-foreground">{"Ricorda"}:</strong> {"Le ricadute non ti definiscono—conta come reagisci. Sei qui, stai imparando, e questo richiede coraggio. 💪"}
                   </p>
                 </CardContent>
               </Card>
@@ -455,12 +454,12 @@ export function FailureDebriefWizard({
             className="gap-1"
           >
             <ChevronLeft className="w-4 h-4" />
-            {t("failure_debrief.back")}
+            {"Indietro"}
           </Button>
 
           {step < 3 ? (
             <Button onClick={handleNext} disabled={saving} className="gap-1">
-              {t("failure_debrief.next")}
+              {"Avanti"}
               <ChevronRight className="w-4 h-4" />
             </Button>
           ) : (
@@ -474,7 +473,7 @@ export function FailureDebriefWizard({
               ) : (
                 <Check className="w-4 h-4" />
               )}
-              {t("failure_debrief.complete")}
+              {"Completa"}
             </Button>
           )}
         </div>

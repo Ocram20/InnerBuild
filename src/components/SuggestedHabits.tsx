@@ -11,7 +11,6 @@ import {
   Sun,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
 interface SuggestedHabit {
   title: string;
   description: string;
@@ -61,11 +60,10 @@ const difficultyLabels = {
 
 export default function SuggestedHabits({ onSelect }: SuggestedHabitsProps) {
   const { t } = useTranslation();
-
   return (
     <div className="space-y-3">
       <p className="text-sm text-muted-foreground">
-        {t("suggested_habits.quick_start")}
+        {"Inizia con abitudini suggerite:"}
       </p>
       
       <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1">

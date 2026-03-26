@@ -4,8 +4,8 @@ import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTranslation } from "react-i18next";
 import type { LocalizedArticle } from "@/hooks/useArticles";
+import { useTranslation } from "react-i18next";
 
 interface ArticleDetailProps {
   article: LocalizedArticle | null | undefined;
@@ -14,7 +14,7 @@ interface ArticleDetailProps {
 }
 
 export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
 
   if (isLoading) {
@@ -22,7 +22,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
       <div className="space-y-6">
         <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          {t("learn_content.back_to_articles")}
+          {"Torna agli articoli"}
         </Button>
         <div className="space-y-4">
           <Skeleton className="h-8 w-3/4" />
@@ -43,10 +43,10 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
       <div className="space-y-6">
         <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          {t("learn_content.back_to_articles")}
+          {"Torna agli articoli"}
         </Button>
         <div className="text-center py-12">
-          <p className="text-muted-foreground">{t("learn_content.article_not_found")}</p>
+          <p className="text-muted-foreground">{"Articolo non trovato"}</p>
         </div>
       </div>
     );
@@ -58,7 +58,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
     <div className="space-y-6">
       <Button variant="ghost" size="sm" onClick={onBack} className="gap-2 -ml-2">
         <ArrowLeft className="h-4 w-4" />
-        {t("learn_content.back_to_articles")}
+        {"Torna agli articoli"}
       </Button>
 
       <article className="space-y-6">
@@ -86,7 +86,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
         <Separator />
 
         <div className="space-y-4">
-          {article.content.split('\n\n').map((block, index) => {
+          {article.content.split("\\n\\n").map((block, index) => {
             const trimmed = block.trim();
             
             if (trimmed.startsWith('## ')) {
@@ -113,10 +113,10 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
               );
             }
 
-            if (trimmed.split('\n').every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
+            if (trimmed.split("\\n").every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
               return (
                 <ul key={index} className="list-disc pl-5 space-y-1 text-foreground/90 leading-relaxed text-sm">
-                  {trimmed.split('\n').filter(l => l.trim()).map((item, i) => (
+                  {trimmed.split("\\n").filter(l => l.trim()).map((item, i) => (
                     <li key={i}>{item.replace(/^[\-\*]\s*/, '')}</li>
                   ))}
                 </ul>

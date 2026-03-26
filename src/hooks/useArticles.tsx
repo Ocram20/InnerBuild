@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useTranslation } from "react-i18next";
-
 export interface Article {
   id: string;
   title: string;
@@ -39,7 +38,6 @@ function localizeArticle(article: Article, lang: string): LocalizedArticle {
 }
 
 export function useArticles() {
-  const { i18n } = useTranslation();
   return useQuery({
     queryKey: ["articles", i18n.language],
     queryFn: async () => {
@@ -54,7 +52,6 @@ export function useArticles() {
 }
 
 export function useArticle(id: string | undefined) {
-  const { i18n } = useTranslation();
   return useQuery({
     queryKey: ["article", id, i18n.language],
     queryFn: async () => {

@@ -1,5 +1,4 @@
 import { Search, Clock, MapPin, Smartphone, Monitor, Bed, MessageSquare } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const guidedQuestions = [
@@ -49,51 +48,49 @@ const commonTriggers = [
 ];
 
 export function TriggersSection() {
-  const { t } = useTranslation();
-
   const guidedQuestions = [
     {
       icon: MessageSquare,
-      question: t("triggers_section.question_emotion", "What emotion was I feeling?"),
-      examples: t("triggers_section.examples_emotion", "Bored, lonely, stressed, anxious, tired, rejected, frustrated"),
+      question: "Quale emozione provavo?",
+      examples: "Noia, solitudine, stress, ansia, stanchezza, rifiuto, frustrazione",
     },
     {
       icon: Clock,
-      question: t("triggers_section.question_time", "What time of day was it?"),
-      examples: t("triggers_section.examples_time", "Late night, early morning, after work, weekend afternoon"),
+      question: "A che ora era?",
+      examples: "Tardi la notte, primo mattino, dopo il lavoro, pomeriggio del weekend",
     },
     {
       icon: MapPin,
-      question: t("triggers_section.question_where", "Where was I?"),
-      examples: t("triggers_section.examples_where", "Bedroom, bathroom, home alone, hotel room"),
+      question: "Dove ero?",
+      examples: "Camera da letto, bagno, a casa da solo, camera d'albergo",
     },
     {
       icon: Smartphone,
-      question: t("triggers_section.question_before", "What was I doing before?"),
-      examples: t("triggers_section.examples_before", "Scrolling social media, watching TV, working, arguing with someone"),
+      question: "Cosa stavo facendo prima?",
+      examples: "Scorrendo i social media, guardando la TV, lavorando, litigando con qualcuno",
     },
   ];
 
   const commonTriggers = [
     {
       icon: Monitor,
-      trigger: t("triggers_section.trigger_computer", "Alone at the computer"),
-      tip: t("triggers_section.tip_computer", "Work in public spaces or with the door open"),
+      trigger: "Solo al computer",
+      tip: "Lavora in spazi pubblici o con la porta aperta",
     },
     {
       icon: Bed,
-      trigger: t("triggers_section.trigger_phone_bed", "Phone in bed at night"),
-      tip: t("triggers_section.tip_phone_bed", "Charge your phone in another room"),
+      trigger: "Telefono a letto di notte",
+      tip: "Carica il telefono in un'altra stanza",
     },
     {
       icon: Smartphone,
-      trigger: t("triggers_section.trigger_social", "Social media browsing"),
-      tip: t("triggers_section.tip_social", "Limit or delete triggering apps"),
+      trigger: "Navigazione sui social media",
+      tip: "Limita o elimina le app scatenanti",
     },
     {
       icon: Clock,
-      trigger: t("triggers_section.trigger_late_nights", "Late nights when tired"),
-      tip: t("triggers_section.tip_late_nights", "Set a strict bedtime and stick to it"),
+      trigger: "Notte fonda quando sei stanco",
+      tip: "Stabilisci un orario di andare a letto rigido e rispettalo",
     },
   ];
 
@@ -102,17 +99,17 @@ export function TriggersSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Search className="h-5 w-5 text-primary" />
-          {t("triggers_section.title")}
+          {"Identificare i Trigger"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
           <p className="text-muted-foreground text-sm mb-4">
-            {t("triggers_section.description")}
+            {"I trigger sono le situazioni, le emozioni e i contesti che portano agli impulsi. Comprendere i tuoi trigger personali è essenziale per la prevenzione."}
           </p>
           
           <div className="space-y-3">
-            <p className="text-sm font-medium text-foreground">{t("triggers_section.ask_questions")}</p>
+            <p className="text-sm font-medium text-foreground">{"Portati queste domande dopo ogni impulso:"}</p>
             {guidedQuestions.map((item) => (
               <div 
                 key={item.question}
@@ -129,7 +126,7 @@ export function TriggersSection() {
         </div>
 
         <div>
-          <p className="text-sm font-medium text-foreground mb-3">{t("triggers_section.common_triggers_heading")}</p>
+          <p className="text-sm font-medium text-foreground mb-3">{"Trigger Comuni e Soluzioni"}</p>
           <div className="grid gap-2">
             {commonTriggers.map((item) => (
               <div 

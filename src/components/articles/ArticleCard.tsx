@@ -3,8 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
 import type { LocalizedArticle } from "@/hooks/useArticles";
+import { useTranslation } from "react-i18next";
 
 interface ArticleCardProps {
   article: LocalizedArticle;
@@ -12,7 +12,7 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, onClick }: ArticleCardProps) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
   const publishedDate = new Date(article.published_at);
   const isRecent = Date.now() - publishedDate.getTime() < 7 * 24 * 60 * 60 * 1000;
@@ -28,7 +28,7 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
             <div className="flex items-center gap-2 mb-2">
               {isRecent && (
                 <Badge variant="default" className="text-xs bg-primary/10 text-primary border-0">
-                  {t("common.new")}
+                  {"Nuovo"}
                 </Badge>
               )}
               <span className="text-xs text-muted-foreground flex items-center gap-1">

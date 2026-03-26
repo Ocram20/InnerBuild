@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HeatmapData } from "@/hooks/useTriggerTracking";
-import { useTranslation } from "react-i18next";
-
 interface TriggerHeatmapProps {
   data: HeatmapData[];
 }
@@ -15,19 +13,17 @@ const hours = [
 ];
 
 export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
-  const { t } = useTranslation();
-
   const days = [
-    t("trigger_tracking.days.sun"), t("trigger_tracking.days.mon"), t("trigger_tracking.days.tue"),
-    t("trigger_tracking.days.wed"), t("trigger_tracking.days.thu"), t("trigger_tracking.days.fri"),
-    t("trigger_tracking.days.sat"),
+    "Dom", "Lun", "Mar",
+    "Mer", "Gio", "Ven",
+    "Sab",
   ];
 
   const hourGroups = [
-    { label: t("trigger_tracking.time_periods.night"), hours: [0, 1, 2, 3, 4, 5] },
-    { label: t("trigger_tracking.time_periods.morning"), hours: [6, 7, 8, 9, 10, 11] },
-    { label: t("trigger_tracking.time_periods.afternoon"), hours: [12, 13, 14, 15, 16, 17] },
-    { label: t("trigger_tracking.time_periods.evening"), hours: [18, 19, 20, 21, 22, 23] },
+    { label: "Notte", hours: [0, 1, 2, 3, 4, 5] },
+    { label: "Mattina", hours: [6, 7, 8, 9, 10, 11] },
+    { label: "Pomeriggio", hours: [12, 13, 14, 15, 16, 17] },
+    { label: "Sera", hours: [18, 19, 20, 21, 22, 23] },
   ];
 
   const maxCount = useMemo(() => {
@@ -60,11 +56,11 @@ export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
     return (
       <Card className="glass rounded-2xl">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">{t("trigger_tracking.heatmap_title")}</CardTitle>
+          <CardTitle className="text-base">{"Heatmap Trigger"}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground text-center py-8">
-            {t("trigger_tracking.heatmap_empty")}
+            {"Registra dei trigger per vedere la mappa dei pattern"}
           </p>
         </CardContent>
       </Card>
@@ -75,8 +71,8 @@ export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
     <Card className="glass rounded-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-base flex items-center justify-between">
-          <span>{t("trigger_tracking.heatmap_title")}</span>
-          <span className="text-xs font-normal text-muted-foreground">{t("trigger_tracking.last_30_days")}</span>
+          <span>{"Heatmap Trigger"}</span>
+          <span className="text-xs font-normal text-muted-foreground">{"Ultimi 30 giorni"}</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -152,15 +148,15 @@ export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
         <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded-sm bg-yellow-500/70"></div>
-            <span>{t("trigger_tracking.heatmap_legend.mild")}</span>
+            <span>{"Lieve (1-3)"}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded-sm bg-orange-500/70"></div>
-            <span>{t("trigger_tracking.heatmap_legend.medium")}</span>
+            <span>{"Medio (4-6)"}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded-sm bg-red-500/70"></div>
-            <span>{t("trigger_tracking.heatmap_legend.strong")}</span>
+            <span>{"Forte (7-10)"}</span>
           </div>
         </div>
       </CardContent>

@@ -2,24 +2,20 @@ import { Lock, Zap, BarChart3, Brain, Clock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
 export function TriggerLockedPreview() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
-
   const features = [
-    { icon: Zap, label: t("locked_preview.trigger.log_triggers") },
-    { icon: BarChart3, label: t("locked_preview.trigger.visual_heatmap") },
-    { icon: Brain, label: t("locked_preview.trigger.ai_insights") },
-    { icon: Clock, label: t("locked_preview.trigger.track_timing") },
+    { icon: Zap, label: "Registra trigger e impulsi" },
+    { icon: BarChart3, label: "Analisi heatmap visuale" },
+    { icon: Brain, label: "Insight AI sui pattern" },
+    { icon: Clock, label: "Traccia tempi e contesto" },
   ];
 
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 space-y-8">
       <div className="w-full max-w-md space-y-3 relative">
         <p className="text-sm text-muted-foreground text-center mb-4">
-          {t("locked_preview.trigger.preview_text")}
+          {"Anteprima del tracciamento trigger:"}
         </p>
         <Card className="bg-card/30 backdrop-blur border-border/50 overflow-hidden">
           <CardContent className="p-4 blur-[2px] select-none">
@@ -41,8 +37,8 @@ export function TriggerLockedPreview() {
             <Zap className="h-8 w-8 text-primary" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">{t("trigger_tracking.title")}</h2>
-            <p className="text-muted-foreground text-sm">{t("locked_preview.trigger.description")}</p>
+            <h2 className="text-2xl font-semibold">{"Tracciamento Trigger"}</h2>
+            <p className="text-muted-foreground text-sm">{"Registra i tuoi impulsi, scopri pattern con l'analisi AI e ottieni strategie di prevenzione personalizzate."}</p>
           </div>
           <div className="flex flex-col gap-2 py-4">
             {features.map((feature) => (
@@ -56,10 +52,10 @@ export function TriggerLockedPreview() {
             <div className="flex items-center justify-center gap-1">
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-lg font-semibold">€9.99</span>
-              <span className="text-muted-foreground text-sm">/{t("common.month")}</span>
+              <span className="text-muted-foreground text-sm">/{"mese"}</span>
             </div>
             <Button onClick={() => navigate("/pricing")} className="w-full">
-              {t("locked_preview.unlock_premium")}
+              {"Sblocca Premium"}
             </Button>
           </div>
         </CardContent>

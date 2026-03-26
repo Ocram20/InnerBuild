@@ -1,5 +1,4 @@
 import { Shield, CheckCircle2 } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import type { ChallengeProgressDetail } from "@/hooks/useProgressData";
 
@@ -8,13 +7,11 @@ interface Props {
 }
 
 export function ChallengesProgressSection({ challenges }: Props) {
-  const { t } = useTranslation();
-
   if (challenges.length === 0) {
     return (
       <div className="glass rounded-2xl p-6 text-center animate-fade-in">
         <Shield className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-        <p className="text-sm text-muted-foreground">{t("challenges_progress_section.no_challenges_yet")}</p>
+        <p className="text-sm text-muted-foreground">{"Nessuna sfida ancora"}</p>
       </div>
     );
   }
@@ -58,11 +55,11 @@ export function ChallengesProgressSection({ challenges }: Props) {
                   </div>
                   {isCompleted ? (
                     <span className="text-[10px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full whitespace-nowrap">
-                      {t("challenges_progress_section.completed")}
+                      {"Completata"}
                     </span>
                   ) : (
                     <span className="text-[10px] font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full whitespace-nowrap">
-                      {t("challenges_progress_section.active")}
+                      {"Attiva"}
                     </span>
                   )}
                 </div>
@@ -70,8 +67,8 @@ export function ChallengesProgressSection({ challenges }: Props) {
                 {/* Progress bar */}
                 <div className="mt-3">
                   <div className="flex justify-between text-[10px] text-muted-foreground mb-1">
-                    <span>{t("challenges_progress_section.days", { count: c.daysResisted })}</span>
-                    <span>{t("challenges_progress_section.days_goal", { completed: c.durationDays })}</span>
+                    <span>{`${c.daysResisted} giorni`}</span>
+                    <span>{`Obiettivo di ${c.durationDays} giorni`}</span>
                   </div>
                   <div className="h-1.5 bg-muted/60 rounded-full overflow-hidden">
                     <div

@@ -12,8 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Loader2, Sparkles, Crown } from "lucide-react";
 import SuggestedHabits from "@/components/SuggestedHabits";
 import PaywallModal from "@/components/PaywallModal";
-import { useTranslation } from "react-i18next";
-
 interface CreateHabitModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -24,17 +22,15 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
   const { user } = useAuth();
   const { toast } = useToast();
   const { isPremium, canCreateHabit, habitsRemaining, refetch: refetchLimits } = usePremiumLimits();
-  const { t } = useTranslation();
-
   const categories = [
-    { value: "health", label: t("habits.categories.health") },
-    { value: "productivity", label: t("habits.categories.productivity") },
-    { value: "mindfulness", label: t("habits.categories.mindfulness") },
-    { value: "fitness", label: t("habits.categories.fitness") },
-    { value: "learning", label: t("habits.categories.learning") },
-    { value: "social", label: t("habits.categories.social") },
-    { value: "creativity", label: t("habits.categories.creativity") },
-    { value: "general", label: t("habits.categories.general") },
+    { value: "health", label: "Salute" },
+    { value: "productivity", label: "Produttività" },
+    { value: "mindfulness", label: "Mindfulness" },
+    { value: "fitness", label: "Fitness" },
+    { value: "learning", label: "Apprendimento" },
+    { value: "social", label: "Sociale" },
+    { value: "creativity", label: "Creatività" },
+    { value: "general", label: "Generale" },
   ];
 
   const [title, setTitle] = useState("");
@@ -56,10 +52,10 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
     try {
       const { error } = await supabase.from("habits").insert({ user_id: user.id, title: title.trim(), description: description.trim() || null, category, frequency, reminder_time: reminderTime || null });
       if (error) throw error;
-      toast({ title: t("create_habit.habit_created"), description: t("create_habit.habit_created_desc") });
+      toast({ title: "Abitudine creata! 🎉", description: "Inizia a costruire la tua nuova abitudine oggi!" });
       resetForm(); refetchLimits(); onOpenChange(false); onSuccess();
     } catch (error) {
-      toast({ title: t("common.error"), description: t("create_habit.failed_create"), variant: "destructive" });
+      toast({ title: "Errore", description: "Creazione abitudine fallita", variant: "destructive" });
     } finally { setIsLoading(false); }
   };
 
@@ -74,7 +70,7 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
       <Dialog open={open && !showPaywall} onOpenChange={(isOpen) => { if (!isOpen) resetForm(); onOpenChange(isOpen); }}>
         <DialogContent className="rounded-2xl max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />{t("create_habit.title")}</DialogTitle>
+            <DialogTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />{"Crea Nuova Abitudine"}</DialogTitle>
           </DialogHeader>
           
           {!isPremium && (
@@ -82,7 +78,7 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
               <div className="flex items-center gap-2">
                 <Crown className="h-4 w-4 text-accent" />
                 <span className="text-sm text-muted-foreground">
-                  {habitsRemaining === 0 ? t("create_habit.habit_limit_reached") : t("create_habit.habits_remaining", { remaining: habitsRemaining, max: FREE_LIMITS.MAX_HABITS })}
+                  {habitsRemaining === 0 ? "Limite abitudini raggiunto" : `${habitsRemaining} di ${FREE_LIMITS.MAX_HABITS} abitudini rimanenti`}
                 </span>
               </div>
             </div>
@@ -94,42 +90,42 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
         
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">{t("create_habit.habit_name")}</Label>
-              <Input id="title" value={title} onChange={(e) => { setTitle(e.target.value); if (e.target.value) setShowSuggestions(false); }} placeholder={t("create_habit.habit_placeholder")} className="rounded-xl" required maxLength={100} />
+              <Label htmlFor="title">{"Nome abitudine *"}</Label>
+              <Input id="title" value={title} onChange={(e) => { setTitle(e.target.value); if (e.target.value) setShowSuggestions(false); }} placeholder={"es., Meditazione mattutina"} className="rounded-xl" required maxLength={100} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description">{t("create_habit.description")}</Label>
-              <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t("create_habit.description_placeholder")} className="rounded-xl resize-none" rows={2} maxLength={500} />
+              <Label htmlFor="description">{"Descrizione (opzionale)"}</Label>
+              <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={"Cosa significa questa abitudine per te?"} className="rounded-xl resize-none" rows={2} maxLength={500} />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-2">
-                <Label htmlFor="category">{t("create_habit.category")}</Label>
+                <Label htmlFor="category">{"Categoria"}</Label>
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{categories.map((cat) => (<SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>))}</SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="frequency">{t("create_habit.frequency")}</Label>
+                <Label htmlFor="frequency">{"Frequenza"}</Label>
                 <Select value={frequency} onValueChange={setFrequency}>
                   <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="daily">{t("create_habit.frequencies.daily")}</SelectItem>
-                    <SelectItem value="weekly">{t("create_habit.frequencies.weekly")}</SelectItem>
-                    <SelectItem value="weekdays">{t("create_habit.frequencies.weekdays")}</SelectItem>
-                    <SelectItem value="weekends">{t("create_habit.frequencies.weekends")}</SelectItem>
+                    <SelectItem value="daily">{"Giornaliera"}</SelectItem>
+                    <SelectItem value="weekly">{"Settimanale"}</SelectItem>
+                    <SelectItem value="weekdays">{"Giorni feriali"}</SelectItem>
+                    <SelectItem value="weekends">{"Weekend"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="reminder">{t("create_habit.reminder_time")}</Label>
+              <Label htmlFor="reminder">{"Promemoria (opzionale)"}</Label>
               <Input id="reminder" type="time" value={reminderTime} onChange={(e) => setReminderTime(e.target.value)} className="rounded-xl" />
             </div>
             <div className="flex gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">{t("common.cancel")}</Button>
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">{"Annulla"}</Button>
               <Button type="submit" disabled={!title.trim() || isLoading} className="flex-1 gradient-primary text-primary-foreground rounded-xl shadow-soft">
-                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("habits.create_habit")}
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Crea Abitudine"}
               </Button>
             </div>
           </form>

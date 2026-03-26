@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TriggerLog } from "@/hooks/useTriggerTracking";
 import { useTranslation } from "react-i18next";
-
 interface RecentTriggersCardProps {
   logs: TriggerLog[];
   onDelete: (id: string) => void;
@@ -25,7 +24,6 @@ const getIntensityColor = (intensity: number) => {
 };
 
 export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCardProps) {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language?.startsWith("it") ? itLocale : enUS;
   const recentLogs = logs.slice(0, 10);
 
@@ -45,11 +43,11 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
     return (
       <Card className="glass rounded-2xl">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">{t("trigger_tracking.recent_triggers")}</CardTitle>
+          <CardTitle className="text-base">{"Trigger Recenti"}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground text-center py-8">
-            {t("trigger_tracking.no_triggers_yet")}
+            {"Nessun trigger registrato"}
           </p>
         </CardContent>
       </Card>
@@ -60,9 +58,9 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
     <Card className="glass rounded-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-base flex items-center justify-between">
-          <span>{t("trigger_tracking.recent_triggers")}</span>
+          <span>{"Trigger Recenti"}</span>
           <span className="text-xs font-normal text-muted-foreground">
-            {logs.length} {t("common.total")}
+            {logs.length} {"totale"}
           </span>
         </CardTitle>
       </CardHeader>

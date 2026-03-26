@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Leaf, Mail, Instagram } from "lucide-react";
-import { useTranslation } from "react-i18next";
-
 export default function LandingFooter() {
   const currentYear = new Date().getFullYear();
-  const { t } = useTranslation();
-
   const footerLinks = [
-    { label: t("footer.privacy_policy"), href: "/privacy-policy" },
-    { label: t("footer.terms_of_service"), href: "/terms-of-service" },
+    { label: "Informativa Privacy", href: "/privacy-policy" },
+    { label: "Termini di Servizio", href: "/terms-of-service" },
   ];
 
   const socialLinks = [
@@ -33,11 +29,11 @@ export default function LandingFooter() {
               <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-soft"><Leaf className="h-5 w-5 text-primary-foreground" /></div>
               <span className="font-bold text-lg text-foreground">InnerBuild</span>
             </div>
-            <p className="text-sm text-muted-foreground">{t("footer.tagline")}</p>
+            <p className="text-sm text-muted-foreground">{"Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery."}</p>
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("footer.legal")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{"Legale"}</h3>
             <nav className="flex flex-col gap-2">
               {footerLinks.map((link) => (
                 <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 hover:underline">{link.label}</Link>
@@ -46,14 +42,14 @@ export default function LandingFooter() {
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("footer.support")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{"Supporto"}</h3>
             <a href="mailto:inner.build07@gmail.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2 hover:gap-3 group">
               <Mail className="h-4 w-4" /><span>inner.build07@gmail.com</span>
             </a>
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("footer.follow_us")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{"Seguici"}</h3>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -71,10 +67,10 @@ export default function LandingFooter() {
         <div className="h-px bg-border/50 my-8" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">{t("footer.copyright", { year: currentYear })}</p>
+          <p className="text-sm text-muted-foreground">{`© ${currentYear} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.`}</p>
           <div className="flex gap-4">
             <Button variant="ghost" size="sm" asChild className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <a href="#top">{t("common.back_to_top")}</a>
+              <a href="#top">{"Torna su"}</a>
             </Button>
           </div>
         </div>

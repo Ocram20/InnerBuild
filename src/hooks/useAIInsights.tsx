@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
+import { useTranslation } from "react-i18next";
 
 export interface HabitAdaptation {
   habit_title: string;
@@ -39,9 +39,9 @@ export interface AIInsight {
 }
 
 export function useAIInsights() {
+  const { i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
-  const { i18n } = useTranslation();
   const [latestInsight, setLatestInsight] = useState<AIInsight | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -51,7 +51,7 @@ export function useAIInsights() {
 
     try {
       const { data, error } = await untypedTable('ai_insights')
-        .select('*')
+        .select("*")
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
         .limit(1)

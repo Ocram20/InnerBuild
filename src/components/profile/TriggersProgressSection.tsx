@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 import { Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,7 +10,6 @@ interface Props {
 }
 
 export function TriggersProgressSection({ data, days = 14 }: Props) {
-  const { t } = useTranslation();
   // For annual view, group data by week
   const chartData = useMemo(() => {
     if (days <= 30) return data.dailyData;
@@ -32,10 +30,10 @@ export function TriggersProgressSection({ data, days = 14 }: Props) {
       {/* Bar chart - 14 days */}
       <div className="glass rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs text-muted-foreground">{t("triggers_progress_section.trigger_frequency", { days })}</p>
+          <p className="text-xs text-muted-foreground">{`Frequenza trigger (${days} giorni)`}</p>
           {hasAnyData && (
             <p className="text-xs text-muted-foreground">
-              {t("triggers_progress_section.total", { count: data.dailyData.reduce((s, d) => s + d.count, 0) })}
+              {`Totale: ${data.dailyData.reduce((sum, d) => sum + d.count, 0)} trigger`}
             </p>
           )}
         </div>
@@ -85,8 +83,8 @@ export function TriggersProgressSection({ data, days = 14 }: Props) {
         ) : (
           <div className="text-center py-6">
             <Zap className="h-8 w-8 text-muted-foreground/40 mx-auto mb-2" />
-            <p className="text-sm text-muted-foreground">{t("triggers_progress_section.no_triggers_last_days", { days })}</p>
-            <p className="text-xs text-muted-foreground/60 mt-1">{t("triggers_progress_section.older_triggers_hint")}</p>
+            <p className="text-sm text-muted-foreground">{`Nessun trigger negli ultimi ${days} giorni`}</p>
+            <p className="text-xs text-muted-foreground/60 mt-1">{"I trigger più vecchi non appariranno qui"}</p>
           </div>
         )}
       </div>
@@ -95,7 +93,7 @@ export function TriggersProgressSection({ data, days = 14 }: Props) {
       <div className="flex gap-3">
         {data.commonTimes.length > 0 && (
           <div className="flex-1 glass rounded-xl p-3">
-            <p className="text-[10px] text-muted-foreground mb-1">{t("triggers_progress_section.common_moments")}</p>
+            <p className="text-[10px] text-muted-foreground mb-1">{"Momenti comuni"}</p>
             <div className="flex flex-wrap gap-1">
               {data.commonTimes.map(t => (
                 <span key={t} className="text-xs font-medium bg-muted/60 px-2 py-0.5 rounded-md capitalize">{t}</span>
@@ -105,7 +103,7 @@ export function TriggersProgressSection({ data, days = 14 }: Props) {
         )}
         {data.commonEmotions.length > 0 && (
           <div className="flex-1 glass rounded-xl p-3">
-            <p className="text-[10px] text-muted-foreground mb-1">{t("triggers_progress_section.common_emotions")}</p>
+            <p className="text-[10px] text-muted-foreground mb-1">{"Emozioni comuni"}</p>
             <div className="flex flex-wrap gap-1">
               {data.commonEmotions.map(e => (
                 <span key={e} className="text-xs font-medium bg-muted/60 px-2 py-0.5 rounded-md capitalize">{e}</span>

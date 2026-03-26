@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
-import { useTranslation } from "react-i18next";
 import { 
   Brain, 
   Sparkles, 
@@ -17,9 +16,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAIInsights, HabitAdaptation, TriggerPattern } from "@/hooks/useAIInsights";
+import { useTranslation } from "react-i18next";
 
 export default function AICoachInsightCard() {
-  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
   const { 
     latestInsight, 
@@ -37,7 +36,7 @@ export default function AICoachInsightCard() {
         <CardContent className="py-8">
           <div className="flex items-center justify-center gap-3">
             <Brain className="h-6 w-6 text-primary/50" />
-            <span className="text-muted-foreground">{t("ai_coach_insight.loading")}</span>
+            <span className="text-muted-foreground">{"Caricamento insight AI..."}</span>
           </div>
         </CardContent>
       </Card>
@@ -55,12 +54,12 @@ export default function AICoachInsightCard() {
             </div>
             <div>
               <h3 className="font-semibold text-foreground">
-                {latestInsight ? t("ai_coach_insight.time_for_new") : t("ai_coach_insight.get_report")}
+                {latestInsight ? "È ora di un Nuovo Report" : "Ottieni il Tuo Report Coach AI"}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
                 {latestInsight 
-                  ? t("ai_coach_insight.days_since_last")
-                  : t("ai_coach_insight.analyze_last_days")
+                  ? "Sono passati 4 giorni dalla tua ultima analisi"
+                  : "Analizza le tue abitudini e trigger degli ultimi 4 giorni"
                 }
               </p>
             </div>
@@ -72,12 +71,12 @@ export default function AICoachInsightCard() {
               {generating ? (
                 <>
                   <RefreshCw className="h-4 w-4 animate-spin" />
-                  {t("common.analyzing")}
+                  {"Analisi..."}
                 </>
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  {t("trigger_tracking.generate_report")}
+                  {"Genera Report"}
                 </>
               )}
             </Button>
@@ -101,10 +100,10 @@ export default function AICoachInsightCard() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CardTitle className="text-base">{t("ai_coach_insight.title")}</CardTitle>
+                <CardTitle className="text-base">{"Report Coach AI"}</CardTitle>
                 {!is_read && (
                   <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                    {t("ai_coach_insight.new")}
+                    {"Nuovo"}
                   </Badge>
                 )}
               </div>
@@ -136,13 +135,13 @@ export default function AICoachInsightCard() {
           {habitAdaptations.length > 0 && (
             <Badge variant="outline" className="gap-1 text-orange-600 border-orange-200 bg-orange-50/50">
               <TrendingDown className="h-3 w-3" />
-              {t("ai_coach_insight.habits_need_attention", { count: habitAdaptations.length })}
+              {`${habitAdaptations.length} abitudine/i richiedono attenzione`}
             </Badge>
           )}
           {triggerPatterns.length > 0 && (
             <Badge variant="outline" className="gap-1 text-blue-600 border-blue-200 bg-blue-50/50">
               <AlertTriangle className="h-3 w-3" />
-              {t("ai_coach_insight.patterns_detected", { count: triggerPatterns.length })}
+              {`${triggerPatterns.length} pattern rilevati`}
             </Badge>
           )}
         </div>
@@ -153,7 +152,7 @@ export default function AICoachInsightCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <TrendingDown className="h-4 w-4 text-orange-500" />
-                  {t("ai_coach_insight.suggested_adjustments")}
+                  {"Aggiustamenti Abitudini Suggeriti"}
                 </h4>
                 <div className="space-y-2">
                   {habitAdaptations.map((adaptation: HabitAdaptation, idx: number) => (
@@ -164,7 +163,7 @@ export default function AICoachInsightCard() {
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium">{adaptation.habit_title}</span>
                         <Badge variant="secondary" className="text-xs">
-                          {t("ai_coach_insight.completed", { rate: adaptation.current_completion_rate })}
+                          {`${adaptation.current_completion_rate}% completato`}
                         </Badge>
                       </div>
                       <p className="text-muted-foreground text-xs mb-2">
@@ -184,7 +183,7 @@ export default function AICoachInsightCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-blue-500" />
-                  {t("ai_coach_insight.trigger_patterns")}
+                  {"Pattern Trigger"}
                 </h4>
                 <div className="space-y-2">
                   {triggerPatterns.map((pattern: TriggerPattern, idx: number) => (
@@ -196,7 +195,7 @@ export default function AICoachInsightCard() {
                       <p className="text-xs text-muted-foreground mb-2">
                         {pattern.frequency}
                         {pattern.common_emotions?.length > 0 && (
-                          <> • {t("ai_coach_insight.common_emotions", { emotions: pattern.common_emotions.join(', ') })}</>
+                          <> • {`Emozioni comuni: ${pattern.common_emotions.join(', ')}`}</>
                         )}
                       </p>
                       <div className="flex items-center gap-2 text-primary">
@@ -213,7 +212,7 @@ export default function AICoachInsightCard() {
               <div>
                 <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-primary" />
-                  {t("ai_coach_insight.top_recommendations")}
+                  {"Raccomandazioni Principali"}
                 </h4>
                 <ul className="space-y-1.5">
                   {recommendations.map((rec: string, idx: number) => (
@@ -236,12 +235,12 @@ export default function AICoachInsightCard() {
               {generating ? (
                 <>
                   <RefreshCw className="h-4 w-4 animate-spin" />
-                  {t("common.generating")}
+                  {"Generazione..."}
                 </>
               ) : (
                 <>
                   <RefreshCw className="h-4 w-4" />
-                  {t("ai_coach_insight.generate_new")}
+                  {"Genera Nuovo Report"}
                 </>
               )}
             </Button>
