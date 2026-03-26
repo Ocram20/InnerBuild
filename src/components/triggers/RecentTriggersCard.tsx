@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TriggerLog } from "@/hooks/useTriggerTracking";
 import { useTranslation } from "react-i18next";
+
 interface RecentTriggersCardProps {
   logs: TriggerLog[];
   onDelete: (id: string) => void;
@@ -24,6 +25,7 @@ const getIntensityColor = (intensity: number) => {
 };
 
 export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCardProps) {
+  const { t, i18n } = useTranslation();
   const dateLocale = i18n.language?.startsWith("it") ? itLocale : enUS;
   const recentLogs = logs.slice(0, 10);
 

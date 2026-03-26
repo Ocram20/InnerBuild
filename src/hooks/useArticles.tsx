@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
-import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 export interface Article {
   id: string;
   title: string;

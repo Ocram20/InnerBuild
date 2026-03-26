@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
+import i18n from "i18next";
 import { 
   Brain, 
   Sparkles, 

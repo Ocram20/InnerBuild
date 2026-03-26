@@ -17,7 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTriggerReport, TriggerCause, TimingPattern, TriggerSolution } from "@/hooks/useTriggerReport";
-import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 export default function TriggerReportCard() {
   const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
