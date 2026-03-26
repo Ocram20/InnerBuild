@@ -138,7 +138,7 @@ export default function Landing() {
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl gradient-primary flex items-center justify-center shadow-soft flex-shrink-0">
               <Leaf className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
-            <span className="font-bold text-base md:text-xl text-foreground truncate">InnerBuild</span>
+            <span className="font-bold text-base md:text-xl text-foreground truncate notranslate" translate="no">InnerBuild</span>
           </div>
           
           <div className="flex items-center gap-1 md:gap-2">

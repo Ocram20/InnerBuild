@@ -331,7 +331,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         </div>
 
         {/* Form Fields */}
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 notranslate" translate="no">
           <div className="space-y-2">
             <Label htmlFor="first_name">{"Nome"}</Label>
             <Input
@@ -339,6 +339,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               value={formData.first_name}
               onChange={(e) => handleInputChange("first_name", e.target.value)}
               placeholder={"Inserisci il tuo nome"}
+              className="notranslate"
+              translate="no"
             />
           </div>
           <div className="space-y-2">
@@ -348,6 +350,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               value={formData.last_name}
               onChange={(e) => handleInputChange("last_name", e.target.value)}
               placeholder={"Inserisci il tuo cognome"}
+              className="notranslate"
+              translate="no"
             />
           </div>
         </div>
@@ -367,6 +371,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             value={formData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
             placeholder={"Scegli un username unico"}
+            className="notranslate"
+            translate="no"
           />
           {isUsernameChanged && !canChangeUsername && (
             <p className="text-xs text-amber-500 flex items-center gap-1">
