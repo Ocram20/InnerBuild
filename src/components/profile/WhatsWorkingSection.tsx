@@ -55,7 +55,7 @@ export function WhatsWorkingSection() {
     if (!user) return;
     setGenerating(true);
     try {
-      const { data: sessionData } = await supabase.auth.getSession();
+      const { data: sessionData } = await (await import("@/integrations/supabase/client")).supabase.auth.getSession();
       const token = sessionData.session?.access_token;
 
       const res = await fetch(

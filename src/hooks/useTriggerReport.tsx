@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
 
@@ -52,8 +53,7 @@ export function useTriggerReport() {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from('ai_insights')
+      const { data, error } = await untypedTable('ai_insights')
         .select('*')
         .eq('user_id', user.id)
         .eq('insight_type', 'trigger_report')
@@ -166,8 +166,7 @@ export function useTriggerReport() {
     if (!user) return;
 
     try {
-      await supabase
-        .from('ai_insights')
+      await untypedTable('ai_insights')
         .update({ is_read: true })
         .eq('id', reportId)
         .eq('user_id', user.id);

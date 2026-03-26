@@ -3,6 +3,7 @@ import { useAuth } from "./useAuth";
 import { useSubscription } from "./useSubscription";
 import { useAdminAccess } from "./useAdminAccess";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 
 // Free tier limits
 export const FREE_LIMITS = {
@@ -43,8 +44,7 @@ export function usePremiumLimits() {
         if (habitError) throw habitError;
 
         // Fetch lifetime challenge counter from profile
-        const { data: profile, error: profileError } = await supabase
-          .from("profiles")
+        const { data: profile, error: profileError } = await untypedTable("profiles")
           .select("total_challenges_created")
           .eq("user_id", user.id)
           .single();
@@ -76,8 +76,7 @@ export function usePremiumLimits() {
         .eq("user_id", user.id)
         .eq("is_active", true);
 
-      const { data: profile } = await supabase
-        .from("profiles")
+      const { data: profile } = await untypedTable("profiles")
         .select("total_challenges_created")
         .eq("user_id", user.id)
         .single();

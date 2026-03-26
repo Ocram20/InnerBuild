@@ -73,7 +73,7 @@ export default function ChallengeJourney() {
       return;
     }
 
-    setChallenge(data as Challenge);
+    setChallenge(data as unknown as Challenge);
     return data;
   }, [user, id]);
 

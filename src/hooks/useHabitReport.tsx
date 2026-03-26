@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
 import { useTranslation } from "react-i18next";
@@ -44,8 +45,7 @@ export function useHabitReport() {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from('ai_insights')
+      const { data, error } = await untypedTable('ai_insights')
         .select('*')
         .eq('user_id', user.id)
         .eq('insight_type', 'habit_report')
@@ -174,8 +174,7 @@ export function useHabitReport() {
         s.habit_id === habitId ? { ...s, status: "accepted" as const } : s
       );
 
-      const { error: insightError } = await supabase
-        .from('ai_insights')
+      const { error: insightError } = await untypedTable('ai_insights')
         .update({
           detailed_analysis: {
             tips: report.detailed_analysis.tips,
@@ -231,7 +230,7 @@ export function useHabitReport() {
         s.habit_id === habitId ? { ...s, status: "dismissed" as const } : s
       );
 
-      const { error } = await supabase
+      const { error } = await untypedTable('ai_insights')
         .from('ai_insights')
         .update({
           detailed_analysis: {
@@ -278,8 +277,7 @@ export function useHabitReport() {
     if (!user) return;
 
     try {
-      await supabase
-        .from('ai_insights')
+      await untypedTable('ai_insights')
         .update({ is_read: true })
         .eq('id', reportId)
         .eq('user_id', user.id);
