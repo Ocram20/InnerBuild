@@ -28,6 +28,12 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [saving, setSaving] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordSaving, setPasswordSaving] = useState(false);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [originalUsername, setOriginalUsername] = useState(profile?.username || "");
   const [originalEmail, setOriginalEmail] = useState(user?.email || "");
