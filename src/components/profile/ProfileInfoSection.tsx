@@ -446,35 +446,57 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           <Label htmlFor="email" className="flex items-center gap-2">
             {"Indirizzo Email"}
             <Mail className="h-3 w-3 text-muted-foreground" />
-          </Label>
-          <div className="flex gap-2">
-            <Input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-              placeholder={"Enter your email"}
-              className="flex-1"
-            />
-            {formData.email !== originalEmail && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleEmailChange}
-                disabled={emailSaving || !formData.email}
-                className="shrink-0"
-              >
-                {emailSaving ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Aggiorna"
-                )}
-              </Button>
+            {isOAuthUser && (
+              <span className="text-xs text-muted-foreground font-normal">
+                ({authProvider === "google" ? "Google" : authProvider})
+              </span>
             )}
-          </div>
-          <p className="text-xs text-muted-foreground">
-          {"Un link di conferma verrà inviato alla tua email attuale"}
-        </p>
+          </Label>
+          {isOAuthUser ? (
+            <div className="space-y-2">
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                disabled
+                className="flex-1 opacity-60"
+              />
+              <p className="text-xs text-muted-foreground">
+                {"L'email non può essere modificata perché hai effettuato l'accesso tramite "}{authProvider === "google" ? "Google" : authProvider}{". Per cambiare email, modifica l'indirizzo nel tuo account "}{authProvider === "google" ? "Google" : authProvider}{"."}
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="flex gap-2">
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  placeholder={"Enter your email"}
+                  className="flex-1"
+                />
+                {formData.email !== originalEmail && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleEmailChange}
+                    disabled={emailSaving || !formData.email}
+                    className="shrink-0"
+                  >
+                    {emailSaving ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      "Aggiorna"
+                    )}
+                  </Button>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {"Un link di conferma verrà inviato alla tua email attuale"}
+              </p>
+            </>
+          )}
         </div>
 
         {/* Change Password Section */}
