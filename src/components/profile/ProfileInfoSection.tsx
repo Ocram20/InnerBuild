@@ -499,7 +499,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           )}
         </div>
 
-        {/* Change Password Section */}
+        {/* Change Password Section - only for email/password users */}
+        {!isOAuthUser && (
         <div className="space-y-3 border-t border-border/30 pt-4">
           <Label className="flex items-center gap-2 text-sm font-semibold">
             <Lock className="h-4 w-4 text-primary" />
@@ -562,6 +563,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             )}
           </Button>
         </div>
+        )}
         <Button 
           onClick={handleSave} 
           disabled={saving || !canSave} 
