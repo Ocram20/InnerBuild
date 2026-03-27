@@ -27,7 +27,7 @@ interface ProfileInfoSectionProps {
 export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSectionProps) {
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   // Detect if user logged in via OAuth provider
   const authProvider = user?.app_metadata?.provider;
   const isOAuthUser = authProvider && authProvider !== "email";
@@ -84,7 +84,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         .select("username_changed_at")
         .eq("user_id", user.id)
         .maybeSingle();
-      
+
       if (data?.username_changed_at) {
         setUsernameChangedAt(data.username_changed_at);
       }
@@ -93,7 +93,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   }, [user]);
 
   const handleInputChange = (field: keyof ProfileData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleAvatarClick = () => {
@@ -127,15 +127,13 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       const fileExt = file.name.split(".").pop();
       const filePath = `${user.id}/avatar.${fileExt}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from("avatars")
-        .upload(filePath, file, { upsert: true });
+      const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
-        .from("avatars")
-        .getPublicUrl(filePath);
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("avatars").getPublicUrl(filePath);
 
       const avatarUrl = `${publicUrl}?t=${Date.now()}`;
 
@@ -146,9 +144,9 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
       if (updateError) throw updateError;
 
-      setFormData(prev => ({ ...prev, avatar_url: avatarUrl }));
+      setFormData((prev) => ({ ...prev, avatar_url: avatarUrl }));
       onProfileUpdate();
-      
+
       toast({
         title: "Avatar aggiornato",
         description: "La tua immagine del profilo è stata aggiornata.",
@@ -169,11 +167,11 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
     if (!usernameChangedAt) {
       return { canChange: true, daysRemaining: 0 };
     }
-    
+
     const lastChanged = new Date(usernameChangedAt);
     const daysSinceChange = differenceInDays(new Date(), lastChanged);
     const daysRemaining = Math.max(0, 7 - daysSinceChange);
-    
+
     return {
       canChange: daysSinceChange >= 7,
       daysRemaining,
@@ -181,7 +179,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   };
 
   const isUsernameChanged = formData.username !== originalUsername;
-  const hasChanges = 
+  const hasChanges =
     formData.first_name !== originalData.first_name ||
     formData.last_name !== originalData.last_name ||
     formData.username !== originalData.username;
@@ -213,10 +211,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         updateData.username_changed_at = new Date().toISOString();
       }
 
-      const { error } = await supabase
-        .from("profiles")
-        .update(updateData)
-        .eq("user_id", user.id);
+      const { error } = await supabase.from("profiles").update(updateData).eq("user_id", user.id);
 
       if (error) {
         if (error.code === "23505") {
@@ -348,20 +343,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           <User className="h-5 w-5 text-primary" />
           {"Informazioni profilo"}
         </CardTitle>
-        <CardDescription>
-          {"Gestisci le tue informazioni personali e l'immagine del profilo"}
-        </CardDescription>
+        <CardDescription>{"Gestisci le tue informazioni personali e l'immagine del profilo"}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Avatar Section */}
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <Avatar className="h-24 w-24 border-4 border-primary/20">
-              <AvatarImage 
-                src={formData.avatar_url} 
-                alt="Profile"
-                className="object-cover"
-              />
+              <AvatarImage src={formData.avatar_url} alt="Profile" className="object-cover" />
               <AvatarFallback className="bg-primary/10 text-primary text-xl font-semibold">
                 {getInitials()}
               </AvatarFallback>
@@ -371,19 +360,9 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               disabled={uploading}
               className="absolute bottom-0 right-0 p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
             >
-              {uploading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Camera className="h-4 w-4" />
-              )}
+              {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
             </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
-              className="hidden"
-            />
+            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
           </div>
           <p className="text-sm text-muted-foreground">
             {"Clicca sull'icona della fotocamera per caricare una nuova foto"}
@@ -454,15 +433,13 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           </Label>
           {isOAuthUser ? (
             <div className="space-y-2">
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                disabled
-                className="flex-1 opacity-60"
-              />
+              <Input id="email" type="email" value={formData.email} disabled className="flex-1 opacity-60" />
               <p className="text-xs text-muted-foreground">
-                {"L'email non può essere modificata perché hai effettuato l'accesso tramite "}{authProvider === "google" ? "Google" : authProvider}{". Per cambiare email, modifica l'indirizzo nel tuo account "}{authProvider === "google" ? "Google" : authProvider}{"."}
+                {"L'email non può essere modificata perché hai effettuato l'accesso tramite "}
+                {authProvider === "google" ? "Google" : authProvider}
+                {". Per cambiare email, modifica l'indirizzo nel tuo account "}
+                {authProvider === "google" ? "Google" : authProvider}
+                {"."}
               </p>
             </div>
           ) : (
@@ -484,16 +461,12 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                     disabled={emailSaving || !formData.email}
                     className="shrink-0"
                   >
-                    {emailSaving ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      "Aggiorna"
-                    )}
+                    {emailSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Aggiorna"}
                   </Button>
                 )}
               </div>
               <p className="text-xs text-muted-foreground">
-                {"Un link di conferma verrà inviato alla tua email attuale"}
+                {"Un link di conferma verrà inviato alla tua nuova email"}
               </p>
             </>
           )}
@@ -501,74 +474,70 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
         {/* Change Password Section - only for email/password users */}
         {!isOAuthUser && (
-        <div className="space-y-3 border-t border-border/30 pt-4">
-          <Label className="flex items-center gap-2 text-sm font-semibold">
-            <Lock className="h-4 w-4 text-primary" />
-            {"Modifica Password"}
-          </Label>
-          <div className="space-y-2">
-            <div className="relative">
-              <Input
-                type={showCurrentPassword ? "text" : "password"}
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="Password attuale"
-              />
-              <button
-                type="button"
-                onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              >
-                {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
-            <div className="relative">
+          <div className="space-y-3 border-t border-border/30 pt-4">
+            <Label className="flex items-center gap-2 text-sm font-semibold">
+              <Lock className="h-4 w-4 text-primary" />
+              {"Modifica Password"}
+            </Label>
+            <div className="space-y-2">
+              <div className="relative">
+                <Input
+                  type={showCurrentPassword ? "text" : "password"}
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  placeholder="Password attuale"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+              <div className="relative">
+                <Input
+                  type={showNewPassword ? "text" : "password"}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Nuova password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               <Input
                 type={showNewPassword ? "text" : "password"}
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="Nuova password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Conferma nuova password"
               />
-              <button
-                type="button"
-                onClick={() => setShowNewPassword(!showNewPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              >
-                {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
             </div>
-            <Input
-              type={showNewPassword ? "text" : "password"}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Conferma nuova password"
-            />
+            <Button
+              variant="outline"
+              className="w-full"
+              disabled={passwordSaving || !currentPassword || !newPassword || !confirmPassword}
+              onClick={handlePasswordChange}
+            >
+              {passwordSaving ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {"Aggiornamento..."}
+                </>
+              ) : (
+                <>
+                  <Lock className="mr-2 h-4 w-4" />
+                  {"Aggiorna Password"}
+                </>
+              )}
+            </Button>
           </div>
-          <Button
-            variant="outline"
-            className="w-full"
-            disabled={passwordSaving || !currentPassword || !newPassword || !confirmPassword}
-            onClick={handlePasswordChange}
-          >
-            {passwordSaving ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {"Aggiornamento..."}
-              </>
-            ) : (
-              <>
-                <Lock className="mr-2 h-4 w-4" />
-                {"Aggiorna Password"}
-              </>
-            )}
-          </Button>
-        </div>
         )}
-        <Button 
-          onClick={handleSave} 
-          disabled={saving || !canSave} 
-          className="w-full"
-        >
+        <Button onClick={handleSave} disabled={saving || !canSave} className="w-full">
           {saving ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
