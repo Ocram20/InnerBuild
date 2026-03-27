@@ -27,6 +27,10 @@ interface ProfileInfoSectionProps {
 export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSectionProps) {
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Detect if user logged in via OAuth provider
+  const authProvider = user?.app_metadata?.provider;
+  const isOAuthUser = authProvider && authProvider !== "email";
   const [saving, setSaving] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
