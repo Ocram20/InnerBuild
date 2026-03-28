@@ -48,7 +48,7 @@ interface Habit {
 }
 
 export default function Dashboard() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user, signOut } = useAuth();
   const { subscription, openPortal } = useSubscription();
   const { isPremium } = usePremiumLimits();
@@ -118,7 +118,7 @@ export default function Dashboard() {
 
   const handleManageSubscription = async () => {
     try { await openPortal(); } catch (error) {
-      toast({ title: "Errore", description: "Apertura gestione abbonamento fallita", variant: "destructive" });
+      toast({ title: t("common.error"), description: t("dashboard.failed_subscription"), variant: "destructive" });
     }
   };
 
@@ -138,16 +138,16 @@ export default function Dashboard() {
       }
     } catch (error) {
       setHabits(prev => prev.map(h => h.id === habitId ? { ...h, completed_today: habit.completed_today } : h));
-      toast({ title: "Errore", description: "Aggiornamento abitudine fallito", variant: "destructive" });
+      toast({ title: t("common.error"), description: t("dashboard.failed_update_habit"), variant: "destructive" });
     }
   };
 
   const getGreeting = () => {
     const hour = new Date().getHours();
     let greeting = "";
-    if (hour < 12) greeting = "Buongiorno";
-    else if (hour < 18) greeting = "Buon pomeriggio";
-    else greeting = "Buonasera";
+    if (hour < 12) greeting = t("dashboard.good_morning");
+    else if (hour < 18) greeting = t("dashboard.good_afternoon");
+    else greeting = t("dashboard.good_evening");
     if (firstName) {
       return <>{greeting}, <span className="notranslate" translate="no">{firstName}</span></>;
     }
@@ -165,6 +165,12 @@ export default function Dashboard() {
     </div>
   );
 
+  const getDateLocale = () => {
+    const lang = i18n.language;
+    const localeMap: Record<string, string> = { it: "it-IT", en: "en-US", es: "es-ES", de: "de-DE", fr: "fr-FR", ru: "ru-RU", ro: "ro-RO" };
+    return localeMap[lang] || "en-US";
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden pb-24 bg-background">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
@@ -176,7 +182,7 @@ export default function Dashboard() {
             <div className="min-w-0">
               <h1 className="font-bold text-foreground break-words">{getGreeting()}</h1>
               <p className="text-xs text-muted-foreground break-words">
-                {new Date().toLocaleDateString(i18n.language?.startsWith("it") ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long" })}
+                {new Date().toLocaleDateString(getDateLocale(), { weekday: "long", day: "numeric", month: "long" })}
               </p>
             </div>
           </div>
@@ -185,11 +191,11 @@ export default function Dashboard() {
             {subscription.subscribed && (
               <button onClick={handleManageSubscription} className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center gap-1 hover:bg-primary/20 transition-colors">
                 <Crown className="h-3 w-3" />
-                {"Pro"}
+                {t("common.pro")}
               </button>
             )}
             <LanguageSelector />
-            <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full h-9 w-9" title={"Vedi Sito"}>
+            <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full h-9 w-9" title={t("common.view_site")}>
               <Home className="h-4 w-4" />
             </Button>
             <Button variant="ghost" size="icon" onClick={() => navigate("/profile")} className="rounded-full h-9 w-9">
@@ -206,12 +212,12 @@ export default function Dashboard() {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>{"Sei sicuro di voler uscire?"}</AlertDialogTitle>
-                  <AlertDialogDescription>{"Dovrai accedere di nuovo per utilizzare il tuo account."}</AlertDialogDescription>
+                  <AlertDialogTitle>{t("dashboard.logout_confirm_title")}</AlertDialogTitle>
+                  <AlertDialogDescription>{t("dashboard.logout_confirm_desc")}</AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>{"Annulla"}</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleSignOut}>{"Esci"}</AlertDialogAction>
+                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleSignOut}>{t("auth.sign_out")}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
@@ -234,7 +240,7 @@ export default function Dashboard() {
                   <div className="flex flex-wrap items-center gap-2">
                     <Button size="sm" variant="ghost" onClick={() => navigate("/habits")} className="h-8 text-muted-foreground">
                       <Target className="h-4 w-4 mr-1" />
-                      {"Tutti"}
+                      {t("common.all")}
                     </Button>
                     <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8">
                       <Plus className="h-4 w-4" />
@@ -242,10 +248,10 @@ export default function Dashboard() {
                   </div>
                 }
               >
-                {"Abitudini di Oggi"}
+                {t("dashboard.todays_habits")}
               </SectionTitle>
               <p className="text-sm text-muted-foreground -mt-2 mb-3">
-                {`${completedCount}/${totalHabits} completate • ${progressPercent}%`}
+                {t("dashboard.completed_stats", { completed: completedCount, total: totalHabits, percent: progressPercent })}
               </p>
               <TodayOverview habits={habits} onToggleHabit={toggleHabit} />
             </section>
@@ -255,7 +261,7 @@ export default function Dashboard() {
                 <RecoveryStreakCard journey={journey} checkIns={checkIns} hasCheckedInToday={hasCheckedInToday} onCheckIn={checkIn} />
                 <Button type="button" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full mt-3 gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-md rounded-xl h-12">
                   <AlertTriangle className="h-4 w-4" />
-                  {"🚨 Emergenza Impulso"}
+                  {t("dashboard.emergency_urge")}
                 </Button>
               </section>
             )}
@@ -270,8 +276,8 @@ export default function Dashboard() {
                   <Compass className="h-6 w-6 text-primary" />
                 </div>
                 <div className="flex-1 text-left">
-                  <p className="text-base font-semibold text-foreground">{"Esplora Strumenti"}</p>
-                  <p className="text-xs text-muted-foreground">{"Recovery, Coach AI, Tracciamento Trigger e altro"}</p>
+                  <p className="text-base font-semibold text-foreground">{t("dashboard.explore_tools")}</p>
+                  <p className="text-xs text-muted-foreground">{t("dashboard.explore_tools_desc")}</p>
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground" />
               </button>
