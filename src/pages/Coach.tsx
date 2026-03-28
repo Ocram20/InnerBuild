@@ -13,14 +13,11 @@ import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { toast } from "sonner";
 import { CoachLockedPreview } from "@/components/coach/CoachLockedPreview";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { useTranslation } from "react-i18next";
-
 type Message = { id?: string; role: "user" | "assistant"; content: string; };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-coach`;
 
 export default function Coach() {
-  const { t } = useTranslation();
   const { user } = useAuth();
   const { subscription, loading: subLoading } = useSubscription();
   const { hasAdminRole, loading: roleLoading } = useAdminAccess();
@@ -33,14 +30,17 @@ export default function Coach() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const quickActions = [
-    { id: "habit", label: t("coach.quick_actions.suggest_habit"), icon: Target, prompt: "Can you suggest a healthy habit I could start building today?" },
-    { id: "challenge", label: t("coach.quick_actions.start_challenge"), icon: Flame, prompt: "I want to challenge myself. Can you suggest a detox or self-improvement challenge with daily steps?" },
-    { id: "motivation", label: t("coach.quick_actions.motivate_me"), icon: Zap, prompt: "I'm feeling low on motivation today. Can you give me an encouraging perspective?" },
-    { id: "reflect", label: t("coach.quick_actions.help_reflect"), icon: Lightbulb, prompt: "I'd like to do some self-reflection. Can you ask me a few thoughtful questions?" },
+    { id: "habit", label: "Suggerisci un'abitudine", icon: Target, prompt: "Can you suggest a healthy habit I could start building today?" },
+    { id: "challenge", label: "Inizia una sfida", icon: Flame, prompt: "I want to challenge myself. Can you suggest a detox or self-improvement challenge with daily steps?" },
+    { id: "motivation", label: "Motivami", icon: Zap, prompt: "I'm feeling low on motivation today. Can you give me an encouraging perspective?" },
+    { id: "reflect", label: "Aiutami a riflettere", icon: Lightbulb, prompt: "I'd like to do some self-reflection. Can you ask me a few thoughtful questions?" },
   ];
 
-  const tipsKeys = ["1", "2", "3", "4", "5"] as const;
-  const randomTip = t(`coach.tips.${tipsKeys[Math.floor(Math.random() * tipsKeys.length)]}`);
+  const motivationalTips = [
+    "Ogni piccolo passo conta verso i tuoi obiettivi più grandi", "Il progresso non è sempre lineare, e va bene così", "Stai già facendo meglio essendo qui", "La costanza batte la perfezione ogni volta", "Oggi è una nuova opportunità per crescere",
+  ];
+
+  const randomTip = motivationalTips[Math.floor(Math.random() * motivationalTips.length)];
   const fromExplore = location.state?.from === "explore";
   const handleBack = () => navigate(fromExplore ? "/explore" : "/dashboard");
 
@@ -74,20 +74,20 @@ export default function Coach() {
     await saveMessage("user", userMessage.content);
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session?.access_token) { toast.error(t("coach.not_authenticated")); setIsLoading(false); return; }
+      if (!session?.access_token) { toast.error("Non autenticato. Effettua l'accesso."); setIsLoading(false); return; }
       const resp = await fetch(CHAT_URL, { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ messages: newMessages.map(m => ({ role: m.role, content: m.content })) }) });
       if (!resp.ok) {
-        if (resp.status === 429) toast.error(t("coach.rate_limit"));
-        else if (resp.status === 401) toast.error(t("coach.auth_required"));
-        else if (resp.status === 402 || resp.status === 403) toast.error(t("coach.api_error"));
-        else toast.error(t("coach.failed_response"));
+        if (resp.status === 429) toast.error("Limite richieste superato. Riprova tra un momento.");
+        else if (resp.status === 401) toast.error("Autenticazione richiesta. Accedi di nuovo.");
+        else if (resp.status === 402 || resp.status === 403) toast.error("Chiave API non valida o quota superata.");
+        else toast.error("Risposta fallita");
         setIsLoading(false); return;
       }
       const data = await resp.json();
       const assistantContent = data.response || "I'm sorry, I couldn't generate a response.";
       setMessages(prev => [...prev, { role: "assistant", content: assistantContent }]);
       await saveMessage("assistant", assistantContent);
-    } catch (error) { console.error("Chat error:", error); toast.error(t("coach.failed_send")); }
+    } catch (error) { console.error("Chat error:", error); toast.error("Invio messaggio fallito"); }
     finally { setIsLoading(false); }
   };
 
@@ -96,8 +96,8 @@ export default function Coach() {
   const clearChat = async () => {
     if (!user) return;
     const { error } = await supabase.from("chat_messages").delete().eq("user_id", user.id);
-    if (error) toast.error(t("coach.failed_clear"));
-    else { setMessages([]); toast.success(t("coach.chat_cleared")); }
+    if (error) toast.error("Cancellazione chat fallita");
+    else { setMessages([]); toast.success("Chat cancellata"); }
   };
 
   if (accessLoading) return <div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
@@ -111,7 +111,7 @@ export default function Coach() {
               <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg"><Bot className="h-5 w-5 text-primary-foreground" /></div>
-                <div><h1 className="text-xl font-bold">{t("coach.title")}</h1><p className="text-sm text-muted-foreground">{t("coach.subtitle")}</p></div>
+                <div><h1 className="text-xl font-bold">{"Coach AI"}</h1><p className="text-sm text-muted-foreground">{"La tua guida personale"}</p></div>
               </div>
             </div>
           </div>
@@ -130,10 +130,10 @@ export default function Coach() {
               <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg animate-pulse"><Bot className="h-5 w-5 text-primary-foreground" /></div>
-                <div><h1 className="text-xl font-bold">{t("coach.title")}</h1><p className="text-sm text-muted-foreground">{t("coach.subtitle")}</p></div>
+                <div><h1 className="text-xl font-bold">{"Coach AI"}</h1><p className="text-sm text-muted-foreground">{"La tua guida personale"}</p></div>
               </div>
             </div>
-            {messages.length > 0 && <Button variant="ghost" size="sm" onClick={clearChat} className="text-muted-foreground">{t("coach.clear_chat")}</Button>}
+            {messages.length > 0 && <Button variant="ghost" size="sm" onClick={clearChat} className="text-muted-foreground">{"Cancella chat"}</Button>}
           </div>
         </div>
       </header>
@@ -146,14 +146,14 @@ export default function Coach() {
             <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary via-primary/80 to-accent flex items-center justify-center mb-6 shadow-xl animate-scale-in">
               <Sparkles className="h-10 w-10 text-primary-foreground" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">{t("coach.hey_there")}</h2>
-            <p className="text-muted-foreground mb-2 max-w-md">{t("coach.intro")}</p>
+            <h2 className="text-2xl font-bold mb-2">{"Ciao! 👋"}</h2>
+            <p className="text-muted-foreground mb-2 max-w-md">{"Sono il tuo coach AI, qui per supportare il tuo percorso verso abitudini migliori e crescita personale."}</p>
             <Card className="bg-primary/5 border-primary/20 mb-8 max-w-md">
               <CardContent className="py-3 px-4">
                 <p className="text-sm text-foreground/80 italic flex items-center gap-2"><Heart className="h-4 w-4 text-primary flex-shrink-0" />{randomTip}</p>
               </CardContent>
             </Card>
-            <p className="text-sm text-muted-foreground mb-4">{t("coach.quick_actions_label")}</p>
+            <p className="text-sm text-muted-foreground mb-4">{"Azioni rapide per iniziare:"}</p>
             <div className="grid grid-cols-2 gap-3 w-full max-w-md">
               {quickActions.map((action) => (
                 <button key={action.id} onClick={() => handleQuickAction(action.prompt)} disabled={isLoading}
@@ -164,9 +164,9 @@ export default function Coach() {
               ))}
             </div>
             <div className="flex items-center gap-4 mt-8 text-muted-foreground">
-              <div className="flex items-center gap-1.5 text-sm"><Trophy className="h-4 w-4 text-amber-500" /><span>{t("coach.stats.track_progress")}</span></div>
-              <div className="flex items-center gap-1.5 text-sm"><Target className="h-4 w-4 text-emerald-500" /><span>{t("coach.stats.build_habits")}</span></div>
-              <div className="flex items-center gap-1.5 text-sm"><Flame className="h-4 w-4 text-rose-500" /><span>{t("coach.stats.take_challenges")}</span></div>
+              <div className="flex items-center gap-1.5 text-sm"><Trophy className="h-4 w-4 text-amber-500" /><span>{"Traccia progressi"}</span></div>
+              <div className="flex items-center gap-1.5 text-sm"><Target className="h-4 w-4 text-emerald-500" /><span>{"Costruisci abitudini"}</span></div>
+              <div className="flex items-center gap-1.5 text-sm"><Flame className="h-4 w-4 text-rose-500" /><span>{"Affronta sfide"}</span></div>
             </div>
           </div>
         ) : (
@@ -208,7 +208,7 @@ export default function Coach() {
 
         <div className="pt-4 border-t border-border mt-auto">
           <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="flex gap-3">
-            <Input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} placeholder={t("coach.input_placeholder")} disabled={isLoading} className="flex-1 h-12 rounded-xl bg-muted/50 border-border/50 focus:border-primary/50" />
+            <Input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} placeholder={"Chiedi delle tue abitudini, sfide, recovery..."} disabled={isLoading} className="flex-1 h-12 rounded-xl bg-muted/50 border-border/50 focus:border-primary/50" />
             <Button type="submit" size="icon" disabled={isLoading || !input.trim()} className="h-12 w-12 rounded-xl">
               {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
             </Button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,10 +12,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAdminAccess } from "@/hooks/useAdminAccess";
-import { useTranslation } from "react-i18next";
-
 export default function Learn() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("articles");
@@ -44,12 +41,17 @@ export default function Learn() {
           <div className="container max-w-4xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleBack}
+                  className="h-9 w-9"
+                >
                   <ArrowLeft className="h-5 w-5" />
                 </Button>
                 <div>
-                  <h1 className="text-xl font-bold">{t("learn.title")}</h1>
-                  <p className="text-sm text-muted-foreground">{t("learn.subtitle")}</p>
+                  <h1 className="text-xl font-bold">{"Impara"}</h1>
+                  <p className="text-sm text-muted-foreground">{"Educazione e conoscenze sul recovery"}</p>
                 </div>
               </div>
             </div>
@@ -67,12 +69,17 @@ export default function Learn() {
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleBack}
+                className="h-9 w-9"
+              >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="text-xl font-bold">{t("learn.title")}</h1>
-                <p className="text-sm text-muted-foreground">{t("learn.subtitle")}</p>
+                <h1 className="text-xl font-bold">{"Impara"}</h1>
+                <p className="text-sm text-muted-foreground">{"Educazione e conoscenze sul recovery"}</p>
               </div>
             </div>
           </div>
@@ -84,15 +91,15 @@ export default function Learn() {
           <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="articles" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
-              <span>{t("learn.articles")}</span>
+              <span>{"Articoli"}</span>
             </TabsTrigger>
             <TabsTrigger value="education" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              <span>{t("learn.guides")}</span>
+              <span>{"Guide"}</span>
             </TabsTrigger>
             <TabsTrigger value="timeline" className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              <span>{t("learn.timeline")}</span>
+              <span>{"Timeline"}</span>
             </TabsTrigger>
           </TabsList>
           <TabsContent value="articles" className="mt-0">

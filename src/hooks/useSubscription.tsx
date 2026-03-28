@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
-import i18n from "@/i18n";
+import { getPreferredTranslationLanguage } from "@/lib/googleTranslate";
 
 interface SubscriptionStatus {
   subscribed: boolean;
@@ -84,7 +84,7 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
 
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
-        body: { locale: i18n.language },
+        body: { locale: getPreferredTranslationLanguage() },
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },

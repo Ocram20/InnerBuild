@@ -16,14 +16,12 @@ import { ProgressDeepDive } from "@/components/profile/ProgressDeepDive";
 import { WhatsWorkingSection } from "@/components/profile/WhatsWorkingSection";
 import { useProgressData } from "@/hooks/useProgressData";
 import BottomNavigation from "@/components/BottomNavigation";
-import { useTranslation } from "react-i18next";
 
 interface ProfileData {
   first_name: string; last_name: string; username: string; avatar_url: string; email: string;
 }
 
 export default function Profile() {
-  const { t } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { hasAdminRole } = useAdminAccess();
   const { subscription, openPortal } = useSubscription();
@@ -55,7 +53,7 @@ export default function Profile() {
   const handleManageSubscription = async () => {
     setPortalLoading(true);
     try { await openPortal(); } catch (error) {
-      toast({ title: t("common.error"), description: t("profile.portal_error"), variant: "destructive" });
+      toast({ title: "Errore", description: "Apertura portale abbonamento fallita. Riprova.", variant: "destructive" });
       setPortalLoading(false);
     }
   };
@@ -69,9 +67,9 @@ export default function Profile() {
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")}><ArrowLeft className="h-5 w-5" /></Button>
-            <h1 className="text-xl font-bold">{t("profile.title")}</h1>
+            <h1 className="text-xl font-bold">{"Il Mio Profilo"}</h1>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")} title={t("common.view_site")}><Home className="h-5 w-5" /></Button>
+          <Button variant="ghost" size="icon" onClick={() => navigate("/")} title={"Vedi Sito"}><Home className="h-5 w-5" /></Button>
         </div>
       </header>
 
@@ -85,26 +83,26 @@ export default function Profile() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><Crown className="h-5 w-5 text-primary" /></div>
                   <div>
-                    <p className="font-medium text-foreground">{isPremium ? t("profile.premium_plan") : t("profile.free_plan")}</p>
+                    <p className="font-medium text-foreground">{isPremium ? "Piano Premium" : "Piano Gratuito"}</p>
                     <p className="text-xs text-muted-foreground">
                       {isPremium
                         ? hasAdminRole && !subscription.subscribed
-                          ? t("profile.admin_access")
+                          ? "Accesso admin — tutte le funzionalità sbloccate"
                           : subscription.cancelAtPeriodEnd
-                            ? t("profile.cancels_on", { date: new Date(subscription.currentPeriodEnd!).toLocaleDateString() })
-                            : t("profile.renews_on", { date: new Date(subscription.currentPeriodEnd!).toLocaleDateString() })
-                        : t("profile.upgrade_unlock")}
+                            ? `Si annulla il ${new Date(subscription.currentPeriodEnd!).toLocaleDateString()}`
+                            : `Si rinnova il ${new Date(subscription.currentPeriodEnd!).toLocaleDateString()}`
+                        : "Aggiorna per sbloccare tutte le funzionalità"}
                     </p>
                   </div>
                 </div>
                 {subscription.subscribed ? (
                   <Button variant="outline" size="sm" onClick={handleManageSubscription} disabled={portalLoading} className="gap-1.5">
                     {portalLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
-                    {t("common.manage")}
+                    {"Gestisci"}
                   </Button>
                 ) : !isPremium ? (
                   <Button size="sm" onClick={() => navigate("/pricing")} className="gradient-primary text-primary-foreground gap-1.5">
-                    <Crown className="h-4 w-4" />{t("common.upgrade")}
+                    <Crown className="h-4 w-4" />{"Aggiorna"}
                   </Button>
                 ) : null}
               </div>
@@ -112,10 +110,10 @@ export default function Profile() {
           </Card>
 
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground">{t("profile.progress_overview")}</h2>
+            <h2 className="text-lg font-semibold text-foreground">{"Panoramica Progressi"}</h2>
             <div className="flex items-center gap-1 bg-muted/60 rounded-lg p-0.5">
-              <button onClick={() => setTimeRange("recent")} className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${timeRange === "recent" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{t("common.recent")}</button>
-              <button onClick={() => setTimeRange("annual")} className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${timeRange === "annual" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{t("common.annual")}</button>
+              <button onClick={() => setTimeRange("recent")} className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${timeRange === "recent" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{"Recente"}</button>
+              <button onClick={() => setTimeRange("annual")} className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${timeRange === "annual" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{"Annuale"}</button>
             </div>
           </div>
 

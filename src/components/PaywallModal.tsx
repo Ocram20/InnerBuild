@@ -1,10 +1,12 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Crown, Sparkles, Target, Flame, Bot, Heart, BarChart3, Check } from "lucide-react";
+import { Crown, Sparkles, Target, Flame, Bot, Heart, BarChart3, Trophy, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { reapplyGoogleTranslate } from "@/lib/googleTranslate";
 
 type PaywallReason = "habit_limit" | "challenge_limit" | "ai_coach" | "recovery" | "advanced_stats" | "general";
 
@@ -33,6 +35,11 @@ export default function PaywallModal({ open, onOpenChange, reason = "general" }:
   const navigate = useNavigate();
   const reasonTitleKey = `paywall.${reason}_title`;
   const reasonDescKey = `paywall.${reason}_desc`;
+
+  useEffect(() => {
+    if (!open) return;
+    reapplyGoogleTranslate();
+  }, [open, reason]);
 
   const handleUpgrade = () => {
     onOpenChange(false);

@@ -7,25 +7,33 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Leaf, Check, ArrowLeft, Loader2, LogOut, Crown, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
-
 export default function Pricing() {
-  const { t } = useTranslation();
   const { user, signOut } = useAuth();
   const { subscription, loading, createCheckout } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const freeFeatures = [
+    "Fino a 5 abitudini", "1 sfida detox attiva", "Tracciamento abitudini base con serie",
+    "Citazioni motivazionali giornaliere", "Pianificazione giornaliera (Da Fare & Da Non Fare)", "Riflessione serale e gratitudine",
+    "Profilo con calendario attività", "Insight Cosa Funziona", "Panoramica progressi (recente & annuale)",
+  ];
 
-  const freeFeatureKeys = ["habits", "challenges", "tracking", "quotes", "planning", "reflection", "profile", "whats_working", "progress"] as const;
-  const premiumFeatureKeys = ["unlimited_habits", "unlimited_challenges", "ai_coach", "recovery", "trigger_tracking", "habit_adaptation", "learn", "priority"] as const;
+  const premiumFeatures = [
+    "Abitudini illimitate", "Sfide detox illimitate",
+    "Coach AI Personale (24/7)", "Programma Porn Recovery con tracciamento serie",
+    "Tracciamento trigger e analisi AI dei pattern", "Suggerimenti adattamento abitudini AI",
+    "Sezione Impara (articoli, guide & timeline)", "Accesso prioritario a nuove funzionalità",
+  ];
 
   useEffect(() => {
     if (searchParams.get("success") === "true") {
-      toast({ title: t("pricing.welcome_premium"), description: t("pricing.subscription_active") });
+      toast({ title: "Benvenuto su InnerBuild Premium!", description: "Il tuo abbonamento è ora attivo. Buon utilizzo!" });
       navigate("/dashboard", { replace: true });
     } else if (searchParams.get("canceled") === "true") {
-      toast({ title: t("pricing.checkout_canceled"), description: t("pricing.checkout_canceled_desc") });
+      toast({ title: "Checkout annullato", description: "Nessun problema - puoi abbonarti in qualsiasi momento." });
     }
   }, [searchParams, toast, navigate, t]);
 
@@ -37,7 +45,7 @@ export default function Pricing() {
     if (!user) { navigate("/auth"); return; }
     setCheckoutLoading(true);
     try { await createCheckout(); } catch (error) {
-      toast({ title: t("common.error"), description: t("pricing.checkout_failed"), variant: "destructive" });
+      toast({ title: "Errore", description: "Avvio checkout fallito. Riprova.", variant: "destructive" });
       setCheckoutLoading(false);
     }
   };
@@ -66,31 +74,31 @@ export default function Pricing() {
       <main className="flex-1 px-4 py-12">
         <div className="max-w-4xl mx-auto animate-slide-up">
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{t("pricing.choose_plan")}</h1>
-            <p className="text-muted-foreground max-w-xl mx-auto">{t("pricing.subtitle")}</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{"Scegli il Tuo Piano"}</h1>
+            <p className="text-muted-foreground max-w-xl mx-auto">{"Inizia gratis e aggiorna quando sei pronto. Nessun costo nascosto, annulla quando vuoi."}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="glass border-border/50 relative overflow-hidden">
               <CardHeader className="text-center pb-4">
-                <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-medium mb-4 mx-auto">{t("pricing.free_plan")}</div>
+                <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-medium mb-4 mx-auto">{"Piano Gratuito"}</div>
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl font-bold text-foreground">{t("pricing.free_price")}</span>
-                  <span className="text-muted-foreground">{t("pricing.forever")}</span>
+                  <span className="text-4xl font-bold text-foreground">{"€0"}</span>
+                  <span className="text-muted-foreground">{"/per sempre"}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">{t("pricing.get_started_basics")}</p>
+                <p className="text-sm text-muted-foreground mt-2">{"Inizia con le basi"}</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="space-y-3 mb-6">
-                  {freeFeatureKeys.map((key) => (
-                    <div key={key} className="flex items-center gap-3">
+                  {freeFeatures.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-success/10 flex items-center justify-center flex-shrink-0"><Check className="h-3 w-3 text-success" /></div>
-                      <span className="text-foreground">{t(`pricing.free_features.${key}`)}</span>
+                      <span className="text-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <Button variant="outline" onClick={() => navigate(user ? "/dashboard" : "/auth")} className="w-full h-12 rounded-xl font-medium">
-                  {user ? t("pricing.current_plan") : t("pricing.get_started_free")}
+                  {user ? "Piano Attuale" : "Inizia Gratis"}
                 </Button>
               </CardContent>
             </Card>
@@ -98,42 +106,42 @@ export default function Pricing() {
             <Card className="glass border-2 border-primary/30 relative overflow-hidden shadow-lg">
               <div className="absolute top-0 right-0">
                 <div className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-bl-lg flex items-center gap-1">
-                  <Sparkles className="h-3 w-3" />{t("pricing.most_popular")}
+                  <Sparkles className="h-3 w-3" />{"Più Popolare"}
                 </div>
               </div>
               <CardHeader className="text-center pb-4">
                 <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 mx-auto">
-                  <Crown className="h-4 w-4" />{t("pricing.premium_plan")}
+                  <Crown className="h-4 w-4" />{"Piano Premium"}
                 </div>
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl font-bold text-foreground">{t("pricing.premium_price")}</span>
-                  <span className="text-muted-foreground">{t("pricing.per_month")}</span>
+                  <span className="text-4xl font-bold text-foreground">{"€9.99"}</span>
+                  <span className="text-muted-foreground">{"/mese"}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">{t("pricing.unlock_potential")}</p>
+                <p className="text-sm text-muted-foreground mt-2">{"Sblocca il tuo pieno potenziale"}</p>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-xs text-muted-foreground mb-3 text-center">{t("pricing.everything_in_free")}</p>
+                <p className="text-xs text-muted-foreground mb-3 text-center">{"Tutto nel Gratuito, più:"}</p>
                 <div className="space-y-3 mb-6">
-                  {premiumFeatureKeys.map((key) => (
-                    <div key={key} className="flex items-center gap-3">
+                  {premiumFeatures.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-success/10 flex items-center justify-center flex-shrink-0"><Check className="h-3 w-3 text-success" /></div>
-                      <span className="text-foreground">{t(`pricing.premium_features.${key}`)}</span>
+                      <span className="text-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <Button onClick={handleSubscribe} disabled={checkoutLoading} className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft transition-transform duration-100 active:scale-95">
-                  {checkoutLoading ? (<><Loader2 className="h-5 w-5 animate-spin" /><span>{t("common.loading")}</span></>) : user ? t("pricing.subscribe_now") : t("pricing.get_premium")}
+                  {checkoutLoading ? (<><Loader2 className="h-5 w-5 animate-spin" /><span>{"Caricamento..."}</span></>) : user ? "Abbonati Ora" : "Ottieni Premium"}
                 </Button>
               </CardContent>
             </Card>
           </div>
 
           <div className="text-center space-y-4">
-            <p className="text-sm text-muted-foreground">{t("pricing.trust_badges")}</p>
+            <p className="text-sm text-muted-foreground">{"Garanzia di rimborso 30 giorni • Annulla quando vuoi • Pagamento sicuro via Stripe"}</p>
             {!user && (
               <p className="text-sm text-muted-foreground">
-                {t("pricing.have_account")}{" "}
-                <button onClick={() => navigate("/auth")} className="text-primary font-medium hover:underline">{t("auth.sign_in")}</button>
+                {"Hai già un account?"}{" "}
+                <button onClick={() => navigate("/auth")} className="text-primary font-medium hover:underline">{"Accedi"}</button>
               </p>
             )}
           </div>
