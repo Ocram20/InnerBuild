@@ -11,7 +11,7 @@ import { EveningReminderBanner } from "@/components/daily-planning/EveningRemind
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
 
-const localeMap: Record<string, Locale> = { it, en: enUS, es, de, fr, ru, ro };
+const localeMap: Record<string, typeof enUS> = { it, en: enUS, es, de, fr, ru, ro };
 
 const DailyPlanning = () => {
   const { t, i18n } = useTranslation();
