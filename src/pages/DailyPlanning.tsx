@@ -3,20 +3,23 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { format, addDays } from "date-fns";
-import { enUS, it } from "date-fns/locale";
+import { enUS, it, es, de, fr, ru, ro } from "date-fns/locale";
 import { ToDoSection } from "@/components/daily-planning/ToDoSection";
 import { NotToDoSection } from "@/components/daily-planning/NotToDoSection";
 import { ActiveHabitsSection } from "@/components/daily-planning/ActiveHabitsSection";
 import { EveningReminderBanner } from "@/components/daily-planning/EveningReminderBanner";
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
+
+const localeMap: Record<string, Locale> = { it, en: enUS, es, de, fr, ru, ro };
+
 const DailyPlanning = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const fromExplore = location.state?.from === "explore";
-  const dateLocale = i18n.language === "it" ? it : enUS;
+  const dateLocale = localeMap[i18n.language] || enUS;
 
   const today = new Date();
   const tomorrow = addDays(today, 1);
@@ -33,10 +36,10 @@ const DailyPlanning = () => {
               <div className="min-w-0 flex-1">
                 <h1 className="text-base sm:text-xl font-bold flex items-center gap-2">
                   <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                  <span className="truncate">{"Pianificazione Giornaliera"}</span>
+                  <span className="truncate">{t("dashboard.daily_planning")}</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-muted-foreground truncate">
-                  {"Domani"}, {format(tomorrow, "EEEE, MMMM d", { locale: dateLocale })}
+                  {format(tomorrow, "EEEE, MMMM d", { locale: dateLocale })}
                 </p>
               </div>
             </div>
