@@ -562,6 +562,7 @@ export type Database = {
           full_name: string | null
           id: string
           last_name: string | null
+          preferred_language: string | null
           stripe_customer_id: string | null
           subscription_status: string | null
           total_challenges_created: number
@@ -577,6 +578,7 @@ export type Database = {
           full_name?: string | null
           id?: string
           last_name?: string | null
+          preferred_language?: string | null
           stripe_customer_id?: string | null
           subscription_status?: string | null
           total_challenges_created?: number
@@ -592,6 +594,7 @@ export type Database = {
           full_name?: string | null
           id?: string
           last_name?: string | null
+          preferred_language?: string | null
           stripe_customer_id?: string | null
           subscription_status?: string | null
           total_challenges_created?: number
