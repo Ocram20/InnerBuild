@@ -106,16 +106,16 @@ export function useTriggerTracking() {
     if (error) {
       console.error("Error logging trigger:", error);
       toast({
-        title: "Error",
-        description: "Failed to save the log",
+        title: "Errore",
+        description: "Impossibile salvare il registro",
         variant: "destructive",
       });
       return false;
     }
 
     toast({
-      title: "✓ Trigger logged",
-      description: "Keep tracking to discover your patterns",
+      title: "✓ Trigger registrato",
+      description: "Continua a monitorare per scoprire i tuoi pattern",
     });
 
     await fetchLogs();
