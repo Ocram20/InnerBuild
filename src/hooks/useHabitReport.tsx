@@ -134,16 +134,16 @@ export function useHabitReport() {
       }
 
       toast({
-        title: "Habit Report Generated! 🎯",
-        description: "Your personalized habit insights are ready.",
+        title: "Report abitudini generato! 🎯",
+        description: "Le tue analisi personalizzate sono pronte.",
       });
 
       await fetchReport();
     } catch (err) {
       console.error("Failed to generate report:", err);
       toast({
-        title: "Generation Failed",
-        description: err instanceof Error ? err.message : "Unable to generate report",
+        title: "Generazione fallita",
+        description: err instanceof Error ? err.message : "Impossibile generare il report",
         variant: "destructive",
       });
     } finally {
