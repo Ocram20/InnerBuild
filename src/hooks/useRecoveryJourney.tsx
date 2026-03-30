@@ -187,8 +187,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error checking in:", error);
       toast({
-        title: "Error",
-        description: "Failed to record check-in. Please try again.",
+        title: "Errore",
+        description: "Impossibile registrare il check-in. Riprova.",
         variant: "destructive",
       });
     }
