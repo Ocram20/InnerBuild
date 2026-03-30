@@ -85,7 +85,7 @@ export default function ResetPassword() {
 
       if (error) {
         toast({
-          title: "Failed to reset password",
+          title: "Reset password fallito",
           description: error.message,
           variant: "destructive",
         });
@@ -94,8 +94,8 @@ export default function ResetPassword() {
         await supabase.auth.signOut();
         
         toast({
-          title: "Password updated",
-          description: "Your password has been reset successfully. Please sign in with your new password.",
+          title: "Password aggiornata",
+          description: "La tua password è stata reimpostata. Accedi con la nuova password.",
         });
         navigate("/auth");
       }

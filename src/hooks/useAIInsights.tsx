@@ -109,16 +109,16 @@ export function useAIInsights() {
       }
 
       toast({
-        title: "AI Report Generated! 🎯",
-        description: "Your personalized wellness insights are ready.",
+        title: "Report AI generato! 🎯",
+        description: "Le tue analisi personalizzate sono pronte.",
       });
 
       await fetchLatestInsight();
     } catch (err) {
       console.error("Failed to generate insight:", err);
       toast({
-        title: "Generation Failed",
-        description: err instanceof Error ? err.message : "Unable to generate AI report",
+        title: "Generazione fallita",
+        description: err instanceof Error ? err.message : "Impossibile generare il report AI",
         variant: "destructive",
       });
     } finally {

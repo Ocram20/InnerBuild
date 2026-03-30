@@ -153,7 +153,7 @@ export function useTriggerTracking() {
         }
         if (result.message) {
           toast({
-            title: "Info",
+            title: "Informazione",
             description: result.message,
           });
         }

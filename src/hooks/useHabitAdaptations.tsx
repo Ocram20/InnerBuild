@@ -156,13 +156,13 @@ export function useHabitAdaptations() {
       }
 
       toast({
-        title: "✓ Habit updated",
-        description: `Changed to "${adaptation.suggested_value}"`,
+        title: "✓ Abitudine aggiornata",
+        description: `Cambiata in "${adaptation.suggested_value}"`,
       });
     } else {
       toast({
-        title: "Suggestion dismissed",
-        description: "The habit remains unchanged",
+        title: "Suggerimento ignorato",
+        description: "L'abitudine resta invariata",
       });
     }
 

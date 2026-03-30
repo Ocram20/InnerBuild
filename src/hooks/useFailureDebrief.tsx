@@ -178,8 +178,8 @@ export function useFailureDebrief() {
     } catch (error) {
       console.error("Error updating debrief:", error);
       toast({
-        title: "Error",
-        description: "Could not save debrief",
+        title: "Errore",
+        description: "Impossibile salvare il debrief",
         variant: "destructive",
       });
       return false;

@@ -263,8 +263,8 @@ export function useHabitReport() {
       });
 
       toast({
-        title: "Suggestion dismissed",
-        description: "The habit remains unchanged",
+        title: "Suggerimento ignorato",
+        description: "L'abitudine resta invariata",
       });
     } catch (err) {
       console.error("Failed to dismiss suggestion:", err);

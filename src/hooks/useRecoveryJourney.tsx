@@ -254,14 +254,14 @@ export function useRecoveryJourney() {
       setJourney(null);
       setCheckIns([]);
       toast({
-        title: "Challenge Abandoned",
-        description: "You can start again anytime you're ready.",
+        title: "Sfida abbandonata",
+        description: "Puoi ricominciare quando vuoi.",
       });
     } catch (error) {
       console.error("Error abandoning journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to abandon challenge. Please try again.",
+        title: "Errore",
+        description: "Impossibile abbandonare la sfida. Riprova.",
         variant: "destructive",
       });
     }
