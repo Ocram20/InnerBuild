@@ -264,7 +264,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
     } catch (error: any) {
       console.error("Error updating email:", error);
       toast({
-        title: "Email update failed",
+        title: "Aggiornamento email fallito",
         description: error.message,
         variant: "destructive",
       });
