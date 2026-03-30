@@ -149,8 +149,8 @@ export function useRecoveryJourney() {
         } : null);
 
         toast({
-          title: "Great job! 🔥",
-          description: `Day ${newStreak} done. Keep going!`,
+          title: "Ottimo lavoro! 🔥",
+          description: `Giorno ${newStreak} fatto. Continua così!`,
         });
       } else {
         // Failed - consume a joker, DON'T advance the day
