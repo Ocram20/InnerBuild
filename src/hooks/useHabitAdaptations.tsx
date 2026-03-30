@@ -106,8 +106,8 @@ export function useHabitAdaptations() {
     if (error) {
       console.error("Error updating adaptation:", error);
       toast({
-        title: "Error",
-        description: "Failed to update suggestion",
+        title: "Errore",
+        description: "Impossibile aggiornare il suggerimento",
         variant: "destructive",
       });
       // Revert on error
