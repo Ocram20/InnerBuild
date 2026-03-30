@@ -143,16 +143,16 @@ export function useTriggerReport() {
       }
 
       toast({
-        title: "Trigger Report Generated! 🎯",
-        description: "Your trigger pattern analysis is ready.",
+        title: "Report trigger generato! 🎯",
+        description: "L'analisi dei tuoi pattern è pronta.",
       });
 
       await fetchReport();
     } catch (err) {
       console.error("Failed to generate report:", err);
       toast({
-        title: "Generation Failed",
-        description: err instanceof Error ? err.message : "Unable to generate report",
+        title: "Generazione fallita",
+        description: err instanceof Error ? err.message : "Impossibile generare il report",
         variant: "destructive",
       });
     } finally {
