@@ -209,8 +209,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error resetting journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to reset. Please try again.",
+        title: "Errore",
+        description: "Impossibile resettare. Riprova.",
         variant: "destructive",
       });
     }
