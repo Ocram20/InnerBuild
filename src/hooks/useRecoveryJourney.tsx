@@ -172,13 +172,13 @@ export function useRecoveryJourney() {
 
         if (newJokers <= 0) {
           toast({
-            title: "Challenge paused",
-            description: "No jokers remaining. Resume or reset to continue.",
+            title: "Sfida in pausa",
+            description: "Nessun jolly rimasto. Riprendi o resetta per continuare.",
           });
         } else {
           toast({
-            title: "Stay strong",
-            description: `Joker used (${newJokers} remaining). The day doesn't advance — you'll retry.`,
+            title: "Resta forte",
+            description: `Jolly usato (${newJokers} rimasti). Il giorno non avanza — riproverai.`,
           });
         }
       }
