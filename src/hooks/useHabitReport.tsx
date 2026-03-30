@@ -207,14 +207,14 @@ export function useHabitReport() {
       });
 
       toast({
-        title: "Habit Updated! ✓",
-        description: `Changed to "${suggestedTitle}"`,
+        title: "Abitudine aggiornata! ✓",
+        description: `Cambiata in "${suggestedTitle}"`,
       });
     } catch (err) {
       console.error("Failed to accept suggestion:", err);
       toast({
-        title: "Error",
-        description: "Failed to update habit",
+        title: "Errore",
+        description: "Impossibile aggiornare l'abitudine",
         variant: "destructive",
       });
     }
