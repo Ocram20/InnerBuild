@@ -103,8 +103,8 @@ export function useHabitReport() {
 
     if (!canGenerateReport()) {
       toast({
-        title: "Please wait",
-        description: `You can generate a new report in ${getDaysUntilNextReport()} day(s)`,
+        title: "Attendi",
+        description: `Puoi generare un nuovo report tra ${getDaysUntilNextReport()} giorno/i`,
         variant: "destructive",
       });
       return;
