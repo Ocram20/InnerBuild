@@ -235,8 +235,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error resuming journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to resume. Please try again.",
+        title: "Errore",
+        description: "Impossibile riprendere. Riprova.",
         variant: "destructive",
       });
     }
