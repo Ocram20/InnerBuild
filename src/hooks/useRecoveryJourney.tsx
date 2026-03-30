@@ -93,14 +93,14 @@ export function useRecoveryJourney() {
       setJourney(data as unknown as Journey);
       setCheckIns([]);
       toast({
-        title: "Challenge Started",
-        description: "Your recovery journey has begun. Good luck!",
+        title: "Sfida iniziata",
+        description: "Il tuo percorso di recupero è iniziato. In bocca al lupo!",
       });
     } catch (error) {
       console.error("Error starting journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to start the challenge. Please try again.",
+        title: "Errore",
+        description: "Impossibile avviare la sfida. Riprova.",
         variant: "destructive",
       });
     }
