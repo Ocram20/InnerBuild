@@ -134,7 +134,7 @@ export function ToDoSection({ userId, targetDate }: ToDoSectionProps) {
       .eq("id", editingId);
 
     if (error) {
-      toast({ title: "Error", description: "Could not edit task", variant: "destructive" });
+      toast({ title: "Errore", description: "Impossibile modificare il task", variant: "destructive" });
     } else {
       setTasks(tasks.map(t => t.id === editingId ? { ...t, title: editingTitle.trim() } : t));
       setEditingId(null);

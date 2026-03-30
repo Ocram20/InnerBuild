@@ -190,7 +190,7 @@ export default function ChallengeCard({ challenge, onUpdate }: ChallengeCardProp
         .delete()
         .eq("id", challenge.id);
       
-      toast({ title: "Challenge removed", description: "The challenge has been deleted" });
+      toast({ title: "Sfida rimossa", description: "La sfida è stata eliminata" });
       onUpdate();
     } catch (error) {
       toast({
