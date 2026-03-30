@@ -106,8 +106,8 @@ export function useHabitAdaptations() {
     if (error) {
       console.error("Error updating adaptation:", error);
       toast({
-        title: "Error",
-        description: "Failed to update suggestion",
+        title: "Errore",
+        description: "Impossibile aggiornare il suggerimento",
         variant: "destructive",
       });
       // Revert on error
@@ -156,13 +156,13 @@ export function useHabitAdaptations() {
       }
 
       toast({
-        title: "✓ Habit updated",
-        description: `Changed to "${adaptation.suggested_value}"`,
+        title: "✓ Abitudine aggiornata",
+        description: `Cambiata in "${adaptation.suggested_value}"`,
       });
     } else {
       toast({
-        title: "Suggestion dismissed",
-        description: "The habit remains unchanged",
+        title: "Suggerimento ignorato",
+        description: "L'abitudine resta invariata",
       });
     }
 

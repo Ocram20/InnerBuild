@@ -93,14 +93,14 @@ export function useRecoveryJourney() {
       setJourney(data as unknown as Journey);
       setCheckIns([]);
       toast({
-        title: "Challenge Started",
-        description: "Your recovery journey has begun. Good luck!",
+        title: "Sfida iniziata",
+        description: "Il tuo percorso di recupero è iniziato. In bocca al lupo!",
       });
     } catch (error) {
       console.error("Error starting journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to start the challenge. Please try again.",
+        title: "Errore",
+        description: "Impossibile avviare la sfida. Riprova.",
         variant: "destructive",
       });
     }
@@ -149,8 +149,8 @@ export function useRecoveryJourney() {
         } : null);
 
         toast({
-          title: "Great job! 🔥",
-          description: `Day ${newStreak} done. Keep going!`,
+          title: "Ottimo lavoro! 🔥",
+          description: `Giorno ${newStreak} fatto. Continua così!`,
         });
       } else {
         // Failed - consume a joker, DON'T advance the day
@@ -172,13 +172,13 @@ export function useRecoveryJourney() {
 
         if (newJokers <= 0) {
           toast({
-            title: "Challenge paused",
-            description: "No jokers remaining. Resume or reset to continue.",
+            title: "Sfida in pausa",
+            description: "Nessun jolly rimasto. Riprendi o resetta per continuare.",
           });
         } else {
           toast({
-            title: "Stay strong",
-            description: `Joker used (${newJokers} remaining). The day doesn't advance — you'll retry.`,
+            title: "Resta forte",
+            description: `Jolly usato (${newJokers} rimasti). Il giorno non avanza — riproverai.`,
           });
         }
       }
@@ -187,8 +187,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error checking in:", error);
       toast({
-        title: "Error",
-        description: "Failed to record check-in. Please try again.",
+        title: "Errore",
+        description: "Impossibile registrare il check-in. Riprova.",
         variant: "destructive",
       });
     }
@@ -209,8 +209,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error resetting journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to reset. Please try again.",
+        title: "Errore",
+        description: "Impossibile resettare. Riprova.",
         variant: "destructive",
       });
     }
@@ -227,16 +227,16 @@ export function useRecoveryJourney() {
       setJourney(prev => prev ? { ...prev, status: "active" } : null);
 
       toast({
-        title: "Challenge resumed",
+        title: "Sfida ripresa",
         description: journey.jokers_remaining > 0
-          ? "Let's keep going!"
-          : "No jokers left — any setback will pause again.",
+          ? "Continuiamo!"
+          : "Nessun jolly rimasto — ogni ricaduta metterà di nuovo in pausa.",
       });
     } catch (error) {
       console.error("Error resuming journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to resume. Please try again.",
+        title: "Errore",
+        description: "Impossibile riprendere. Riprova.",
         variant: "destructive",
       });
     }
@@ -254,14 +254,14 @@ export function useRecoveryJourney() {
       setJourney(null);
       setCheckIns([]);
       toast({
-        title: "Challenge Abandoned",
-        description: "You can start again anytime you're ready.",
+        title: "Sfida abbandonata",
+        description: "Puoi ricominciare quando vuoi.",
       });
     } catch (error) {
       console.error("Error abandoning journey:", error);
       toast({
-        title: "Error",
-        description: "Failed to abandon challenge. Please try again.",
+        title: "Errore",
+        description: "Impossibile abbandonare la sfida. Riprova.",
         variant: "destructive",
       });
     }

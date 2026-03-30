@@ -103,8 +103,8 @@ export function useHabitReport() {
 
     if (!canGenerateReport()) {
       toast({
-        title: "Please wait",
-        description: `You can generate a new report in ${getDaysUntilNextReport()} day(s)`,
+        title: "Attendi",
+        description: `Puoi generare un nuovo report tra ${getDaysUntilNextReport()} giorno/i`,
         variant: "destructive",
       });
       return;
@@ -134,16 +134,16 @@ export function useHabitReport() {
       }
 
       toast({
-        title: "Habit Report Generated! 🎯",
-        description: "Your personalized habit insights are ready.",
+        title: "Report abitudini generato! 🎯",
+        description: "Le tue analisi personalizzate sono pronte.",
       });
 
       await fetchReport();
     } catch (err) {
       console.error("Failed to generate report:", err);
       toast({
-        title: "Generation Failed",
-        description: err instanceof Error ? err.message : "Unable to generate report",
+        title: "Generazione fallita",
+        description: err instanceof Error ? err.message : "Impossibile generare il report",
         variant: "destructive",
       });
     } finally {
@@ -207,14 +207,14 @@ export function useHabitReport() {
       });
 
       toast({
-        title: "Habit Updated! ✓",
-        description: `Changed to "${suggestedTitle}"`,
+        title: "Abitudine aggiornata! ✓",
+        description: `Cambiata in "${suggestedTitle}"`,
       });
     } catch (err) {
       console.error("Failed to accept suggestion:", err);
       toast({
-        title: "Error",
-        description: "Failed to update habit",
+        title: "Errore",
+        description: "Impossibile aggiornare l'abitudine",
         variant: "destructive",
       });
     }
@@ -263,8 +263,8 @@ export function useHabitReport() {
       });
 
       toast({
-        title: "Suggestion dismissed",
-        description: "The habit remains unchanged",
+        title: "Suggerimento ignorato",
+        description: "L'abitudine resta invariata",
       });
     } catch (err) {
       console.error("Failed to dismiss suggestion:", err);

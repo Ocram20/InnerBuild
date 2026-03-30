@@ -95,6 +95,24 @@ export default function LanguageSelector() {
     setCurrentLang(langCode);
     localStorage.setItem("innerbloom-language", langCode);
     setGoogTransCookie(langCode);
+    
+    // If switching to Italian (base language), reset Google Translate before reload
+    if (langCode === "it") {
+      const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+      if (combo) {
+        combo.value = "it";
+        combo.dispatchEvent(new Event("change"));
+      }
+      // Clear all googtrans cookies
+      document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = `googtrans=; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      const parts = window.location.hostname.split(".");
+      if (parts.length >= 2) {
+        const rootDomain = parts.slice(-2).join(".");
+        document.cookie = `googtrans=; path=/; domain=.${rootDomain}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      }
+    }
+    
     // Reload to apply translation
     window.location.reload();
   }, []);

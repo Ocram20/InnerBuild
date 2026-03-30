@@ -72,8 +72,8 @@ export default function ReflectionCard({ reflection, prompt, onUpdate }: Reflect
       onUpdate();
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to save reflection",
+        title: "Errore",
+        description: "Impossibile salvare la riflessione",
         variant: "destructive",
       });
     } finally {

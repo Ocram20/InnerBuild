@@ -140,8 +140,8 @@ export function useFailureDebrief() {
     } catch (error) {
       console.error("Error starting debrief:", error);
       toast({
-        title: "Error",
-        description: "Could not start debrief",
+        title: "Errore",
+        description: "Impossibile avviare il debrief",
         variant: "destructive",
       });
       return null;
@@ -169,8 +169,8 @@ export function useFailureDebrief() {
       
       if (updates.is_completed) {
         toast({
-          title: "✨ Debrief completed",
-          description: "Great job learning from this experience!",
+          title: "✨ Debrief completato",
+          description: "Ottimo lavoro nell'imparare da questa esperienza!",
         });
       }
       
@@ -178,8 +178,8 @@ export function useFailureDebrief() {
     } catch (error) {
       console.error("Error updating debrief:", error);
       toast({
-        title: "Error",
-        description: "Could not save debrief",
+        title: "Errore",
+        description: "Impossibile salvare il debrief",
         variant: "destructive",
       });
       return false;
