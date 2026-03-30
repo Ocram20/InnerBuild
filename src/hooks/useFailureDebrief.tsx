@@ -140,8 +140,8 @@ export function useFailureDebrief() {
     } catch (error) {
       console.error("Error starting debrief:", error);
       toast({
-        title: "Error",
-        description: "Could not start debrief",
+        title: "Errore",
+        description: "Impossibile avviare il debrief",
         variant: "destructive",
       });
       return null;
