@@ -227,10 +227,10 @@ export function useRecoveryJourney() {
       setJourney(prev => prev ? { ...prev, status: "active" } : null);
 
       toast({
-        title: "Challenge resumed",
+        title: "Sfida ripresa",
         description: journey.jokers_remaining > 0
-          ? "Let's keep going!"
-          : "No jokers left — any setback will pause again.",
+          ? "Continuiamo!"
+          : "Nessun jolly rimasto — ogni ricaduta metterà di nuovo in pausa.",
       });
     } catch (error) {
       console.error("Error resuming journey:", error);
