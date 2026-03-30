@@ -169,8 +169,8 @@ export function useFailureDebrief() {
       
       if (updates.is_completed) {
         toast({
-          title: "✨ Debrief completed",
-          description: "Great job learning from this experience!",
+          title: "✨ Debrief completato",
+          description: "Ottimo lavoro nell'imparare da questa esperienza!",
         });
       }
       
