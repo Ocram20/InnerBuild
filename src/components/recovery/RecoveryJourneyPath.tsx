@@ -184,7 +184,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
                   <text x={pos.x} y={pos.y + 1} textAnchor="middle" dominantBaseline="central" fontSize="14" className={isFuture ? "opacity-40" : ""}>{phase.icon}</text>
                   <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y - 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-foreground" fontSize="11" fontWeight={isActive ? "600" : "400"} opacity={isFuture ? 0.4 : 1}>{t(`recovery_journey.phases.${phase.id}.name`)}</text>
                   <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y + 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-muted-foreground" fontSize="9" opacity={isFuture ? 0.3 : 0.7}>
-                    {phase.maxDays < 999 ? `${"Giorno"} ${phase.minDays}–${phase.maxDays}` : `${"Giorno"} ${phase.minDays}+`}
+                    {phase.maxDays < 999 ? `${t("recovery_journey.day_label", "Giorno")} ${phase.minDays}–${phase.maxDays}` : `${t("recovery_journey.day_label", "Giorno")} ${phase.minDays}+`}
                   </text>
                 </g>
               );
