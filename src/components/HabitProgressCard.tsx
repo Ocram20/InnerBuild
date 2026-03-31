@@ -206,14 +206,14 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onEdit(habit)}>
                   <Edit2 className="h-4 w-4 mr-2" />
-                  Edit
+                  {t("common.edit", "Modifica")}
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   onClick={deleteHabit}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  Delete
+                  {t("common.delete", "Elimina")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
