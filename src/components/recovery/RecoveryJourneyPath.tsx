@@ -196,15 +196,15 @@ export function RecoveryJourneyPath({ progress }: Props) {
         <div className="grid grid-cols-3 gap-2 text-center">
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.successCount}</p>
-            <p className="text-[10px] text-muted-foreground">{"Giorni puliti"}</p>
+            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.clean_days", "Giorni puliti")}</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.failureCount}</p>
-            <p className="text-[10px] text-muted-foreground">{"Ricadute"}</p>
+            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.relapses", "Ricadute")}</p>
           </div>
           <div className="rounded-lg bg-muted/50 p-2">
             <p className="text-xs font-semibold text-foreground">{progress.debriefCount}</p>
-            <p className="text-[10px] text-muted-foreground">{"Debrief"}</p>
+            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.debriefs", "Debrief")}</p>
           </div>
         </div>
 
