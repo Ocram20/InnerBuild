@@ -191,7 +191,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
                 {habit.streak && habit.streak > 0 && (
                   <span className="text-xs text-accent flex items-center gap-0.5">
                     <Flame className="h-3 w-3" />
-                    {`serie di ${habit.streak} giorni`}
+                    {t("habits.streak_days", { count: habit.streak })}
                   </span>
                 )}
               </div>
