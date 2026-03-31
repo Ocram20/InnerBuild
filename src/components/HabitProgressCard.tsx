@@ -223,7 +223,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
           {habit.weeklyProgress !== undefined && (
             <div className="mt-3">
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="text-muted-foreground">This week</span>
+                <span className="text-muted-foreground">{t("habits.this_week", "Questa settimana")}</span>
                 <span className="font-medium text-foreground">{habit.weeklyProgress}/7</span>
               </div>
               <Progress 

@@ -116,7 +116,7 @@ export default function Habits() {
   const progressPercent = totalHabits > 0 ? Math.round((completedToday / totalHabits) * 100) : 0;
 
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-24 bg-background">
       <header className="sticky top-0 z-50 glass border-b border-border/50">
         <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate("/explore")} className="rounded-full h-9 w-9">
