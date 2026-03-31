@@ -118,10 +118,6 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
                 </Select>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="reminder">{"Promemoria (opzionale)"}</Label>
-              <Input id="reminder" type="time" value={reminderTime} onChange={(e) => setReminderTime(e.target.value)} className="rounded-xl" />
-            </div>
             <div className="flex gap-2 pt-2">
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">{"Annulla"}</Button>
               <Button type="submit" disabled={!title.trim() || isLoading} className="flex-1 gradient-primary text-primary-foreground rounded-xl shadow-soft">
