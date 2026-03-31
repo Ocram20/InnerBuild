@@ -216,7 +216,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
           className="w-full gap-2 text-xs"
         >
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          {alreadyUsedToday ? "Vedi l'insight di oggi" : "Insight AI sulla fase"}
+          {alreadyUsedToday ? t("recovery_journey.see_today_insight", "Vedi l'insight di oggi") : t("recovery_journey.ai_phase_insight", "Insight AI sulla fase")}
           {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
         </Button>
 
