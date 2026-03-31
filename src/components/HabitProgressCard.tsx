@@ -191,7 +191,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
                 {habit.streak && habit.streak > 0 && (
                   <span className="text-xs text-accent flex items-center gap-0.5">
                     <Flame className="h-3 w-3" />
-                    {`serie di ${habit.streak} giorni`}
+                    {t("habits.streak_days", { count: habit.streak })}
                   </span>
                 )}
               </div>
@@ -206,14 +206,14 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onEdit(habit)}>
                   <Edit2 className="h-4 w-4 mr-2" />
-                  Edit
+                  {t("common.edit", "Modifica")}
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   onClick={deleteHabit}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  Delete
+                  {t("common.delete", "Elimina")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -223,7 +223,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
           {habit.weeklyProgress !== undefined && (
             <div className="mt-3">
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="text-muted-foreground">This week</span>
+                <span className="text-muted-foreground">{t("habits.this_week", "Questa settimana")}</span>
                 <span className="font-medium text-foreground">{habit.weeklyProgress}/7</span>
               </div>
               <Progress 

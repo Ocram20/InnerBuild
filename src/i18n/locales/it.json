@@ -323,6 +323,8 @@
       "creativity": "Creatività",
       "general": "Generale"
     },
+    "streak_days": "serie di {{count}} giorni",
+    "this_week": "Questa settimana",
     "guide_content": {
       "intro_title": "Introduzione",
       "intro_p1": "Le abitudini sono la base invisibile del successo. Non sono solo azioni ripetute; sono ciò che il nostro cervello automatizza per risparmiare energia. Migliorare dell'1% ogni giorno può portare a un cambiamento significativo a lungo termine.",
