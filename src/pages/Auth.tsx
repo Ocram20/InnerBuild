@@ -84,6 +84,8 @@ export default function Auth() {
           if (error.message.includes("already registered")) {
             toast({ title: "Account esistente", description: "Questa email è già registrata. Accedi invece.", variant: "destructive" });
             setIsLogin(true);
+          } else if (error.message.includes("Password should contain")) {
+            setErrors({ password: "La password deve contenere almeno: una lettera minuscola, una maiuscola, un numero e un carattere speciale." });
           } else {
             toast({ title: "Registrazione fallita", description: error.message, variant: "destructive" });
           }
