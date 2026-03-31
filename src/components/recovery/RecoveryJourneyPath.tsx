@@ -230,7 +230,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
             ) : aiInsight ? (
               <p className="text-xs text-foreground leading-relaxed whitespace-pre-line">{aiInsight}</p>
             ) : (
-              <p className="text-xs text-muted-foreground">{"Impossibile caricare l'insight. Riprova più tardi."}</p>
+              <p className="text-xs text-muted-foreground">{t("recovery_journey.insight_error", "Impossibile caricare l'insight. Riprova più tardi.")}</p>
             )}
           </div>
         )}
