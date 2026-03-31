@@ -133,7 +133,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
         {/* Title */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-semibold text-foreground">{"Percorso di Recovery"}</h3>
+            <h3 className="text-sm font-semibold text-foreground">{t("recovery_journey.title", "Percorso di Recovery")}</h3>
             <p className="text-xs text-muted-foreground">
               {t("recovery_journey.day_phase", { day: progress.successCount, phase: t(`recovery_journey.phases.${progress.currentPhase.id}.name`) })}
             </p>

@@ -81,7 +81,7 @@ export default function Challenges() {
   const completedCount = challenges.filter(c => c.status === "completed").length;
 
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-24 bg-background">
       <header className="sticky top-0 z-50 glass border-b border-border/50">
         <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate(fromExplore ? "/explore" : "/dashboard")} className="rounded-full h-9 w-9">
