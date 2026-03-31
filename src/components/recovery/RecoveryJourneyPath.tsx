@@ -225,7 +225,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
             {aiLoading ? (
               <div className="flex items-center justify-center gap-2 py-3">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                <span className="text-xs text-muted-foreground">{"Analisi del tuo percorso in corso…"}</span>
+                <span className="text-xs text-muted-foreground">{t("recovery_journey.analyzing", "Analisi del tuo percorso in corso…")}</span>
               </div>
             ) : aiInsight ? (
               <p className="text-xs text-foreground leading-relaxed whitespace-pre-line">{aiInsight}</p>
