@@ -1,0 +1,2211 @@
+{
+  "common": {
+    "back": "返回",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "or": "或",
+    "all": "全部",
+    "new": "新建",
+    "open": "打开",
+    "log": "记录",
+    "pro": "专业版",
+    "premium": "高级版",
+    "free": "免费",
+    "upgrade": "升级",
+    "manage": "管理",
+    "view_site": "查看网站",
+    "recent": "最近",
+    "annual": "年度",
+    "completed": "已完成",
+    "active": "活跃",
+    "custom": "自定义",
+    "step": "步骤",
+    "add_step": "添加步骤",
+    "please_wait": "请稍候...",
+    "connecting": "连接中...",
+    "clear_filters": "清除筛选",
+    "swipe_explore": "滑动探索",
+    "swipe_read_more": "滑动阅读更多",
+    "back_to_top": "返回顶部",
+    "view_all": "查看全部",
+    "details": "详情",
+    "saving": "保存中...",
+    "days": "天",
+    "days_short": "天",
+    "unsaved": "未保存",
+    "accept": "接受",
+    "dismiss": "忽略",
+    "applied": "已应用",
+    "dismissed": "已忽略",
+    "generate": "生成",
+    "analyzing": "分析中...",
+    "generating": "生成中...",
+    "total": "总计",
+    "avoided": "已避免",
+    "complete": "完成",
+    "disable": "禁用",
+    "remind_me": "提醒我",
+    "reset": "重置",
+    "done": "已完成",
+    "not_done": "未完成",
+    "history": "历史",
+    "when": "当",
+    "i_will": "我将",
+    "because_gives_me": "因为它给我",
+    "month": "月",
+    "refresh": "刷新"
+  },
+
+  "auth": {
+    "welcome_back": "欢迎回来",
+    "start_journey": "开始您的旅程",
+    "sign_in_continue": "登录以继续您的成长",
+    "create_account_begin": "创建账户开始您的转变",
+    "full_name": "全名",
+    "your_name": "您的名字",
+    "email": "电子邮箱",
+    "email_placeholder": "您@示例.com",
+    "password": "密码",
+    "forgot_password": "忘记密码？",
+    "sign_in": "登录",
+    "sign_up": "注册",
+    "create_account": "创建账户",
+    "continue_google": "使用 Google 继续",
+    "no_account": "没有账户？",
+    "have_account": "已有账户？",
+    "login_failed": "登录失败",
+    "invalid_credentials": "邮箱或密码无效，请重试。",
+    "signup_failed": "注册失败",
+    "account_exists": "账户已存在",
+    "email_already_registered": "此邮箱已注册，请登录。",
+    "welcome_innerbuild": "欢迎使用 InnerBuild！",
+    "account_created": "您的账户已成功创建。",
+    "verify_email_desc": "请查收邮件并点击验证链接激活您的账户。",
+    "email_not_verified_title": "邮箱未验证",
+    "email_not_verified_desc": "您需要先验证邮箱。请检查收件箱并点击确认链接。",
+    "google_signin_failed": "Google 登录失败",
+    "unexpected_error": "发生错误，请重试。",
+    "sign_out": "退出登录",
+    "log_out": "登出"
+  },
+
+  "auth_validation": {
+    "invalid_email": "请输入有效的电子邮箱地址",
+    "password_min": "密码至少需要6个字符"
+  },
+
+  "forgot_password": {
+    "title": "忘记密码",
+    "description": "输入您的电子邮箱，我们将发送重置密码的链接。",
+    "send_reset_link": "发送重置链接",
+    "sending": "发送中...",
+    "back_to_login": "返回登录",
+    "check_email": "查收邮件",
+    "reset_link_sent": "我们已发送密码重置链接至",
+    "check_spam": "请检查收件箱和垃圾邮件文件夹。",
+    "back_to_sign_in": "返回登录",
+    "reset_sent_title": "链接已发送",
+    "reset_sent_description": "请查收邮件获取重置链接。",
+    "reset_error_title": "错误",
+    "reset_error_description": "发送链接失败，请重试。"
+  },
+
+  "dashboard": {
+    "good_morning": "早上好",
+    "good_afternoon": "下午好",
+    "good_evening": "晚上好",
+    "todays_habits": "今日习惯",
+    "completed_stats": "已完成 {{completed}}/{{total}} • {{percent}}%",
+    "explore_tools": "探索工具",
+    "explore_tools_desc": "恢复、AI教练、触发器追踪等",
+    "emergency_urge": "🚨 冲动紧急支援",
+    "logout_confirm_title": "确定要退出登录吗？",
+    "logout_confirm_desc": "您需要重新登录才能使用您的账户。",
+    "failed_update_habit": "更新习惯失败",
+    "failed_subscription": "打开订阅管理失败",
+    "quote_of_the_day": "今日名言",
+    "start_daily_plan": "开始您的每日计划",
+    "start_daily_plan_desc": "为明天创建待办清单和避免清单",
+    "open_daily_planning": "打开计划",
+    "daily_planning": "每日计划",
+    "edit_full_plan": "编辑完整计划",
+    "todo_list": "待办清单",
+    "not_todo_list": "避免清单",
+    "great_job": "做得好！",
+    "avoided_behavior": "您避免了此行为",
+    "could_not_update": "无法更新任务",
+    "could_not_update_status": "无法更新状态"
+  },
+
+  "landing": {
+    "your_companion": "您个人成长的完整伴侣",
+    "hero_title_1": "建立您应得的生活，",
+    "hero_title_2": "一次一个习惯",
+    "hero_description": "InnerBuild 结合习惯追踪、排毒挑战、恢复工具和 AI 教练，帮助您摆脱束缚，成为最好的自己。",
+    "start_your_journey": "开始您的旅程",
+    "view_pricing": "查看价格",
+    "dashboard": "仪表板",
+    "get_started": "开始",
+    "everything_transform": "转变所需的一切",
+    "complete_toolkit": "一套完整的工具，从第一天起支持您的旅程",
+    "and_more": "还有更多",
+    "testimonials": "用户评价",
+    "real_people": "真实的人，真实的进步",
+    "tools_change_lives": "真正改变生活的工具",
+    "tools_description": "这些不仅仅是功能，它们是让尝试与真正转变产生区别的工具。",
+    "most_impactful": "最具影响力",
+    "all_premium_for": "所有高级功能只需",
+    "unlock_premium": "解锁高级版",
+    "ready_to_start": "准备好开始建立了吗？",
+    "join_thousands": "加入成千上万正在用 InnerBuild 改变生活的人们。您通往更好习惯的旅程从今天开始。",
+    "get_started_free": "免费开始",
+    "features": {
+      "smart_habit_tracking": "智能习惯追踪",
+      "smart_habit_desc": "追踪每日习惯，带有视觉进度、连续记录和智能 AI 建议，适应您的真实模式。",
+      "detox_challenges": "排毒挑战",
+      "detox_challenges_desc": "通过基于科学的挑战（3至90天）摆脱数字成瘾、坏习惯和负面模式。",
+      "porn_recovery": "色情恢复计划",
+      "porn_recovery_desc": "专门的科学计划，包含连续记录追踪、每日签到、触发分析及专业支持。",
+      "ai_coach": "个人 AI 教练",
+      "ai_coach_desc": "24/7 AI 伴侣，激励您、建议个性化习惯、帮助应对渴求并引导您的转变。",
+      "trigger_tracking": "触发器追踪与分析",
+      "trigger_tracking_desc": "记录并分析触发您冲动的因素。识别模式并通过 AI 洞察建立更强的防御。",
+      "daily_planning": "每日计划与反思",
+      "daily_planning_desc": "用待办和避免清单规划您的一天。以感恩、情绪签到和自我反思结束每一天。",
+      "ai_habit_adaptation": "AI 习惯适应",
+      "ai_habit_adaptation_desc": "当您遇到困难时建议更简单的版本",
+      "learn_section": "学习板块",
+      "learn_section_desc": "关于多巴胺和大脑重塑的教育",
+      "streak_tracking": "连续记录追踪",
+      "streak_tracking_desc": "视觉进度和里程碑",
+      "micro_actions": "微行动",
+      "micro_actions_desc": "几秒钟内的小小每日胜利",
+      "not_to_do_list": "避免清单",
+      "not_to_do_desc": "追踪要避免的行为",
+      "recovery_timeline": "恢复时间线",
+      "recovery_timeline_desc": "查看大脑康复进展"
+    },
+    "stats": {
+      "recovery_days": "天的恢复内容",
+      "suggested_habits": "个建议习惯",
+      "challenge_templates": "个挑战模板",
+      "ai_coach_available": "AI 教练可用"
+    },
+    "testimonials_data": {
+      "t1": "AI 教练就像口袋里的治疗师。它真的帮我理解了为什么我总是复发。",
+      "t2": "终于有一款用科学认真对待恢复的应用，而不仅仅是意志力。大脑科学板块改变了我的视角。",
+      "t3": "触发器追踪帮我发现了以前从未注意到的模式。现在我真的能预见到艰难的日子。",
+      "t4": "我试过很多习惯应用。这款有效是因为每日计划很自然，不是负担。",
+      "t5": "58天干净。连续记录追踪让我在困难时也能保持负责。",
+      "t6": "排毒挑战结构很好。我做了30天社交媒体排毒，两周后真的感觉更平静了。"
+    },
+    "premium_deep_dive": {
+      "porn_recovery_desc": "这不是意志力的问题。该程序基于神经科学——帮助您确切理解您的大脑为何上瘾，以及如何一步步重新连接。",
+      "porn_recovery_features": [
+        "科学连续记录追踪",
+        "每日签到和进度",
+        "复盘和学习工具",
+        "紧急冲动管理",
+        "神经科学教育",
+        "个人动机和原因"
+      ],
+      "trigger_tracking_desc": "大多数复发看似随机——但并非如此。触发器追踪揭示您最艰难时刻背后的隐藏模式。",
+      "trigger_tracking_features": [
+        "几秒内记录冲动和情绪",
+        "您模式的视觉热力图",
+        "AI 生成的洞察报告",
+        "根本原因识别",
+        "个性化预防策略",
+        "时间和情境分析"
+      ],
+      "ai_coach_desc": "想象一位了解您习惯、挣扎和目标的教练——在冲动来袭的凌晨3点也能提供帮助。",
+      "ai_coach_features": [
+        "个性化习惯建议",
+        "渴求和冲动支持",
+        "复发预防指导",
+        "24/7 全天候可用",
+        "完整聊天历史",
+        "为您量身定制"
+      ],
+      "learn_desc": "了解您习惯、多巴胺和大脑恢复背后的科学。",
+      "learn_features": ["深度文章", "恢复指南", "大脑愈合时间线"],
+      "habit_adaptation_desc": "AI 分析您真实的完成模式并提出更智能的调整建议。",
+      "habit_adaptation_features": [
+        "模式检测",
+        "智能难度调整",
+        "个性化 AI 建议"
+      ],
+      "porn_recovery_mobile_desc": "基于神经科学——理解您的大脑为何上瘾，并一步步重新连接它。",
+      "porn_recovery_mobile_features": [
+        "科学连续记录追踪",
+        "每日签到和进度",
+        "复盘工具",
+        "紧急冲动管理",
+        "神经科学教育",
+        "个人动机"
+      ],
+      "trigger_tracking_mobile_desc": "复发看似随机——但并非如此。揭示隐藏模式并通过 AI 报告预测和预防。",
+      "trigger_tracking_mobile_features": [
+        "几秒内记录冲动和情绪",
+        "视觉模式热力图",
+        "AI 洞察报告",
+        "根本原因识别",
+        "预防策略",
+        "时间和情境分析"
+      ],
+      "ai_coach_mobile_desc": "在冲动来袭的凌晨3点也能提供帮助的教练。没有评判——只有引导您继续前进的建议。",
+      "ai_coach_mobile_features": [
+        "个性化建议",
+        "渴求和冲动支持",
+        "复发预防",
+        "24/7 可用",
+        "完整聊天历史",
+        "为您量身定制"
+      ],
+      "learn_mobile_desc": "习惯、多巴胺和大脑恢复背后的科学。知识让每一次努力都有意义。",
+      "learn_mobile_features": ["深度文章", "恢复指南", "大脑愈合时间线"],
+      "habit_adaptation_mobile_desc": "AI 分析您真实的完成模式并提出更智能的调整建议。",
+      "habit_adaptation_mobile_features": ["模式检测", "智能调整", "AI 建议"]
+    }
+  },
+
+  "explore": {
+    "title": "工具",
+    "subtitle": "成长所需的一切",
+    "free_tools": "免费工具",
+    "premium_tools": "高级工具",
+    "unlock_all": "使用高级版解锁所有工具",
+    "tools": {
+      "habits": "习惯",
+      "habits_desc": "追踪和培养日常习惯",
+      "detox_challenges": "排毒挑战",
+      "detox_challenges_desc": "打破坏习惯的挑战",
+      "evening_reflection": "晚间反思",
+      "evening_reflection_desc": "每日签到和感恩",
+      "daily_planning": "每日计划",
+      "daily_planning_desc": "待办清单和目标",
+      "trigger_tracking": "触发器追踪",
+      "trigger_tracking_desc": "记录冲动和 AI 模式分析",
+      "porn_recovery": "色情恢复",
+      "porn_recovery_desc": "通往自由的科学之路",
+      "ai_coach": "AI 教练",
+      "ai_coach_desc": "基于 AI 的个人指导"
+    }
+  },
+
+  "habits": {
+    "title": "我的习惯",
+    "completed_today": "今日完成 {{completed}}/{{total}} • {{percent}}%",
+    "search_placeholder": "搜索习惯...",
+    "no_habits_yet": "暂无习惯",
+    "start_journey": "创建您的第一个习惯，开始旅程",
+    "create_habit": "创建习惯",
+    "no_match_filters": "没有习惯匹配筛选条件",
+    "guide_title": "掌握习惯指南",
+    "guide_subtitle": "建立持久习惯的简明指南",
+    "guide_dialog_title": "培养好习惯",
+    "categories": {
+      "all": "全部",
+      "health": "健康",
+      "productivity": "生产力",
+      "mindfulness": "正念",
+      "fitness": "健身",
+      "learning": "学习",
+      "social": "社交",
+      "creativity": "创造力",
+      "general": "通用"
+    },
+    "streak_days": "连续 {{count}} 天",
+    "streak_days_plural": "连续 {{count}} 天",
+    "this_week": "本周",
+    "guide_content": {
+      "intro_title": "引言",
+      "intro_p1": "习惯是成功的隐形基石。它们不仅仅是重复的动作；它们是我们大脑为节省能量而自动化的行为。每天进步 1% 可以带来显著的长期改变。",
+      "intro_p2": "秘诀不仅仅在于设定目标，而在于建立一个与您想成为的人一致的习惯系统。",
+      "identity_title": "为什么要关注身份",
+      "identity_p1": "许多人改变失败不是因为他们“不够在乎”，而是因为他们只关注结果。",
+      "identity_p2": "行为改变的三个层次是：结果（你得到什么）、过程（你做什么）、身份（你相信什么）。真正的改变从身份开始——决定你想成为谁，然后用小胜利向自己证明。",
+      "understanding_title": "理解习惯",
+      "understanding_p1": "每个习惯都遵循一个称为反馈回路的循环：",
+      "understanding_cue": "提示",
+      "understanding_cue_desc": "触发行动的因素",
+      "understanding_craving": "渴望",
+      "understanding_craving_desc": "执行行动的动力",
+      "understanding_response": "反应",
+      "understanding_response_desc": "行为本身",
+      "understanding_reward": "奖励",
+      "understanding_reward_desc": "即时的满足感",
+      "laws_title": "行为改变的四大定律",
+      "law1_title": "第一定律：让它显而易见",
+      "law1_items": [
+        "使用执行意图：'我将在[时间]在[地点]做[行为]'",
+        "使用习惯叠加：'在[当前习惯]之后，我将做[新习惯]'",
+        "设计您的环境——让提示变得可见"
+      ],
+      "law2_title": "第二定律：让它有吸引力",
+      "law2_items": [
+        "使用诱惑捆绑：将需要的习惯与想要的习惯结合",
+        "加入一个以期望行为为常态的文化",
+        "在困难习惯之前创造一个激励仪式"
+      ],
+      "law3_title": "第三定律：让它简单易行",
+      "law3_items": [
+        "减少阻力——减少您和好习惯之间的步骤",
+        "使用两分钟规则：只从 2 分钟开始",
+        "尽可能使用技术自动化习惯"
+      ],
+      "law4_title": "第四定律：让它令人愉悦",
+      "law4_items": [
+        "使用强化——给自己即时奖励",
+        "使用习惯追踪器——'不要打破链条'",
+        "永不连错两次——快速回到正轨"
+      ],
+      "breaking_title": "打破坏习惯",
+      "breaking_intro": "反转四大定律：",
+      "breaking_items": [
+        "让它隐形（移除提示）",
+        "让它缺乏吸引力（重新构建思维模式）",
+        "让它困难（增加阻力）",
+        "让它令人不满（增加责任）"
+      ],
+      "advanced_title": "高级策略",
+      "advanced_items": [
+        "金发姑娘原则：通过处理难度适中的任务保持动力",
+        "好习惯的缺点：不要让它们自动驾驶——持续审视和改进它们",
+        "基因不决定命运；它们决定机会领域。选择适合您天生优势的习惯。"
+      ],
+      "final_title": "最后的思考",
+      "final_p1": "成功不是要达到的目标，而是要建立的系统。",
+      "final_p2": "小改变，大成就。一次一个习惯。"
+    }
+  },
+
+  "challenges": {
+    "title": "排毒挑战",
+    "active_completed": "{{active}} 个进行中 • {{completed}} 个已完成",
+    "your_active": "您进行中的挑战",
+    "explore_challenges": "探索挑战",
+    "free_used": "您已使用免费挑战机会",
+    "free_limit_desc": "免费账户总共可参与 1 个挑战。升级到高级版可解锁无限挑战。",
+    "upgrade_premium": "升级到高级版",
+    "guide_title": "如何掌握戒除坏习惯",
+    "guide_subtitle": "放下伤害您的事物的指南",
+    "guide_dialog_title": "打破坏习惯",
+    "categories": {
+      "all": "全部",
+      "digital_detox": "数字排毒",
+      "mental_reset": "心理重置",
+      "porn_detox": "恢复",
+      "general": "通用"
+    },
+    "challenge_started": "挑战开始！🔥",
+    "challenge_started_desc": "您的 {{days}} 天旅程今天开始！",
+    "failed_start": "开始挑战失败",
+    "failed_load": "加载挑战失败",
+    "guide_content": {
+      "intro_title": "引言",
+      "intro_p1": "戒除坏习惯不是靠意志力——而是靠策略。您的大脑已经自动化了这些行为，改变它们的唯一方法是理解它们如何运作并打断模式。",
+      "intro_p2": "本指南将帮助您应用行为改变的科学来消除不再为您服务的习惯。",
+      "why_title": "为什么坏习惯持续存在",
+      "why_p1": "坏习惯提供即时满足，而后果却延迟到来。您的大脑优先考虑即时奖励，使抵抗变得困难。",
+      "why_p2": "理解习惯回路（提示 → 渴望 → 反应 → 奖励）是解放的第一步。",
+      "inversion_title": "反转策略",
+      "inversion_intro": "要打破坏习惯，反转行为改变的四大定律：",
+      "inv1_title": "让它隐形",
+      "inv1_items": [
+        "从环境中移除触发器",
+        "停止关注促进该行为的账户",
+        "改变您的日常以避免接触提示"
+      ],
+      "inv2_title": "让它缺乏吸引力",
+      "inv2_items": [
+        "强调该行为的真实成本",
+        "重新构建您的身份：'我不是做这种事的人'",
+        "将习惯与负面结果联系起来"
+      ],
+      "inv3_title": "让它困难",
+      "inv3_items": [
+        "增加您与坏习惯之间的阻力",
+        "使用承诺装置（屏蔽、问责）",
+        "创造物理障碍"
+      ],
+      "inv4_title": "让它令人不满",
+      "inv4_items": [
+        "建立问责伙伴或系统",
+        "让后果立即可见",
+        "使用习惯记分卡追踪失误"
+      ],
+      "replacement_title": "替换，而不仅仅是移除",
+      "replacement_p1": "最有效的策略不是仅仅停止——而是替换。当您感到冲动时，将注意力转向满足同样需求的更健康替代方案。",
+      "replacement_items": [
+        "无聊？→ 做快速锻炼或创意活动",
+        "压力大？→ 尝试深呼吸或写日记",
+        "孤独？→ 给朋友打电话或加入社区"
+      ],
+      "mindset_title": "心态转变",
+      "mindset_p1": "不要专注于您放弃的东西。专注于您获得的东西：自由、清晰、自尊和与您价值观一致的生活。",
+      "mindset_p2": "每一个抵抗的时刻都在构建您想成为的人。",
+      "final_title": "最后的思考",
+      "final_p1": "您不需要完美。您需要持续。",
+      "final_p2": "打破模式。建立您应得的生活。"
+    }
+  },
+
+  "create_habit": {
+    "title": "创建新习惯",
+    "habit_name": "习惯名称 *",
+    "habit_placeholder": "例如，早晨冥想",
+    "description": "描述（可选）",
+    "description_placeholder": "这个习惯对您意味着什么？",
+    "category": "类别",
+    "frequency": "频率",
+    "reminder_time": "提醒时间（可选）",
+    "habit_created": "习惯已创建！🎉",
+    "habit_created_desc": "从今天开始培养您的新习惯！",
+    "failed_create": "创建习惯失败",
+    "habit_limit_reached": "已达到习惯数量上限",
+    "habits_remaining": "还剩 {{remaining}}/{{max}} 个习惯",
+    "frequencies": {
+      "daily": "每日",
+      "weekly": "每周",
+      "weekdays": "工作日",
+      "weekends": "周末"
+    }
+  },
+
+  "create_challenge": {
+    "title": "创建自定义挑战",
+    "challenge_name": "挑战名称 *",
+    "challenge_placeholder": "例如，社交媒体排毒",
+    "description": "描述（可选）",
+    "description_placeholder": "您在放弃什么？为什么这对您很重要？",
+    "category": "类别",
+    "duration": "时长",
+    "daily_steps": "每日步骤（可选）",
+    "start_challenge": "开始挑战",
+    "challenge_started": "挑战开始！🔥",
+    "challenge_started_desc": "您的 {{days}} 天挑战今天开始。您能做到！",
+    "failed_create": "创建挑战失败",
+    "free_challenge_used": "您已使用免费挑战机会",
+    "free_challenge_available": "还剩 {{remaining}} 个免费挑战",
+    "free_limit_note": "免费账户共有 1 个挑战。一旦使用，即使删除或完成，也需要升级到高级版才能创建更多。",
+    "durations": {
+      "3_days": "3 天",
+      "7_days": "7 天",
+      "21_days": "21 天",
+      "30_days": "30 天",
+      "90_days": "90 天",
+      "3_desc": "快速重置",
+      "7_desc": "一周挑战",
+      "21_desc": "习惯形成",
+      "30_desc": "月度挑战",
+      "90_desc": "深度转变"
+    }
+  },
+
+  "pricing": {
+    "choose_plan": "选择您的套餐",
+    "subtitle": "免费开始，准备就绪时升级。无隐藏费用，随时取消。",
+    "free_plan": "免费套餐",
+    "free_price": "€0",
+    "forever": "/永久",
+    "get_started_basics": "从基础开始",
+    "current_plan": "当前套餐",
+    "get_started_free": "免费开始",
+    "premium_plan": "高级套餐",
+    "premium_price": "€9.99",
+    "per_month": "/月",
+    "unlock_potential": "释放您的全部潜力",
+    "everything_in_free": "免费版所有内容，加上：",
+    "subscribe_now": "立即订阅",
+    "get_premium": "获取高级版",
+    "most_popular": "最受欢迎",
+    "trust_badges": "30 天退款保证 • 随时取消 • 通过 Stripe 安全支付",
+    "have_account": "已有账户？",
+    "welcome_premium": "欢迎使用 InnerBuild 高级版！",
+    "subscription_active": "您的订阅现已激活，尽情享受吧！",
+    "checkout_canceled": "支付已取消",
+    "checkout_canceled_desc": "没问题——您可以随时订阅。",
+    "checkout_failed": "开始支付失败，请重试。",
+    "free_features": {
+      "habits": "最多 5 个习惯",
+      "challenges": "1 个活跃排毒挑战",
+      "tracking": "带连续记录的基础习惯追踪",
+      "quotes": "每日励志名言",
+      "planning": "每日计划（待办和避免清单）",
+      "reflection": "晚间反思和感恩",
+      "profile": "带活动日历的个人资料",
+      "whats_working": "“有效方法”洞察",
+      "progress": "进度概览（近期和年度）",
+      "additional": ""
+    },
+    "premium_features": {
+      "unlimited_habits": "无限习惯",
+      "unlimited_challenges": "无限排毒挑战",
+      "ai_coach": "个人 AI 教练 (24/7)",
+      "recovery": "带连续记录追踪的色情恢复计划",
+      "trigger_tracking": "触发器追踪和 AI 模式分析",
+      "habit_adaptation": "AI 习惯适应建议",
+      "learn": "学习板块（文章、指南和时间线）",
+      "priority": "优先体验新功能"
+    }
+  },
+
+  "profile": {
+    "title": "我的资料",
+    "premium_plan": "高级套餐",
+    "free_plan": "免费套餐",
+    "admin_access": "管理员访问 — 所有功能已解锁",
+    "cancels_on": "于 {{date}} 取消",
+    "renews_on": "于 {{date}} 续期",
+    "upgrade_unlock": "升级以解锁所有功能",
+    "progress_overview": "进度概览",
+    "portal_error": "打开订阅门户失败，请重试。",
+    "profile_info": "资料信息",
+    "profile_info_desc": "管理您的个人信息和头像",
+    "first_name": "名字",
+    "first_name_placeholder": "输入您的名字",
+    "last_name": "姓氏",
+    "last_name_placeholder": "输入您的姓氏",
+    "username": "用户名",
+    "username_placeholder": "选择唯一的用户名",
+    "email": "电子邮箱地址",
+    "email_readonly": "出于安全考虑，您的电子邮箱地址不可更改。",
+    "save_changes": "保存更改",
+    "profile_updated": "资料已更新",
+    "profile_updated_desc": "您的资料信息已保存。",
+    "failed_save": "保存失败",
+    "username_taken": "此用户名已被使用，请选择其他用户名。",
+    "username_cooldown": "冷却期进行中",
+    "username_cooldown_days": "您可以在 {{days}} 天后再次更改用户名。",
+    "upload_photo": "点击相机图标上传新照片",
+    "avatar_updated": "头像已更新",
+    "avatar_updated_desc": "您的头像已更新。",
+    "avatar_upload_failed": "上传失败",
+    "avatar_too_large": "请上传小于 5 MB 的图片。",
+    "avatar_invalid_type": "请上传图片文件。",
+    "whats_working": "有效方法",
+    "improving": "改进中",
+    "protect": "保护",
+    "small_adjustment": "小调整",
+    "generate_insights": "生成洞察",
+    "generating_insights": "生成中...",
+    "available_in_days": "{{days}} 天后可用",
+    "track_habits_first": "追踪几天习惯以生成洞察",
+    "no_active_habits": "无活跃习惯",
+    "create_habits_first": "从习惯页面创建习惯",
+    "this_week": "本周",
+    "progress_history": "我的进度历史",
+    "click_day_log": "点击某一天查看您的每日日志",
+    "positive_habits": "积极习惯",
+    "triggers_title": "触发器",
+    "detox_challenges": "排毒挑战",
+    "emotional_awareness": "情绪觉察",
+    "holding_steady": "保持稳定",
+    "consistency": "一致性",
+    "no_data_yet": "暂无数据",
+    "frequency": "频率",
+    "stable": "稳定",
+    "completed_active": "已完成 {{completed}} · 进行中 {{active}}",
+    "start_tracking": "开始追踪",
+    "avg_mood_up": "平均情绪 ↑",
+    "avg_mood_down": "平均情绪 ↓",
+    "avg_mood_stable": "平均情绪 →",
+    "reflections": "{{count}} 次反思",
+    "last_n_days": "最近 {{days}} 天",
+    "vs_previous": "对比前 {{days}} 天",
+    "habits_progress": "习惯进度",
+    "trigger_tracking_title": "触发器追踪",
+    "mood_reflection": "情绪与反思"
+  },
+
+  "coach": {
+    "title": "AI 教练",
+    "subtitle": "您的个人向导",
+    "clear_chat": "清空聊天",
+    "chat_cleared": "聊天已清空",
+    "failed_clear": "清空聊天失败",
+    "hey_there": "你好！👋",
+    "intro": "我是您的 AI 教练，在这里支持您走向更好习惯和个人成长的旅程。",
+    "quick_actions_label": "快速开始行动：",
+    "input_placeholder": "询问关于您的习惯、挑战、恢复...",
+    "not_authenticated": "未认证，请登录。",
+    "rate_limit": "请求次数超限，请稍后再试。",
+    "auth_required": "需要认证，请重新登录。",
+    "api_error": "API 密钥无效或配额已超。",
+    "failed_response": "获取回复失败",
+    "failed_send": "发送消息失败",
+    "quick_actions": {
+      "suggest_habit": "建议一个习惯",
+      "start_challenge": "开始一个挑战",
+      "motivate_me": "激励我",
+      "help_reflect": "帮助我反思"
+    },
+    "stats": {
+      "track_progress": "追踪进度",
+      "build_habits": "培养习惯",
+      "take_challenges": "接受挑战"
+    },
+    "tips": {
+      "1": "每一个小步都为实现您的更大目标做出贡献",
+      "2": "进步并非总是线性的，这很正常",
+      "3": "您已经因为在这里而变得更好",
+      "4": "坚持总能战胜完美",
+      "5": "今天是成长的新机会"
+    }
+  },
+
+  "learn": {
+    "title": "学习",
+    "subtitle": "关于恢复的教育和知识",
+    "articles": "文章",
+    "guides": "指南",
+    "timeline": "时间线",
+    "locked_title": "学习中心",
+    "locked_desc": "科学文章、深度教育指南和完整的恢复时间线——尽在一处。",
+    "locked_features": {
+      "articles": "关于恢复的科学文章",
+      "guides": "深度教育指南",
+      "timeline": "恢复时间线和里程碑"
+    }
+  },
+
+  "porn_recovery": {
+    "title": "色情恢复",
+    "subtitle": "为您旅程提供的科学工具",
+    "emergency": "紧急",
+    "sos": "SOS",
+    "progress": "进度",
+    "manage_tab": "管理",
+    "learn_tab": "学习",
+    "locked_title": "恢复工具",
+    "locked_desc": "解锁基于科学的恢复策略、渴求管理工具和个人追踪。",
+    "locked_features": {
+      "science": "基于科学的教育",
+      "craving": "渴求应对工具",
+      "anti_trigger": "个人反触发器计划",
+      "motivation": "动机追踪"
+    },
+    "recovery_challenge": "恢复挑战",
+    "start_challenge_question": "您想开始色情恢复挑战吗？您可以追踪每日进度并建立连续记录。",
+    "mark_success_fail": "将每天标记为“成功”或“失败”",
+    "track_streaks": "追踪您当前和最长的连续记录",
+    "start_fresh_anytime": "随时重新开始",
+    "start_challenge": "开始挑战",
+    "started_on": "开始于 {{date}}",
+    "day_n": "第 {{n}} 天",
+    "current_streak": "当前连续记录",
+    "longest_streak": "最长连续记录",
+    "success_days": "成功天数",
+    "failed_days": "失败天数",
+    "todays_checkin": "今日签到",
+    "already_checked_in": "您今天已签到",
+    "start_fresh": "重新开始",
+    "start_fresh_confirm": "重新开始？",
+    "start_fresh_desc": "这将重置您当前的旅程并开始新的旅程。之前的数据将被存档。",
+    "abandon": "放弃",
+    "abandon_confirm": "放弃挑战？",
+    "abandon_desc": "这将结束您当前的挑战。您可以随时开始新的挑战。",
+    "failure_debrief": "失败复盘",
+    "failure_debrief_desc": "复发了？没关系——这是旅程的一部分。让我们一起把它变成一次学习经历。",
+    "continue_debrief": "继续复盘",
+    "start_debrief": "开始复盘",
+    "unfinished_debrief": "您有未完成的复盘。准备好后继续。",
+    "my_reasons": "我戒除的理由",
+    "reasons_desc": "您的个人动机是您的锚。在渴求时阅读它们，提醒自己为什么开始这段旅程。",
+    "write_reason": "写下您的理由...",
+    "add_reason": "添加理由",
+    "tap_add_suggested": "或点击添加建议的理由：",
+    "already_added": "已添加",
+    "already_in_list": "此理由已在您的列表中。",
+    "suggested_reasons": [
+      "更好的身心健康",
+      "摆脱成瘾和强迫",
+      "更深、更真实的关系",
+      "更多时间和精力用于重要之事",
+      "更强的专注力和生产力",
+      "对自己生活和选择的掌控",
+      "更好的自尊和自信",
+      "与所爱之人同在"
+    ],
+    "craving_title": "渴求时该怎么办",
+    "craving_desc": "渴求虽强烈但短暂——通常持续 15‑20 分钟。使用这些行动渡过浪潮直到它过去。",
+    "craving_complete_tip": "每完成一项就点击它。渴求将会过去。",
+    "craving_actions": {
+      "cold_shower": "洗个冷水澡",
+      "cold_shower_desc": "30秒到2分钟。让您的身体从渴求中惊醒。",
+      "walk": "去散步或跑步",
+      "walk_desc": "放下手机，走出去。运动能转移能量。",
+      "exercise": "做体育锻炼",
+      "exercise_desc": "俯卧撑、深蹲、开合跳。用身体消耗掉冲动。",
+      "contact": "联系您信任的人",
+      "contact_desc": "给朋友、家人或问责伙伴发信息或打电话。",
+      "people": "和其他人待在一起",
+      "people_desc": "去公共场所。孤立会助长冲动，连接会打破它。"
+    },
+    "identifying_triggers": "识别触发器",
+    "triggers_desc": "触发器是导致冲动的情境、情绪和背景。理解您的个人触发器对预防至关重要。",
+    "ask_yourself": "每次冲动后问自己这些问题：",
+    "common_triggers_solutions": "常见触发器及解决方案",
+    "guided_questions": {
+      "emotion": "我当时感受到什么情绪？",
+      "emotion_examples": "无聊、孤独、压力、焦虑、疲倦、被拒绝、沮丧",
+      "time": "当时是什么时间？",
+      "time_examples": "深夜、清晨、下班后、周末下午",
+      "where": "我在哪里？",
+      "where_examples": "卧室、浴室、独自在家、酒店房间",
+      "doing": "我之前在做什么？",
+      "doing_examples": "刷社交媒体、看电视、工作、与人争吵"
+    },
+    "common_triggers": {
+      "computer": "独自在电脑前",
+      "computer_tip": "在公共空间工作或开着门",
+      "phone_bed": "晚上在床上玩手机",
+      "phone_bed_tip": "把手机放在另一个房间充电",
+      "social_media": "刷社交媒体",
+      "social_media_tip": "限制或删除引发冲动的应用",
+      "late_nights": "疲惫时的深夜",
+      "late_nights_tip": "设定固定的睡觉时间并遵守"
+    },
+    "anti_trigger_plan": "个人反触发器计划",
+    "anti_trigger_desc": "为您的特定触发器创建“如果-那么”计划。预先确定的反应能让您在关键时刻更容易行动。",
+    "add_new_plan": "添加新计划：",
+    "add_plan": "添加计划",
+    "error_saving": "保存错误",
+    "failed_save_plan": "保存计划失败，请重试。",
+    "incomplete_plan": "计划不完整",
+    "fill_all_fields": "请填写所有三个字段。",
+    "understanding_title": "理解问题",
+    "understanding_desc": "现代网络色情被设计用来劫持您大脑的奖励系统。理解背后的科学是走向自由的第一步。",
+    "brain_science_title": "大脑中发生了什么",
+    "strategies_title": "实用恢复策略",
+    "strategies_desc": "恢复不仅仅是停止——而是建立一种您不需要逃避的生活。这些策略同时解决行为和潜在需求。"
+  },
+
+  "trigger_tracking": {
+    "title": "触发器追踪",
+    "subtitle": "记录并分析您的冲动",
+    "start_tracking": "开始追踪您的触发器",
+    "start_tracking_desc": "记录您感到冲动的时间，以发现模式并获得个性化 AI 建议",
+    "log_first": "记录第一个触发器",
+    "log_trigger": "记录触发器",
+    "impulse_intensity": "冲动强度",
+    "how_feel": "您感觉如何？*",
+    "situation": "情境 *",
+    "where_are_you": "您在哪儿？",
+    "are_you_alone": "您独自一人吗？",
+    "yes_alone": "是，独自一人",
+    "no_with_others": "否，与他人一起",
+    "notes_optional": "备注（可选）",
+    "notes_placeholder": "发生了什么？您在思考什么？",
+    "mild": "轻度",
+    "strong": "强烈",
+    "heatmap_title": "触发器热力图",
+    "heatmap_empty": "记录一些触发器以查看模式图",
+    "last_30_days": "最近30天",
+    "recent_triggers": "最近触发器",
+    "no_triggers_yet": "尚未记录触发器",
+    "trigger_analysis": "触发器分析",
+    "get_trigger_report": "获取您的触发器报告",
+    "analyze_patterns": "分析您过去4天的触发器模式",
+    "generate_report": "生成报告",
+    "main_causes": "主要原因",
+    "causes_identified": "已识别 {{count}} 个主要原因",
+    "causes_identified_plural": "已识别 {{count}} 个主要原因",
+    "when_it_happens": "发生时间",
+    "suggested_solutions": "建议解决方案",
+    "for_cause": "针对：{{cause}}",
+    "next_report_in": "下一份报告将在 {{days}} 天后可用",
+    "generate_new_report": "生成新报告",
+    "loading_insights": "加载触发器洞察...",
+    "ai_insights": "AI 洞察",
+    "triggers_logged": "已记录 {{count}} 个触发器",
+    "analyze": "分析",
+    "log_3_triggers": "记录至少 3 个触发器以解锁 AI 洞察",
+    "more_needed": "还需 {{count}} 个",
+    "press_analyze": "按“分析”以从您的模式生成洞察",
+    "locked_features": {
+      "realtime": "实时冲动记录",
+      "heatmap": "视觉模式热力图",
+      "ai_reports": "基于 AI 的洞察报告",
+      "timing": "时间和情境分析"
+    },
+    "emotions": {
+      "stress": "压力",
+      "boredom": "无聊",
+      "sadness": "悲伤",
+      "anxiety": "焦虑",
+      "anger": "愤怒",
+      "loneliness": "孤独",
+      "tiredness": "疲倦",
+      "excitement": "兴奋"
+    },
+    "situations": {
+      "social_media": "社交媒体",
+      "video_streaming": "视频/流媒体",
+      "after_argument": "争吵之后",
+      "before_sleep": "睡前",
+      "work_break": "工作休息",
+      "weekend": "空闲周末",
+      "procrastination": "拖延",
+      "other": "其他"
+    },
+    "locations": {
+      "home": "家",
+      "work": "工作",
+      "commute": "通勤",
+      "other": "其他"
+    },
+    "heatmap_legend": {
+      "mild": "轻度 (1‑3)",
+      "medium": "中度 (4‑6)",
+      "strong": "强烈 (7‑10)"
+    },
+    "days": {
+      "sun": "周日",
+      "mon": "周一",
+      "tue": "周二",
+      "wed": "周三",
+      "thu": "周四",
+      "fri": "周五",
+      "sat": "周六"
+    },
+    "time_periods": {
+      "night": "夜晚",
+      "morning": "早晨",
+      "afternoon": "下午",
+      "evening": "傍晚"
+    }
+  },
+
+  "evening_reflection": {
+    "title": "晚间反思",
+    "daily_checkin": "每日签到",
+    "complete": "完成",
+    "how_feel": "您今天感觉如何？",
+    "energy_level": "今日能量水平",
+    "low_energy": "能量低",
+    "high_energy": "能量高",
+    "complete_checkin": "完成签到",
+    "checkin_complete": "签到完成！",
+    "checkin_saved": "您的每日签到已保存。",
+    "select_mood": "选择您的情绪",
+    "select_mood_desc": "选择您今天的感受。",
+    "failed_checkin": "保存签到失败，请重试。",
+    "moods": {
+      "great": "很棒",
+      "good": "不错",
+      "okay": "一般",
+      "struggling": "挣扎",
+      "difficult": "困难"
+    },
+    "how_was_day": "今天过得怎么样？",
+    "day_placeholder": "简要描述您的一天...",
+    "grateful_for": "今天您对什么心存感激？（1-3件事）",
+    "grateful_placeholder": "添加一件您感激的事...",
+    "lessons_learned": "您学到了什么或可以改进什么？",
+    "lessons_placeholder": "写下学到的教训或需要改进的地方...",
+    "save_reflection": "保存反思",
+    "reflection_saved": "反思已保存！",
+    "reflection_saved_desc": "反思您的一天，做得很好",
+    "could_not_save": "无法保存反思"
+  },
+
+  "daily_planning": {
+    "title": "每日计划",
+    "tomorrow": "明天",
+    "todo_title": "明天要做的事",
+    "not_todo_title": "避免清单",
+    "add_task_placeholder": "添加新任务...",
+    "what_to_avoid": "明天要避免的事...",
+    "quick_add_suggestions": "快速建议：",
+    "task_added": "任务已添加！",
+    "task_added_desc": "规划您的明天",
+    "item_added": "事项已添加！",
+    "item_added_desc": "明天避免此行为",
+    "could_not_add_task": "无法添加任务",
+    "could_not_add_item": "无法添加事项",
+    "could_not_update_task": "无法更新任务",
+    "could_not_edit_task": "无法编辑任务",
+    "could_not_delete_task": "无法删除任务",
+    "could_not_update_status": "无法更新状态",
+    "could_not_delete_item": "无法删除事项",
+    "could_not_remove_completion": "无法移除完成状态",
+    "could_not_mark_complete": "无法标记为已完成",
+    "no_tasks_planned": "未计划任何任务",
+    "add_goals": "添加您明天的目标",
+    "no_behaviors": "没有需要避免的行为",
+    "add_negative_habits": "添加需要避免的负面习惯",
+    "great_job": "做得好！",
+    "avoided_negative": "您避免了这种负面行为",
+    "active_habits": "活跃习惯",
+    "evening_planning_time": "晚间计划时间",
+    "evening_planning_desc": "花点时间计划明天并反思今天",
+    "reminder_enabled": "提醒已开启！",
+    "reminder_enabled_desc": "您将在晚上 8 点收到计划明天的通知。",
+    "reminder_disabled": "提醒已关闭",
+    "reminder_disabled_desc": "您不会收到晚间提醒。",
+    "day_streak": "连续天数",
+    "tasks_done": "已完成任务",
+    "perfect_days": "完美天数",
+    "suggested_tasks": {
+      "water": "喝 8 杯水",
+      "meditate": "冥想 10 分钟",
+      "walk": "散步 30 分钟",
+      "read": "阅读 20 分钟",
+      "journal": "写日记",
+      "exercise": "锻炼 30 分钟"
+    },
+    "suggested_not_todo": {
+      "no_social": "上午 10 点前不看社交媒体",
+      "no_junk": "不吃垃圾食品",
+      "no_phone": "不在床上玩手机",
+      "no_negative": "不进行消极的自我对话",
+      "no_skip": "不跳过锻炼",
+      "no_procrastinate": "不拖延任务"
+    }
+  },
+
+  "recovery": {
+    "recovery_streak": "恢复连续记录",
+    "clean_day": "干净的一天",
+    "relapsed": "复发",
+    "checked_in_today": "今天已签到。继续加油！",
+    "day_of_journey": "旅程第 {{day}} 天",
+    "active_challenges": "进行中的挑战",
+    "onboarding": {
+      "title": "恢复挑战",
+      "description": "您想开始色情恢复挑战吗？您可以追踪每日进度并建立连续记录。",
+      "feature_1": "将每天标记为“成功”或“失败”",
+      "feature_2": "追踪您当前和最长的连续记录",
+      "feature_3": "随时重新开始",
+      "start": "开始挑战"
+    }
+  },
+
+  "locked_preview": {
+    "unlock_premium": "解锁高级版",
+    "trigger": {
+      "log_triggers": "记录触发器和冲动",
+      "visual_heatmap": "视觉热力图分析",
+      "ai_insights": "AI 模式洞察",
+      "track_timing": "追踪时间和情境",
+      "preview_text": "触发器追踪预览：",
+      "description": "记录您的冲动，通过 AI 分析发现模式，并获得个性化预防策略。"
+    },
+    "recovery": {
+      "title": "恢复工具",
+      "description": "解锁基于科学的恢复策略、渴求管理工具和个人追踪。",
+      "science_education": "基于科学的教育",
+      "craving_tools": "渴求应对工具",
+      "anti_trigger_plan": "个人反触发器计划",
+      "motivation_tracking": "动机追踪"
+    },
+    "coach": {
+      "title": "AI 教练",
+      "description": "从您的个人 AI 教练获得个性化指导、习惯建议和动力。",
+      "habit_suggestions": "个性化习惯建议",
+      "custom_challenges": "自定义挑战创建",
+      "reflection_guidance": "自我反思指导",
+      "daily_motivation": "每日激励",
+      "preview_text": "您的 AI 教练预览：",
+      "preview_msg_1": "你能建议我一个健康的习惯吗...",
+      "preview_msg_2": "根据您的模式，我会建议...",
+      "preview_msg_3": "帮助我保持今天的动力..."
+    },
+    "learn": {
+      "title": "学习中心",
+      "description": "科学文章、教育指南和完整的恢复时间线——尽在一处。",
+      "scientific_articles": "关于恢复的科学文章",
+      "educational_guides": "深度教育指南",
+      "recovery_timeline": "恢复时间线和里程碑"
+    }
+  },
+
+  "habit_report": {
+    "habit_analysis": "习惯分析",
+    "loading_insights": "加载习惯洞察...",
+    "locked_desc": "获取关于您习惯的 AI 洞察和个性化建议以改善您的日常。",
+    "unlock_premium": "使用高级版解锁",
+    "get_report": "获取您的习惯报告",
+    "analyze_last_days": "分析您过去4天的习惯",
+    "suggestions_for_you": "为您提供 {{count}} 条建议",
+    "suggested_adjustments": "建议的习惯调整",
+    "tips": "提示",
+    "next_report_in": "下一份报告将在 {{days}} 天后可用",
+    "generate_new": "生成新报告"
+  },
+
+  "not_found": {
+    "title": "404",
+    "message": "哎呀！页面未找到",
+    "return_home": "返回首页"
+  },
+
+  "paywall": {
+    "habit_limit_title": "解锁无限习惯",
+    "habit_limit_desc": "您已达到 5 个习惯的免费上限。升级以创建您需要的所有习惯。",
+    "challenge_limit_title": "解锁更多挑战",
+    "challenge_limit_desc": "免费用户可拥有 1 个活跃挑战。升级以同时进行多个挑战。",
+    "ai_coach_title": "访问 AI 教练",
+    "ai_coach_desc": "在您需要时从您的 AI 教练获得个性化指导、支持和动力。",
+    "recovery_title": "解锁恢复工具",
+    "recovery_desc": "访问完整的色情恢复计划，包含连续记录追踪、神经科学内容和复盘工具。",
+    "advanced_stats_title": "解锁习惯分析",
+    "advanced_stats_desc": "获取关于您习惯的 AI 洞察、个性化建议和智能推荐以改善您的日常。",
+    "general_title": "升级到高级版",
+    "general_desc": "解锁 InnerBuild 的全部潜力，无限访问所有高级工具。",
+    "premium_includes": "高级版包含：",
+    "features": {
+      "unlimited_habits": "无限习惯",
+      "unlimited_challenges": "无限排毒挑战",
+      "ai_coach": "AI 教练访问权限",
+      "recovery": "色情恢复计划",
+      "trigger_tracking": "触发器追踪和 AI 分析",
+      "learn": "学习板块（文章、指南和时间线）",
+      "priority": "优先体验新功能"
+    },
+    "upgrade_to_premium": "升级到高级版",
+    "maybe_later": "稍后再说",
+    "cancel_guarantee": "随时取消 • 30 天退款保证"
+  },
+
+  "footer": {
+    "tagline": "用基于科学的习惯和恢复的力量改变您的生活。",
+    "legal": "法律信息",
+    "privacy_policy": "隐私政策",
+    "terms_of_service": "服务条款",
+    "support": "支持",
+    "follow_us": "关注我们",
+    "copyright": "© {{year}} InnerBuild。保留所有权利。为您的成长倾心打造 <3。"
+  },
+
+  "nav": {
+    "home": "首页",
+    "tools": "工具",
+    "learn": "学习",
+    "profile": "个人资料"
+  },
+
+  "habit_tips": {
+    "one_min_tip": "1 分钟小贴士",
+    "next_tip": "下一个贴士",
+    "tips": {
+      "start_small_title": "从小处着手",
+      "start_small": "从 2 分钟的习惯开始。成功孕育动力，而非相反。",
+      "stack_title": "习惯叠加",
+      "stack": "将新习惯与现有习惯关联：'在[当前习惯]之后，我将做[新习惯]'。",
+      "environment_title": "设计你的环境",
+      "environment": "让好习惯显而易见、易于执行。把跑鞋放在门边。",
+      "never_miss_title": "永不连错两次",
+      "never_miss": "错过一次是意外。错过两次是新习惯的开始。",
+      "track_title": "追踪你的进度",
+      "track": "被衡量的才被管理。视觉进度让你保持动力。",
+      "reward_title": "奖励自己",
+      "reward": "庆祝小胜利。你的大脑需要正向强化。",
+      "specific_title": "具体化",
+      "specific": "与其说'多运动'，不如说'早上 7 点步行 10 分钟'。",
+      "identity_title": "基于身份的习惯",
+      "identity": "专注于你想成为的人，而非你想达成的事。",
+      "rule_title": "21/90 法则",
+      "rule": "21 天养成一个习惯，90 天将其变为生活方式。",
+      "friction_title": "减少阻力",
+      "friction": "你与习惯之间的每一步都会降低你执行它的可能性。"
+    }
+  },
+
+  "profile_info_section": {
+    "title": "个人资料信息",
+    "manage_info_desc": "管理您的个人信息和头像",
+    "upload_hint": "点击相机图标上传新照片",
+    "first_name": "名字",
+    "first_name_placeholder": "输入您的名字",
+    "last_name": "姓氏",
+    "last_name_placeholder": "输入您的姓氏",
+    "username": "用户名",
+    "username_placeholder": "选择唯一的用户名",
+    "email": "电子邮箱",
+    "email_label": "电子邮箱地址",
+    "email_readonly": "出于安全考虑，您的电子邮箱地址不可更改。",
+    "save": "保存更改",
+    "change_avatar": "更换头像",
+    "invalid_file_type": "无效的文件类型",
+    "upload_image_file": "请上传图片。",
+    "file_too_large": "文件过大",
+    "file_size_limit": "请上传小于 5 MB 的图片。",
+    "avatar_updated": "头像已更新",
+    "avatar_updated_desc": "您的头像已更新。",
+    "upload_failed": "上传失败",
+    "upload_failed_desc": "无法上传头像。",
+    "username_restricted": "用户名更改受限",
+    "username_cooldown_msg": "您可以在 {{days}} 天后再次更改用户名。",
+    "cooldown_active": "冷却期进行中",
+    "profile_updated": "资料已更新",
+    "profile_saved": "您的资料信息已保存。",
+    "save_failed": "保存失败",
+    "save_failed_desc": "无法保存资料。"
+  },
+  "progress_overview_cards": {
+    "positive_habits": "积极习惯",
+    "detox_challenges": "排毒挑战",
+    "emotional_awareness": "情绪觉察",
+    "triggers": "触发器",
+    "vs_previous": "相比上一阶段",
+    "no_data": "无数据",
+    "holding_steady": "保持稳定",
+    "consistency": "一致性",
+    "frequency": "频率",
+    "stable": "稳定",
+    "completed": "已完成",
+    "active": "进行中",
+    "start_tracking": "开始追踪",
+    "average_mood": "平均情绪",
+    "reflections": "反思"
+  },
+  "progress_deep_dive": {
+    "habits": "习惯进度",
+    "triggers": "触发器追踪",
+    "challenges": "排毒挑战",
+    "mood": "情绪与反思"
+  },
+  "habits_progress_section": {
+    "no_active_habits": "无活跃习惯",
+    "completion": "完成率",
+    "day_streak": "连续天数",
+    "habit_position": "第 {{current}} / {{total}} 项"
+  },
+  "triggers_progress_section": {
+    "trigger_frequency": "触发器频率（{{days}} 天）",
+    "total": "总计：{{count}}",
+    "no_triggers_last_days": "过去 {{days}} 天内无触发器",
+    "older_triggers_hint": "更早的触发器不会显示在此",
+    "common_moments": "常见时刻",
+    "common_emotions": "常见情绪"
+  },
+  "challenges_progress_section": {
+    "no_challenges_yet": "暂无挑战",
+    "completed": "已完成",
+    "active": "进行中",
+    "days": "{{count}} 天",
+    "days_goal": "目标 {{completed}} 天"
+  },
+  "mood_progress_section": {
+    "start_tracking": "开始追踪情绪以查看洞察",
+    "mood_over_time": "情绪随时间变化",
+    "most_frequent_moods": "最常见情绪",
+    "reflections_done": "已完成反思",
+    "self_aware_quote": "我是一个有自我意识的人"
+  },
+  "activity_calendar": {
+    "title": "进度历史",
+    "subtitle": "点击某一天查看您的日志",
+    "legend": {
+      "done": "已完成",
+      "not_done": "未完成",
+      "today": "今天"
+    }
+  },
+  "day_detail_modal": {
+    "daily_checkin": "每日签到",
+    "habits": "习惯",
+    "daily_tasks": "每日任务",
+    "things_to_avoid": "需避免之事",
+    "detox_challenges": "排毒挑战",
+    "recovery_checkin": "恢复签到",
+    "challenge_journey": "挑战旅程",
+    "evening_reflection": "晚间反思",
+    "no_data": "无 {{section}} 记录",
+    "how_was_your_day": "今天过得如何？",
+    "grateful_for": "感恩",
+    "lessons_learned": "学到的教训",
+    "no_habits": "这一天没有记录习惯",
+    "no_tasks": "这一天没有计划任务",
+    "no_not_to_do": "这一天没有设定避免目标",
+    "no_challenges": "这一天没有进行中的挑战",
+    "no_recovery": "无恢复签到记录",
+    "no_daily_checkin": "无每日签到记录",
+    "no_challenge_activity": "这一天没有挑战活动",
+    "no_evening_reflection": "这一天没有写下晚间反思",
+    "mood_label": "情绪",
+    "energy_label": "能量水平",
+    "streak_continued": "连续记录继续 — 第 {{day}} 天",
+    "no_checkin_recorded": "无签到记录",
+    "clean_day": "干净的一天",
+    "relapse_occurred": "发生复发",
+    "setback": "挫折",
+    "checked_in": "已签到",
+    "mental_mission": "心理任务",
+    "behavioral_mission": "行为任务",
+    "avoided": "已避免",
+    "not_avoided": "未避免",
+    "mood": {
+      "great": "很棒",
+      "good": "不错",
+      "okay": "一般",
+      "struggling": "挣扎",
+      "difficult": "困难"
+    }
+  },
+  "whats_working_section": {
+    "title": "有效方法",
+    "empty_prompt": "追踪习惯一周以解锁个性化洞察",
+    "generate": "生成",
+    "refresh": "刷新",
+    "improving": "保持下去——您正在积累动力。",
+    "protect": "您的坚持是您最大的资产。",
+    "adjustment": "本周尝试调整一件小事。",
+    "available_in": "{{days}} 天后可用"
+  },
+  "recovery_tracker": {
+    "title": "恢复挑战",
+    "started": "开始于 {{date}}",
+    "current_streak": "当前连续记录",
+    "longest_streak": "最长连续记录",
+    "success_days": "成功天数",
+    "failed_days": "失败天数",
+    "todays_checkin": "今日签到",
+    "already_checked_in": "您今天已签到",
+    "success": "成功",
+    "failed": "失败",
+    "start_fresh": "重新开始",
+    "start_fresh_title": "重新开始？",
+    "start_fresh_desc": "这将重置您当前的旅程并开始新的旅程。您之前的数据将被存档。",
+    "abandon": "放弃",
+    "abandon_title": "放弃挑战？",
+    "abandon_desc": "这将结束您当前的挑战。您可以随时开始新的挑战。"
+  },
+  "craving_actions": {
+    "title": "渴求时该怎么办",
+    "description": "渴求虽强烈但短暂——通常持续 15‑20 分钟。使用这些行动渡过浪潮直到它过去。",
+    "footer_hint": "每完成一项就点击它。渴求将会过去。",
+    "reset": "重置",
+    "cold_shower_title": "洗个冷水澡",
+    "cold_shower_desc": "30秒到2分钟。让您的身体从渴求中惊醒。",
+    "walk_title": "去散步或跑步",
+    "walk_desc": "放下手机，走出去。运动能转移能量。",
+    "exercise_title": "做体育锻炼",
+    "exercise_desc": "俯卧撑、深蹲、开合跳。用身体消耗掉冲动。",
+    "contact_title": "联系您信任的人",
+    "contact_desc": "给朋友、家人或问责伙伴发信息或打电话。",
+    "people_title": "和其他人待在一起",
+    "people_desc": "去公共场所。孤立会助长冲动，连接会打破它。"
+  },
+  "triggers_section": {
+    "title": "识别触发器",
+    "description": "触发器是导致冲动的情境、情绪和背景。理解您的个人触发器对预防至关重要。",
+    "ask_questions": "每次冲动后问自己这些问题：",
+    "common_triggers_heading": "常见触发器及解决方案",
+    "question_emotion": "我当时感受到什么情绪？",
+    "examples_emotion": "无聊、孤独、压力、焦虑、疲倦、被拒绝、沮丧",
+    "question_time": "当时是什么时间？",
+    "examples_time": "深夜、清晨、下班后、周末下午",
+    "question_where": "我在哪里？",
+    "examples_where": "卧室、浴室、独自在家、酒店房间",
+    "question_before": "我之前在做什么？",
+    "examples_before": "刷社交媒体、看电视、工作、与人争吵",
+    "trigger_computer": "独自在电脑前",
+    "tip_computer": "在公共空间工作或开着门",
+    "trigger_phone_bed": "晚上在床上玩手机",
+    "tip_phone_bed": "把手机放在另一个房间充电",
+    "trigger_social": "刷社交媒体",
+    "tip_social": "限制或删除引发冲动的应用",
+    "trigger_late_nights": "疲惫时的深夜",
+    "tip_late_nights": "设定固定的睡觉时间并遵守"
+  },
+  "anti_trigger_plan": {
+    "title": "个人反触发器计划",
+    "description": "为您的特定触发器创建“如果-那么”计划。预先确定的反应能让您在关键时刻更容易行动。",
+    "error_saving_title": "保存错误",
+    "error_saving_desc": "无法保存您的计划。请重试。",
+    "incomplete_title": "计划不完整",
+    "incomplete_desc": "请填写所有三个字段。",
+    "template": "当 {{trigger}} 时，我将 {{action}}，因为它给我 {{benefit}}。",
+    "add_new": "添加新计划：",
+    "when": "当",
+    "trigger_placeholder": "我晚上感到无聊",
+    "i_will": "我将",
+    "action_placeholder": "去散步或给朋友打电话",
+    "because_gives_me": "因为它给我"
+  },
+  "reasons_section": {
+    "title": "我戒除的理由",
+    "description": "您的个人动机是您的锚。在渴求时阅读它们，提醒自己为什么开始。",
+    "error_saving_title": "保存错误",
+    "error_saving_desc": "无法保存您的理由。请重试。",
+    "already_added_title": "已添加",
+    "already_added_desc": "此理由已在您的列表中。",
+    "new_placeholder": "写下您的理由...",
+    "add_my_reason": "添加我的理由",
+    "suggested_prompt": "或点击添加建议的理由：",
+    "sr1": "更好的身心健康",
+    "sr2": "摆脱成瘾和强迫",
+    "sr3": "更深、更真实的关系",
+    "sr4": "更多时间和精力用于重要之事",
+    "sr5": "更强的专注力和生产力",
+    "sr6": "对自己生活和选择的掌控",
+    "sr7": "更好的自尊和自信",
+    "sr8": "与所爱之人同在"
+  },
+  "strategies_section": {
+    "title": "实用恢复策略",
+    "description": "恢复不仅仅是停止——而是建立一种您不需要逃避的生活。这些策略同时解决行为和潜在需求。",
+    "remove_access_title": "移除访问途径",
+    "remove_access_desc": "在所有设备上安装屏蔽软件。删除已保存的内容。让访问变得困难。",
+    "change_env_title": "改变环境",
+    "change_env_desc": "将设备移到公共区域。避免独自面对屏幕。改变您的日常。",
+    "track_streak_title": "追踪您的连续记录",
+    "track_streak_desc": "使用每日计数器。庆祝里程碑。每天可视化您的进步。",
+    "exercise_title": "规律运动",
+    "exercise_desc": "体育活动释放健康的多巴胺并减少冲动。即使 20 分钟也有帮助。",
+    "meditation_title": "冥想与正念",
+    "meditation_desc": "练习观察冲动而不行动。即使每天 5‑10 分钟也能增强心智控制。",
+    "cold_showers_title": "冷水澡",
+    "cold_showers_desc": "培养纪律和意志力。在渴求时冲击您的系统。从 30 秒开始。",
+    "journaling_title": "写日记",
+    "journaling_desc": "写下触发器、感受和胜利。自我意识是恢复的关键。",
+    "social_title": "社交连接",
+    "social_desc": "与人共度时光。孤立助长成瘾，真实连接治愈。",
+    "nature_title": "亲近自然",
+    "nature_desc": "自然能平静神经系统，通过美丽和惊叹提供健康的多巴胺。",
+    "hobbies_title": "健康的爱好",
+    "hobbies_desc": "用吸引人的事物替代习惯：音乐、运动、学习、创造。",
+    "prioritize_sleep_title": "优先保证睡眠",
+    "prioritize_sleep_desc": "疲劳削弱意志力。睡前 1 小时不用屏幕。目标 7‑9 小时。",
+    "self_compassion_title": "自我同情",
+    "self_compassion_desc": "挫折会发生。内疚会助长复发。用对待朋友的善意对待自己。"
+  },
+  "understanding_section": {
+    "title": "理解问题",
+    "description": "现代网络色情被设计用来劫持您大脑的奖励系统。理解背后的科学是走向自由的第一步。",
+    "super_stimulus_title": "超级刺激效应",
+    "super_stimulus_intro_part1": "互联网色情作为一种",
+    "super_stimulus_intro_emphasis": "超级刺激",
+    "super_stimulus_intro_part2": "——一种人为增强的自然奖励版本，您的大脑从未进化到能处理它：",
+    "unlimited_novelty_label": "无限新颖性：",
+    "unlimited_novelty_desc": "无尽的内容引发远超自然体验的多巴胺峰值",
+    "instant_access_label": "即时访问：",
+    "instant_access_desc": "无需努力意味着欲望和奖励之间没有自然延迟",
+    "extreme_content_label": "极端内容：",
+    "extreme_content_desc": "越来越极端的内容将您大脑的奖励阈值推得越来越高",
+    "super_stimulus_conclusion": "您的大脑在预期和寻求时释放的多巴胺比实际体验时更多，创造了一个强大的渴望循环。",
+    "common_effects_title": "常见影响",
+    "desensitization_label": "脱敏",
+    "desensitization_desc": "您的大脑对多巴胺的反应性降低，需要更强烈的刺激才能感受到同样的愉悦。",
+    "escalation_label": "升级",
+    "escalation_desc": "随着时间的推移，您可能会寻求更极端或更新的内容来获得同样的效果。",
+    "anxiety_label": "焦虑和低自尊",
+    "anxiety_desc": "使用和后悔的循环会助长焦虑、羞耻和消极的自我认知。",
+    "concentration_label": "注意力问题",
+    "concentration_desc": "多巴胺失调影响专注力、动力和享受日常活动的能力。",
+    "sexual_emotional_title": "性和情感影响",
+    "pied_label": "色情诱发的勃起功能障碍 (PIED)",
+    "pied_desc": "许多男性在真实亲密接触时难以兴奋。这是因为大脑已被条件化，只对人工色情刺激做出反应，而非真实伴侣。",
+    "emotional_disconnection_label": "情感疏离",
+    "emotional_disconnection_desc": "定期使用色情会使形成深层情感纽带变得更加困难。真正的亲密需要脆弱和连接，而色情训练您绕过这些。",
+    "young_brains_title": "为什么年轻大脑更脆弱",
+    "young_brains_intro_part1": "青少年和年轻成年人的大脑特别容易受到影响，因为",
+    "neuroplasticity": "神经可塑性",
+    "young_brains_intro_part2": "——大脑形成新神经通路的高能力。",
+    "young_brains_point1": "前额叶皮层（冲动控制）直到 25 岁才完全发育",
+    "young_brains_point2": "多巴胺敏感性在青春期达到顶峰",
+    "young_brains_point3": "这一时期形成的神经通路变得根深蒂固",
+    "young_brains_point4": "早期暴露可能塑造终生的性兴奋模式",
+    "good_news_label": "好消息：",
+    "good_news_desc": "使年轻大脑脆弱的相同神经可塑性也意味着它们在恢复期间可以更快地重新连接。"
+  },
+  "brain_science_section": {
+    "title": "大脑中发生了什么",
+    "wanting_vs_liking": "想要 vs 喜欢",
+    "reward_system_intro": "您的大脑有两个独立的奖励系统：",
+    "wanting_label": "想要",
+    "wanting_parenthesis": "多巴胺驱动的渴望",
+    "wanting_desc": "它是预期、寻求、驱动力。多巴胺推动您去寻找奖励，而不是享受它。这就是为什么您可以花几个小时搜索和点击，却感到不满足。",
+    "liking_label": "喜欢",
+    "liking_parenthesis": "真正的愉悦",
+    "liking_desc": "真正的满足和愉悦。对于色情，这个系统会减弱——您想要更多，但享受更少。真正的愉悦相比之下显得暗淡。",
+    "wanting_liking_quote": "\"想要和喜欢之间的差距是陷阱。您在追逐一种永远无法到来的满足。\"",
+    "novelty_title": "为什么新颖性会增加渴望",
+    "novelty_desc_part1": "您的大脑天生就会注意",
+    "novelty_highlight": "新颖性",
+    "novelty_desc_part2": "每一张新图片或视频都会触发多巴胺峰值，因为您的大脑认为：'这可能很重要！'",
+    "escalation_cycle_label": "升级循环：",
+    "escalation_step1": "新内容 → 多巴胺峰值 → 暂时满足",
+    "escalation_step2": "相同内容 → 较少多巴胺 → 需要更多新颖性",
+    "escalation_step3": "寻求更极端/更新内容 → 更高峰值 → 耐受性增加",
+    "escalation_step4": "大脑需要更多强度才能感受到任何东西 → 成瘾加深",
+    "novelty_conclusion": "这就是为什么许多用户发现自己观看一开始从未寻求过的内容。这不是关于您想要什么——而是关于您被劫持的奖励系统要求什么。",
+    "reboot_title": "重启：您的大脑如何愈合",
+    "reboot_intro_part1": "戒断色情让您的大脑能够",
+    "reset_dopamine": "重置多巴胺敏感性",
+    "reboot_intro_part2": "这个过程通常被称为“重启”，会带来可衡量的改善：",
+    "improved_mood_label": "情绪改善",
+    "improved_mood_desc": "随着多巴胺正常化，焦虑和抑郁减少",
+    "better_focus_label": "更好的专注力",
+    "better_focus_desc": "注意力和集中力恢复到健康水平",
+    "healthy_sexual_label": "健康的性反应",
+    "healthy_sexual_desc": "对真实伴侣的兴奋恢复，PIED 症状消失",
+    "more_energy_label": "更多能量和动力",
+    "more_energy_desc": "生活感觉更有活力，日常乐趣回归",
+    "timeline_label": "时间线：",
+    "timeline_desc": "大多数人在 30‑90 天内注意到显著改善，尽管完全恢复可能需要更长时间，取决于使用持续时间和强度。"
+  },
+  "evening_reflection_section": {
+    "title": "晚间反思",
+    "unsaved": "未保存",
+    "motivation_messages": [
+      "规划明天做得很好！您正在为成功做准备。",
+      "太棒了！反思您的一天是一个强大的习惯。继续保持！",
+      "做得好！明天是带着明确意图的新开始。",
+      "太棒了！自我反思是个人成长的关键。",
+      "您做得很好！提前规划展现了真正的承诺。"
+    ],
+    "day_summary_label": "今天过得怎么样？",
+    "day_summary_placeholder": "简要描述您的一天...",
+    "grateful_for_label": "今天您对什么心存感激？（1-3件事）",
+    "grateful_placeholder": "添加一件您感激的事...",
+    "add_gratitude": "添加",
+    "save": "保存",
+    "delete": "删除",
+    "reflection_saved": "反思已保存！",
+    "reflection_save_error": "无法保存反思",
+    "motivation_note": "反思您的一天，做得很好",
+    "energy_level": "能量水平",
+    "lessons_label": "您学到了什么或可以改进什么？",
+    "lessons_placeholder": "写下学到的教训或需要改进的地方...",
+    "save_reflection": "保存反思"
+  },
+  "todo_section": {
+    "title": "明天要做的事",
+    "no_tasks": "这一天没有计划任务",
+    "add_task": "添加任务",
+    "suggestions_title": "建议",
+    "quick_add_suggestions": "快速建议：",
+    "error_add": "无法添加任务",
+    "error_update": "无法更新任务",
+    "error_delete": "无法删除任务",
+    "task_added": "任务已添加！",
+    "plan_tomorrow": "规划您的明天",
+    "tasks_done": "已完成",
+    "suggested_tasks": [
+      "喝 8 杯水",
+      "冥想 10 分钟",
+      "散步 30 分钟",
+      "阅读 20 分钟",
+      "写日记",
+      "锻炼 30 分钟"
+    ],
+    "add_goals": "添加您明天的目标"
+  },
+  "not_to_do_section": {
+    "title": "需避免之事",
+    "no_items": "无需要避免的事项",
+    "add_item": "添加事项",
+    "error_add": "无法添加事项",
+    "error_delete": "无法删除事项",
+    "error_update": "无法更新状态",
+    "item_added": "事项已添加！",
+    "avoid_behavior": "明天避免此行为",
+    "avoided": "已避免",
+    "not_avoided": "未避免",
+    "quick_suggestions": "添加快速建议：",
+    "no_behaviors": "无需要避免的行为",
+    "add_negative_habits": "添加需要避免的负面习惯",
+    "suggested_items": [
+      "上午 10 点前不看社交媒体",
+      "不吃垃圾食品",
+      "不在床上玩手机",
+      "不进行消极的自我对话",
+      "不跳过锻炼",
+      "不拖延任务"
+    ]
+  },
+  "active_habits_section": {
+    "no_active": "暂无活跃习惯",
+    "create_hint": "从习惯页面创建习惯",
+    "error_remove": "无法移除完成状态",
+    "error_mark": "无法标记为已完成",
+    "title": "活跃习惯",
+    "completed": "已完成"
+  },
+  "daily_planning_stats": {
+    "day_streak": "连续天数",
+    "tasks_done": "已完成任务",
+    "perfect_days": "完美天数"
+  },
+  "evening_reminder_banner": {
+    "title": "晚间计划时间",
+    "description": "花点时间计划明天并反思今天",
+    "reminder_enabled_title": "提醒已开启！",
+    "reminder_enabled_desc": "您将在晚上 8 点收到计划明天的通知。",
+    "reminder_disabled_title": "提醒已关闭",
+    "reminder_disabled_desc": "您不会收到晚间提醒。",
+    "disable": "禁用",
+    "remind_me": "提醒我"
+  },
+  "language": {
+    "label": "语言",
+    "en": "英语",
+    "it": "意大利语"
+  },
+  "challenge_card": {
+    "challenge_complete": "🎉 挑战完成！",
+    "completed_challenge": "您已完成 {{days}} 天挑战！",
+    "day_checked": "已记录当天！🔥",
+    "day_done": "第 {{day}} 天完成。继续保持！",
+    "fresh_start": "新开始",
+    "fresh_start_desc": "已重置万能牌。每一天都是新的机会。💪",
+    "challenge_resumed": "挑战已恢复",
+    "lets_keep_going": "让我们继续！",
+    "no_jokers_warning": "没有万能牌剩余——任何复发都将暂停。",
+    "challenge_paused": "挑战已暂停",
+    "take_time": "需要多久就多久",
+    "challenge_removed": "挑战已移除",
+    "challenge_deleted": "挑战已被删除",
+    "days_completed": "已完成天数",
+    "day_completed": "已完成天数",
+    "complete_excl": "已完成！",
+    "resume": "恢复",
+    "pause": "暂停",
+    "reset": "重置",
+    "delete": "删除",
+    "all_jokers_used": "所有万能牌已使用",
+    "paused_at_day": "暂停于第 {{day}} 天。恢复时无万能牌，或重新开始。",
+    "resume_detox": "恢复排毒",
+    "reset_detox": "重置排毒",
+    "resume_no_jokers": "恢复后继续无万能牌——任何复发将再次暂停。",
+    "checked_in_today": "今日已签到",
+    "check_in_today": "今日签到",
+    "days_to_go": "还剩 {{days}} 天——您能做到！",
+    "start_fresh_title": "重新开始？",
+    "start_fresh_desc": "这将重置您的进度并恢复所有 3 个万能牌。",
+    "keep_going": "继续前进",
+    "enter_journey": "进入旅程",
+    "hide_details": "隐藏详情",
+    "view_steps_science": "查看每日步骤和科学",
+    "the_science": "科学",
+    "daily_steps": "每日步骤",
+    "day_of": "第 {{current}} / {{total}} 天",
+    "paused": "已暂停"
+  },
+  "today_overview": {
+    "more_habits": "+{{count}} 个其他习惯",
+    "no_habits": "暂无习惯。创建一个开始吧！",
+    "all_done": "今天全部完成！做得很好！",
+    "lets_go": "让今天有意义！",
+    "left_count": "还剩 {{count}} 个——您能做到！"
+  },
+  "micro_actions": {
+    "title": "快速胜利",
+    "done_count": "已完成 {{count}}/3"
+  },
+  "gamification": {
+    "level": "等级 {{level}}",
+    "next_level": "下一等级",
+    "habits_done": "已完成习惯",
+    "best_streak": "最佳连续记录",
+    "challenges_won": "已获胜挑战",
+    "reflections": "反思",
+    "badges": "徽章 ({{earned}}/{{total}})"
+  },
+  "habit_card": {
+    "habit_deleted": "习惯已删除",
+    "habit_removed": "习惯已被移除",
+    "edit": "编辑",
+    "day_streak": "连续 {{count}} 天",
+    "day_streak_plural": "连续 {{count}} 天",
+    "this_week": "本周"
+  },
+  "recovery_timeline": {
+    "what_to_expect": "预期效果",
+    "tips_for_success": "成功提示"
+  },
+  "learn_content": {
+    "articles_description": "关于科学、心理学和恢复的每周深度内容。",
+    "guides_description": "了解您旅程并建立意识的短读内容。",
+    "no_articles_title": "暂无文章",
+    "no_articles_description": "新的教育内容将每周发布。请稍后回来获取恢复科学和福祉的见解。",
+    "back_to_articles": "返回文章",
+    "article_not_found": "未找到文章",
+    "key_takeaways_label": "关键要点",
+    "guides": {
+      "dopamine": {
+        "title": "多巴胺如何工作",
+        "category": "神经科学",
+        "read_time": "3 分钟",
+        "summary": "了解大脑的奖励系统以及为什么恢复需要时间。",
+        "content": [
+          "多巴胺是一种神经递质，在我们体验快乐和动机的方式中起着关键作用。它通常被称为“感觉良好”化学物质，但更准确地说，它是“寻求”化学物质。",
+          "当我们参与成瘾行为时，我们的大脑会释放异常大量的多巴胺。随着时间的推移，大脑通过减少多巴胺受体来适应，这意味着我们需要更多的刺激才能感受到同样的快乐。",
+          "在恢复期间，您的大脑实际上在重新连接。多巴胺受体正在再生，您的基本快乐感正在重新校准。这个过程需要时间——通常需要 90‑180 天才能显着改善。",
+          "好消息：您的大脑具有非凡的可塑性。在恢复的每一天，您都在建立新的神经通路，并恢复健康的多巴胺功能。"
+        ],
+        "key_takeaways": [
+          "多巴胺驱动寻求行为，而不仅仅是快乐",
+          "恢复涉及大脑的物理变化",
+          "90‑180 天用于显着的受体再生",
+          "您的大脑可以并且将会愈合"
+        ]
+      },
+      "relapses": {
+        "title": "管理复发",
+        "category": "恢复",
+        "read_time": "4 分钟",
+        "summary": "复发不是失败——而是学习机会。以下是处理方法。",
+        "content": [
+          "首先，让我们重新定义复发：它不是道德上的失败，也不是恢复不起作用的标志。复发通常是恢复过程的一部分，研究表明，大多数成功康复的人都经历过多次复发。",
+          "关键是你如何回应。戒断违效应是指一次滑倒导致完全放弃恢复努力。避免这种心态至关重要。",
+          "复发后：1) 不要灾难化——一次滑倒不会抹去你的进步。2) 分析是什么触发了它。3) 确定你可以做什么不同的事情。4) 立即回到正轨。5) 寻求支持。",
+          "预防策略包括：识别你的触发器、创造环境屏障、拥有问责伙伴、通过锻炼、社交连接和有意义的追求建立健康的多巴胺来源。"
+        ],
+        "key_takeaways": [
+          "复发通常是恢复的一部分，而不是终结",
+          "一次滑倒不会抹去所有进步",
+          "分析触发器并从每次经历中学习",
+          "立即回到正轨——不要等“明天”"
+        ]
+      },
+      "withdrawal": {
+        "title": "理解戒断",
+        "category": "健康",
+        "read_time": "3 分钟",
+        "summary": "戒断期间会发生什么以及如何应对。",
+        "content": [
+          "戒断症状是大脑对缺乏它习惯的高多巴胺水平的反应。常见症状包括：易怒、焦虑、抑郁、注意力难以集中、失眠和强烈的渴望。",
+          "急性期（前 1‑2 周）通常是最具挑战性的。症状在 3‑7 天左右达到峰值，然后逐渐消退。理解这个时间线可以帮助你知道最坏的情况是暂时的。",
+          "管理策略：保持水分，定期锻炼（即使是轻度步行也有帮助），保持睡眠时间表，避免孤立，在渴望高峰时使用呼吸练习，记住每个困难时刻都是你的大脑在愈合。",
+          "体力活动尤其有效——它能自然增加多巴胺和内啡肽，帮助弥补恢复期间留下的神经化学缺口。"
+        ],
+        "key_takeaways": [
+          "症状在第一周达到峰值，然后改善",
+          "锻炼是最好的管理工具之一",
+          "每个困难时刻都在真正地治愈你的大脑",
+          "保持联系——不要孤立自己"
+        ]
+      },
+      "habits": {
+        "title": "建立新习惯",
+        "category": "心理学",
+        "read_time": "4 分钟",
+        "summary": "用持久的健康日常替代旧模式。",
+        "content": [
+          "打破成瘾不仅仅是停止一种行为——而是用更好的东西替代它。你的大脑渴望成瘾提供的奖励途径，所以你需要建立新的途径。",
+          "习惯回路包括：提示 → 惯例 → 奖励。要改变一个习惯，识别你的提示（时间、地点、情绪状态），用更健康的惯例替代，并确保你仍然得到奖励。",
+          "从小处着手。试图一次性彻底改变你的整个生活会导致倦怠。专注于一个关键习惯——通常是锻炼——它会对睡眠、情绪和动机产生积极的连锁效应。",
+          "一致性胜过强度。每天 10 分钟的步行比偶尔一小时的锻炼更有效。习惯是通过重复建立的，而不是强度。"
+        ],
+        "key_takeaways": [
+          "替代，而不仅仅是消除——填补空白",
+          "识别你的提示并规划替代反应",
+          "从一个关键习惯开始",
+          "一致性每次都胜过强度"
+        ]
+      },
+      "neuroplasticity": {
+        "title": "你的大脑可以改变",
+        "category": "神经科学",
+        "read_time": "3 分钟",
+        "summary": "神经可塑性的科学以及为什么恢复总是可能的。",
+        "content": [
+          "神经可塑性是大脑通过形成新的神经连接来重组自身的能力。这意味着无论你挣扎了多久，你的大脑都可以改变和愈合。",
+          "每次你抵抗冲动时，你都在加强新的神经通路。这就像锻炼肌肉——每次重复都会让下一次变得稍微容易一些。大脑确实会根据你的选择改变其结构。",
+          "研究表明，冥想、锻炼和学习新技能可以加速神经可塑性。这些活动会增加 BDNF（脑源性神经营养因子），有助于创造新的神经元和连接。",
+          "明显变化的时间因人而异，但大多数人在 30 到 90 天内报告了清晰度、情绪和渴望方面的显著改善。记住：你不是在等待改变——你在积极地建立它。"
+        ],
+        "key_takeaways": [
+          "你的大脑在任何年龄都可以物理改变",
+          "每个健康的选择都会加强恢复路径",
+          "锻炼和冥想加速大脑愈合",
+          "30‑90 天通常会带来明显的改善"
+        ]
+      }
+    },
+    "timeline": {
+      "acute": {
+        "name": "急性期",
+        "day_range": "第 1-14 天",
+        "description": "最具挑战性的阶段。你的大脑正在适应缺乏过量多巴胺刺激的状态。",
+        "symptoms": [
+          "强烈的渴望和冲动",
+          "情绪波动和易怒",
+          "睡眠困难",
+          "焦虑和不安",
+          "脑雾和低动力"
+        ],
+        "tips": [
+          "一次一小时地度过",
+          "用健康的分心保持忙碌",
+          "完全避免触发器",
+          "每天锻炼，哪怕只是散步",
+          "记住：这个阶段是暂时的"
+        ]
+      },
+      "stabilization": {
+        "name": "稳定期",
+        "day_range": "第 15-45 天",
+        "description": "事情开始稳定下来。渴望变得不那么强烈，你开始看到一丝清晰。",
+        "symptoms": [
+          "减少但仍然偶尔的渴望",
+          "改善的情绪和精力",
+          "更好的睡眠模式",
+          "提高的专注力",
+          "可能的平台期"
+        ],
+        "tips": [
+          "开始建立新的健康习惯",
+          "不要把平台期误认为失败",
+          "开始更深入的自我反思",
+          "与支持社区连接",
+          "庆祝小的胜利"
+        ]
+      },
+      "reconstruction": {
+        "name": "重建期",
+        "day_range": "第 46-90 天",
+        "description": "你的大脑正在积极重建。多巴胺受体再生，自然愉悦回归。",
+        "symptoms": [
+          "更稳定的基础情绪",
+          "活动的自然愉悦",
+          "改善的自信",
+          "更清晰的思维",
+          "偶尔（可控）的渴望"
+        ],
+        "tips": [
+          "追求有意义的目标",
+          "建立更深入的关系",
+          "定期练习感恩",
+          "保持警惕但自信",
+          "帮助他人走上他们的旅程"
+        ]
+      },
+      "consolidation": {
+        "name": "巩固期",
+        "day_range": "第 90 天以上",
+        "description": "新的神经通路得到巩固。恢复成为你的新常态，但长期意识仍然重要。",
+        "symptoms": [
+          "稀少而微弱的渴望",
+          "强烈的自我感",
+          "稳定的情绪调节",
+          "高动力和驱动力",
+          "深刻的自由感"
+        ],
+        "tips": [
+          "保持健康习惯",
+          "保持谦逊和觉察",
+          "回馈社区",
+          "继续个人成长",
+          "永远不要将恢复视为理所当然"
+        ]
+      }
+    }
+  },
+  "challenge_journey": {
+    "challenge_not_found": "未找到挑战",
+    "journey_progress": "旅程进度",
+    "your_journey": "您的旅程",
+    "goal_reached": "🎉 您已达到目标！",
+    "continue_90": "您已完成 {{days}} 天挑战。要继续到 90 天吗？",
+    "continue_to_90": "继续到 90 天 →",
+    "today": "今天",
+    "day_n": "第 {{n}} 天"
+  },
+  "daily_content": {
+    "your_coach": "您的教练",
+    "mental_mission": "心理任务",
+    "behavioral_mission": "行为任务",
+    "how_was_today": "今天怎么样？",
+    "tough": "艰难",
+    "manageable": "可控",
+    "strong": "强烈",
+    "setback_today": "我今天复发了",
+    "you_checked_in": "您已签到：",
+    "setback_message": "您在这一天复发了。使用了 1 个万能牌——您将重试这一天。🤍",
+    "setback_confirm_title": "您确定吗？",
+    "setback_confirm_desc": "报告复发将使用 1 个万能牌（剩余 {{remaining}} 个）。这一天不会推进——您将重试这一天。",
+    "last_joker_warning": "⚠️ 这是您的最后一个万能牌。使用它将暂停挑战。",
+    "go_back": "返回",
+    "yes_setback": "是的，我复发了",
+    "checkin_saved": "签到已保存",
+    "great_reflecting": "反思您的一天，做得很好。"
+  },
+  "suggested_challenges": {
+    "days": "{{count}} 天",
+    "joined": "{{count}} 人参与",
+    "beginner": "初级",
+    "intermediate": "中级",
+    "advanced": "高级"
+  },
+  "suggested_habits": {
+    "quick_start": "从建议的习惯开始：",
+    "easy": "简单",
+    "medium": "中等",
+    "challenge": "挑战",
+    "items": {
+      "drink_water": { "title": "喝 8 杯水", "description": "全天保持水分" },
+      "deep_breaths": { "title": "做 5 次深呼吸", "description": "快速正念重置" },
+      "make_bed": { "title": "整理床铺", "description": "用小胜利开始一天" },
+      "read_10min": { "title": "阅读 10 分钟", "description": "每天扩展知识" },
+      "walk_10min": { "title": "散步 10 分钟", "description": "身体和心灵的轻度锻炼" },
+      "eat_fruit": { "title": "吃一个水果", "description": "为饮食添加更多营养" },
+      "gratitude": { "title": "练习感恩", "description": "写下 3 件感恩的事" },
+      "meditate_15min": { "title": "冥想 15 分钟", "description": "深度专注和放松" },
+      "exercise_30min": { "title": "锻炼 30 分钟", "description": "建立力量和耐力" },
+      "sleep_8hrs": { "title": "睡 8 小时", "description": "优先保证优质休息" },
+      "no_phone_1hr": {
+        "title": "第一小时不用手机",
+        "description": "带着意图开始一天"
+      }
+    }
+  },
+  "emergency_urge": {
+    "header": "紧急支持",
+    "feeling_title": "你现在感觉如何？",
+    "feeling_subtitle": "不做评判——告诉我发生了什么。",
+    "location_title": "你在哪里？",
+    "location_subtitle": "这有助于我建议正确的行动。",
+    "alone_title": "你现在独自一人吗？",
+    "alone_subtitle": "这有助于为你量身定制建议。",
+    "yes_alone": "是的，独自一人",
+    "no_with_others": "不，和其他人在一起",
+    "loading_title": "我正在准备你的建议...",
+    "loading_subtitle": "在我准备一切的时候，深呼吸。",
+    "actions_title": "现在就做这个",
+    "remember_why": "记住你的初衷",
+    "close_button": "我感觉好多了",
+    "footer_note": "冲动会过去的。你能行。💪",
+    "personal_reminder": "你比这个时刻更强大。",
+    "calming_message": "这种冲动是强烈的，但也是暂时的。它会在 15‑20 分钟内过去。呼吸，让浪潮过去。",
+    "fallback_action_1": "洗个冷水澡",
+    "fallback_action_2": "去散步或跑步",
+    "fallback_action_3": "做体育锻炼",
+    "feelings": {
+      "stressed": "压力大",
+      "bored": "无聊",
+      "lonely": "孤独",
+      "anxious": "焦虑",
+      "sad": "悲伤",
+      "frustrated": "沮丧",
+      "tired": "疲倦",
+      "restless": "不安",
+      "overwhelmed": "不堪重负"
+    },
+    "locations": {
+      "home_bedroom": "家 — 卧室",
+      "home_living": "家 — 客厅",
+      "work": "工作 / 办公室",
+      "school": "学校",
+      "public": "公共场所",
+      "bathroom": "浴室",
+      "other": "其他"
+    }
+  },
+  "failure_debrief": {
+    "title": "复发复盘",
+    "description": "复发了？没关系——这是旅程的一部分。让我们一起把这次经历变成学习机会。",
+    "start": "开始复盘",
+    "continue": "继续复盘",
+    "history": "历史",
+    "unfinished_notice": "您有未完成的复盘。准备好后继续。",
+    "step_label": "步骤 {{step}}",
+    "step1_title": "发生了什么？",
+    "step2_title": "第一个被忽略的信号",
+    "step3_title": "改变什么",
+    "step1_desc": "让我们理解这次复发的背景",
+    "step2_desc": "通常有一个被我们忽略的预警信号",
+    "step3_desc": "将这次经历转化为具体的学习",
+    "feeling_label": "你当时感觉如何？",
+    "when_label": "什么时候发生的？",
+    "time_placeholder": "选择一天中的时间",
+    "context_label": "当时发生了什么？（背景）",
+    "context_placeholder": "例如，在压力很大的一天之后，我一个人在家...",
+    "trigger_label": "特定的触发器？",
+    "trigger_placeholder": "例如，我看到了一张挑衅的图片，我感到被拒绝...",
+    "signal_hint": "回顾过去，通常有一个我们忽略的小信号。识别它有助于我们下次抓住它。",
+    "signal_label": "你忽略了什么信号？",
+    "tell_more_label": "告诉我更多",
+    "tell_more_placeholder": "你注意到但没有采取行动的信号是什么？",
+    "data_noticed_title": "我们从你的数据中注意到",
+    "no_reflection": "近期没有晚间反思记录",
+    "no_journal": "近期没有日记条目",
+    "triggers_logged": "近期记录了 {{count}} 个触发器",
+    "no_patterns": "未检测到明显模式——没关系！",
+    "loading_suggestions": "准备个性化建议...",
+    "ai_suggestions_title": "AI 教练建议",
+    "encouragement": "每一次挫折都是为复出做准备。下次你会有什么不同？",
+    "action_plan_label": "你下次的行动计划",
+    "action_plan_placeholder": "例如，当我晚上感到孤独时，我会给朋友打电话或出去散步...",
+    "remember_label": "记住",
+    "remember_message": "复发不定义你——重要的是你如何回应。你在这里，你在学习，这需要勇气。💪",
+    "back": "返回",
+    "next": "下一步",
+    "complete": "完成",
+    "history_title": "复盘历史",
+    "history_desc": "回顾你过去的复盘并发现模式",
+    "no_debriefs": "尚无完成的复盘。",
+    "history_mood": "情绪",
+    "history_context": "背景",
+    "history_trigger": "触发器",
+    "moods": {
+      "stressed": "😰 压力大",
+      "anxious": "😟 焦虑",
+      "bored": "😐 无聊",
+      "lonely": "😢 孤独",
+      "tired": "😴 疲倦",
+      "angry": "😠 愤怒",
+      "sad": "😔 悲伤",
+      "overwhelmed": "😵 不堪重负"
+    },
+    "times": {
+      "early_morning": "清晨 (5‑8)",
+      "morning": "上午 (8‑12)",
+      "afternoon": "下午 (12‑17)",
+      "evening": "傍晚 (17‑21)",
+      "night": "夜晚 (21‑24)",
+      "late_night": "深夜 (0‑5)"
+    },
+    "signals": {
+      "skipped_reflection": "跳过了晚间反思",
+      "skipped_journal": "没有写日记",
+      "poor_sleep": "前一晚睡眠不佳",
+      "skipped_exercise": "跳过了锻炼",
+      "isolation": "独处时间过多",
+      "screen_time": "屏幕时间过长",
+      "stress_buildup": "忽略了积累的压力",
+      "trigger_ignored": "忽略了已知的触发器",
+      "other": "其他"
+    }
+  },
+  "recovery_journey": {
+    "title": "恢复之旅",
+    "day_phase": "第 {{day}} 天 · {{phase}}",
+    "day_label": "天",
+    "clean_days": "干净天数",
+    "setbacks": "挫折次数",
+    "debriefs": "复盘次数",
+    "view_insight": "查看今日洞察",
+    "ai_insight": "AI 阶段洞察",
+    "analyzing": "正在分析您的旅程...",
+    "insight_error": "无法加载洞察。请稍后再试。",
+    "phases": {
+      "acute": {
+        "name": "急性期",
+        "description": "最艰难的阶段——您的大脑正在适应没有超级刺激的生活。戒断症状是正常的、暂时的。"
+      },
+      "stabilization": {
+        "name": "稳定期",
+        "description": "渴望变得不那么强烈。您大脑的多巴胺基线正在缓慢正常化。建立新的日常是关键。"
+      },
+      "reconstruction": {
+        "name": "重建期",
+        "description": "神经通路正在重新连接。情绪调节得到改善。您正在建立您想成为的人。"
+      },
+      "consolidation": {
+        "name": "巩固期",
+        "description": "新习惯感觉自然。您的大脑已经显著愈合。警惕仍然重要，但您有了坚实的基础。"
+      }
+    }
+  },
+  "suggested_challenges_content": {
+    "social-media-7": {
+      "title": "7 天社交媒体排毒",
+      "description": "从所有社交媒体中休息一周，重新获得专注力和存在感。",
+      "science_note": "研究表明，即使一周不使用社交媒体，焦虑也能降低 23%，并显著改善睡眠质量。",
+      "daily_steps": [
+        "删除或登出社交应用",
+        "将刷屏时间替换为 10 分钟散步",
+        "记录您的冲动和情绪",
+        "面对面或通过电话与某人联系",
+        "反思今天你获得了什么"
+      ]
+    },
+    "screen-time-21": {
+      "title": "21 天屏幕时间重置",
+      "description": "逐步减少屏幕时间，建立更健康的数字习惯。",
+      "science_note": "大脑需要大约 21 天来形成新的神经通路。这段时间优化了习惯形成。",
+      "daily_steps": [
+        "设定每日屏幕时间限制（每周减少 30 分钟）",
+        "用餐时不看手机",
+        "醒来后第一小时不看手机",
+        "睡前阅读纸质书",
+        "每周数字清理"
+      ]
+    },
+    "dopamine-detox-3": {
+      "title": "3 天多巴胺重置",
+      "description": "短暂但密集的重置，打破持续刺激的循环。",
+      "science_note": "在减少高刺激活动后 72 小时内，多巴胺受体敏感性可以开始恢复。",
+      "daily_steps": [
+        "不看社交媒体、游戏或流媒体",
+        "吃简单、未加工的食物",
+        "练习 15 分钟冥想",
+        "在大自然中散步",
+        "写下您的经历"
+      ]
+    },
+    "mindfulness-30": {
+      "title": "30 天正念之旅",
+      "description": "建立持续的冥想练习，转变您的思维清晰度。",
+      "science_note": "30 天冥想可以增加前额叶皮层的灰质，减少杏仁核的活动。",
+      "daily_steps": [
+        "早晨冥想（从 5 分钟开始，增加到 20 分钟）",
+        "每餐前 3 次正念呼吸",
+        "晚间感恩日记",
+        "一项正念活动（散步、进食）",
+        "睡前身体扫描"
+      ]
+    },
+    "negativity-fast-7": {
+      "title": "7 天消极禁食",
+      "description": "一周内消除抱怨、批评和消极的自我对话。",
+      "science_note": "消极思维模式会强化神经通路。打破这个循环 7 天可以开始重新连接大脑。",
+      "daily_steps": [
+        "捕捉并重构消极思想",
+        "不抱怨、不八卦",
+        "用好奇心代替批评",
+        "练习自我同情练习",
+        "以 3 个积极观察结束一天"
+      ]
+    },
+    "sleep-reset-14": {
+      "title": "14 天睡眠重置",
+      "description": "优化您的睡眠时间表，醒来时真正精神焕发。",
+      "science_note": "重置昼夜节律可能需要 1‑2 周。一致的睡眠时间比总小时数更重要。",
+      "daily_steps": [
+        "每天相同的睡觉和起床时间",
+        "睡前一小时不看屏幕",
+        "日落后调暗灯光",
+        "早晨光照（15 分钟）",
+        "下午 2 点后不喝咖啡因"
+      ]
+    },
+    "nofap-30": {
+      "title": "30 天清净心智",
+      "description": "摆脱色情，恢复您的思维清晰度和精力。",
+      "science_note": "多巴胺受体敏感性通常在戒断超级刺激后 2‑4 周开始恢复正常。",
+      "daily_steps": [
+        "在所有设备上安装网站拦截器",
+        "每日锻炼（至少 20 分钟）",
+        "在日记中记录冲动和触发器",
+        "练习冲动冲浪技巧",
+        "与问责伙伴联系"
+      ]
+    },
+    "recovery-90": {
+      "title": "90 天深度恢复",
+      "description": "重新连接大脑、建立持久自由的完整旅程。",
+      "science_note": "多巴胺系统的完全恢复和新神经通路的形成通常需要 90 天持续努力。",
+      "daily_steps": [
+        "每日冷水澡培养纪律",
+        "冥想或祈祷（15 分钟）",
+        "体育锻炼",
+        "与支持小组每周签到",
+        "每日反思和进度追踪"
+      ]
+    },
+    "awareness-week-7": {
+      "title": "觉察周",
+      "description": "在开始更长的挑战之前，了解您的触发器和模式。",
+      "science_note": "自我觉察是改变的第一步。理解触发器可将成功率提高 60%。",
+      "daily_steps": [
+        "记录每次冲动（时间、触发器、强度）",
+        "确定您的 3 个主要触发器",
+        "创建紧急行动计划",
+        "移除容易访问的途径",
+        "为成功准备您的环境"
+      ]
+    }
+  },
+
+  "privacy_policy": {
+    "title": "隐私政策",
+    "back_to_home": "返回首页",
+    "last_updated": "最后更新：2026年2月",
+    "introduction": {
+      "title": "1. 引言",
+      "content": "InnerBuild（“我们”、“我们的”）运营 InnerBuild 应用程序。本页面告知您有关您在使用我们的服务时收集、使用和披露个人数据的政策，以及您与该数据相关的选择。"
+    },
+    "information_collection": {
+      "title": "2. 信息收集和使用",
+      "content": "我们收集多种类型的信息用于各种目的，以向您提供和改进我们的服务。",
+      "items": {
+        "email": "用于身份验证和通信的电子邮件地址",
+        "habit_data": "您选择记录的习惯数据和个人日志",
+        "analytics": "用于改进我们平台的使用分析",
+        "device_info": "用于故障排除的设备信息"
+      }
+    },
+    "security": {
+      "title": "3. 安全性",
+      "content": "您数据的安全对我们很重要，但请记住，没有任何一种互联网传输方法或电子存储方法是 100% 安全的。虽然我们努力使用商业上可接受的方式来保护您的个人数据，但我们不能保证其绝对安全。"
+    },
+    "changes": {
+      "title": "4. 本隐私政策的变更",
+      "content": "我们可能会不时更新我们的隐私政策。我们将通过在此页面上更新“最后更新”日期来通知您任何更改。"
+    },
+    "contact": {
+      "title": "5. 联系我们",
+      "content": "如果您对本隐私政策有任何疑问，请通过以下方式联系我们"
+    }
+  },
+
+  "terms_of_service": {
+    "title": "服务条款",
+    "back_to_home": "返回首页",
+    "last_updated": "最后更新：2026年2月",
+    "acceptance": {
+      "title": "1. 条款接受",
+      "content": "通过访问和使用 InnerBuild 应用程序，您同意并接受受本协议的条款和规定约束。如果您不同意遵守上述内容，请不要使用本服务。"
+    },
+    "use_license": {
+      "title": "2. 使用许可",
+      "content": "允许临时下载一份 InnerBuild 上的材料（信息或软件）仅供个人、非商业性的临时查看。这是授予许可，而不是转让所有权，根据本许可，您不得：",
+      "items": {
+        "modify": "修改或复制材料",
+        "commercial": "将材料用于任何商业目的或任何公开展示",
+        "decompile": "试图反编译或反向工程 InnerBuild 上包含的任何软件",
+        "remove_notices": "从材料中删除任何版权或其他所有权标记",
+        "transfer": "将材料转让给另一个人或“镜像”任何其他服务器上的材料"
+      }
+    },
+    "disclaimer": {
+      "title": "3. 免责声明",
+      "content": "InnerBuild 上的材料按“原样”提供。InnerBuild 不作任何明示或暗示的保证，并特此否认和否定所有其他保证，包括但不限于适销性、特定用途适用性或不侵犯知识产权或其他侵犯权利的暗示保证或条件。"
+    },
+    "limitations": {
+      "title": "4. 责任限制",
+      "content": "在任何情况下，InnerBuild 或其供应商均不对因使用或无法使用 InnerBuild 上的材料而引起的任何损害（包括但不限于数据或利润损失或业务中断造成的损害）承担责任。"
+    },
+    "accuracy": {
+      "title": "5. 材料的准确性",
+      "content": "InnerBuild 上出现的材料可能包含技术、印刷或摄影错误。InnerBuild 不保证其网站上的任何材料是准确、完整或最新的。InnerBuild 可随时更改其网站上包含的材料，恕不另行通知。"
+    },
+    "contact": {
+      "title": "6. 联系我们",
+      "content": "如果您对这些服务条款有任何疑问，请通过以下方式联系我们"
+    }
+  },
+
+  "ai_coach_insight": {
+    "title": "AI 教练报告",
+    "loading": "加载 AI 洞察...",
+    "time_for_new": "是时候获取新报告了",
+    "get_report": "获取您的 AI 教练报告",
+    "days_since_last": "距离您上次分析已过 4 天",
+    "analyze_last_days": "分析您过去4天的习惯和触发器",
+    "new": "新",
+    "habits_need_attention": "{{count}} 个习惯需要注意",
+    "patterns_detected": "检测到 {{count}} 个模式",
+    "suggested_adjustments": "建议的习惯调整",
+    "completed": "已完成 {{rate}}%",
+    "trigger_patterns": "触发器模式",
+    "common_emotions": "常见情绪：{{emotions}}",
+    "top_recommendations": "首选推荐",
+    "generate_new": "生成新报告"
+  }
+}
