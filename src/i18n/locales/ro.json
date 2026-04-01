@@ -1,0 +1,2211 @@
+{
+  "common": {
+    "back": "Înapoi",
+    "cancel": "Anulează",
+    "save": "Salvează",
+    "delete": "Șterge",
+    "edit": "Editează",
+    "close": "Închide",
+    "loading": "Se încarcă...",
+    "error": "Eroare",
+    "success": "Succes",
+    "confirm": "Confirmă",
+    "or": "sau",
+    "all": "Toate",
+    "new": "Nou",
+    "open": "Deschide",
+    "log": "Înregistrează",
+    "pro": "Pro",
+    "premium": "Premium",
+    "free": "Gratuit",
+    "upgrade": "Actualizează",
+    "manage": "Gestionează",
+    "view_site": "Vezi site-ul",
+    "recent": "Recent",
+    "annual": "Anual",
+    "completed": "finalizat",
+    "active": "activ",
+    "custom": "Personalizat",
+    "step": "Pas",
+    "add_step": "Adaugă pas",
+    "please_wait": "Te rugăm să aștepți...",
+    "connecting": "Se conectează...",
+    "clear_filters": "Șterge filtrele",
+    "swipe_explore": "derulează pentru a explora",
+    "swipe_read_more": "derulează pentru a citi mai mult",
+    "back_to_top": "Înapoi sus",
+    "view_all": "Vezi toate",
+    "details": "Detalii",
+    "saving": "Se salvează...",
+    "days": "zile",
+    "days_short": "z",
+    "unsaved": "Nesalvat",
+    "accept": "Acceptă",
+    "dismiss": "Renunță",
+    "applied": "Aplicat",
+    "dismissed": "Renunțat",
+    "generate": "Generează",
+    "analyzing": "Se analizează...",
+    "generating": "Se generează...",
+    "total": "total",
+    "avoided": "evitat",
+    "complete": "finalizat",
+    "disable": "Dezactivează",
+    "remind_me": "Amintește-mi",
+    "reset": "Resetează",
+    "done": "Făcut",
+    "not_done": "Nefăcut",
+    "history": "Istoric",
+    "when": "Când",
+    "i_will": "Voi",
+    "because_gives_me": "Pentru că îmi oferă",
+    "month": "lună",
+    "refresh": "Reîmprospătează"
+  },
+
+  "auth": {
+    "welcome_back": "Bine ai revenit",
+    "start_journey": "Începe-ți călătoria",
+    "sign_in_continue": "Conectează-te pentru a-ți continua dezvoltarea",
+    "create_account_begin": "Creează un cont pentru a începe transformarea",
+    "full_name": "Nume complet",
+    "your_name": "Numele tău",
+    "email": "E-mail",
+    "email_placeholder": "tu@exemplu.ro",
+    "password": "Parolă",
+    "forgot_password": "Ai uitat parola?",
+    "sign_in": "Conectare",
+    "sign_up": "Înregistrare",
+    "create_account": "Creează cont",
+    "continue_google": "Continuă cu Google",
+    "no_account": "Nu ai cont?",
+    "have_account": "Ai deja cont?",
+    "login_failed": "Conectare eșuată",
+    "invalid_credentials": "E-mail sau parolă incorectă. Încearcă din nou.",
+    "signup_failed": "Înregistrare eșuată",
+    "account_exists": "Cont existent",
+    "email_already_registered": "Acest e-mail este deja înregistrat. Conectează-te.",
+    "welcome_innerbuild": "Bun venit la InnerBuild!",
+    "account_created": "Contul tău a fost creat cu succes.",
+    "verify_email_desc": "Verifică-ți e-mailul și apasă pe link-ul de verificare pentru a-ți activa contul.",
+    "email_not_verified_title": "E-mail neverificat",
+    "email_not_verified_desc": "Trebuie să-ți verifici mai întâi e-mailul. Verifică inbox-ul și apasă pe link-ul de confirmare.",
+    "google_signin_failed": "Conectarea cu Google a eșuat",
+    "unexpected_error": "A apărut o eroare. Încearcă din nou.",
+    "sign_out": "Deconectare",
+    "log_out": "Ieșire"
+  },
+
+  "auth_validation": {
+    "invalid_email": "Introdu o adresă de e-mail validă",
+    "password_min": "Parola trebuie să aibă cel puțin 6 caractere"
+  },
+
+  "forgot_password": {
+    "title": "Ai uitat parola",
+    "description": "Introdu adresa ta de e-mail și îți vom trimite un link pentru a reseta parola.",
+    "send_reset_link": "Trimite link de resetare",
+    "sending": "Se trimite...",
+    "back_to_login": "Înapoi la conectare",
+    "check_email": "Verifică-ți e-mailul",
+    "reset_link_sent": "Am trimis un link de resetare a parolei către",
+    "check_spam": "Verifică inbox-ul și folderul de spam.",
+    "back_to_sign_in": "Înapoi la conectare",
+    "reset_sent_title": "Link trimis",
+    "reset_sent_description": "Verifică-ți e-mailul pentru link-ul de resetare.",
+    "reset_error_title": "Eroare",
+    "reset_error_description": "Nu s-a putut trimite link-ul. Încearcă din nou."
+  },
+
+  "dashboard": {
+    "good_morning": "Bună dimineața",
+    "good_afternoon": "Bună ziua",
+    "good_evening": "Bună seara",
+    "todays_habits": "Obișnuințele de azi",
+    "completed_stats": "{{completed}}/{{total}} finalizate • {{percent}}%",
+    "explore_tools": "Explorează instrumentele",
+    "explore_tools_desc": "Recuperare, Coach AI, Urmărirea declanșatorilor și multe altele",
+    "emergency_urge": "🚨 Urgență – Impuls puternic",
+    "logout_confirm_title": "Sigur vrei să te deconectezi?",
+    "logout_confirm_desc": "Va trebui să te conectezi din nou pentru a-ți folosi contul.",
+    "failed_update_habit": "Nu s-a putut actualiza obișnuința",
+    "failed_subscription": "Nu s-a putut deschide gestionarea abonamentului",
+    "quote_of_the_day": "Citatul zilei",
+    "start_daily_plan": "Începe-ți planul zilnic",
+    "start_daily_plan_desc": "Creează-ți listele de făcut și de evitat pentru mâine",
+    "open_daily_planning": "Deschide planificarea",
+    "daily_planning": "Planificare zilnică",
+    "edit_full_plan": "Editează planul complet",
+    "todo_list": "Listă de făcut",
+    "not_todo_list": "Listă de evitat",
+    "great_job": "Bună treabă!",
+    "avoided_behavior": "Ai evitat acest comportament",
+    "could_not_update": "Nu s-a putut actualiza sarcina",
+    "could_not_update_status": "Nu s-a putut actualiza statusul"
+  },
+
+  "landing": {
+    "your_companion": "Partenerul tău complet pentru creștere personală",
+    "hero_title_1": "Construiește viața pe care o meriți,",
+    "hero_title_2": "câte o obișnuință pe rând",
+    "hero_description": "InnerBuild combină urmărirea obișnuințelor, provocări detox, instrumente de recuperare și un coach AI pentru a te ajuta să te eliberezi de ceea ce te ține pe loc și să devii cea mai bună versiune a ta.",
+    "start_your_journey": "Începe-ți călătoria",
+    "view_pricing": "Vezi prețurile",
+    "dashboard": "Panou de control",
+    "get_started": "Începe",
+    "everything_transform": "Tot ce ai nevoie pentru a te transforma",
+    "complete_toolkit": "Un set complet de instrumente conceput să îți susțină călătoria din prima zi",
+    "and_more": "Și multe altele",
+    "testimonials": "Testimoniale",
+    "real_people": "Oameni reali, progres real",
+    "tools_change_lives": "Instrumente care schimbă cu adevărat vieți",
+    "tools_description": "Nu sunt doar funcții. Sunt instrumentele care fac diferența între a încerca și a te transforma cu adevărat.",
+    "most_impactful": "Cel mai eficient",
+    "all_premium_for": "Toate funcțiile premium pentru",
+    "unlock_premium": "Deblochează Premium",
+    "ready_to_start": "Gata să începi să construiești?",
+    "join_thousands": "Alătură-te miilor de oameni care își transformă viața cu InnerBuild. Călătoria ta către obișnuințe mai bune începe astăzi.",
+    "get_started_free": "Începe gratuit",
+    "features": {
+      "smart_habit_tracking": "Urmărire inteligentă a obișnuințelor",
+      "smart_habit_desc": "Urmărește obișnuințele zilnice cu progres vizual, serii și sugestii AI inteligente care se adaptează la modelele tale reale.",
+      "detox_challenges": "Provocări Detox",
+      "detox_challenges_desc": "Eliberează-te de dependența digitală, obiceiurile proaste și modelele negative cu provocări bazate pe știință (de la 3 la 90 de zile).",
+      "porn_recovery": "Program de recuperare a dependenței de pornografie",
+      "porn_recovery_desc": "Un program dedicat, bazat pe știință, cu urmărirea seriilor, verificări zilnice, analiza declanșatorilor și suport specializat.",
+      "ai_coach": "Coach AI personal",
+      "ai_coach_desc": "Însoțitor AI disponibil non-stop, care te motivează, îți sugerează obișnuințe personalizate, te ajută cu poftele și îți ghidează transformarea.",
+      "trigger_tracking": "Urmărirea și analiza declanșatorilor",
+      "trigger_tracking_desc": "Înregistrează și analizează ce îți declanșează impulsurile. Identifică tipare și primește informații AI pentru a construi apărări mai puternice.",
+      "daily_planning": "Planificare și reflecție zilnică",
+      "daily_planning_desc": "Planifică-ți ziua cu liste de făcut și de evitat. Încheie fiecare zi cu recunoștință, verificarea stării de spirit și auto-reflecție.",
+      "ai_habit_adaptation": "Adaptarea obișnuințelor cu AI",
+      "ai_habit_adaptation_desc": "Sugerează versiuni mai ușoare când ai dificultăți",
+      "learn_section": "Secțiunea Învață",
+      "learn_section_desc": "Educație despre dopamină și reconfigurarea creierului",
+      "streak_tracking": "Urmărirea seriilor",
+      "streak_tracking_desc": "Progres vizual și repere",
+      "micro_actions": "Micro-acțiuni",
+      "micro_actions_desc": "Mici victorii zilnice în câteva secunde",
+      "not_to_do_list": "Listă de evitat",
+      "not_to_do_desc": "Urmărește comportamentele de evitat",
+      "recovery_timeline": "Cronologia recuperării",
+      "recovery_timeline_desc": "Vezi progresul vindecării creierului"
+    },
+    "stats": {
+      "recovery_days": "Zile de conținut de recuperare",
+      "suggested_habits": "Obișnuințe sugerate",
+      "challenge_templates": "Șabloane de provocări",
+      "ai_coach_available": "Coach AI disponibil"
+    },
+    "testimonials_data": {
+      "t1": "Coach-ul AI este ca și cum ai avea un terapeut în buzunar. M-a ajutat cu adevărat să înțeleg de ce tot cădeam.",
+      "t2": "În sfârșit o aplicație care tratează recuperarea serios, cu știință, nu doar cu voință. Secțiunea despre neuroștiință mi-a schimbat perspectiva.",
+      "t3": "Urmărirea declanșatorilor m-a ajutat să observ modele pe care nu le văzusem niciodată. Acum pot anticipa cu adevărat zilele grele.",
+      "t4": "Am încercat multe aplicații de obișnuințe. Aceasta funcționează pentru că planificarea zilnică este naturală, nu o corvoadă.",
+      "t5": "58 de zile curat. Urmărirea seriei m-a ținut responsabil chiar și când a fost greu.",
+      "t6": "Provocările detox sunt bine structurate. Am făcut detox-ul de 30 de zile de pe rețelele sociale și m-am simțit cu adevărat mai calm după două săptămâni."
+    },
+    "premium_deep_dive": {
+      "porn_recovery_desc": "Nu este vorba de voință. Programul se bazează pe neuroștiință – te ajută să înțelegi exact de ce creierul tău s-a prins și cum să îl reconfigurați pas cu pas.",
+      "porn_recovery_features": [
+        "Urmărire științifică a seriei",
+        "Verificări zilnice și progres",
+        "Instrumente de analiză și învățare",
+        "Gestionarea impulsurilor de urgență",
+        "Educație în neuroștiință",
+        "Motivații și motive personale"
+      ],
+      "trigger_tracking_desc": "Majoritatea recăderilor par aleatorii – dar nu sunt. Urmărirea declanșatorilor dezvăluie tiparele ascunse din spatele momentelor tale cele mai grele.",
+      "trigger_tracking_features": [
+        "Înregistrează impulsurile și emoțiile în câteva secunde",
+        "Hartă termică vizuală a tiparelor tale",
+        "Rapoarte de insight generate de AI",
+        "Identificarea cauzelor principale",
+        "Strategii personalizate de prevenire",
+        "Analiza timpului și contextului"
+      ],
+      "ai_coach_desc": "Imaginează-ți un coach care îți cunoaște obișnuințele, dificultățile și obiectivele – disponibil la 3 dimineața când apare o poftă.",
+      "ai_coach_features": [
+        "Sfaturi personalizate despre obișnuințe",
+        "Suport pentru pofte și impulsuri",
+        "Ghid pentru prevenirea recăderilor",
+        "Disponibil 24/7, întotdeauna",
+        "Istoric complet al discuțiilor",
+        "Adaptat călătoriei tale"
+      ],
+      "learn_desc": "Înțelege știința din spatele obișnuințelor tale, al dopaminei și al recuperării creierului.",
+      "learn_features": ["Articole aprofundate", "Ghiduri de recuperare", "Cronologia vindecării creierului"],
+      "habit_adaptation_desc": "AI analizează modelele tale reale de finalizare și sugerează ajustări mai inteligente.",
+      "habit_adaptation_features": [
+        "Detectarea tiparelor",
+        "Scalare inteligentă a dificultății",
+        "Recomandări personalizate AI"
+      ],
+      "porn_recovery_mobile_desc": "Bazat pe neuroștiință – înțelege de ce creierul tău s-a prins și reconfigurează-l pas cu pas.",
+      "porn_recovery_mobile_features": [
+        "Urmărire științifică a seriei",
+        "Verificări zilnice și progres",
+        "Instrumente de analiză",
+        "Gestionarea impulsurilor de urgență",
+        "Educație în neuroștiință",
+        "Motivații personale"
+      ],
+      "trigger_tracking_mobile_desc": "Recăderile par aleatorii – dar nu sunt. Dezvăluie tiparele ascunse și obține rapoarte AI pentru a prezice și preveni.",
+      "trigger_tracking_mobile_features": [
+        "Înregistrează impulsurile și emoțiile în câteva secunde",
+        "Hartă termică vizuală a tiparelor",
+        "Rapoarte de insight AI",
+        "Identificarea cauzelor principale",
+        "Strategii de prevenire",
+        "Analiza timpului și contextului"
+      ],
+      "ai_coach_mobile_desc": "Un coach disponibil la 3 dimineața când apare o poftă. Fără judecată – doar îndrumare pentru a merge mai departe.",
+      "ai_coach_mobile_features": [
+        "Sfaturi personalizate",
+        "Suport pentru pofte și impulsuri",
+        "Prevenirea recăderilor",
+        "Disponibil 24/7",
+        "Istoric complet al discuțiilor",
+        "Adaptat ție"
+      ],
+      "learn_mobile_desc": "Știința din spatele obișnuințelor, dopaminei și recuperării creierului. Cunoașterea face ca fiecare efort să aibă sens.",
+      "learn_mobile_features": ["Articole aprofundate", "Ghiduri de recuperare", "Cronologia vindecării creierului"],
+      "habit_adaptation_mobile_desc": "AI analizează modelele tale reale de finalizare și sugerează ajustări mai inteligente.",
+      "habit_adaptation_mobile_features": ["Detectarea tiparelor", "Scalare inteligentă", "Recomandări AI"]
+    }
+  },
+
+  "explore": {
+    "title": "Instrumente",
+    "subtitle": "Tot ce ai nevoie pentru a crește",
+    "free_tools": "Instrumente gratuite",
+    "premium_tools": "Instrumente Premium",
+    "unlock_all": "Deblochează toate instrumentele cu Premium",
+    "tools": {
+      "habits": "Obișnuințe",
+      "habits_desc": "Urmărește și construiește obișnuințe zilnice",
+      "detox_challenges": "Provocări Detox",
+      "detox_challenges_desc": "Provocări pentru a rupe obiceiurile proaste",
+      "evening_reflection": "Reflecție de seară",
+      "evening_reflection_desc": "Verificare zilnică și recunoștință",
+      "daily_planning": "Planificare zilnică",
+      "daily_planning_desc": "Liste de făcut și obiective",
+      "trigger_tracking": "Urmărirea declanșatorilor",
+      "trigger_tracking_desc": "Înregistrează impulsurile și analiza tiparelor AI",
+      "porn_recovery": "Recuperarea de pornografie",
+      "porn_recovery_desc": "Calea științifică spre libertate",
+      "ai_coach": "Coach AI",
+      "ai_coach_desc": "Ghid personal bazat pe AI"
+    }
+  },
+
+  "habits": {
+    "title": "Obișnuințele mele",
+    "completed_today": "{{completed}}/{{total}} finalizate azi • {{percent}}%",
+    "search_placeholder": "Caută obișnuințe...",
+    "no_habits_yet": "Încă nicio obișnuință",
+    "start_journey": "Începe-ți călătoria creând prima ta obișnuință",
+    "create_habit": "Creează obișnuință",
+    "no_match_filters": "Nicio obișnuință nu se potrivește cu filtrele",
+    "guide_title": "Ghidul pentru stăpânirea obișnuințelor",
+    "guide_subtitle": "Un ghid concis pentru a construi obișnuințe de durată",
+    "guide_dialog_title": "Construirea obișnuințelor bune",
+    "categories": {
+      "all": "Toate",
+      "health": "Sănătate",
+      "productivity": "Productivitate",
+      "mindfulness": "Conștientizare",
+      "fitness": "Fitness",
+      "learning": "Învățare",
+      "social": "Social",
+      "creativity": "Creativitate",
+      "general": "General"
+    },
+    "streak_days": "serie de {{count}} zile",
+    "streak_days_plural": "serie de {{count}} zile",
+    "this_week": "Săptămâna aceasta",
+    "guide_content": {
+      "intro_title": "Introducere",
+      "intro_p1": "Obișnuințele sunt fundația invizibilă a succesului. Nu sunt doar acțiuni repetate; sunt ceea ce creierul nostru automatizează pentru a economisi energie. Îmbunătățirea cu 1% în fiecare zi poate duce la o schimbare semnificativă pe termen lung.",
+      "intro_p2": "Secretul nu este doar stabilirea obiectivelor, ci crearea unui sistem de obișnuințe care să se alinieze cu persoana care vrei să devii.",
+      "identity_title": "De ce să te concentrezi pe identitate",
+      "identity_p1": "Mulți eșuează în a se schimba nu pentru că „nu le pasă suficient”, ci pentru că se concentrează doar pe rezultate.",
+      "identity_p2": "Cele trei niveluri ale schimbării comportamentului sunt: Rezultate (ce obții), Procese (ce faci), Identitate (ce crezi). Schimbarea reală începe cu identitatea – decide cine vrei să fii, apoi dovedește-ți cu mici victorii.",
+      "understanding_title": "Înțelegerea obișnuințelor",
+      "understanding_p1": "Fiecare obișnuință urmează un ciclu numit bucla de feedback:",
+      "understanding_cue": "Declanșator",
+      "understanding_cue_desc": "ceea ce declanșează acțiunea",
+      "understanding_craving": "Dorință",
+      "understanding_craving_desc": "motivația de a efectua acțiunea",
+      "understanding_response": "Răspuns",
+      "understanding_response_desc": "comportamentul în sine",
+      "understanding_reward": "Recompensă",
+      "understanding_reward_desc": "gratificarea imediată",
+      "laws_title": "Cele patru legi ale schimbării comportamentului",
+      "law1_title": "Prima lege: Fă-o evidentă",
+      "law1_items": [
+        "Folosește intenții de implementare: 'Voi [comportament] la [ora] în [loc]'",
+        "Folosește suprapunerea obișnuințelor: 'După [obișnuința curentă], voi [noua obișnuință]'",
+        "Proiectează-ți mediul – fă ca semnalele să fie vizibile"
+      ],
+      "law2_title": "A doua lege: Fă-o atractivă",
+      "law2_items": [
+        "Folosește îmbinarea tentațiilor: asociază o obișnuință necesară cu una dorită",
+        "Alătură-te unei culturi în care comportamentul dorit este norma",
+        "Creează un ritual motivațional înaintea unei obișnuințe dificile"
+      ],
+      "law3_title": "A treia lege: Fă-o ușoară",
+      "law3_items": [
+        "Reduce frecarea – micșorează numărul de pași dintre tine și obișnuințele bune",
+        "Folosește regula celor două minute: începe cu doar 2 minute",
+        "Automatizează obișnuințele folosind tehnologia când este posibil"
+      ],
+      "law4_title": "A patra lege: Fă-o satisfăcătoare",
+      "law4_items": [
+        "Folosește întărirea – oferă-ți o recompensă imediată",
+        "Folosește un tracker de obișnuințe – 'nu rupe lanțul'",
+        "Nu rata niciodată de două ori – revino repede pe drumul cel bun"
+      ],
+      "breaking_title": "Rupe obiceiurile proaste",
+      "breaking_intro": "Inversează cele patru legi:",
+      "breaking_items": [
+        "Fă-o invizibilă (elimină semnalele)",
+        "Fă-o neatractivă (reformulează-ți mentalitatea)",
+        "Fă-o dificilă (crește frecarea)",
+        "Fă-o nesatisfăcătoare (adaugă responsabilitate)"
+      ],
+      "advanced_title": "Strategii avansate",
+      "advanced_items": [
+        "Regula Goldilocks: menține motivația lucrând la sarcini cu dificultate gestionabilă",
+        "Partea negativă a obișnuințelor bune: nu le lăsa în pilot automat – continuă să le revizuiești și să le îmbunătățești",
+        "Genele nu determină destinul; determină zonele de oportunitate. Alege obișnuințe care se potrivesc punctelor tale forte naturale."
+      ],
+      "final_title": "Gând final",
+      "final_p1": "Succesul nu este un obiectiv de atins. Este un sistem de construit.",
+      "final_p2": "Schimbări mici. Rezultate remarcabile. Câte o obișnuință pe rând."
+    }
+  },
+
+  "challenges": {
+    "title": "Provocări Detox",
+    "active_completed": "{{active}} active • {{completed}} finalizate",
+    "your_active": "Provocările tale active",
+    "explore_challenges": "Explorează provocări",
+    "free_used": "Ți-ai folosit provocarea gratuită",
+    "free_limit_desc": "Conturile gratuite includ 1 provocare în total. Actualizează la Premium pentru a debloca provocări nelimitate.",
+    "upgrade_premium": "Actualizează la Premium",
+    "guide_title": "Cum să stăpânești eliminarea obiceiurilor proaste",
+    "guide_subtitle": "Un ghid pentru a renunța la ceea ce îți face rău",
+    "guide_dialog_title": "Rupe obiceiurile proaste",
+    "categories": {
+      "all": "Toate",
+      "digital_detox": "Detox digital",
+      "mental_reset": "Reset mental",
+      "porn_detox": "Recuperare",
+      "general": "General"
+    },
+    "challenge_started": "Provocare începută! 🔥",
+    "challenge_started_desc": "Călătoria ta de {{days}} zile începe astăzi!",
+    "failed_start": "Nu s-a putut începe provocarea",
+    "failed_load": "Nu s-au putut încărca provocările",
+    "guide_content": {
+      "intro_title": "Introducere",
+      "intro_p1": "A rupe un obicei prost nu este vorba de voință – ci de strategie. Creierul tău a automatizat aceste comportamente, iar singura modalitate de a le schimba este să înțelegi cum funcționează și să întrerupi tiparul.",
+      "intro_p2": "Acest ghid te va ajuta să aplici știința schimbării comportamentului pentru a elimina obiceiurile care nu îți mai sunt de folos.",
+      "why_title": "De ce persistă obiceiurile proaste",
+      "why_p1": "Obiceiurile proaste oferă gratificare imediată în timp ce consecințele sunt întârziate. Creierul tău prioritizează recompensele instantanee, făcând dificilă rezistența.",
+      "why_p2": "Înțelegerea buclei obișnuinței (Declanșator → Dorință → Răspuns → Recompensă) este primul pas spre eliberare.",
+      "inversion_title": "Strategia inversării",
+      "inversion_intro": "Pentru a rupe un obicei prost, inversează cele patru legi ale schimbării comportamentului:",
+      "inv1_title": "Fă-o invizibilă",
+      "inv1_items": [
+        "Elimină declanșatorii din mediul tău",
+        "Nu mai urmări conturile care promovează comportamentul",
+        "Schimbă-ți rutina pentru a evita expunerea la semnale"
+      ],
+      "inv2_title": "Fă-o neatractivă",
+      "inv2_items": [
+        "Evidențiază costurile reale ale comportamentului",
+        "Reformulează-ți identitatea: 'Nu sunt genul care face asta'",
+        "Asociază obiceiul cu rezultate negative"
+      ],
+      "inv3_title": "Fă-o dificilă",
+      "inv3_items": [
+        "Adaugă frecare între tine și obiceiul prost",
+        "Folosește dispozitive de angajament (blocări, responsabilitate)",
+        "Creează bariere fizice"
+      ],
+      "inv4_title": "Fă-o nesatisfăcătoare",
+      "inv4_items": [
+        "Creează un partener sau un sistem de responsabilitate",
+        "Fă ca consecințele să fie imediate",
+        "Folosește o fișă de obișnuințe pentru a urmări scăpările"
+      ],
+      "replacement_title": "Înlocuiește, nu doar elimina",
+      "replacement_p1": "Cea mai eficientă strategie nu este doar să te oprești – ci să înlocuiești. Când simți impulsul, redirecționează-te către o alternativă mai sănătoasă care satisface aceeași nevoie.",
+      "replacement_items": [
+        "Plictisit? → Fă un antrenament rapid sau o activitate creativă",
+        "Stresat? → Încearcă respirația profundă sau scrierea în jurnal",
+        "Singur? → Sună un prieten sau alătură-te unei comunități"
+      ],
+      "mindset_title": "Schimbarea mentalității",
+      "mindset_p1": "Nu te concentra pe ceea ce renunți. Concentrează-te pe ceea ce câștigi: libertate, claritate, respect de sine și o viață aliniată cu valorile tale.",
+      "mindset_p2": "Fiecare moment de rezistență construiește persoana care vrei să devii.",
+      "final_title": "Gând final",
+      "final_p1": "Nu trebuie să fii perfect. Trebuie să fii consecvent.",
+      "final_p2": "Rupe tiparul. Construiește viața pe care o meriți."
+    }
+  },
+
+  "create_habit": {
+    "title": "Creează obișnuință nouă",
+    "habit_name": "Numele obișnuinței *",
+    "habit_placeholder": "ex., Meditația de dimineață",
+    "description": "Descriere (opțional)",
+    "description_placeholder": "Ce înseamnă această obișnuință pentru tine?",
+    "category": "Categorie",
+    "frequency": "Frecvență",
+    "reminder_time": "Memento (opțional)",
+    "habit_created": "Obișnuință creată! 🎉",
+    "habit_created_desc": "Începe să-ți construiești noua obișnuință astăzi!",
+    "failed_create": "Nu s-a putut crea obișnuința",
+    "habit_limit_reached": "Limită de obișnuințe atinsă",
+    "habits_remaining": "{{remaining}} din {{max}} obișnuințe rămase",
+    "frequencies": {
+      "daily": "Zilnic",
+      "weekly": "Săptămânal",
+      "weekdays": "Zile lucrătoare",
+      "weekends": "Weekend"
+    }
+  },
+
+  "create_challenge": {
+    "title": "Creează provocare personalizată",
+    "challenge_name": "Numele provocării *",
+    "challenge_placeholder": "ex., Detox de pe rețelele sociale",
+    "description": "Descriere (opțional)",
+    "description_placeholder": "La ce renunți? De ce este important pentru tine?",
+    "category": "Categorie",
+    "duration": "Durată",
+    "daily_steps": "Pași zilnici (opțional)",
+    "start_challenge": "Începe provocarea",
+    "challenge_started": "Provocare începută! 🔥",
+    "challenge_started_desc": "Provocarea ta de {{days}} zile începe astăzi. Vei reuși!",
+    "failed_create": "Nu s-a putut crea provocarea",
+    "free_challenge_used": "Ți-ai folosit provocarea gratuită",
+    "free_challenge_available": "{{remaining}} provocare gratuită disponibilă",
+    "free_limit_note": "Conturile gratuite au 1 provocare în total. Odată folosită, vei avea nevoie de Premium pentru a crea altele – chiar dacă o ștergi sau o finalizezi.",
+    "durations": {
+      "3_days": "3 zile",
+      "7_days": "7 zile",
+      "21_days": "21 de zile",
+      "30_days": "30 de zile",
+      "90_days": "90 de zile",
+      "3_desc": "Reset rapid",
+      "7_desc": "Provocare de o săptămână",
+      "21_desc": "Formarea obișnuinței",
+      "30_desc": "Provocare lunară",
+      "90_desc": "Transformare profundă"
+    }
+  },
+
+  "pricing": {
+    "choose_plan": "Alege-ți planul",
+    "subtitle": "Începe gratuit și actualizează când ești gata. Fără costuri ascunse, anulează oricând.",
+    "free_plan": "Plan gratuit",
+    "free_price": "€0",
+    "forever": "/pentru totdeauna",
+    "get_started_basics": "Începe cu elementele de bază",
+    "current_plan": "Plan actual",
+    "get_started_free": "Începe gratuit",
+    "premium_plan": "Plan Premium",
+    "premium_price": "€9.99",
+    "per_month": "/lună",
+    "unlock_potential": "Deblochează-ți întregul potențial",
+    "everything_in_free": "Tot ce este în planul gratuit, plus:",
+    "subscribe_now": "Abonează-te acum",
+    "get_premium": "Obține Premium",
+    "most_popular": "Cel mai popular",
+    "trust_badges": "Garanție de 30 de zile • Anulează oricând • Plată securizată prin Stripe",
+    "have_account": "Ai deja un cont?",
+    "welcome_premium": "Bun venit la InnerBuild Premium!",
+    "subscription_active": "Abonamentul tău este acum activ. Bucură-te!",
+    "checkout_canceled": "Plată anulată",
+    "checkout_canceled_desc": "Nicio problemă – te poți abona oricând.",
+    "checkout_failed": "Nu s-a putut începe plata. Încearcă din nou.",
+    "free_features": {
+      "habits": "Până la 5 obișnuințe",
+      "challenges": "1 provocare detox activă",
+      "tracking": "Urmărire de bază a obișnuințelor cu serii",
+      "quotes": "Citate motivaționale zilnice",
+      "planning": "Planificare zilnică (De făcut și De evitat)",
+      "reflection": "Reflecție de seară și recunoștință",
+      "profile": "Profil cu calendar de activitate",
+      "whats_working": "Informații 'Ce funcționează'",
+      "progress": "Prezentare generală a progresului (recent și anual)",
+      "additional": ""
+    },
+    "premium_features": {
+      "unlimited_habits": "Obișnuințe nelimitate",
+      "unlimited_challenges": "Provocări detox nelimitate",
+      "ai_coach": "Coach AI personal (24/7)",
+      "recovery": "Program de recuperare a dependenței de pornografie cu urmărirea seriei",
+      "trigger_tracking": "Urmărirea declanșatorilor și analiza tiparelor cu AI",
+      "habit_adaptation": "Sugestii de adaptare a obișnuințelor cu AI",
+      "learn": "Secțiunea Învață (articole, ghiduri și cronologie)",
+      "priority": "Acces prioritar la funcțiile noi"
+    }
+  },
+
+  "profile": {
+    "title": "Profilul meu",
+    "premium_plan": "Plan Premium",
+    "free_plan": "Plan gratuit",
+    "admin_access": "Acces admin – toate funcțiile sunt deblocate",
+    "cancels_on": "Se anulează la {{date}}",
+    "renews_on": "Se reînnoiește la {{date}}",
+    "upgrade_unlock": "Actualizează pentru a debloca toate funcțiile",
+    "progress_overview": "Prezentare generală a progresului",
+    "portal_error": "Nu s-a putut deschide portalul de abonament. Încearcă din nou.",
+    "profile_info": "Informații profil",
+    "profile_info_desc": "Gestionează-ți informațiile personale și fotografia de profil",
+    "first_name": "Prenume",
+    "first_name_placeholder": "Introdu prenumele tău",
+    "last_name": "Nume",
+    "last_name_placeholder": "Introdu numele tău",
+    "username": "Nume de utilizator",
+    "username_placeholder": "Alege un nume de utilizator unic",
+    "email": "Adresă de e-mail",
+    "email_readonly": "Din motive de securitate, adresa ta de e-mail nu poate fi schimbată.",
+    "save_changes": "Salvează modificările",
+    "profile_updated": "Profil actualizat",
+    "profile_updated_desc": "Informațiile tale de profil au fost salvate.",
+    "failed_save": "Salvare eșuată",
+    "username_taken": "Acest nume de utilizator este deja folosit. Alege altul.",
+    "username_cooldown": "Perioadă de așteptare activă",
+    "username_cooldown_days": "Poți schimba numele de utilizator peste {{days}} zi/zile.",
+    "upload_photo": "Atinge pictograma camerei pentru a încărca o nouă fotografie",
+    "avatar_updated": "Avatar actualizat",
+    "avatar_updated_desc": "Fotografia ta de profil a fost actualizată.",
+    "avatar_upload_failed": "Încărcare eșuată",
+    "avatar_too_large": "Încarcă o imagine mai mică de 5 MB.",
+    "avatar_invalid_type": "Încarcă un fișier imagine.",
+    "whats_working": "Ce funcționează",
+    "improving": "Îmbunătățire",
+    "protect": "Protejează",
+    "small_adjustment": "Mică ajustare",
+    "generate_insights": "Generează informații",
+    "generating_insights": "Se generează...",
+    "available_in_days": "Disponibil în {{days}} zile",
+    "track_habits_first": "Urmărește obișnuințele câteva zile pentru a genera informații",
+    "no_active_habits": "Nicio obișnuință activă",
+    "create_habits_first": "Creează obișnuințe din pagina Obișnuințe",
+    "this_week": "Săptămâna aceasta",
+    "progress_history": "Istoricul meu de progres",
+    "click_day_log": "Apasă pe o zi pentru a vedea jurnalul tău zilnic",
+    "positive_habits": "Obișnuințe pozitive",
+    "triggers_title": "Declanșatori",
+    "detox_challenges": "Provocări Detox",
+    "emotional_awareness": "Conștientizare emoțională",
+    "holding_steady": "Stabil",
+    "consistency": "constanță",
+    "no_data_yet": "Nicio dată încă",
+    "frequency": "frecvență",
+    "stable": "Stabil",
+    "completed_active": "{{completed}} finalizate · {{active}} active",
+    "start_tracking": "Începe urmărirea",
+    "avg_mood_up": "Starea medie de spirit ↑",
+    "avg_mood_down": "Starea medie de spirit ↓",
+    "avg_mood_stable": "Starea medie de spirit →",
+    "reflections": "{{count}} reflecții",
+    "last_n_days": "ultimele {{days}} zile",
+    "vs_previous": "față de {{days}} zile anterioare",
+    "habits_progress": "Progresul obișnuințelor",
+    "trigger_tracking_title": "Urmărirea declanșatorilor",
+    "mood_reflection": "Stare de spirit și reflecție"
+  },
+
+  "coach": {
+    "title": "Coach AI",
+    "subtitle": "Ghidul tău personal",
+    "clear_chat": "Șterge chat-ul",
+    "chat_cleared": "Chat șters",
+    "failed_clear": "Nu s-a putut șterge chat-ul",
+    "hey_there": "Bună! 👋",
+    "intro": "Sunt coach-ul tău AI, aici pentru a-ți susține călătoria către obișnuințe mai bune și creștere personală.",
+    "quick_actions_label": "Acțiuni rapide pentru a începe:",
+    "input_placeholder": "Întreabă despre obișnuințele tale, provocări, recuperare...",
+    "not_authenticated": "Neautentificat. Conectează-te.",
+    "rate_limit": "Limită de solicitări depășită. Încearcă din nou în câteva momente.",
+    "auth_required": "Autentificare necesară. Conectează-te din nou.",
+    "api_error": "Cheie API invalidă sau cotă depășită.",
+    "failed_response": "Nu s-a putut obține răspunsul",
+    "failed_send": "Nu s-a putut trimite mesajul",
+    "quick_actions": {
+      "suggest_habit": "Sugerează o obișnuință",
+      "start_challenge": "Începe o provocare",
+      "motivate_me": "Motivează-mă",
+      "help_reflect": "Ajută-mă să reflectez"
+    },
+    "stats": {
+      "track_progress": "Urmărește progresul",
+      "build_habits": "Construiește obișnuințe",
+      "take_challenges": "Acceptă provocări"
+    },
+    "tips": {
+      "1": "Fiecare pas mic contează pentru obiectivele tale mai mari",
+      "2": "Progresul nu este întotdeauna liniar, și este în regulă",
+      "3": "Deja ești mai bine doar fiind aici",
+      "4": "Consecvența învinge perfecțiunea de fiecare dată",
+      "5": "Astăzi este o nouă oportunitate de a crește"
+    }
+  },
+
+  "learn": {
+    "title": "Învață",
+    "subtitle": "Educație și cunoștințe despre recuperare",
+    "articles": "Articole",
+    "guides": "Ghiduri",
+    "timeline": "Cronologie",
+    "locked_title": "Centru de învățare",
+    "locked_desc": "Articole științifice, ghiduri educaționale aprofundate și o cronologie completă a recuperării – totul într-un singur loc.",
+    "locked_features": {
+      "articles": "Articole științifice despre recuperare",
+      "guides": "Ghiduri educaționale aprofundate",
+      "timeline": "Cronologia recuperării și repere"
+    }
+  },
+
+  "porn_recovery": {
+    "title": "Recuperarea de pornografie",
+    "subtitle": "Instrumente științifice pentru călătoria ta",
+    "emergency": "Urgență",
+    "sos": "SOS",
+    "progress": "Progres",
+    "manage_tab": "Gestionează",
+    "learn_tab": "Învață",
+    "locked_title": "Instrumente de recuperare",
+    "locked_desc": "Deblochează strategii de recuperare bazate pe știință, instrumente de gestionare a poftelor și urmărire personală.",
+    "locked_features": {
+      "science": "Educație bazată pe știință",
+      "craving": "Instrumente de acțiune împotriva poftelor",
+      "anti_trigger": "Plan personal anti-declanșator",
+      "motivation": "Urmărirea motivației"
+    },
+    "recovery_challenge": "Provocarea de recuperare",
+    "start_challenge_question": "Vrei să începi Provocarea de Recuperare a Dependenței de Pornografie? Vei putea să îți urmărești progresul zilnic și să construiești serii.",
+    "mark_success_fail": "Marchează fiecare zi ca „Succes” sau „Eșec”",
+    "track_streaks": "Urmărește-ți seria curentă și cea mai lungă",
+    "start_fresh_anytime": "Începe din nou oricând",
+    "start_challenge": "Începe provocarea",
+    "started_on": "Începută la {{date}}",
+    "day_n": "Ziua {{n}}",
+    "current_streak": "Seria curentă",
+    "longest_streak": "Cea mai lungă serie",
+    "success_days": "Zile de succes",
+    "failed_days": "Zile de eșec",
+    "todays_checkin": "Verificarea de azi",
+    "already_checked_in": "Te-ai verificat deja astăzi",
+    "start_fresh": "Începe din nou",
+    "start_fresh_confirm": "Începi din nou?",
+    "start_fresh_desc": "Aceasta va reseta călătoria ta curentă și va începe una nouă. Datele anterioare vor fi arhivate.",
+    "abandon": "Abandonează",
+    "abandon_confirm": "Abandonezi provocarea?",
+    "abandon_desc": "Aceasta va încheia provocarea ta curentă. Poți începe una nouă oricând.",
+    "failure_debrief": "Analiza eșecului",
+    "failure_debrief_desc": "Ai avut o recădere? Este în regulă – face parte din călătorie. Să transformăm asta într-o experiență de învățare împreună.",
+    "continue_debrief": "Continuă analiza",
+    "start_debrief": "Începe analiza",
+    "unfinished_debrief": "Ai o analiză neterminată. Continuă când ești gata.",
+    "my_reasons": "Motivele mele pentru a mă opri",
+    "reasons_desc": "Motivațiile tale personale sunt ancora ta. Citește-le în timpul poftelor pentru a-ți aminti de ce ai început această călătorie.",
+    "write_reason": "Scrie motivul tău...",
+    "add_reason": "Adaugă motiv",
+    "tap_add_suggested": "Sau atinge pentru a adăuga un motiv sugerat:",
+    "already_added": "Deja adăugat",
+    "already_in_list": "Acest motiv este deja în lista ta.",
+    "suggested_reasons": [
+      "Sănătate fizică și mentală mai bună",
+      "Libertate de dependență și compulsiune",
+      "Relații mai profunde și autentice",
+      "Mai mult timp și energie pentru ceea ce contează",
+      "Mai multă concentrare și productivitate",
+      "Control asupra vieții și alegerilor mele",
+      "Stimă de sine și încredere mai bune",
+      "Să fiu prezent cu oamenii pe care îi iubesc"
+    ],
+    "craving_title": "Ce să faci în timpul unei pofte",
+    "craving_desc": "Poftele sunt intense dar temporare – de obicei 15‑20 de minute. Folosește aceste acțiuni pentru a naviga valul până când trece.",
+    "craving_complete_tip": "Atinge fiecare acțiune pe măsură ce o finalizezi. Pofta va trece.",
+    "craving_actions": {
+      "cold_shower": "Fă un duș rece",
+      "cold_shower_desc": "30 de secunde până la 2 minute. Îți scoate sistemul din poftă.",
+      "walk": "Ieși la o plimbare sau la alergat",
+      "walk_desc": "Lasă telefonul. Ieși afară. Mișcarea redirecționează energia.",
+      "exercise": "Fă exerciții fizice",
+      "exercise_desc": "Flotări, genuflexiuni, sărituri. Epuizează impulsul fizic.",
+      "contact": "Contactează pe cineva de încredere",
+      "contact_desc": "Scrie sau sună un prieten, un membru al familiei sau un partener de responsabilitate.",
+      "people": "Stai printre alți oameni",
+      "people_desc": "Mergi într-un spațiu public. Izolarea hrănește impulsul. Conexiunea îl rupe."
+    },
+    "identifying_triggers": "Identificarea declanșatorilor",
+    "triggers_desc": "Declanșatorii sunt situațiile, emoțiile și contexte care duc la impulsuri. Înțelegerea declanșatorilor tăi personali este esențială pentru prevenire.",
+    "ask_yourself": "Pune-ți aceste întrebări după fiecare impuls:",
+    "common_triggers_solutions": "Declanșatori comuni și soluții",
+    "guided_questions": {
+      "emotion": "Ce emoție simțeam?",
+      "emotion_examples": "Plictiseală, singurătate, stres, anxietate, oboseală, respingere, frustrare",
+      "time": "Ce oră din zi era?",
+      "time_examples": "Noaptea târziu, dimineața devreme, după muncă, după-amiaza de weekend",
+      "where": "Unde eram?",
+      "where_examples": "Dormitor, baie, acasă singur, cameră de hotel",
+      "doing": "Ce făceam înainte?",
+      "doing_examples": "Derulam pe rețele sociale, mă uitam la TV, lucram, mă certam cu cineva"
+    },
+    "common_triggers": {
+      "computer": "Singur la calculator",
+      "computer_tip": "Lucrează în spații publice sau cu ușa deschisă",
+      "phone_bed": "Telefonul în pat noaptea",
+      "phone_bed_tip": "Încarcă-ți telefonul în altă cameră",
+      "social_media": "Derularea rețelelor sociale",
+      "social_media_tip": "Limitează sau elimină aplicațiile care declanșează impulsuri",
+      "late_nights": "Nopțile târzii când ești obosit",
+      "late_nights_tip": "Stabilește o oră fixă de culcare și respect-o"
+    },
+    "anti_trigger_plan": "Plan personal anti-declanșator",
+    "anti_trigger_desc": "Creează planuri dacă-atunci pentru declanșatorii tăi specifici. Având un răspuns pre-stabilit, este mai ușor să acționezi când vine momentul.",
+    "add_new_plan": "Adaugă un plan nou:",
+    "add_plan": "Adaugă plan",
+    "error_saving": "Eroare la salvare",
+    "failed_save_plan": "Nu s-a putut salva planul. Încearcă din nou.",
+    "incomplete_plan": "Plan incomplet",
+    "fill_all_fields": "Completează toate cele trei câmpuri.",
+    "understanding_title": "Înțelegerea problemei",
+    "understanding_desc": "Pornografia online modernă este concepută să deturneze sistemul de recompensă al creierului tău. Înțelegerea științei din spate este primul pas spre libertate.",
+    "brain_science_title": "Ce se întâmplă în creier",
+    "strategies_title": "Strategii practice de recuperare",
+    "strategies_desc": "Recuperarea nu înseamnă doar oprire – înseamnă construirea unei vieți în care nu ai nevoie de evadare. Aceste strategii abordează atât comportamentul, cât și nevoile subiacente."
+  },
+
+  "trigger_tracking": {
+    "title": "Urmărirea declanșatorilor",
+    "subtitle": "Înregistrează și analizează-ți impulsurile",
+    "start_tracking": "Începe să îți urmărești declanșatorii",
+    "start_tracking_desc": "Înregistrează când simți un impuls pentru a descoperi tipare și a primi sugestii personalizate AI",
+    "log_first": "Înregistrează primul declanșator",
+    "log_trigger": "Înregistrează declanșatorul",
+    "impulse_intensity": "Intensitatea impulsului",
+    "how_feel": "Cum te simți? *",
+    "situation": "Situație *",
+    "where_are_you": "Unde ești?",
+    "are_you_alone": "Ești singur?",
+    "yes_alone": "Da, singur",
+    "no_with_others": "Nu, cu alții",
+    "notes_optional": "Note (opțional)",
+    "notes_placeholder": "Ce se întâmpla? La ce te gândeai?",
+    "mild": "Ușor",
+    "strong": "Puternic",
+    "heatmap_title": "Hartă termică a declanșatorilor",
+    "heatmap_empty": "Înregistrează câțiva declanșatori pentru a vedea harta tiparelor",
+    "last_30_days": "Ultimele 30 de zile",
+    "recent_triggers": "Declanșatori recenți",
+    "no_triggers_yet": "Niciun declanșator înregistrat încă",
+    "trigger_analysis": "Analiza declanșatorilor",
+    "get_trigger_report": "Obține raportul tău despre declanșatori",
+    "analyze_patterns": "Analizează tiparele declanșatorilor tăi din ultimele 4 zile",
+    "generate_report": "Generează raport",
+    "main_causes": "Cauze principale",
+    "causes_identified": "{{count}} cauză principală identificată",
+    "causes_identified_plural": "{{count}} cauze principale identificate",
+    "when_it_happens": "Când se întâmplă",
+    "suggested_solutions": "Soluții sugerate",
+    "for_cause": "Pentru: {{cause}}",
+    "next_report_in": "Următorul raport disponibil în {{days}} zi/zile",
+    "generate_new_report": "Generează raport nou",
+    "loading_insights": "Se încarcă informațiile despre declanșatori...",
+    "ai_insights": "Informații AI",
+    "triggers_logged": "{{count}} declanșatori înregistrați",
+    "analyze": "Analizează",
+    "log_3_triggers": "Înregistrează cel puțin 3 declanșatori pentru a debloca informațiile AI",
+    "more_needed": "Mai sunt necesare {{count}}",
+    "press_analyze": "Apasă „Analizează” pentru a genera informații din tiparele tale",
+    "locked_features": {
+      "realtime": "Înregistrarea impulsurilor în timp real",
+      "heatmap": "Hartă termică vizuală a tiparelor",
+      "ai_reports": "Rapoarte de informații bazate pe AI",
+      "timing": "Analiza timpului și contextului"
+    },
+    "emotions": {
+      "stress": "Stres",
+      "boredom": "Plictiseală",
+      "sadness": "Tristețe",
+      "anxiety": "Anxietate",
+      "anger": "Furie",
+      "loneliness": "Singurătate",
+      "tiredness": "Oboseală",
+      "excitement": "Entuziasm"
+    },
+    "situations": {
+      "social_media": "Rețele sociale",
+      "video_streaming": "Video/streaming",
+      "after_argument": "După o ceartă",
+      "before_sleep": "Înainte de somn",
+      "work_break": "Pauză de muncă",
+      "weekend": "Weekend liber",
+      "procrastination": "Procrastinare",
+      "other": "Altele"
+    },
+    "locations": {
+      "home": "Acasă",
+      "work": "La muncă",
+      "commute": "În deplasare",
+      "other": "Altele"
+    },
+    "heatmap_legend": {
+      "mild": "Ușor (1‑3)",
+      "medium": "Mediu (4‑6)",
+      "strong": "Puternic (7‑10)"
+    },
+    "days": {
+      "sun": "Dum",
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mie",
+      "thu": "Joi",
+      "fri": "Vin",
+      "sat": "Sâm"
+    },
+    "time_periods": {
+      "night": "Noapte",
+      "morning": "Dimineață",
+      "afternoon": "După-amiază",
+      "evening": "Seară"
+    }
+  },
+
+  "evening_reflection": {
+    "title": "Reflecție de seară",
+    "daily_checkin": "Verificare zilnică",
+    "complete": "Finalizat",
+    "how_feel": "Cum te-ai simțit astăzi?",
+    "energy_level": "Nivelul de energie astăzi",
+    "low_energy": "Energie scăzută",
+    "high_energy": "Energie ridicată",
+    "complete_checkin": "Finalizează verificarea",
+    "checkin_complete": "Verificare finalizată!",
+    "checkin_saved": "Verificarea ta zilnică a fost salvată.",
+    "select_mood": "Selectează-ți starea de spirit",
+    "select_mood_desc": "Alege cum te-ai simțit astăzi.",
+    "failed_checkin": "Nu s-a putut salva verificarea. Încearcă din nou.",
+    "moods": {
+      "great": "Excelent",
+      "good": "Bine",
+      "okay": "Acceptabil",
+      "struggling": "Cu dificultate",
+      "difficult": "Greu"
+    },
+    "how_was_day": "Cum a fost ziua ta?",
+    "day_placeholder": "Descrie pe scurt cum a decurs ziua ta...",
+    "grateful_for": "Pentru ce ești recunoscător astăzi? (1‑3 lucruri)",
+    "grateful_placeholder": "Adaugă ceva pentru care ești recunoscător...",
+    "lessons_learned": "Ce ai învățat sau ce poți îmbunătăți?",
+    "lessons_placeholder": "Scrie o lecție învățată sau un domeniu de îmbunătățire...",
+    "save_reflection": "Salvează reflecția",
+    "reflection_saved": "Reflecție salvată!",
+    "reflection_saved_desc": "Bună treabă reflectând asupra zilei tale",
+    "could_not_save": "Nu s-a putut salva reflecția"
+  },
+
+  "daily_planning": {
+    "title": "Planificare zilnică",
+    "tomorrow": "Mâine",
+    "todo_title": "De făcut mâine",
+    "not_todo_title": "Listă de evitat",
+    "add_task_placeholder": "Adaugă o sarcină nouă...",
+    "what_to_avoid": "Ce să eviți mâine...",
+    "quick_add_suggestions": "Sugestii rapide:",
+    "task_added": "Sarcină adăugată!",
+    "task_added_desc": "Planifică-ți mâinele",
+    "item_added": "Element adăugat!",
+    "item_added_desc": "Evită acest comportament mâine",
+    "could_not_add_task": "Nu s-a putut adăuga sarcina",
+    "could_not_add_item": "Nu s-a putut adăuga elementul",
+    "could_not_update_task": "Nu s-a putut actualiza sarcina",
+    "could_not_edit_task": "Nu s-a putut edita sarcina",
+    "could_not_delete_task": "Nu s-a putut șterge sarcina",
+    "could_not_update_status": "Nu s-a putut actualiza statusul",
+    "could_not_delete_item": "Nu s-a putut șterge elementul",
+    "could_not_remove_completion": "Nu s-a putut elimina finalizarea",
+    "could_not_mark_complete": "Nu s-a putut marca ca finalizat",
+    "no_tasks_planned": "Nicio sarcină planificată",
+    "add_goals": "Adaugă-ți obiectivele pentru mâine",
+    "no_behaviors": "Niciun comportament de evitat",
+    "add_negative_habits": "Adaugă obiceiuri negative de evitat",
+    "great_job": "Bună treabă!",
+    "avoided_negative": "Ai evitat acest comportament negativ",
+    "active_habits": "Obișnuințe active",
+    "evening_planning_time": "Timp pentru planificarea de seară",
+    "evening_planning_desc": "Acordă-ți un moment pentru a planifica mâine și a reflecta asupra zilei de azi",
+    "reminder_enabled": "Memento activat!",
+    "reminder_enabled_desc": "Vei primi o notificare la 20:00 pentru a planifica mâine.",
+    "reminder_disabled": "Memento dezactivat",
+    "reminder_disabled_desc": "Nu vei primi memento-uri de seară.",
+    "day_streak": "Serie de zile",
+    "tasks_done": "Sarcini finalizate",
+    "perfect_days": "Zile perfecte",
+    "suggested_tasks": {
+      "water": "Bea 8 pahare de apă",
+      "meditate": "Meditează 10 minute",
+      "walk": "Fă o plimbare de 30 de minute",
+      "read": "Citește 20 de minute",
+      "journal": "Scrie în jurnal",
+      "exercise": "Fă exerciții 30 de minute"
+    },
+    "suggested_not_todo": {
+      "no_social": "Fără rețele sociale înainte de ora 10",
+      "no_junk": "Fără mâncare nesănătoasă",
+      "no_phone": "Fără telefon în pat",
+      "no_negative": "Fără autoevaluare negativă",
+      "no_skip": "Nu sări peste antrenamente",
+      "no_procrastinate": "Nu amâna sarcinile"
+    }
+  },
+
+  "recovery": {
+    "recovery_streak": "Serie de recuperare",
+    "clean_day": "Zi curată",
+    "relapsed": "Recădere",
+    "checked_in_today": "Verificare făcută astăzi. Continuă așa!",
+    "day_of_journey": "Ziua {{day}} a călătoriei",
+    "active_challenges": "Provocări active",
+    "onboarding": {
+      "title": "Provocarea de recuperare",
+      "description": "Vrei să începi Provocarea de Recuperare a Dependenței de Pornografie? Vei putea să îți urmărești progresul zilnic și să construiești serii.",
+      "feature_1": "Marchează fiecare zi ca „Succes” sau „Eșec”",
+      "feature_2": "Urmărește-ți seria curentă și cea mai lungă",
+      "feature_3": "Începe din nou oricând",
+      "start": "Începe provocarea"
+    }
+  },
+
+  "locked_preview": {
+    "unlock_premium": "Deblochează Premium",
+    "trigger": {
+      "log_triggers": "Înregistrează declanșatori și impulsuri",
+      "visual_heatmap": "Analiză vizuală cu hartă termică",
+      "ai_insights": "Informații AI despre tipare",
+      "track_timing": "Urmărește timpul și contextul",
+      "preview_text": "Previzualizare urmărire declanșatori:",
+      "description": "Înregistrează-ți impulsurile, descoperă tipare cu analiza AI și obține strategii personalizate de prevenire."
+    },
+    "recovery": {
+      "title": "Instrumente de recuperare",
+      "description": "Deblochează strategii de recuperare bazate pe știință, instrumente de gestionare a poftelor și urmărire personală.",
+      "science_education": "Educație bazată pe știință",
+      "craving_tools": "Instrumente de acțiune împotriva poftelor",
+      "anti_trigger_plan": "Plan personal anti-declanșator",
+      "motivation_tracking": "Urmărirea motivației"
+    },
+    "coach": {
+      "title": "Coach AI",
+      "description": "Primește îndrumare personalizată, sugestii de obișnuințe și motivație de la coach-ul tău AI personal.",
+      "habit_suggestions": "Sugestii personalizate de obișnuințe",
+      "custom_challenges": "Crearea de provocări personalizate",
+      "reflection_guidance": "Îndrumare pentru auto-reflecție",
+      "daily_motivation": "Motivație zilnică",
+      "preview_text": "Previzualizare Coach AI:",
+      "preview_msg_1": "Poți să îmi sugerezi o obișnuință sănătoasă...",
+      "preview_msg_2": "Pe baza tiparelor tale, ți-aș recomanda...",
+      "preview_msg_3": "Ajută-mă să rămân motivat astăzi..."
+    },
+    "learn": {
+      "title": "Centru de învățare",
+      "description": "Articole științifice, ghiduri educaționale și o cronologie completă a recuperării – totul într-un singur loc.",
+      "scientific_articles": "Articole științifice despre recuperare",
+      "educational_guides": "Ghiduri educaționale aprofundate",
+      "recovery_timeline": "Cronologia recuperării și repere"
+    }
+  },
+
+  "habit_report": {
+    "habit_analysis": "Analiza obișnuințelor",
+    "loading_insights": "Se încarcă informațiile despre obișnuințe...",
+    "locked_desc": "Obține informații AI despre obișnuințele tale și sugestii personalizate pentru a-ți îmbunătăți rutina.",
+    "unlock_premium": "Deblochează cu Premium",
+    "get_report": "Obține raportul tău despre obișnuințe",
+    "analyze_last_days": "Analizează-ți obișnuințele din ultimele 4 zile",
+    "suggestions_for_you": "{{count}} sugestie/sugestii pentru tine",
+    "suggested_adjustments": "Ajustări sugerate ale obișnuințelor",
+    "tips": "Sfaturi",
+    "next_report_in": "Următorul raport disponibil în {{days}} zi/zile",
+    "generate_new": "Generează raport nou"
+  },
+
+  "not_found": {
+    "title": "404",
+    "message": "Hopaa! Pagina nu a fost găsită",
+    "return_home": "Înapoi acasă"
+  },
+
+  "paywall": {
+    "habit_limit_title": "Deblochează obișnuințe nelimitate",
+    "habit_limit_desc": "Ai atins limita gratuită de 5 obișnuințe. Actualizează pentru a crea toate obișnuințele de care ai nevoie.",
+    "challenge_limit_title": "Deblochează mai multe provocări",
+    "challenge_limit_desc": "Utilizatorii gratuiti pot avea 1 provocare activă. Actualizează pentru a face față mai multor provocări simultan.",
+    "ai_coach_title": "Accesează Coach AI",
+    "ai_coach_desc": "Primește îndrumare personalizată, suport și motivație de la coach-ul tău AI oricând ai nevoie.",
+    "recovery_title": "Deblochează instrumentele de recuperare",
+    "recovery_desc": "Accesează programul complet de recuperare a dependenței de pornografie cu urmărirea seriei, conținut de neuroștiință și instrumente de analiză.",
+    "advanced_stats_title": "Deblochează analiza obișnuințelor",
+    "advanced_stats_desc": "Obține informații AI despre obișnuințele tale, sugestii personalizate și recomandări inteligente pentru a-ți îmbunătăți rutina.",
+    "general_title": "Actualizează la Premium",
+    "general_desc": "Deblochează întregul potențial al InnerBuild cu acces nelimitat la toate instrumentele premium.",
+    "premium_includes": "Premium include:",
+    "features": {
+      "unlimited_habits": "Obișnuințe nelimitate",
+      "unlimited_challenges": "Provocări detox nelimitate",
+      "ai_coach": "Acces la Coach AI",
+      "recovery": "Program de recuperare a dependenței de pornografie",
+      "trigger_tracking": "Urmărirea declanșatorilor și analiză AI",
+      "learn": "Secțiunea Învață (articole, ghiduri și cronologie)",
+      "priority": "Acces prioritar la funcțiile noi"
+    },
+    "upgrade_to_premium": "Actualizează la Premium",
+    "maybe_later": "Poate mai târziu",
+    "cancel_guarantee": "Anulează oricând • Garanție de 30 de zile"
+  },
+
+  "footer": {
+    "tagline": "Transformă-ți viața cu obișnuințe bazate pe știință și puterea recuperării.",
+    "legal": "Legal",
+    "privacy_policy": "Politica de confidențialitate",
+    "terms_of_service": "Termeni și condiții",
+    "support": "Suport",
+    "follow_us": "Urmărește-ne",
+    "copyright": "© {{year}} InnerBuild. Toate drepturile rezervate. Construit cu dragoste pentru creșterea ta <3."
+  },
+
+  "nav": {
+    "home": "Acasă",
+    "tools": "Instrumente",
+    "learn": "Învață",
+    "profile": "Profil"
+  },
+
+  "habit_tips": {
+    "one_min_tip": "Sfat de 1 minut",
+    "next_tip": "Următorul sfat",
+    "tips": {
+      "start_small_title": "Începe cu pași mici",
+      "start_small": "Începe cu obișnuințe de 2 minute. Succesul generează motivație, nu invers.",
+      "stack_title": "Suprapune obișnuințele",
+      "stack": "Leagă obișnuințele noi de cele existente: „După [obișnuința actuală], voi [noua obișnuință]”.",
+      "environment_title": "Proiectează-ți mediul",
+      "environment": "Fă ca obișnuințele bune să fie evidente și ușoare. Pune-ți pantofii de alergat lângă ușă.",
+      "never_miss_title": "Nu rata niciodată de două ori",
+      "never_miss": "A rata o dată este un accident. A rata de două ori este începutul unei noi obișnuințe.",
+      "track_title": "Urmărește-ți progresul",
+      "track": "Ceea ce este măsurat este gestionat. Progresul vizual te menține motivat.",
+      "reward_title": "Recompensează-te",
+      "reward": "Sărbătorește micile victorii. Creierul tău are nevoie de întărire pozitivă.",
+      "specific_title": "Fii specific",
+      "specific": "În loc de „fă mai mult sport”, încearcă „mergi 10 minute la 7 dimineața”.",
+      "identity_title": "Obișnuințe bazate pe identitate",
+      "identity": "Concentrează-te pe cine vrei să devii, nu pe ce vrei să obții.",
+      "rule_title": "Regula 21/90",
+      "rule": "Este nevoie de 21 de zile pentru a crea o obișnuință, 90 de zile pentru a o face un stil de viață.",
+      "friction_title": "Reduce frecarea",
+      "friction": "Fiecare pas între tine și o obișnuință reduce șansa de a o face."
+    }
+  },
+
+  "profile_info_section": {
+    "title": "Informații profil",
+    "manage_info_desc": "Gestionează-ți informațiile personale și fotografia de profil",
+    "upload_hint": "Atinge pictograma camerei pentru a încărca o nouă fotografie",
+    "first_name": "Prenume",
+    "first_name_placeholder": "Introdu prenumele tău",
+    "last_name": "Nume",
+    "last_name_placeholder": "Introdu numele tău",
+    "username": "Nume utilizator",
+    "username_placeholder": "Alege un nume de utilizator unic",
+    "email": "Email",
+    "email_label": "Adresă de e-mail",
+    "email_readonly": "Din motive de securitate, adresa ta de e-mail nu poate fi schimbată.",
+    "save": "Salvează modificările",
+    "change_avatar": "Schimbă avatarul",
+    "invalid_file_type": "Tip de fișier invalid",
+    "upload_image_file": "Te rugăm să încarci o imagine.",
+    "file_too_large": "Fișier prea mare",
+    "file_size_limit": "Te rugăm să încarci o imagine mai mică de 5 MB.",
+    "avatar_updated": "Avatar actualizat",
+    "avatar_updated_desc": "Fotografia ta de profil a fost actualizată.",
+    "upload_failed": "Încărcare eșuată",
+    "upload_failed_desc": "Nu s-a putut încărca avatarul.",
+    "username_restricted": "Schimbarea numelui de utilizator este restricționată",
+    "username_cooldown_msg": "Poți schimba numele de utilizator din nou peste {{days}} zile.",
+    "cooldown_active": "Perioadă de așteptare activă",
+    "profile_updated": "Profil actualizat",
+    "profile_saved": "Informațiile tale de profil au fost salvate.",
+    "save_failed": "Salvare eșuată",
+    "save_failed_desc": "Nu s-a putut salva profilul."
+  },
+  "progress_overview_cards": {
+    "positive_habits": "Obișnuințe pozitive",
+    "detox_challenges": "Provocări detox",
+    "emotional_awareness": "Conștientizare emoțională",
+    "triggers": "Declanșatori",
+    "vs_previous": "față de perioada anterioară",
+    "no_data": "Nicio dată",
+    "holding_steady": "Stabil",
+    "consistency": "constanță",
+    "frequency": "frecvență",
+    "stable": "Stabil",
+    "completed": "finalizate",
+    "active": "active",
+    "start_tracking": "Începe urmărirea",
+    "average_mood": "Starea medie de spirit",
+    "reflections": "reflecții"
+  },
+  "progress_deep_dive": {
+    "habits": "Progresul obișnuințelor",
+    "triggers": "Urmărirea declanșatorilor",
+    "challenges": "Provocări detox",
+    "mood": "Stare de spirit și reflecție"
+  },
+  "habits_progress_section": {
+    "no_active_habits": "Nicio obișnuință activă",
+    "completion": "Finalizare",
+    "day_streak": "Serie de zile",
+    "habit_position": "{{current}} din {{total}}"
+  },
+  "triggers_progress_section": {
+    "trigger_frequency": "Frecvența declanșatorilor ({{days}} zile)",
+    "total": "Total: {{count}}",
+    "no_triggers_last_days": "Niciun declanșator în ultimele {{days}} zile",
+    "older_triggers_hint": "Declanșatorii mai vechi nu vor apărea aici",
+    "common_moments": "Momente comune",
+    "common_emotions": "Emoții comune"
+  },
+  "challenges_progress_section": {
+    "no_challenges_yet": "Încă nicio provocare",
+    "completed": "Finalizată",
+    "active": "Activă",
+    "days": "{{count}} zile",
+    "days_goal": "Obiectiv de {{completed}} zile"
+  },
+  "mood_progress_section": {
+    "start_tracking": "Începe să îți urmărești starea de spirit pentru a vedea informații",
+    "mood_over_time": "Starea de spirit în timp",
+    "most_frequent_moods": "Cea mai frecventă stare de spirit",
+    "reflections_done": "Reflecții finalizate",
+    "self_aware_quote": "Sunt o persoană conștientă de sine"
+  },
+  "activity_calendar": {
+    "title": "Istoricul progresului",
+    "subtitle": "Apasă pe o zi pentru a vedea jurnalul",
+    "legend": {
+      "done": "Făcut",
+      "not_done": "Nefăcut",
+      "today": "Astăzi"
+    }
+  },
+  "day_detail_modal": {
+    "daily_checkin": "Verificare zilnică",
+    "habits": "Obișnuințe",
+    "daily_tasks": "Sarcini zilnice",
+    "things_to_avoid": "Lucruri de evitat",
+    "detox_challenges": "Provocări Detox",
+    "recovery_checkin": "Verificare recuperare",
+    "challenge_journey": "Călătoria provocării",
+    "evening_reflection": "Reflecție de seară",
+    "no_data": "Nicio {{section}} înregistrată",
+    "how_was_your_day": "Cum a fost ziua ta?",
+    "grateful_for": "Recunoscător pentru",
+    "lessons_learned": "Lecții învățate",
+    "no_habits": "Nicio obișnuință înregistrată în această zi",
+    "no_tasks": "Nicio sarcină planificată pentru această zi",
+    "no_not_to_do": "Niciun obiectiv de evitat stabilit pentru această zi",
+    "no_challenges": "Nicio provocare activă în această zi",
+    "no_recovery": "Nicio verificare de recuperare înregistrată",
+    "no_daily_checkin": "Nicio verificare zilnică înregistrată",
+    "no_challenge_activity": "Nicio activitate de provocare în această zi",
+    "no_evening_reflection": "Nicio reflecție de seară scrisă în această zi",
+    "mood_label": "Stare de spirit",
+    "energy_label": "Nivel de energie",
+    "streak_continued": "Serie continuată — Ziua {{day}}",
+    "no_checkin_recorded": "Nicio verificare înregistrată",
+    "clean_day": "Zi curată",
+    "relapse_occurred": "A avut loc o recădere",
+    "setback": "Recădere",
+    "checked_in": "Verificare efectuată",
+    "mental_mission": "Mentală",
+    "behavioral_mission": "Comportamentală",
+    "avoided": "evitat",
+    "not_avoided": "neevitat",
+    "mood": {
+      "great": "Excelent",
+      "good": "Bine",
+      "okay": "Acceptabil",
+      "struggling": "Cu dificultate",
+      "difficult": "Greu"
+    }
+  },
+  "whats_working_section": {
+    "title": "Ce funcționează",
+    "empty_prompt": "Urmărește-ți obișnuințele timp de o săptămână pentru a debloca informații personalizate",
+    "generate": "Generează",
+    "refresh": "Reîmprospătează",
+    "improving": "Continuă așa – construiești un impuls.",
+    "protect": "Constanța ta este cel mai mare atu al tău.",
+    "adjustment": "Încearcă să ajustezi un lucru mic săptămâna aceasta.",
+    "available_in": "Disponibil în {{days}} zile"
+  },
+  "recovery_tracker": {
+    "title": "Provocarea de recuperare",
+    "started": "Începută {{date}}",
+    "current_streak": "Seria curentă",
+    "longest_streak": "Cea mai lungă serie",
+    "success_days": "Zile de succes",
+    "failed_days": "Zile de eșec",
+    "todays_checkin": "Verificarea de azi",
+    "already_checked_in": "Te-ai verificat deja astăzi",
+    "success": "Succes",
+    "failed": "Eșec",
+    "start_fresh": "Începe din nou",
+    "start_fresh_title": "Începi din nou?",
+    "start_fresh_desc": "Aceasta va reseta călătoria ta curentă și va începe una nouă. Datele tale anterioare vor fi arhivate.",
+    "abandon": "Abandonează",
+    "abandon_title": "Abandonezi provocarea?",
+    "abandon_desc": "Aceasta va încheia provocarea ta curentă. Poți începe una nouă oricând."
+  },
+  "craving_actions": {
+    "title": "Ce să faci în timpul unei pofte",
+    "description": "Poftele sunt intense dar temporare – de obicei 15‑20 de minute. Folosește aceste acțiuni pentru a naviga valul până când trece.",
+    "footer_hint": "Atinge fiecare acțiune pe măsură ce o finalizezi. Pofta va trece.",
+    "reset": "Resetează",
+    "cold_shower_title": "Fă un duș rece",
+    "cold_shower_desc": "30 de secunde până la 2 minute. Îți scoate sistemul din poftă.",
+    "walk_title": "Ieși la o plimbare sau la alergat",
+    "walk_desc": "Lasă telefonul. Ieși afară. Mișcarea redirecționează energia.",
+    "exercise_title": "Fă exerciții fizice",
+    "exercise_desc": "Flotări, genuflexiuni, sărituri. Epuizează impulsul fizic.",
+    "contact_title": "Contactează pe cineva de încredere",
+    "contact_desc": "Scrie sau sună un prieten, un membru al familiei sau un partener de responsabilitate.",
+    "people_title": "Stai printre alți oameni",
+    "people_desc": "Mergi într-un spațiu public. Izolarea hrănește impulsul. Conexiunea îl rupe."
+  },
+  "triggers_section": {
+    "title": "Identificarea declanșatorilor",
+    "description": "Declanșatorii sunt situațiile, emoțiile și contexte care duc la impulsuri. Înțelegerea declanșatorilor tăi personali este esențială pentru prevenire.",
+    "ask_questions": "Pune-ți aceste întrebări după fiecare impuls:",
+    "common_triggers_heading": "Declanșatori comuni și soluții",
+    "question_emotion": "Ce emoție simțeam?",
+    "examples_emotion": "Plictiseală, singurătate, stres, anxietate, oboseală, respingere, frustrare",
+    "question_time": "Ce oră din zi era?",
+    "examples_time": "Noaptea târziu, dimineața devreme, după muncă, după-amiaza de weekend",
+    "question_where": "Unde eram?",
+    "examples_where": "Dormitor, baie, acasă singur, cameră de hotel",
+    "question_before": "Ce făceam înainte?",
+    "examples_before": "Derulam pe rețele sociale, mă uitam la TV, lucram, mă certam cu cineva",
+    "trigger_computer": "Singur la calculator",
+    "tip_computer": "Lucrează în spații publice sau cu ușa deschisă",
+    "trigger_phone_bed": "Telefonul în pat noaptea",
+    "tip_phone_bed": "Încarcă-ți telefonul în altă cameră",
+    "trigger_social": "Derularea rețelelor sociale",
+    "tip_social": "Limitează sau elimină aplicațiile care declanșează impulsuri",
+    "trigger_late_nights": "Nopțile târzii când ești obosit",
+    "tip_late_nights": "Stabilește o oră fixă de culcare și respect-o"
+  },
+  "anti_trigger_plan": {
+    "title": "Plan personal anti-declanșator",
+    "description": "Creează planuri dacă-atunci pentru declanșatorii tăi specifici. Având un răspuns pre-stabilit, este mai ușor să acționezi când vine momentul.",
+    "error_saving_title": "Eroare la salvare",
+    "error_saving_desc": "Nu s-a putut salva planul tău. Încearcă din nou.",
+    "incomplete_title": "Plan incomplet",
+    "incomplete_desc": "Te rugăm să completezi toate cele trei câmpuri.",
+    "template": "Când {{trigger}}, voi {{action}}, pentru că îmi oferă {{benefit}}.",
+    "add_new": "Adaugă un plan nou:",
+    "when": "Când",
+    "trigger_placeholder": "Mă simt plictisit noaptea",
+    "i_will": "Voi",
+    "action_placeholder": "ieși la o plimbare sau suna un prieten",
+    "because_gives_me": "Pentru că îmi oferă"
+  },
+  "reasons_section": {
+    "title": "Motivele mele pentru a mă opri",
+    "description": "Motivațiile tale personale sunt ancora ta. Citește-le în timpul poftelor pentru a-ți aminti de ce ai început.",
+    "error_saving_title": "Eroare la salvare",
+    "error_saving_desc": "Nu s-au putut salva motivele tale. Încearcă din nou.",
+    "already_added_title": "Deja adăugat",
+    "already_added_desc": "Acest motiv este deja în lista ta.",
+    "new_placeholder": "Scrie motivul tău...",
+    "add_my_reason": "Adaugă motivul meu",
+    "suggested_prompt": "Sau atinge pentru a adăuga un motiv sugerat:",
+    "sr1": "Sănătate fizică și mentală mai bună",
+    "sr2": "Libertate de dependență și compulsiune",
+    "sr3": "Relații mai profunde și autentice",
+    "sr4": "Mai mult timp și energie pentru ceea ce contează",
+    "sr5": "Mai multă concentrare și productivitate",
+    "sr6": "Control asupra vieții și alegerilor mele",
+    "sr7": "Stimă de sine și încredere mai bune",
+    "sr8": "Să fiu prezent cu oamenii pe care îi iubesc"
+  },
+  "strategies_section": {
+    "title": "Strategii practice de recuperare",
+    "description": "Recuperarea nu înseamnă doar oprire – înseamnă construirea unei vieți în care nu ai nevoie de evadare. Aceste strategii abordează atât comportamentul, cât și nevoile subiacente.",
+    "remove_access_title": "Elimină accesul",
+    "remove_access_desc": "Instalează blocante pe toate dispozitivele. Șterge conținutul salvat. Fă accesul dificil.",
+    "change_env_title": "Schimbă mediul",
+    "change_env_desc": "Mută dispozitivele în zone publice. Evită să fii singur cu ecranele. Schimbă-ți rutina.",
+    "track_streak_title": "Urmărește-ți seria",
+    "track_streak_desc": "Folosește un contor zilnic. Sărbătorește reperele. Vizualizează-ți progresul în fiecare zi.",
+    "exercise_title": "Exerciții regulate",
+    "exercise_desc": "Activitatea fizică eliberează dopamină sănătoasă și reduce impulsurile. Chiar și 20 de minute ajută.",
+    "meditation_title": "Meditație și conștientizare",
+    "meditation_desc": "Practică observarea impulsurilor fără a acționa. Chiar și 5‑10 minute pe zi întăresc controlul mental.",
+    "cold_showers_title": "Dușuri reci",
+    "cold_showers_desc": "Construiește disciplină și voință. Îți scoate sistemul din poftă. Începe cu 30 de secunde.",
+    "journaling_title": "Jurnal",
+    "journaling_desc": "Scrie despre declanșatori, sentimente și victorii. Conștientizarea de sine este cheia recuperării.",
+    "social_title": "Conexiune socială",
+    "social_desc": "Petrece timp cu oamenii. Izolarea hrănește dependența. Conexiunea reală vindecă.",
+    "nature_title": "Timp în natură",
+    "nature_desc": "Natura calmează sistemul nervos și oferă dopamină sănătoasă prin frumusețe și uimire.",
+    "hobbies_title": "Hobby-uri sănătoase",
+    "hobbies_desc": "Înlocuiește obiceiul cu ceva captivant: muzică, sport, învățare, creație.",
+    "prioritize_sleep_title": "Prioritizează somnul",
+    "prioritize_sleep_desc": "Oboseala slăbește voința. Fără ecrane cu o oră înainte de culcare. Vizează 7‑9 ore.",
+    "self_compassion_title": "Auto-compasiune",
+    "self_compassion_desc": "Recăderile se întâmplă. Vina hrănește recăderea. Tratează-te cu bunătatea pe care ai oferi-o unui prieten."
+  },
+  "understanding_section": {
+    "title": "Înțelegerea problemei",
+    "description": "Pornografia online modernă este concepută să deturneze sistemul de recompensă al creierului tău. Înțelegerea științei din spate este primul pas spre libertate.",
+    "super_stimulus_title": "Efectul super-stimul",
+    "super_stimulus_intro_part1": "Pornografia pe internet acționează ca un",
+    "super_stimulus_intro_emphasis": "super-stimul",
+    "super_stimulus_intro_part2": "— o versiune artificial îmbunătățită a unei recompense naturale cu care creierul tău nu a evoluat să facă față:",
+    "unlimited_novelty_label": "Noutate nelimitată:",
+    "unlimited_novelty_desc": "Conținut infinit declanșează creșteri de dopamină mult peste ceea ce oferă experiențele naturale",
+    "instant_access_label": "Acces instantaneu:",
+    "instant_access_desc": "Niciun efort necesar înseamnă nicio întârziere naturală între dorință și recompensă",
+    "extreme_content_label": "Conținut extrem:",
+    "extreme_content_desc": "Material din ce în ce mai extrem ridică pragul de recompensă al creierului tău din ce în ce mai sus",
+    "super_stimulus_conclusion": "Creierul tău eliberează mai multă dopamină anticipând și căutând decât în timpul experienței reale, creând un puternic ciclu al dorinței.",
+    "common_effects_title": "Efecte comune",
+    "desensitization_label": "Desensibilizare",
+    "desensitization_desc": "Creierul tău devine mai puțin receptiv la dopamină, necesitând o stimulare mai intensă pentru a simți aceeași plăcere.",
+    "escalation_label": "Escaladare",
+    "escalation_desc": "În timp, poți căuta conținut mai extrem sau nou pentru a obține același efect.",
+    "anxiety_label": "Anxietate și stimă de sine scăzută",
+    "anxiety_desc": "Ciclul de utilizare și remușcare poate alimenta anxietatea, rușinea și percepția negativă de sine.",
+    "concentration_label": "Probleme de concentrare",
+    "concentration_desc": "Dereglementarea dopaminei afectează concentrarea, motivația și capacitatea de a te bucura de activitățile zilnice.",
+    "sexual_emotional_title": "Efecte sexuale și emoționale",
+    "pied_label": "Disfuncție erectilă indusă de pornografie (PIED)",
+    "pied_desc": "Mulți bărbați întâmpină dificultăți în a se excita în timpul întâlnirilor intime reale. Acest lucru se întâmplă pentru că creierul a fost condiționat să răspundă doar la stimularea artificială a pornografiei, nu la partenerii reali.",
+    "emotional_disconnection_label": "Deconectare emoțională",
+    "emotional_disconnection_desc": "Utilizarea regulată a pornografiei poate face mai dificilă formarea unor legături emoționale profunde. Intimitatea reală necesită vulnerabilitate și conexiune pe care pornografia te antrenează să le ocolești.",
+    "young_brains_title": "De ce creierele tinere sunt mai vulnerabile",
+    "young_brains_intro_part1": "Creierele adolescenților și tinerilor adulți sunt deosebit de susceptibile datorită",
+    "neuroplasticity": "neuroplasticității",
+    "young_brains_intro_part2": "— capacitatea ridicată a creierului de a forma noi căi neuronale.",
+    "young_brains_point1": "Cortexul prefrontal (controlul impulsurilor) nu este complet dezvoltat până la 25 de ani",
+    "young_brains_point2": "Sensibilitatea la dopamină atinge vârful în timpul adolescenței",
+    "young_brains_point3": "Căile neuronale formate în această perioadă devin profund înrădăcinate",
+    "young_brains_point4": "Expunerea timpurie poate modela modelele de excitare sexuală pe tot parcursul vieții",
+    "good_news_label": "Vestea bună:",
+    "good_news_desc": "Aceeași neuroplasticitate care face creierele tinere vulnerabile înseamnă și că ele se pot reconecta mai repede în timpul recuperării."
+  },
+  "brain_science_section": {
+    "title": "Ce se întâmplă în creier",
+    "wanting_vs_liking": "A dori vs A plăcea",
+    "reward_system_intro": "Creierul tău are două sisteme separate pentru recompensă:",
+    "wanting_label": "A dori",
+    "wanting_parenthesis": "Dorință condusă de dopamină",
+    "wanting_desc": "Este anticiparea, căutarea, impulsul. Dopamina te împinge să cauți recompensa, nu să te bucuri de ea. De aceea poți petrece ore căutând și dând click, simțindu-te nesatisfăcut.",
+    "liking_label": "A plăcea",
+    "liking_parenthesis": "Plăcerea reală",
+    "liking_desc": "Satisfacție și plăcere reală. Cu pornografia, acest sistem slăbește – vrei mai mult, dar te bucuri mai puțin. Plăcerile reale par fade în comparație.",
+    "wanting_liking_quote": "„Diferența dintre a dori și a plăcea este capcana. Urmărești o satisfacție care nu sosește niciodată.”",
+    "novelty_title": "De ce noutatea crește dorința",
+    "novelty_desc_part1": "Creierul tău este conectat să acorde atenție",
+    "novelty_highlight": "noutății",
+    "novelty_desc_part2": "Fiecare imagine sau videoclip nou declanșează o creștere de dopamină pentru că creierul tău crede: „Acest lucru ar putea fi important!”",
+    "escalation_cycle_label": "Ciclul de escaladare:",
+    "escalation_step1": "Conținut nou → Creștere de dopamină → Satisfacție temporară",
+    "escalation_step2": "Același conținut → Mai puțină dopamină → Nevoie de mai multă noutate",
+    "escalation_step3": "Caută conținut mai extrem/nou → Creștere mai mare → Toleranța crește",
+    "escalation_step4": "Creierul cere mai multă intensitate pentru a simți ceva → Dependența se adâncește",
+    "novelty_conclusion": "De aceea mulți utilizatori se trezesc urmărind conținut pe care nu l-ar fi căutat la început. Nu este vorba despre ce vrei tu – ci despre ce cere sistemul tău de recompensă deturnat.",
+    "reboot_title": "Resetarea: cum se vindecă creierul tău",
+    "reboot_intro_part1": "Abstinența de la pornografie permite creierului tău să",
+    "reset_dopamine": "reseteze sensibilitatea la dopamină",
+    "reboot_intro_part2": "Acest proces, numit adesea „resetare”, duce la îmbunătățiri măsurabile:",
+    "improved_mood_label": "Stare de spirit îmbunătățită",
+    "improved_mood_desc": "Anxietate și depresie reduse pe măsură ce dopamina se normalizează",
+    "better_focus_label": "Concentrare mai bună",
+    "better_focus_desc": "Atenția și concentrația revin la niveluri sănătoase",
+    "healthy_sexual_label": "Răspuns sexual sănătos",
+    "healthy_sexual_desc": "Excitația față de partenerii reali revine, simptomele PIED se rezolvă",
+    "more_energy_label": "Mai multă energie și motivație",
+    "more_energy_desc": "Viața pare mai vibrantă, plăcerile cotidiene revin",
+    "timeline_label": "Cronologie:",
+    "timeline_desc": "Majoritatea oamenilor observă îmbunătățiri semnificative în 30‑90 de zile, deși recuperarea completă poate dura mai mult în funcție de durata și intensitatea utilizării."
+  },
+  "evening_reflection_section": {
+    "title": "Reflecție de seară",
+    "unsaved": "Nesalvat",
+    "motivation_messages": [
+      "Bună treabă planificând pentru mâine! Te pregătești pentru succes.",
+      "Minunat! A reflecta asupra zilei tale este o obișnuință puternică. Continuă așa!",
+      "Bine făcut! Mâine este un nou început cu intenții clare.",
+      "Muncă fantastică! Auto-reflecția este cheia creșterii personale.",
+      "Te descurci grozav! A planifica din timp arată un angajament real."
+    ],
+    "day_summary_label": "Cum a fost ziua ta?",
+    "day_summary_placeholder": "Descrie pe scurt cum a decurs ziua ta...",
+    "grateful_for_label": "Pentru ce ești recunoscător astăzi? (1‑3 lucruri)",
+    "grateful_placeholder": "Adaugă ceva pentru care ești recunoscător...",
+    "add_gratitude": "Adaugă",
+    "save": "Salvează",
+    "delete": "Șterge",
+    "reflection_saved": "Reflecție salvată!",
+    "reflection_save_error": "Nu s-a putut salva reflecția",
+    "motivation_note": "Bună treabă reflectând asupra zilei tale",
+    "energy_level": "Nivel de energie",
+    "lessons_label": "Ce ai învățat sau ce poți îmbunătăți?",
+    "lessons_placeholder": "Scrie o lecție învățată sau un domeniu de îmbunătățire...",
+    "save_reflection": "Salvează reflecția"
+  },
+  "todo_section": {
+    "title": "De făcut mâine",
+    "no_tasks": "Nicio sarcină planificată pentru această zi",
+    "add_task": "Adaugă sarcină",
+    "suggestions_title": "Sugestii",
+    "quick_add_suggestions": "Sugestii rapide:",
+    "error_add": "Nu s-a putut adăuga sarcina",
+    "error_update": "Nu s-a putut actualiza sarcina",
+    "error_delete": "Nu s-a putut șterge sarcina",
+    "task_added": "Sarcină adăugată!",
+    "plan_tomorrow": "Planifică-ți mâinele",
+    "tasks_done": "finalizate",
+    "suggested_tasks": [
+      "Bea 8 pahare de apă",
+      "Meditează 10 minute",
+      "Fă o plimbare de 30 de minute",
+      "Citește 20 de minute",
+      "Scrie în jurnal",
+      "Fă exerciții 30 de minute"
+    ],
+    "add_goals": "Adaugă-ți obiectivele pentru mâine"
+  },
+  "not_to_do_section": {
+    "title": "Lucruri de evitat",
+    "no_items": "Niciun element de evitat",
+    "add_item": "Adaugă element",
+    "error_add": "Nu s-a putut adăuga elementul",
+    "error_delete": "Nu s-a putut șterge elementul",
+    "error_update": "Nu s-a putut actualiza statusul",
+    "item_added": "Element adăugat!",
+    "avoid_behavior": "Evită acest comportament mâine",
+    "avoided": "Evitat",
+    "not_avoided": "Neevitat",
+    "quick_suggestions": "Adaugă sugestii rapide:",
+    "no_behaviors": "Niciun comportament de evitat",
+    "add_negative_habits": "Adaugă obiceiuri negative de evitat",
+    "suggested_items": [
+      "Fără rețele sociale înainte de ora 10",
+      "Fără mâncare nesănătoasă",
+      "Fără telefon în pat",
+      "Fără autoevaluare negativă",
+      "Nu sări peste antrenamente",
+      "Nu amâna sarcinile"
+    ]
+  },
+  "active_habits_section": {
+    "no_active": "Încă nicio obișnuință activă",
+    "create_hint": "Creează obișnuințe din pagina Obișnuințe",
+    "error_remove": "Nu s-a putut elimina finalizarea",
+    "error_mark": "Nu s-a putut marca ca finalizat",
+    "title": "Obișnuințe active",
+    "completed": "finalizate"
+  },
+  "daily_planning_stats": {
+    "day_streak": "Serie de zile",
+    "tasks_done": "Sarcini finalizate",
+    "perfect_days": "Zile perfecte"
+  },
+  "evening_reminder_banner": {
+    "title": "Este timpul pentru planificarea de seară",
+    "description": "Acordă-ți un moment pentru a planifica mâine și a reflecta asupra zilei de azi",
+    "reminder_enabled_title": "Memento activat!",
+    "reminder_enabled_desc": "Vei primi o notificare la 20:00 pentru a planifica mâine.",
+    "reminder_disabled_title": "Memento dezactivat",
+    "reminder_disabled_desc": "Nu vei primi memento-uri de seară.",
+    "disable": "Dezactivează",
+    "remind_me": "Amintește-mi"
+  },
+  "language": {
+    "label": "Limbă",
+    "en": "Engleză",
+    "it": "Italiană"
+  },
+  "challenge_card": {
+    "challenge_complete": "🎉 Provocare finalizată!",
+    "completed_challenge": "Ai finalizat provocarea de {{days}} zile!",
+    "day_checked": "Zi înregistrată! 🔥",
+    "day_done": "Ziua {{day}} făcută. Continuă așa!",
+    "fresh_start": "Start nou",
+    "fresh_start_desc": "Jokeri resetați. Fiecare zi este o nouă oportunitate. 💪",
+    "challenge_resumed": "Provocare reluată",
+    "lets_keep_going": "Să continuăm!",
+    "no_jokers_warning": "Niciun joker rămas – orice recădere va pune în pauză.",
+    "challenge_paused": "Provocare în pauză",
+    "take_time": "Ia-ți timpul necesar",
+    "challenge_removed": "Provocare eliminată",
+    "challenge_deleted": "Provocarea a fost ștearsă",
+    "days_completed": "zile finalizate",
+    "day_completed": "zi finalizată",
+    "complete_excl": "Finalizată!",
+    "resume": "Reluare",
+    "pause": "Pauză",
+    "reset": "Resetează",
+    "delete": "Șterge",
+    "all_jokers_used": "Toți jokerii folosiți",
+    "paused_at_day": "În pauză în ziua {{day}}. Reluați fără jokeri sau începeți din nou.",
+    "resume_detox": "Reluare detox",
+    "reset_detox": "Resetare detox",
+    "resume_no_jokers": "Reluarea continuă fără jokeri – orice recădere va pune din nou în pauză.",
+    "checked_in_today": "Verificare făcută astăzi",
+    "check_in_today": "Verifică astăzi",
+    "days_to_go": "{{days}} zile rămase – vei reuși!",
+    "start_fresh_title": "Începi din nou?",
+    "start_fresh_desc": "Aceasta va reseta progresul tău și va restaura toți cei 3 jokeri.",
+    "keep_going": "Continuă",
+    "enter_journey": "Intră în călătorie",
+    "hide_details": "Ascunde detalii",
+    "view_steps_science": "Vezi pașii zilnici și știința",
+    "the_science": "Știința",
+    "daily_steps": "Pași zilnici",
+    "day_of": "Ziua {{current}} / {{total}}",
+    "paused": "În pauză"
+  },
+  "today_overview": {
+    "more_habits": "+{{count}} alte obișnuințe",
+    "no_habits": "Încă nicio obișnuință. Creează una pentru a începe!",
+    "all_done": "Totul este făcut pentru azi! Excelentă muncă!",
+    "lets_go": "Să facem ca ziua să conteze!",
+    "left_count": "{{count}} rămase – vei reuși!"
+  },
+  "micro_actions": {
+    "title": "Victorii rapide",
+    "done_count": "{{count}}/3 făcute"
+  },
+  "gamification": {
+    "level": "Nivelul {{level}}",
+    "next_level": "Nivelul următor",
+    "habits_done": "Obișnuințe făcute",
+    "best_streak": "Cea mai bună serie",
+    "challenges_won": "Provocări câștigate",
+    "reflections": "Reflecții",
+    "badges": "Insigne ({{earned}}/{{total}})"
+  },
+  "habit_card": {
+    "habit_deleted": "Obișnuință ștearsă",
+    "habit_removed": "Obișnuința a fost eliminată",
+    "edit": "Editează",
+    "day_streak": "serie de {{count}} zile",
+    "day_streak_plural": "serie de {{count}} zile",
+    "this_week": "Săptămâna aceasta"
+  },
+  "recovery_timeline": {
+    "what_to_expect": "Ce să aștepți",
+    "tips_for_success": "Sfaturi pentru succes"
+  },
+  "learn_content": {
+    "articles_description": "Aprofundări săptămânale în știință, psihologie și recuperare.",
+    "guides_description": "Lecturi scurte pentru a înțelege călătoria ta și a construi conștientizarea.",
+    "no_articles_title": "Încă nu există articole",
+    "no_articles_description": "Conținut educațional nou va fi publicat săptămânal. Revino curând pentru informații despre știința recuperării și bunăstare.",
+    "back_to_articles": "Înapoi la articole",
+    "article_not_found": "Articol negăsit",
+    "key_takeaways_label": "Concluzii cheie",
+    "guides": {
+      "dopamine": {
+        "title": "Cum funcționează dopamina",
+        "category": "Neuroștiință",
+        "read_time": "3 min",
+        "summary": "Înțelege sistemul de recompensă al creierului și de ce recuperarea necesită timp.",
+        "content": [
+          "Dopamina este un neurotransmițător care joacă un rol crucial în modul în care experimentăm plăcerea și motivația. Este adesea numită substanța „bunăstării”, dar este mai corect descrisă ca substanța „căutării”.",
+          "Când ne angajăm în comportamente adictive, creierul nostru eliberează cantități neobișnuit de mari de dopamină. În timp, creierul se adaptează prin reducerea receptorilor de dopamină, ceea ce înseamnă că avem nevoie de mai multă stimulare pentru a simți aceeași plăcere.",
+          "În timpul recuperării, creierul tău se reconectează literalmente. Receptorii de dopamină se regenerează, iar nivelul tău de bază al plăcerii se recalibrează. Acest proces necesită timp – de obicei 90‑180 de zile pentru o îmbunătățire semnificativă.",
+          "Vestea bună: creierul tău are o plasticitate remarcabilă. În fiecare zi de recuperare, construiești noi căi neuronale și restaurezi funcția dopaminergică sănătoasă."
+        ],
+        "key_takeaways": [
+          "Dopamina conduce comportamentul de căutare, nu doar plăcerea",
+          "Recuperarea implică schimbări fizice în creier",
+          "90‑180 de zile pentru o regenerare semnificativă a receptorilor",
+          "Creierul tău poate și se va vindeca"
+        ]
+      },
+      "relapses": {
+        "title": "Gestionarea recăderilor",
+        "category": "Recuperare",
+        "read_time": "4 min",
+        "summary": "Recăderile nu sunt eșecuri – sunt oportunități de învățare. Iată cum să le gestionezi.",
+        "content": [
+          "Mai întâi, să redefinim recăderea: nu este un eșec moral sau un semn că recuperarea nu funcționează. Recăderea face adesea parte din procesul de recuperare, iar cercetările arată că majoritatea oamenilor care se recuperează cu succes experimentează multiple recăderi.",
+          "Cheia este modul în care răspunzi. Efectul de încălcare a abstinenței apare atunci când o scăpare duce la abandonarea completă a eforturilor de recuperare. Evitarea acestei mentalități este crucială.",
+          "După o recădere: 1) Nu catastrofa – o scăpare nu șterge progresul tău. 2) Analizează ce a declanșat-o. 3) Identifică ce ai putea face diferit. 4) Revino imediat pe drumul cel bun. 5) Caută sprijin.",
+          "Strategiile de prevenire includ: identificarea declanșatorilor tăi, crearea de bariere de mediu, un partener de responsabilitate și construirea unor surse sănătoase de dopamină prin exerciții fizice, conexiuni sociale și obiective semnificative."
+        ],
+        "key_takeaways": [
+          "Recăderea face adesea parte din recuperare, nu sfârșitul ei",
+          "O scăpare nu șterge tot progresul",
+          "Analizează declanșatorii și învață din fiecare experiență",
+          "Revino imediat pe drumul cel bun – nu aștepta „mâine”"
+        ]
+      },
+      "withdrawal": {
+        "title": "Înțelegerea sevrajului",
+        "category": "Sănătate",
+        "read_time": "3 min",
+        "summary": "Ce să aștepți în timpul sevrajului și cum să faci față.",
+        "content": [
+          "Simptomele de sevraj sunt răspunsul creierului la absența nivelurilor ridicate de dopamină la care se obișnuise. Simptomele comune includ: iritabilitate, anxietate, depresie, dificultăți de concentrare, insomnie și pofte intense.",
+          "Faza acută (primele 1‑2 săptămâni) este de obicei cea mai dificilă. Simptomele ating vârful în jurul zilelor 3‑7 și scad treptat. Înțelegerea acestei cronologii te ajută să știi că partea cea mai grea este temporară.",
+          "Strategii de gestionare: menține-te hidratat, fă exerciții regulate (chiar și plimbările ușoare ajută), menține un program de somn, evită izolarea, folosește exerciții de respirație în timpul vârfurilor de poftă și amintește-ți că fiecare moment dificil este creierul tău care se vindecă.",
+          "Activitatea fizică este deosebit de puternică – crește în mod natural dopamina și endorfinele, ajutând la reducerea decalajului neurochimic lăsat în timpul recuperării."
+        ],
+        "key_takeaways": [
+          "Simptomele ating vârful în prima săptămână, apoi se ameliorează",
+          "Exercițiile fizice sunt unul dintre cele mai bune instrumente de gestionare",
+          "Fiecare moment dificil vindecă literalmente creierul tău",
+          "Rămâi conectat – nu te izola"
+        ]
+      },
+      "habits": {
+        "title": "Construirea de noi obișnuințe",
+        "category": "Psihologie",
+        "read_time": "4 min",
+        "summary": "Înlocuiește vechile modele cu rutine sănătoase care durează.",
+        "content": [
+          "A rupe o dependență nu înseamnă doar a opri un comportament – ci a-l înlocui cu ceva mai bun. Creierul tău tânjește după calea de recompensă pe care dependența o oferea, așa că trebuie să construiești noi căi.",
+          "Bucla obișnuinței constă în: Declanșator → Rutină → Recompensă. Pentru a schimba o obișnuință, identifică-ți declanșatorii (timp, loc, stare emoțională), înlocuiește rutina cu una mai sănătoasă și asigură-te că primești totuși o recompensă.",
+          "Începe cu pași mici. A încerca să-ți refaci toată viața dintr-o dată duce la epuizare. Concentrează-te pe o obișnuință cheie – adesea exercițiile fizice – care creează efecte pozitive în lanț asupra somnului, stării de spirit și motivației.",
+          "Consecvența bate intensitatea. O plimbare zilnică de 10 minute este mai puternică decât un antrenament ocazional de o oră. Obișnuințele se construiesc prin repetiție, nu prin intensitate."
+        ],
+        "key_takeaways": [
+          "Înlocuiește, nu doar elimina – umple golul",
+          "Identifică-ți declanșatorii și planifică răspunsuri alternative",
+          "Începe cu o obișnuință cheie",
+          "Consecvența bate intensitatea de fiecare dată"
+        ]
+      },
+      "neuroplasticity": {
+        "title": "Creierul tău se poate schimba",
+        "category": "Neuroștiință",
+        "read_time": "3 min",
+        "summary": "Știința neuroplasticității și de ce recuperarea este întotdeauna posibilă.",
+        "content": [
+          "Neuroplasticitatea este capacitatea creierului de a se reorganiza prin formarea de noi conexiuni neuronale. Aceasta înseamnă că indiferent de cât timp te-ai luptat, creierul tău se poate schimba și vindeca.",
+          "De fiecare dată când rezisti unui impuls, întărești noi căi neuronale. Este ca și cum ai construi un mușchi – fiecare repetiție o face pe următoarea puțin mai ușoară. Creierul își schimbă literalmente structura în funcție de alegerile tale.",
+          "Studiile arată că meditația, exercițiile fizice și învățarea de noi abilități accelerează neuroplasticitatea. Aceste activități cresc BDNF (factorul neurotrofic derivat din creier), care ajută la crearea de noi neuroni și conexiuni.",
+          "Timpul pentru schimbări vizibile variază, dar majoritatea oamenilor raportează îmbunătățiri semnificative în claritate, stare de spirit și pofte între 30 și 90 de zile. Amintește-ți: nu aștepți doar schimbarea – o construiești activ."
+        ],
+        "key_takeaways": [
+          "Creierul tău se poate schimba fizic la orice vârstă",
+          "Fiecare alegere sănătoasă întărește căile de recuperare",
+          "Exercițiile fizice și meditația accelerează vindecarea creierului",
+          "30‑90 de zile aduc de obicei îmbunătățiri vizibile"
+        ]
+      }
+    },
+    "timeline": {
+      "acute": {
+        "name": "Faza acută",
+        "day_range": "Zilele 1‑14",
+        "description": "Cea mai dificilă fază. Creierul tău se adaptează la absența stimulării excesive de dopamină.",
+        "symptoms": [
+          "Pofte și impulsuri intense",
+          "Schimbări de dispoziție și iritabilitate",
+          "Dificultăți de somn",
+          "Anxietate și neliniște",
+          "Ceață mentală și motivație scăzută"
+        ],
+        "tips": [
+          "Ia-o o oră la rând",
+          "Ține-te ocupat cu distrageri sănătoase",
+          "Evită complet declanșatorii",
+          "Fă exerciții în fiecare zi, chiar și doar o plimbare",
+          "Amintește-ți: această fază este temporară"
+        ]
+      },
+      "stabilization": {
+        "name": "Stabilizare",
+        "day_range": "Zilele 15‑45",
+        "description": "Lucrurile încep să se stabilizeze. Poftele devin mai puțin intense și începi să întrevezi claritate.",
+        "symptoms": [
+          "Pofte reduse dar ocazionale",
+          "Stare de spirit și energie îmbunătățite",
+          "Modele de somn mai bune",
+          "Concentrare crescută",
+          "Posibile perioade de platou"
+        ],
+        "tips": [
+          "Începe să construiești noi obișnuințe sănătoase",
+          "Nu confunda platoul cu eșecul",
+          "Începe o auto-reflecție mai profundă",
+          "Conectează-te cu comunitatea de sprijin",
+          "Sărbătorește micile victorii"
+        ]
+      },
+      "reconstruction": {
+        "name": "Reconstrucție",
+        "day_range": "Zilele 46‑90",
+        "description": "Creierul tău se reconstruiește activ. Receptorii de dopamină se regenerează și plăcerea naturală revine.",
+        "symptoms": [
+          "Stare de spirit de bază mai stabilă",
+          "Plăcerea naturală a activităților",
+          "Încredere în sine îmbunătățită",
+          "Gândire mai clară",
+          "Pofte ocazionale (gestionabile)"
+        ],
+        "tips": [
+          "Urmărește obiective semnificative",
+          "Construiește relații mai profunde",
+          "Practică recunoștința în mod regulat",
+          "Rămâi vigilent dar încrezător",
+          "Ajută-i pe alții în călătoria lor"
+        ]
+      },
+      "consolidation": {
+        "name": "Consolidare",
+        "day_range": "Ziua 90+",
+        "description": "Noile căi neuronale sunt consolidate. Recuperarea devine noua ta normalitate, dar conștientizarea pe termen lung rămâne importantă.",
+        "symptoms": [
+          "Pofte rare și slabe",
+          "Sentiment puternic de sine",
+          "Reglare emoțională stabilă",
+          "Motivație și avânt ridicate",
+          "Sentiment profund de libertate"
+        ],
+        "tips": [
+          "Menține obișnuințele sănătoase",
+          "Rămâi umil și conștient",
+          "Dă înapoi comunității",
+          "Continuă dezvoltarea personală",
+          "Nu lua niciodată recuperarea ca pe ceva garantat"
+        ]
+      }
+    }
+  },
+  "challenge_journey": {
+    "challenge_not_found": "Provocare negăsită",
+    "journey_progress": "Progresul călătoriei",
+    "your_journey": "Călătoria ta",
+    "goal_reached": "🎉 Ți-ai atins obiectivul!",
+    "continue_90": "Ai finalizat provocarea de {{days}} zile. Vrei să continui până la 90 de zile?",
+    "continue_to_90": "Continuă până la 90 de zile →",
+    "today": "Astăzi",
+    "day_n": "Ziua {{n}}"
+  },
+  "daily_content": {
+    "your_coach": "Coach-ul tău",
+    "mental_mission": "Misiune mentală",
+    "behavioral_mission": "Misiune comportamentală",
+    "how_was_today": "Cum a fost azi?",
+    "tough": "Greu",
+    "manageable": "Gestionabil",
+    "strong": "Puternic",
+    "setback_today": "Am avut o recădere astăzi",
+    "you_checked_in": "Te-ai verificat:",
+    "setback_message": "Ai avut o recădere în această zi. Un joker a fost folosit – vei reîncerca această zi. 🤍",
+    "setback_confirm_title": "Ești sigur?",
+    "setback_confirm_desc": "Raportarea unei recăderi va folosi 1 joker ({{remaining}} rămași). Ziua nu va avansa – vei reîncerca această zi.",
+    "last_joker_warning": "⚠️ Acesta este ultimul tău joker. Folosirea lui va pune provocarea în pauză.",
+    "go_back": "Înapoi",
+    "yes_setback": "Da, am avut o recădere",
+    "checkin_saved": "Verificare salvată",
+    "great_reflecting": "Bună treabă reflectând asupra zilei tale."
+  },
+  "suggested_challenges": {
+    "days": "{{count}} zile",
+    "joined": "{{count}} participanți",
+    "beginner": "Începător",
+    "intermediate": "Intermediar",
+    "advanced": "Avansat"
+  },
+  "suggested_habits": {
+    "quick_start": "Începe cu obișnuințe sugerate:",
+    "easy": "Ușor",
+    "medium": "Mediu",
+    "challenge": "Provocare",
+    "items": {
+      "drink_water": { "title": "Bea 8 pahare de apă", "description": "Rămâi hidratat pe parcursul zilei" },
+      "deep_breaths": { "title": "Fă 5 respirații adânci", "description": "Reset rapid de conștientizare" },
+      "make_bed": { "title": "Fă-ți patul", "description": "Începe ziua cu o mică victorie" },
+      "read_10min": { "title": "Citește 10 minute", "description": "Extinde-ți cunoștințele în fiecare zi" },
+      "walk_10min": { "title": "Plimbă-te 10 minute", "description": "Exercițiu ușor pentru corp și minte" },
+      "eat_fruit": { "title": "Mănâncă un fruct", "description": "Adaugă mai mulți nutrienți în dieta ta" },
+      "gratitude": { "title": "Practică recunoștința", "description": "Scrie 3 lucruri pentru care ești recunoscător" },
+      "meditate_15min": { "title": "Meditează 15 minute", "description": "Concentrare profundă și relaxare" },
+      "exercise_30min": { "title": "Fă exerciții 30 de minute", "description": "Construiește forță și rezistență" },
+      "sleep_8hrs": { "title": "Dormi 8 ore", "description": "Prioritizează odihna de calitate" },
+      "no_phone_1hr": {
+        "title": "Fără telefon în prima oră",
+        "description": "Începe ziua cu intenție"
+      }
+    }
+  },
+  "emergency_urge": {
+    "header": "Suport de urgență",
+    "feeling_title": "Cum te simți acum?",
+    "feeling_subtitle": "Nicio judecată – spune-mi ce se întâmplă.",
+    "location_title": "Unde ești?",
+    "location_subtitle": "Acest lucru mă ajută să sugerez acțiunile potrivite.",
+    "alone_title": "Ești singur acum?",
+    "alone_subtitle": "Acest lucru ajută la personalizarea sfaturilor pentru tine.",
+    "yes_alone": "Da, sunt singur",
+    "no_with_others": "Nu, cu alte persoane",
+    "loading_title": "Pregătesc sfaturile tale...",
+    "loading_subtitle": "Respiră adânc în timp ce pregătesc totul.",
+    "actions_title": "Fă asta acum",
+    "remember_why": "Amintește-ți de ce",
+    "close_button": "Mă simt mai bine",
+    "footer_note": "Impulsul va trece. Vei reuși. 💪",
+    "personal_reminder": "Ești mai puternic decât acest moment.",
+    "calming_message": "Acest impuls este intens dar temporar. Va trece în 15‑20 de minute. Respiră și lasă valul să treacă.",
+    "fallback_action_1": "Fă un duș rece",
+    "fallback_action_2": "Ieși la o plimbare sau la alergat",
+    "fallback_action_3": "Fă exerciții fizice",
+    "feelings": {
+      "stressed": "Stresat",
+      "bored": "Plictisit",
+      "lonely": "Singur",
+      "anxious": "Anxios",
+      "sad": "Trist",
+      "frustrated": "Frustrat",
+      "tired": "Obișnuit",
+      "restless": "Neliniștit",
+      "overwhelmed": "Copieșit"
+    },
+    "locations": {
+      "home_bedroom": "Acasă – dormitor",
+      "home_living": "Acasă – living",
+      "work": "Serviciu / birou",
+      "school": "Școală",
+      "public": "Loc public",
+      "bathroom": "Baie",
+      "other": "Altceva"
+    }
+  },
+  "failure_debrief": {
+    "title": "Analiza recăderii",
+    "description": "Ai avut o recădere? Este în regulă – face parte din călătorie. Să transformăm această experiență într-o oportunitate de învățare.",
+    "start": "Începe analiza",
+    "continue": "Continuă analiza",
+    "history": "Istoric",
+    "unfinished_notice": "Ai o analiză neterminată. Continuă când ești gata.",
+    "step_label": "Pasul {{step}}",
+    "step1_title": "Ce s-a întâmplat?",
+    "step2_title": "Primul semn ignorat",
+    "step3_title": "Ce să schimbi",
+    "step1_desc": "Să înțelegem contextul acestei recăderi",
+    "step2_desc": "Există adesea un semn de avertizare pe care l-am ratat",
+    "step3_desc": "Transformă această experiență în învățare concretă",
+    "feeling_label": "Cum te simțeai?",
+    "when_label": "Când s-a întâmplat?",
+    "time_placeholder": "Selectează momentul zilei",
+    "context_label": "Ce se întâmpla? (context)",
+    "context_placeholder": "ex., Eram singur acasă după o zi stresantă...",
+    "trigger_label": "Un declanșator specific?",
+    "trigger_placeholder": "ex., Am văzut o imagine provocatoare, m-am simțit respins...",
+    "signal_hint": "Privind înapoi, există de obicei un mic semn pe care l-am ignorat. Identificarea lui ne ajută să îl prindem data viitoare.",
+    "signal_label": "Ce semn ai ignorat?",
+    "tell_more_label": "Spune-mi mai multe",
+    "tell_more_placeholder": "Care a fost semnul pe care l-ai observat dar nu ai acționat?",
+    "data_noticed_title": "Ce am observat din datele tale",
+    "no_reflection": "Nicio reflecție de seară recentă înregistrată",
+    "no_journal": "Nicio intrare recentă în jurnal înregistrată",
+    "triggers_logged": "{{count}} declanșatori recenti înregistrați",
+    "no_patterns": "Niciun tipar clar detectat – este în regulă!",
+    "loading_suggestions": "Pregătesc sugestii personalizate...",
+    "ai_suggestions_title": "Sugestii Coach AI",
+    "encouragement": "Fiecare eșec este o pregătire pentru o revenire. Ce vei face diferit data viitoare?",
+    "action_plan_label": "Planul tău de acțiune pentru data viitoare",
+    "action_plan_placeholder": "ex., Când mă simt singur noaptea, voi suna un prieten sau voi ieși la o plimbare...",
+    "remember_label": "Amintește-ți",
+    "remember_message": "Recăderile nu te definesc – ceea ce contează este cum răspunzi. Ești aici, înveți, iar asta necesită curaj. 💪",
+    "back": "Înapoi",
+    "next": "Următorul",
+    "complete": "Finalizează",
+    "history_title": "Istoric analize",
+    "history_desc": "Revizuiește analizele tale anterioare și identifică tiparele",
+    "no_debriefs": "Nicio analiză finalizată încă.",
+    "history_mood": "Stare de spirit",
+    "history_context": "Context",
+    "history_trigger": "Declanșator",
+    "moods": {
+      "stressed": "😰 Stresat",
+      "anxious": "😟 Anxios",
+      "bored": "😐 Plictisit",
+      "lonely": "😢 Singur",
+      "tired": "😴 Obosit",
+      "angry": "😠 Furios",
+      "sad": "😔 Trist",
+      "overwhelmed": "😵 Copieșit"
+    },
+    "times": {
+      "early_morning": "Dimineața devreme (5‑8)",
+      "morning": "Dimineața (8‑12)",
+      "afternoon": "După-amiază (12‑17)",
+      "evening": "Seara (17‑21)",
+      "night": "Noapte (21‑24)",
+      "late_night": "Noaptea târziu (0‑5)"
+    },
+    "signals": {
+      "skipped_reflection": "Am sărit peste reflecția de seară",
+      "skipped_journal": "Nu am scris în jurnal",
+      "poor_sleep": "Somn prost în noaptea precedentă",
+      "skipped_exercise": "Am sărit peste exerciții",
+      "isolation": "Prea mult timp singur",
+      "screen_time": "Timp excesiv petrecut pe ecran",
+      "stress_buildup": "Am ignorat acumularea de stres",
+      "trigger_ignored": "Am ignorat un declanșator cunoscut",
+      "other": "Altceva"
+    }
+  },
+  "recovery_journey": {
+    "title": "Călătoria recuperării",
+    "day_phase": "Ziua {{day}} · {{phase}}",
+    "day_label": "Ziua",
+    "clean_days": "Zile curate",
+    "setbacks": "Recăderi",
+    "debriefs": "Analize",
+    "view_insight": "Vezi informația zilei",
+    "ai_insight": "Informație AI despre fază",
+    "analyzing": "Se analizează călătoria ta...",
+    "insight_error": "Nu s-a putut încărca informația. Încearcă din nou mai târziu.",
+    "phases": {
+      "acute": {
+        "name": "Faza acută",
+        "description": "Cea mai dificilă perioadă – creierul tău se adaptează la viața fără super-stimul. Simptomele de sevraj sunt normale și temporare."
+      },
+      "stabilization": {
+        "name": "Stabilizare",
+        "description": "Poftele devin mai puțin intense. Nivelul de bază al dopaminei din creierul tău se normalizează lent. Construirea de noi rutine este esențială."
+      },
+      "reconstruction": {
+        "name": "Reconstrucție",
+        "description": "Căile neuronale se reconectează. Reglarea emoțională se îmbunătățește. Construiești persoana care vrei să devii."
+      },
+      "consolidation": {
+        "name": "Consolidare",
+        "description": "Noile obișnuințe devin naturale. Creierul tău s-a vindecat semnificativ. Vigilența rămâne importantă, dar ai o bază solidă."
+      }
+    }
+  },
+  "suggested_challenges_content": {
+    "social-media-7": {
+      "title": "Detox de pe rețelele sociale de 7 zile",
+      "description": "Fă o pauză de o săptămână de la toate rețelele sociale pentru a recăpăta concentrarea și prezența.",
+      "science_note": "Studiile arată că chiar și o săptămână fără rețele sociale poate reduce anxietatea cu 23% și poate îmbunătăți semnificativ calitatea somnului.",
+      "daily_steps": [
+        "Șterge sau deconectează-te de pe aplicațiile sociale",
+        "Înlocuiește timpul de derulare cu o plimbare de 10 minute",
+        "Notează-ți impulsurile și emoțiile",
+        "Conectează-te cu cineva în persoană sau la telefon",
+        "Reflectează asupra a ceea ce ai câștigat astăzi"
+      ]
+    },
+    "screen-time-21": {
+      "title": "Resetarea timpului petrecut pe ecran de 21 de zile",
+      "description": "Reduce treptat timpul petrecut pe ecran și construiește obiceiuri digitale mai sănătoase.",
+      "science_note": "Creierul are nevoie de aproximativ 21 de zile pentru a forma noi căi neuronale. Această durată optimizează formarea obișnuințelor.",
+      "daily_steps": [
+        "Stabilește o limită zilnică de timp pe ecran (reduce cu 30 min/săptămână)",
+        "Fără telefon în timpul mesei",
+        "Prima oră după trezire fără telefon",
+        "Citește cărți fizice înainte de culcare",
+        "Sesiune săptămânală de curățare digitală"
+      ]
+    },
+    "dopamine-detox-3": {
+      "title": "Resetarea dopaminei de 3 zile",
+      "description": "Un reset scurt dar intens pentru a rupe ciclul stimulării constante.",
+      "science_note": "Sensibilitatea receptorilor de dopamină poate începe să se recupereze în 72 de ore de la reducerea activităților cu stimulare ridicată.",
+      "daily_steps": [
+        "Fără rețele sociale, jocuri sau streaming",
+        "Mănâncă alimente simple, neprocesate",
+        "Practică 15 minute de meditație",
+        "Fă o plimbare în natură",
+        "Scrie despre experiența ta"
+      ]
+    },
+    "mindfulness-30": {
+      "title": "Călătoria conștientizării de 30 de zile",
+      "description": "Construiește o practică constantă de meditație și transformă-ți claritatea mentală.",
+      "science_note": "30 de zile de meditație pot crește materia cenușie în cortexul prefrontal și pot reduce activitatea în amigdală.",
+      "daily_steps": [
+        "Meditație de dimineață (începe cu 5 min, ajungi la 20)",
+        "3 respirații conștiente înainte de fiecare masă",
+        "Jurnal de recunoștință de seară",
+        "O activitate conștientă (mers, masă)",
+        "Scanare corporală înainte de culcare"
+      ]
+    },
+    "negativity-fast-7": {
+      "title": "Postul de negativitate de 7 zile",
+      "description": "Elimină plângerile, critica și dialogul interior negativ timp de o săptămână.",
+      "science_note": "Modelele de gândire negativă întăresc căile neuronale. Ruperea ciclului timp de 7 zile poate începe să reconecteze creierul.",
+      "daily_steps": [
+        "Prinde și reformulează gândurile negative",
+        "Fără plângeri sau bârfe",
+        "Înlocuiește critica cu curiozitatea",
+        "Practică exerciții de auto-compasiune",
+        "Încheie ziua cu 3 observații pozitive"
+      ]
+    },
+    "sleep-reset-14": {
+      "title": "Resetarea somnului de 14 zile",
+      "description": "Optimizează-ți programul de somn și trezește-te cu adevărat odihnit.",
+      "science_note": "Resetarea ritmului circadian poate dura 1‑2 săptămâni. Orele constante de somn sunt mai importante decât orele totale.",
+      "daily_steps": [
+        "Aceleași ore de culcare și trezire în fiecare zi",
+        "Fără ecrane cu o oră înainte de culcare",
+        "Atenuează luminile după apus",
+        "Expunere la lumina dimineții (15 min)",
+        "Fără cofeină după ora 14"
+      ]
+    },
+    "nofap-30": {
+      "title": "Minte curată 30 de zile",
+      "description": "Eliberează-te de pornografie și recăpătează-ți claritatea mentală și energia.",
+      "science_note": "Sensibilitatea receptorilor de dopamină începe de obicei să se normalizeze după 2‑4 săptămâni de abstinență de la super-stimuli.",
+      "daily_steps": [
+        "Instalează blocante de site-uri pe toate dispozitivele",
+        "Exerciții fizice zilnice (minim 20 min)",
+        "Jurnalizează impulsurile și declanșatorii",
+        "Practică tehnica de surfing a impulsului",
+        "Conectează-te cu un partener de responsabilitate"
+      ]
+    },
+    "recovery-90": {
+      "title": "Recuperare profundă de 90 de zile",
+      "description": "O călătorie completă pentru a reconecta creierul și a construi o libertate durabilă.",
+      "science_note": "Recuperarea completă a sistemului dopaminergic și formarea de noi căi neuronale necesită de obicei 90 de zile de efort constant.",
+      "daily_steps": [
+        "Duș rece zilnic pentru disciplină",
+        "Meditație sau rugăciune (15 min)",
+        "Exerciții fizice",
+        "Verificare săptămânală cu grupul de suport",
+        "Reflecție zilnică și urmărirea progresului"
+      ]
+    },
+    "awareness-week-7": {
+      "title": "Săptămâna conștientizării",
+      "description": "Înțelege-ți declanșatorii și modelele înainte de a te angaja într-o provocare mai lungă.",
+      "science_note": "Conștientizarea de sine este primul pas spre schimbare. Înțelegerea declanșatorilor crește rata de succes cu 60%.",
+      "daily_steps": [
+        "Înregistrează fiecare impuls (oră, declanșator, intensitate)",
+        "Identifică-ți cei 3 declanșatori principali",
+        "Creează un plan de acțiune de urgență",
+        "Elimină punctele ușoare de acces",
+        "Pregătește-ți mediul pentru succes"
+      ]
+    }
+  },
+
+  "privacy_policy": {
+    "title": "Politica de confidențialitate",
+    "back_to_home": "Înapoi acasă",
+    "last_updated": "Ultima actualizare: februarie 2026",
+    "introduction": {
+      "title": "1. Introducere",
+      "content": "InnerBuild („noi”, „nostru”) operează aplicația InnerBuild. Această pagină vă informează despre politicile noastre privind colectarea, utilizarea și divulgarea datelor personale atunci când utilizați Serviciul nostru și despre opțiunile pe care le aveți asociate acestor date."
+    },
+    "information_collection": {
+      "title": "2. Colectarea și utilizarea informațiilor",
+      "content": "Colectăm diferite tipuri de informații în diverse scopuri pentru a furniza și îmbunătăți Serviciul nostru.",
+      "items": {
+        "email": "Adresa de e-mail pentru autentificare și comunicare",
+        "habit_data": "Date despre obișnuințe și jurnale personale pe care alegeți să le înregistrați",
+        "analytics": "Analize de utilizare pentru a îmbunătăți platforma noastră",
+        "device_info": "Informații despre dispozitiv pentru depanare"
+      }
+    },
+    "security": {
+      "title": "3. Securitate",
+      "content": "Securitatea datelor dumneavoastră este importantă pentru noi, dar amintiți-vă că nicio metodă de transmitere pe Internet sau metodă de stocare electronică nu este 100% sigură. Deși ne străduim să folosim mijloace comercial acceptabile pentru a vă proteja datele personale, nu putem garanta securitatea lor absolută."
+    },
+    "changes": {
+      "title": "4. Modificări ale acestei Politici de confidențialitate",
+      "content": "Putem actualiza Politica noastră de confidențialitate din când în când. Vă vom notifica despre orice modificări prin actualizarea datei „Ultima actualizare” pe această pagină."
+    },
+    "contact": {
+      "title": "5. Contactați-ne",
+      "content": "Dacă aveți întrebări despre această Politică de confidențialitate, contactați-ne la"
+    }
+  },
+
+  "terms_of_service": {
+    "title": "Termeni și condiții",
+    "back_to_home": "Înapoi acasă",
+    "last_updated": "Ultima actualizare: februarie 2026",
+    "acceptance": {
+      "title": "1. Acceptarea termenilor",
+      "content": "Prin accesarea și utilizarea aplicației InnerBuild, sunteți de acord și acceptați să fiți legat de termenii și prevederile acestui acord. Dacă nu sunteți de acord să respectați cele de mai sus, nu utilizați acest Serviciu."
+    },
+    "use_license": {
+      "title": "2. Licență de utilizare",
+      "content": "Se acordă permisiunea de a descărca temporar o copie a materialelor (informații sau software) de pe InnerBuild doar pentru vizualizare personală, necomercială și tranzitorie. Aceasta este o concesiune de licență, nu un transfer de proprietate, și în baza acestei licențe nu puteți:",
+      "items": {
+        "modify": "Modifica sau copia materialele",
+        "commercial": "Utiliza materialele în scop comercial sau pentru orice afișare publică",
+        "decompile": "Încerca să decompilați sau să decodificați orice software conținut pe InnerBuild",
+        "remove_notices": "Elimina orice drept de autor sau alte notificări de proprietate din materiale",
+        "transfer": "Transfera materialele unei alte persoane sau „oglindi” materialele pe orice alt server"
+      }
+    },
+    "disclaimer": {
+      "title": "3. Declinarea răspunderii",
+      "content": "Materialele de pe InnerBuild sunt furnizate „așa cum sunt”. InnerBuild nu oferă garanții, explicite sau implicite, și prin prezenta declină și neagă toate celelalte garanții, inclusiv, fără limitare, garanțiile sau condițiile implicite de comercializare, adecvare pentru un scop anume sau neîncălcare a drepturilor de proprietate intelectuală sau alte încălcări de drepturi."
+    },
+    "limitations": {
+      "title": "4. Limitări",
+      "content": "În niciun caz InnerBuild sau furnizorii săi nu vor fi răspunzători pentru nicio daună (inclusiv, fără limitare, daune pentru pierderea de date sau profit sau din cauza întreruperii activității) care decurg din utilizarea sau imposibilitatea de a utiliza materialele de pe InnerBuild."
+    },
+    "accuracy": {
+      "title": "5. Acuratețea materialelor",
+      "content": "Materialele care apar pe InnerBuild ar putea include erori tehnice, tipografice sau fotografice. InnerBuild nu garantează că materialele de pe site-ul său sunt exacte, complete sau actuale. InnerBuild poate face modificări materialelor conținute pe site-ul său în orice moment, fără notificare prealabilă."
+    },
+    "contact": {
+      "title": "6. Contactați-ne",
+      "content": "Dacă aveți întrebări despre acești Termeni și condiții, contactați-ne la"
+    }
+  },
+
+  "ai_coach_insight": {
+    "title": "Raport Coach AI",
+    "loading": "Se încarcă informațiile AI...",
+    "time_for_new": "Este timpul pentru un nou raport",
+    "get_report": "Obține raportul Coach AI",
+    "days_since_last": "Au trecut 4 zile de la ultima ta analiză",
+    "analyze_last_days": "Analizează-ți obișnuințele și declanșatorii din ultimele 4 zile",
+    "new": "Nou",
+    "habits_need_attention": "{{count}} obișnuință/obișnuințe necesită atenție",
+    "patterns_detected": "{{count}} tipar/tipare detectate",
+    "suggested_adjustments": "Ajustări sugerate ale obișnuințelor",
+    "completed": "{{rate}}% finalizat",
+    "trigger_patterns": "Tipare de declanșatori",
+    "common_emotions": "Emoții comune: {{emotions}}",
+    "top_recommendations": "Recomandări principale",
+    "generate_new": "Generează raport nou"
+  }
+}
