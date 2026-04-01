@@ -1,0 +1,2211 @@
+{
+  "common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Fechar",
+    "loading": "A carregar...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "confirm": "Confirmar",
+    "or": "ou",
+    "all": "Todos",
+    "new": "Novo",
+    "open": "Abrir",
+    "log": "Registar",
+    "pro": "Pro",
+    "premium": "Premium",
+    "free": "Grátis",
+    "upgrade": "Atualizar",
+    "manage": "Gerir",
+    "view_site": "Ver Site",
+    "recent": "Recente",
+    "annual": "Anual",
+    "completed": "concluído",
+    "active": "ativo",
+    "custom": "Personalizado",
+    "step": "Passo",
+    "add_step": "Adicionar passo",
+    "please_wait": "Aguarde...",
+    "connecting": "A conectar...",
+    "clear_filters": "Limpar filtros",
+    "swipe_explore": "deslize para explorar",
+    "swipe_read_more": "deslize para ler mais",
+    "back_to_top": "Voltar ao topo",
+    "view_all": "Ver tudo",
+    "details": "Detalhes",
+    "saving": "A guardar...",
+    "days": "dias",
+    "days_short": "d",
+    "unsaved": "Não guardado",
+    "accept": "Aceitar",
+    "dismiss": "Ignorar",
+    "applied": "Aplicado",
+    "dismissed": "Ignorado",
+    "generate": "Gerar",
+    "analyzing": "A analisar...",
+    "generating": "A gerar...",
+    "total": "total",
+    "avoided": "evitado",
+    "complete": "concluído",
+    "disable": "Desativar",
+    "remind_me": "Lembrar-me",
+    "reset": "Repor",
+    "done": "Feito",
+    "not_done": "Não feito",
+    "history": "Histórico",
+    "when": "Quando",
+    "i_will": "Vou",
+    "because_gives_me": "Porque me dá",
+    "month": "mês",
+    "refresh": "Atualizar"
+  },
+
+  "auth": {
+    "welcome_back": "Bem-vindo de volta",
+    "start_journey": "Inicie a sua jornada",
+    "sign_in_continue": "Inicie sessão para continuar o seu crescimento",
+    "create_account_begin": "Crie uma conta para começar a sua transformação",
+    "full_name": "Nome completo",
+    "your_name": "O seu nome",
+    "email": "E-mail",
+    "email_placeholder": "voce@exemplo.pt",
+    "password": "Palavra-passe",
+    "forgot_password": "Esqueceu a palavra-passe?",
+    "sign_in": "Iniciar sessão",
+    "sign_up": "Registar",
+    "create_account": "Criar conta",
+    "continue_google": "Continuar com Google",
+    "no_account": "Não tem conta?",
+    "have_account": "Já tem conta?",
+    "login_failed": "Falha no início de sessão",
+    "invalid_credentials": "E-mail ou palavra-passe inválidos. Tente novamente.",
+    "signup_failed": "Falha no registo",
+    "account_exists": "Conta existente",
+    "email_already_registered": "Este e-mail já está registado. Inicie sessão.",
+    "welcome_innerbuild": "Bem-vindo ao InnerBuild!",
+    "account_created": "A sua conta foi criada com sucesso.",
+    "verify_email_desc": "Verifique o seu e-mail e clique no link de verificação para ativar a sua conta.",
+    "email_not_verified_title": "E-mail não verificado",
+    "email_not_verified_desc": "Precisa primeiro de verificar o seu e-mail. Verifique a sua caixa de entrada e clique no link de confirmação.",
+    "google_signin_failed": "Falha no início de sessão com Google",
+    "unexpected_error": "Ocorreu um erro. Tente novamente.",
+    "sign_out": "Terminar sessão",
+    "log_out": "Sair"
+  },
+
+  "auth_validation": {
+    "invalid_email": "Introduza um endereço de e-mail válido",
+    "password_min": "A palavra-passe deve ter pelo menos 6 caracteres"
+  },
+
+  "forgot_password": {
+    "title": "Esqueceu a palavra-passe",
+    "description": "Introduza o seu endereço de e-mail e enviaremos um link para repor a sua palavra-passe.",
+    "send_reset_link": "Enviar link de reposição",
+    "sending": "A enviar...",
+    "back_to_login": "Voltar ao início de sessão",
+    "check_email": "Verifique o seu e-mail",
+    "reset_link_sent": "Enviámos um link para repor a palavra-passe para",
+    "check_spam": "Verifique a sua caixa de entrada e a pasta de spam.",
+    "back_to_sign_in": "Voltar ao início de sessão",
+    "reset_sent_title": "Link enviado",
+    "reset_sent_description": "Verifique o seu e-mail para o link de reposição.",
+    "reset_error_title": "Erro",
+    "reset_error_description": "Falha ao enviar o link. Tente novamente."
+  },
+
+  "dashboard": {
+    "good_morning": "Bom dia",
+    "good_afternoon": "Boa tarde",
+    "good_evening": "Boa noite",
+    "todays_habits": "Hábitos de hoje",
+    "completed_stats": "{{completed}}/{{total}} concluídos • {{percent}}%",
+    "explore_tools": "Explorar ferramentas",
+    "explore_tools_desc": "Recuperação, Coach IA, Rastreio de Gatilhos e mais",
+    "emergency_urge": "🚨 Emergência de Impulso",
+    "logout_confirm_title": "Tem a certeza que pretende terminar sessão?",
+    "logout_confirm_desc": "Terá de iniciar sessão novamente para utilizar a sua conta.",
+    "failed_update_habit": "Falha ao atualizar o hábito",
+    "failed_subscription": "Falha ao abrir a gestão de subscrição",
+    "quote_of_the_day": "Citação do Dia",
+    "start_daily_plan": "Inicie o Seu Plano Diário",
+    "start_daily_plan_desc": "Crie as suas listas de tarefas e não-tarefas para amanhã",
+    "open_daily_planning": "Abrir Planeamento",
+    "daily_planning": "Planeamento Diário",
+    "edit_full_plan": "Editar Plano Completo",
+    "todo_list": "Lista de Tarefas",
+    "not_todo_list": "Lista de Não-Fazer",
+    "great_job": "Bom trabalho!",
+    "avoided_behavior": "Evitou este comportamento",
+    "could_not_update": "Não foi possível atualizar a tarefa",
+    "could_not_update_status": "Não foi possível atualizar o estado"
+  },
+
+  "landing": {
+    "your_companion": "O seu companheiro completo para o crescimento pessoal",
+    "hero_title_1": "Construa a vida que merece,",
+    "hero_title_2": "um hábito de cada vez",
+    "hero_description": "InnerBuild combina rastreio de hábitos, desafios detox, ferramentas de recuperação e um coach IA para o ajudar a libertar-se do que o prende e tornar-se a melhor versão de si mesmo.",
+    "start_your_journey": "Inicie a Sua Jornada",
+    "view_pricing": "Ver Preços",
+    "dashboard": "Painel",
+    "get_started": "Começar",
+    "everything_transform": "Tudo o que precisa para se transformar",
+    "complete_toolkit": "Um kit completo concebido para apoiar a sua jornada desde o primeiro dia",
+    "and_more": "E muito mais",
+    "testimonials": "Testemunhos",
+    "real_people": "Pessoas reais, progresso real",
+    "tools_change_lives": "Ferramentas que realmente mudam vidas",
+    "tools_description": "Não são apenas funcionalidades. São as ferramentas que fazem a diferença entre tentar e transformar-se verdadeiramente.",
+    "most_impactful": "Mais Impactante",
+    "all_premium_for": "Todas as funcionalidades premium por",
+    "unlock_premium": "Desbloquear Premium",
+    "ready_to_start": "Pronto para começar a construir?",
+    "join_thousands": "Junte-se a milhares de pessoas que estão a transformar as suas vidas com InnerBuild. A sua jornada para melhores hábitos começa hoje.",
+    "get_started_free": "Começar Grátis",
+    "features": {
+      "smart_habit_tracking": "Rastreio Inteligente de Hábitos",
+      "smart_habit_desc": "Acompanhe hábitos diários com progresso visual, sequências e sugestões IA inteligentes que se adaptam aos seus padrões reais.",
+      "detox_challenges": "Desafios Detox",
+      "detox_challenges_desc": "Liberte-se do vício digital, maus hábitos e padrões negativos com desafios baseados na ciência (de 3 a 90 dias).",
+      "porn_recovery": "Programa de Recuperação de Pornografia",
+      "porn_recovery_desc": "Um programa dedicado e baseado na ciência com rastreio de sequências, check-ins diários, análise de gatilhos e apoio especializado.",
+      "ai_coach": "Coach IA Pessoal",
+      "ai_coach_desc": "Companheiro IA disponível 24/7 que o motiva, sugere hábitos personalizados, ajuda com desejos e guia a sua transformação.",
+      "trigger_tracking": "Rastreio e Análise de Gatilhos",
+      "trigger_tracking_desc": "Registe e analise o que desencadeia os seus impulsos. Identifique padrões e obtenha insights IA para construir defesas mais fortes.",
+      "daily_planning": "Planeamento e Reflexão Diária",
+      "daily_planning_desc": "Planeie o seu dia com listas de tarefas e não-tarefas. Termine cada dia com gratidão, verificação de humor e autorreflexão.",
+      "ai_habit_adaptation": "Adaptação de Hábitos com IA",
+      "ai_habit_adaptation_desc": "Sugere versões mais fáceis quando está com dificuldades",
+      "learn_section": "Secção Aprender",
+      "learn_section_desc": "Educação sobre dopamina e reconfiguração cerebral",
+      "streak_tracking": "Rastreio de Sequências",
+      "streak_tracking_desc": "Progresso visual e marcos",
+      "micro_actions": "Micro-Ações",
+      "micro_actions_desc": "Pequenas vitórias diárias em segundos",
+      "not_to_do_list": "Lista de Não-Fazer",
+      "not_to_do_desc": "Acompanhe comportamentos a evitar",
+      "recovery_timeline": "Linha do Tempo de Recuperação",
+      "recovery_timeline_desc": "Veja o progresso de cura do cérebro"
+    },
+    "stats": {
+      "recovery_days": "Dias de conteúdo de recuperação",
+      "suggested_habits": "Hábitos sugeridos",
+      "challenge_templates": "Modelos de desafios",
+      "ai_coach_available": "Coach IA disponível"
+    },
+    "testimonials_data": {
+      "t1": "O coach IA é como ter um terapeuta no bolso. Ajudou-me realmente a perceber porque continuava a recair.",
+      "t2": "Finalmente uma app que trata a recuperação a sério com ciência, não apenas força de vontade. A secção de neurociência mudou a minha perspetiva.",
+      "t3": "O rastreio de gatilhos ajudou-me a notar padrões que nunca tinha visto antes. Agora consigo realmente antecipar os dias difíceis.",
+      "t4": "Já experimentei muitas apps de hábitos. Esta funciona porque o planeamento diário é natural, não é uma tarefa árdua.",
+      "t5": "58 dias limpo. O rastreio de sequências manteve-me responsável mesmo quando ficou difícil.",
+      "t6": "Os desafios detox são bem estruturados. Fiz o detox de redes sociais de 30 dias e senti-me realmente mais calmo após duas semanas."
+    },
+    "premium_deep_dive": {
+      "porn_recovery_desc": "Não se trata de força de vontade. O programa é baseado em neurociência — ajuda-o a entender exatamente porque o seu cérebro ficou preso e como reconfigurá-lo passo a passo.",
+      "porn_recovery_features": [
+        "Rastreio científico de sequências",
+        "Check-ins diários e progresso",
+        "Ferramentas de análise e aprendizagem",
+        "Gestão de impulsos de emergência",
+        "Educação em neurociência",
+        "Motivações e razões pessoais"
+      ],
+      "trigger_tracking_desc": "A maioria das recaídas parecem aleatórias — mas não são. O Rastreio de Gatilhos revela os padrões ocultos por trás dos seus momentos mais difíceis.",
+      "trigger_tracking_features": [
+        "Registe impulsos e emoções em segundos",
+        "Mapa de calor visual dos seus padrões",
+        "Relatórios de insights gerados por IA",
+        "Identificação de causas principais",
+        "Estratégias de prevenção personalizadas",
+        "Análise de tempo e contexto"
+      ],
+      "ai_coach_desc": "Imagine um coach que conhece os seus hábitos, lutas e objetivos — disponível às 3 da manhã quando surge um desejo.",
+      "ai_coach_features": [
+        "Conselhos personalizados sobre hábitos",
+        "Apoio para desejos e impulsos",
+        "Orientação para prevenção de recaídas",
+        "Disponível 24/7, sempre",
+        "Histórico completo de chat",
+        "Adaptado à sua jornada"
+      ],
+      "learn_desc": "Compreenda a ciência por trás dos seus hábitos, dopamina e recuperação cerebral.",
+      "learn_features": ["Artigos aprofundados", "Guias de recuperação", "Linha do tempo de cura cerebral"],
+      "habit_adaptation_desc": "A IA analisa os seus padrões reais de conclusão e sugere ajustes mais inteligentes.",
+      "habit_adaptation_features": [
+        "Deteção de padrões",
+        "Escala inteligente de dificuldade",
+        "Recomendações personalizadas por IA"
+      ],
+      "porn_recovery_mobile_desc": "Baseado em neurociência — entenda porque o seu cérebro ficou preso e reconfigurá-lo passo a passo.",
+      "porn_recovery_mobile_features": [
+        "Rastreio científico de sequências",
+        "Check-ins diários e progresso",
+        "Ferramentas de análise",
+        "Gestão de impulsos de emergência",
+        "Educação em neurociência",
+        "Motivações pessoais"
+      ],
+      "trigger_tracking_mobile_desc": "As recaídas parecem aleatórias — mas não são. Revele padrões ocultos e obtenha relatórios IA para prever e prevenir.",
+      "trigger_tracking_mobile_features": [
+        "Registe impulsos e emoções em segundos",
+        "Mapa de calor visual de padrões",
+        "Relatórios de insights IA",
+        "Identificação de causas principais",
+        "Estratégias de prevenção",
+        "Análise de tempo e contexto"
+      ],
+      "ai_coach_mobile_desc": "Um coach disponível às 3 da manhã quando surge um desejo. Sem julgamento — apenas orientação para o manter a avançar.",
+      "ai_coach_mobile_features": [
+        "Conselhos personalizados",
+        "Apoio para desejos e impulsos",
+        "Prevenção de recaídas",
+        "Disponível 24/7",
+        "Histórico completo de chat",
+        "Adaptado a si"
+      ],
+      "learn_mobile_desc": "A ciência por trás dos hábitos, dopamina e recuperação cerebral. O conhecimento torna cada esforço significativo.",
+      "learn_mobile_features": ["Artigos aprofundados", "Guias de recuperação", "Linha do tempo de cura cerebral"],
+      "habit_adaptation_mobile_desc": "A IA analisa os seus padrões reais de conclusão e sugere ajustes mais inteligentes.",
+      "habit_adaptation_mobile_features": ["Deteção de padrões", "Escala inteligente", "Recomendações IA"]
+    }
+  },
+
+  "explore": {
+    "title": "Ferramentas",
+    "subtitle": "Tudo o que precisa para crescer",
+    "free_tools": "Ferramentas Grátis",
+    "premium_tools": "Ferramentas Premium",
+    "unlock_all": "Desbloqueie todas as ferramentas com Premium",
+    "tools": {
+      "habits": "Hábitos",
+      "habits_desc": "Acompanhe e construa hábitos diários",
+      "detox_challenges": "Desafios Detox",
+      "detox_challenges_desc": "Desafios para quebrar maus hábitos",
+      "evening_reflection": "Reflexão Noturna",
+      "evening_reflection_desc": "Check-in diário e gratidão",
+      "daily_planning": "Planeamento Diário",
+      "daily_planning_desc": "Listas de tarefas e objetivos",
+      "trigger_tracking": "Rastreio de Gatilhos",
+      "trigger_tracking_desc": "Registe impulsos e análise de padrões com IA",
+      "porn_recovery": "Recuperação de Pornografia",
+      "porn_recovery_desc": "Caminho científico para a liberdade",
+      "ai_coach": "Coach IA",
+      "ai_coach_desc": "Orientação pessoal baseada em IA"
+    }
+  },
+
+  "habits": {
+    "title": "Os Meus Hábitos",
+    "completed_today": "{{completed}}/{{total}} concluídos hoje • {{percent}}%",
+    "search_placeholder": "Pesquisar hábitos...",
+    "no_habits_yet": "Ainda sem hábitos",
+    "start_journey": "Inicie a sua jornada criando o seu primeiro hábito",
+    "create_habit": "Criar Hábito",
+    "no_match_filters": "Nenhum hábito corresponde aos filtros",
+    "guide_title": "O Guia para Dominar Hábitos",
+    "guide_subtitle": "Um guia conciso para construir hábitos duradouros",
+    "guide_dialog_title": "Construir Bons Hábitos",
+    "categories": {
+      "all": "Todos",
+      "health": "Saúde",
+      "productivity": "Produtividade",
+      "mindfulness": "Atenção Plena",
+      "fitness": "Fitness",
+      "learning": "Aprendizagem",
+      "social": "Social",
+      "creativity": "Criatividade",
+      "general": "Geral"
+    },
+    "streak_days": "sequência de {{count}} dias",
+    "streak_days_plural": "sequência de {{count}} dias",
+    "this_week": "Esta semana",
+    "guide_content": {
+      "intro_title": "Introdução",
+      "intro_p1": "Os hábitos são a base invisível do sucesso. Não são apenas ações repetidas; são o que o nosso cérebro automatiza para poupar energia. Melhorar 1% todos os dias pode levar a uma mudança significativa a longo prazo.",
+      "intro_p2": "O segredo não é apenas definir objetivos, mas criar um sistema de hábitos consistente com a pessoa que deseja tornar-se.",
+      "identity_title": "Porque Concentrar-se na Identidade",
+      "identity_p1": "Muitos falham na mudança não porque \"não se importam o suficiente\", mas porque se concentram apenas nos resultados.",
+      "identity_p2": "Os três níveis da mudança de comportamento são: Resultados (o que obtém), Processos (o que faz), Identidade (o que acredita). A verdadeira mudança começa na identidade — decida quem quer ser, depois prove a si mesmo com pequenas vitórias.",
+      "understanding_title": "Compreender os Hábitos",
+      "understanding_p1": "Cada hábito segue um ciclo chamado ciclo de feedback:",
+      "understanding_cue": "Pista",
+      "understanding_cue_desc": "o que desencadeia a ação",
+      "understanding_craving": "Desejo",
+      "understanding_craving_desc": "a motivação para realizar a ação",
+      "understanding_response": "Resposta",
+      "understanding_response_desc": "o comportamento em si",
+      "understanding_reward": "Recompensa",
+      "understanding_reward_desc": "a gratificação imediata",
+      "laws_title": "As Quatro Leis da Mudança de Comportamento",
+      "law1_title": "1ª Lei: Torne-o Óbvio",
+      "law1_items": [
+        "Use intenções de implementação: 'Vou [comportamento] às [hora] em [local]'",
+        "Use empilhamento de hábitos: 'Depois de [hábito atual], vou [novo hábito]'",
+        "Desenhe o seu ambiente — torne as pistas visíveis"
+      ],
+      "law2_title": "2ª Lei: Torne-o Atraente",
+      "law2_items": [
+        "Use a combinação de tentações: associe um hábito necessário a um desejado",
+        "Junte-se a uma cultura onde o comportamento desejado é a norma",
+        "Crie um ritual motivacional antes de um hábito difícil"
+      ],
+      "law3_title": "3ª Lei: Torne-o Fácil",
+      "law3_items": [
+        "Reduza o atrito — diminua os passos entre si e os bons hábitos",
+        "Use a Regra dos Dois Minutos: comece com apenas 2 minutos",
+        "Automatize hábitos usando tecnologia quando possível"
+      ],
+      "law4_title": "4ª Lei: Torne-o Satisfatório",
+      "law4_items": [
+        "Use reforço — dê a si mesmo uma recompensa imediata",
+        "Use um rastreador de hábitos — 'não quebre a corrente'",
+        "Nunca falhe duas vezes — volte rapidamente aos eixos"
+      ],
+      "breaking_title": "Quebrar Maus Hábitos",
+      "breaking_intro": "Inverta as quatro leis:",
+      "breaking_items": [
+        "Torne-o invisível (remova pistas)",
+        "Torne-o pouco atraente (reformule a sua mentalidade)",
+        "Torne-o difícil (aumente o atrito)",
+        "Torne-o insatisfatório (adicione responsabilidade)"
+      ],
+      "advanced_title": "Estratégias Avançadas",
+      "advanced_items": [
+        "A Regra de Ouro: mantenha-se motivado trabalhando em tarefas com dificuldade administrável",
+        "O lado negativo dos bons hábitos: não os deixe no piloto automático — continue a revê-los e melhorá-los",
+        "Os genes não determinam o destino; determinam áreas de oportunidade. Escolha hábitos que se adequam aos seus pontos fortes naturais."
+      ],
+      "final_title": "Pensamento Final",
+      "final_p1": "O sucesso não é um objetivo a alcançar. É um sistema a construir.",
+      "final_p2": "Pequenas mudanças. Resultados extraordinários. Um hábito de cada vez."
+    }
+  },
+
+  "challenges": {
+    "title": "Desafios Detox",
+    "active_completed": "{{active}} ativos • {{completed}} concluídos",
+    "your_active": "Os Seus Desafios Ativos",
+    "explore_challenges": "Explorar Desafios",
+    "free_used": "Usou o seu desafio gratuito",
+    "free_limit_desc": "Contas gratuitas incluem 1 desafio no total. Atualize para Premium para desbloquear desafios ilimitados.",
+    "upgrade_premium": "Atualizar para Premium",
+    "guide_title": "Como Dominar a Eliminação de Maus Hábitos",
+    "guide_subtitle": "Um guia para libertar-se do que o prejudica",
+    "guide_dialog_title": "Quebrar Maus Hábitos",
+    "categories": {
+      "all": "Todos",
+      "digital_detox": "Detox Digital",
+      "mental_reset": "Reinício Mental",
+      "porn_detox": "Recuperação",
+      "general": "Geral"
+    },
+    "challenge_started": "Desafio iniciado! 🔥",
+    "challenge_started_desc": "A sua jornada de {{days}} dias começa hoje!",
+    "failed_start": "Falha ao iniciar o desafio",
+    "failed_load": "Falha ao carregar os desafios",
+    "guide_content": {
+      "intro_title": "Introdução",
+      "intro_p1": "Quebrar um mau hábito não é uma questão de força de vontade — é uma questão de estratégia. O seu cérebro automatizou estes comportamentos, e a única maneira de os mudar é entender como funcionam e interromper o padrão.",
+      "intro_p2": "Este guia irá ajudá-lo a aplicar a ciência da mudança de comportamento para eliminar hábitos que já não lhe servem.",
+      "why_title": "Porque os Maus Hábitos Persistem",
+      "why_p1": "Os maus hábitos proporcionam gratificação imediata enquanto as consequências são adiadas. O seu cérebro prioriza recompensas instantâneas, tornando difícil resistir.",
+      "why_p2": "Compreender o ciclo do hábito (Pista → Desejo → Resposta → Recompensa) é o primeiro passo para se libertar.",
+      "inversion_title": "A Estratégia de Inversão",
+      "inversion_intro": "Para quebrar um mau hábito, inverta as quatro leis da mudança de comportamento:",
+      "inv1_title": "Torne-o Invisível",
+      "inv1_items": [
+        "Remova gatilhos do seu ambiente",
+        "Pare de seguir contas que promovem o comportamento",
+        "Mude a sua rotina para evitar a exposição a pistas"
+      ],
+      "inv2_title": "Torne-o Pouco Atraente",
+      "inv2_items": [
+        "Destaque os verdadeiros custos do comportamento",
+        "Reformule a sua identidade: 'Não sou alguém que faz isto'",
+        "Associe o hábito a resultados negativos"
+      ],
+      "inv3_title": "Torne-o Difícil",
+      "inv3_items": [
+        "Adicione atrito entre si e o mau hábito",
+        "Use dispositivos de compromisso (bloqueios, responsabilidade)",
+        "Crie barreiras físicas"
+      ],
+      "inv4_title": "Torne-o Insatisfatório",
+      "inv4_items": [
+        "Crie um parceiro ou sistema de responsabilidade",
+        "Torne as consequências imediatas",
+        "Use um cartão de hábitos para acompanhar deslizes"
+      ],
+      "replacement_title": "Substitua, Não Apenas Remova",
+      "replacement_p1": "A estratégia mais eficaz não é apenas parar — é substituir. Quando sentir o impulso, redirecione para uma alternativa mais saudável que satisfaça a mesma necessidade.",
+      "replacement_items": [
+        "Aborrecido? → Faça um treino rápido ou atividade criativa",
+        "Stressado? → Experimente respiração profunda ou escrita",
+        "Sozinho? → Ligue a um amigo ou junte-se a uma comunidade"
+      ],
+      "mindset_title": "A Mudança de Mentalidade",
+      "mindset_p1": "Não se concentre no que está a abandonar. Concentre-se no que está a ganhar: liberdade, clareza, respeito próprio e uma vida alinhada com os seus valores.",
+      "mindset_p2": "Cada momento de resistência está a construir a pessoa que quer tornar-se.",
+      "final_title": "Pensamento Final",
+      "final_p1": "Não precisa de ser perfeito. Precisa de ser consistente.",
+      "final_p2": "Quebre o padrão. Construa a vida que merece."
+    }
+  },
+
+  "create_habit": {
+    "title": "Criar Novo Hábito",
+    "habit_name": "Nome do hábito *",
+    "habit_placeholder": "ex., Meditação matinal",
+    "description": "Descrição (opcional)",
+    "description_placeholder": "O que este hábito significa para si?",
+    "category": "Categoria",
+    "frequency": "Frequência",
+    "reminder_time": "Lembrete (opcional)",
+    "habit_created": "Hábito criado! 🎉",
+    "habit_created_desc": "Comece a construir o seu novo hábito hoje!",
+    "failed_create": "Falha ao criar o hábito",
+    "habit_limit_reached": "Limite de hábitos atingido",
+    "habits_remaining": "{{remaining}} de {{max}} hábitos restantes",
+    "frequencies": {
+      "daily": "Diário",
+      "weekly": "Semanal",
+      "weekdays": "Dias úteis",
+      "weekends": "Fins de semana"
+    }
+  },
+
+  "create_challenge": {
+    "title": "Criar Desafio Personalizado",
+    "challenge_name": "Nome do desafio *",
+    "challenge_placeholder": "ex., Detox de redes sociais",
+    "description": "Descrição (opcional)",
+    "description_placeholder": "A que está a renunciar? Porque é importante para si?",
+    "category": "Categoria",
+    "duration": "Duração",
+    "daily_steps": "Passos Diários (opcional)",
+    "start_challenge": "Iniciar Desafio",
+    "challenge_started": "Desafio iniciado! 🔥",
+    "challenge_started_desc": "O seu desafio de {{days}} dias começa hoje. Vai conseguir!",
+    "failed_create": "Falha ao criar o desafio",
+    "free_challenge_used": "Usou o seu desafio gratuito",
+    "free_challenge_available": "{{remaining}} desafio gratuito disponível",
+    "free_limit_note": "Contas gratuitas têm 1 desafio no total. Uma vez usado, precisará de Premium para criar mais — mesmo que o elimine ou complete.",
+    "durations": {
+      "3_days": "3 Dias",
+      "7_days": "7 Dias",
+      "21_days": "21 Dias",
+      "30_days": "30 Dias",
+      "90_days": "90 Dias",
+      "3_desc": "Reinício rápido",
+      "7_desc": "Desafio de uma semana",
+      "21_desc": "Formação de hábito",
+      "30_desc": "Desafio mensal",
+      "90_desc": "Transformação profunda"
+    }
+  },
+
+  "pricing": {
+    "choose_plan": "Escolha o Seu Plano",
+    "subtitle": "Comece grátis e atualize quando estiver pronto. Sem custos ocultos, cancele quando quiser.",
+    "free_plan": "Plano Grátis",
+    "free_price": "€0",
+    "forever": "/para sempre",
+    "get_started_basics": "Comece com o básico",
+    "current_plan": "Plano Atual",
+    "get_started_free": "Começar Grátis",
+    "premium_plan": "Plano Premium",
+    "premium_price": "€9.99",
+    "per_month": "/mês",
+    "unlock_potential": "Desbloqueie o seu pleno potencial",
+    "everything_in_free": "Tudo no Grátis, mais:",
+    "subscribe_now": "Subscrever Agora",
+    "get_premium": "Obter Premium",
+    "most_popular": "Mais Popular",
+    "trust_badges": "Garantia de 30 dias • Cancele quando quiser • Pagamento seguro via Stripe",
+    "have_account": "Já tem conta?",
+    "welcome_premium": "Bem-vindo ao InnerBuild Premium!",
+    "subscription_active": "A sua subscrição está agora ativa. Aproveite!",
+    "checkout_canceled": "Checkout cancelado",
+    "checkout_canceled_desc": "Sem problema — pode subscrever a qualquer momento.",
+    "checkout_failed": "Falha ao iniciar o checkout. Tente novamente.",
+    "free_features": {
+      "habits": "Até 5 hábitos",
+      "challenges": "1 desafio detox ativo",
+      "tracking": "Rastreio básico de hábitos com sequências",
+      "quotes": "Citações motivacionais diárias",
+      "planning": "Planeamento diário (Tarefas & Não-Fazer)",
+      "reflection": "Reflexão noturna e gratidão",
+      "profile": "Perfil com calendário de atividades",
+      "whats_working": "Insights 'O que Funciona'",
+      "progress": "Visão geral do progresso (recente e anual)",
+      "additional": ""
+    },
+    "premium_features": {
+      "unlimited_habits": "Hábitos ilimitados",
+      "unlimited_challenges": "Desafios detox ilimitados",
+      "ai_coach": "Coach IA Pessoal (24/7)",
+      "recovery": "Programa de Recuperação de Pornografia com rastreio de sequências",
+      "trigger_tracking": "Rastreio de gatilhos e análise de padrões com IA",
+      "habit_adaptation": "Sugestões de adaptação de hábitos com IA",
+      "learn": "Secção Aprender (artigos, guias e linha do tempo)",
+      "priority": "Acesso prioritário a novas funcionalidades"
+    }
+  },
+
+  "profile": {
+    "title": "O Meu Perfil",
+    "premium_plan": "Plano Premium",
+    "free_plan": "Plano Grátis",
+    "admin_access": "Acesso admin — todas as funcionalidades desbloqueadas",
+    "cancels_on": "Cancela em {{date}}",
+    "renews_on": "Renova em {{date}}",
+    "upgrade_unlock": "Atualize para desbloquear todas as funcionalidades",
+    "progress_overview": "Visão Geral do Progresso",
+    "portal_error": "Falha ao abrir o portal de subscrição. Tente novamente.",
+    "profile_info": "Informações do Perfil",
+    "profile_info_desc": "Gerencie as suas informações pessoais e foto de perfil",
+    "first_name": "Primeiro Nome",
+    "first_name_placeholder": "Insira o seu primeiro nome",
+    "last_name": "Apelido",
+    "last_name_placeholder": "Insira o seu apelido",
+    "username": "Nome de utilizador",
+    "username_placeholder": "Escolha um nome de utilizador único",
+    "email": "Endereço de E-mail",
+    "email_readonly": "Por razões de segurança, o seu endereço de e-mail não pode ser alterado.",
+    "save_changes": "Guardar Alterações",
+    "profile_updated": "Perfil atualizado",
+    "profile_updated_desc": "As suas informações de perfil foram guardadas.",
+    "failed_save": "Falha ao guardar",
+    "username_taken": "Este nome de utilizador já está a ser usado. Escolha outro.",
+    "username_cooldown": "Período de espera ativo",
+    "username_cooldown_days": "Pode alterar o nome de utilizador novamente em {{days}} dia(s).",
+    "upload_photo": "Toque no ícone da câmara para carregar uma nova foto",
+    "avatar_updated": "Avatar atualizado",
+    "avatar_updated_desc": "A sua foto de perfil foi atualizada.",
+    "avatar_upload_failed": "Falha no carregamento",
+    "avatar_too_large": "Carregue uma imagem com menos de 5 MB.",
+    "avatar_invalid_type": "Carregue um ficheiro de imagem.",
+    "whats_working": "O que Funciona",
+    "improving": "A Melhorar",
+    "protect": "Proteger",
+    "small_adjustment": "Pequeno Ajuste",
+    "generate_insights": "Gerar Insights",
+    "generating_insights": "A gerar...",
+    "available_in_days": "Disponível em {{days}} dias",
+    "track_habits_first": "Acompanhe hábitos por alguns dias para gerar insights",
+    "no_active_habits": "Nenhum hábito ativo",
+    "create_habits_first": "Crie hábitos a partir da página Hábitos",
+    "this_week": "Esta semana",
+    "progress_history": "O Meu Histórico de Progresso",
+    "click_day_log": "Clique num dia para ver o seu registo diário",
+    "positive_habits": "Hábitos Positivos",
+    "triggers_title": "Gatilhos",
+    "detox_challenges": "Desafios Detox",
+    "emotional_awareness": "Consciência Emocional",
+    "holding_steady": "Estável",
+    "consistency": "consistência",
+    "no_data_yet": "Ainda sem dados",
+    "frequency": "frequência",
+    "stable": "Estável",
+    "completed_active": "{{completed}} concluídos · {{active}} ativos",
+    "start_tracking": "Começar a acompanhar",
+    "avg_mood_up": "Humor médio ↑",
+    "avg_mood_down": "Humor médio ↓",
+    "avg_mood_stable": "Humor médio →",
+    "reflections": "{{count}} reflexões",
+    "last_n_days": "últimos {{days}} dias",
+    "vs_previous": "vs {{days}} dias anteriores",
+    "habits_progress": "Progresso dos Hábitos",
+    "trigger_tracking_title": "Rastreio de Gatilhos",
+    "mood_reflection": "Humor & Reflexão"
+  },
+
+  "coach": {
+    "title": "Coach IA",
+    "subtitle": "O seu guia pessoal",
+    "clear_chat": "Limpar chat",
+    "chat_cleared": "Chat limpo",
+    "failed_clear": "Falha ao limpar o chat",
+    "hey_there": "Olá! 👋",
+    "intro": "Sou o seu coach IA, aqui para apoiar a sua jornada para melhores hábitos e crescimento pessoal.",
+    "quick_actions_label": "Ações rápidas para começar:",
+    "input_placeholder": "Pergunte sobre os seus hábitos, desafios, recuperação...",
+    "not_authenticated": "Não autenticado. Inicie sessão.",
+    "rate_limit": "Limite de pedidos excedido. Tente novamente daqui a pouco.",
+    "auth_required": "Autenticação necessária. Inicie sessão novamente.",
+    "api_error": "Chave API inválida ou quota excedida.",
+    "failed_response": "Falha ao obter resposta",
+    "failed_send": "Falha ao enviar mensagem",
+    "quick_actions": {
+      "suggest_habit": "Sugerir um hábito",
+      "start_challenge": "Iniciar um desafio",
+      "motivate_me": "Motivar-me",
+      "help_reflect": "Ajudar-me a refletir"
+    },
+    "stats": {
+      "track_progress": "Acompanhar progresso",
+      "build_habits": "Construir hábitos",
+      "take_challenges": "Aceitar desafios"
+    },
+    "tips": {
+      "1": "Cada pequeno passo conta para os seus objetivos maiores",
+      "2": "O progresso nem sempre é linear, e tudo bem",
+      "3": "Já está a fazer melhor só por estar aqui",
+      "4": "A consistência vence a perfeição todas as vezes",
+      "5": "Hoje é uma nova oportunidade para crescer"
+    }
+  },
+
+  "learn": {
+    "title": "Aprender",
+    "subtitle": "Educação e conhecimento sobre recuperação",
+    "articles": "Artigos",
+    "guides": "Guias",
+    "timeline": "Linha do Tempo",
+    "locked_title": "Centro de Aprendizagem",
+    "locked_desc": "Artigos científicos, guias educativos aprofundados e uma linha do tempo completa de recuperação — tudo num só lugar.",
+    "locked_features": {
+      "articles": "Artigos científicos sobre recuperação",
+      "guides": "Guias educativos aprofundados",
+      "timeline": "Linha do tempo de recuperação e marcos"
+    }
+  },
+
+  "porn_recovery": {
+    "title": "Recuperação de Pornografia",
+    "subtitle": "Ferramentas científicas para a sua jornada",
+    "emergency": "Emergência",
+    "sos": "SOS",
+    "progress": "Progresso",
+    "manage_tab": "Gerir",
+    "learn_tab": "Aprender",
+    "locked_title": "Ferramentas de Recuperação",
+    "locked_desc": "Desbloqueie estratégias de recuperação baseadas na ciência, ferramentas de gestão de desejos e acompanhamento pessoal.",
+    "locked_features": {
+      "science": "Educação baseada na ciência",
+      "craving": "Ferramentas de ação contra desejos",
+      "anti_trigger": "Plano anti-gatilho pessoal",
+      "motivation": "Acompanhamento da motivação"
+    },
+    "recovery_challenge": "Desafio de Recuperação",
+    "start_challenge_question": "Quer iniciar o Desafio de Recuperação de Pornografia? Poderá acompanhar o seu progresso diário e construir sequências.",
+    "mark_success_fail": "Marque cada dia como \"Sucesso\" ou \"Falha\"",
+    "track_streaks": "Acompanhe a sua sequência atual e a mais longa",
+    "start_fresh_anytime": "Recomece a qualquer momento",
+    "start_challenge": "Iniciar Desafio",
+    "started_on": "Iniciado em {{date}}",
+    "day_n": "Dia {{n}}",
+    "current_streak": "Sequência Atual",
+    "longest_streak": "Sequência Mais Longa",
+    "success_days": "Dias de Sucesso",
+    "failed_days": "Dias de Falha",
+    "todays_checkin": "Check-in de Hoje",
+    "already_checked_in": "Já fez o check-in hoje",
+    "start_fresh": "Recomeçar",
+    "start_fresh_confirm": "Recomeçar?",
+    "start_fresh_desc": "Isto irá redefinir a sua jornada atual e iniciar uma nova. Os dados anteriores serão arquivados.",
+    "abandon": "Abandonar",
+    "abandon_confirm": "Abandonar o Desafio?",
+    "abandon_desc": "Isto irá terminar o seu desafio atual. Pode iniciar um novo a qualquer momento.",
+    "failure_debrief": "Análise de Falha",
+    "failure_debrief_desc": "Teve uma recaída? Tudo bem — faz parte da jornada. Vamos transformar isto numa experiência de aprendizagem juntos.",
+    "continue_debrief": "Continuar Análise",
+    "start_debrief": "Iniciar Análise",
+    "unfinished_debrief": "Tem uma análise não concluída. Continue quando estiver pronto.",
+    "my_reasons": "As Minhas Razões para Parar",
+    "reasons_desc": "As suas motivações pessoais são a sua âncora. Leia-as durante os desejos para lembrar porque começou esta jornada.",
+    "write_reason": "Escreva a sua razão...",
+    "add_reason": "Adicionar Razão",
+    "tap_add_suggested": "Ou toque para adicionar uma razão sugerida:",
+    "already_added": "Já adicionado",
+    "already_in_list": "Esta razão já está na sua lista.",
+    "suggested_reasons": [
+      "Melhor saúde física e mental",
+      "Liberdade do vício e compulsão",
+      "Relacionamentos mais profundos e autênticos",
+      "Mais tempo e energia para o que importa",
+      "Maior foco e produtividade",
+      "Controlo sobre a minha vida e escolhas",
+      "Melhor autoestima e confiança",
+      "Estar presente com as pessoas que amo"
+    ],
+    "craving_title": "O que Fazer Durante um Desejo",
+    "craving_desc": "Os desejos são intensos mas temporários — geralmente 15‑20 minutos. Use estas ações para surfar a onda até passar.",
+    "craving_complete_tip": "Toque em cada ação à medida que a completa. O desejo passará.",
+    "craving_actions": {
+      "cold_shower": "Tome um duche frio",
+      "cold_shower_desc": "30 segundos a 2 minutos. Choca o seu sistema para fora do desejo.",
+      "walk": "Vá dar um passeio ou correr",
+      "walk_desc": "Deixe o seu telefone. Saia. O movimento redireciona a energia.",
+      "exercise": "Faça exercício físico",
+      "exercise_desc": "Flexões, agachamentos, saltos. Esgote fisicamente o impulso.",
+      "contact": "Contacte alguém em quem confia",
+      "contact_desc": "Escreva ou ligue a um amigo, familiar ou parceiro de responsabilidade.",
+      "people": "Esteja com outras pessoas",
+      "people_desc": "Vá para um espaço público. O isolamento alimenta o impulso. A ligação quebra-o."
+    },
+    "identifying_triggers": "Identificar Gatilhos",
+    "triggers_desc": "Gatilhos são as situações, emoções e contextos que levam a impulsos. Compreender os seus gatilhos pessoais é essencial para a prevenção.",
+    "ask_yourself": "Faça a si mesmo estas perguntas após cada impulso:",
+    "common_triggers_solutions": "Gatilhos Comuns e Soluções",
+    "guided_questions": {
+      "emotion": "Que emoção estava a sentir?",
+      "emotion_examples": "Tédio, solidão, stress, ansiedade, cansaço, rejeição, frustração",
+      "time": "Que hora do dia era?",
+      "time_examples": "Noite tardia, manhã cedo, após o trabalho, tarde de fim de semana",
+      "where": "Onde estava?",
+      "where_examples": "Quarto, casa de banho, casa sozinho, quarto de hotel",
+      "doing": "O que estava a fazer antes?",
+      "doing_examples": "A deslocar-me em redes sociais, a ver TV, a trabalhar, a discutir com alguém"
+    },
+    "common_triggers": {
+      "computer": "Sozinho ao computador",
+      "computer_tip": "Trabalhe em espaços públicos ou com a porta aberta",
+      "phone_bed": "Telefone na cama à noite",
+      "phone_bed_tip": "Carregue o telefone noutra divisão",
+      "social_media": "Deslocamento em redes sociais",
+      "social_media_tip": "Limite ou remova as apps que desencadeiam impulsos",
+      "late_nights": "Noites tardias quando está cansado",
+      "late_nights_tip": "Defina uma hora fixa para dormir e cumpra-a"
+    },
+    "anti_trigger_plan": "Plano Anti-Gatilho Pessoal",
+    "anti_trigger_desc": "Crie planos se-então para os seus gatilhos específicos. Ter uma resposta pré-definida facilita a ação quando o momento chega.",
+    "add_new_plan": "Adicionar um novo plano:",
+    "add_plan": "Adicionar Plano",
+    "error_saving": "Erro ao guardar",
+    "failed_save_plan": "Falha ao guardar o plano. Tente novamente.",
+    "incomplete_plan": "Plano incompleto",
+    "fill_all_fields": "Preencha todos os três campos.",
+    "understanding_title": "Compreender o Problema",
+    "understanding_desc": "A pornografia online moderna é projetada para sequestrar o sistema de recompensa do seu cérebro. Compreender a ciência por trás disso é o primeiro passo para a liberdade.",
+    "brain_science_title": "O que Acontece no Cérebro",
+    "strategies_title": "Estratégias Práticas de Recuperação",
+    "strategies_desc": "A recuperação não é apenas parar — é construir uma vida onde não precisa da fuga. Estas estratégias abordam tanto o comportamento como as necessidades subjacentes."
+  },
+
+  "trigger_tracking": {
+    "title": "Rastreio de Gatilhos",
+    "subtitle": "Registe e analise os seus impulsos",
+    "start_tracking": "Comece a rastrear os seus gatilhos",
+    "start_tracking_desc": "Registe quando sente um impulso para descobrir padrões e receber sugestões personalizadas de IA",
+    "log_first": "Registar Primeiro Gatilho",
+    "log_trigger": "Registar Gatilho",
+    "impulse_intensity": "Intensidade do impulso",
+    "how_feel": "Como se sente? *",
+    "situation": "Situação *",
+    "where_are_you": "Onde está?",
+    "are_you_alone": "Está sozinho?",
+    "yes_alone": "Sim, sozinho",
+    "no_with_others": "Não, com outros",
+    "notes_optional": "Notas (opcional)",
+    "notes_placeholder": "O que se passava? O que estava a pensar?",
+    "mild": "Leve",
+    "strong": "Forte",
+    "heatmap_title": "Mapa de Calor de Gatilhos",
+    "heatmap_empty": "Registe alguns gatilhos para ver o mapa de padrões",
+    "last_30_days": "Últimos 30 dias",
+    "recent_triggers": "Gatilhos Recentes",
+    "no_triggers_yet": "Ainda não há gatilhos registados",
+    "trigger_analysis": "Análise de Gatilhos",
+    "get_trigger_report": "Obtenha o Seu Relatório de Gatilhos",
+    "analyze_patterns": "Analise os seus padrões de gatilhos dos últimos 4 dias",
+    "generate_report": "Gerar Relatório",
+    "main_causes": "Causas Principais",
+    "causes_identified": "{{count}} causa principal identificada",
+    "causes_identified_plural": "{{count}} causas principais identificadas",
+    "when_it_happens": "Quando Acontece",
+    "suggested_solutions": "Soluções Sugeridas",
+    "for_cause": "Para: {{cause}}",
+    "next_report_in": "Próximo relatório disponível em {{days}} dia(s)",
+    "generate_new_report": "Gerar Novo Relatório",
+    "loading_insights": "A carregar insights de gatilhos...",
+    "ai_insights": "Insights IA",
+    "triggers_logged": "{{count}} gatilhos registados",
+    "analyze": "Analisar",
+    "log_3_triggers": "Registe pelo menos 3 gatilhos para desbloquear insights IA",
+    "more_needed": "Mais {{count}} necessários",
+    "press_analyze": "Pressione \"Analisar\" para gerar insights a partir dos seus padrões",
+    "locked_features": {
+      "realtime": "Registo de impulsos em tempo real",
+      "heatmap": "Mapa de calor visual de padrões",
+      "ai_reports": "Relatórios de insights baseados em IA",
+      "timing": "Análise de tempo e contexto"
+    },
+    "emotions": {
+      "stress": "Stress",
+      "boredom": "Tédio",
+      "sadness": "Tristeza",
+      "anxiety": "Ansiedade",
+      "anger": "Raiva",
+      "loneliness": "Solidão",
+      "tiredness": "Cansaço",
+      "excitement": "Excitação"
+    },
+    "situations": {
+      "social_media": "Redes sociais",
+      "video_streaming": "Vídeo/streaming",
+      "after_argument": "Após uma discussão",
+      "before_sleep": "Antes de dormir",
+      "work_break": "Pausa no trabalho",
+      "weekend": "Fim de semana livre",
+      "procrastination": "Procrastinação",
+      "other": "Outro"
+    },
+    "locations": {
+      "home": "Casa",
+      "work": "Trabalho",
+      "commute": "Deslocação",
+      "other": "Outro"
+    },
+    "heatmap_legend": {
+      "mild": "Leve (1‑3)",
+      "medium": "Médio (4‑6)",
+      "strong": "Forte (7‑10)"
+    },
+    "days": {
+      "sun": "Dom",
+      "mon": "Seg",
+      "tue": "Ter",
+      "wed": "Qua",
+      "thu": "Qui",
+      "fri": "Sex",
+      "sat": "Sáb"
+    },
+    "time_periods": {
+      "night": "Noite",
+      "morning": "Manhã",
+      "afternoon": "Tarde",
+      "evening": "Entardecer"
+    }
+  },
+
+  "evening_reflection": {
+    "title": "Reflexão Noturna",
+    "daily_checkin": "Check-in Diário",
+    "complete": "Concluído",
+    "how_feel": "Como se sentiu hoje?",
+    "energy_level": "Nível de energia hoje",
+    "low_energy": "Baixa energia",
+    "high_energy": "Alta energia",
+    "complete_checkin": "Concluir Check-in",
+    "checkin_complete": "Check-in concluído!",
+    "checkin_saved": "O seu check-in diário foi guardado.",
+    "select_mood": "Selecione o seu humor",
+    "select_mood_desc": "Selecione como se sentiu hoje.",
+    "failed_checkin": "Falha ao guardar o check-in. Tente novamente.",
+    "moods": {
+      "great": "Ótimo",
+      "good": "Bom",
+      "okay": "Mais ou menos",
+      "struggling": "Com dificuldade",
+      "difficult": "Difícil"
+    },
+    "how_was_day": "Como foi o seu dia?",
+    "day_placeholder": "Descreva brevemente como correu o seu dia...",
+    "grateful_for": "Pelo que está grato hoje? (1‑3 coisas)",
+    "grateful_placeholder": "Adicione algo pelo qual está grato...",
+    "lessons_learned": "O que aprendeu ou o que pode melhorar?",
+    "lessons_placeholder": "Escreva uma lição aprendida ou uma área de melhoria...",
+    "save_reflection": "Guardar Reflexão",
+    "reflection_saved": "Reflexão guardada!",
+    "reflection_saved_desc": "Bom trabalho a refletir sobre o seu dia",
+    "could_not_save": "Não foi possível guardar a reflexão"
+  },
+
+  "daily_planning": {
+    "title": "Planeamento Diário",
+    "tomorrow": "Amanhã",
+    "todo_title": "Tarefas para Amanhã",
+    "not_todo_title": "Lista de Não-Fazer",
+    "add_task_placeholder": "Adicionar nova tarefa...",
+    "what_to_avoid": "O que evitar amanhã...",
+    "quick_add_suggestions": "Sugestões rápidas:",
+    "task_added": "Tarefa adicionada!",
+    "task_added_desc": "Planeie o seu amanhã",
+    "item_added": "Item adicionado!",
+    "item_added_desc": "Evite este comportamento amanhã",
+    "could_not_add_task": "Não foi possível adicionar a tarefa",
+    "could_not_add_item": "Não foi possível adicionar o item",
+    "could_not_update_task": "Não foi possível atualizar a tarefa",
+    "could_not_edit_task": "Não foi possível editar a tarefa",
+    "could_not_delete_task": "Não foi possível eliminar a tarefa",
+    "could_not_update_status": "Não foi possível atualizar o estado",
+    "could_not_delete_item": "Não foi possível eliminar o item",
+    "could_not_remove_completion": "Não foi possível remover a conclusão",
+    "could_not_mark_complete": "Não foi possível marcar como concluído",
+    "no_tasks_planned": "Nenhuma tarefa planeada",
+    "add_goals": "Adicione os seus objetivos para amanhã",
+    "no_behaviors": "Nenhum comportamento a evitar",
+    "add_negative_habits": "Adicione hábitos negativos a evitar",
+    "great_job": "Bom trabalho!",
+    "avoided_negative": "Evitou este comportamento negativo",
+    "active_habits": "Hábitos Ativos",
+    "evening_planning_time": "Hora de Planeamento Noturno",
+    "evening_planning_desc": "Reserve um momento para planear amanhã e refletir sobre hoje",
+    "reminder_enabled": "Lembrete ativado!",
+    "reminder_enabled_desc": "Receberá uma notificação às 20:00 para planear amanhã.",
+    "reminder_disabled": "Lembrete desativado",
+    "reminder_disabled_desc": "Não receberá lembretes noturnos.",
+    "day_streak": "Sequência de Dias",
+    "tasks_done": "Tarefas Concluídas",
+    "perfect_days": "Dias Perfeitos",
+    "suggested_tasks": {
+      "water": "Beba 8 copos de água",
+      "meditate": "Medite 10 minutos",
+      "walk": "Dê um passeio de 30 minutos",
+      "read": "Leia 20 minutos",
+      "journal": "Escreva no diário",
+      "exercise": "Faça exercício 30 minutos"
+    },
+    "suggested_not_todo": {
+      "no_social": "Sem redes sociais antes das 10",
+      "no_junk": "Sem comida pouco saudável",
+      "no_phone": "Sem telefone na cama",
+      "no_negative": "Sem autocrítica negativa",
+      "no_skip": "Não falhe os treinos",
+      "no_procrastinate": "Não procrastine nas tarefas"
+    }
+  },
+
+  "recovery": {
+    "recovery_streak": "Sequência de Recuperação",
+    "clean_day": "Dia limpo",
+    "relapsed": "Recaída",
+    "checked_in_today": "Check-in feito hoje. Continue assim!",
+    "day_of_journey": "Dia {{day}} da jornada",
+    "active_challenges": "Desafios Ativos",
+    "onboarding": {
+      "title": "Desafio de Recuperação",
+      "description": "Quer iniciar o Desafio de Recuperação de Pornografia? Poderá acompanhar o seu progresso diário e construir sequências.",
+      "feature_1": "Marque cada dia como \"Sucesso\" ou \"Falha\"",
+      "feature_2": "Acompanhe a sua sequência atual e a mais longa",
+      "feature_3": "Recomece a qualquer momento",
+      "start": "Iniciar Desafio"
+    }
+  },
+
+  "locked_preview": {
+    "unlock_premium": "Desbloquear Premium",
+    "trigger": {
+      "log_triggers": "Registar gatilhos e impulsos",
+      "visual_heatmap": "Análise visual com mapa de calor",
+      "ai_insights": "Insights IA sobre padrões",
+      "track_timing": "Acompanhar tempo e contexto",
+      "preview_text": "Pré-visualização do rastreio de gatilhos:",
+      "description": "Registe os seus impulsos, descubra padrões com análise IA e obtenha estratégias de prevenção personalizadas."
+    },
+    "recovery": {
+      "title": "Ferramentas de Recuperação",
+      "description": "Desbloqueie estratégias de recuperação baseadas na ciência, ferramentas de gestão de desejos e acompanhamento pessoal.",
+      "science_education": "Educação baseada na ciência",
+      "craving_tools": "Ferramentas de ação contra desejos",
+      "anti_trigger_plan": "Plano anti-gatilho pessoal",
+      "motivation_tracking": "Acompanhamento da motivação"
+    },
+    "coach": {
+      "title": "Coach IA",
+      "description": "Receba orientação personalizada, sugestões de hábitos e motivação do seu coach IA pessoal.",
+      "habit_suggestions": "Sugestões de hábitos personalizadas",
+      "custom_challenges": "Criação de desafios personalizados",
+      "reflection_guidance": "Orientação para autorreflexão",
+      "daily_motivation": "Motivação diária",
+      "preview_text": "Pré-visualização do seu Coach IA:",
+      "preview_msg_1": "Pode sugerir-me um hábito saudável...",
+      "preview_msg_2": "Com base nos seus padrões, eu recomendaria...",
+      "preview_msg_3": "Ajude-me a manter-me motivado hoje..."
+    },
+    "learn": {
+      "title": "Centro de Aprendizagem",
+      "description": "Artigos científicos, guias educativos e uma linha do tempo completa de recuperação — tudo num só lugar.",
+      "scientific_articles": "Artigos científicos sobre recuperação",
+      "educational_guides": "Guias educativos aprofundados",
+      "recovery_timeline": "Linha do tempo de recuperação e marcos"
+    }
+  },
+
+  "habit_report": {
+    "habit_analysis": "Análise de Hábitos",
+    "loading_insights": "A carregar insights de hábitos...",
+    "locked_desc": "Obtenha insights IA sobre os seus hábitos e sugestões personalizadas para melhorar a sua rotina.",
+    "unlock_premium": "Desbloquear com Premium",
+    "get_report": "Obtenha o Seu Relatório de Hábitos",
+    "analyze_last_days": "Analise os seus hábitos dos últimos 4 dias",
+    "suggestions_for_you": "{{count}} sugestão(s) para si",
+    "suggested_adjustments": "Ajustes de Hábitos Sugeridos",
+    "tips": "Dicas",
+    "next_report_in": "Próximo relatório disponível em {{days}} dia(s)",
+    "generate_new": "Gerar Novo Relatório"
+  },
+
+  "not_found": {
+    "title": "404",
+    "message": "Ops! Página não encontrada",
+    "return_home": "Voltar ao Início"
+  },
+
+  "paywall": {
+    "habit_limit_title": "Desbloqueie Hábitos Ilimitados",
+    "habit_limit_desc": "Atingiu o limite gratuito de 5 hábitos. Atualize para criar todos os hábitos de que precisa.",
+    "challenge_limit_title": "Desbloqueie Mais Desafios",
+    "challenge_limit_desc": "Utilizadores gratuitos podem ter 1 desafio ativo. Atualize para enfrentar vários desafios ao mesmo tempo.",
+    "ai_coach_title": "Aceda ao Coach IA",
+    "ai_coach_desc": "Obtenha orientação personalizada, apoio e motivação do seu coach IA quando precisar.",
+    "recovery_title": "Desbloqueie Ferramentas de Recuperação",
+    "recovery_desc": "Aceda ao Programa Completo de Recuperação de Pornografia com rastreio de sequências, conteúdo de neurociência e ferramentas de análise.",
+    "advanced_stats_title": "Desbloqueie Análise de Hábitos",
+    "advanced_stats_desc": "Obtenha insights IA sobre os seus hábitos, sugestões personalizadas e recomendações inteligentes para melhorar a sua rotina.",
+    "general_title": "Atualize para Premium",
+    "general_desc": "Desbloqueie todo o potencial do InnerBuild com acesso ilimitado a todas as ferramentas premium.",
+    "premium_includes": "Premium inclui:",
+    "features": {
+      "unlimited_habits": "Hábitos ilimitados",
+      "unlimited_challenges": "Desafios detox ilimitados",
+      "ai_coach": "Acesso ao Coach IA",
+      "recovery": "Programa de Recuperação de Pornografia",
+      "trigger_tracking": "Rastreio de gatilhos e análise IA",
+      "learn": "Secção Aprender (artigos, guias e linha do tempo)",
+      "priority": "Acesso prioritário a novas funcionalidades"
+    },
+    "upgrade_to_premium": "Atualizar para Premium",
+    "maybe_later": "Talvez mais tarde",
+    "cancel_guarantee": "Cancele quando quiser • Garantia de 30 dias"
+  },
+
+  "footer": {
+    "tagline": "Transforme a sua vida com hábitos baseados na ciência e o poder da recuperação.",
+    "legal": "Legal",
+    "privacy_policy": "Política de Privacidade",
+    "terms_of_service": "Termos de Serviço",
+    "support": "Apoio",
+    "follow_us": "Siga-nos",
+    "copyright": "© {{year}} InnerBuild. Todos os direitos reservados. Construído com amor para o seu crescimento <3."
+  },
+
+  "nav": {
+    "home": "Início",
+    "tools": "Ferramentas",
+    "learn": "Aprender",
+    "profile": "Perfil"
+  },
+
+  "habit_tips": {
+    "one_min_tip": "Dica de 1 Min",
+    "next_tip": "Próxima dica",
+    "tips": {
+      "start_small_title": "Comece Pequeno",
+      "start_small": "Comece com hábitos de 2 minutos. O sucesso gera motivação, não o contrário.",
+      "stack_title": "Empilhe Hábitos",
+      "stack": "Ligue novos hábitos aos existentes: 'Depois de [hábito atual], vou [novo hábito]'.",
+      "environment_title": "Desenhe o Seu Ambiente",
+      "environment": "Torne os bons hábitos óbvios e fáceis. Coloque os seus ténis de corrida perto da porta.",
+      "never_miss_title": "Nunca Falhe Duas Vezes",
+      "never_miss": "Falhar uma vez é um acidente. Falhar duas vezes é o início de um novo hábito.",
+      "track_title": "Acompanhe o Seu Progresso",
+      "track": "O que é medido é gerido. O progresso visual mantém-no motivado.",
+      "reward_title": "Recompense-se",
+      "reward": "Celebre as pequenas vitórias. O seu cérebro precisa de reforço positivo.",
+      "specific_title": "Seja Específico",
+      "specific": "Em vez de 'fazer mais exercício', tente 'caminhar 10 minutos às 7h'.",
+      "identity_title": "Hábitos Baseados na Identidade",
+      "identity": "Concentre-se em quem quer tornar-se, não no que quer alcançar.",
+      "rule_title": "A Regra 21/90",
+      "rule": "São precisos 21 dias para criar um hábito, 90 dias para o tornar um estilo de vida.",
+      "friction_title": "Reduza o Atrito",
+      "friction": "Cada passo entre si e um hábito reduz a probabilidade de o fazer."
+    }
+  },
+
+  "profile_info_section": {
+    "title": "Informações do Perfil",
+    "manage_info_desc": "Gerencie as suas informações pessoais e foto de perfil",
+    "upload_hint": "Toque no ícone da câmara para carregar uma nova foto",
+    "first_name": "Primeiro Nome",
+    "first_name_placeholder": "Insira o seu primeiro nome",
+    "last_name": "Apelido",
+    "last_name_placeholder": "Insira o seu apelido",
+    "username": "Nome de utilizador",
+    "username_placeholder": "Escolha um nome de utilizador único",
+    "email": "E-mail",
+    "email_label": "Endereço de E-mail",
+    "email_readonly": "Por razões de segurança, o seu endereço de e-mail não pode ser alterado.",
+    "save": "Guardar Alterações",
+    "change_avatar": "Alterar avatar",
+    "invalid_file_type": "Tipo de ficheiro inválido",
+    "upload_image_file": "Por favor, carregue uma imagem.",
+    "file_too_large": "Ficheiro demasiado grande",
+    "file_size_limit": "Por favor, carregue uma imagem com menos de 5 MB.",
+    "avatar_updated": "Avatar atualizado",
+    "avatar_updated_desc": "A sua foto de perfil foi atualizada.",
+    "upload_failed": "Falha no carregamento",
+    "upload_failed_desc": "Não foi possível carregar o avatar.",
+    "username_restricted": "Alteração de nome de utilizador restrita",
+    "username_cooldown_msg": "Pode alterar o nome de utilizador novamente em {{days}} dias.",
+    "cooldown_active": "Período de espera ativo",
+    "profile_updated": "Perfil atualizado",
+    "profile_saved": "As suas informações de perfil foram guardadas.",
+    "save_failed": "Falha ao guardar",
+    "save_failed_desc": "Não foi possível guardar o perfil."
+  },
+  "progress_overview_cards": {
+    "positive_habits": "Hábitos positivos",
+    "detox_challenges": "Desafios detox",
+    "emotional_awareness": "Consciência emocional",
+    "triggers": "Gatilhos",
+    "vs_previous": "vs período anterior",
+    "no_data": "Sem dados",
+    "holding_steady": "Estável",
+    "consistency": "consistência",
+    "frequency": "frequência",
+    "stable": "Estável",
+    "completed": "concluídos",
+    "active": "ativos",
+    "start_tracking": "Começar a acompanhar",
+    "average_mood": "Humor médio",
+    "reflections": "reflexões"
+  },
+  "progress_deep_dive": {
+    "habits": "Progresso dos hábitos",
+    "triggers": "Rastreio de gatilhos",
+    "challenges": "Desafios detox",
+    "mood": "Humor e reflexão"
+  },
+  "habits_progress_section": {
+    "no_active_habits": "Nenhum hábito ativo",
+    "completion": "Conclusão",
+    "day_streak": "Sequência de dias",
+    "habit_position": "{{current}} de {{total}}"
+  },
+  "triggers_progress_section": {
+    "trigger_frequency": "Frequência de gatilhos ({{days}} dias)",
+    "total": "Total: {{count}}",
+    "no_triggers_last_days": "Nenhum gatilho nos últimos {{days}} dias",
+    "older_triggers_hint": "Gatilhos mais antigos não aparecerão aqui",
+    "common_moments": "Momentos comuns",
+    "common_emotions": "Emoções comuns"
+  },
+  "challenges_progress_section": {
+    "no_challenges_yet": "Ainda sem desafios",
+    "completed": "Concluído",
+    "active": "Ativo",
+    "days": "{{count}} dias",
+    "days_goal": "Objetivo de {{completed}} dias"
+  },
+  "mood_progress_section": {
+    "start_tracking": "Comece a acompanhar o seu humor para ver insights",
+    "mood_over_time": "Humor ao longo do tempo",
+    "most_frequent_moods": "Humor mais frequente",
+    "reflections_done": "Reflexões concluídas",
+    "self_aware_quote": "Sou uma pessoa com autoconsciência"
+  },
+  "activity_calendar": {
+    "title": "Histórico de Progresso",
+    "subtitle": "Clique num dia para ver o seu registo",
+    "legend": {
+      "done": "Feito",
+      "not_done": "Não feito",
+      "today": "Hoje"
+    }
+  },
+  "day_detail_modal": {
+    "daily_checkin": "Check-in Diário",
+    "habits": "Hábitos",
+    "daily_tasks": "Tarefas Diárias",
+    "things_to_avoid": "Coisas a Evitar",
+    "detox_challenges": "Desafios Detox",
+    "recovery_checkin": "Check-in de Recuperação",
+    "challenge_journey": "Jornada do Desafio",
+    "evening_reflection": "Reflexão Noturna",
+    "no_data": "Nenhum(a) {{section}} registado(a)",
+    "how_was_your_day": "Como foi o seu dia?",
+    "grateful_for": "Grato por",
+    "lessons_learned": "Lições aprendidas",
+    "no_habits": "Nenhum hábito registado neste dia",
+    "no_tasks": "Nenhuma tarefa planeada para este dia",
+    "no_not_to_do": "Nenhum objetivo de não-fazer definido para este dia",
+    "no_challenges": "Nenhum desafio ativo neste dia",
+    "no_recovery": "Nenhum check-in de recuperação registado",
+    "no_daily_checkin": "Nenhum check-in diário registado",
+    "no_challenge_activity": "Nenhuma atividade de desafio neste dia",
+    "no_evening_reflection": "Nenhuma reflexão noturna escrita neste dia",
+    "mood_label": "Humor",
+    "energy_label": "Nível de Energia",
+    "streak_continued": "Sequência continuada — Dia {{day}}",
+    "no_checkin_recorded": "Nenhum check-in registado",
+    "clean_day": "Dia limpo",
+    "relapse_occurred": "Ocorreu uma recaída",
+    "setback": "Reversão",
+    "checked_in": "Check-in feito",
+    "mental_mission": "Mental",
+    "behavioral_mission": "Comportamental",
+    "avoided": "evitado",
+    "not_avoided": "não evitado",
+    "mood": {
+      "great": "Ótimo",
+      "good": "Bom",
+      "okay": "Mais ou menos",
+      "struggling": "Com dificuldade",
+      "difficult": "Difícil"
+    }
+  },
+  "whats_working_section": {
+    "title": "O que Funciona",
+    "empty_prompt": "Acompanhe os seus hábitos durante uma semana para desbloquear insights personalizados",
+    "generate": "Gerar",
+    "refresh": "Atualizar",
+    "improving": "Continue assim – está a construir impulso.",
+    "protect": "A sua consistência é o seu maior ativo.",
+    "adjustment": "Tente ajustar uma pequena coisa esta semana.",
+    "available_in": "Disponível em {{days}} dias"
+  },
+  "recovery_tracker": {
+    "title": "Desafio de Recuperação",
+    "started": "Iniciado {{date}}",
+    "current_streak": "Sequência atual",
+    "longest_streak": "Sequência mais longa",
+    "success_days": "Dias de sucesso",
+    "failed_days": "Dias de falha",
+    "todays_checkin": "Check-in de hoje",
+    "already_checked_in": "Já fez o check-in hoje",
+    "success": "Sucesso",
+    "failed": "Falha",
+    "start_fresh": "Recomeçar",
+    "start_fresh_title": "Recomeçar?",
+    "start_fresh_desc": "Isto irá redefinir a sua jornada atual e iniciar uma nova. Os seus dados anteriores serão arquivados.",
+    "abandon": "Abandonar",
+    "abandon_title": "Abandonar o desafio?",
+    "abandon_desc": "Isto irá terminar o seu desafio atual. Pode iniciar um novo a qualquer momento."
+  },
+  "craving_actions": {
+    "title": "O que Fazer Durante um Desejo",
+    "description": "Os desejos são intensos mas temporários – geralmente 15‑20 minutos. Use estas ações para surfar a onda até passar.",
+    "footer_hint": "Toque em cada ação à medida que a completa. O desejo passará.",
+    "reset": "Repor",
+    "cold_shower_title": "Tome um duche frio",
+    "cold_shower_desc": "30 segundos a 2 minutos. Choca o seu sistema para fora do desejo.",
+    "walk_title": "Vá dar um passeio ou correr",
+    "walk_desc": "Deixe o seu telefone. Saia. O movimento redireciona a energia.",
+    "exercise_title": "Faça exercício físico",
+    "exercise_desc": "Flexões, agachamentos, saltos. Esgote fisicamente o impulso.",
+    "contact_title": "Contacte alguém em quem confia",
+    "contact_desc": "Escreva ou ligue a um amigo, familiar ou parceiro de responsabilidade.",
+    "people_title": "Esteja com outras pessoas",
+    "people_desc": "Vá para um espaço público. O isolamento alimenta o impulso. A ligação quebra-o."
+  },
+  "triggers_section": {
+    "title": "Identificar Gatilhos",
+    "description": "Gatilhos são as situações, emoções e contextos que levam a impulsos. Compreender os seus gatilhos pessoais é essencial para a prevenção.",
+    "ask_questions": "Faça a si mesmo estas perguntas após cada impulso:",
+    "common_triggers_heading": "Gatilhos Comuns e Soluções",
+    "question_emotion": "Que emoção estava a sentir?",
+    "examples_emotion": "Tédio, solidão, stress, ansiedade, cansaço, rejeição, frustração",
+    "question_time": "Que hora do dia era?",
+    "examples_time": "Noite tardia, manhã cedo, após o trabalho, tarde de fim de semana",
+    "question_where": "Onde estava?",
+    "examples_where": "Quarto, casa de banho, casa sozinho, quarto de hotel",
+    "question_before": "O que estava a fazer antes?",
+    "examples_before": "A deslocar-me em redes sociais, a ver TV, a trabalhar, a discutir com alguém",
+    "trigger_computer": "Sozinho ao computador",
+    "tip_computer": "Trabalhe em espaços públicos ou com a porta aberta",
+    "trigger_phone_bed": "Telefone na cama à noite",
+    "tip_phone_bed": "Carregue o telefone noutra divisão",
+    "trigger_social": "Deslocamento em redes sociais",
+    "tip_social": "Limite ou remova as apps que desencadeiam impulsos",
+    "trigger_late_nights": "Noites tardias quando está cansado",
+    "tip_late_nights": "Defina uma hora fixa para dormir e cumpra-a"
+  },
+  "anti_trigger_plan": {
+    "title": "Plano Anti-Gatilho Pessoal",
+    "description": "Crie planos se-então para os seus gatilhos específicos. Ter uma resposta pré-definida facilita a ação quando o momento chega.",
+    "error_saving_title": "Erro ao guardar",
+    "error_saving_desc": "Não foi possível guardar o seu plano. Tente novamente.",
+    "incomplete_title": "Plano incompleto",
+    "incomplete_desc": "Por favor, preencha todos os três campos.",
+    "template": "Quando {{trigger}}, vou {{action}}, porque me dá {{benefit}}.",
+    "add_new": "Adicionar um novo plano:",
+    "when": "Quando",
+    "trigger_placeholder": "Sinto-me entediado à noite",
+    "i_will": "Vou",
+    "action_placeholder": "sair para passear ou ligar a um amigo",
+    "because_gives_me": "Porque me dá"
+  },
+  "reasons_section": {
+    "title": "As Minhas Razões para Parar",
+    "description": "As suas motivações pessoais são a sua âncora. Leia-as durante os desejos para lembrar porque começou.",
+    "error_saving_title": "Erro ao guardar",
+    "error_saving_desc": "Não foi possível guardar as suas razões. Tente novamente.",
+    "already_added_title": "Já adicionado",
+    "already_added_desc": "Esta razão já está na sua lista.",
+    "new_placeholder": "Escreva a sua razão...",
+    "add_my_reason": "Adicionar a minha razão",
+    "suggested_prompt": "Ou toque para adicionar uma razão sugerida:",
+    "sr1": "Melhor saúde física e mental",
+    "sr2": "Liberdade do vício e compulsão",
+    "sr3": "Relacionamentos mais profundos e autênticos",
+    "sr4": "Mais tempo e energia para o que importa",
+    "sr5": "Maior foco e produtividade",
+    "sr6": "Controlo sobre a minha vida e escolhas",
+    "sr7": "Melhor autoestima e confiança",
+    "sr8": "Estar presente com as pessoas que amo"
+  },
+  "strategies_section": {
+    "title": "Estratégias Práticas de Recuperação",
+    "description": "A recuperação não é apenas parar — é construir uma vida onde não precisa da fuga. Estas estratégias abordam tanto o comportamento como as necessidades subjacentes.",
+    "remove_access_title": "Remova o acesso",
+    "remove_access_desc": "Instale bloqueadores em todos os dispositivos. Elimine conteúdo guardado. Torne o acesso difícil.",
+    "change_env_title": "Mude o ambiente",
+    "change_env_desc": "Mova os dispositivos para áreas públicas. Evite estar sozinho com ecrãs. Mude a sua rotina.",
+    "track_streak_title": "Acompanhe a sua sequência",
+    "track_streak_desc": "Use um contador diário. Celebre marcos. Visualize o seu progresso todos os dias.",
+    "exercise_title": "Exercício regular",
+    "exercise_desc": "A atividade física liberta dopamina saudável e reduz impulsos. Mesmo 20 minutos ajudam.",
+    "meditation_title": "Meditação e Atenção Plena",
+    "meditation_desc": "Pratique observar impulsos sem agir. Mesmo 5‑10 minutos por dia fortalecem o controlo mental.",
+    "cold_showers_title": "Duches frios",
+    "cold_showers_desc": "Constrói disciplina e força de vontade. Choca o sistema durante desejos. Comece com 30 segundos.",
+    "journaling_title": "Diário",
+    "journaling_desc": "Escreva sobre gatilhos, sentimentos e vitórias. A autoconsciência é fundamental para a recuperação.",
+    "social_title": "Conexão social",
+    "social_desc": "Passe tempo com pessoas. O isolamento alimenta o vício. A conexão real cura.",
+    "nature_title": "Tempo na natureza",
+    "nature_desc": "A natureza acalma o sistema nervoso e fornece dopamina saudável através da beleza e admiração.",
+    "hobbies_title": "Hobbies saudáveis",
+    "hobbies_desc": "Substitua o hábito por algo envolvente: música, desporto, aprendizagem, criação.",
+    "prioritize_sleep_title": "Priorize o sono",
+    "prioritize_sleep_desc": "O cansaço enfraquece a força de vontade. Sem ecrãs uma hora antes de dormir. Apunte para 7‑9 horas.",
+    "self_compassion_title": "Autocompaixão",
+    "self_compassion_desc": "Os contratempos acontecem. A culpa alimenta a recaída. Trate-se com a bondade que ofereceria a um amigo."
+  },
+  "understanding_section": {
+    "title": "Compreender o Problema",
+    "description": "A pornografia online moderna é projetada para sequestrar o sistema de recompensa do seu cérebro. Compreender a ciência por trás disso é o primeiro passo para a liberdade.",
+    "super_stimulus_title": "O Efeito Super-Estímulo",
+    "super_stimulus_intro_part1": "A pornografia na Internet atua como um",
+    "super_stimulus_intro_emphasis": "super-estímulo",
+    "super_stimulus_intro_part2": "— uma versão artificialmente potenciada de uma recompensa natural que o seu cérebro nunca evoluiu para lidar:",
+    "unlimited_novelty_label": "Novidade ilimitada:",
+    "unlimited_novelty_desc": "Conteúdo infinito desencadeia picos de dopamina muito além do que as experiências naturais proporcionam",
+    "instant_access_label": "Acesso instantâneo:",
+    "instant_access_desc": "Sem esforço necessário significa nenhum atraso natural entre o desejo e a recompensa",
+    "extreme_content_label": "Conteúdo extremo:",
+    "extreme_content_desc": "Material cada vez mais extremo empurra o limiar de recompensa do seu cérebro cada vez mais alto",
+    "super_stimulus_conclusion": "O seu cérebro liberta mais dopamina ao antecipar e procurar do que durante a experiência real, criando um poderoso ciclo de desejo.",
+    "common_effects_title": "Efeitos Comuns",
+    "desensitization_label": "Dessensibilização",
+    "desensitization_desc": "O seu cérebro torna-se menos responsivo à dopamina, exigindo estimulação mais intensa para sentir o mesmo prazer.",
+    "escalation_label": "Escalada",
+    "escalation_desc": "Com o tempo, pode procurar conteúdo mais extremo ou novo para obter o mesmo efeito.",
+    "anxiety_label": "Ansiedade e Baixa Autoestima",
+    "anxiety_desc": "O ciclo de uso e remorso pode alimentar ansiedade, vergonha e autoperceção negativa.",
+    "concentration_label": "Problemas de Concentração",
+    "concentration_desc": "A desregulação da dopamina afeta o foco, a motivação e a capacidade de desfrutar de atividades diárias.",
+    "sexual_emotional_title": "Efeitos Sexuais e Emocionais",
+    "pied_label": "Disfunção Erétil Induzida por Pornografia (PIED)",
+    "pied_desc": "Muitos homens experimentam dificuldade em excitar-se durante encontros íntimos reais. Isso acontece porque o cérebro foi condicionado a responder apenas à estimulação artificial da pornografia, não a parceiros reais.",
+    "emotional_disconnection_label": "Desconexão Emocional",
+    "emotional_disconnection_desc": "O uso regular de pornografia pode dificultar a formação de laços emocionais profundos. A intimidade real requer vulnerabilidade e conexão que a pornografia o treina a contornar.",
+    "young_brains_title": "Porque os Jovens Cérebros São Mais Vulneráveis",
+    "young_brains_intro_part1": "Os cérebros de adolescentes e jovens adultos são particularmente suscetíveis devido à",
+    "neuroplasticity": "neuroplasticidade",
+    "young_brains_intro_part2": "— a alta capacidade do cérebro de formar novas vias neurais.",
+    "young_brains_point1": "O córtex pré-frontal (controlo de impulsos) não está totalmente desenvolvido até aos 25 anos",
+    "young_brains_point2": "A sensibilidade à dopamina atinge o pico durante a adolescência",
+    "young_brains_point3": "As vias neurais formadas durante este período tornam-se profundamente enraizadas",
+    "young_brains_point4": "A exposição precoce pode moldar padrões de excitação sexual para toda a vida",
+    "good_news_label": "A boa notícia:",
+    "good_news_desc": "A mesma neuroplasticidade que torna os jovens cérebros vulneráveis também significa que eles podem reconectar-se mais rapidamente durante a recuperação."
+  },
+  "brain_science_section": {
+    "title": "O que Acontece no Cérebro",
+    "wanting_vs_liking": "Querer vs Gostar",
+    "reward_system_intro": "O seu cérebro tem dois sistemas separados para recompensa:",
+    "wanting_label": "Querer",
+    "wanting_parenthesis": "Desejo impulsionado por dopamina",
+    "wanting_desc": "É a antecipação, a procura, o impulso. A dopamina leva-o a procurar a recompensa, não a desfrutá-la. É por isso que pode passar horas a procurar e clicar, sentindo-se insatisfeito.",
+    "liking_label": "Gostar",
+    "liking_parenthesis": "Prazer real",
+    "liking_desc": "Satisfação e prazer reais. Com a pornografia, este sistema enfraquece — quer mais mas desfruta menos. Os prazeres reais parecem opacos em comparação.",
+    "wanting_liking_quote": "\"A lacuna entre querer e gostar é a armadilha. Está a perseguir uma satisfação que nunca chega.\"",
+    "novelty_title": "Porque a Novidade Aumenta o Desejo",
+    "novelty_desc_part1": "O seu cérebro está programado para prestar atenção à",
+    "novelty_highlight": "novidade",
+    "novelty_desc_part2": "Cada nova imagem ou vídeo desencadeia um pico de dopamina porque o seu cérebro pensa: \"Isto pode ser importante!\"",
+    "escalation_cycle_label": "O ciclo de escalada:",
+    "escalation_step1": "Conteúdo novo → Pico de dopamina → Satisfação temporária",
+    "escalation_step2": "Mesmo conteúdo → Menos dopamina → Necessidade de mais novidade",
+    "escalation_step3": "Procura conteúdo mais extremo/novo → Pico mais alto → Tolerância aumenta",
+    "escalation_step4": "Cérebro exige mais intensidade para sentir algo → Vício aprofunda-se",
+    "novelty_conclusion": "É por isso que muitos utilizadores se encontram a assistir a conteúdo que nunca teriam procurado no início. Não se trata do que quer — trata-se do que o seu sistema de recompensa sequestrado exige.",
+    "reboot_title": "O Reinício: Como o Seu Cérebro Cura",
+    "reboot_intro_part1": "A abstinência da pornografia permite que o seu cérebro",
+    "reset_dopamine": "reinicie a sensibilidade à dopamina",
+    "reboot_intro_part2": "Este processo, muitas vezes chamado de \"reinício\", leva a melhorias mensuráveis:",
+    "improved_mood_label": "Humor melhorado",
+    "improved_mood_desc": "Ansiedade e depressão reduzidas à medida que a dopamina normaliza",
+    "better_focus_label": "Melhor foco",
+    "better_focus_desc": "Atenção e concentração voltam a níveis saudáveis",
+    "healthy_sexual_label": "Resposta sexual saudável",
+    "healthy_sexual_desc": "A excitação para parceiros reais retorna, os sintomas de PIED resolvem-se",
+    "more_energy_label": "Mais energia e motivação",
+    "more_energy_desc": "A vida parece mais vibrante, os prazeres diários regressam",
+    "timeline_label": "Linha do tempo:",
+    "timeline_desc": "A maioria das pessoas nota melhorias significativas dentro de 30‑90 dias, embora a recuperação completa possa demorar mais dependendo da duração e intensidade do uso."
+  },
+  "evening_reflection_section": {
+    "title": "Reflexão Noturna",
+    "unsaved": "Não guardado",
+    "motivation_messages": [
+      "Bom trabalho a planear amanhã! Está a preparar-se para o sucesso.",
+      "Fantástico! Refletir sobre o seu dia é um hábito poderoso. Continue assim!",
+      "Bem feito! Amanhã é um novo começo com intenções claras.",
+      "Trabalho fantástico! A autorreflexão é a chave para o crescimento pessoal.",
+      "Está a fazer um ótimo trabalho! Planear com antecedência mostra verdadeiro compromisso."
+    ],
+    "day_summary_label": "Como foi o seu dia?",
+    "day_summary_placeholder": "Descreva brevemente como correu o seu dia...",
+    "grateful_for_label": "Pelo que está grato hoje? (1‑3 coisas)",
+    "grateful_placeholder": "Adicione algo pelo qual está grato...",
+    "add_gratitude": "Adicionar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "reflection_saved": "Reflexão guardada!",
+    "reflection_save_error": "Não foi possível guardar a reflexão",
+    "motivation_note": "Bom trabalho a refletir sobre o seu dia",
+    "energy_level": "Nível de energia",
+    "lessons_label": "O que aprendeu ou o que pode melhorar?",
+    "lessons_placeholder": "Escreva uma lição aprendida ou uma área de melhoria...",
+    "save_reflection": "Guardar Reflexão"
+  },
+  "todo_section": {
+    "title": "Tarefas para amanhã",
+    "no_tasks": "Nenhuma tarefa planeada para este dia",
+    "add_task": "Adicionar tarefa",
+    "suggestions_title": "Sugestões",
+    "quick_add_suggestions": "Sugestões rápidas:",
+    "error_add": "Não foi possível adicionar a tarefa",
+    "error_update": "Não foi possível atualizar a tarefa",
+    "error_delete": "Não foi possível eliminar a tarefa",
+    "task_added": "Tarefa adicionada!",
+    "plan_tomorrow": "Planeie o seu amanhã",
+    "tasks_done": "concluídas",
+    "suggested_tasks": [
+      "Beba 8 copos de água",
+      "Medite 10 minutos",
+      "Dê um passeio de 30 minutos",
+      "Leia 20 minutos",
+      "Escreva no diário",
+      "Faça exercício 30 minutos"
+    ],
+    "add_goals": "Adicione os seus objetivos para amanhã"
+  },
+  "not_to_do_section": {
+    "title": "Coisas a evitar",
+    "no_items": "Nenhum item a evitar",
+    "add_item": "Adicionar item",
+    "error_add": "Não foi possível adicionar o item",
+    "error_delete": "Não foi possível eliminar o item",
+    "error_update": "Não foi possível atualizar o estado",
+    "item_added": "Item adicionado!",
+    "avoid_behavior": "Evite este comportamento amanhã",
+    "avoided": "Evitado",
+    "not_avoided": "Não evitado",
+    "quick_suggestions": "Adicionar sugestões rápidas:",
+    "no_behaviors": "Nenhum comportamento a evitar",
+    "add_negative_habits": "Adicione hábitos negativos a evitar",
+    "suggested_items": [
+      "Sem redes sociais antes das 10",
+      "Sem comida pouco saudável",
+      "Sem telefone na cama",
+      "Sem autocrítica negativa",
+      "Não falhe os treinos",
+      "Não procrastine nas tarefas"
+    ]
+  },
+  "active_habits_section": {
+    "no_active": "Ainda sem hábitos ativos",
+    "create_hint": "Crie hábitos a partir da página Hábitos",
+    "error_remove": "Não foi possível remover a conclusão",
+    "error_mark": "Não foi possível marcar como concluído",
+    "title": "Hábitos Ativos",
+    "completed": "concluídos"
+  },
+  "daily_planning_stats": {
+    "day_streak": "Sequência de Dias",
+    "tasks_done": "Tarefas Concluídas",
+    "perfect_days": "Dias Perfeitos"
+  },
+  "evening_reminder_banner": {
+    "title": "É hora do planeamento noturno",
+    "description": "Reserve um momento para planear amanhã e refletir sobre hoje",
+    "reminder_enabled_title": "Lembrete ativado!",
+    "reminder_enabled_desc": "Receberá uma notificação às 20:00 para planear amanhã.",
+    "reminder_disabled_title": "Lembrete desativado",
+    "reminder_disabled_desc": "Não receberá lembretes noturnos.",
+    "disable": "Desativar",
+    "remind_me": "Lembrar-me"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "Inglês",
+    "it": "Italiano"
+  },
+  "challenge_card": {
+    "challenge_complete": "🎉 Desafio Concluído!",
+    "completed_challenge": "Concluiu o desafio de {{days}} dias!",
+    "day_checked": "Dia registado! 🔥",
+    "day_done": "Dia {{day}} feito. Continue assim!",
+    "fresh_start": "Novo começo",
+    "fresh_start_desc": "Jokers repostos. Cada dia é uma nova oportunidade. 💪",
+    "challenge_resumed": "Desafio retomado",
+    "lets_keep_going": "Vamos continuar!",
+    "no_jokers_warning": "Sem jokers restantes — qualquer recaída irá pausar.",
+    "challenge_paused": "Desafio em pausa",
+    "take_time": "Leve o tempo que precisar",
+    "challenge_removed": "Desafio removido",
+    "challenge_deleted": "O desafio foi eliminado",
+    "days_completed": "dias concluídos",
+    "day_completed": "dia concluído",
+    "complete_excl": "Concluído!",
+    "resume": "Retomar",
+    "pause": "Pausa",
+    "reset": "Repor",
+    "delete": "Eliminar",
+    "all_jokers_used": "Todos os jokers usados",
+    "paused_at_day": "Em pausa no dia {{day}}. Retome sem jokers ou recomece.",
+    "resume_detox": "Retomar detox",
+    "reset_detox": "Repor detox",
+    "resume_no_jokers": "A retoma continua sem jokers — qualquer recaída irá pausar novamente.",
+    "checked_in_today": "Check-in feito hoje",
+    "check_in_today": "Fazer check-in hoje",
+    "days_to_go": "{{days}} dias restantes — vai conseguir!",
+    "start_fresh_title": "Recomeçar?",
+    "start_fresh_desc": "Isto irá redefinir o seu progresso e restaurar todos os 3 jokers.",
+    "keep_going": "Continuar",
+    "enter_journey": "Entrar na Jornada",
+    "hide_details": "Ocultar detalhes",
+    "view_steps_science": "Ver passos diários e ciência",
+    "the_science": "A Ciência",
+    "daily_steps": "Passos Diários",
+    "day_of": "Dia {{current}} / {{total}}",
+    "paused": "Em pausa"
+  },
+  "today_overview": {
+    "more_habits": "+{{count}} outros hábitos",
+    "no_habits": "Ainda sem hábitos. Crie um para começar!",
+    "all_done": "Tudo feito por hoje! Ótimo trabalho!",
+    "lets_go": "Vamos fazer com que o dia conte!",
+    "left_count": "{{count}} restantes — vai conseguir!"
+  },
+  "micro_actions": {
+    "title": "Vitórias Rápidas",
+    "done_count": "{{count}}/3 feitas"
+  },
+  "gamification": {
+    "level": "Nível {{level}}",
+    "next_level": "Próximo nível",
+    "habits_done": "Hábitos Feitos",
+    "best_streak": "Melhor Sequência",
+    "challenges_won": "Desafios Ganhos",
+    "reflections": "Reflexões",
+    "badges": "Distintivos ({{earned}}/{{total}})"
+  },
+  "habit_card": {
+    "habit_deleted": "Hábito eliminado",
+    "habit_removed": "O hábito foi removido",
+    "edit": "Editar",
+    "day_streak": "sequência de {{count}} dias",
+    "day_streak_plural": "sequência de {{count}} dias",
+    "this_week": "Esta semana"
+  },
+  "recovery_timeline": {
+    "what_to_expect": "O que Esperar",
+    "tips_for_success": "Dicas para o Sucesso"
+  },
+  "learn_content": {
+    "articles_description": "Aprofundamentos semanais em ciência, psicologia e recuperação.",
+    "guides_description": "Leituras curtas para compreender a sua jornada e construir consciência.",
+    "no_articles_title": "Ainda sem artigos",
+    "no_articles_description": "Novo conteúdo educativo será publicado semanalmente. Volte em breve para insights sobre ciência da recuperação e bem-estar.",
+    "back_to_articles": "Voltar aos artigos",
+    "article_not_found": "Artigo não encontrado",
+    "key_takeaways_label": "Principais Conclusões",
+    "guides": {
+      "dopamine": {
+        "title": "Como a Dopamina Funciona",
+        "category": "Neurociência",
+        "read_time": "3 min",
+        "summary": "Compreenda o sistema de recompensa do cérebro e porque a recuperação leva tempo.",
+        "content": [
+          "A dopamina é um neurotransmissor que desempenha um papel crucial na forma como experimentamos prazer e motivação. É frequentemente chamada de substância do 'bem-estar', mas é mais precisamente descrita como a substância da 'procura'.",
+          "Quando nos envolvemos em comportamentos viciantes, o nosso cérebro liberta quantidades invulgarmente altas de dopamina. Com o tempo, o cérebro adapta-se reduzindo os recetores de dopamina, o que significa que precisamos de mais estimulação para sentir o mesmo prazer.",
+          "Durante a recuperação, o seu cérebro está literalmente a reconectar-se. Os recetores de dopamina estão a regenerar-se e o seu nível básico de prazer está a recalibrar-se. Este processo leva tempo — tipicamente 90‑180 dias para uma melhoria significativa.",
+          "A boa notícia: o seu cérebro tem uma plasticidade notável. Cada dia de recuperação, está a construir novas vias neurais e a restaurar a função dopaminérgica saudável."
+        ],
+        "key_takeaways": [
+          "A dopamina impulsiona o comportamento de procura, não apenas o prazer",
+          "A recuperação envolve mudanças físicas no cérebro",
+          "90‑180 dias para uma regeneração significativa dos recetores",
+          "O seu cérebro pode e vai curar"
+        ]
+      },
+      "relapses": {
+        "title": "Gerir Recaídas",
+        "category": "Recuperação",
+        "read_time": "4 min",
+        "summary": "As recaídas não são falhas — são oportunidades de aprendizagem. Eis como lidar com elas.",
+        "content": [
+          "Primeiro, vamos redefinir a recaída: não é uma falha moral nem um sinal de que a recuperação não está a funcionar. A recaída é frequentemente parte do processo de recuperação, e a investigação mostra que a maioria das pessoas que se recuperam com sucesso experimentam múltiplas recaídas.",
+          "A chave é como responde. O efeito de violação da abstinência ocorre quando um deslize leva ao abandono completo dos esforços de recuperação. Evitar esta mentalidade é crucial.",
+          "Após uma recaída: 1) Não catastrofize — um deslize não apaga o seu progresso. 2) Analise o que a desencadeou. 3) Identifique o que poderia fazer de diferente. 4) Volte imediatamente aos eixos. 5) Procure apoio.",
+          "As estratégias de prevenção incluem: identificar os seus gatilhos, criar barreiras ambientais, ter um parceiro de responsabilidade e construir fontes saudáveis de dopamina através de exercício, conexão social e objetivos significativos."
+        ],
+        "key_takeaways": [
+          "A recaída é frequentemente parte da recuperação, não o seu fim",
+          "Um deslize não apaga todo o progresso",
+          "Analise os gatilhos e aprenda com cada experiência",
+          "Volte imediatamente aos eixos — não espere por 'amanhã'"
+        ]
+      },
+      "withdrawal": {
+        "title": "Compreender a Abstinência",
+        "category": "Saúde",
+        "read_time": "3 min",
+        "summary": "O que esperar durante a abstinência e como lidar.",
+        "content": [
+          "Os sintomas de abstinência são a resposta do cérebro à ausência dos altos níveis de dopamina a que se habituou. Os sintomas comuns incluem: irritabilidade, ansiedade, depressão, dificuldade de concentração, insónia e desejos intensos.",
+          "A fase aguda (primeiras 1‑2 semanas) é tipicamente a mais desafiadora. Os sintomas atingem o pico por volta dos dias 3‑7 e diminuem gradualmente. Compreender esta linha do tempo ajuda-o a saber que o pior é temporário.",
+          "Estratégias de gestão: mantenha-se hidratado, faça exercício regularmente (mesmo caminhadas leves ajudam), mantenha um horário de sono, evite o isolamento, use exercícios de respiração durante os picos de desejo e lembre-se que cada momento difícil é o seu cérebro a curar.",
+          "A atividade física é especialmente poderosa — aumenta naturalmente a dopamina e as endorfinas, ajudando a colmatar a lacuna neuroquímica deixada durante a recuperação."
+        ],
+        "key_takeaways": [
+          "Os sintomas atingem o pico na primeira semana, depois melhoram",
+          "O exercício é uma das melhores ferramentas de gestão",
+          "Cada momento difícil está literalmente a curar o seu cérebro",
+          "Mantenha-se conectado — não se isole"
+        ]
+      },
+      "habits": {
+        "title": "Construir Novos Hábitos",
+        "category": "Psicologia",
+        "read_time": "4 min",
+        "summary": "Substitua padrões antigos por rotinas saudáveis que duram.",
+        "content": [
+          "Quebrar um vício não é apenas parar um comportamento — é substituí-lo por algo melhor. O seu cérebro anseia pelo caminho de recompensa que o vício fornecia, por isso precisa de construir novos caminhos.",
+          "O ciclo do hábito consiste em: Pista → Rotina → Recompensa. Para mudar um hábito, identifique as suas pistas (hora, local, estado emocional), substitua a rotina por uma mais saudável e certifique-se de que obtém uma recompensa.",
+          "Comece pequeno. Tentar reformular toda a sua vida de uma vez leva ao esgotamento. Concentre-se num hábito chave — muitas vezes o exercício — que cria efeitos positivos em cascata no sono, humor e motivação.",
+          "A consistência vence a intensidade. Uma caminhada diária de 10 minutos é mais poderosa do que um treino ocasional de uma hora. Os hábitos são construídos através da repetição, não da intensidade."
+        ],
+        "key_takeaways": [
+          "Substitua, não apenas elimine — preencha o vazio",
+          "Identifique as suas pistas e planeie respostas alternativas",
+          "Comece com um hábito chave",
+          "A consistência vence a intensidade todas as vezes"
+        ]
+      },
+      "neuroplasticity": {
+        "title": "O Seu Cérebro Pode Mudar",
+        "category": "Neurociência",
+        "read_time": "3 min",
+        "summary": "A ciência da neuroplasticidade e porque a recuperação é sempre possível.",
+        "content": [
+          "A neuroplasticidade é a capacidade do cérebro de se reorganizar formando novas conexões neurais. Isto significa que independentemente de há quanto tempo tem lutado, o seu cérebro pode mudar e curar.",
+          "Cada vez que resiste a um impulso, está a fortalecer novas vias neurais. É como construir um músculo — cada repetição torna a seguinte um pouco mais fácil. O cérebro muda literalmente a sua estrutura com base nas suas escolhas.",
+          "Estudos mostram que a meditação, o exercício e a aprendizagem de novas habilidades aceleram a neuroplasticidade. Estas atividades aumentam o BDNF (fator neurotrófico derivado do cérebro), que ajuda a criar novos neurónios e conexões.",
+          "O tempo para mudanças notáveis varia, mas a maioria das pessoas relata melhorias significativas em clareza, humor e desejos entre 30 e 90 dias. Lembre-se: não está apenas à espera da mudança — está a construí-la ativamente."
+        ],
+        "key_takeaways": [
+          "O seu cérebro pode mudar fisicamente em qualquer idade",
+          "Cada escolha saudável fortalece os caminhos de recuperação",
+          "O exercício e a meditação aceleram a cura do cérebro",
+          "30‑90 dias trazem tipicamente melhorias notáveis"
+        ]
+      }
+    },
+    "timeline": {
+      "acute": {
+        "name": "Fase Aguda",
+        "day_range": "Dias 1‑14",
+        "description": "A fase mais desafiadora. O seu cérebro está a adaptar-se à ausência de estimulação excessiva de dopamina.",
+        "symptoms": [
+          "Desejos e impulsos intensos",
+          "Alterações de humor e irritabilidade",
+          "Dificuldade em dormir",
+          "Ansiedade e inquietação",
+          "Nevoeiro mental e baixa motivação"
+        ],
+        "tips": [
+          "Leve uma hora de cada vez",
+          "Mantenha-se ocupado com distrações saudáveis",
+          "Evite completamente os gatilhos",
+          "Faça exercício todos os dias, mesmo que apenas caminhe",
+          "Lembre-se: esta fase é temporária"
+        ]
+      },
+      "stabilization": {
+        "name": "Estabilização",
+        "day_range": "Dias 15‑45",
+        "description": "As coisas começam a estabilizar. Os desejos tornam-se menos intensos e começa a vislumbrar clareza.",
+        "symptoms": [
+          "Desejos reduzidos mas ocasionais",
+          "Humor e energia melhorados",
+          "Melhores padrões de sono",
+          "Aumento da concentração",
+          "Possíveis períodos de platô"
+        ],
+        "tips": [
+          "Comece a construir novos hábitos saudáveis",
+          "Não confunda platô com fracasso",
+          "Inicie uma autorreflexão mais profunda",
+          "Conecte-se com a comunidade de apoio",
+          "Celebre as pequenas vitórias"
+        ]
+      },
+      "reconstruction": {
+        "name": "Reconstrução",
+        "day_range": "Dias 46‑90",
+        "description": "O seu cérebro está a reconstruir-se ativamente. Os recetores de dopamina estão a regenerar-se e o prazer natural regressa.",
+        "symptoms": [
+          "Humor de base mais estável",
+          "Prazer natural nas atividades",
+          "Confiança em si mesmo melhorada",
+          "Pensamento mais claro",
+          "Desejos ocasionais (geríveis)"
+        ],
+        "tips": [
+          "Persiga objetivos significativos",
+          "Construa relacionamentos mais profundos",
+          "Pratique gratidão regularmente",
+          "Mantenha-se vigilante mas confiante",
+          "Ajude outros na sua jornada"
+        ]
+      },
+      "consolidation": {
+        "name": "Consolidação",
+        "day_range": "Dia 90+",
+        "description": "As novas vias neurais estão consolidadas. A recuperação torna-se a sua nova normalidade, mas a consciência a longo prazo continua importante.",
+        "symptoms": [
+          "Desejos raros e fracos",
+          "Forte sentido de si mesmo",
+          "Regulação emocional estável",
+          "Alta motivação e impulso",
+          "Profundo sentido de liberdade"
+        ],
+        "tips": [
+          "Mantenha hábitos saudáveis",
+          "Mantenha-se humilde e consciente",
+          "Retribua à comunidade",
+          "Continue o crescimento pessoal",
+          "Nunca tome a recuperação como garantida"
+        ]
+      }
+    }
+  },
+  "challenge_journey": {
+    "challenge_not_found": "Desafio não encontrado",
+    "journey_progress": "Progresso da Jornada",
+    "your_journey": "A Sua Jornada",
+    "goal_reached": "🎉 Atingiu o seu objetivo!",
+    "continue_90": "Concluiu o desafio de {{days}} dias. Quer continuar até 90 dias?",
+    "continue_to_90": "Continuar até 90 dias →",
+    "today": "Hoje",
+    "day_n": "Dia {{n}}"
+  },
+  "daily_content": {
+    "your_coach": "O Seu Coach",
+    "mental_mission": "Missão Mental",
+    "behavioral_mission": "Missão Comportamental",
+    "how_was_today": "Como foi hoje?",
+    "tough": "Difícil",
+    "manageable": "Administrável",
+    "strong": "Forte",
+    "setback_today": "Tive uma recaída hoje",
+    "you_checked_in": "Fez check-in:",
+    "setback_message": "Teve uma recaída neste dia. Um joker foi usado — irá repetir este dia. 🤍",
+    "setback_confirm_title": "Tem a certeza?",
+    "setback_confirm_desc": "Reportar uma recaída usará 1 joker ({{remaining}} restantes). O dia não avançará — irá repetir este dia.",
+    "last_joker_warning": "⚠️ Este é o seu último joker. Usá-lo irá pausar o desafio.",
+    "go_back": "Voltar",
+    "yes_setback": "Sim, tive uma recaída",
+    "checkin_saved": "Check-in guardado",
+    "great_reflecting": "Bom trabalho a refletir sobre o seu dia."
+  },
+  "suggested_challenges": {
+    "days": "{{count}} dias",
+    "joined": "{{count}} participantes",
+    "beginner": "Iniciante",
+    "intermediate": "Intermediário",
+    "advanced": "Avançado"
+  },
+  "suggested_habits": {
+    "quick_start": "Comece com hábitos sugeridos:",
+    "easy": "Fácil",
+    "medium": "Médio",
+    "challenge": "Desafio",
+    "items": {
+      "drink_water": { "title": "Beba 8 copos de água", "description": "Mantenha-se hidratado durante o dia" },
+      "deep_breaths": { "title": "Faça 5 respirações profundas", "description": "Reinício rápido de atenção plena" },
+      "make_bed": { "title": "Faça a cama", "description": "Comece o dia com uma pequena vitória" },
+      "read_10min": { "title": "Leia 10 minutos", "description": "Expanda o seu conhecimento todos os dias" },
+      "walk_10min": { "title": "Caminhe 10 minutos", "description": "Exercício leve para corpo e mente" },
+      "eat_fruit": { "title": "Coma uma fruta", "description": "Adicione mais nutrientes à sua dieta" },
+      "gratitude": { "title": "Pratique gratidão", "description": "Escreva 3 coisas pelas quais está grato" },
+      "meditate_15min": { "title": "Medite 15 minutos", "description": "Foco profundo e relaxamento" },
+      "exercise_30min": { "title": "Faça exercício 30 minutos", "description": "Construa força e resistência" },
+      "sleep_8hrs": { "title": "Durma 8 horas", "description": "Priorize descanso de qualidade" },
+      "no_phone_1hr": {
+        "title": "Sem telemóvel na primeira hora",
+        "description": "Comece o dia com intenção"
+      }
+    }
+  },
+  "emergency_urge": {
+    "header": "Apoio de Emergência",
+    "feeling_title": "Como se sente agora?",
+    "feeling_subtitle": "Sem julgamento — diga-me o que se passa.",
+    "location_title": "Onde está?",
+    "location_subtitle": "Isto ajuda-me a sugerir as ações certas.",
+    "alone_title": "Está sozinho agora?",
+    "alone_subtitle": "Isto ajuda a personalizar conselhos para si.",
+    "yes_alone": "Sim, estou sozinho",
+    "no_with_others": "Não, com outras pessoas",
+    "loading_title": "Estou a preparar os seus conselhos...",
+    "loading_subtitle": "Respire fundo enquanto preparo tudo.",
+    "actions_title": "Faça isto agora",
+    "remember_why": "Lembre-se do seu porquê",
+    "close_button": "Sinto-me melhor",
+    "footer_note": "O impulso vai passar. Vai conseguir. 💪",
+    "personal_reminder": "É mais forte do que este momento.",
+    "calming_message": "Este impulso é intenso mas temporário. Passará dentro de 15‑20 minutos. Respire e deixe a onda passar.",
+    "fallback_action_1": "Tome um duche frio",
+    "fallback_action_2": "Vá dar um passeio ou correr",
+    "fallback_action_3": "Faça exercício físico",
+    "feelings": {
+      "stressed": "Stressado",
+      "bored": "Entediado",
+      "lonely": "Sozinho",
+      "anxious": "Ansioso",
+      "sad": "Triste",
+      "frustrated": "Frustrado",
+      "tired": "Cansado",
+      "restless": "Inquieto",
+      "overwhelmed": "Sobrecarregado"
+    },
+    "locations": {
+      "home_bedroom": "Casa — quarto",
+      "home_living": "Casa — sala de estar",
+      "work": "Trabalho / escritório",
+      "school": "Escola",
+      "public": "Local público",
+      "bathroom": "Casa de banho",
+      "other": "Outro"
+    }
+  },
+  "failure_debrief": {
+    "title": "Análise de Recaída",
+    "description": "Teve uma recaída? Tudo bem — faz parte da jornada. Vamos transformar esta experiência numa oportunidade de aprendizagem.",
+    "start": "Iniciar Análise",
+    "continue": "Continuar Análise",
+    "history": "Histórico",
+    "unfinished_notice": "Tem uma análise não concluída. Continue quando estiver pronto.",
+    "step_label": "Passo {{step}}",
+    "step1_title": "O que aconteceu?",
+    "step2_title": "Primeiro sinal ignorado",
+    "step3_title": "O que mudar",
+    "step1_desc": "Vamos entender o contexto desta recaída",
+    "step2_desc": "Muitas vezes há um sinal de aviso que ignorámos",
+    "step3_desc": "Transforme esta experiência em aprendizagem concreta",
+    "feeling_label": "Como se sentia?",
+    "when_label": "Quando aconteceu?",
+    "time_placeholder": "Selecione a hora do dia",
+    "context_label": "O que se passava? (contexto)",
+    "context_placeholder": "ex., Estava sozinho em casa após um dia stressante...",
+    "trigger_label": "Um gatilho específico?",
+    "trigger_placeholder": "ex., Vi uma imagem provocadora, senti-me rejeitado...",
+    "signal_hint": "Olhando para trás, há geralmente um pequeno sinal que ignorámos. Identificá-lo ajuda-nos a apanhá-lo da próxima vez.",
+    "signal_label": "Que sinal ignorou?",
+    "tell_more_label": "Conte-me mais",
+    "tell_more_placeholder": "Qual foi o sinal que notou mas não agiu?",
+    "data_noticed_title": "O que notámos nos seus dados",
+    "no_reflection": "Nenhuma reflexão noturna recente registada",
+    "no_journal": "Nenhuma entrada recente de diário registada",
+    "triggers_logged": "{{count}} gatilhos recentes registados",
+    "no_patterns": "Nenhum padrão claro detetado — tudo bem!",
+    "loading_suggestions": "A preparar sugestões personalizadas...",
+    "ai_suggestions_title": "Sugestões do Coach IA",
+    "encouragement": "Cada revés é uma preparação para um regresso. O que fará diferente da próxima vez?",
+    "action_plan_label": "O seu plano de ação para a próxima vez",
+    "action_plan_placeholder": "ex., Quando me sentir sozinho à noite, vou ligar a um amigo ou sair para passear...",
+    "remember_label": "Lembre-se",
+    "remember_message": "As recaídas não o definem — o que importa é como responde. Está aqui, está a aprender, e isso exige coragem. 💪",
+    "back": "Voltar",
+    "next": "Seguinte",
+    "complete": "Concluir",
+    "history_title": "Histórico de Análises",
+    "history_desc": "Reveja as suas análises passadas e identifique padrões",
+    "no_debriefs": "Ainda sem análises concluídas.",
+    "history_mood": "Humor",
+    "history_context": "Contexto",
+    "history_trigger": "Gatilho",
+    "moods": {
+      "stressed": "😰 Stressado",
+      "anxious": "😟 Ansioso",
+      "bored": "😐 Entediado",
+      "lonely": "😢 Sozinho",
+      "tired": "😴 Cansado",
+      "angry": "😠 Furioso",
+      "sad": "😔 Triste",
+      "overwhelmed": "😵 Sobrecarregado"
+    },
+    "times": {
+      "early_morning": "Madrugada (5‑8)",
+      "morning": "Manhã (8‑12)",
+      "afternoon": "Tarde (12‑17)",
+      "evening": "Entardecer (17‑21)",
+      "night": "Noite (21‑24)",
+      "late_night": "Madrugada (0‑5)"
+    },
+    "signals": {
+      "skipped_reflection": "Saltei a reflexão noturna",
+      "skipped_journal": "Não escrevi no diário",
+      "poor_sleep": "Mau sono na noite anterior",
+      "skipped_exercise": "Saltei o exercício",
+      "isolation": "Demasiado tempo sozinho",
+      "screen_time": "Tempo de ecrã excessivo",
+      "stress_buildup": "Ignorei o stress acumulado",
+      "trigger_ignored": "Ignorei um gatilho conhecido",
+      "other": "Outra coisa"
+    }
+  },
+  "recovery_journey": {
+    "title": "Jornada de Recuperação",
+    "day_phase": "Dia {{day}} · {{phase}}",
+    "day_label": "Dia",
+    "clean_days": "Dias limpos",
+    "setbacks": "Reveses",
+    "debriefs": "Análises",
+    "view_insight": "Ver insight de hoje",
+    "ai_insight": "Insight IA da Fase",
+    "analyzing": "A analisar a sua jornada...",
+    "insight_error": "Não foi possível carregar o insight. Tente novamente mais tarde.",
+    "phases": {
+      "acute": {
+        "name": "Fase Aguda",
+        "description": "O trecho mais difícil — o seu cérebro está a adaptar-se à vida sem o super-estímulo. Os sintomas de abstinência são normais e temporários."
+      },
+      "stabilization": {
+        "name": "Estabilização",
+        "description": "Os desejos tornam-se menos intensos. O nível basal de dopamina do seu cérebro está lentamente a normalizar. Construir novas rotinas é fundamental."
+      },
+      "reconstruction": {
+        "name": "Reconstrução",
+        "description": "As vias neurais estão a reconectar-se. A regulação emocional melhora. Está a construir a pessoa que quer ser."
+      },
+      "consolidation": {
+        "name": "Consolidação",
+        "description": "Os novos hábitos tornam-se naturais. O seu cérebro curou significativamente. A vigilância ainda é importante, mas tem uma base sólida."
+      }
+    }
+  },
+  "suggested_challenges_content": {
+    "social-media-7": {
+      "title": "Detox de Redes Sociais de 7 Dias",
+      "description": "Faça uma pausa de uma semana em todas as redes sociais para recuperar foco e presença.",
+      "science_note": "Estudos mostram que mesmo uma semana sem redes sociais pode reduzir a ansiedade em 23% e melhorar significativamente a qualidade do sono.",
+    "daily_steps": [
+    "Elimine ou termine sessão nas apps sociais",
+    "Substitua o tempo de deslocamento por uma caminhada de 10 min",
+    "Anote os seus impulsos e emoções",
+    "Conecte-se com alguém pessoalmente ou por telefone",
+    "Reflita sobre o que ganhou hoje"
+    ]
+    },
+    "screen-time-21": {
+    "title": "Reinício do Tempo de Ecrã de 21 Dias",
+    "description": "Reduza gradualmente o tempo de ecrã e construa hábitos digitais mais saudáveis.",
+    "science_note": "O cérebro leva cerca de 21 dias para formar novas vias neurais. Esta duração otimiza a formação de hábitos.",
+    "daily_steps": [
+    "Defina um limite diário de tempo de ecrã (reduza 30 min/semana)",
+    "Sem telemóvel durante as refeições",
+    "Primeira hora após acordar sem telemóvel",
+    "Leia livros físicos antes de dormir",
+    "Sessão semanal de limpeza digital"
+    ]
+    },
+    "dopamine-detox-3": {
+    "title": "Reinício da Dopamina de 3 Dias",
+    "description": "Um reinício curto mas intenso para quebrar o ciclo de estimulação constante.",
+    "science_note": "A sensibilidade dos recetores de dopamina pode começar a recuperar dentro de 72 horas após a redução de atividades de alta estimulação.",
+    "daily_steps": [
+    "Sem redes sociais, jogos ou streaming",
+    "Coma alimentos simples e não processados",
+    "Pratique 15 minutos de meditação",
+    "Dê um passeio na natureza",
+    "Escreva sobre a sua experiência"
+    ]
+    },
+    "mindfulness-30": {
+    "title": "Jornada de Atenção Plena de 30 Dias",
+    "description": "Construa uma prática consistente de meditação e transforme a sua clareza mental.",
+    "science_note": "30 dias de meditação podem aumentar a massa cinzenta no córtex pré-frontal e reduzir a atividade na amígdala.",
+    "daily_steps": [
+    "Meditação matinal (comece com 5 min, aumente para 20)",
+    "3 respirações conscientes antes de cada refeição",
+    "Diário de gratidão noturno",
+    "Uma atividade consciente (caminhada, refeição)",
+    "Escaneamento corporal antes de dormir"
+    ]
+    },
+    "negativity-fast-7": {
+    "title": "Jejum de Negatividade de 7 Dias",
+    "description": "Elimine queixas, críticas e diálogo interno negativo durante uma semana.",
+    "science_note": "Padrões de pensamento negativo fortalecem vias neurais. Quebrar o ciclo por 7 dias pode começar a reconectar o cérebro.",
+    "daily_steps": [
+    "Apanhe e reformule pensamentos negativos",
+    "Sem queixas ou fofocas",
+    "Substitua a crítica por curiosidade",
+    "Pratique exercícios de autocompaixão",
+    "Termine o dia com 3 observações positivas"
+    ]
+    },
+    "sleep-reset-14": {
+    "title": "Reinício do Sono de 14 Dias",
+    "description": "Otimize o seu horário de sono e acorde verdadeiramente descansado.",
+    "science_note": "Reiniciar o ritmo circadiano pode levar 1‑2 semanas. Horários de sono consistentes são mais importantes do que as horas totais.",
+    "daily_steps": [
+    "Mesmas horas de dormir e acordar todos os dias",
+    "Sem ecrãs 1 hora antes de dormir",
+    "Atenue as luzes após o pôr do sol",
+    "Exposição à luz matinal (15 min)",
+    "Sem cafeína após as 14h"
+    ]
+    },
+    "nofap-30": {
+    "title": "Mente Limpa 30 Dias",
+    "description": "Liberte-se da pornografia e recupere a sua clareza mental e energia.",
+    "science_note": "A sensibilidade dos recetores de dopamina geralmente começa a normalizar após 2‑4 semanas de abstinência de super-estímulos.",
+    "daily_steps": [
+    "Instale bloqueadores de sites em todos os dispositivos",
+    "Exercício físico diário (mínimo 20 min)",
+    "Registe impulsos e gatilhos em diário",
+    "Pratique a técnica de surfar o impulso",
+    "Conecte-se com um parceiro de responsabilidade"
+    ]
+    },
+    "recovery-90": {
+    "title": "Recuperação Profunda de 90 Dias",
+    "description": "Uma jornada abrangente para reconectar o cérebro e construir liberdade duradoura.",
+    "science_note": "A recuperação completa do sistema dopaminérgico e a formação de novas vias neurais geralmente requerem 90 dias de esforço consistente.",
+    "daily_steps": [
+    "Duche frio diário para disciplina",
+    "Meditação ou oração (15 min)",
+    "Exercício físico",
+    "Check-in semanal com grupo de apoio",
+    "Reflexão diária e acompanhamento do progresso"
+    ]
+    },
+    "awareness-week-7": {
+    "title": "Semana de Consciência",
+    "description": "Compreenda os seus gatilhos e padrões antes de se comprometer com um desafio mais longo.",
+    "science_note": "A autoconsciência é o primeiro passo para a mudança. Compreender os gatilhos aumenta as taxas de sucesso em 60%.",
+    "daily_steps": [
+    "Registe cada impulso (hora, gatilho, intensidade)",
+    "Identifique os seus 3 principais gatilhos",
+    "Crie um plano de ação de emergência",
+    "Remova pontos de acesso fáceis",
+    "Prepare o seu ambiente para o sucesso"
+    ]
+    }
+    },
+
+    "privacy_policy": {
+    "title": "Política de Privacidade",
+    "back_to_home": "Voltar ao Início",
+    "last_updated": "Última atualização: fevereiro de 2026",
+    "introduction": {
+    "title": "1. Introdução",
+    "content": "A InnerBuild (\"nós\", \"nosso\") opera a aplicação InnerBuild. Esta página informa-o sobre as nossas políticas em relação à recolha, uso e divulgação de dados pessoais quando utiliza o nosso Serviço e as escolhas que tem associadas a esses dados."
+    },
+    "information_collection": {
+    "title": "2. Recolha e Uso de Informações",
+    "content": "Recolhemos vários tipos de informações para diversos fins, para fornecer e melhorar o nosso Serviço.",
+    "items": {
+    "email": "Endereço de e-mail para autenticação e comunicação",
+    "habit_data": "Dados de hábitos e registos pessoais que escolhe guardar",
+    "analytics": "Análises de utilização para melhorar a nossa plataforma",
+    "device_info": "Informações do dispositivo para resolução de problemas"
+    }
+    },
+    "security": {
+    "title": "3. Segurança",
+    "content": "A segurança dos seus dados é importante para nós, mas lembre-se que nenhum método de transmissão pela Internet ou método de armazenamento eletrónico é 100% seguro. Embora nos esforcemos para usar meios comercialmente aceitáveis para proteger os seus dados pessoais, não podemos garantir a sua segurança absoluta."
+    },
+    "changes": {
+    "title": "4. Alterações a Esta Política de Privacidade",
+    "content": "Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Notificá-lo-emos de quaisquer alterações atualizando a data \"Última atualização\" nesta página."
+    },
+    "contact": {
+    "title": "5. Contacte-nos",
+    "content": "Se tiver alguma dúvida sobre esta Política de Privacidade, contacte-nos em"
+    }
+    },
+
+    "terms_of_service": {
+    "title": "Termos de Serviço",
+    "back_to_home": "Voltar ao Início",
+    "last_updated": "Última atualização: fevereiro de 2026",
+    "acceptance": {
+    "title": "1. Aceitação dos Termos",
+    "content": "Ao aceder e utilizar a aplicação InnerBuild, concorda e aceita ficar vinculado pelos termos e disposições deste acordo. Se não concordar em cumprir o acima exposto, não utilize este Serviço."
+    },
+    "use_license": {
+    "title": "2. Licença de Uso",
+    "content": "É concedida permissão para transferir temporariamente uma cópia dos materiais (informação ou software) no InnerBuild apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título, e sob esta licença não pode:",
+    "items": {
+    "modify": "Modificar ou copiar os materiais",
+    "commercial": "Usar os materiais para qualquer finalidade comercial ou para qualquer exibição pública",
+    "decompile": "Tentar descompilar ou fazer engenharia reversa de qualquer software contido no InnerBuild",
+    "remove_notices": "Remover quaisquer direitos de autor ou outras notações de propriedade dos materiais",
+    "transfer": "Transferir os materiais para outra pessoa ou \"espelhar\" os materiais em qualquer outro servidor"
+    }
+    },
+    "disclaimer": {
+    "title": "3. Isenção de Responsabilidade",
+    "content": "Os materiais no InnerBuild são fornecidos \"como estão\". A InnerBuild não oferece garantias, expressas ou implícitas, e pelo presente se isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos."
+    },
+    "limitations": {
+    "title": "4. Limitações",
+    "content": "Em nenhum caso a InnerBuild ou os seus fornecedores serão responsáveis por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro, ou devido a interrupção de negócios) decorrentes do uso ou da incapacidade de usar os materiais no InnerBuild."
+    },
+    "accuracy": {
+    "title": "5. Precisão dos Materiais",
+    "content": "Os materiais que aparecem no InnerBuild podem incluir erros técnicos, tipográficos ou fotográficos. A InnerBuild não garante que qualquer dos materiais no seu site seja preciso, completo ou atual. A InnerBuild pode fazer alterações aos materiais contidos no seu site a qualquer momento, sem aviso prévio."
+    },
+    "contact": {
+    "title": "6. Contacte-nos",
+    "content": "Se tiver alguma dúvida sobre estes Termos de Serviço, contacte-nos em"
+    }
+    },
+
+    "ai_coach_insight": {
+    "title": "Relatório do Coach IA",
+    "loading": "A carregar insights IA...",
+    "time_for_new": "Está na Hora de um Novo Relatório",
+    "get_report": "Obtenha o Seu Relatório do Coach IA",
+    "days_since_last": "Já passaram 4 dias desde a sua última análise",
+    "analyze_last_days": "Analise os seus hábitos e gatilhos dos últimos 4 dias",
+    "new": "Novo",
+    "habits_need_attention": "{{count}} hábito(s) precisa(m) de atenção",
+    "patterns_detected": "{{count}} padrão(ões) detetado(s)",
+    "suggested_adjustments": "Ajustes de Hábitos Sugeridos",
+    "completed": "{{rate}}% concluído",
+    "trigger_patterns": "Padrões de Gatilhos",
+    "common_emotions": "Emoções comuns: {{emotions}}",
+    "top_recommendations": "Principais Recomendações",
+    "generate_new": "Gerar Novo Relatório"
+    }
+    }
