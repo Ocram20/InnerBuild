@@ -63,7 +63,7 @@ export default function SuggestedHabits({ onSelect }: SuggestedHabitsProps) {
   return (
     <div className="space-y-3">
       <p className="text-sm text-muted-foreground">
-        {"Inizia con abitudini suggerite:"}
+        {t("suggested_habits.quick_start")}
       </p>
       
       <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1">

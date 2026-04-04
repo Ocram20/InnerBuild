@@ -25,6 +25,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useTranslation } from "react-i18next";
+import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 interface Habit {
   id: string;
   title: string;
@@ -74,6 +75,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
 
   const Icon = categoryIcons[habit.category] || Flame;
   const colorClass = categoryColors[habit.category] || categoryColors.general;
+  const displayTitle = localizeSuggestedHabitTitle(t, habit.title);
 
   const toggleCompletion = async () => {
     if (!user || isLoading) return;
@@ -105,8 +107,8 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Aggiornamento abitudine fallito",
+        title: t("common.error"),
+        description: t("dashboard.failed_update_habit"),
         variant: "destructive",
       });
     } finally {
@@ -124,15 +126,15 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
         .eq("id", habit.id);
       
       toast({
-        title: "Abitudine eliminata",
-        description: "L'abitudine è stata rimossa",
+        title: t("habit_card.habit_deleted"),
+        description: t("habit_card.habit_removed"),
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Aggiornamento abitudine fallito",
+        title: t("common.error"),
+        description: t("dashboard.failed_update_habit"),
         variant: "destructive",
       });
     }
@@ -178,16 +180,16 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
                   ? "text-muted-foreground line-through" 
                   : "text-foreground"
               }`}>
-                {habit.title}
+                {displayTitle}
               </h3>
               
               <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                 <span className={`text-xs px-2 py-0.5 rounded-full ${colorClass}`}>
-                  {t(`habits.categories.${habit.category}`, {
-                    defaultValue: habit.category,
-                  })}
+                  {t(`habits.categories.${habit.category}`)}
                 </span>
-                <span className="text-xs text-muted-foreground">{habit.frequency}</span>
+                <span className="text-xs text-muted-foreground">
+                  {t(`create_habit.frequencies.${habit.frequency}`)}
+                </span>
                 {habit.streak && habit.streak > 0 && (
                   <span className="text-xs text-accent flex items-center gap-0.5">
                     <Flame className="h-3 w-3" />
@@ -206,14 +208,14 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onEdit(habit)}>
                   <Edit2 className="h-4 w-4 mr-2" />
-                  {t("common.edit", "Modifica")}
+                  {t("common.edit")}
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   onClick={deleteHabit}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {t("common.delete", "Elimina")}
+                  {t("common.delete")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -223,7 +225,7 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
           {habit.weeklyProgress !== undefined && (
             <div className="mt-3">
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="text-muted-foreground">{t("habits.this_week", "Questa settimana")}</span>
+                <span className="text-muted-foreground">{t("habits.this_week")}</span>
                 <span className="font-medium text-foreground">{habit.weeklyProgress}/7</span>
               </div>
               <Progress 

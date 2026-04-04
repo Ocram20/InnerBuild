@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { Heart, BookOpen } from "lucide-react";
 import type { MoodProgressDetail } from "@/hooks/useProgressData";
 import { useTranslation } from "react-i18next";
+import { dateFnsLocale } from "@/lib/dateFnsLocale";
 
 interface Props {
   data: MoodProgressDetail;
@@ -24,14 +25,15 @@ const MOOD_COLORS: Record<string, string> = {
 };
 
 export function MoodProgressSection({ data }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dfLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
   const getMoodLabel = (mood: string) => t(`day_detail_modal.mood.${mood}`, mood);
 
   if (data.dailyData.length === 0) {
     return (
       <div className="glass rounded-2xl p-6 text-center animate-fade-in">
         <Heart className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-        <p className="text-sm text-muted-foreground">{"Inizia a tracciare il tuo umore per vedere approfondimenti"}</p>
+        <p className="text-sm text-muted-foreground">{t("mood_progress_section.start_tracking")}</p>
       </div>
     );
   }
@@ -58,7 +60,7 @@ export function MoodProgressSection({ data }: Props) {
     <div className="space-y-4 animate-fade-in">
       {/* Daylio-style mood chart */}
       <div className="glass rounded-xl p-4">
-        <p className="text-xs text-muted-foreground mb-3">{"Umore nel tempo"}</p>
+        <p className="text-xs text-muted-foreground mb-3">{t("mood_progress_section.mood_over_time")}</p>
         <div className="overflow-x-auto -mx-2 px-2">
           <svg
             width={chartWidth}
@@ -125,8 +127,8 @@ export function MoodProgressSection({ data }: Props) {
         <div className="flex justify-between mt-1 text-[9px] text-muted-foreground">
           {moodLine.length > 0 && (
             <>
-              <span>{format(new Date(moodLine[0].date), "MMM d")}</span>
-              <span>{format(new Date(moodLine[moodLine.length - 1].date), "MMM d")}</span>
+              <span>{format(new Date(moodLine[0].date), "MMM d", { locale: dfLocale })}</span>
+              <span>{format(new Date(moodLine[moodLine.length - 1].date), "MMM d", { locale: dfLocale })}</span>
             </>
           )}
         </div>
@@ -145,7 +147,7 @@ export function MoodProgressSection({ data }: Props) {
       {/* Top emotions */}
       {data.topEmotions.length > 0 && (
         <div className="glass rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-2">{"Umore più frequente"}</p>
+          <p className="text-xs text-muted-foreground mb-2">{t("mood_progress_section.most_frequent_moods")}</p>
           <div className="flex gap-2">
             {data.topEmotions.map(e => (
               <div key={e} className="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-lg">
@@ -162,11 +164,11 @@ export function MoodProgressSection({ data }: Props) {
         <div className="flex-1 glass rounded-xl p-3 text-center">
           <BookOpen className="h-5 w-5 text-primary mx-auto mb-1" />
           <p className="text-lg font-bold text-foreground">{data.reflectionCount}</p>
-          <p className="text-[10px] text-muted-foreground">{"Riflessioni completate"}</p>
+          <p className="text-[10px] text-muted-foreground">{t("mood_progress_section.reflections_done")}</p>
         </div>
         <div className="flex-1 glass rounded-xl p-3 flex items-center justify-center">
           <p className="text-xs text-center text-muted-foreground italic leading-relaxed">
-            {"Sono una persona consapevole di sé"}
+            {t("mood_progress_section.self_aware_quote")}
           </p>
         </div>
       </div>

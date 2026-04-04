@@ -60,6 +60,24 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
   }
 
   if (!entry) return null;
+  const phaseLabel =
+    entry.phase_name
+      ? (() => {
+          const raw = entry.phase_name.trim().toLowerCase();
+          const map: Record<string, string> = {
+            acute: "challenge_journey.phases.acute",
+            "acute phase": "challenge_journey.phases.acute",
+            stabilization: "challenge_journey.phases.stabilization",
+            "stabilization phase": "challenge_journey.phases.stabilization",
+            reconstruction: "challenge_journey.phases.reconstruction",
+            "reconstruction phase": "challenge_journey.phases.reconstruction",
+            consolidation: "challenge_journey.phases.consolidation",
+            "consolidation phase": "challenge_journey.phases.consolidation",
+          };
+          const key = map[raw];
+          return key ? t(key) : entry.phase_name;
+        })()
+      : null;
 
   const toggleMission = async (type: "mental" | "behavioral") => {
     if (!isCurrentDay) return;
@@ -84,8 +102,8 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       .eq("id", entry.id);
 
     toast({
-      title: "Check-in salvato",
-      description: "Ottimo lavoro nel riflettere sulla tua giornata.",
+      title: t("daily_content.checkin_saved"),
+      description: t("daily_content.great_reflecting"),
     });
     onUpdate();
     setSavingCheckin(false);
@@ -115,13 +133,13 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
 
     if (newJokers <= 0) {
       toast({
-        title: "Challenge paused",
-        description: "No jokers remaining. Resume or reset to continue.",
+        title: t("challenge_card.challenge_paused"),
+        description: t("challenge_card.no_jokers_warning"),
       });
     } else {
       toast({
-        title: "It's okay",
-        description: `Joker used (${newJokers} remaining). The day doesn't advance — you'll retry this day.`,
+        title: t("daily_content.setback_today"),
+        description: t("daily_content.setback_message"),
       });
     }
 
@@ -132,9 +150,9 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Phase indicator */}
-      {entry.phase_name && (
+      {phaseLabel && (
         <div className="px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-medium w-fit">
-          {entry.phase_name} — {t("challenge_card.day_of", {
+          {phaseLabel} — {t("challenge_card.day_of", {
             current: entry.day_number,
             total: "{{total}}",
           }).replace("{{total}}", String(entry.day_number))}
@@ -151,7 +169,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-1">
-                  {"Il Tuo Coach"}
+                  {t("daily_content.your_coach")}
                 </p>
                 <p className="text-sm text-foreground leading-relaxed">{entry.coach_message}</p>
               </div>
@@ -178,7 +196,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
-                  {"Missione Mentale"}
+                  {t("daily_content.mental_mission")}
                 </p>
                 <p className="text-sm text-foreground">{entry.mental_mission}</p>
               </div>
@@ -202,7 +220,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               </div>
               <div>
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
-                  {"Missione Comportamentale"}
+                  {t("daily_content.behavioral_mission")}
                 </p>
                 <p className="text-sm text-foreground">{entry.behavioral_mission}</p>
               </div>
@@ -216,7 +234,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
         <Card className="glass rounded-2xl border-none shadow-soft">
           <CardContent className="p-4">
             <p className="text-sm font-medium text-foreground mb-3">
-              {"Com'è andata oggi?"}
+              {t("daily_content.how_was_today")}
             </p>
             <div className="flex gap-2">
               {checkinOptions.map(opt => (
@@ -238,7 +256,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               disabled={savingCheckin}
               className="w-full mt-3 py-2 text-xs text-muted-foreground hover:text-destructive transition-colors"
             >
-              {"Ho avuto una ricaduta oggi"}
+              {t("daily_content.setback_today")}
             </button>
           </CardContent>
         </Card>
@@ -248,7 +266,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       {entry.checkin_response && entry.checkin_response !== "setback" && (
         <div className="text-center py-2">
           <p className="text-xs text-muted-foreground">
-            {"Hai fatto il check-in:"}{" "}
+            {t("daily_content.you_checked_in")}{" "}
             <span className="font-medium text-foreground">
               {checkinOptions.find(o => o.value === entry.checkin_response)?.emoji}{" "}
               {t(
@@ -263,7 +281,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       {entry.is_failure && (
         <div className="text-center py-3 px-4 rounded-xl bg-muted/50">
           <p className="text-xs text-muted-foreground">
-            {"Hai avuto una ricaduta questo giorno. Un jolly è stato usato — riproverai questo giorno. 🤍"}
+            {t("daily_content.setback_message")}
           </p>
         </div>
       )}
@@ -272,19 +290,17 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       <AlertDialog open={showSetbackDialog} onOpenChange={setShowSetbackDialog}>
         <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>{"Sei sicuro?"}</AlertDialogTitle>
+            <AlertDialogTitle>{t("daily_content.setback_confirm_title")}</AlertDialogTitle>
             <AlertDialogDescription className="text-sm leading-relaxed">
-              {`Segnalare una ricaduta userà 1 jolly (${jokersRemaining} rimanenti). Il giorno non avanzerà — riproverai questo giorno.`}{" "}
+              {t("daily_content.setback_confirm_desc", { remaining: jokersRemaining })}{" "}
               {jokersRemaining <= 1 && (
-                <span className="block mt-2 font-medium text-destructive">
-                  {"⚠️ Questo è il tuo ultimo jolly. Usarlo metterà in pausa la sfida."}
-                </span>
+                <span className="block mt-2 font-medium text-destructive">{t("daily_content.last_joker_warning")}</span>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl">
-              {"Torna indietro"}
+              {t("daily_content.go_back")}
             </AlertDialogCancel>
             <AlertDialogAction 
               onClick={() => {
@@ -293,7 +309,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               }} 
               className="rounded-xl bg-destructive/80 hover:bg-destructive text-destructive-foreground"
             >
-              {"Sì, ho avuto una ricaduta"}
+              {t("daily_content.yes_setback")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

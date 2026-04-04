@@ -1,35 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Hide Google Translate UI overlays/toolbars/popups */
-.goog-te-banner-frame,
-#goog-gt-tt,
-.goog-te-balloon-frame,
-.goog-te-menu-frame,
-.goog-te-menu2,
-.goog-te-spinner-pos,
-.skiptranslate,
-body > .skiptranslate,
-iframe.goog-te-banner-frame,
-iframe.goog-te-menu-frame,
-.VIpgJd-ZVi9od-ORHb,
-.VIpgJd-ZVi9od-aZ2wEe,
-.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
-.VIpgJd-yAWNEb-L7lbkb,
-.VIpgJd-ZVi9od-vH1Gmf,
-.VIpgJd-ZVi9od-vH1Gmf-ibnC6b,
-.VIpgJd-ZVi9od-vH1Gmf-ibnC6b > div {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-body,
-body.translated-ltr,
-body.translated-rtl {
-  top: 0 !important;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

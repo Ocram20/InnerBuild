@@ -64,7 +64,7 @@ export function RecoveryTimeline() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs font-medium text-muted-foreground mb-2">
-                        {"Cosa Aspettarsi"}
+                        {t("recovery_timeline.what_to_expect")}
                       </p>
                       <ul className="space-y-1">
                         {Array.isArray(symptoms) && symptoms.map((symptom, i) => (
@@ -77,7 +77,7 @@ export function RecoveryTimeline() {
                     </div>
                     <div>
                       <p className="text-xs font-medium text-muted-foreground mb-2">
-                        {"Consigli per il Successo"}
+                        {t("recovery_timeline.tips_for_success")}
                       </p>
                       <ul className="space-y-1">
                         {Array.isArray(tips) && tips.map((tip, i) => (

@@ -1,17 +1,24 @@
+import { useMemo } from "react";
 import { Shield, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ChallengeProgressDetail } from "@/hooks/useProgressData";
+import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface Props {
   challenges: ChallengeProgressDetail[];
 }
 
 export function ChallengesProgressSection({ challenges }: Props) {
+  const { t } = useTranslation();
+  const challengeTitles = useMemo(() => challenges.map((c) => c.title), [challenges]);
+  const { display } = useUiBatchTranslation(challengeTitles, challenges.length > 0);
+
   if (challenges.length === 0) {
     return (
       <div className="glass rounded-2xl p-6 text-center animate-fade-in">
         <Shield className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-        <p className="text-sm text-muted-foreground">{"Nessuna sfida ancora"}</p>
+        <p className="text-sm text-muted-foreground">{t("challenges_progress_section.no_challenges_yet")}</p>
       </div>
     );
   }
@@ -50,16 +57,18 @@ export function ChallengesProgressSection({ challenges }: Props) {
               <div className="glass rounded-xl p-4 ml-2">
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold truncate">{c.title}</p>
-                    <p className="text-[10px] text-muted-foreground capitalize">{c.category.replace("_", " ")}</p>
+                    <p className="text-sm font-semibold truncate">{display(c.title)}</p>
+                    <p className="text-[10px] text-muted-foreground capitalize">
+                      {t(`challenges.categories.${c.category}`, { defaultValue: c.category.replace("_", " ") })}
+                    </p>
                   </div>
                   {isCompleted ? (
                     <span className="text-[10px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full whitespace-nowrap">
-                      {"Completata"}
+                      {t("challenges_progress_section.completed")}
                     </span>
                   ) : (
                     <span className="text-[10px] font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full whitespace-nowrap">
-                      {"Attiva"}
+                      {t("challenges_progress_section.active")}
                     </span>
                   )}
                 </div>
@@ -67,8 +76,8 @@ export function ChallengesProgressSection({ challenges }: Props) {
                 {/* Progress bar */}
                 <div className="mt-3">
                   <div className="flex justify-between text-[10px] text-muted-foreground mb-1">
-                    <span>{`${c.daysResisted} giorni`}</span>
-                    <span>{`Obiettivo di ${c.durationDays} giorni`}</span>
+                    <span>{t("challenges_progress_section.days", { count: c.daysResisted })}</span>
+                    <span>{t("challenges_progress_section.days_goal", { completed: c.durationDays })}</span>
                   </div>
                   <div className="h-1.5 bg-muted/60 rounded-full overflow-hidden">
                     <div

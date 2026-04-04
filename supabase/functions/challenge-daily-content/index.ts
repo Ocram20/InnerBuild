@@ -25,7 +25,27 @@ function getPhaseForDay(dayNumber: number) {
   return DETOX_PHASES[DETOX_PHASES.length - 1];
 }
 
-const SYSTEM_PROMPT = `You are a supportive, warm detox coach guiding someone through a recovery challenge. Your tone is calm, human, and encouraging — never clinical or gamified.
+function baseLanguage(code: string) {
+  return (code || "en").toLowerCase().split("-")[0];
+}
+
+function languageName(code: string) {
+  switch (baseLanguage(code)) {
+    case "it": return "Italian";
+    case "en": return "English";
+    case "zh": return "Simplified Chinese";
+    case "de": return "German";
+    case "fr": return "French";
+    case "es": return "Spanish";
+    case "pt": return "Portuguese";
+    case "ru": return "Russian";
+    case "ro": return "Romanian";
+    default: return "the user's language";
+  }
+}
+
+function systemPrompt(language: string) {
+  return `You are a supportive, warm detox coach guiding someone through a recovery challenge. Your tone is calm, human, and encouraging — never clinical or gamified.
 
 You will receive:
 - The challenge title and description
@@ -45,7 +65,10 @@ Rules:
 - Reference the phase naturally ("You're in the stabilization phase now...")
 - Keep missions achievable and varied day to day
 - Never use XP, points, levels, or gamification language
-- Be genuinely human and warm`;
+- Be genuinely human and warm
+
+IMPORTANT: You MUST respond entirely in ${languageName(language)}.`;
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -83,6 +106,7 @@ serve(async (req) => {
     const RequestSchema = z.object({
       challenge_id: z.string().uuid(),
       day_number: z.number().int().min(1).max(365),
+      language: z.string().optional(),
     });
     const parsed = RequestSchema.safeParse(body);
     if (!parsed.success) {
@@ -90,7 +114,7 @@ serve(async (req) => {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const { challenge_id, day_number } = parsed.data;
+    const { challenge_id, day_number, language } = parsed.data;
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
@@ -153,7 +177,7 @@ Generate today's content.`;
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: systemPrompt(language || "en") },
           { role: "user", content: prompt }
         ],
         temperature: 0.8,
@@ -189,7 +213,7 @@ Generate today's content.`;
         challenge_id,
         user_id,
         day_number,
-        phase_name: phase.name,
+        phase_name: phase.id,
         coach_message: aiContent.coach_message,
         mental_mission: aiContent.mental_mission,
         behavioral_mission: aiContent.behavioral_mission,

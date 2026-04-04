@@ -19,19 +19,22 @@ interface NotToDoItem {
 interface NotToDoSectionProps {
   userId: string | undefined;
   targetDate: string;
+  planningMode: "today" | "tomorrow";
 }
 
 // suggestion items will come from translations
 const SUGGESTED_NOT_TO_DO_KEY = "not_to_do_section.suggested_items";
 
 
-export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
+export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSectionProps) {
   const { t } = useTranslation();
   const [items, setItems] = useState<NotToDoItem[]>([]);
   const [newItem, setNewItem] = useState("");
   const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const { toast } = useToast();
+  const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
+  const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
   useEffect(() => {
     if (userId) {
       fetchItems();
@@ -77,12 +80,19 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .single();
 
     if (error) {
-      toast({ title: "Errore", description: "Impossibile aggiungere l'elemento", variant: "destructive" });
+      toast({
+        title: t("common.error"),
+        description: t("not_to_do_section.error_add"),
+        variant: "destructive",
+      });
     } else if (data) {
       setItems([...items, { ...data, status: data.status as "pending" | "avoided" | "broken" }]);
       setNewItem("");
       setShowSuggestions(false);
-      toast({ title: "Elemento aggiunto!", description: "Evita questo comportamento domani" });
+      toast({
+        title: t("not_to_do_section.item_added"),
+        description: t("not_to_do_section.avoid_behavior", { day: dayLabelLower }),
+      });
     }
   };
 
@@ -93,13 +103,20 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .eq("id", item.id);
 
     if (error) {
-      toast({ title: "Errore", description: "Impossibile aggiornare lo stato", variant: "destructive" });
+      toast({
+        title: t("common.error"),
+        description: t("not_to_do_section.error_update"),
+        variant: "destructive",
+      });
     } else {
       setItems(items.map(i => 
         i.id === item.id ? { ...i, status: newStatus } : i
       ));
       if (newStatus === "avoided") {
-        toast({ title: "Successo", description: "Evita questo comportamento domani" });
+        toast({
+          title: t("common.success"),
+          description: t("not_to_do_section.avoid_behavior", { day: dayLabelLower }),
+        });
       }
     }
   };
@@ -111,7 +128,11 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       .eq("id", id);
 
     if (error) {
-      toast({ title: "Errore", description: "Impossibile eliminare l'elemento", variant: "destructive" });
+      toast({
+        title: t("common.error"),
+        description: t("not_to_do_section.error_delete"),
+        variant: "destructive",
+      });
     } else {
       setItems(items.filter(i => i.id !== id));
     }
@@ -174,7 +195,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             variant={item.status === "avoided" ? "default" : "ghost"}
             onClick={() => updateStatus(item, "avoided")}
             className={`h-8 w-8 ${item.status === "avoided" ? "bg-success hover:bg-success/90" : ""}`}
-            title={"Evitato"}
+            title={t("not_to_do_section.avoided")}
           >
             <ShieldCheck className="h-4 w-4" />
           </Button>
@@ -183,7 +204,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             variant={item.status === "broken" ? "default" : "ghost"}
             onClick={() => updateStatus(item, "broken")}
             className={`h-8 w-8 ${item.status === "broken" ? "bg-destructive hover:bg-destructive/90" : ""}`}
-            title={"Non evitato"}
+            title={t("not_to_do_section.not_avoided")}
           >
             <ShieldAlert className="h-4 w-4" />
           </Button>
@@ -208,20 +229,20 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
             <div className="p-2 rounded-lg bg-destructive/10">
               <ShieldX className="h-5 w-5 text-destructive" />
             </div>
-            {"Cose da evitare"}
+            {t("not_to_do_section.title")}
           </CardTitle>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <span className="font-semibold text-success">{avoidedCount}</span>
             <span>/</span>
             <span>{items.length}</span>
-            <span className="ml-1">{"Evitato"}</span>
+            <span className="ml-1">{t("not_to_do_section.avoided")}</span>
           </div>
         </div>
         {items.length > 0 && (
           <div className="mt-3">
             <Progress value={progressPercent} className="h-2" />
             <p className="text-xs text-muted-foreground mt-1 text-right">
-              {Math.round(progressPercent)}% {"Evitato".toLowerCase()}
+              {Math.round(progressPercent)}% {t("not_to_do_section.avoided").toLowerCase()}
             </p>
           </div>
         )}
@@ -229,7 +250,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <Input
-            placeholder={"Cosa evitare domani..."}
+            placeholder={t("daily_planning.what_to_avoid", { day: dayLabelLower })}
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && addItem()}
@@ -243,7 +264,7 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
         {showSuggestions && availableSuggestions.length > 0 && (
           <div className="p-3 rounded-lg bg-destructive/5 border border-destructive/10">
             <p className="text-xs font-medium text-muted-foreground mb-2">
-              {"Aggiungi velocemente suggerimenti:"}
+              {t("not_to_do_section.quick_suggestions")}
             </p>
             <div className="flex flex-wrap gap-2">
               {availableSuggestions.map((suggestion) => (
@@ -281,8 +302,8 @@ export function NotToDoSection({ userId, targetDate }: NotToDoSectionProps) {
                 ) : items.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <ShieldX className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>{"Nessun comportamento da evitare"}</p>
-                    <p className="text-sm">{"Aggiungi abitudini negative da evitare"}</p>
+                    <p>{t("not_to_do_section.no_behaviors")}</p>
+                    <p className="text-sm">{t("not_to_do_section.add_negative_habits")}</p>
                   </div>
                 ) : (
                     items.map((item, index) => (

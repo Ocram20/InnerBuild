@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Flame, Shield, Sparkles, Crown, Flag } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface DailyEntry {
   day_number: number;
@@ -18,10 +19,10 @@ interface JourneyRoadmapProps {
 }
 
 const PHASES = [
-  { id: "acute", name: "Acute Phase", startDay: 1, endDay: 14, color: "rgb(244, 63, 94)", icon: Flame },
-  { id: "stabilization", name: "Stabilization", startDay: 15, endDay: 45, color: "rgb(245, 158, 11)", icon: Shield },
-  { id: "reconstruction", name: "Reconstruction", startDay: 46, endDay: 90, color: "rgb(16, 185, 129)", icon: Sparkles },
-  { id: "consolidation", name: "Consolidation", startDay: 91, endDay: 999, color: "rgb(99, 102, 241)", icon: Crown },
+  { id: "acute", nameKey: "challenge_journey.phases.acute", startDay: 1, endDay: 14, color: "rgb(244, 63, 94)", icon: Flame },
+  { id: "stabilization", nameKey: "challenge_journey.phases.stabilization", startDay: 15, endDay: 45, color: "rgb(245, 158, 11)", icon: Shield },
+  { id: "reconstruction", nameKey: "challenge_journey.phases.reconstruction", startDay: 46, endDay: 90, color: "rgb(16, 185, 129)", icon: Sparkles },
+  { id: "consolidation", nameKey: "challenge_journey.phases.consolidation", startDay: 91, endDay: 999, color: "rgb(99, 102, 241)", icon: Crown },
 ];
 
 const MAX_DISPLAY_DAYS = 90;
@@ -31,6 +32,7 @@ function getPhaseForDay(day: number) {
 }
 
 export default function JourneyRoadmap({ totalDays, currentDay, progressOffset, entries, onDayClick, isExtended }: JourneyRoadmapProps) {
+  const { t } = useTranslation();
   // Day is purely check-in based, progressOffset is ignored
   const effectiveDay = Math.max(1, currentDay);
   const displayDays = isExtended ? MAX_DISPLAY_DAYS : Math.max(totalDays, Math.min(currentDay, MAX_DISPLAY_DAYS));
@@ -79,9 +81,12 @@ export default function JourneyRoadmap({ totalDays, currentDay, progressOffset, 
                 <PhaseIcon className="h-4 w-4" style={{ color: group.phase.color }} />
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">{group.phase.name}</p>
+                <p className="text-sm font-semibold text-foreground">{t(group.phase.nameKey)}</p>
                 <p className="text-[10px] text-muted-foreground">
-                  Day {group.days[0]} – {group.days[group.days.length - 1]}
+                  {t("challenge_journey.roadmap.day_range", {
+                    start: group.days[0],
+                    end: group.days[group.days.length - 1],
+                  })}
                 </p>
               </div>
             </div>
@@ -140,7 +145,7 @@ export default function JourneyRoadmap({ totalDays, currentDay, progressOffset, 
                       {/* Original end marker */}
                       {isOriginalEnd && (
                         <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-accent font-semibold whitespace-nowrap">
-                          🏁 Goal
+                          {t("challenge_journey.roadmap.goal")}
                         </span>
                       )}
 

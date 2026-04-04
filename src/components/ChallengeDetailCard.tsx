@@ -38,6 +38,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useTranslation } from "react-i18next";
+import { localizeSuggestedChallenge } from "@/lib/templateLocalization";
 
 interface Challenge {
   id: string;
@@ -92,6 +93,12 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
   const daysLeft = challenge.duration_days - currentDay;
   const jokers = challenge.jokers_remaining ?? 3;
   const isPausedByJokers = challenge.status === "paused" && jokers <= 0;
+  const localized = localizeSuggestedChallenge(t, {
+    title: challenge.title,
+    description: challenge.description,
+    science_note: challenge.science_note,
+    daily_steps: challenge.daily_steps,
+  });
 
   const checkIn = async () => {
     if (!user || isLoading || checkedInToday) return;
@@ -114,20 +121,20 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
       
       if (completed) {
         toast({
-          title: "🎉 Sfida Completata!",
-          description: `Hai completato la sfida di ${challenge.duration_days} giorni!`,
+          title: t("challenge_card.challenge_complete"),
+          description: t("challenge_card.completed_challenge", { days: challenge.duration_days }),
         });
       } else {
         toast({
-          title: "Giorno registrato! 🔥",
-          description: `Giorno ${newStreak} fatto. Continua così!`,
+          title: t("challenge_card.day_checked"),
+          description: t("challenge_card.day_done", { day: newStreak }),
         });
       }
       
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_card.failed_checkin", { defaultValue: "Failed to check in" }),
         variant: "destructive",
       });
@@ -153,14 +160,14 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
         .eq("id", challenge.id);
       
       toast({
-        title: "Nuovo inizio",
-        description: "Jolly ripristinati. Ogni giorno è una nuova opportunità. 💪",
+        title: t("challenge_card.fresh_start"),
+        description: t("challenge_card.fresh_start_desc"),
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_card.failed_reset", { defaultValue: "Failed to reset challenge" }),
         variant: "destructive",
       });
@@ -177,15 +184,15 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
         .update({ status: "active" })
         .eq("id", challenge.id);
       toast({
-        title: "Sfida ripresa",
+        title: t("challenge_card.challenge_resumed"),
         description: jokers > 0
-          ? "Continuiamo!"
-          : "Nessun jolly rimasto — qualsiasi ricaduta metterà in pausa.",
+          ? t("challenge_card.lets_keep_going")
+          : t("challenge_card.no_jokers_warning"),
       });
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_card.failed_resume", { defaultValue: "Failed to resume" }),
         variant: "destructive",
       });
@@ -201,17 +208,15 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
         .update({ status: newStatus })
         .eq("id", challenge.id);
       toast({
-        title: newStatus === "paused"
-          ? "Sfida in pausa"
-          : "Sfida ripresa",
+        title: newStatus === "paused" ? t("challenge_card.challenge_paused") : t("challenge_card.challenge_resumed"),
         description: newStatus === "paused"
-          ? "Prenditi il tempo necessario"
-          : "Continuiamo!",
+          ? t("challenge_card.take_time")
+          : t("challenge_card.lets_keep_going"),
       });
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_card.failed_update", { defaultValue: "Failed to update challenge" }),
         variant: "destructive",
       });
@@ -228,14 +233,14 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
         .eq("id", challenge.id);
       
       toast({
-        title: "Sfida rimossa",
-        description: "La sfida è stata eliminata",
+        title: t("challenge_card.challenge_removed"),
+        description: t("challenge_card.challenge_deleted"),
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_card.failed_delete", { defaultValue: "Failed to delete challenge" }),
         variant: "destructive",
       });
@@ -260,13 +265,13 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               {isCompleted ? (
                 <span className="text-accent font-medium flex items-center gap-1">
                   <Trophy className="h-4 w-4" />
-                  {"Completata!"}
+                  {t("challenge_card.complete_excl")}
                 </span>
               ) : (
                 <span>
                   {currentDay === 1
-                    ? "giorno completato"
-                    : "giorni completati"}
+                    ? t("challenge_card.day_completed")
+                    : t("challenge_card.days_completed")}
                 </span>
               )}
             </div>
@@ -299,26 +304,26 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
                     {challenge.status === "paused" ? (
                       <>
                         <Play className="h-4 w-4 mr-2" />
-                        {"Riprendi"}
+                        {t("challenge_card.resume")}
                       </>
                     ) : (
                       <>
                         <Pause className="h-4 w-4 mr-2" />
-                        {"Pausa"}
+                        {t("challenge_card.pause")}
                       </>
                     )}
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem onClick={() => setShowResetDialog(true)}>
                   <RefreshCw className="h-4 w-4 mr-2" />
-                  {"Reset"}
+                  {t("challenge_card.reset")}
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   onClick={deleteChallenge}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {"Elimina"}
+                  {t("challenge_card.delete")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -327,20 +332,20 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
         
         {/* Content */}
         <div className="p-4">
-          <h3 className="font-semibold text-foreground mb-1">{challenge.title}</h3>
+          <h3 className="font-semibold text-foreground mb-1">{localized.title}</h3>
           
-          {challenge.description && (
-            <p className="text-sm text-muted-foreground mb-3">{challenge.description}</p>
+          {localized.description && (
+            <p className="text-sm text-muted-foreground mb-3">{localized.description}</p>
           )}
           
           <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
             <span className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
-                {`Giorno ${currentDay} / ${challenge.duration_days}`}
+              {t("challenge_card.day_of", { current: currentDay, total: challenge.duration_days })}
             </span>
             {challenge.status === "paused" && (
                 <span className="px-2 py-0.5 bg-muted rounded-full text-xs">
-                  {"In pausa"}
+                  {t("challenge_card.paused")}
                 </span>
             )}
           </div>
@@ -356,28 +361,28 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               <div className="flex items-center justify-center gap-2">
                 <ShieldAlert className="h-4 w-4 text-destructive" />
                 <p className="text-sm font-medium text-foreground">
-                  {"Tutti i jolly usati"}
+                  {t("challenge_card.all_jokers_used")}
                 </p>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                {`In pausa al giorno ${currentDay}. Riprendi senza jolly o ricomincia.`}
+                {t("challenge_card.paused_at_day", { day: currentDay })}
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={handleResume}
                   className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium transition-all hover:opacity-90"
                 >
-                  {"Riprendi detox"}
+                  {t("challenge_card.resume_detox")}
                 </button>
                 <button
                   onClick={() => setShowResetDialog(true)}
                   className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground text-sm font-medium transition-all hover:bg-muted/80"
                 >
-                  {"Reset detox"}
+                  {t("challenge_card.reset_detox")}
                 </button>
               </div>
               <p className="text-[10px] text-muted-foreground/70">
-                {"La ripresa continua senza jolly — qualsiasi ricaduta metterà di nuovo in pausa."}
+                {t("challenge_card.resume_no_jokers")}
               </p>
             </div>
           )}
@@ -396,12 +401,12 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               {checkedInToday ? (
                 <>
                   <Check className="h-5 w-5" />
-                  {"Check-in fatto oggi"}
+                  {t("challenge_card.checked_in_today")}
                 </>
               ) : (
                 <>
                   <Zap className="h-5 w-5" />
-                  {"Check-in per oggi"}
+                  {t("challenge_card.check_in_today")}
                 </>
               )}
             </button>
@@ -409,7 +414,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
           
           {!isCompleted && !checkedInToday && challenge.status === "active" && (
             <p className="text-center text-xs text-muted-foreground mt-2">
-              {`${daysLeft} giorni rimasti — ce la farai!`}
+              {t("challenge_card.days_to_go", { days: daysLeft })}
             </p>
           )}
 
@@ -418,11 +423,11 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
             onClick={() => navigate(`/challenges/${challenge.id}`)}
             className="w-full mt-3 py-2.5 rounded-xl bg-primary/5 hover:bg-primary/10 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2"
           >
-            {"Entra nel Percorso"}
+            {t("challenge_card.enter_journey")}
           </button>
 
           {/* Expandable details */}
-          {(challenge.science_note || (challenge.daily_steps && challenge.daily_steps.length > 0)) && (
+          {(localized.science_note || (localized.daily_steps && localized.daily_steps.length > 0)) && (
             <button
               onClick={() => setExpanded(!expanded)}
               className="w-full flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-foreground mt-3 pt-3 border-t border-border/50 transition-colors"
@@ -430,12 +435,12 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               {expanded ? (
                 <>
                   <ChevronUp className="h-4 w-4" />
-                  {"Nascondi dettagli"}
+                  {t("challenge_card.hide_details")}
                 </>
               ) : (
                 <>
                   <ChevronDown className="h-4 w-4" />
-                  {"Vedi passi giornalieri e scienza"}
+                  {t("challenge_card.view_steps_science")}
                 </>
               )}
             </button>
@@ -443,26 +448,26 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
 
           {expanded && (
             <div className="mt-3 space-y-3 animate-fade-in">
-              {challenge.science_note && (
+              {localized.science_note && (
                 <div className="p-3 rounded-xl bg-xp/5 border border-xp/10">
                   <div className="flex items-start gap-2">
                     <Lightbulb className="h-4 w-4 text-xp mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="text-xs font-medium text-xp mb-1">
-                        {"La Scienza"}
+                        {t("challenge_card.the_science")}
                       </p>
-                      <p className="text-xs text-muted-foreground">{challenge.science_note}</p>
+                      <p className="text-xs text-muted-foreground">{localized.science_note}</p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {challenge.daily_steps && challenge.daily_steps.length > 0 && (
+              {localized.daily_steps && localized.daily_steps.length > 0 && (
                 <div className="space-y-2">
                   <p className="text-xs font-medium text-foreground">
-                    {"Passi Giornalieri"}
+                    {t("challenge_card.daily_steps")}
                   </p>
-                  {challenge.daily_steps.map((step, i) => (
+                  {localized.daily_steps.map((step, i) => (
                     <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                       <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center flex-shrink-0 text-[10px] font-medium">
                         {i + 1}
@@ -481,17 +486,17 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
         <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>{"Ricominciare?"}</AlertDialogTitle>
+            <AlertDialogTitle>{t("challenge_card.start_fresh_title")}</AlertDialogTitle>
             <AlertDialogDescription>
-              {"Questo resetterà i tuoi progressi e ripristinerà tutti e 3 i jolly."}
+              {t("challenge_card.start_fresh_desc")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl">
-              {"Continua"}
+              {t("challenge_card.keep_going")}
             </AlertDialogCancel>
             <AlertDialogAction onClick={resetChallenge} className="rounded-xl gradient-primary text-primary-foreground">
-              {"Nuovo inizio"}
+              {t("challenge_card.fresh_start")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

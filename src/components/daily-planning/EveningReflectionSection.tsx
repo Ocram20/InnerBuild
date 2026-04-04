@@ -127,7 +127,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     }
 
     if (error) {
-      toast({ title: "Errore", description: "Impossibile salvare la riflessione", variant: "destructive" });
+      toast({
+        title: t("common.error"),
+        description: t("evening_reflection.could_not_save"),
+        variant: "destructive",
+      });
     } else {
       setHasUnsavedChanges(false);
       
@@ -137,8 +141,8 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
       setShowMotivation(true);
       
       toast({
-        title: "Riflessione salvata!",
-        description: "Ottimo lavoro nel riflettere sulla tua giornata",
+        title: t("evening_reflection.reflection_saved"),
+        description: t("evening_reflection.reflection_saved_desc"),
       });
 
 
@@ -161,11 +165,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="p-2 rounded-lg gradient-calm">
               <Moon className="h-5 w-5 text-primary-foreground" />
             </div>
-            {"Riflessione Serale"}
+            {t("evening_reflection.title")}
           </CardTitle>
           <div className="flex items-center gap-2">
             {hasUnsavedChanges && (
-              <span className="text-xs text-muted-foreground">{"Non salvato"}</span>
+              <span className="text-xs text-muted-foreground">{t("common.unsaved")}</span>
             )}
           </div>
         </div>
@@ -187,10 +191,10 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Moon className="h-4 w-4 text-muted-foreground" />
-                {"Com'è andata la tua giornata?"}
+                {t("evening_reflection.how_was_day")}
               </label>
               <Textarea
-                placeholder={"Descrivi brevemente come è andata la tua giornata..."}
+                placeholder={t("evening_reflection.day_placeholder")}
                 value={reflection.day_summary || ""}
                 onChange={(e) => updateField("day_summary", e.target.value)}
                 className="min-h-20 resize-none"
@@ -201,11 +205,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Heart className="h-4 w-4 text-pink-500" />
-                {"Di cosa sei grato oggi? (1-3 cose)"}
+                {t("evening_reflection.grateful_for")}
               </label>
               <div className="flex gap-2">
                 <Input
-                  placeholder={"Aggiungi qualcosa per cui sei grato..."}
+                  placeholder={t("evening_reflection.grateful_placeholder")}
                   value={newGratitude}
                   onChange={(e) => setNewGratitude(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && addGratitude()}
@@ -244,10 +248,10 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <Lightbulb className="h-4 w-4 text-yellow-500" />
-                {"Cosa hai imparato o cosa puoi migliorare?"}
+                {t("evening_reflection.lessons_learned")}
               </label>
               <Textarea
-                placeholder={"Scrivi una lezione imparata o un'area di miglioramento..."}
+                placeholder={t("evening_reflection.lessons_placeholder")}
                 value={reflection.lessons_learned || ""}
                 onChange={(e) => updateField("lessons_learned", e.target.value)}
                 className="min-h-20 resize-none"
@@ -262,11 +266,11 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                 className="gap-2"
               >
                 {saving ? (
-                  <>{"Salvataggio..."}</>
+                  <>{t("common.saving")}</>
                 ) : (
                   <>
                     <Save className="h-4 w-4" />
-                    {"Salva Riflessione"}
+                    {t("evening_reflection.save_reflection")}
                   </>
                 )}
               </Button>

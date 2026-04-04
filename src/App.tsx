@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import PremiumRoute from "@/components/PremiumRoute";
-import { reapplyGoogleTranslate } from "@/lib/googleTranslate";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -30,18 +28,9 @@ import EveningReflection from "./pages/EveningReflection";
 import Admin from "./pages/Admin";
 import ChallengeJourney from "./pages/ChallengeJourney";
 import NotFound from "./pages/NotFound";
+import I18nDocumentSync from "./components/I18nDocumentSync";
 
 const queryClient = new QueryClient();
-
-function TranslationRouteSync() {
-  const location = useLocation();
-
-  useEffect(() => {
-    reapplyGoogleTranslate();
-  }, [location.pathname, location.search, location.hash]);
-
-  return null;
-}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -51,7 +40,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <TranslationRouteSync />
+            <I18nDocumentSync />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/auth" element={<Auth />} />

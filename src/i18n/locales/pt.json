@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "Introduza um endereço de e-mail válido",
-    "password_min": "A palavra-passe deve ter pelo menos 6 caracteres"
+    "password_min": "A palavra-passe deve ter pelo menos 6 caracteres",
+    "password_complexity": "A palavra-passe deve incluir pelo menos: uma minúscula, uma maiúscula, um número e um carácter especial."
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "Link enviado",
     "reset_sent_description": "Verifique o seu e-mail para o link de reposição.",
     "reset_error_title": "Erro",
-    "reset_error_description": "Falha ao enviar o link. Tente novamente."
+    "reset_error_description": "Falha ao enviar o link. Tente novamente.",
+    "try_again": "Tentar novamente",
+    "rate_limit_title": "Muitos pedidos",
+    "rate_limit_desc": "Aguarde alguns minutos antes de tentar novamente.",
+    "remember_password": "Lembra-se da sua palavra-passe?"
   },
 
   "dashboard": {
@@ -308,6 +313,7 @@
     "start_journey": "Inicie a sua jornada criando o seu primeiro hábito",
     "create_habit": "Criar Hábito",
     "no_match_filters": "Nenhum hábito corresponde aos filtros",
+    "failed_load": "Falha ao carregar hábitos",
     "guide_title": "O Guia para Dominar Hábitos",
     "guide_subtitle": "Um guia conciso para construir hábitos duradouros",
     "guide_dialog_title": "Construir Bons Hábitos",
@@ -489,6 +495,7 @@
     "category": "Categoria",
     "duration": "Duração",
     "daily_steps": "Passos Diários (opcional)",
+    "step_placeholder": "Passo {{n}}...",
     "start_challenge": "Iniciar Desafio",
     "challenge_started": "Desafio iniciado! 🔥",
     "challenge_started_desc": "O seu desafio de {{days}} dias começa hoje. Vai conseguir!",
@@ -623,7 +630,36 @@
     "vs_previous": "vs {{days}} dias anteriores",
     "habits_progress": "Progresso dos Hábitos",
     "trigger_tracking_title": "Rastreio de Gatilhos",
-    "mood_reflection": "Humor & Reflexão"
+    "mood_reflection": "Humor & Reflexão",
+    "manage": "Gerir",
+    "upgrade": "Atualizar",
+    "view_site": "Início",
+    "time_range_recent": "Recente",
+    "time_range_annual": "Anual",
+    "change_password": "Alterar palavra-passe",
+    "current_password_placeholder": "Palavra-passe atual",
+    "new_password_placeholder": "Nova palavra-passe",
+    "confirm_password_placeholder": "Confirmar nova palavra-passe",
+    "saving": "A guardar…",
+    "updating": "A atualizar…",
+    "update_password": "Atualizar palavra-passe",
+    "email_update_button": "Atualizar",
+    "email_confirm_hint": "Será enviada uma ligação de confirmação para o seu novo e-mail.",
+    "email_confirm_sent": "Confirmação enviada",
+    "email_confirm_sent_desc": "Verifique o seu e-mail atual para confirmar a alteração do endereço.",
+    "email_update_failed": "Falha ao atualizar o e-mail",
+    "password_mismatch_title": "As palavras-passe não coincidem",
+    "password_mismatch_desc": "A nova palavra-passe e a confirmação devem coincidir.",
+    "password_too_short_title": "Palavra-passe demasiado curta",
+    "password_too_short_desc": "A palavra-passe deve ter pelo menos 6 caracteres.",
+    "wrong_password_title": "Palavra-passe atual incorreta",
+    "wrong_password_desc": "A palavra-passe atual introduzida está incorreta.",
+    "password_updated_title": "Palavra-passe atualizada",
+    "password_updated_desc": "A sua palavra-passe foi alterada com sucesso.",
+    "password_update_failed": "Falha na atualização",
+    "username_change_limited_title": "Alteração de nome de utilizador limitada",
+    "oauth_email_locked": "O e-mail não pode ser alterado porque iniciou sessão com {{provider}}. Para o alterar, atualize o endereço na sua conta {{provider}}.",
+    "avatar_alt": "Foto de perfil"
   },
 
   "coach": {
@@ -924,7 +960,7 @@
     "todo_title": "Tarefas para Amanhã",
     "not_todo_title": "Lista de Não-Fazer",
     "add_task_placeholder": "Adicionar nova tarefa...",
-    "what_to_avoid": "O que evitar amanhã...",
+    "what_to_avoid": "O que evitar {{day}}...",
     "quick_add_suggestions": "Sugestões rápidas:",
     "task_added": "Tarefa adicionada!",
     "task_added_desc": "Planeie o seu amanhã",
@@ -1241,6 +1277,8 @@
     "relapse_occurred": "Ocorreu uma recaída",
     "setback": "Reversão",
     "checked_in": "Check-in feito",
+    "checkin_recorded_fallback": "Check-in registado",
+    "challenge_default_title": "Desafio",
     "mental_mission": "Mental",
     "behavioral_mission": "Comportamental",
     "avoided": "evitado",
@@ -1279,7 +1317,8 @@
     "start_fresh_desc": "Isto irá redefinir a sua jornada atual e iniciar uma nova. Os seus dados anteriores serão arquivados.",
     "abandon": "Abandonar",
     "abandon_title": "Abandonar o desafio?",
-    "abandon_desc": "Isto irá terminar o seu desafio atual. Pode iniciar um novo a qualquer momento."
+    "abandon_desc": "Isto irá terminar o seu desafio atual. Pode iniciar um novo a qualquer momento.",
+    "day_n": "Dia {{n}}"
   },
   "craving_actions": {
     "title": "O que Fazer Durante um Desejo",
@@ -1332,7 +1371,9 @@
     "trigger_placeholder": "Sinto-me entediado à noite",
     "i_will": "Vou",
     "action_placeholder": "sair para passear ou ligar a um amigo",
-    "because_gives_me": "Porque me dá"
+    "because_gives_me": "Porque me dá",
+    "benefit_placeholder": "clareza e conexão",
+    "add_button": "Adicionar plano"
   },
   "reasons_section": {
     "title": "As Minhas Razões para Parar",
@@ -1482,7 +1523,7 @@
     "save_reflection": "Guardar Reflexão"
   },
   "todo_section": {
-    "title": "Tarefas para amanhã",
+    "title": "Tarefas para {{day}}",
     "no_tasks": "Nenhuma tarefa planeada para este dia",
     "add_task": "Adicionar tarefa",
     "suggestions_title": "Sugestões",
@@ -1491,7 +1532,7 @@
     "error_update": "Não foi possível atualizar a tarefa",
     "error_delete": "Não foi possível eliminar a tarefa",
     "task_added": "Tarefa adicionada!",
-    "plan_tomorrow": "Planeie o seu amanhã",
+    "plan_tomorrow": "Planeie o seu {{day}}",
     "tasks_done": "concluídas",
     "suggested_tasks": [
       "Beba 8 copos de água",
@@ -1501,7 +1542,7 @@
       "Escreva no diário",
       "Faça exercício 30 minutos"
     ],
-    "add_goals": "Adicione os seus objetivos para amanhã"
+    "add_goals": "Adicione os seus objetivos para {{day}}"
   },
   "not_to_do_section": {
     "title": "Coisas a evitar",
@@ -1511,7 +1552,7 @@
     "error_delete": "Não foi possível eliminar o item",
     "error_update": "Não foi possível atualizar o estado",
     "item_added": "Item adicionado!",
-    "avoid_behavior": "Evite este comportamento amanhã",
+    "avoid_behavior": "Evite este comportamento {{day}}",
     "avoided": "Evitado",
     "not_avoided": "Não evitado",
     "quick_suggestions": "Adicionar sugestões rápidas:",
@@ -1813,7 +1854,17 @@
     "continue_90": "Concluiu o desafio de {{days}} dias. Quer continuar até 90 dias?",
     "continue_to_90": "Continuar até 90 dias →",
     "today": "Hoje",
-    "day_n": "Dia {{n}}"
+    "day_n": "Dia {{n}}",
+    "phases": {
+      "acute": "Fase Aguda",
+      "stabilization": "Fase de estabilização",
+      "reconstruction": "Fase de reconstrução",
+      "consolidation": "Fase de consolidação"
+    },
+    "roadmap": {
+      "day_range": "Dia {{start}} – Dia {{end}}",
+      "goal": "🏁 Objetivo"
+    }
   },
   "daily_content": {
     "your_coach": "O Seu Coach",

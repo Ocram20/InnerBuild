@@ -1,0 +1,11 @@
+.trigger-tracking-page {
+  background-color: hsl(var(--background));
+  background-image: none !important;
+}
+
+/* Containers that can scroll horizontally/vertically inside the page */
+.trigger-tracking-page .trigger-tracking-scroll {
+  background-color: hsl(var(--background));
+  background-image: none !important;
+}
+

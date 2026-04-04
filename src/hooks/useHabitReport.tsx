@@ -33,7 +33,7 @@ export interface HabitReport {
 }
 
 export function useHabitReport() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [report, setReport] = useState<HabitReport | null>(null);
@@ -103,8 +103,8 @@ export function useHabitReport() {
 
     if (!canGenerateReport()) {
       toast({
-        title: "Attendi",
-        description: `Puoi generare un nuovo report tra ${getDaysUntilNextReport()} giorno/i`,
+        title: t("habit_report.wait_title"),
+        description: t("habit_report.wait_desc", { days: getDaysUntilNextReport() }),
         variant: "destructive",
       });
       return;
@@ -123,7 +123,7 @@ export function useHabitReport() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ language: i18n.language }),
+          body: JSON.stringify({ language: i18n.resolvedLanguage || i18n.language }),
         }
       );
 
@@ -134,16 +134,16 @@ export function useHabitReport() {
       }
 
       toast({
-        title: "Report abitudini generato! 🎯",
-        description: "Le tue analisi personalizzate sono pronte.",
+        title: t("habit_report.generated_title"),
+        description: t("habit_report.generated_desc"),
       });
 
       await fetchReport();
     } catch (err) {
       console.error("Failed to generate report:", err);
       toast({
-        title: "Generazione fallita",
-        description: err instanceof Error ? err.message : "Impossibile generare il report",
+        title: t("habit_report.failed_title"),
+        description: err instanceof Error ? err.message : t("habit_report.failed_desc"),
         variant: "destructive",
       });
     } finally {
@@ -207,14 +207,14 @@ export function useHabitReport() {
       });
 
       toast({
-        title: "Abitudine aggiornata! ✓",
-        description: `Cambiata in "${suggestedTitle}"`,
+        title: t("habit_report.habit_updated_title"),
+        description: t("habit_report.habit_updated_desc", { title: suggestedTitle }),
       });
     } catch (err) {
       console.error("Failed to accept suggestion:", err);
       toast({
-        title: "Errore",
-        description: "Impossibile aggiornare l'abitudine",
+        title: t("common.error"),
+        description: t("habit_report.failed_update_habit"),
         variant: "destructive",
       });
     }

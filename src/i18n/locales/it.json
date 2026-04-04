@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "Inserisci un indirizzo email valido",
-    "password_min": "La password deve avere almeno 6 caratteri"
+    "password_min": "La password deve avere almeno 6 caratteri",
+    "password_complexity": "La password deve contenere almeno: una lettera minuscola, una maiuscola, un numero e un carattere speciale."
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "Link inviato",
     "reset_sent_description": "Controlla la tua email per il link di reimpostazione.",
     "reset_error_title": "Errore",
-    "reset_error_description": "Invio del link fallito. Riprova."
+    "reset_error_description": "Invio del link fallito. Riprova.",
+    "try_again": "Riprova",
+    "rate_limit_title": "Troppe richieste",
+    "rate_limit_desc": "Attendi qualche minuto prima di riprovare.",
+    "remember_password": "Ricordi la password?"
   },
 
   "dashboard": {
@@ -273,6 +278,16 @@
       "learn_mobile_features": ["Articoli approfonditi", "Guide di recovery", "Timeline guarigione cerebrale"],
       "habit_adaptation_mobile_desc": "L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti.",
       "habit_adaptation_mobile_features": ["Rilevamento pattern", "Scalabilità intelligente", "Raccomandazioni AI"]
+    },
+    "footer": {
+      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
+      "legal": "Legale",
+      "support": "Supporto",
+      "follow": "Seguici",
+      "privacy": "Informativa Privacy",
+      "terms": "Termini di Servizio",
+      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
+      "back_to_top": "Torna su"
     }
   },
 
@@ -308,6 +323,7 @@
     "start_journey": "Inizia il tuo percorso creando la tua prima abitudine",
     "create_habit": "Crea Abitudine",
     "no_match_filters": "Nessuna abitudine corrisponde ai filtri",
+    "failed_load": "Caricamento abitudini fallito",
     "guide_title": "La Guida per Padroneggiare le Abitudini",
     "guide_subtitle": "Una guida concisa per costruire abitudini durature",
     "guide_dialog_title": "Costruire Buone Abitudini",
@@ -488,6 +504,7 @@
     "category": "Categoria",
     "duration": "Durata",
     "daily_steps": "Passi Giornalieri (opzionale)",
+    "step_placeholder": "Passo {{n}}...",
     "start_challenge": "Inizia Sfida",
     "challenge_started": "Sfida iniziata! 🔥",
     "challenge_started_desc": "La tua sfida di {{days}} giorni inizia oggi. Ce la farai!",
@@ -621,7 +638,36 @@
     "vs_previous": "vs {{days}} giorni precedenti",
     "habits_progress": "Progressi Abitudini",
     "trigger_tracking_title": "Tracciamento Trigger",
-    "mood_reflection": "Umore & Riflessione"
+    "mood_reflection": "Umore & Riflessione",
+    "manage": "Gestisci",
+    "upgrade": "Aggiorna",
+    "view_site": "Home",
+    "time_range_recent": "Recente",
+    "time_range_annual": "Annuale",
+    "change_password": "Modifica password",
+    "current_password_placeholder": "Password attuale",
+    "new_password_placeholder": "Nuova password",
+    "confirm_password_placeholder": "Conferma nuova password",
+    "saving": "Salvataggio…",
+    "updating": "Aggiornamento…",
+    "update_password": "Aggiorna password",
+    "email_update_button": "Aggiorna",
+    "email_confirm_hint": "Ti invieremo un link di conferma alla nuova email.",
+    "email_confirm_sent": "Conferma inviata",
+    "email_confirm_sent_desc": "Controlla la tua email attuale per confermare il cambio di indirizzo.",
+    "email_update_failed": "Aggiornamento email non riuscito",
+    "password_mismatch_title": "Le password non corrispondono",
+    "password_mismatch_desc": "La nuova password e la conferma devono essere uguali.",
+    "password_too_short_title": "Password troppo corta",
+    "password_too_short_desc": "La password deve essere di almeno 6 caratteri.",
+    "wrong_password_title": "Password attuale errata",
+    "wrong_password_desc": "La password attuale inserita non è corretta.",
+    "password_updated_title": "Password aggiornata",
+    "password_updated_desc": "La tua password è stata modificata con successo.",
+    "password_update_failed": "Aggiornamento non riuscito",
+    "username_change_limited_title": "Cambio username limitato",
+    "oauth_email_locked": "L'email non può essere modificata perché hai effettuato l'accesso con {{provider}}. Per cambiarla, aggiorna l'indirizzo nel tuo account {{provider}}.",
+    "avatar_alt": "Foto profilo"
   },
 
   "coach": {
@@ -829,6 +875,9 @@
     "log_3_triggers": "Registra almeno 3 trigger per sbloccare gli insight AI",
     "more_needed": "{{count}} altri necessari",
     "press_analyze": "Premi \"Analizza\" per generare insight dai tuoi pattern",
+    "toast_log_failed": "Impossibile salvare il registro",
+    "toast_logged_title": "✓ Trigger registrato",
+    "toast_logged_desc": "Continua a monitorare per scoprire i tuoi pattern",
     "locked_features": {
       "realtime": "Registrazione impulsi in tempo reale",
       "heatmap": "Heatmap visiva dei pattern",
@@ -922,7 +971,7 @@
     "todo_title": "Da Fare per Domani",
     "not_todo_title": "Lista Da Non Fare",
     "add_task_placeholder": "Aggiungi un nuovo task...",
-    "what_to_avoid": "Cosa evitare domani...",
+    "what_to_avoid": "Cosa evitare {{day}}...",
     "quick_add_suggestions": "Suggerimenti rapidi:",
     "task_added": "Task aggiunto!",
     "task_added_desc": "Pianifica il tuo domani",
@@ -978,6 +1027,16 @@
     "checked_in_today": "Check-in fatto oggi. Continua così!",
     "day_of_journey": "Giorno {{day}} del percorso",
     "active_challenges": "Sfide Attive",
+    "title": "Porn Recovery",
+    "subtitle": "Strumenti scientifici per il tuo percorso",
+    "emergency": "Emergenza",
+    "sos": "SOS",
+    "emergency_urge": "🚨 Emergenza Impulso",
+    "tabs": {
+      "progress": "Progressi",
+      "manage": "Gestisci",
+      "learn": "Impara"
+    },
     "onboarding": {
       "title": "Sfida Recovery",
       "description": "Vuoi iniziare la Sfida di Porn Recovery? Potrai monitorare i tuoi progressi giornalieri e costruire serie di successi.",
@@ -1038,7 +1097,16 @@
     "suggested_adjustments": "Aggiustamenti Abitudini Suggeriti",
     "tips": "Consigli",
     "next_report_in": "Prossimo report disponibile tra {{days}} giorno/i",
-    "generate_new": "Genera Nuovo Report"
+    "generate_new": "Genera Nuovo Report",
+    "wait_title": "Attendi",
+    "wait_desc": "Puoi generare un nuovo report tra {{days}} giorno/i",
+    "generated_title": "Report abitudini generato! 🎯",
+    "generated_desc": "Le tue analisi personalizzate sono pronte.",
+    "failed_title": "Generazione fallita",
+    "failed_desc": "Impossibile generare il report",
+    "habit_updated_title": "Abitudine aggiornata! ✓",
+    "habit_updated_desc": "Cambiata in \"{{title}}\"",
+    "failed_update_habit": "Impossibile aggiornare l'abitudine"
   },
 
   "not_found": {
@@ -1239,6 +1307,8 @@
     "relapse_occurred": "Ricaduta avvenuta",
     "setback": "Ricaduta",
     "checked_in": "Check-in effettuato",
+    "checkin_recorded_fallback": "Check-in registrato",
+    "challenge_default_title": "Sfida",
     "mental_mission": "Mentale",
     "behavioral_mission": "Comportamentale",
     "avoided": "evitato",
@@ -1259,7 +1329,10 @@
     "improving": "Continua così – stai costruendo slancio.",
     "protect": "La tua costanza è la tua risorsa più grande.",
     "adjustment": "Prova a modificare una piccola cosa questa settimana.",
-    "available_in": "Disponibile in {{days}} gg"
+    "available_in": "Disponibile in {{days}} gg",
+    "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
+    "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
   },
   "recovery_tracker": {
     "title": "Sfida di Recovery",
@@ -1277,7 +1350,8 @@
     "start_fresh_desc": "Questo reimposterà il tuo percorso attuale e ne inizierà uno nuovo. I tuoi dati precedenti saranno archiviati.",
     "abandon": "Abbandona",
     "abandon_title": "Abbandonare la sfida?",
-    "abandon_desc": "Questo terminerà la tua sfida attuale. Puoi iniziarne una nuova in qualsiasi momento."
+    "abandon_desc": "Questo terminerà la tua sfida attuale. Puoi iniziarne una nuova in qualsiasi momento.",
+    "day_n": "Giorno {{n}}"
   },
   "craving_actions": {
     "title": "Cosa fare durante un desiderio",
@@ -1330,7 +1404,9 @@
     "trigger_placeholder": "Mi sento annoiato di notte",
     "i_will": "Farò",
     "action_placeholder": "andare a fare una passeggiata o chiamare un amico",
-    "because_gives_me": "Perché mi dà"
+    "because_gives_me": "Perché mi dà",
+    "benefit_placeholder": "chiarezza e connessione",
+    "add_button": "Aggiungi piano"
   },
   "reasons_section": {
     "title": "I miei motivi per smettere",
@@ -1480,7 +1556,7 @@
     "save_reflection": "Salva Riflessione"
   },
   "todo_section": {
-    "title": "To-Do per domani",
+    "title": "To-Do per {{day}}",
     "no_tasks": "Nessun compito pianificato per questo giorno",
     "add_task": "Aggiungi task",
     "suggestions_title": "Suggerimenti",
@@ -1489,7 +1565,7 @@
     "error_update": "Impossibile aggiornare il task",
     "error_delete": "Impossibile eliminare il task",
     "task_added": "Task aggiunto!",
-    "plan_tomorrow": "Pianifica il tuo domani",
+    "plan_tomorrow": "Pianifica il tuo {{day}}",
     "tasks_done": "completati",
     "suggested_tasks": [
       "Bevi 8 bicchieri d'acqua",
@@ -1499,7 +1575,7 @@
       "Scrivi nel diario",
       "Fai esercizio per 30 minuti"
     ],
-    "add_goals": "Aggiungi i tuoi obiettivi per domani"
+    "add_goals": "Aggiungi i tuoi obiettivi per {{day}}"
   },
   "not_to_do_section": {
     "title": "Cose da evitare",
@@ -1509,7 +1585,7 @@
     "error_delete": "Impossibile eliminare l'elemento",
     "error_update": "Impossibile aggiornare lo stato",
     "item_added": "Elemento aggiunto!",
-    "avoid_behavior": "Evita questo comportamento domani",
+    "avoid_behavior": "Evita questo comportamento {{day}}",
     "avoided": "Evitato",
     "not_avoided": "Non evitato",
     "quick_suggestions": "Aggiungi velocemente suggerimenti:",
@@ -1810,7 +1886,17 @@
     "continue_90": "Hai completato la sfida di {{days}} giorni. Vuoi continuare fino a 90 giorni?",
     "continue_to_90": "Continua fino a 90 giorni →",
     "today": "Oggi",
-    "day_n": "Giorno {{n}}"
+    "day_n": "Giorno {{n}}",
+    "phases": {
+      "acute": "Fase Acuta",
+      "stabilization": "Fase di Stabilizzazione",
+      "reconstruction": "Fase di Ricostruzione",
+      "consolidation": "Fase di Consolidamento"
+    },
+    "roadmap": {
+      "day_range": "Giorno {{start}} – {{end}}",
+      "goal": "🏁 Obiettivo"
+    }
   },
   "daily_content": {
     "your_coach": "Il Tuo Coach",
@@ -2204,5 +2290,42 @@
     "common_emotions": "Emozioni comuni: {{emotions}}",
     "top_recommendations": "Raccomandazioni Principali",
     "generate_new": "Genera Nuovo Report"
+  },
+
+  "coach": {
+    "title": "Coach AI",
+    "subtitle": "La tua guida personale",
+    "clear_chat": "Cancella chat",
+    "greeting": "Ciao!",
+    "intro": "Sono il tuo coach AI, qui per supportare il tuo percorso verso abitudini migliori e crescita personale.",
+    "tip_default": "Ogni piccolo passo, fatto con costanza, cambia tutto.",
+    "quick_actions_title": "Azioni rapide per iniziare:",
+    "input_placeholder": "Chiedi delle tue abitudini, sfide, recovery...",
+    "chat_cleared": "Chat cancellata",
+    "pillars": {
+      "track_progress": "Traccia progressi",
+      "build_habits": "Costruisci abitudini",
+      "take_challenges": "Affronta sfide"
+    },
+    "quick_actions": {
+      "habit_label": "Suggerisci un'abitudine",
+      "habit_prompt": "Puoi suggerirmi un'abitudine sana che potrei iniziare a costruire oggi?",
+      "challenge_label": "Inizia una sfida",
+      "challenge_prompt": "Voglio mettermi alla prova. Puoi suggerirmi una sfida detox o di crescita personale con passi giornalieri?",
+      "motivation_label": "Motivami",
+      "motivation_prompt": "Oggi mi sento poco motivato. Puoi darmi una prospettiva incoraggiante?",
+      "reflect_label": "Aiutami a riflettere",
+      "reflect_prompt": "Vorrei fare un po' di auto‑riflessione. Puoi farmi alcune domande profonde?"
+    },
+    "errors": {
+      "not_authenticated": "Non autenticato. Effettua di nuovo l'accesso.",
+      "rate_limited": "Limite richieste superato. Riprova tra un momento.",
+      "unauthorized": "Autenticazione richiesta. Accedi di nuovo.",
+      "api_key_or_quota": "Chiave API non valida o quota superata.",
+      "failed_response": "Risposta fallita",
+      "default_ai_reply": "Mi dispiace — non sono riuscito a generare una risposta.",
+      "send_failed": "Invio messaggio fallito",
+      "clear_failed": "Cancellazione chat fallita"
+    }
   }
 }

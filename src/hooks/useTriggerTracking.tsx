@@ -36,7 +36,7 @@ export interface HeatmapData {
 }
 
 export function useTriggerTracking() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [logs, setLogs] = useState<TriggerLog[]>([]);
@@ -106,16 +106,16 @@ export function useTriggerTracking() {
     if (error) {
       console.error("Error logging trigger:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile salvare il registro",
+        title: t("common.error"),
+        description: t("trigger_tracking.toast_log_failed"),
         variant: "destructive",
       });
       return false;
     }
 
     toast({
-      title: "✓ Trigger registrato",
-      description: "Continua a monitorare per scoprire i tuoi pattern",
+      title: t("trigger_tracking.toast_logged_title"),
+      description: t("trigger_tracking.toast_logged_desc"),
     });
 
     await fetchLogs();
@@ -142,7 +142,7 @@ export function useTriggerTracking() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
+          body: JSON.stringify({ language: i18n.resolvedLanguage || i18n.language || "en" }),
         }
       );
 
@@ -153,7 +153,7 @@ export function useTriggerTracking() {
         }
         if (result.message) {
           toast({
-            title: "Informazione",
+            title: t("common.success"),
             description: result.message,
           });
         }
@@ -163,7 +163,7 @@ export function useTriggerTracking() {
     } finally {
       setAnalyzing(false);
     }
-  }, [user, toast]);
+  }, [user, toast, t, i18n.resolvedLanguage, i18n.language]);
 
   const getHeatmapData = useCallback((): HeatmapData[] => {
     const heatmap: Record<string, { count: number; intensities: number[] }> = {};

@@ -13,7 +13,7 @@ interface WhatsWorkingData {
 }
 
 export function WhatsWorkingSection() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -34,9 +34,9 @@ export function WhatsWorkingSection() {
       if (insights) {
         const analysis = insights.detailed_analysis as any;
         setData({
-          improving: analysis?.improving || "Keep going – you're building momentum.",
-          protect: analysis?.protect || "Your consistency is your greatest asset.",
-          adjustment: analysis?.adjustment || "Try adjusting one small thing this week.",
+          improving: analysis?.improving || t("whats_working_section.insight_fallback_improving"),
+          protect: analysis?.protect || t("whats_working_section.insight_fallback_protect"),
+          adjustment: analysis?.adjustment || t("whats_working_section.insight_fallback_adjustment"),
           generated_at: insights.created_at,
         });
       }
@@ -45,7 +45,7 @@ export function WhatsWorkingSection() {
     } finally {
       setLoading(false);
     }
-  }, [user]);
+  }, [user, t]);
 
   useEffect(() => {
     fetchLatest();
@@ -66,7 +66,9 @@ export function WhatsWorkingSection() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
+          body: JSON.stringify({
+            language: i18n.resolvedLanguage || i18n.language || "en",
+          }),
         }
       );
 
@@ -99,7 +101,7 @@ export function WhatsWorkingSection() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-accent" />
-          <h2 className="text-lg font-semibold text-foreground">{"Cosa sta funzionando"}</h2>
+          <h2 className="text-lg font-semibold text-foreground">{t("whats_working_section.title")}</h2>
         </div>
         {canGenerate ? (
           <Button
@@ -114,11 +116,11 @@ export function WhatsWorkingSection() {
             ) : (
               <RefreshCw className="h-3 w-3 mr-1" />
             )}
-            {data ? "Aggiorna" : "Genera"}
+            {data ? t("whats_working_section.refresh") : t("whats_working_section.generate")}
           </Button>
         ) : (
           <span className="text-[10px] text-muted-foreground">
-            {`Disponibile in ${daysUntilAvailable} gg`}
+            {t("whats_working_section.available_in", { days: daysUntilAvailable })}
           </span>
         )}
       </div>
@@ -130,7 +132,9 @@ export function WhatsWorkingSection() {
               <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">{"Continua così – stai costruendo slancio."}</p>
+              <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">
+                {t("whats_working_section.improving")}
+              </p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.improving}</p>
             </div>
           </div>
@@ -140,7 +144,9 @@ export function WhatsWorkingSection() {
               <Shield className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-primary uppercase tracking-wider mb-0.5">{"La tua costanza è la tua risorsa più grande."}</p>
+              <p className="text-[10px] font-medium text-primary uppercase tracking-wider mb-0.5">
+                {t("whats_working_section.protect")}
+              </p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.protect}</p>
             </div>
           </div>
@@ -150,7 +156,9 @@ export function WhatsWorkingSection() {
               <Lightbulb className="h-4 w-4 text-accent" />
             </div>
             <div>
-              <p className="text-[10px] font-medium text-accent uppercase tracking-wider mb-0.5">{"Prova a modificare una piccola cosa questa settimana."}</p>
+              <p className="text-[10px] font-medium text-accent uppercase tracking-wider mb-0.5">
+                {t("whats_working_section.adjustment")}
+              </p>
               <p className="text-sm text-foreground/85 leading-relaxed">{data.adjustment}</p>
             </div>
           </div>
@@ -158,7 +166,7 @@ export function WhatsWorkingSection() {
       ) : (
         <div className="glass rounded-2xl p-6 text-center">
           <Sparkles className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-          <p className="text-sm text-muted-foreground">{"Traccia le tue abitudini per una settimana per sbloccare approfondimenti personalizzati"}</p>
+          <p className="text-sm text-muted-foreground">{t("whats_working_section.empty_prompt")}</p>
         </div>
       )}
     </section>

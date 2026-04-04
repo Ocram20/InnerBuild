@@ -11,6 +11,26 @@ const corsHeaders = {
   'X-XSS-Protection': '1; mode=block',
 };
 
+function baseLanguage(code: string | undefined): string {
+  return (code || "en").split("-")[0];
+}
+
+function languageName(code: string | undefined): string {
+  const base = baseLanguage(code);
+  const map: Record<string, string> = {
+    en: "English",
+    it: "Italian",
+    zh: "Simplified Chinese",
+    ru: "Russian",
+    de: "German",
+    fr: "French",
+    es: "Spanish",
+    pt: "Portuguese",
+    ro: "Romanian",
+  };
+  return map[base] || "English";
+}
+
 const BASE_SYSTEM_PROMPT = `You are a warm, supportive AI coach specialized EXCLUSIVELY in personal growth, habit building, addiction recovery, and mental wellness. You are part of an app that helps users build positive habits, break negative patterns (including porn addiction recovery), track triggers, and cultivate self-awareness.
 
 ## STRICT TOPIC BOUNDARIES
@@ -40,7 +60,7 @@ If the user asks about ANYTHING outside these topics (sports results, news, poli
 - Reference the user's actual data when relevant (habits, streaks, triggers, recovery phase)
 - Keep responses concise (2-4 paragraphs) unless more detail is requested
 - Use occasional emojis sparingly
-- Speak in the same language the user writes in`;
+- IMPORTANT: Respond entirely in {{LANGUAGE_NAME}}`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -79,6 +99,7 @@ serve(async (req) => {
         role: z.enum(["user", "assistant"]),
         content: z.string().max(5000),
       })).min(1).max(30),
+      language: z.string().optional(),
     });
     const parsed = MessagesSchema.safeParse(body);
     if (!parsed.success) {
@@ -87,7 +108,8 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const { messages } = parsed.data;
+    const { messages, language } = parsed.data;
+    const responseLanguage = baseLanguage(language);
 
     // Fetch user context data in parallel
     const [
@@ -203,7 +225,7 @@ serve(async (req) => {
       });
     }
 
-    const fullSystemPrompt = BASE_SYSTEM_PROMPT + contextBlock;
+    const fullSystemPrompt = (BASE_SYSTEM_PROMPT.replace("{{LANGUAGE_NAME}}", languageName(responseLanguage))) + contextBlock;
 
     const GROQ_API_KEY = Deno.env.get("GROQ_API_KEY");
     if (!GROQ_API_KEY) {

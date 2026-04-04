@@ -68,65 +68,38 @@ export default function Landing() {
 
   const isDark = theme === "dark";
 
-  const mainFeatures = [
-    {
-      icon: Target,
-      title: "Tracciamento Abitudini Smart",
-      description: "Traccia le abitudini quotidiane con progressi visivi, serie e suggerimenti AI intelligenti che si adattano ai tuoi schemi reali.",
-      color: "text-emerald-500",
-      bgColor: "bg-emerald-500/10",
-    },
-    {
-      icon: Flame,
-      title: "Sfide Detox",
-      description: "Liberati dalla dipendenza digitale, dalle cattive abitudini e dai pattern negativi con sfide basate sulla scienza (da 3 a 90 giorni).",
-      color: "text-orange-500",
-      bgColor: "bg-orange-500/10",
-    },
-    {
-      icon: Eye,
-      title: "Programma Porn Recovery",
-      description: "Un programma dedicato e basato sulla scienza con tracciamento serie, check-in giornalieri, analisi trigger e supporto specializzato.",
-      color: "text-violet-500",
-      bgColor: "bg-violet-500/10",
-    },
-    {
-      icon: Bot,
-      title: "Coach AI Personale",
-      description: "Compagno AI disponibile 24/7 che ti motiva, suggerisce abitudini personalizzate, aiuta con le voglie e guida la tua trasformazione.",
-      color: "text-primary",
-      bgColor: "bg-primary/10",
-    },
-    {
-      icon: ShieldAlert,
-      title: "Tracciamento & Analisi Trigger",
-      description: "Registra e analizza cosa scatena i tuoi impulsi. Identifica pattern e ottieni insight AI per costruire difese più forti.",
-      color: "text-rose-500",
-      bgColor: "bg-rose-500/10",
-    },
-    {
-      icon: CalendarCheck,
-      title: "Pianificazione & Riflessione Quotidiana",
-      description: "Pianifica la tua giornata con liste di cose da fare e da non fare. Concludi ogni giorno con gratitudine, check-in dell'umore e auto-riflessione.",
-      color: "text-indigo-500",
-      bgColor: "bg-indigo-500/10",
-    },
+  const mainFeatureDefs = [
+    { icon: Target, titleKey: "landing.features.smart_habit_tracking", descKey: "landing.features.smart_habit_desc", color: "text-emerald-500", bgColor: "bg-emerald-500/10" },
+    { icon: Flame, titleKey: "landing.features.detox_challenges", descKey: "landing.features.detox_challenges_desc", color: "text-orange-500", bgColor: "bg-orange-500/10" },
+    { icon: Eye, titleKey: "landing.features.porn_recovery", descKey: "landing.features.porn_recovery_desc", color: "text-violet-500", bgColor: "bg-violet-500/10" },
+    { icon: Bot, titleKey: "landing.features.ai_coach", descKey: "landing.features.ai_coach_desc", color: "text-primary", bgColor: "bg-primary/10" },
+    { icon: ShieldAlert, titleKey: "landing.features.trigger_tracking", descKey: "landing.features.trigger_tracking_desc", color: "text-rose-500", bgColor: "bg-rose-500/10" },
+    { icon: CalendarCheck, titleKey: "landing.features.daily_planning", descKey: "landing.features.daily_planning_desc", color: "text-indigo-500", bgColor: "bg-indigo-500/10" },
   ];
 
-  const additionalFeatures = [
-    { icon: Brain, title: "Adattamento Abitudini AI", description: "Suggerisce versioni più facili quando fai fatica" },
-    { icon: BookOpen, title: "Sezione Impara", description: "Educazione su dopamina e ricablaggio cerebrale" },
-    { icon: Shield, title: "Tracciamento Serie", description: "Progressi visivi e traguardi" },
-    { icon: Zap, title: "Micro-Azioni", description: "Piccole vittorie quotidiane in pochi secondi" },
-    { icon: Ban, title: "Lista Non-Fare", description: "Traccia i comportamenti da evitare" },
-    { icon: Clock, title: "Timeline Recovery", description: "Vedi i progressi di guarigione del cervello" },
+  const additionalFeatureDefs = [
+    { icon: Brain, titleKey: "landing.features.ai_habit_adaptation", descKey: "landing.features.ai_habit_adaptation_desc" },
+    { icon: BookOpen, titleKey: "landing.features.learn_section", descKey: "landing.features.learn_section_desc" },
+    { icon: Shield, titleKey: "landing.features.streak_tracking", descKey: "landing.features.streak_tracking_desc" },
+    { icon: Zap, titleKey: "landing.features.micro_actions", descKey: "landing.features.micro_actions_desc" },
+    { icon: Ban, titleKey: "landing.features.not_to_do_list", descKey: "landing.features.not_to_do_desc" },
+    { icon: Clock, titleKey: "landing.features.recovery_timeline", descKey: "landing.features.recovery_timeline_desc" },
   ];
 
-  const stats = [
-    { value: "90+", label: "Giorni di contenuti recovery" },
-    { value: "50+", label: "Abitudini suggerite" },
-    { value: "12+", label: "Template sfide" },
-    { value: "24/7", label: "Coach AI disponibile" },
+  const statDefs = [
+    { value: "90+", labelKey: "landing.stats.recovery_days" },
+    { value: "50+", labelKey: "landing.stats.suggested_habits" },
+    { value: "12+", labelKey: "landing.stats.challenge_templates" },
+    { value: "24/7", labelKey: "landing.stats.ai_coach_available" },
+  ];
+
+  const testimonialDefs = [
+    { stars: 5, quoteKey: "landing.testimonials_data.t1", author: "Marco B." },
+    { stars: 5, quoteKey: "landing.testimonials_data.t2", author: "Sara L." },
+    { stars: 5, quoteKey: "landing.testimonials_data.t3", author: "Luca M." },
+    { stars: 4, quoteKey: "landing.testimonials_data.t4", author: "Alex R." },
+    { stars: 5, quoteKey: "landing.testimonials_data.t5", author: "Davide F." },
+    { stars: 4, quoteKey: "landing.testimonials_data.t6", author: "Giulia T." },
   ];
 
   return (
@@ -156,22 +129,22 @@ export default function Landing() {
                 onClick={() => navigate("/dashboard")}
                 className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
               >
-                {"Dashboard"}
+                {t("landing.dashboard")}
               </Button>
             ) : (
               <>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   onClick={() => navigate("/auth")}
-                  className="hidden sm:inline-flex hover:bg-muted transition-all duration-300 text-xs md:text-sm px-2 md:px-3 h-9 md:h-10"
+                  className="hidden sm:inline-flex rounded-lg transition-all duration-300 text-xs md:text-sm px-2 md:px-3 h-9 md:h-10 active:scale-95"
                 >
-                  {"Accedi"}
+                  {t("auth.sign_in")}
                 </Button>
                 <Button
                   onClick={() => navigate("/auth?mode=signup")}
                   className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
                 >
-                  {"Inizia Ora"}
+                  {t("landing.get_started")}
                 </Button>
               </>
             )}
@@ -185,19 +158,19 @@ export default function Landing() {
           <ScrollReveal className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm">
               <Sparkles className="h-4 w-4 mr-2" />
-              {"Il tuo compagno completo per la crescita personale"}
+              {t("landing.your_companion")}
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-6">
-              {"Costruisci la vita che meriti,"}{" "}
+              {t("landing.hero_title_1")}{" "}
               <span className="relative inline-block">
-                <span className="text-primary">{"un'abitudine alla volta"}</span>
+                <span className="text-primary">{t("landing.hero_title_2")}</span>
                 <span className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full animate-underline-slide"></span>
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {"InnerBuild combina tracciamento abitudini, sfide detox, strumenti di recovery e un coach AI per aiutarti a liberarti da ciò che ti trattiene e diventare la versione migliore di te."}
+              {t("landing.hero_description")}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -206,16 +179,16 @@ export default function Landing() {
                 onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
                 className="gradient-primary text-primary-foreground rounded-xl h-14 px-8 text-lg shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                {"Inizia il Tuo Percorso"}
+                {t("landing.start_your_journey")}
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => navigate("/pricing")}
-                className="rounded-xl h-14 px-8 text-lg hover:bg-muted transition-all duration-300 hover:scale-105 active:scale-95 border-primary/20 hover:border-primary/50"
+                className="rounded-xl h-14 px-8 text-lg transition-all duration-300 hover:scale-105 active:scale-95 border-primary/20 hover:border-primary/50"
               >
-                {"Vedi Prezzi"}
+                {t("landing.view_pricing")}
               </Button>
             </div>
           </ScrollReveal>
@@ -226,10 +199,10 @@ export default function Landing() {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {"Tutto ciò che serve per trasformarti"}
+                {t("landing.everything_transform")}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {"Un toolkit completo progettato per supportare il tuo percorso dal primo giorno"}
+                {t("landing.complete_toolkit")}
               </p>
             </ScrollReveal>
 
@@ -237,8 +210,8 @@ export default function Landing() {
             <ScrollReveal className="md:hidden" delay={150}>
               <Carousel opts={{ align: "center", loop: true }}>
                 <CarouselContent>
-                  {mainFeatures.map((feature) => (
-                    <CarouselItem key={feature.title} className="basis-[85%]">
+                  {mainFeatureDefs.map((feature) => (
+                    <CarouselItem key={feature.titleKey} className="basis-[85%]">
                       <Card className="glass border-border/50 overflow-hidden group h-full">
                         <CardContent className="p-6">
                           <div className="flex items-start gap-4">
@@ -246,8 +219,8 @@ export default function Landing() {
                               <feature.icon className={`h-7 w-7 ${feature.color}`} />
                             </div>
                             <div>
-                              <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-                              <p className="text-muted-foreground">{feature.description}</p>
+                              <h3 className="text-xl font-semibold text-foreground mb-2">{t(feature.titleKey)}</h3>
+                              <p className="text-muted-foreground">{t(feature.descKey)}</p>
                             </div>
                           </div>
                         </CardContent>
@@ -257,14 +230,14 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {"scorri per esplorare"} <span>→</span>
+                <span>←</span> {t("common.swipe_explore")} <span>→</span>
               </p>
             </ScrollReveal>
 
             {/* Desktop: grid */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mainFeatures.map((feature, index) => (
-                <ScrollReveal key={feature.title} delay={index * 100} variant="scale">
+              {mainFeatureDefs.map((feature, index) => (
+                <ScrollReveal key={feature.titleKey} delay={index * 100} variant="scale">
                   <Card className="glass border-border/50 hover:border-primary/30 transition-all duration-300 overflow-hidden group h-full">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
@@ -272,8 +245,8 @@ export default function Landing() {
                           <feature.icon className={`h-7 w-7 ${feature.color}`} />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-                          <p className="text-muted-foreground">{feature.description}</p>
+                          <h3 className="text-xl font-semibold text-foreground mb-2">{t(feature.titleKey)}</h3>
+                          <p className="text-muted-foreground">{t(feature.descKey)}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -289,19 +262,19 @@ export default function Landing() {
           <div className="max-w-6xl mx-auto">
             <ScrollReveal className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {"E molto altro ancora"}
+                {t("landing.and_more")}
               </h2>
             </ScrollReveal>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {additionalFeatures.map((feature, index) => (
-                <ScrollReveal key={feature.title} delay={index * 80} variant="scale">
+              {additionalFeatureDefs.map((feature, index) => (
+                <ScrollReveal key={feature.titleKey} delay={index * 80} variant="scale">
                   <div className="glass rounded-xl p-5 text-center hover:bg-muted/50 transition-colors h-full">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
                       <feature.icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-foreground text-sm mb-1">{feature.title}</h3>
-                    <p className="text-xs text-muted-foreground">{feature.description}</p>
+                    <h3 className="font-semibold text-foreground text-sm mb-1">{t(feature.titleKey)}</h3>
+                    <p className="text-xs text-muted-foreground">{t(feature.descKey)}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -313,11 +286,11 @@ export default function Landing() {
         <section className="px-4 py-16 bg-gradient-to-br from-primary/5 via-transparent to-accent/5">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <ScrollReveal key={stat.label} delay={index * 120}>
+              {statDefs.map((stat, index) => (
+                <ScrollReveal key={stat.labelKey} delay={index * 120}>
                   <div className="text-center">
                     <p className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <p className="text-sm text-muted-foreground">{t(stat.labelKey)}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -329,30 +302,23 @@ export default function Landing() {
         <section className="px-4 py-16 bg-muted/30">
           <div className="max-w-5xl mx-auto">
             <ScrollReveal className="text-center mb-12">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{"Testimonianze"}</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{"Persone reali, progressi reali"}</h2>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{t("landing.testimonials")}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t("landing.real_people")}</h2>
             </ScrollReveal>
 
             {/* Mobile: swipeable carousel — Desktop: grid */}
             <ScrollReveal className="md:hidden" delay={100}>
               <Carousel opts={{ align: "center", loop: true }}>
                 <CarouselContent>
-                  {[
-                    { stars: 5, quote: "Il coach AI è come avere un terapeuta in tasca. Mi ha davvero aiutato a capire perché continuavo a ricadere.", author: "Marco B." },
-                    { stars: 5, quote: "Finalmente un'app che tratta il recovery seriamente con la scienza, non solo con la forza di volontà. La sezione sulla scienza del cervello ha cambiato la mia prospettiva.", author: "Sara L." },
-                    { stars: 5, quote: "Il tracciamento dei trigger mi ha aiutato a notare pattern che non avevo mai visto prima. Ora posso davvero anticipare i giorni difficili.", author: "Luca M." },
-                    { stars: 4, quote: "Ho provato molte app per le abitudini. Questa funziona perché la pianificazione giornaliera è naturale, non un peso.", author: "Alex R." },
-                    { stars: 5, quote: "58 giorni pulito. Il tracciamento delle serie mi ha tenuto responsabile anche quando diventa difficile.", author: "Davide F." },
-                    { stars: 4, quote: "Le sfide detox sono ben strutturate. Ho fatto il detox social media di 30 giorni e mi sono sentito davvero più calmo dopo due settimane.", author: "Giulia T." },
-                  ].map((review, index) => (
-                    <CarouselItem key={index} className="basis-[85%]">
+                  {testimonialDefs.map((review, index) => (
+                    <CarouselItem key={review.quoteKey} className="basis-[85%]">
                       <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
                         <div className="flex gap-1">
                           {[...Array(5)].map((_, i) => (
                             <span key={i} className={i < review.stars ? "text-yellow-400" : "text-muted"}>★</span>
                           ))}
                         </div>
-                        <p className="text-foreground text-sm leading-relaxed flex-1">"{review.quote}"</p>
+                        <p className="text-foreground text-sm leading-relaxed flex-1">&ldquo;{t(review.quoteKey)}&rdquo;</p>
                         <p className="text-muted-foreground text-sm font-medium">— {review.author}</p>
                       </Card>
                     </CarouselItem>
@@ -360,28 +326,21 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {"scorri per leggere"} <span>→</span>
+                <span>←</span> {t("common.swipe_read_more")} <span>→</span>
               </p>
             </ScrollReveal>
 
             {/* Desktop: grid layout */}
             <div className="hidden md:grid md:grid-cols-3 gap-6">
-              {[
-                { stars: 5, quote: "Il coach AI è come avere un terapeuta in tasca. Mi ha davvero aiutato a capire perché continuavo a ricadere.", author: "Marco B." },
-                { stars: 5, quote: "Finalmente un'app che tratta il recovery seriamente con la scienza, non solo con la forza di volontà. La sezione sulla scienza del cervello ha cambiato la mia prospettiva.", author: "Sara L." },
-                { stars: 5, quote: "Il tracciamento dei trigger mi ha aiutato a notare pattern che non avevo mai visto prima. Ora posso davvero anticipare i giorni difficili.", author: "Luca M." },
-                { stars: 4, quote: "Ho provato molte app per le abitudini. Questa funziona perché la pianificazione giornaliera è naturale, non un peso.", author: "Alex R." },
-                { stars: 5, quote: "58 giorni pulito. Il tracciamento delle serie mi ha tenuto responsabile anche quando diventa difficile.", author: "Davide F." },
-                { stars: 4, quote: "Le sfide detox sono ben strutturate. Ho fatto il detox social media di 30 giorni e mi sono sentito davvero più calmo dopo due settimane.", author: "Giulia T." },
-              ].map((review, index) => (
-                <ScrollReveal key={index} delay={index * 80} variant="scale">
+              {testimonialDefs.map((review, index) => (
+                <ScrollReveal key={review.quoteKey} delay={index * 80} variant="scale">
                   <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
                     <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
                         <span key={i} className={i < review.stars ? "text-yellow-400" : "text-muted"}>★</span>
                       ))}
                     </div>
-                    <p className="text-foreground text-sm leading-relaxed flex-1">"{review.quote}"</p>
+                    <p className="text-foreground text-sm leading-relaxed flex-1">&ldquo;{t(review.quoteKey)}&rdquo;</p>
                     <p className="text-muted-foreground text-sm font-medium">— {review.author}</p>
                   </Card>
                 </ScrollReveal>
@@ -396,15 +355,15 @@ export default function Landing() {
             <ScrollReveal className="text-center mb-4">
               <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
                 <Crown className="h-3.5 w-3.5 mr-2 text-accent" />
-                {"Premium"}
+                {t("common.premium")}
               </Badge>
             </ScrollReveal>
             <ScrollReveal className="text-center mb-14" delay={100}>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {"Strumenti che cambiano davvero la vita"}
+                {t("landing.tools_change_lives")}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-                {"Non sono solo funzionalità. Sono gli strumenti che fanno la differenza tra provare e trasformarsi davvero."}
+                {t("landing.tools_description")}
               </p>
             </ScrollReveal>
 
@@ -420,12 +379,12 @@ export default function Landing() {
                           <Eye className="h-6 w-6 text-violet-500" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-foreground">{"Programma Porn Recovery"}</h3>
-                          <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{"Più Impattante"}</Badge>
+                          <h3 className="text-lg font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
+                          <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
                         </div>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {"Basato sulle neuroscienze — capisci perché il tuo cervello si è agganciato e ricablalo passo dopo passo."}
+                        {t("landing.premium_deep_dive.porn_recovery_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.porn_recovery_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -444,10 +403,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center flex-shrink-0">
                           <BarChart3 className="h-6 w-6 text-rose-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{"Tracciamento & Analisi Trigger"}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.trigger_tracking")}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {"Le ricadute sembrano casuali — ma non lo sono. Rivela pattern nascosti e ottieni report AI per prevedere e prevenire."}
+                        {t("landing.premium_deep_dive.trigger_tracking_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.trigger_tracking_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -466,10 +425,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <Bot className="h-6 w-6 text-primary" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{"Coach AI Personale"}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_coach")}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {"Un coach disponibile alle 3 di notte quando arriva una voglia. Non giudica — ti guida e ti fa andare avanti."}
+                        {t("landing.premium_deep_dive.ai_coach_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.ai_coach_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -488,10 +447,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                           <BookOpen className="h-6 w-6 text-indigo-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{"Sezione Impara"}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.learn_section")}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {"La scienza dietro le abitudini, la dopamina e il recupero cerebrale. La conoscenza rende ogni sforzo significativo."}
+                        {t("landing.premium_deep_dive.learn_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.learn_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -510,10 +469,10 @@ export default function Landing() {
                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                           <Brain className="h-6 w-6 text-emerald-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">{"Adattamento Abitudini AI"}</h3>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_habit_adaptation")}</h3>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {"L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti."}
+                        {t("landing.premium_deep_dive.habit_adaptation_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
                         {(t("landing.premium_deep_dive.habit_adaptation_mobile_features", { returnObjects: true }) as string[]).map((item) => (
@@ -527,7 +486,7 @@ export default function Landing() {
                 </CarouselContent>
               </Carousel>
               <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
-                <span>←</span> {"scorri per esplorare"} <span>→</span>
+                <span>←</span> {t("common.swipe_explore")} <span>→</span>
               </p>
             </ScrollReveal>
 
@@ -542,11 +501,11 @@ export default function Landing() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-bold text-foreground">{"Programma Porn Recovery"}</h3>
-                        <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{"Più Impattante"}</Badge>
+                        <h3 className="text-xl font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
+                        <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
                       </div>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {"Non si tratta di forza di volontà. Il programma è basato sulle neuroscienze — ti aiuta a capire esattamente perché il tuo cervello si è agganciato, e come ricablarlo passo dopo passo."}
+                        {t("landing.premium_deep_dive.porn_recovery_desc")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.porn_recovery_features", { returnObjects: true }) as string[]).map((item) => (
@@ -568,9 +527,9 @@ export default function Landing() {
                       <BarChart3 className="h-7 w-7 text-rose-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{"Tracciamento & Analisi Trigger"}</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.trigger_tracking")}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {"La maggior parte delle ricadute sembra casuale — ma non lo è. Il Tracciamento Trigger rivela i pattern nascosti dietro i tuoi momenti peggiori."}
+                        {t("landing.premium_deep_dive.trigger_tracking_desc")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.trigger_tracking_features", { returnObjects: true }) as string[]).map((item) => (
@@ -592,9 +551,9 @@ export default function Landing() {
                       <Bot className="h-7 w-7 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{"Coach AI Personale"}</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.ai_coach")}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {"Immagina di avere un coach che conosce le tue abitudini, le tue difficoltà e i tuoi obiettivi — disponibile alle 3 di notte quando arriva una voglia."}
+                        {t("landing.premium_deep_dive.ai_coach_desc")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {(t("landing.premium_deep_dive.ai_coach_features", { returnObjects: true }) as string[]).map((item) => (
@@ -617,9 +576,9 @@ export default function Landing() {
                         <BookOpen className="h-6 w-6 text-indigo-500" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{"Sezione Impara"}</h3>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.learn_section")}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                          {"Comprendi la scienza dietro le tue abitudini, la dopamina e il recupero cerebrale."}
+                          {t("landing.premium_deep_dive.learn_desc")}
                         </p>
                         <div className="space-y-1.5">
                           {(t("landing.premium_deep_dive.learn_features", { returnObjects: true }) as string[]).map((item) => (
@@ -640,9 +599,9 @@ export default function Landing() {
                         <Brain className="h-6 w-6 text-emerald-500" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{"Adattamento Abitudini AI"}</h3>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.ai_habit_adaptation")}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                          {"L'AI analizza i tuoi pattern reali di completamento e suggerisce aggiustamenti più intelligenti."}
+                          {t("landing.premium_deep_dive.habit_adaptation_desc")}
                         </p>
                         <div className="space-y-1.5">
                           {(t("landing.premium_deep_dive.habit_adaptation_features", { returnObjects: true }) as string[]).map((item) => (
@@ -660,15 +619,18 @@ export default function Landing() {
 
             {/* Pricing CTA inside premium section */}
             <ScrollReveal className="text-center mt-14" delay={300}>
-              <p className="text-sm text-muted-foreground mb-2">{"Tutte le funzionalità premium per"}</p>
-              <p className="text-4xl font-bold text-foreground mb-1">€9.99<span className="text-lg text-muted-foreground font-normal">/{"mese"}</span></p>
+              <p className="text-sm text-muted-foreground mb-2">{t("landing.all_premium_for")}</p>
+              <p className="text-4xl font-bold text-foreground mb-1">
+                €9.99
+                <span className="text-lg text-muted-foreground font-normal">/{t("common.month")}</span>
+              </p>
               <Button
                 size="lg"
                 onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
                 className="mt-4 gradient-accent text-accent-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
               >
                 <Crown className="h-5 w-5 mr-2" />
-                {"Sblocca Premium"}
+                {t("landing.unlock_premium")}
               </Button>
             </ScrollReveal>
           </div>
@@ -678,17 +640,17 @@ export default function Landing() {
         <section className="px-4 py-20">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {"Pronto per iniziare a costruire?"}
+              {t("landing.ready_to_start")}
             </h2>
             <p className="text-muted-foreground mb-8">
-              {"Unisciti a migliaia di persone che stanno trasformando la propria vita con InnerBuild. Il tuo percorso verso abitudini migliori inizia oggi."}
+              {t("landing.join_thousands")}
             </p>
             <Button
               size="lg"
               onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
               className="gradient-primary text-primary-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
             >
-              {"Inizia Gratis"}
+              {t("landing.get_started_free")}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </ScrollReveal>

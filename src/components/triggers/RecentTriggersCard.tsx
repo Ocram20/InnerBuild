@@ -1,5 +1,6 @@
 import { format } from "date-fns";
-import { it as itLocale, enUS } from "date-fns/locale";
+import type { Locale } from "date-fns";
+import { enUS, it as itLocale, zhCN, de, fr, es, ptBR, ru, ro } from "date-fns/locale";
 import { Trash2, Clock, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,9 +25,26 @@ const getIntensityColor = (intensity: number) => {
   return "text-yellow-500 bg-yellow-500/10";
 };
 
+const DATE_FNS_LOCALES: Record<string, Locale> = {
+  en: enUS,
+  it: itLocale,
+  zh: zhCN,
+  de,
+  fr,
+  es,
+  pt: ptBR,
+  ru,
+  ro,
+};
+
+function dateFnsLocale(code: string): Locale {
+  const base = (code || "en").split("-")[0];
+  return DATE_FNS_LOCALES[base] ?? enUS;
+}
+
 export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCardProps) {
   const { t, i18n } = useTranslation();
-  const dateLocale = i18n.language?.startsWith("it") ? itLocale : enUS;
+  const dateLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language || "en");
   const recentLogs = logs.slice(0, 10);
 
   const getEmotionLabel = (emotion: string) => {
@@ -45,11 +63,11 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
     return (
       <Card className="glass rounded-2xl">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base">{"Trigger Recenti"}</CardTitle>
+          <CardTitle className="text-base">{t("trigger_tracking.recent_triggers")}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground text-center py-8">
-            {"Nessun trigger registrato"}
+            {t("trigger_tracking.no_triggers_yet")}
           </p>
         </CardContent>
       </Card>
@@ -60,9 +78,9 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
     <Card className="glass rounded-2xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-base flex items-center justify-between">
-          <span>{"Trigger Recenti"}</span>
+          <span>{t("trigger_tracking.recent_triggers")}</span>
           <span className="text-xs font-normal text-muted-foreground">
-            {logs.length} {"totale"}
+            {t("common.total")}: {logs.length}
           </span>
         </CardTitle>
       </CardHeader>

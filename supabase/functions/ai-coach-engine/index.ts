@@ -10,10 +10,28 @@ const corsHeaders = {
   'X-XSS-Protection': '1; mode=block',
 };
 
+function baseLanguage(code: string | undefined): string {
+  return (code || "en").split("-")[0];
+}
+
+function languageName(code: string | undefined): string {
+  const base = baseLanguage(code);
+  const map: Record<string, string> = {
+    en: "English",
+    it: "Italian",
+    zh: "Simplified Chinese",
+    ru: "Russian",
+    de: "German",
+    fr: "French",
+    es: "Spanish",
+    pt: "Portuguese",
+    ro: "Romanian",
+  };
+  return map[base] || "English";
+}
+
 function getSystemPrompt(language: string) {
-  const langInstruction = language === "it"
-    ? "IMPORTANT: You MUST respond entirely in Italian. All text fields must be written in Italian."
-    : "Respond in English.";
+  const langInstruction = `IMPORTANT: You MUST respond entirely in ${languageName(language)}. All text fields must be written in ${languageName(language)}.`;
 
   return `You are an AI Wellness Coach analyzing user habit and trigger data. Your role is to:
 
@@ -88,7 +106,7 @@ serve(async (req) => {
 
     // Parse language from request body
     const reqBody = await req.json().catch(() => ({}));
-    const language = reqBody.language === "it" ? "it" : "en";
+    const language = baseLanguage(reqBody.language);
 
     if (!GROQ_API_KEY) {
       throw new Error("GROQ_API_KEY is not configured");
@@ -238,7 +256,7 @@ Return your analysis as valid JSON matching the format specified in the system p
       .insert({
         user_id,
         insight_type: 'full_report',
-        title: 'Your 4-Day Wellness Report',
+        title: language === "it" ? "Report Benessere (4 Giorni)" : "4‑Day Wellness Report",
         summary: analysis.summary || 'Analysis complete',
         detailed_analysis: {
           habit_adaptations: analysis.habit_adaptations || [],

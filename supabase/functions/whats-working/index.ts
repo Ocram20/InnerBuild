@@ -10,6 +10,26 @@ const corsHeaders = {
   'X-XSS-Protection': '1; mode=block',
 };
 
+function baseLanguage(code: string | undefined): string {
+  return (code || "en").toLowerCase().split("-")[0];
+}
+
+function languageName(code: string | undefined): string {
+  const base = baseLanguage(code);
+  const map: Record<string, string> = {
+    en: "English",
+    it: "Italian",
+    zh: "Simplified Chinese",
+    ru: "Russian",
+    de: "German",
+    fr: "French",
+    es: "Spanish",
+    pt: "Portuguese",
+    ro: "Romanian",
+  };
+  return map[base] || "English";
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -98,12 +118,12 @@ serve(async (req) => {
       return { title: h.title, rate: Math.round((completions / 7) * 100) };
     });
 
-    // Parse language from request body
+    // Parse language from request body (same pattern as ai-coach-engine)
     const reqBody = await req.json().catch(() => ({}));
-    const language = reqBody.language === "it" ? "it" : "en";
-    const lang = language === "it" ? "Italian" : "English";
+    const language = baseLanguage(typeof reqBody.language === "string" ? reqBody.language : undefined);
+    const langName = languageName(language);
 
-    const prompt = `You are a supportive wellness coach. Based on this user's last 7 days of data, provide exactly 3 insights in JSON:
+    const prompt = `You are a supportive wellness coach. Based on this user's last 7 days of data, provide exactly 3 insights in JSON.
 
 Data:
 - Habits: ${JSON.stringify(habitStats)}
@@ -112,7 +132,7 @@ Data:
 - Mood check-ins: ${checkins.map(c => c.mood).join(", ") || "none"}
 - Active challenges: ${challenges.filter(c => c.status === "active").map(c => c.title + " (" + c.current_streak + " days)").join(", ") || "none"}
 
-Return JSON:
+Return JSON with exactly these keys:
 {
   "improving": "One specific thing that is improving (1-2 sentences, warm and encouraging)",
   "protect": "One thing the user should protect/maintain (1-2 sentences)",
@@ -124,7 +144,7 @@ Rules:
 - Focus on progress, not perfection
 - Be specific to the data, not generic
 - Clinical but human tone
-- IMPORTANT: Respond entirely in ${lang}`;
+- CRITICAL: Write the three string values ONLY in ${langName} (language code ${language}). Do not use English, Italian, or any other language unless the target is that language. No mixed languages.`;
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -134,7 +154,13 @@ Rules:
       },
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
-        messages: [{ role: "user", content: prompt }],
+        messages: [
+          {
+            role: "system",
+            content: `You output only valid JSON objects. All user-facing text in string values must be written entirely in ${langName}. Never mix languages.`,
+          },
+          { role: "user", content: prompt },
+        ],
         temperature: 0.7,
         max_tokens: 500,
         response_format: { type: "json_object" },

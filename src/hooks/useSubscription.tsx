@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
-import { getPreferredTranslationLanguage } from "@/lib/googleTranslate";
+import { getPreferredTranslationLanguage } from "@/lib/language";
 
 interface SubscriptionStatus {
   subscribed: boolean;

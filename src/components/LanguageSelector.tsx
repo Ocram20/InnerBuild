@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import {
   Select,
   SelectContent,
@@ -6,6 +6,8 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { STORAGE_KEY, supportedTranslationLanguages } from "@/lib/language";
 
 const languages = [
   { code: "it", label: "Italiano", flag: "🇮🇹" },
@@ -15,107 +17,31 @@ const languages = [
   { code: "es", label: "Español", flag: "🇪🇸" },
   { code: "ru", label: "Русский", flag: "🇷🇺" },
   { code: "ro", label: "Română", flag: "🇷🇴" },
+  { code: "pt", label: "Português", flag: "🇵🇹" },
+  { code: "zh", label: "中文", flag: "🇨🇳" },
 ];
 
-declare global {
-  interface Window {
-    google?: {
-      translate: {
-        TranslateElement: new (options: any, elementId: string) => void;
-      };
-    };
-    googleTranslateElementInit?: () => void;
-  }
-}
-
-function setGoogTransCookie(langCode: string) {
-  const value = langCode === "it" ? "" : `/it/${langCode}`;
-  // Set on current domain and root
-  document.cookie = `googtrans=${value}; path=/;`;
-  document.cookie = `googtrans=${value}; path=/; domain=${window.location.hostname};`;
-  // Also set with dot prefix for subdomains
-  const parts = window.location.hostname.split(".");
-  if (parts.length >= 2) {
-    const rootDomain = parts.slice(-2).join(".");
-    document.cookie = `googtrans=${value}; path=/; domain=.${rootDomain};`;
-  }
-}
-
-function getCurrentLangFromCookie(): string {
-  const match = document.cookie.match(/googtrans=\/it\/(\w+)/);
-  return match ? match[1] : "it";
-}
-
-function initGoogleTranslate() {
-  if (document.getElementById("google-translate-script")) return;
-
-  // Create the hidden container for Google Translate widget
-  if (!document.getElementById("google_translate_element")) {
-    const div = document.createElement("div");
-    div.id = "google_translate_element";
-    div.style.display = "none";
-    document.body.appendChild(div);
-  }
-
-  window.googleTranslateElementInit = () => {
-    if (window.google?.translate) {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "it",
-          includedLanguages: "it,en,de,fr,es,ru,ro",
-          autoDisplay: false,
-          layout: 0, // HIDDEN layout
-        },
-        "google_translate_element"
-      );
-    }
-  };
-
-  const script = document.createElement("script");
-  script.id = "google-translate-script";
-  script.src =
-    "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-  script.async = true;
-  document.body.appendChild(script);
-}
-
 export default function LanguageSelector() {
-  const [currentLang, setCurrentLang] = useState(() => {
-    // Check localStorage first, then cookie
-    const saved = localStorage.getItem("innerbloom-language");
-    if (saved) return saved;
-    return getCurrentLangFromCookie();
-  });
+  const { i18n } = useTranslation();
 
-  useEffect(() => {
-    initGoogleTranslate();
-  }, []);
+  const currentLang = useMemo(
+    () => (i18n.resolvedLanguage || i18n.language || "it").split("-")[0],
+    [i18n.resolvedLanguage, i18n.language],
+  );
 
-  const handleLanguageChange = useCallback((langCode: string) => {
-    setCurrentLang(langCode);
-    localStorage.setItem("innerbloom-language", langCode);
-    setGoogTransCookie(langCode);
-    
-    // If switching to Italian (base language), reset Google Translate before reload
-    if (langCode === "it") {
-      const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
-      if (combo) {
-        combo.value = "it";
-        combo.dispatchEvent(new Event("change"));
-      }
-      // Clear all googtrans cookies
-      document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      document.cookie = `googtrans=; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-      const parts = window.location.hostname.split(".");
-      if (parts.length >= 2) {
-        const rootDomain = parts.slice(-2).join(".");
-        document.cookie = `googtrans=; path=/; domain=.${rootDomain}; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-      }
-    }
-    
-    // Reload to apply translation
-    window.location.reload();
-  }, []);
+  const handleLanguageChange = useCallback(
+    (langCode: string) => {
+      if (
+        !supportedTranslationLanguages.includes(
+          langCode as (typeof supportedTranslationLanguages)[number],
+        )
+      )
+        return;
+      localStorage.setItem(STORAGE_KEY, langCode);
+      void i18n.changeLanguage(langCode);
+    },
+    [i18n],
+  );
 
   const selected = languages.find((l) => l.code === currentLang) || languages[0];
 

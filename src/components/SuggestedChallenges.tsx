@@ -117,11 +117,11 @@ export default function SuggestedChallengesList({ category, onStartChallenge, di
                 <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    {`${challenge.duration_days} giorni`}
+                    {t("suggested_challenges.days", { count: challenge.duration_days })}
                   </span>
                   <span className="flex items-center gap-1">
                     <Users className="h-3 w-3" />
-                    {`${challenge.participants} iscritti`}
+                    {t("suggested_challenges.joined", { count: challenge.participants })}
                   </span>
                 </div>
               </div>

@@ -9,6 +9,7 @@ interface QuoteData {
 }
 
 export default function DailyQuote() {
+  const { t } = useTranslation();
   const [quotes, setQuotes] = useState<QuoteData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +39,7 @@ export default function DailyQuote() {
     return (
       <div className="rounded-2xl border border-border/60 bg-card p-4 relative overflow-hidden">
         <div className="flex items-center justify-center h-16">
-          <div className="animate-pulse text-muted-foreground">Loading quote...</div>
+          <div className="animate-pulse text-muted-foreground">{t("common.loading")}</div>
         </div>
       </div>
     );
@@ -58,7 +59,7 @@ export default function DailyQuote() {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-medium">
-            {"Citazione del Giorno"}
+            {t("dashboard.quote_of_the_day")}
           </p>
           <p className="text-foreground font-medium italic leading-relaxed">
             "{dailyQuote}"

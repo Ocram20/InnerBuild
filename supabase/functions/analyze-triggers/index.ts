@@ -22,6 +22,26 @@ interface TriggerLog {
   notes: string | null;
 }
 
+function baseLanguage(code: string | undefined): string {
+  return (code || "en").split("-")[0];
+}
+
+function languageName(code: string | undefined): string {
+  const base = baseLanguage(code);
+  const map: Record<string, string> = {
+    en: "English",
+    it: "Italian",
+    zh: "Simplified Chinese",
+    ru: "Russian",
+    de: "German",
+    fr: "French",
+    es: "Spanish",
+    pt: "Portuguese",
+    ro: "Romanian",
+  };
+  return map[base] || "English";
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -87,7 +107,7 @@ serve(async (req) => {
 
     // Parse language from request body
     const reqBody = await req.json().catch(() => ({}));
-    const language = reqBody.language === "it" ? "it" : "en";
+    const language = baseLanguage(reqBody.language);
 
     // Analyze patterns locally first
     const patterns = analyzePatterns(logs as TriggerLog[], language);
@@ -112,7 +132,7 @@ serve(async (req) => {
       })),
       ...aiInsights.map(insight => ({
         insight_type: "suggestion",
-        title: "AI Suggestion",
+        title: language === "it" ? "Suggerimento AI" : "AI Suggestion",
         description: insight,
         pattern_data: null,
       })),
@@ -286,7 +306,6 @@ function getTimeLabel(timeContext: string, isIt: boolean): string {
 }
 
 async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatterns: PatternResult[], language: string): Promise<string[]> {
-  const isIt = language === "it";
   const summary = {
     totalLogs: logs.length,
     avgIntensity: logs.reduce((a, b) => a + b.impulse_intensity, 0) / logs.length,
@@ -297,7 +316,7 @@ async function generateAIInsights(apiKey: string, logs: TriggerLog[], localPatte
     localPatterns: localPatterns.map(p => p.title),
   };
 
-  const lang = isIt ? "Italian" : "English";
+  const lang = languageName(language);
   const systemPrompt = `You are a recovery coach for addictions. Analyze the user's trigger patterns and generate 2-3 practical, actionable suggestions.
 
 Rules:

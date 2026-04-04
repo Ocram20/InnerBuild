@@ -98,7 +98,7 @@ export function useAIInsights() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ language: i18n.language?.substring(0, 2) || "en" }),
+          body: JSON.stringify({ language: i18n.resolvedLanguage || i18n.language || "en" }),
         }
       );
 

@@ -4,7 +4,10 @@ import { ArticleCard } from "./ArticleCard";
 import { ArticleDetail } from "./ArticleDetail";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookOpen, FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
 export function ArticlesList() {
+  const { t } = useTranslation();
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
   const { data: articles, isLoading: isLoadingList } = useArticles();
   const { data: selectedArticle, isLoading: isLoadingDetail } = useArticle(selectedArticleId ?? undefined);
@@ -23,9 +26,7 @@ export function ArticlesList() {
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <FileText className="h-5 w-5 text-primary" />
-          <p className="text-muted-foreground">
-            {"Approfondimenti settimanali su scienza, psicologia e recovery."}
-          </p>
+          <p className="text-muted-foreground">{t("learn_content.articles_description")}</p>
         </div>
         {[1, 2, 3].map((i) => (
           <div key={i} className="border rounded-lg p-6 space-y-3">
@@ -44,15 +45,13 @@ export function ArticlesList() {
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <FileText className="h-5 w-5 text-primary" />
-          <p className="text-muted-foreground">
-            {"Approfondimenti settimanali su scienza, psicologia e recovery."}
-          </p>
+          <p className="text-muted-foreground">{t("learn_content.articles_description")}</p>
         </div>
         <div className="text-center py-12 px-4 border rounded-lg bg-muted/30">
           <BookOpen className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-          <h3 className="font-medium text-lg mb-2">{"Nessun articolo ancora"}</h3>
+          <h3 className="font-medium text-lg mb-2">{t("learn_content.no_articles_title")}</h3>
           <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-            {"Nuovi contenuti educativi verranno pubblicati settimanalmente. Torna presto per approfondimenti sulla scienza del recupero e il benessere."}
+            {t("learn_content.no_articles_description")}
           </p>
         </div>
       </div>
@@ -63,9 +62,7 @@ export function ArticlesList() {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <FileText className="h-5 w-5 text-primary" />
-        <p className="text-muted-foreground">
-          {"Approfondimenti settimanali su scienza, psicologia e recovery."}
-        </p>
+        <p className="text-muted-foreground">{t("learn_content.articles_description")}</p>
       </div>
       
       <div className="space-y-3">

@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/hooks/use-toast";
 import { Camera, Save, Loader2, User, Clock, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { differenceInDays } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 interface ProfileData {
   first_name: string;
@@ -25,6 +26,7 @@ interface ProfileInfoSectionProps {
 }
 
 export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSectionProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -106,8 +108,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (!file.type.startsWith("image/")) {
       toast({
-        title: "Tipo di file non valido",
-        description: "Per favore carica un'immagine.",
+        title: t("common.error"),
+        description: t("profile.avatar_invalid_type"),
         variant: "destructive",
       });
       return;
@@ -115,8 +117,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (file.size > 5 * 1024 * 1024) {
       toast({
-        title: "File troppo grande",
-        description: "Per favore carica un'immagine inferiore a 5MB.",
+        title: t("common.error"),
+        description: t("profile.avatar_too_large"),
         variant: "destructive",
       });
       return;
@@ -148,14 +150,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       onProfileUpdate();
 
       toast({
-        title: "Avatar aggiornato",
-        description: "La tua immagine del profilo è stata aggiornata.",
+        title: t("profile.avatar_updated"),
+        description: t("profile.avatar_updated_desc"),
       });
     } catch (error: any) {
       console.error("Error uploading avatar:", error);
       toast({
-        title: "Caricamento fallito",
-        description: error.message || "Impossibile caricare l'avatar.",
+        title: t("profile.avatar_upload_failed"),
+        description: error.message || t("profile.avatar_upload_failed"),
         variant: "destructive",
       });
     } finally {
@@ -191,8 +193,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
     if (isUsernameChanged && !canChangeUsername) {
       toast({
-        title: "Cambio username limitato",
-        description: `Puoi cambiare il tuo username di nuovo tra ${daysRemaining} giorni.`,
+        title: t("profile.username_change_limited_title"),
+        description: t("profile.username_cooldown_days", { days: daysRemaining }),
         variant: "destructive",
       });
       return;
@@ -215,7 +217,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
       if (error) {
         if (error.code === "23505") {
-          throw new Error("This username is already taken. Please choose another.");
+          throw new Error("USERNAME_TAKEN");
         }
         throw error;
       }
@@ -234,14 +236,16 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
       onProfileUpdate();
       toast({
-        title: "Profilo aggiornato",
-        description: "Le tue informazioni del profilo sono state salvate.",
+        title: t("profile.profile_updated"),
+        description: t("profile.profile_updated_desc"),
       });
     } catch (error: any) {
       console.error("Error saving profile:", error);
+      const desc =
+        error.message === "USERNAME_TAKEN" ? t("profile.username_taken") : error.message || t("profile.failed_save");
       toast({
-        title: "Salvataggio fallito",
-        description: error.message || "Impossibile salvare il profilo.",
+        title: t("profile.failed_save"),
+        description: desc,
         variant: "destructive",
       });
     } finally {
@@ -276,16 +280,16 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   const handlePasswordChange = async () => {
     if (newPassword !== confirmPassword) {
       toast({
-        title: "Le password non corrispondono",
-        description: "La nuova password e la conferma devono essere uguali.",
+        title: t("profile.password_mismatch_title"),
+        description: t("profile.password_mismatch_desc"),
         variant: "destructive",
       });
       return;
     }
     if (newPassword.length < 6) {
       toast({
-        title: "Password troppo corta",
-        description: "La password deve essere di almeno 6 caratteri.",
+        title: t("profile.password_too_short_title"),
+        description: t("profile.password_too_short_desc"),
         variant: "destructive",
       });
       return;
@@ -300,8 +304,8 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       });
       if (signInError) {
         toast({
-          title: "Password attuale errata",
-          description: "La password attuale inserita non è corretta.",
+          title: t("profile.wrong_password_title"),
+          description: t("profile.wrong_password_desc"),
           variant: "destructive",
         });
         return;
@@ -314,14 +318,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       setNewPassword("");
       setConfirmPassword("");
       toast({
-        title: "Password aggiornata",
-        description: "La tua password è stata modificata con successo.",
+        title: t("profile.password_updated_title"),
+        description: t("profile.password_updated_desc"),
       });
     } catch (error: any) {
       console.error("Error updating password:", error);
       toast({
-        title: "Aggiornamento fallito",
-        description: error.message || "Impossibile aggiornare la password.",
+        title: t("profile.password_update_failed"),
+        description: error.message || t("profile.password_update_failed"),
         variant: "destructive",
       });
     } finally {
@@ -341,16 +345,16 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <User className="h-5 w-5 text-primary" />
-          {"Informazioni profilo"}
+          {t("profile.profile_info")}
         </CardTitle>
-        <CardDescription>{"Gestisci le tue informazioni personali e l'immagine del profilo"}</CardDescription>
+        <CardDescription>{t("profile.profile_info_desc")}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Avatar Section */}
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <Avatar className="h-24 w-24 border-4 border-primary/20">
-              <AvatarImage src={formData.avatar_url} alt="Profile" className="object-cover" />
+              <AvatarImage src={formData.avatar_url} alt={t("profile.avatar_alt")} className="object-cover" />
               <AvatarFallback className="bg-primary/10 text-primary text-xl font-semibold">
                 {getInitials()}
               </AvatarFallback>
@@ -365,30 +369,30 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
           </div>
           <p className="text-sm text-muted-foreground">
-            {"Clicca sull'icona della fotocamera per caricare una nuova foto"}
+            {t("profile.upload_photo")}
           </p>
         </div>
 
         {/* Form Fields */}
         <div className="grid gap-4 sm:grid-cols-2 notranslate" translate="no">
           <div className="space-y-2">
-            <Label htmlFor="first_name">{"Nome"}</Label>
+            <Label htmlFor="first_name">{t("profile.first_name")}</Label>
             <Input
               id="first_name"
               value={formData.first_name}
               onChange={(e) => handleInputChange("first_name", e.target.value)}
-              placeholder={"Inserisci il tuo nome"}
+              placeholder={t("profile.first_name_placeholder")}
               className="notranslate"
               translate="no"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="last_name">{"Cognome"}</Label>
+            <Label htmlFor="last_name">{t("profile.last_name")}</Label>
             <Input
               id="last_name"
               value={formData.last_name}
               onChange={(e) => handleInputChange("last_name", e.target.value)}
-              placeholder={"Inserisci il tuo cognome"}
+              placeholder={t("profile.last_name_placeholder")}
               className="notranslate"
               translate="no"
             />
@@ -397,11 +401,11 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
         <div className="space-y-2">
           <Label htmlFor="username" className="flex items-center gap-2">
-            {"Username"}
+            {t("profile.username")}
             {isUsernameChanged && !canChangeUsername && (
               <span className="flex items-center gap-1 text-xs text-amber-500 font-normal">
                 <Clock className="h-3 w-3" />
-                {"Cooldown attivo"}
+                {t("profile.username_cooldown")}
               </span>
             )}
           </Label>
@@ -409,7 +413,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             id="username"
             value={formData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
-            placeholder={"Scegli un username unico"}
+            placeholder={t("profile.username_placeholder")}
             className="notranslate"
             translate="no"
           />
@@ -423,7 +427,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
         <div className="space-y-2">
           <Label htmlFor="email" className="flex items-center gap-2">
-            {"Indirizzo Email"}
+            {t("profile.email")}
             <Mail className="h-3 w-3 text-muted-foreground" />
             {isOAuthUser && (
               <span className="text-xs text-muted-foreground font-normal">
@@ -435,11 +439,9 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             <div className="space-y-2">
               <Input id="email" type="email" value={formData.email} disabled className="flex-1 opacity-60" />
               <p className="text-xs text-muted-foreground">
-                {"L'email non può essere modificata perché hai effettuato l'accesso tramite "}
-                {authProvider === "google" ? "Google" : authProvider}
-                {". Per cambiare email, modifica l'indirizzo nel tuo account "}
-                {authProvider === "google" ? "Google" : authProvider}
-                {"."}
+                {t("profile.oauth_email_locked", {
+                  provider: authProvider === "google" ? "Google" : String(authProvider),
+                })}
               </p>
             </div>
           ) : (
@@ -450,8 +452,9 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  placeholder={"Enter your email"}
-                  className="flex-1"
+                  placeholder={t("auth.email_placeholder")}
+                  className="flex-1 notranslate"
+                  translate="no"
                 />
                 {formData.email !== originalEmail && (
                   <Button
@@ -461,13 +464,11 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                     disabled={emailSaving || !formData.email}
                     className="shrink-0"
                   >
-                    {emailSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Aggiorna"}
+                    {emailSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : t("profile.email_update_button")}
                   </Button>
                 )}
               </div>
-              <p className="text-xs text-muted-foreground">
-                {"Un link di conferma verrà inviato alla tua nuova email"}
-              </p>
+              <p className="text-xs text-muted-foreground">{t("profile.email_confirm_hint")}</p>
             </>
           )}
         </div>
@@ -477,7 +478,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           <div className="space-y-3 border-t border-border/30 pt-4">
             <Label className="flex items-center gap-2 text-sm font-semibold">
               <Lock className="h-4 w-4 text-primary" />
-              {"Modifica Password"}
+              {t("profile.change_password")}
             </Label>
             <div className="space-y-2">
               <div className="relative">
@@ -485,7 +486,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                   type={showCurrentPassword ? "text" : "password"}
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder="Password attuale"
+                  placeholder={t("profile.current_password_placeholder")}
                 />
                 <button
                   type="button"
@@ -500,7 +501,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                   type={showNewPassword ? "text" : "password"}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Nuova password"
+                  placeholder={t("profile.new_password_placeholder")}
                 />
                 <button
                   type="button"
@@ -514,7 +515,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                 type={showNewPassword ? "text" : "password"}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Conferma nuova password"
+                placeholder={t("profile.confirm_password_placeholder")}
               />
             </div>
             <Button
@@ -526,12 +527,12 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
               {passwordSaving ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {"Aggiornamento..."}
+                  {t("profile.updating")}
                 </>
               ) : (
                 <>
                   <Lock className="mr-2 h-4 w-4" />
-                  {"Aggiorna Password"}
+                  {t("profile.update_password")}
                 </>
               )}
             </Button>
@@ -541,12 +542,12 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           {saving ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {"Salvataggio..."}
+              {t("profile.saving")}
             </>
           ) : (
             <>
               <Save className="mr-2 h-4 w-4" />
-              {"Salva Modifiche"}
+              {t("profile.save_changes")}
             </>
           )}
         </Button>

@@ -1,4 +1,6 @@
 import { CheckCircle2, Circle, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 import {
   Tooltip,
   TooltipContent,
@@ -27,6 +29,7 @@ interface TodayOverviewProps {
 }
 
 export default function TodayOverview({ habits, onToggleHabit, getAdaptationForHabit }: TodayOverviewProps) {
+  const { t } = useTranslation();
   const completedCount = habits.filter(h => h.completed_today).length;
   const totalCount = habits.length;
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
@@ -78,7 +81,7 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
                     <span className={`text-sm font-medium truncate block max-w-full ${
                       habit.completed_today ? "line-through text-muted-foreground" : "text-foreground"
                     }`}>
-                      {habit.title}
+                      {localizeSuggestedHabitTitle(t, habit.title)}
                     </span>
                   </button>
                   
@@ -102,24 +105,22 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
             })}
             {habits.length > 5 && (
               <p className="text-xs text-muted-foreground text-center pt-1">
-                {`+${habits.length - 5} altre abitudini`}
+                {t("today_overview.more_habits", { count: habits.length - 5 })}
               </p>
             )}
           </div>
         ) : (
-          <p className="text-sm text-muted-foreground text-center py-4">
-            {"Nessuna abitudine ancora. Creane una per iniziare!"}
-          </p>
+          <p className="text-sm text-muted-foreground text-center py-4">{t("today_overview.no_habits")}</p>
         )}
 
         {/* Motivational message */}
         {habits.length > 0 && (
           <p className="text-sm text-muted-foreground mt-4 text-center">
             {allComplete
-              ? "Tutto fatto per oggi! Lavoro fantastico!"
+              ? t("today_overview.all_done")
               : completedCount === 0
-                ? "Facciamo contare la giornata!"
-                : `${totalCount - completedCount} rimaste — ce la farai!`}
+                ? t("today_overview.lets_go")
+                : t("today_overview.left_count", { count: totalCount - completedCount })}
           </p>
         )}
       </div>

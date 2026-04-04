@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "请输入有效的电子邮箱地址",
-    "password_min": "密码至少需要6个字符"
+    "password_min": "密码至少需要6个字符",
+    "password_complexity": "密码必须至少包含：小写字母、大写字母、数字和特殊字符。"
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "链接已发送",
     "reset_sent_description": "请查收邮件获取重置链接。",
     "reset_error_title": "错误",
-    "reset_error_description": "发送链接失败，请重试。"
+    "reset_error_description": "发送链接失败，请重试。",
+    "try_again": "重试",
+    "rate_limit_title": "请求过多",
+    "rate_limit_desc": "请稍等几分钟后再试。",
+    "remember_password": "记得密码？"
   },
 
   "dashboard": {
@@ -273,6 +278,16 @@
       "learn_mobile_features": ["深度文章", "恢复指南", "大脑愈合时间线"],
       "habit_adaptation_mobile_desc": "AI 分析您真实的完成模式并提出更智能的调整建议。",
       "habit_adaptation_mobile_features": ["模式检测", "智能调整", "AI 建议"]
+    },
+    "footer": {
+      "tagline": "用科学的习惯与康复的力量改变你的生活。",
+      "legal": "法律信息",
+      "support": "支持",
+      "follow": "关注我们",
+      "privacy": "隐私政策",
+      "terms": "服务条款",
+      "copyright": "© {{year}} InnerBuild。保留所有权利。为你的成长而用心打造 <3。",
+      "back_to_top": "返回顶部"
     }
   },
 
@@ -308,6 +323,7 @@
     "start_journey": "创建您的第一个习惯，开始旅程",
     "create_habit": "创建习惯",
     "no_match_filters": "没有习惯匹配筛选条件",
+    "failed_load": "加载习惯失败",
     "guide_title": "掌握习惯指南",
     "guide_subtitle": "建立持久习惯的简明指南",
     "guide_dialog_title": "培养好习惯",
@@ -489,6 +505,7 @@
     "category": "类别",
     "duration": "时长",
     "daily_steps": "每日步骤（可选）",
+    "step_placeholder": "步骤 {{n}}...",
     "start_challenge": "开始挑战",
     "challenge_started": "挑战开始！🔥",
     "challenge_started_desc": "您的 {{days}} 天挑战今天开始。您能做到！",
@@ -623,7 +640,36 @@
     "vs_previous": "对比前 {{days}} 天",
     "habits_progress": "习惯进度",
     "trigger_tracking_title": "触发器追踪",
-    "mood_reflection": "情绪与反思"
+    "mood_reflection": "情绪与反思",
+    "manage": "管理",
+    "upgrade": "升级",
+    "view_site": "首页",
+    "time_range_recent": "近期",
+    "time_range_annual": "年度",
+    "change_password": "更改密码",
+    "current_password_placeholder": "当前密码",
+    "new_password_placeholder": "新密码",
+    "confirm_password_placeholder": "确认新密码",
+    "saving": "保存中…",
+    "updating": "更新中…",
+    "update_password": "更新密码",
+    "email_update_button": "更新",
+    "email_confirm_hint": "确认链接将发送至你的新邮箱。",
+    "email_confirm_sent": "已发送确认",
+    "email_confirm_sent_desc": "请查看当前邮箱以确认地址更改。",
+    "email_update_failed": "邮箱更新失败",
+    "password_mismatch_title": "密码不一致",
+    "password_mismatch_desc": "新密码与确认必须一致。",
+    "password_too_short_title": "密码过短",
+    "password_too_short_desc": "密码至少需要 6 个字符。",
+    "wrong_password_title": "当前密码错误",
+    "wrong_password_desc": "输入的当前密码不正确。",
+    "password_updated_title": "密码已更新",
+    "password_updated_desc": "你的密码已成功更改。",
+    "password_update_failed": "更新失败",
+    "username_change_limited_title": "用户名更改受限",
+    "oauth_email_locked": "无法更改邮箱，因为你使用 {{provider}} 登录。请在 {{provider}} 账户中更新地址。",
+    "avatar_alt": "头像"
   },
 
   "coach": {
@@ -831,6 +877,9 @@
     "log_3_triggers": "记录至少 3 个触发器以解锁 AI 洞察",
     "more_needed": "还需 {{count}} 个",
     "press_analyze": "按“分析”以从您的模式生成洞察",
+    "toast_log_failed": "无法保存记录",
+    "toast_logged_title": "✓ 已记录触发器",
+    "toast_logged_desc": "继续记录以发现你的模式",
     "locked_features": {
       "realtime": "实时冲动记录",
       "heatmap": "视觉模式热力图",
@@ -924,7 +973,7 @@
     "todo_title": "明天要做的事",
     "not_todo_title": "避免清单",
     "add_task_placeholder": "添加新任务...",
-    "what_to_avoid": "明天要避免的事...",
+    "what_to_avoid": "{{day}}要避免的事...",
     "quick_add_suggestions": "快速建议：",
     "task_added": "任务已添加！",
     "task_added_desc": "规划您的明天",
@@ -980,6 +1029,16 @@
     "checked_in_today": "今天已签到。继续加油！",
     "day_of_journey": "旅程第 {{day}} 天",
     "active_challenges": "进行中的挑战",
+    "title": "色情恢复",
+    "subtitle": "为你的旅程提供科学支持的工具",
+    "emergency": "紧急",
+    "sos": "SOS",
+    "emergency_urge": "🚨 冲动紧急",
+    "tabs": {
+      "progress": "进度",
+      "manage": "管理",
+      "learn": "学习"
+    },
     "onboarding": {
       "title": "恢复挑战",
       "description": "您想开始色情恢复挑战吗？您可以追踪每日进度并建立连续记录。",
@@ -1040,7 +1099,16 @@
     "suggested_adjustments": "建议的习惯调整",
     "tips": "提示",
     "next_report_in": "下一份报告将在 {{days}} 天后可用",
-    "generate_new": "生成新报告"
+    "generate_new": "生成新报告",
+    "wait_title": "请稍候",
+    "wait_desc": "你可以在 {{days}} 天后生成新的报告",
+    "generated_title": "习惯报告已生成！🎯",
+    "generated_desc": "你的个性化分析已准备就绪。",
+    "failed_title": "生成失败",
+    "failed_desc": "无法生成报告",
+    "habit_updated_title": "习惯已更新！✓",
+    "habit_updated_desc": "已更改为「{{title}}」",
+    "failed_update_habit": "无法更新该习惯"
   },
 
   "not_found": {
@@ -1241,6 +1309,8 @@
     "relapse_occurred": "发生复发",
     "setback": "挫折",
     "checked_in": "已签到",
+    "checkin_recorded_fallback": "已记录签到",
+    "challenge_default_title": "挑战",
     "mental_mission": "心理任务",
     "behavioral_mission": "行为任务",
     "avoided": "已避免",
@@ -1261,7 +1331,10 @@
     "improving": "保持下去——您正在积累动力。",
     "protect": "您的坚持是您最大的资产。",
     "adjustment": "本周尝试调整一件小事。",
-    "available_in": "{{days}} 天后可用"
+    "available_in": "{{days}} 天后可用",
+    "insight_fallback_improving": "本周已有一些积极变化——继续留意对你有帮助的事情。",
+    "insight_fallback_protect": "你正在坚持的习惯很重要——值得继续守护。",
+    "insight_fallback_adjustment": "下周只选一个小而可行的调整，再逐步加强。"
   },
   "recovery_tracker": {
     "title": "恢复挑战",
@@ -1279,7 +1352,8 @@
     "start_fresh_desc": "这将重置您当前的旅程并开始新的旅程。您之前的数据将被存档。",
     "abandon": "放弃",
     "abandon_title": "放弃挑战？",
-    "abandon_desc": "这将结束您当前的挑战。您可以随时开始新的挑战。"
+    "abandon_desc": "这将结束您当前的挑战。您可以随时开始新的挑战。",
+    "day_n": "第 {{n}} 天"
   },
   "craving_actions": {
     "title": "渴求时该怎么办",
@@ -1332,7 +1406,9 @@
     "trigger_placeholder": "我晚上感到无聊",
     "i_will": "我将",
     "action_placeholder": "去散步或给朋友打电话",
-    "because_gives_me": "因为它给我"
+    "because_gives_me": "因为它给我",
+    "benefit_placeholder": "清晰与联结",
+    "add_button": "添加计划"
   },
   "reasons_section": {
     "title": "我戒除的理由",
@@ -1482,7 +1558,7 @@
     "save_reflection": "保存反思"
   },
   "todo_section": {
-    "title": "明天要做的事",
+    "title": "{{day}}要做的事",
     "no_tasks": "这一天没有计划任务",
     "add_task": "添加任务",
     "suggestions_title": "建议",
@@ -1491,7 +1567,7 @@
     "error_update": "无法更新任务",
     "error_delete": "无法删除任务",
     "task_added": "任务已添加！",
-    "plan_tomorrow": "规划您的明天",
+    "plan_tomorrow": "规划您的{{day}}",
     "tasks_done": "已完成",
     "suggested_tasks": [
       "喝 8 杯水",
@@ -1501,7 +1577,7 @@
       "写日记",
       "锻炼 30 分钟"
     ],
-    "add_goals": "添加您明天的目标"
+    "add_goals": "添加您{{day}}的目标"
   },
   "not_to_do_section": {
     "title": "需避免之事",
@@ -1511,7 +1587,7 @@
     "error_delete": "无法删除事项",
     "error_update": "无法更新状态",
     "item_added": "事项已添加！",
-    "avoid_behavior": "明天避免此行为",
+    "avoid_behavior": "{{day}}避免此行为",
     "avoided": "已避免",
     "not_avoided": "未避免",
     "quick_suggestions": "添加快速建议：",
@@ -1813,7 +1889,17 @@
     "continue_90": "您已完成 {{days}} 天挑战。要继续到 90 天吗？",
     "continue_to_90": "继续到 90 天 →",
     "today": "今天",
-    "day_n": "第 {{n}} 天"
+    "day_n": "第 {{n}} 天",
+    "phases": {
+      "acute": "急性期",
+      "stabilization": "稳定期",
+      "reconstruction": "重建期",
+      "consolidation": "巩固期"
+    },
+    "roadmap": {
+      "day_range": "第 {{start}} 天 – 第 {{end}} 天",
+      "goal": "🏁 目标"
+    }
   },
   "daily_content": {
     "your_coach": "您的教练",
@@ -2207,5 +2293,42 @@
     "common_emotions": "常见情绪：{{emotions}}",
     "top_recommendations": "首选推荐",
     "generate_new": "生成新报告"
+  },
+
+  "coach": {
+    "title": "AI 教练",
+    "subtitle": "你的个人向导",
+    "clear_chat": "清空聊天",
+    "greeting": "你好！",
+    "intro": "我是你的 AI 教练，帮助你建立更好的习惯并支持你的成长。",
+    "tip_default": "坚持的小步前进，会带来巨大的改变。",
+    "quick_actions_title": "快速开始：",
+    "input_placeholder": "问我关于习惯、挑战、恢复等问题...",
+    "chat_cleared": "聊天已清空",
+    "pillars": {
+      "track_progress": "追踪进度",
+      "build_habits": "建立习惯",
+      "take_challenges": "接受挑战"
+    },
+    "quick_actions": {
+      "habit_label": "建议一个习惯",
+      "habit_prompt": "你能建议一个我今天可以开始培养的健康习惯吗？",
+      "challenge_label": "开始一个挑战",
+      "challenge_prompt": "我想挑战自己。你能建议一个排毒或自我提升挑战，并提供每日步骤吗？",
+      "motivation_label": "激励我",
+      "motivation_prompt": "我今天动力不足。你能给我一些鼓励吗？",
+      "reflect_label": "帮助我反思",
+      "reflect_prompt": "我想做些自我反思。你能问我几个有深度的问题吗？"
+    },
+    "errors": {
+      "not_authenticated": "未登录。请重新登录。",
+      "rate_limited": "请求过多。请稍后再试。",
+      "unauthorized": "需要认证。请重新登录。",
+      "api_key_or_quota": "API 密钥无效或配额已用完。",
+      "failed_response": "获取回复失败",
+      "default_ai_reply": "抱歉，我无法生成回复。",
+      "send_failed": "发送消息失败",
+      "clear_failed": "清空聊天失败"
+    }
   }
 }

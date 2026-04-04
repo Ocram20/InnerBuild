@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "Bitte gib eine gültige E-Mail-Adresse ein",
-    "password_min": "Das Passwort muss mindestens 6 Zeichen lang sein"
+    "password_min": "Das Passwort muss mindestens 6 Zeichen lang sein",
+    "password_complexity": "Das Passwort muss mindestens enthalten: einen Kleinbuchstaben, einen Großbuchstaben, eine Ziffer und ein Sonderzeichen."
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "Link gesendet",
     "reset_sent_description": "Überprüfe deine E-Mails auf den Link zum Zurücksetzen.",
     "reset_error_title": "Fehler",
-    "reset_error_description": "Link konnte nicht gesendet werden. Bitte versuche es erneut."
+    "reset_error_description": "Link konnte nicht gesendet werden. Bitte versuche es erneut.",
+    "try_again": "Erneut versuchen",
+    "rate_limit_title": "Zu viele Anfragen",
+    "rate_limit_desc": "Bitte warte einige Minuten, bevor du es erneut versuchst.",
+    "remember_password": "Erinnerst du dich an dein Passwort?"
   },
 
   "dashboard": {
@@ -308,6 +313,7 @@
     "start_journey": "Starte deine Reise, indem du deine erste Gewohnheit erstellst",
     "create_habit": "Gewohnheit erstellen",
     "no_match_filters": "Keine Gewohnheiten entsprechen den Filtern",
+    "failed_load": "Gewohnheiten konnten nicht geladen werden",
     "guide_title": "Der Leitfaden zur Meisterung von Gewohnheiten",
     "guide_subtitle": "Ein prägnanter Leitfaden zum Aufbau dauerhafter Gewohnheiten",
     "guide_dialog_title": "Gute Gewohnheiten aufbauen",
@@ -489,6 +495,7 @@
     "category": "Kategorie",
     "duration": "Dauer",
     "daily_steps": "Tägliche Schritte (optional)",
+    "step_placeholder": "Schritt {{n}}...",
     "start_challenge": "Challenge starten",
     "challenge_started": "Challenge gestartet! 🔥",
     "challenge_started_desc": "Deine {{days}}-tägige Challenge beginnt heute. Du schaffst das!",
@@ -623,7 +630,36 @@
     "vs_previous": "vs vorherige {{days}} Tage",
     "habits_progress": "Gewohnheitsfortschritt",
     "trigger_tracking_title": "Trigger-Tracking",
-    "mood_reflection": "Stimmung & Reflexion"
+    "mood_reflection": "Stimmung & Reflexion",
+    "manage": "Verwalten",
+    "upgrade": "Upgraden",
+    "view_site": "Start",
+    "time_range_recent": "Kürzlich",
+    "time_range_annual": "Jahr",
+    "change_password": "Passwort ändern",
+    "current_password_placeholder": "Aktuelles Passwort",
+    "new_password_placeholder": "Neues Passwort",
+    "confirm_password_placeholder": "Neues Passwort bestätigen",
+    "saving": "Speichern…",
+    "updating": "Aktualisieren…",
+    "update_password": "Passwort aktualisieren",
+    "email_update_button": "Aktualisieren",
+    "email_confirm_hint": "Ein Bestätigungslink wird an deine neue E-Mail gesendet.",
+    "email_confirm_sent": "Bestätigung gesendet",
+    "email_confirm_sent_desc": "Prüfe deine aktuelle E-Mail, um die Adressänderung zu bestätigen.",
+    "email_update_failed": "E-Mail konnte nicht aktualisiert werden",
+    "password_mismatch_title": "Passwörter stimmen nicht überein",
+    "password_mismatch_desc": "Neues Passwort und Bestätigung müssen übereinstimmen.",
+    "password_too_short_title": "Passwort zu kurz",
+    "password_too_short_desc": "Das Passwort muss mindestens 6 Zeichen haben.",
+    "wrong_password_title": "Falsches aktuelles Passwort",
+    "wrong_password_desc": "Das eingegebene aktuelle Passwort ist falsch.",
+    "password_updated_title": "Passwort aktualisiert",
+    "password_updated_desc": "Dein Passwort wurde erfolgreich geändert.",
+    "password_update_failed": "Aktualisierung fehlgeschlagen",
+    "username_change_limited_title": "Benutzername-Änderung begrenzt",
+    "oauth_email_locked": "Die E-Mail kann nicht geändert werden, weil du dich mit {{provider}} angemeldet hast. Ändere die Adresse in deinem {{provider}}-Konto.",
+    "avatar_alt": "Profilfoto"
   },
 
   "coach": {
@@ -831,6 +867,9 @@
     "log_3_triggers": "Erfasse mindestens 3 Auslöser, um KI-Einblicke freizuschalten",
     "more_needed": "{{count}} weitere benötigt",
     "press_analyze": "Drücke 'Analysieren', um Einblicke aus deinen Mustern zu generieren",
+    "toast_log_failed": "Protokoll konnte nicht gespeichert werden",
+    "toast_logged_title": "✓ Trigger erfasst",
+    "toast_logged_desc": "Weiter erfassen, um Muster zu entdecken",
     "locked_features": {
       "realtime": "Echtzeit-Impulserfassung",
       "heatmap": "Visuelle Muster-Heatmap",
@@ -924,7 +963,7 @@
     "todo_title": "Aufgaben für morgen",
     "not_todo_title": "Nicht-zu-tun-Liste",
     "add_task_placeholder": "Neue Aufgabe hinzufügen...",
-    "what_to_avoid": "Was morgen vermeiden...",
+    "what_to_avoid": "Was {{day}} vermeiden...",
     "quick_add_suggestions": "Schnellvorschläge:",
     "task_added": "Aufgabe hinzugefügt!",
     "task_added_desc": "Plane dein Morgen",
@@ -980,6 +1019,16 @@
     "checked_in_today": "Heute eingetragen. Weiter so!",
     "day_of_journey": "Tag {{day}} der Reise",
     "active_challenges": "Aktive Challenges",
+    "title": "Porn Recovery",
+    "subtitle": "Wissenschaftlich fundierte Tools für deinen Weg",
+    "emergency": "Notfall",
+    "sos": "SOS",
+    "emergency_urge": "🚨 Impuls‑Notfall",
+    "tabs": {
+      "progress": "Fortschritt",
+      "manage": "Verwalten",
+      "learn": "Lernen"
+    },
     "onboarding": {
       "title": "Recovery-Challenge",
       "description": "Möchtest du die Porno-Recovery-Challenge starten? Du kannst deinen täglichen Fortschritt verfolgen und Serien aufbauen.",
@@ -1040,7 +1089,16 @@
     "suggested_adjustments": "Vorgeschlagene Gewohnheitsanpassungen",
     "tips": "Tipps",
     "next_report_in": "Nächster Bericht verfügbar in {{days}} Tag(en)",
-    "generate_new": "Neuen Bericht generieren"
+    "generate_new": "Neuen Bericht generieren",
+    "wait_title": "Bitte warten",
+    "wait_desc": "Du kannst in {{days}} Tag(en) einen neuen Bericht generieren",
+    "generated_title": "Gewohnheitsbericht erstellt! 🎯",
+    "generated_desc": "Deine personalisierte Analyse ist bereit.",
+    "failed_title": "Generierung fehlgeschlagen",
+    "failed_desc": "Der Bericht konnte nicht erstellt werden",
+    "habit_updated_title": "Gewohnheit aktualisiert! ✓",
+    "habit_updated_desc": "Geändert zu „{{title}}“",
+    "failed_update_habit": "Die Gewohnheit konnte nicht aktualisiert werden"
   },
 
   "not_found": {
@@ -1241,6 +1299,8 @@
     "relapse_occurred": "Rückfall aufgetreten",
     "setback": "Rückschlag",
     "checked_in": "Eingetragen",
+    "checkin_recorded_fallback": "Check-in erfasst",
+    "challenge_default_title": "Challenge",
     "mental_mission": "Mental",
     "behavioral_mission": "Verhaltensorientiert",
     "avoided": "vermieden",
@@ -1279,7 +1339,8 @@
     "start_fresh_desc": "Dies setzt deine aktuelle Reise zurück und startet eine neue. Deine vorherigen Daten werden archiviert.",
     "abandon": "Aufgeben",
     "abandon_title": "Challenge aufgeben?",
-    "abandon_desc": "Dies beendet deine aktuelle Challenge. Du kannst jederzeit eine neue starten."
+    "abandon_desc": "Dies beendet deine aktuelle Challenge. Du kannst jederzeit eine neue starten.",
+    "day_n": "Tag {{n}}"
   },
   "craving_actions": {
     "title": "Was tun bei einem Verlangen",
@@ -1332,7 +1393,9 @@
     "trigger_placeholder": "Ich fühle mich nachts gelangweilt",
     "i_will": "Werde ich",
     "action_placeholder": "spazieren gehen oder einen Freund anrufen",
-    "because_gives_me": "Weil es mir gibt"
+    "because_gives_me": "Weil es mir gibt",
+    "benefit_placeholder": "Klarheit und Verbundenheit",
+    "add_button": "Plan hinzufügen"
   },
   "reasons_section": {
     "title": "Meine Gründe aufzuhören",
@@ -1482,7 +1545,7 @@
     "save_reflection": "Reflexion speichern"
   },
   "todo_section": {
-    "title": "Aufgaben für morgen",
+    "title": "Aufgaben für {{day}}",
     "no_tasks": "Für diesen Tag wurden keine Aufgaben geplant",
     "add_task": "Aufgabe hinzufügen",
     "suggestions_title": "Vorschläge",
@@ -1491,7 +1554,7 @@
     "error_update": "Aufgabe konnte nicht aktualisiert werden",
     "error_delete": "Aufgabe konnte nicht gelöscht werden",
     "task_added": "Aufgabe hinzugefügt!",
-    "plan_tomorrow": "Plane dein Morgen",
+    "plan_tomorrow": "Plane dein {{day}}",
     "tasks_done": "erledigt",
     "suggested_tasks": [
       "Trinke 8 Gläser Wasser",
@@ -1501,7 +1564,7 @@
       "Schreibe Tagebuch",
       "Bewege dich 30 Minuten"
     ],
-    "add_goals": "Füge deine Ziele für morgen hinzu"
+    "add_goals": "Füge deine Ziele für {{day}} hinzu"
   },
   "not_to_do_section": {
     "title": "Dinge zu vermeiden",
@@ -1511,7 +1574,7 @@
     "error_delete": "Element konnte nicht gelöscht werden",
     "error_update": "Status konnte nicht aktualisiert werden",
     "item_added": "Element hinzugefügt!",
-    "avoid_behavior": "Vermeide dieses Verhalten morgen",
+    "avoid_behavior": "Vermeide dieses Verhalten {{day}}",
     "avoided": "Vermieden",
     "not_avoided": "Nicht vermieden",
     "quick_suggestions": "Schnellvorschläge hinzufügen:",
@@ -1813,7 +1876,17 @@
     "continue_90": "Du hast die {{days}}-tägige Challenge abgeschlossen. Möchtest du bis zu 90 Tagen fortsetzen?",
     "continue_to_90": "Auf 90 Tage fortsetzen →",
     "today": "Heute",
-    "day_n": "Tag {{n}}"
+    "day_n": "Tag {{n}}",
+    "phases": {
+      "acute": "Akute Phase",
+      "stabilization": "Stabilisierungsphase",
+      "reconstruction": "Wiederaufbauphase",
+      "consolidation": "Konsolidierungsphase"
+    },
+    "roadmap": {
+      "day_range": "Tag {{start}} – {{end}}",
+      "goal": "🏁 Ziel"
+    }
   },
   "daily_content": {
     "your_coach": "Dein Coach",
@@ -2207,5 +2280,42 @@
     "common_emotions": "Häufige Emotionen: {{emotions}}",
     "top_recommendations": "Top-Empfehlungen",
     "generate_new": "Neuen Bericht generieren"
+  },
+
+  "coach": {
+    "title": "KI‑Coach",
+    "subtitle": "Dein persönlicher Guide",
+    "clear_chat": "Chat löschen",
+    "greeting": "Hi!",
+    "intro": "Ich bin dein KI‑Coach und unterstütze dich bei Gewohnheiten, Challenges und Recovery.",
+    "tip_default": "Kleine Schritte, konsequent getan, verändern alles.",
+    "quick_actions_title": "Schnell starten:",
+    "input_placeholder": "Frag nach Gewohnheiten, Challenges, Recovery...",
+    "chat_cleared": "Chat gelöscht",
+    "pillars": {
+      "track_progress": "Fortschritt verfolgen",
+      "build_habits": "Gewohnheiten aufbauen",
+      "take_challenges": "Challenges angehen"
+    },
+    "quick_actions": {
+      "habit_label": "Gewohnheit vorschlagen",
+      "habit_prompt": "Kannst du eine gesunde Gewohnheit vorschlagen, die ich heute starten kann?",
+      "challenge_label": "Challenge starten",
+      "challenge_prompt": "Ich möchte mich herausfordern. Kannst du eine Detox‑ oder Selbstverbesserungs‑Challenge mit täglichen Schritten vorschlagen?",
+      "motivation_label": "Motivier mich",
+      "motivation_prompt": "Heute fehlt mir Motivation. Kannst du mich ermutigen?",
+      "reflect_label": "Reflexion helfen",
+      "reflect_prompt": "Ich möchte reflektieren. Kannst du mir ein paar gute Fragen stellen?"
+    },
+    "errors": {
+      "not_authenticated": "Nicht authentifiziert. Bitte erneut anmelden.",
+      "rate_limited": "Zu viele Anfragen. Bitte gleich wieder versuchen.",
+      "unauthorized": "Authentifizierung erforderlich. Bitte erneut anmelden.",
+      "api_key_or_quota": "API‑Schlüssel ungültig oder Kontingent überschritten.",
+      "failed_response": "Antwort fehlgeschlagen",
+      "default_ai_reply": "Sorry — ich konnte keine Antwort generieren.",
+      "send_failed": "Senden fehlgeschlagen",
+      "clear_failed": "Chat konnte nicht gelöscht werden"
+    }
   }
 }

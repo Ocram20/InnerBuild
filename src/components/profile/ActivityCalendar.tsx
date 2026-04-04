@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isFuture, startOfToday, isBefore } from "date-fns";
-import { it, enUS } from "date-fns/locale";
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, startOfToday, isBefore } from "date-fns";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react";
-import i18n from "i18next";
 import { cn } from "@/lib/utils";
+import { dateFnsLocale } from "@/lib/dateFnsLocale";
 import { DayDetailModal } from "./DayDetailModal";
 import { useTranslation } from "react-i18next";
+import { detoxChallengeAppliesOnDateStr, habitWasTrackedOnDate } from "@/lib/historicalActivity";
 
 interface DayActivity {
   date: string;
@@ -29,7 +29,8 @@ interface DayActivity {
 }
 
 export function ActivityCalendar() {
-  const dateLocale = i18n.language === "it" ? it : enUS;
+  const { t, i18n } = useTranslation();
+  const dateLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
   const { user } = useAuth();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [activities, setActivities] = useState<Map<string, DayActivity>>(new Map());
@@ -75,18 +76,19 @@ export function ActivityCalendar() {
         dailyCheckInsRes,
         challengeEntriesRes,
       ] = await Promise.all([
-        supabase.from("habits").select("id").eq("user_id", user.id).eq("is_active", true),
+        supabase.from("habits").select("id, created_at, is_active, updated_at").eq("user_id", user.id),
         supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
         supabase.from("daily_reflections").select("reflection_date").eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
         supabase.from("daily_tasks").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
         supabase.from("not_to_do_items").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("detox_challenges").select("last_check_in, status").eq("user_id", user.id).eq("status", "active"),
+        supabase.from("detox_challenges").select("last_check_in, status, start_date, duration_days").eq("user_id", user.id),
         supabase.from("recovery_checkins").select("checkin_date, status").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
         untypedTable("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
         untypedTable("challenge_daily_entries").select("created_at, checkin_response, is_failure").eq("user_id", user.id),
       ]);
 
-      const totalHabits = habitsRes.data?.length || 0;
+      const habitsFull = habitsRes.data || [];
+      const challengesFull = challengesRes.data || [];
       const activityMap = new Map<string, DayActivity>();
 
       const habitsByDate = new Map<string, Set<string>>();
@@ -100,8 +102,13 @@ export function ActivityCalendar() {
       const taskDates = new Set(tasksRes.data?.map(t => t.target_date) || []);
       const notToDoDates = new Set(notToDoRes.data?.map(n => n.target_date) || []);
       
-      const detoxCheckInDates = new Set<string>();
-      challengesRes.data?.forEach(c => { if (c.last_check_in) detoxCheckInDates.add(c.last_check_in); });
+      const detoxCheckInByDate = new Map<string, boolean>();
+      for (const c of challengesFull) {
+        if (!c.last_check_in) continue;
+        if (detoxChallengeAppliesOnDateStr(c, c.last_check_in)) {
+          detoxCheckInByDate.set(c.last_check_in, true);
+        }
+      }
 
       const recoveryCheckInMap = new Map<string, boolean>();
       recoveryCheckInsRes.data?.forEach(c => { recoveryCheckInMap.set(c.checkin_date, c.status === "success"); });
@@ -119,17 +126,22 @@ export function ActivityCalendar() {
 
       days.forEach(day => {
         const dateStr = format(day, "yyyy-MM-dd");
-        const habitsOnDay = habitsByDate.get(dateStr)?.size || 0;
-        
+        const relevantHabitIds = new Set(
+          habitsFull.filter((h) => habitWasTrackedOnDate(h, day)).map((h) => h.id)
+        );
+        const completedIds = habitsByDate.get(dateStr) || new Set<string>();
+        const habitsCompleted = [...completedIds].filter((id) => relevantHabitIds.has(id)).length;
+        const habitsTotal = relevantHabitIds.size;
+
         activityMap.set(dateStr, {
           date: dateStr,
-          habitsCompleted: habitsOnDay,
-          habitsTotal: totalHabits,
+          habitsCompleted,
+          habitsTotal,
           hasEveningReflection: dailyReflectionDates.has(dateStr),
           hasTasks: taskDates.has(dateStr),
           hasNotToDo: notToDoDates.has(dateStr),
-          hasDetoxCheckIn: detoxCheckInDates.has(dateStr),
-          detoxSuccess: detoxCheckInDates.has(dateStr),
+          hasDetoxCheckIn: detoxCheckInByDate.has(dateStr),
+          detoxSuccess: detoxCheckInByDate.has(dateStr),
           hasRecoveryCheckIn: recoveryCheckInMap.has(dateStr),
           recoverySuccess: recoveryCheckInMap.get(dateStr) || false,
           hasDailyCheckIn: dailyCheckInDates.has(dateStr),
@@ -195,11 +207,9 @@ export function ActivityCalendar() {
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Calendar className="h-5 w-5 text-primary" />
-                {"Cronologia dei progressi"}
+                {t("activity_calendar.title")}
               </CardTitle>
-              <p className="text-xs text-muted-foreground mt-1">
-                {"Clicca su un giorno per vedere il log"}
-              </p>
+              <p className="text-xs text-muted-foreground mt-1">{t("activity_calendar.subtitle")}</p>
             </div>
             
             <div className="flex items-center gap-4">
@@ -214,7 +224,7 @@ export function ActivityCalendar() {
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{"Non fatto"}</span>
+                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.not_done")}</span>
               </div>
             </div>
           </div>

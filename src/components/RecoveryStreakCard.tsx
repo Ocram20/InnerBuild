@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Shield, ChevronRight, CheckCircle2, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface RecoveryStreakCardProps {
   journey: {
@@ -22,6 +23,7 @@ export default function RecoveryStreakCard({
   onCheckIn 
 }: RecoveryStreakCardProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   if (!journey) {
     return null;
   }
@@ -52,13 +54,13 @@ export default function RecoveryStreakCard({
           <div className="flex-1 sm:hidden">
             <div className="flex items-center justify-between">
               <h2 className="text-base font-semibold text-foreground">
-                {"Serie Recovery"}
+                {t("recovery.recovery_streak")}
               </h2>
               <button
                 onClick={() => navigate("/porn-recovery")}
                 className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
               >
-                {"Dettagli"}
+                {t("common.details")}
                 <ChevronRight className="h-3 w-3" />
               </button>
             </div>
@@ -68,13 +70,13 @@ export default function RecoveryStreakCard({
         <div className="flex-1 min-w-0">
           <div className="hidden sm:flex items-center justify-between mb-1">
             <h2 className="text-base font-semibold text-foreground">
-              {"Serie Recovery"}
+              {t("recovery.recovery_streak")}
             </h2>
             <button
               onClick={() => navigate("/porn-recovery")}
               className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
             >
-              {"Dettagli"}
+              {t("common.details")}
               <ChevronRight className="h-3 w-3" />
             </button>
           </div>
@@ -85,10 +87,10 @@ export default function RecoveryStreakCard({
               <span className="text-xl sm:text-2xl font-bold text-foreground">
                 {currentStreak}
               </span>
-              <span className="text-xs sm:text-sm text-muted-foreground">{"giorni"}</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">{t("common.days")}</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              {`Giorno ${successDays} del percorso`}
+              {t("recovery.day_of_journey", { day: successDays })}
             </div>
           </div>
 
@@ -100,7 +102,7 @@ export default function RecoveryStreakCard({
                 onClick={() => onCheckIn("success")}
               >
                 <Check className="h-3 w-3 mr-1" />
-                {"Giorno pulito"}
+                {t("recovery.clean_day")}
               </Button>
               <Button
                 size="sm"
@@ -109,7 +111,7 @@ export default function RecoveryStreakCard({
                 onClick={() => onCheckIn("failed")}
               >
                 <X className="h-3 w-3 mr-1" />
-                {"Ricaduta"}
+                {t("recovery.relapsed")}
               </Button>
             </div>
           )}
@@ -117,7 +119,7 @@ export default function RecoveryStreakCard({
           {hasCheckedInToday && (
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <CheckCircle2 className="h-3 w-3 text-primary" />
-              {"Check-in fatto oggi. Continua così!"}
+              {t("recovery.checked_in_today")}
             </p>
           )}
         </div>

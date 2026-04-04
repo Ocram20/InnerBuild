@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
@@ -9,19 +9,36 @@ import { Slider } from "@/components/ui/slider";
 import { ArrowLeft, Moon, Heart, CheckCircle2, Loader2 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { format } from "date-fns";
-import { enUS, it as itLocale } from "date-fns/locale";
+import type { Locale } from "date-fns";
+import { enUS, it as itLocale, zhCN, de, fr, es, ptBR, ru, ro } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
 import { EveningReflectionSection } from "@/components/daily-planning/EveningReflectionSection";
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
+const DATE_FNS_LOCALES: Record<string, Locale> = {
+  en: enUS,
+  it: itLocale,
+  zh: zhCN,
+  de,
+  fr,
+  es,
+  pt: ptBR,
+  ru,
+  ro,
+};
+
+function dateFnsLocale(code: string): Locale {
+  const base = (code || "it").split("-")[0];
+  return DATE_FNS_LOCALES[base] ?? itLocale;
+}
 const EveningReflectionPage = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const fromExplore = location.state?.from === "explore";
   const { toast } = useToast();
-  const dateLocale = i18n.language === "it" ? itLocale : enUS;
+  const dateLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language || "it");
 
   const moodOptions = [
     { value: "great", label: "Ottimo", emoji: "😊", color: "bg-green-500/20 text-green-600 border-green-500/30" },
@@ -54,17 +71,17 @@ const EveningReflectionPage = () => {
   };
 
   const handleCheckIn = async () => {
-    if (!mood) { toast({ title: "Seleziona il tuo umore", description: "Seleziona come ti sei sentito oggi.", variant: "destructive" }); return; }
+    if (!mood) { toast({ title: t("evening_reflection.select_mood"), description: t("evening_reflection.select_mood_desc"), variant: "destructive" }); return; }
     if (!user) return;
     setSaving(true);
     try {
       const { error } = await untypedTable("daily_checkins").upsert({ user_id: user.id, checkin_date: todayStr, mood, energy_level: energyLevel[0] }, { onConflict: "user_id,checkin_date" });
       if (error) throw error;
       setCheckedIn(true);
-      toast({ title: "Check-in completato!", description: "Il tuo check-in giornaliero è stato salvato." });
+      toast({ title: t("evening_reflection.checkin_complete"), description: t("evening_reflection.checkin_saved") });
     } catch (error) {
       console.error("Error saving check-in:", error);
-      toast({ title: "Errore", description: "Salvataggio check-in fallito. Riprova.", variant: "destructive" });
+      toast({ title: t("common.error"), description: t("evening_reflection.failed_checkin"), variant: "destructive" });
     } finally { setSaving(false); }
   };
 
@@ -76,7 +93,7 @@ const EveningReflectionPage = () => {
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon" onClick={() => navigate(fromExplore ? "/explore" : "/dashboard")} className="rounded-full"><ArrowLeft className="h-5 w-5" /></Button>
               <div>
-                <h1 className="text-xl font-bold flex items-center gap-2"><Moon className="h-5 w-5 text-primary" />{"Riflessione Serale"}</h1>
+                <h1 className="text-xl font-bold flex items-center gap-2"><Moon className="h-5 w-5 text-primary" />{t("evening_reflection.title")}</h1>
                 <p className="text-sm text-muted-foreground">{format(today, "EEEE, MMMM d", { locale: dateLocale })}</p>
               </div>
             </div>
@@ -89,8 +106,8 @@ const EveningReflectionPage = () => {
           <CardHeader className="pb-3">
             <CardTitle className="text-lg flex items-center gap-2">
               <Heart className="h-5 w-5 text-rose-500" />
-              {"Check-in Giornaliero"}
-              {checkedIn && <Badge variant="secondary" className="ml-auto bg-green-500/20 text-green-600">{"Completato"}</Badge>}
+              {t("evening_reflection.daily_checkin")}
+              {checkedIn && <Badge variant="secondary" className="ml-auto bg-green-500/20 text-green-600">{t("evening_reflection.complete")}</Badge>}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -99,30 +116,30 @@ const EveningReflectionPage = () => {
             ) : (
               <>
                 <div>
-                  <p className="text-sm text-muted-foreground mb-3">{"Come ti sei sentito oggi?"}</p>
+                  <p className="text-sm text-muted-foreground mb-3">{t("evening_reflection.how_feel")}</p>
                   <div className="flex flex-wrap gap-2">
                     {moodOptions.map((option) => (
                       <button key={option.value} onClick={() => !checkedIn && setMood(option.value)} disabled={checkedIn}
                         className={`px-3 py-2 rounded-lg border transition-all ${mood === option.value ? option.color + " border-2" : "bg-muted/50 border-border hover:bg-muted"} ${checkedIn ? "cursor-default" : ""}`}>
-                        <span className="mr-1.5">{option.emoji}</span><span className="text-sm">{option.label}</span>
+                        <span className="mr-1.5">{option.emoji}</span><span className="text-sm">{t(`evening_reflection.moods.${option.value}`)}</span>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-sm text-muted-foreground">{"Livello di energia oggi"}</p>
+                    <p className="text-sm text-muted-foreground">{t("evening_reflection.energy_level")}</p>
                     <Badge variant="outline" className="font-mono">{energyLevel[0]}/10</Badge>
                   </div>
                   <Slider value={energyLevel} onValueChange={!checkedIn ? setEnergyLevel : undefined} max={10} min={1} step={1} className="w-full" disabled={checkedIn} />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                    <span>{"Poca energia"}</span><span>{"Molta energia"}</span>
+                    <span>{t("evening_reflection.low_energy")}</span><span>{t("evening_reflection.high_energy")}</span>
                   </div>
                 </div>
                 {!checkedIn && (
                   <Button onClick={handleCheckIn} className="w-full" disabled={saving}>
                     {saving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
-                    {"Completa Check-in"}
+                    {t("evening_reflection.complete_checkin")}
                   </Button>
                 )}
               </>

@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Repeat, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 
 interface Habit {
   id: string;
@@ -28,6 +30,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionProps) {
+  const { t } = useTranslation();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -100,7 +103,11 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
         .eq("completed_at", targetDate);
 
       if (error) {
-        toast({ title: "Errore", description: "Impossibile rimuovere il completamento", variant: "destructive" });
+        toast({
+          title: t("common.error"),
+          description: t("active_habits_section.error_remove"),
+          variant: "destructive",
+        });
         return;
       }
     } else {
@@ -114,7 +121,11 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
         });
 
       if (error) {
-        toast({ title: "Errore", description: "Impossibile contrassegnare come completato", variant: "destructive" });
+        toast({
+          title: t("common.error"),
+          description: t("active_habits_section.error_mark"),
+          variant: "destructive",
+        });
         return;
       }
     }
@@ -134,7 +145,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
             <div className="p-2 rounded-lg bg-accent/10">
               <Repeat className="h-5 w-5 text-accent" />
             </div>
-            {"Abitudini Attive"}
+            {t("active_habits_section.title")}
           </CardTitle>
           <div className="flex items-center gap-2 text-sm">
             <div className="flex items-center gap-1 text-muted-foreground">
@@ -142,7 +153,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
               <span className="font-semibold text-success">{completedCount}</span>
               <span>/</span>
               <span>{habits.length}</span>
-              <span className="ml-1">{"completati"}</span>
+              <span className="ml-1">{t("active_habits_section.completed")}</span>
             </div>
           </div>
         </div>
@@ -153,8 +164,8 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
         ) : habits.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
             <Repeat className="h-10 w-10 mx-auto mb-2 opacity-50" />
-            <p>No active habits</p>
-            <p className="text-sm">Create habits from the Habits page</p>
+            <p>{t("active_habits_section.no_active")}</p>
+            <p className="text-sm">{t("active_habits_section.create_hint")}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -174,10 +185,10 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
                 />
                 <div className="flex-1 min-w-0">
                   <p className={`font-medium truncate text-sm sm:text-base ${habit.completed_today ? "line-through text-muted-foreground" : ""}`}>
-                    {habit.title}
+                    {localizeSuggestedHabitTitle(t, habit.title)}
                   </p>
                   <span className={`text-xs px-2 py-0.5 rounded-full inline-block mt-1 ${categoryColors[habit.category] || categoryColors.general}`}>
-                    {habit.category}
+                    {t(`habits.categories.${habit.category}`)}
                   </span>
                 </div>
               </div>

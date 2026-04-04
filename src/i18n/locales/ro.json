@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "Introdu o adresă de e-mail validă",
-    "password_min": "Parola trebuie să aibă cel puțin 6 caractere"
+    "password_min": "Parola trebuie să aibă cel puțin 6 caractere",
+    "password_complexity": "Parola trebuie să conțină cel puțin: o literă mică, o literă mare, o cifră și un caracter special."
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "Link trimis",
     "reset_sent_description": "Verifică-ți e-mailul pentru link-ul de resetare.",
     "reset_error_title": "Eroare",
-    "reset_error_description": "Nu s-a putut trimite link-ul. Încearcă din nou."
+    "reset_error_description": "Nu s-a putut trimite link-ul. Încearcă din nou.",
+    "try_again": "Încearcă din nou",
+    "rate_limit_title": "Prea multe cereri",
+    "rate_limit_desc": "Așteaptă câteva minute înainte de a încerca din nou.",
+    "remember_password": "Îți amintești parola?"
   },
 
   "dashboard": {
@@ -308,6 +313,7 @@
     "start_journey": "Începe-ți călătoria creând prima ta obișnuință",
     "create_habit": "Creează obișnuință",
     "no_match_filters": "Nicio obișnuință nu se potrivește cu filtrele",
+    "failed_load": "Încărcarea obiceiurilor a eșuat",
     "guide_title": "Ghidul pentru stăpânirea obișnuințelor",
     "guide_subtitle": "Un ghid concis pentru a construi obișnuințe de durată",
     "guide_dialog_title": "Construirea obișnuințelor bune",
@@ -489,6 +495,7 @@
     "category": "Categorie",
     "duration": "Durată",
     "daily_steps": "Pași zilnici (opțional)",
+    "step_placeholder": "Pasul {{n}}...",
     "start_challenge": "Începe provocarea",
     "challenge_started": "Provocare începută! 🔥",
     "challenge_started_desc": "Provocarea ta de {{days}} zile începe astăzi. Vei reuși!",
@@ -623,7 +630,36 @@
     "vs_previous": "față de {{days}} zile anterioare",
     "habits_progress": "Progresul obișnuințelor",
     "trigger_tracking_title": "Urmărirea declanșatorilor",
-    "mood_reflection": "Stare de spirit și reflecție"
+    "mood_reflection": "Stare de spirit și reflecție",
+    "manage": "Gestionează",
+    "upgrade": "Actualizează",
+    "view_site": "Acasă",
+    "time_range_recent": "Recent",
+    "time_range_annual": "An",
+    "change_password": "Schimbă parola",
+    "current_password_placeholder": "Parola actuală",
+    "new_password_placeholder": "Parola nouă",
+    "confirm_password_placeholder": "Confirmă parola nouă",
+    "saving": "Se salvează…",
+    "updating": "Se actualizează…",
+    "update_password": "Actualizează parola",
+    "email_update_button": "Actualizează",
+    "email_confirm_hint": "Îți vom trimite un link de confirmare la noul e-mail.",
+    "email_confirm_sent": "Confirmare trimisă",
+    "email_confirm_sent_desc": "Verifică e-mailul actual pentru a confirma schimbarea adresei.",
+    "email_update_failed": "Actualizarea e-mailului a eșuat",
+    "password_mismatch_title": "Parolele nu coincid",
+    "password_mismatch_desc": "Parola nouă și confirmarea trebuie să coincidă.",
+    "password_too_short_title": "Parolă prea scurtă",
+    "password_too_short_desc": "Parola trebuie să aibă cel puțin 6 caractere.",
+    "wrong_password_title": "Parola actuală este greșită",
+    "wrong_password_desc": "Parola actuală introdusă nu este corectă.",
+    "password_updated_title": "Parolă actualizată",
+    "password_updated_desc": "Parola ta a fost schimbată cu succes.",
+    "password_update_failed": "Actualizare eșuată",
+    "username_change_limited_title": "Schimbarea numelui de utilizator este limitată",
+    "oauth_email_locked": "E-mailul nu poate fi schimbat pentru că te-ai autentificat cu {{provider}}. Pentru a-l schimba, actualizează adresa în contul {{provider}}.",
+    "avatar_alt": "Poză de profil"
   },
 
   "coach": {
@@ -831,6 +867,9 @@
     "log_3_triggers": "Înregistrează cel puțin 3 declanșatori pentru a debloca informațiile AI",
     "more_needed": "Mai sunt necesare {{count}}",
     "press_analyze": "Apasă „Analizează” pentru a genera informații din tiparele tale",
+    "toast_log_failed": "Nu s-a putut salva înregistrarea",
+    "toast_logged_title": "✓ Declanșator înregistrat",
+    "toast_logged_desc": "Continuă să înregistrezi pentru a descoperi tiparele",
     "locked_features": {
       "realtime": "Înregistrarea impulsurilor în timp real",
       "heatmap": "Hartă termică vizuală a tiparelor",
@@ -924,7 +963,7 @@
     "todo_title": "De făcut mâine",
     "not_todo_title": "Listă de evitat",
     "add_task_placeholder": "Adaugă o sarcină nouă...",
-    "what_to_avoid": "Ce să eviți mâine...",
+    "what_to_avoid": "Ce să eviți {{day}}...",
     "quick_add_suggestions": "Sugestii rapide:",
     "task_added": "Sarcină adăugată!",
     "task_added_desc": "Planifică-ți mâinele",
@@ -980,6 +1019,16 @@
     "checked_in_today": "Verificare făcută astăzi. Continuă așa!",
     "day_of_journey": "Ziua {{day}} a călătoriei",
     "active_challenges": "Provocări active",
+    "title": "Porn Recovery",
+    "subtitle": "Instrumente bazate pe știință pentru parcursul tău",
+    "emergency": "Urgență",
+    "sos": "SOS",
+    "emergency_urge": "🚨 Urgență impuls",
+    "tabs": {
+      "progress": "Progres",
+      "manage": "Gestionează",
+      "learn": "Învață"
+    },
     "onboarding": {
       "title": "Provocarea de recuperare",
       "description": "Vrei să începi Provocarea de Recuperare a Dependenței de Pornografie? Vei putea să îți urmărești progresul zilnic și să construiești serii.",
@@ -1241,6 +1290,8 @@
     "relapse_occurred": "A avut loc o recădere",
     "setback": "Recădere",
     "checked_in": "Verificare efectuată",
+    "checkin_recorded_fallback": "Check-in înregistrat",
+    "challenge_default_title": "Provocare",
     "mental_mission": "Mentală",
     "behavioral_mission": "Comportamentală",
     "avoided": "evitat",
@@ -1279,7 +1330,8 @@
     "start_fresh_desc": "Aceasta va reseta călătoria ta curentă și va începe una nouă. Datele tale anterioare vor fi arhivate.",
     "abandon": "Abandonează",
     "abandon_title": "Abandonezi provocarea?",
-    "abandon_desc": "Aceasta va încheia provocarea ta curentă. Poți începe una nouă oricând."
+    "abandon_desc": "Aceasta va încheia provocarea ta curentă. Poți începe una nouă oricând.",
+    "day_n": "Ziua {{n}}"
   },
   "craving_actions": {
     "title": "Ce să faci în timpul unei pofte",
@@ -1332,7 +1384,9 @@
     "trigger_placeholder": "Mă simt plictisit noaptea",
     "i_will": "Voi",
     "action_placeholder": "ieși la o plimbare sau suna un prieten",
-    "because_gives_me": "Pentru că îmi oferă"
+    "because_gives_me": "Pentru că îmi oferă",
+    "benefit_placeholder": "claritate și conexiune",
+    "add_button": "Adaugă plan"
   },
   "reasons_section": {
     "title": "Motivele mele pentru a mă opri",
@@ -1482,7 +1536,7 @@
     "save_reflection": "Salvează reflecția"
   },
   "todo_section": {
-    "title": "De făcut mâine",
+    "title": "De făcut {{day}}",
     "no_tasks": "Nicio sarcină planificată pentru această zi",
     "add_task": "Adaugă sarcină",
     "suggestions_title": "Sugestii",
@@ -1491,7 +1545,7 @@
     "error_update": "Nu s-a putut actualiza sarcina",
     "error_delete": "Nu s-a putut șterge sarcina",
     "task_added": "Sarcină adăugată!",
-    "plan_tomorrow": "Planifică-ți mâinele",
+    "plan_tomorrow": "Planifică-ți {{day}}",
     "tasks_done": "finalizate",
     "suggested_tasks": [
       "Bea 8 pahare de apă",
@@ -1501,7 +1555,7 @@
       "Scrie în jurnal",
       "Fă exerciții 30 de minute"
     ],
-    "add_goals": "Adaugă-ți obiectivele pentru mâine"
+    "add_goals": "Adaugă-ți obiectivele pentru {{day}}"
   },
   "not_to_do_section": {
     "title": "Lucruri de evitat",
@@ -1511,7 +1565,7 @@
     "error_delete": "Nu s-a putut șterge elementul",
     "error_update": "Nu s-a putut actualiza statusul",
     "item_added": "Element adăugat!",
-    "avoid_behavior": "Evită acest comportament mâine",
+    "avoid_behavior": "Evită acest comportament {{day}}",
     "avoided": "Evitat",
     "not_avoided": "Neevitat",
     "quick_suggestions": "Adaugă sugestii rapide:",
@@ -1813,7 +1867,17 @@
     "continue_90": "Ai finalizat provocarea de {{days}} zile. Vrei să continui până la 90 de zile?",
     "continue_to_90": "Continuă până la 90 de zile →",
     "today": "Astăzi",
-    "day_n": "Ziua {{n}}"
+    "day_n": "Ziua {{n}}",
+    "phases": {
+      "acute": "Faza acută",
+      "stabilization": "Faza de stabilizare",
+      "reconstruction": "Faza de reconstrucție",
+      "consolidation": "Faza de consolidare"
+    },
+    "roadmap": {
+      "day_range": "Ziua {{start}} – Ziua {{end}}",
+      "goal": "🏁 Obiectiv"
+    }
   },
   "daily_content": {
     "your_coach": "Coach-ul tău",
@@ -2207,5 +2271,42 @@
     "common_emotions": "Emoții comune: {{emotions}}",
     "top_recommendations": "Recomandări principale",
     "generate_new": "Generează raport nou"
+  },
+
+  "coach": {
+    "title": "Coach AI",
+    "subtitle": "Ghidul tău personal",
+    "clear_chat": "Șterge chatul",
+    "greeting": "Salut!",
+    "intro": "Sunt coach‑ul tău AI, aici să te susțin cu obiceiuri, provocări și recovery.",
+    "tip_default": "Pașii mici, făcuți constant, schimbă totul.",
+    "quick_actions_title": "Acțiuni rapide:",
+    "input_placeholder": "Întreabă despre obiceiuri, provocări, recovery...",
+    "chat_cleared": "Chat șters",
+    "pillars": {
+      "track_progress": "Urmărește progresul",
+      "build_habits": "Construiește obiceiuri",
+      "take_challenges": "Acceptă provocări"
+    },
+    "quick_actions": {
+      "habit_label": "Sugerează un obicei",
+      "habit_prompt": "Poți sugera un obicei sănătos pe care îl pot începe azi?",
+      "challenge_label": "Începe o provocare",
+      "challenge_prompt": "Vreau să mă provoc. Poți sugera o provocare detox sau de auto‑îmbunătățire cu pași zilnici?",
+      "motivation_label": "Motivează‑mă",
+      "motivation_prompt": "Azi am puțină motivație. Mă poți încuraja?",
+      "reflect_label": "Ajută‑mă să reflectez",
+      "reflect_prompt": "Vreau să fac auto‑reflecție. Îmi poți pune câteva întrebări profunde?"
+    },
+    "errors": {
+      "not_authenticated": "Neautentificat. Te rog conectează‑te din nou.",
+      "rate_limited": "Prea multe cereri. Încearcă din nou în curând.",
+      "unauthorized": "Autentificare necesară. Conectează‑te din nou.",
+      "api_key_or_quota": "Cheie API invalidă sau cotă depășită.",
+      "failed_response": "Răspuns eșuat",
+      "default_ai_reply": "Îmi pare rău — nu am putut genera un răspuns.",
+      "send_failed": "Trimiterea mesajului a eșuat",
+      "clear_failed": "Ștergerea chatului a eșuat"
+    }
   }
 }

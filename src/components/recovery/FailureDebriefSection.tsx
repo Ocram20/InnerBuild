@@ -5,7 +5,10 @@ import { Heart, ChevronRight, History } from "lucide-react";
 import { useFailureDebrief } from "@/hooks/useFailureDebrief";
 import { FailureDebriefWizard } from "./FailureDebriefWizard";
 import { FailureDebriefHistory } from "./FailureDebriefHistory";
+import { useTranslation } from "react-i18next";
+
 export function FailureDebriefSection() {
+  const { t } = useTranslation();
   const {
     debriefs,
     todayContext,
@@ -65,7 +68,7 @@ export function FailureDebriefSection() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            {"Hai avuto una ricaduta? Va bene—fa parte del percorso. Trasformiamo questa esperienza in un'occasione di crescita."}
+            {t("failure_debrief.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
@@ -74,7 +77,7 @@ export function FailureDebriefSection() {
               disabled={saving}
               className="flex-1 bg-primary/90 hover:bg-primary"
             >
-              {incompleteDebrief ? "Continua Debrief" : "Inizia Debrief"}
+              {incompleteDebrief ? t("failure_debrief.continue") : t("failure_debrief.start")}
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
 
@@ -95,7 +98,7 @@ export function FailureDebriefSection() {
 
           {incompleteDebrief && (
             <p className="text-xs text-amber-600 dark:text-amber-400">
-              {"Hai un debrief non completato. Continua quando sei pronto."}
+              {t("failure_debrief.unfinished_notice")}
             </p>
           )}
         </CardContent>

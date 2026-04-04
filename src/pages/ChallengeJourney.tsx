@@ -11,6 +11,7 @@ import DailyContentCard from "@/components/challenge-journey/DailyContentCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
+import { localizeSuggestedChallenge } from "@/lib/templateLocalization";
 interface Challenge {
   id: string;
   title: string;
@@ -39,7 +40,7 @@ interface DailyEntry {
 }
 
 export default function ChallengeJourney() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export default function ChallengeJourney() {
 
     if (error || !data) {
       toast({
-        title: "Sfida non trovata",
+        title: t("challenge_journey.challenge_not_found"),
         variant: "destructive",
       });
       navigate("/challenges");
@@ -112,7 +113,11 @@ export default function ChallengeJourney() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({ challenge_id: challengeId, day_number: dayNumber }),
+          body: JSON.stringify({
+            challenge_id: challengeId,
+            day_number: dayNumber,
+            language: i18n.resolvedLanguage || i18n.language,
+          }),
         }
       );
 
@@ -127,7 +132,7 @@ export default function ChallengeJourney() {
     } catch (error) {
       console.error("Error generating content:", error);
       toast({
-        title: "Errore",
+        title: t("common.error"),
         description: t("challenge_journey.generate_failed", {
           defaultValue: "Couldn't generate today's content. Please try again in a moment.",
         }),
@@ -178,13 +183,14 @@ export default function ChallengeJourney() {
 
   const handleResume = async () => {
     if (!challenge) return;
+    const jokers = challenge.jokers_remaining ?? 3;
     await supabase
       .from("detox_challenges")
       .update({ status: "active" })
       .eq("id", challenge.id);
     toast({
-      title: "Sfida ripresa",
-      description: "Nessun jolly rimasto — qualsiasi ricaduta metterà in pausa.",
+      title: t("challenge_card.challenge_resumed"),
+      description: jokers > 0 ? t("challenge_card.lets_keep_going") : t("challenge_card.no_jokers_warning"),
     });
     await refreshData();
   };
@@ -204,8 +210,8 @@ export default function ChallengeJourney() {
       })
       .eq("id", challenge.id);
     toast({
-      title: "Nuovo inizio",
-      description: "Jolly ripristinati. Ogni giorno è una nuova opportunità. 💪",
+      title: t("challenge_card.fresh_start"),
+      description: t("challenge_card.fresh_start_desc"),
     });
     await refreshData();
   };
@@ -215,6 +221,12 @@ export default function ChallengeJourney() {
   }
 
   if (!challenge) return null;
+  const localized = localizeSuggestedChallenge(t, {
+    title: challenge.title,
+    description: challenge.description,
+    science_note: null,
+    daily_steps: null,
+  });
 
   // Day based on check-in count, not calendar
   const currentDay = computeCurrentDay(challenge);
@@ -239,11 +251,11 @@ export default function ChallengeJourney() {
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div className="flex-1 min-w-0">
-            <h1 className="font-bold text-foreground truncate">{challenge.title}</h1>
+            <h1 className="font-bold text-foreground truncate">{localized.title}</h1>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <Flame className="h-3.5 w-3.5 text-accent" />
               <span>
-                {`Giorno ${challenge.current_streak} / ${challenge.duration_days}`}
+                  {t("challenge_card.day_of", { current: challenge.current_streak, total: challenge.duration_days })}
               </span>
               <span className="text-muted-foreground/50">•</span>
               <span>{Math.round(progressPercent)}%</span>
@@ -269,28 +281,28 @@ export default function ChallengeJourney() {
             <div className="flex items-center justify-center gap-2">
               <ShieldAlert className="h-5 w-5 text-destructive" />
               <p className="text-sm font-semibold text-foreground">
-                {"Tutti i jolly usati"}
+                {t("challenge_card.all_jokers_used")}
               </p>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              {`In pausa al giorno ${challenge.current_streak}. Riprendi senza jolly o ricomincia.`}
+              {t("challenge_card.paused_at_day", { day: challenge.current_streak })}
             </p>
             <div className="flex gap-2 mt-1">
               <button
                 onClick={handleResume}
                 className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium transition-all hover:opacity-90"
               >
-                {"Riprendi detox"}
+                {t("challenge_card.resume_detox")}
               </button>
               <button
                 onClick={handleReset}
                 className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground text-sm font-medium transition-all hover:bg-muted/80"
               >
-                {"Reset detox"}
+                {t("challenge_card.reset_detox")}
               </button>
             </div>
             <p className="text-[10px] text-muted-foreground/70 mt-1">
-              {"La ripresa continua senza jolly — qualsiasi ricaduta metterà di nuovo in pausa."}
+              {t("challenge_card.resume_no_jokers")}
             </p>
           </div>
         )}
@@ -299,9 +311,11 @@ export default function ChallengeJourney() {
         <div className="glass rounded-2xl p-4">
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs text-muted-foreground">
-              {"Progressi del Percorso"}
+              {t("challenge_journey.journey_progress")}
             </p>
-            <p className="text-xs font-medium text-foreground">{challenge.current_streak} / {displayDays} days</p>
+            <p className="text-xs font-medium text-foreground">
+              {t("challenge_card.day_of", { current: challenge.current_streak, total: displayDays })}
+            </p>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
@@ -317,7 +331,7 @@ export default function ChallengeJourney() {
         {/* Journey Roadmap */}
         <div className="glass rounded-2xl p-4 overflow-hidden">
           <p className="text-sm font-semibold text-foreground mb-2">
-            {"Il Tuo Percorso"}
+            {t("challenge_journey.your_journey")}
           </p>
           <JourneyRoadmap
             totalDays={challenge.duration_days}
@@ -332,16 +346,16 @@ export default function ChallengeJourney() {
           {originalEndReached && !isExtended && (
             <div className="mt-4 p-4 rounded-xl bg-accent/5 border border-accent/20 text-center space-y-2">
               <p className="text-sm font-semibold text-foreground">
-                {"🎉 Hai raggiunto il tuo obiettivo!"}
+                {t("challenge_journey.goal_reached")}
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                {`Hai completato la sfida di ${challenge.duration_days} giorni. Vuoi continuare fino a 90 giorni?`}
+                {t("challenge_journey.continue_90", { days: challenge.duration_days })}
               </p>
               <button
                 onClick={() => setIsExtended(true)}
                 className="mt-2 px-5 py-2.5 rounded-xl bg-accent text-accent-foreground text-sm font-medium transition-all hover:opacity-90"
               >
-                {"Continua fino a 90 giorni →"}
+                {t("challenge_journey.continue_to_90")}
               </button>
             </div>
           )}
@@ -351,8 +365,8 @@ export default function ChallengeJourney() {
         <div>
           <p className="text-sm font-semibold text-foreground mb-3">
             {selectedDay === currentDay
-              ? "Oggi"
-              : `Giorno ${selectedDay ?? 0}`}
+              ? t("challenge_journey.today")
+              : t("challenge_journey.day_n", { n: selectedDay ?? 0 })}
           </p>
           <DailyContentCard
             entry={selectedEntry}

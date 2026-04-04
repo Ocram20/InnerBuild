@@ -1,8 +1,11 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 import { Leaf, ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { HabitProgressDetail } from "@/hooks/useProgressData";
+import { dateFnsLocale } from "@/lib/dateFnsLocale";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface Props {
   habits: HabitProgressDetail[];
@@ -10,6 +13,8 @@ interface Props {
 }
 
 export function HabitsProgressSection({ habits, days = 14 }: Props) {
+  const { t, i18n } = useTranslation();
+  const dfLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
   const [activeIndex, setActiveIndex] = useState(0);
   const isAnnual = days > 30;
   const habit = habits.length > 0 ? habits[activeIndex] : null;
@@ -22,18 +27,18 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
       const chunk = habit.dailyData.slice(i, i + 7);
       const completed = chunk.filter(d => d.completed).length;
       weeks.push({
-        weekLabel: format(new Date(chunk[0].date), "MMM d"),
+        weekLabel: format(new Date(chunk[0].date), "MMM d", { locale: dfLocale }),
         completed,
         total: chunk.length,
       });
     }
     return weeks;
-  }, [habit, isAnnual]);
+  }, [habit, isAnnual, dfLocale]);
   if (!habit) {
     return (
       <div className="glass rounded-2xl p-6 text-center animate-fade-in">
         <Leaf className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-        <p className="text-sm text-muted-foreground">{"Nessuna abitudine attiva"}</p>
+        <p className="text-sm text-muted-foreground">{t("habits_progress_section.no_active_habits")}</p>
       </div>
     );
   }
@@ -50,9 +55,9 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
           <ChevronLeft className="h-4 w-4" />
         </button>
         <div className="flex-1 text-center">
-          <p className="font-semibold text-sm truncate">{habit.title}</p>
+          <p className="font-semibold text-sm truncate">{display(habit.title)}</p>
           <p className="text-xs text-muted-foreground">
-            {`${activeIndex + 1} di ${habits.length}`}
+            {t("habits_progress_section.habit_position", { current: activeIndex + 1, total: habits.length })}
           </p>
         </div>
         <button
@@ -68,7 +73,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
       <div className="flex gap-4 justify-center">
         <div className="text-center">
           <p className="text-2xl font-bold text-primary">{habit.completionRate}%</p>
-          <p className="text-[10px] text-muted-foreground">{"Completamento"}</p>
+          <p className="text-[10px] text-muted-foreground">{t("habits_progress_section.completion")}</p>
         </div>
         {habit.streak > 0 && (
           <div className="text-center">
@@ -76,7 +81,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
               <Flame className="h-5 w-5" />
               {habit.streak}
             </p>
-            <p className="text-[10px] text-muted-foreground">{"Serie di giorni"}</p>
+            <p className="text-[10px] text-muted-foreground">{t("habits_progress_section.day_streak")}</p>
           </div>
         )}
       </div>
@@ -126,7 +131,7 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
                   )}
                 </div>
                 <span className="text-[9px] text-muted-foreground">
-                  {format(new Date(day.date), "d")}
+                  {format(new Date(day.date), "d", { locale: dfLocale })}
                 </span>
               </div>
             ))}

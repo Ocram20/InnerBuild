@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Heart, Plus, Trash2, Loader2, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,10 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
-const suggestedReasons = [] as string[]; // will be populated inside component
+const SUGGESTED_KEYS = ["sr1", "sr2", "sr3", "sr4", "sr5", "sr6", "sr7", "sr8"] as const;
 
 export function ReasonsSection() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [reasons, setReasons] = useState<string[]>([]);
@@ -17,16 +19,10 @@ export function ReasonsSection() {
   const [saving, setSaving] = useState(false);
   const [newReason, setNewReason] = useState("");
 
-  const suggestedReasons = [
-    "Migliore salute fisica e mentale",
-    "Libertà da dipendenza e compulsione",
-    "Relazioni più profonde e autentiche",
-    "Più tempo ed energia per ciò che conta",
-    "Maggiore concentrazione e produttività",
-    "Controllo sulla mia vita e decisioni",
-    "Migliore autostima e fiducia",
-    "Essere presente con le persone che amo",
-  ];
+  const suggestedReasons = useMemo(
+    () => SUGGESTED_KEYS.map((key) => t(`reasons_section.${key}`)),
+    [t]
+  );
 
   useEffect(() => {
     if (user) {
@@ -90,8 +86,8 @@ export function ReasonsSection() {
       setReasons(updatedReasons);
     } catch (error) {
       toast({
-        title: "Errore salvataggio",
-        description: "Impossibile salvare i tuoi motivi. Per favore riprova.",
+        title: t("reasons_section.error_saving_title"),
+        description: t("reasons_section.error_saving_desc"),
         variant: "destructive",
       });
     } finally {
@@ -103,8 +99,8 @@ export function ReasonsSection() {
     if (!reason.trim()) return;
     if (reasons.includes(reason.trim())) {
       toast({
-        title: "Già aggiunto",
-        description: "Questo motivo è già nella tua lista.",
+        title: t("reasons_section.already_added_title"),
+        description: t("reasons_section.already_added_desc"),
       });
       return;
     }
@@ -134,13 +130,11 @@ export function ReasonsSection() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Heart className="h-5 w-5 text-primary" />
-          {"I miei motivi per smettere"}
+          {t("reasons_section.title")}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-muted-foreground text-sm">
-          {"Le tue motivazioni personali sono il tuo ancoraggio. Leggile durante i desideri per ricordare perché hai iniziato."}
-        </p>
+        <p className="text-muted-foreground text-sm">{t("reasons_section.description")}</p>
 
         {/* User's reasons */}
         {reasons.length > 0 && (
@@ -168,7 +162,7 @@ export function ReasonsSection() {
         {/* Add custom reason */}
         <div className="space-y-2">
           <Textarea
-            placeholder={"Scrivi il tuo motivo..."}
+            placeholder={t("reasons_section.new_placeholder")}
             value={newReason}
             onChange={(e) => setNewReason(e.target.value)}
             className="min-h-[60px] text-sm"
@@ -184,13 +178,13 @@ export function ReasonsSection() {
             ) : (
               <Plus className="h-4 w-4 mr-2" />
             )}
-            {"Aggiungi il mio motivo"}
+            {t("reasons_section.add_my_reason")}
           </Button>
         </div>
 
         {/* Suggested reasons */}
         <div>
-          <p className="text-xs text-muted-foreground mb-2">{"Oppure tocca per aggiungere un motivo suggerito:"}</p>
+          <p className="text-xs text-muted-foreground mb-2">{t("reasons_section.suggested_prompt")}</p>
           <div className="flex flex-wrap gap-2">
             {suggestedReasons
               .filter(r => !reasons.includes(r))

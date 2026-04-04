@@ -98,7 +98,8 @@
 
   "auth_validation": {
     "invalid_email": "Veuillez saisir une adresse e-mail valide",
-    "password_min": "Le mot de passe doit comporter au moins 6 caractères"
+    "password_min": "Le mot de passe doit comporter au moins 6 caractères",
+    "password_complexity": "Le mot de passe doit contenir au moins : une minuscule, une majuscule, un chiffre et un caractère spécial."
   },
 
   "forgot_password": {
@@ -114,7 +115,11 @@
     "reset_sent_title": "Lien envoyé",
     "reset_sent_description": "Vérifiez vos e-mails pour le lien de réinitialisation.",
     "reset_error_title": "Erreur",
-    "reset_error_description": "Échec de l'envoi du lien. Veuillez réessayer."
+    "reset_error_description": "Échec de l'envoi du lien. Veuillez réessayer.",
+    "try_again": "Réessayer",
+    "rate_limit_title": "Trop de demandes",
+    "rate_limit_desc": "Veuillez attendre quelques minutes avant de réessayer.",
+    "remember_password": "Vous vous souvenez de votre mot de passe ?"
   },
 
   "dashboard": {
@@ -308,6 +313,7 @@
     "start_journey": "Commencez votre voyage en créant votre première habitude",
     "create_habit": "Créer une habitude",
     "no_match_filters": "Aucune habitude ne correspond aux filtres",
+    "failed_load": "Échec du chargement des habitudes",
     "guide_title": "Le guide pour maîtriser les habitudes",
     "guide_subtitle": "Un guide concis pour construire des habitudes durables",
     "guide_dialog_title": "Construire de bonnes habitudes",
@@ -489,6 +495,7 @@
     "category": "Catégorie",
     "duration": "Durée",
     "daily_steps": "Étapes quotidiennes (optionnel)",
+    "step_placeholder": "Étape {{n}}...",
     "start_challenge": "Commencer le défi",
     "challenge_started": "Défi lancé ! 🔥",
     "challenge_started_desc": "Votre défi de {{days}} jours commence aujourd'hui. Vous allez y arriver !",
@@ -623,7 +630,36 @@
     "vs_previous": "vs {{days}} jours précédents",
     "habits_progress": "Progrès des habitudes",
     "trigger_tracking_title": "Suivi des déclencheurs",
-    "mood_reflection": "Humeur et réflexion"
+    "mood_reflection": "Humeur et réflexion",
+    "manage": "Gérer",
+    "upgrade": "Mettre à niveau",
+    "view_site": "Accueil",
+    "time_range_recent": "Récent",
+    "time_range_annual": "Année",
+    "change_password": "Modifier le mot de passe",
+    "current_password_placeholder": "Mot de passe actuel",
+    "new_password_placeholder": "Nouveau mot de passe",
+    "confirm_password_placeholder": "Confirmer le nouveau mot de passe",
+    "saving": "Enregistrement…",
+    "updating": "Mise à jour…",
+    "update_password": "Mettre à jour le mot de passe",
+    "email_update_button": "Mettre à jour",
+    "email_confirm_hint": "Un lien de confirmation sera envoyé à votre nouvelle adresse e-mail.",
+    "email_confirm_sent": "Confirmation envoyée",
+    "email_confirm_sent_desc": "Vérifiez votre e-mail actuel pour confirmer le changement d'adresse.",
+    "email_update_failed": "Échec de la mise à jour de l'e-mail",
+    "password_mismatch_title": "Les mots de passe ne correspondent pas",
+    "password_mismatch_desc": "Le nouveau mot de passe et la confirmation doivent correspondre.",
+    "password_too_short_title": "Mot de passe trop court",
+    "password_too_short_desc": "Le mot de passe doit contenir au moins 6 caractères.",
+    "wrong_password_title": "Mot de passe actuel incorrect",
+    "wrong_password_desc": "Le mot de passe actuel saisi est incorrect.",
+    "password_updated_title": "Mot de passe mis à jour",
+    "password_updated_desc": "Votre mot de passe a été modifié avec succès.",
+    "password_update_failed": "Échec de la mise à jour",
+    "username_change_limited_title": "Changement de nom d'utilisateur limité",
+    "oauth_email_locked": "L'e-mail ne peut pas être modifié car vous vous êtes connecté avec {{provider}}. Pour le changer, mettez à jour l'adresse dans votre compte {{provider}}.",
+    "avatar_alt": "Photo de profil"
   },
 
   "coach": {
@@ -831,6 +867,9 @@
     "log_3_triggers": "Enregistrez au moins 3 déclencheurs pour débloquer les insights IA",
     "more_needed": "{{count}} de plus nécessaires",
     "press_analyze": "Appuyez sur 'Analyser' pour générer des insights à partir de vos schémas",
+    "toast_log_failed": "Impossible d'enregistrer le journal",
+    "toast_logged_title": "✓ Déclencheur enregistré",
+    "toast_logged_desc": "Continuez pour découvrir vos schémas",
     "locked_features": {
       "realtime": "Enregistrement des pulsions en temps réel",
       "heatmap": "Carte thermique visuelle des schémas",
@@ -924,7 +963,7 @@
     "todo_title": "À faire pour demain",
     "not_todo_title": "Liste des choses à ne pas faire",
     "add_task_placeholder": "Ajouter une nouvelle tâche...",
-    "what_to_avoid": "À éviter demain...",
+    "what_to_avoid": "À éviter {{day}}...",
     "quick_add_suggestions": "Suggestions rapides :",
     "task_added": "Tâche ajoutée !",
     "task_added_desc": "Planifiez votre demain",
@@ -980,6 +1019,16 @@
     "checked_in_today": "Bilan effectué aujourd'hui. Continuez comme ça !",
     "day_of_journey": "Jour {{day}} du parcours",
     "active_challenges": "Défis actifs",
+    "title": "Porn Recovery",
+    "subtitle": "Des outils fondés sur la science pour votre parcours",
+    "emergency": "Urgence",
+    "sos": "SOS",
+    "emergency_urge": "🚨 Urgence pulsion",
+    "tabs": {
+      "progress": "Progrès",
+      "manage": "Gérer",
+      "learn": "Apprendre"
+    },
     "onboarding": {
       "title": "Défi de récupération",
       "description": "Voulez-vous commencer le Défi de Récupération de la Pornographie ? Vous pourrez suivre vos progrès quotidiens et construire des séries.",
@@ -1040,7 +1089,16 @@
     "suggested_adjustments": "Ajustements d'habitudes suggérés",
     "tips": "Conseils",
     "next_report_in": "Prochain rapport disponible dans {{days}} jour(s)",
-    "generate_new": "Générer un nouveau rapport"
+    "generate_new": "Générer un nouveau rapport",
+    "wait_title": "Veuillez patienter",
+    "wait_desc": "Vous pourrez générer un nouveau rapport dans {{days}} jour(s)",
+    "generated_title": "Rapport d'habitudes généré ! 🎯",
+    "generated_desc": "Votre analyse personnalisée est prête.",
+    "failed_title": "Échec de la génération",
+    "failed_desc": "Impossible de générer le rapport",
+    "habit_updated_title": "Habitude mise à jour ! ✓",
+    "habit_updated_desc": "Modifiée en « {{title}} »",
+    "failed_update_habit": "Impossible de mettre à jour l'habitude"
   },
 
   "not_found": {
@@ -1241,6 +1299,8 @@
     "relapse_occurred": "Rechute survenue",
     "setback": "Revers",
     "checked_in": "Bilan effectué",
+    "checkin_recorded_fallback": "Check-in enregistré",
+    "challenge_default_title": "Défi",
     "mental_mission": "Mentale",
     "behavioral_mission": "Comportementale",
     "avoided": "évité",
@@ -1279,7 +1339,8 @@
     "start_fresh_desc": "Cela réinitialisera votre parcours actuel et en commencera un nouveau. Vos données précédentes seront archivées.",
     "abandon": "Abandonner",
     "abandon_title": "Abandonner le défi ?",
-    "abandon_desc": "Cela mettra fin à votre défi actuel. Vous pouvez en commencer un nouveau à tout moment."
+    "abandon_desc": "Cela mettra fin à votre défi actuel. Vous pouvez en commencer un nouveau à tout moment.",
+    "day_n": "Jour {{n}}"
   },
   "craving_actions": {
     "title": "Que faire pendant une envie",
@@ -1332,7 +1393,9 @@
     "trigger_placeholder": "Je m'ennuie la nuit",
     "i_will": "Je ferai",
     "action_placeholder": "aller me promener ou appeler un ami",
-    "because_gives_me": "Parce que cela me donne"
+    "because_gives_me": "Parce que cela me donne",
+    "benefit_placeholder": "clarté et connexion",
+    "add_button": "Ajouter un plan"
   },
   "reasons_section": {
     "title": "Mes raisons d'arrêter",
@@ -1482,7 +1545,7 @@
     "save_reflection": "Enregistrer la réflexion"
   },
   "todo_section": {
-    "title": "À faire pour demain",
+    "title": "À faire pour {{day}}",
     "no_tasks": "Aucune tâche planifiée pour ce jour",
     "add_task": "Ajouter une tâche",
     "suggestions_title": "Suggestions",
@@ -1491,7 +1554,7 @@
     "error_update": "Impossible de mettre à jour la tâche",
     "error_delete": "Impossible de supprimer la tâche",
     "task_added": "Tâche ajoutée !",
-    "plan_tomorrow": "Planifiez votre demain",
+    "plan_tomorrow": "Planifiez votre {{day}}",
     "tasks_done": "terminées",
     "suggested_tasks": [
       "Buvez 8 verres d'eau",
@@ -1501,7 +1564,7 @@
       "Écrivez dans votre journal",
       "Faites de l'exercice 30 minutes"
     ],
-    "add_goals": "Ajoutez vos objectifs pour demain"
+    "add_goals": "Ajoutez vos objectifs pour {{day}}"
   },
   "not_to_do_section": {
     "title": "Choses à éviter",
@@ -1511,7 +1574,7 @@
     "error_delete": "Impossible de supprimer l'élément",
     "error_update": "Impossible de mettre à jour le statut",
     "item_added": "Élément ajouté !",
-    "avoid_behavior": "Évitez ce comportement demain",
+    "avoid_behavior": "Évitez ce comportement {{day}}",
     "avoided": "Évité",
     "not_avoided": "Non évité",
     "quick_suggestions": "Ajouter des suggestions rapides :",
@@ -1813,7 +1876,17 @@
     "continue_90": "Vous avez terminé le défi de {{days}} jours. Voulez-vous continuer jusqu'à 90 jours ?",
     "continue_to_90": "Continuer jusqu'à 90 jours →",
     "today": "Aujourd'hui",
-    "day_n": "Jour {{n}}"
+    "day_n": "Jour {{n}}",
+    "phases": {
+      "acute": "Phase aiguë",
+      "stabilization": "Phase de stabilisation",
+      "reconstruction": "Phase de reconstruction",
+      "consolidation": "Phase de consolidation"
+    },
+    "roadmap": {
+      "day_range": "Jour {{start}} – {{end}}",
+      "goal": "🏁 Objectif"
+    }
   },
   "daily_content": {
     "your_coach": "Votre coach",
@@ -2207,5 +2280,42 @@
     "common_emotions": "Émotions courantes : {{emotions}}",
     "top_recommendations": "Meilleures recommandations",
     "generate_new": "Générer un nouveau rapport"
+  },
+
+  "coach": {
+    "title": "Coach IA",
+    "subtitle": "Votre guide personnel",
+    "clear_chat": "Effacer le chat",
+    "greeting": "Salut !",
+    "intro": "Je suis votre coach IA, là pour soutenir vos habitudes, vos défis et votre récupération.",
+    "tip_default": "De petits pas, faits avec constance, changent tout.",
+    "quick_actions_title": "Actions rapides :",
+    "input_placeholder": "Demandez à propos des habitudes, défis, recovery...",
+    "chat_cleared": "Chat effacé",
+    "pillars": {
+      "track_progress": "Suivre les progrès",
+      "build_habits": "Construire des habitudes",
+      "take_challenges": "Relever des défis"
+    },
+    "quick_actions": {
+      "habit_label": "Suggérer une habitude",
+      "habit_prompt": "Peux-tu suggérer une habitude saine que je peux commencer aujourd'hui ?",
+      "challenge_label": "Démarrer un défi",
+      "challenge_prompt": "Je veux me challenger. Peux-tu suggérer un défi detox ou développement personnel avec des étapes quotidiennes ?",
+      "motivation_label": "Me motiver",
+      "motivation_prompt": "Je manque de motivation aujourd'hui. Peux-tu m'encourager ?",
+      "reflect_label": "M'aider à réfléchir",
+      "reflect_prompt": "J'aimerais faire une introspection. Peux-tu me poser quelques questions pertinentes ?"
+    },
+    "errors": {
+      "not_authenticated": "Non authentifié. Veuillez vous reconnecter.",
+      "rate_limited": "Trop de requêtes. Réessayez dans un instant.",
+      "unauthorized": "Authentification requise. Reconnectez-vous.",
+      "api_key_or_quota": "Clé API invalide ou quota dépassé.",
+      "failed_response": "Réponse échouée",
+      "default_ai_reply": "Désolé — je n'ai pas pu générer de réponse.",
+      "send_failed": "Envoi du message échoué",
+      "clear_failed": "Impossible d'effacer le chat"
+    }
   }
 }
