@@ -14,6 +14,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 interface DailyEntry {
   id: string;
   day_number: number;
@@ -60,6 +61,12 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
   }
 
   if (!entry) return null;
+  const rawAiStrings = [
+    entry.coach_message,
+    entry.mental_mission,
+    entry.behavioral_mission,
+  ].filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawAiStrings, true);
   const phaseLabel =
     entry.phase_name
       ? (() => {
@@ -171,7 +178,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
                 <p className="text-xs font-medium text-muted-foreground mb-1">
                   {t("daily_content.your_coach")}
                 </p>
-                <p className="text-sm text-foreground leading-relaxed">{entry.coach_message}</p>
+                <p className="text-sm text-foreground leading-relaxed">{display(entry.coach_message)}</p>
               </div>
             </div>
           </CardContent>
@@ -198,7 +205,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
                   {t("daily_content.mental_mission")}
                 </p>
-                <p className="text-sm text-foreground">{entry.mental_mission}</p>
+                <p className="text-sm text-foreground">{display(entry.mental_mission)}</p>
               </div>
             </div>
           </button>
@@ -222,7 +229,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
                 <p className="text-xs font-medium text-muted-foreground mb-0.5">
                   {t("daily_content.behavioral_mission")}
                 </p>
-                <p className="text-sm text-foreground">{entry.behavioral_mission}</p>
+                <p className="text-sm text-foreground">{display(entry.behavioral_mission)}</p>
               </div>
             </div>
           </button>

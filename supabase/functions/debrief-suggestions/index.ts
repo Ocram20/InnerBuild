@@ -11,6 +11,25 @@ const corsHeaders = {
   "X-XSS-Protection": "1; mode=block",
 };
 
+function baseLanguage(code?: string) {
+  return (code || "en").toLowerCase().split("-")[0];
+}
+
+function languageName(code?: string) {
+  switch (baseLanguage(code)) {
+    case "it": return "Italian";
+    case "en": return "English";
+    case "zh": return "Simplified Chinese";
+    case "de": return "German";
+    case "fr": return "French";
+    case "es": return "Spanish";
+    case "pt": return "Portuguese";
+    case "ru": return "Russian";
+    case "ro": return "Romanian";
+    default: return "English";
+  }
+}
+
 serve(async (req) => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
@@ -58,7 +77,7 @@ serve(async (req) => {
         ignored_signal: z.string().max(500).optional(),
         signal_details: z.string().max(1000).optional(),
       }),
-      language: z.enum(["en", "it"]).optional().default("en"),
+      language: z.string().optional().default("en"),
     });
     const parsed = RequestSchema.safeParse(body);
     if (!parsed.success) {
@@ -68,7 +87,7 @@ serve(async (req) => {
       });
     }
     const { debriefData, language } = parsed.data;
-    const lang = language === "it" ? "Italian" : "English";
+    const lang = languageName(language);
 
     const prompt = `You are a supportive recovery coach helping someone who had a setback. Based on their debrief, provide 3 SHORT, actionable, and encouraging suggestions for what they can do differently next time.
 

@@ -108,6 +108,7 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
 
     try {
       const { data, error } = await supabase.functions.invoke("create-portal", {
+        body: { locale: getPreferredTranslationLanguage() },
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },

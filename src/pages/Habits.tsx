@@ -149,7 +149,10 @@ export default function Habits() {
             </DialogTrigger>
             <DialogContent className="max-w-4xl max-h-[85vh] w-full overflow-y-auto sm:rounded-lg">
               <DialogTitle>{t("habits.guide_dialog_title")}</DialogTitle>
-              <DialogDescription className="mt-2 text-sm space-y-4">
+              <DialogDescription className="mt-2 text-sm">
+                {t("habits.guide_subtitle")}
+              </DialogDescription>
+              <div className="mt-2 text-sm space-y-4">
                 <h3 className="font-medium">{t("habits.guide_content.intro_title")}</h3>
                 <p>{t("habits.guide_content.intro_p1")}</p>
                 <p>{t("habits.guide_content.intro_p2")}</p>
@@ -205,7 +208,7 @@ export default function Habits() {
                 <h3 className="font-medium mt-4">{t("habits.guide_content.final_title")}</h3>
                 <p>{t("habits.guide_content.final_p1")}</p>
                 <p className="font-medium italic">{t("habits.guide_content.final_p2")}</p>
-              </DialogDescription>
+              </div>
             </DialogContent>
           </Dialog>
         </div>

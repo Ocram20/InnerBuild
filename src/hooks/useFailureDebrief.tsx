@@ -205,7 +205,10 @@ export function useFailureDebrief() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({ debriefData, language: i18n.language }),
+          body: JSON.stringify({
+            debriefData,
+            language: (i18n.resolvedLanguage || i18n.language || "en").toLowerCase().split("-")[0],
+          }),
         }
       );
 
@@ -218,7 +221,7 @@ export function useFailureDebrief() {
     }
     
     return [];
-  }, [user]);
+  }, [user, i18n.resolvedLanguage, i18n.language]);
 
   const deleteDebrief = useCallback(async (debriefId: string): Promise<boolean> => {
     if (!user) return false;

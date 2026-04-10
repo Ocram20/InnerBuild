@@ -18,6 +18,10 @@ export function HabitsProgressSection({ habits, days = 14 }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const isAnnual = days > 30;
   const habit = habits.length > 0 ? habits[activeIndex] : null;
+  const rawHabitTitles = habits
+    .map((h) => h.title)
+    .filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawHabitTitles, true);
 
   // For annual view, group dailyData by week
   const weeklyData = useMemo(() => {

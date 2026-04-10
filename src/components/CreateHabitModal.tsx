@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2, Sparkles, Crown } from "lucide-react";
 import SuggestedHabits from "@/components/SuggestedHabits";
@@ -114,6 +114,9 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
               <Sparkles className="h-5 w-5 text-primary" />
               {t("create_habit.title")}
             </DialogTitle>
+            <DialogDescription>
+              {t("create_habit.description_placeholder")}
+            </DialogDescription>
           </DialogHeader>
 
           {!isPremium && (

@@ -12,6 +12,7 @@ import { ActiveHabitsSection } from "@/components/daily-planning/ActiveHabitsSec
 import { EveningReminderBanner } from "@/components/daily-planning/EveningReminderBanner";
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
+import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
 
 const DATE_FNS_LOCALES: Record<string, Locale> = {
   en: enUS,
@@ -103,6 +104,11 @@ const DailyPlanning = () => {
     localStorage.setItem(modeKey, finalMode);
     localStorage.setItem(targetKey, storedTarget);
   }, [user?.id, modeKey, targetKey, todayISO, tomorrowISO]);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    void cleanupExpiredDailyPlanningItems(user.id);
+  }, [user?.id]);
 
   const applyMode = (mode: PlanningMode) => {
     if (!user?.id || !modeKey || !targetKey) return;

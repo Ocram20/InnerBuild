@@ -16,7 +16,7 @@ const jsonHeaders = {
   "Content-Type": "application/json",
 };
 
-const supportedLocales = ["it", "en", "de", "fr", "es", "ru", "ro"] as const;
+const supportedLocales = ["it", "en", "de", "fr", "es", "ru", "ro", "pt", "zh"] as const;
 type SupportedLocale = (typeof supportedLocales)[number];
 
 const getRequiredEnv = (name: string) => {
@@ -39,10 +39,73 @@ const createStripeClient = () => {
   });
 };
 
-const getStripeLocale = (locale: unknown): SupportedLocale | "auto" => {
-  return typeof locale === "string" && supportedLocales.includes(locale as SupportedLocale)
-    ? (locale as SupportedLocale)
-    : "auto";
+const getStripeLocale = (locale: unknown): Stripe.Checkout.SessionCreateParams.Locale | "auto" => {
+  if (typeof locale !== "string") return "auto";
+  const baseLocale = locale.toLowerCase().split("-")[0];
+  if (!supportedLocales.includes(baseLocale as SupportedLocale)) return "auto";
+  if (baseLocale === "pt") return "pt-BR";
+  if (baseLocale === "zh") return "zh";
+  return baseLocale as Stripe.Checkout.SessionCreateParams.Locale;
+};
+
+const getCheckoutCopy = (locale: unknown) => {
+  const baseLocale = typeof locale === "string" ? locale.toLowerCase().split("-")[0] : "en";
+  switch (baseLocale) {
+    case "it":
+      return {
+        name: "Abbonamento InnerBuild Pro",
+        description:
+          "Accesso completo a InnerBuild Pro: abitudini illimitate, sfide detox, strumenti premium, trigger tracking, Porn Recovery, AI Coach e sezione Impara.",
+      };
+    case "de":
+      return {
+        name: "InnerBuild Pro Abonnement",
+        description:
+          "Voller Zugriff auf InnerBuild Pro: unbegrenzte Gewohnheiten, Detox-Challenges, Premium-Tools, Trigger-Tracking, Porn Recovery, KI-Coach und Lernbereich.",
+      };
+    case "fr":
+      return {
+        name: "Abonnement InnerBuild Pro",
+        description:
+          "Acces complet a InnerBuild Pro : habitudes illimitees, defis detox, outils premium, suivi des declencheurs, Porn Recovery, coach IA et section Apprendre.",
+      };
+    case "es":
+      return {
+        name: "Suscripcion InnerBuild Pro",
+        description:
+          "Acceso completo a InnerBuild Pro: habitos ilimitados, desafios detox, herramientas premium, seguimiento de disparadores, Porn Recovery, coach IA y seccion Aprende.",
+      };
+    case "pt":
+      return {
+        name: "Assinatura InnerBuild Pro",
+        description:
+          "Acesso completo ao InnerBuild Pro: habitos ilimitados, desafios detox, ferramentas premium, rastreio de gatilhos, Porn Recovery, coach IA e secao Aprender.",
+      };
+    case "ru":
+      return {
+        name: "Podpiska InnerBuild Pro",
+        description:
+          "Polnyy dostup k InnerBuild Pro: neogranichennye privychki, detox-vyzovy, premium-instrumenty, otslezhivanie triggerov, Porn Recovery, AI-kouch i razdel obucheniya.",
+      };
+    case "ro":
+      return {
+        name: "Abonament InnerBuild Pro",
+        description:
+          "Acces complet la InnerBuild Pro: obiceiuri nelimitate, provocari detox, instrumente premium, monitorizare declansatori, Porn Recovery, coach AI si sectiunea Invatare.",
+      };
+    case "zh":
+      return {
+        name: "InnerBuild Pro Dingyue",
+        description:
+          "Quan bu fangwen InnerBuild Pro: wuxian xiguan, jiedu tiaozhan, gaoji gongju, chufa genzong, Porn Recovery, AI jiaolian he xuexi banqu.",
+      };
+    default:
+      return {
+        name: "InnerBuild Pro Subscription",
+        description:
+          "Full access to InnerBuild Pro: unlimited habits, detox challenges, premium tools, trigger tracking, Porn Recovery, AI coach, and Learn section.",
+      };
+  }
 };
 
 serve(async (req) => {
@@ -124,42 +187,27 @@ serve(async (req) => {
       customerId = customer.id;
     }
 
-    const products = await stripe.products.list({ active: true, limit: 100 });
-    let product = products.data.find((p: { name: string }) => p.name === "InnerBuild Pro");
-
-    if (!product) {
-      product = await stripe.products.create({
-        name: "InnerBuild Pro",
-        description: "Full access to InnerBuild - habit tracking, detox challenges, and daily reflections",
-      });
-    }
-
-    const prices = await stripe.prices.list({
-      product: product.id,
-      active: true,
-      type: "recurring",
-    });
-
-    let price = prices.data.find(
-      (p: { unit_amount: number | null; currency: string; recurring?: { interval: string } | null }) =>
-        p.unit_amount === 999 && p.currency === "eur" && p.recurring?.interval === "month",
-    );
-
-    if (!price) {
-      price = await stripe.prices.create({
-        product: product.id,
-        unit_amount: 999,
-        currency: "eur",
-        recurring: { interval: "month" },
-      });
-    }
+    const checkoutCopy = getCheckoutCopy(requestBody?.locale);
 
     const { origin } = new URL(req.url);
     const baseUrl = req.headers.get("origin") || origin;
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      line_items: [{ price: price.id, quantity: 1 }],
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: "eur",
+            unit_amount: 999,
+            recurring: { interval: "month" },
+            product_data: {
+              name: checkoutCopy.name,
+              description: checkoutCopy.description,
+            },
+          },
+        },
+      ],
       mode: "subscription",
       locale: checkoutLocale,
       success_url: `${baseUrl}/dashboard?success=true`,

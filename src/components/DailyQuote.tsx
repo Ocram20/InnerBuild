@@ -8,8 +8,10 @@ interface QuoteData {
   category: string;
 }
 
+const quoteModules = import.meta.glob<{ default: QuoteData[] }>("@/data/motivational_quotes.*.json");
+
 export default function DailyQuote() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [quotes, setQuotes] = useState<QuoteData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,9 +23,27 @@ export default function DailyQuote() {
   // Load quotes based on current language
   useEffect(() => {
     const loadQuotes = async () => {
+      setLoading(true);
       try {
-        const quotesModule = await import(`@/data/motivational_quotes.it.json`);
-        setQuotes(quotesModule.default);
+        const lang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
+        const langPath = `@/data/motivational_quotes.${lang}.json`;
+        const fallbackPath = "@/data/motivational_quotes.it.json";
+        const loadForLang = quoteModules[langPath];
+        const loadFallback = quoteModules[fallbackPath];
+
+        if (loadForLang) {
+          const quotesModule = await loadForLang();
+          setQuotes(quotesModule.default);
+          return;
+        }
+
+        if (loadFallback) {
+          const fallbackModule = await loadFallback();
+          setQuotes(fallbackModule.default);
+          return;
+        }
+
+        setQuotes([]);
       } catch (error) {
         console.error("Failed to load quotes:", error);
         setQuotes([]);
@@ -33,7 +53,7 @@ export default function DailyQuote() {
     };
 
     loadQuotes();
-  }, []);
+  }, [i18n.resolvedLanguage, i18n.language]);
 
   if (loading || quotes.length === 0) {
     return (

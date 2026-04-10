@@ -16,6 +16,18 @@ const jsonHeaders = {
   "Content-Type": "application/json",
 };
 
+const supportedLocales = ["it", "en", "de", "fr", "es", "ru", "ro", "pt", "zh"] as const;
+type SupportedLocale = (typeof supportedLocales)[number];
+
+const getStripePortalLocale = (locale: unknown): Stripe.BillingPortal.SessionCreateParams.Locale | undefined => {
+  if (typeof locale !== "string") return undefined;
+  const baseLocale = locale.toLowerCase().split("-")[0];
+  if (!supportedLocales.includes(baseLocale as SupportedLocale)) return undefined;
+  if (baseLocale === "pt") return "pt-BR";
+  if (baseLocale === "zh") return "zh";
+  return baseLocale as Stripe.BillingPortal.SessionCreateParams.Locale;
+};
+
 const getRequiredEnv = (name: string) => {
   const value = Deno.env.get(name)?.trim();
   if (!value) {
@@ -42,6 +54,9 @@ serve(async (req) => {
   }
 
   try {
+    const requestBody = await req.json().catch(() => ({}));
+    const portalLocale = getStripePortalLocale(requestBody?.locale);
+
     const supabaseUrl = getRequiredEnv("SUPABASE_URL");
     const supabaseAnonKey = getRequiredEnv("SUPABASE_ANON_KEY");
 
@@ -88,6 +103,7 @@ serve(async (req) => {
     const session = await stripe.billingPortal.sessions.create({
       customer: customers.data[0].id,
       return_url: `${baseUrl}/dashboard`,
+      locale: portalLocale,
     });
 
     return new Response(JSON.stringify({ url: session.url }), {

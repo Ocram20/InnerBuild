@@ -4,11 +4,22 @@ import { Leaf, Mail, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function LandingFooter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const currentLng = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
+  const tFooter = (primary: string, fallback?: string, defaultValue?: string) => {
+    const primaryValue = t(primary);
+    const hasPrimaryInCurrentLang = i18n.exists(primary, { lng: currentLng, fallbackLng: false });
+    if (hasPrimaryInCurrentLang) return t(primary, { lng: currentLng, fallbackLng: false });
+    if (fallback) {
+      const hasFallbackInCurrentLang = i18n.exists(fallback, { lng: currentLng, fallbackLng: false });
+      if (hasFallbackInCurrentLang) return t(fallback, { lng: currentLng, fallbackLng: false });
+    }
+    return defaultValue ?? primaryValue;
+  };
   const footerLinks = [
-    { labelKey: "landing.footer.privacy", href: "/privacy-policy" },
-    { labelKey: "landing.footer.terms", href: "/terms-of-service" },
+    { label: tFooter("landing.footer.privacy", "footer.privacy_policy", "Privacy Policy"), href: "/privacy-policy" },
+    { label: tFooter("landing.footer.terms", "footer.terms_of_service", "Terms of Service"), href: "/terms-of-service" },
   ];
 
   const socialLinks = [
@@ -36,22 +47,22 @@ export default function LandingFooter() {
               </div>
               <span className="font-bold text-lg text-foreground">InnerBuild</span>
             </div>
-            <p className="text-sm text-muted-foreground">{t("landing.footer.tagline")}</p>
+            <p className="text-sm text-muted-foreground">{tFooter("landing.footer.tagline", "footer.tagline")}</p>
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.legal")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.legal", "footer.legal", "Legal")}</h3>
             <nav className="flex flex-col gap-2">
               {footerLinks.map((link) => (
                 <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 hover:underline">
-                  {t(link.labelKey)}
+                  {link.label}
                 </Link>
               ))}
             </nav>
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.support")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.support", "footer.support", "Support")}</h3>
             <a
               href="mailto:inner.build07@gmail.com"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2 hover:gap-3 group"
@@ -62,7 +73,7 @@ export default function LandingFooter() {
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.follow")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.follow", "footer.follow_us", "Follow us")}</h3>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -86,10 +97,10 @@ export default function LandingFooter() {
         <div className="h-px bg-border/50 my-8" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">{t("landing.footer.copyright", { year: currentYear })}</p>
+          <p className="text-sm text-muted-foreground">{tFooter("landing.footer.copyright", "footer.copyright").replace("{{year}}", String(currentYear))}</p>
           <div className="flex gap-4">
             <Button variant="ghost" size="sm" asChild className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <a href="#top">{t("landing.footer.back_to_top")}</a>
+              <a href="#top">{tFooter("landing.footer.back_to_top", undefined, "Back to top")}</a>
             </Button>
           </div>
         </div>

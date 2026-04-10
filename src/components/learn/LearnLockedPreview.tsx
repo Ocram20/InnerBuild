@@ -2,12 +2,14 @@ import { Lock, BookOpen, Clock, FileText, Sparkles, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export function LearnLockedPreview() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const features = [
-    { icon: FileText, label: "Articoli scientifici sul recupero" },
-    { icon: BookOpen, label: "Guide educative approfondite" },
-    { icon: Clock, label: "Timeline e traguardi del recupero" },
+    { icon: FileText, label: t("learn.locked_features.articles") },
+    { icon: BookOpen, label: t("learn.locked_features.guides") },
+    { icon: Clock, label: t("learn.locked_features.timeline") },
   ];
 
   return (
@@ -16,13 +18,13 @@ export function LearnLockedPreview() {
         <div className="container max-w-4xl mx-auto px-4 py-6">
           <div className="grid w-full grid-cols-3 mb-6 bg-muted rounded-lg p-1 gap-1">
             <div className="flex items-center justify-center gap-2 rounded-md bg-background py-2 px-3 text-sm font-medium shadow-sm">
-              <FileText className="h-4 w-4" /><span>{"Articoli"}</span>
+              <FileText className="h-4 w-4" /><span>{t("learn.articles")}</span>
             </div>
             <div className="flex items-center justify-center gap-2 rounded-md py-2 px-3 text-sm text-muted-foreground">
-              <BookOpen className="h-4 w-4" /><span>{"Guide"}</span>
+              <BookOpen className="h-4 w-4" /><span>{t("learn.guides")}</span>
             </div>
             <div className="flex items-center justify-center gap-2 rounded-md py-2 px-3 text-sm text-muted-foreground">
-              <Clock className="h-4 w-4" /><span>{"Timeline"}</span>
+              <Clock className="h-4 w-4" /><span>{t("learn.timeline")}</span>
             </div>
           </div>
           <div className="space-y-4">
@@ -52,8 +54,8 @@ export function LearnLockedPreview() {
               <Lock className="h-7 w-7 text-primary" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-xl font-bold text-foreground">{"Centro Apprendimento"}</h2>
-              <p className="text-muted-foreground text-sm">{"Articoli scientifici, guide educative e una timeline completa del recupero — tutto in un unico posto."}</p>
+              <h2 className="text-xl font-bold text-foreground">{t("learn.locked_title")}</h2>
+              <p className="text-muted-foreground text-sm">{t("learn.locked_desc")}</p>
             </div>
             <div className="flex flex-col gap-2 py-2">
               {features.map((feature) => (
@@ -67,11 +69,11 @@ export function LearnLockedPreview() {
               <div className="flex items-center justify-center gap-1">
                 <Sparkles className="h-4 w-4 text-accent" />
                 <span className="text-lg font-bold text-foreground">€9.99</span>
-                <span className="text-muted-foreground text-sm">/{"mese"}</span>
+                <span className="text-muted-foreground text-sm">/{t("pricing.per_month").replace(/^\//, "")}</span>
               </div>
               <Button onClick={() => navigate("/pricing")} className="w-full gap-2">
                 <Crown className="h-4 w-4" />
-                {"Sblocca Premium"}
+                {t("pricing.get_premium")}
               </Button>
             </div>
           </CardContent>
