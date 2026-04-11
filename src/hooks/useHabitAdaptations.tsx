@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 export interface HabitAdaptation {
   id: string;
@@ -19,6 +20,7 @@ export interface HabitAdaptation {
 export function useHabitAdaptations() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [adaptations, setAdaptations] = useState<HabitAdaptation[]>([]);
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
@@ -106,8 +108,8 @@ export function useHabitAdaptations() {
     if (error) {
       console.error("Error updating adaptation:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile aggiornare il suggerimento",
+        title: t("habits.adaptation_update_failed_title"),
+        description: t("habits.adaptation_update_failed_desc"),
         variant: "destructive",
       });
       // Revert on error

@@ -63,7 +63,7 @@ export function FailureDebriefSection() {
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
               <Heart className="w-4 h-4 text-primary" />
             </div>
-            {"Debrief dopo la ricaduta"}
+            {t("failure_debrief.title")}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -88,7 +88,7 @@ export function FailureDebriefSection() {
                 className="flex items-center gap-2"
               >
                 <History className="w-4 h-4" />
-                <span className="hidden sm:inline">{"Cronologia"}</span>
+                <span className="hidden sm:inline">{t("failure_debrief.history")}</span>
                 <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
                   {completedDebriefs.length}
                 </span>

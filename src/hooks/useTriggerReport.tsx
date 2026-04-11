@@ -43,7 +43,7 @@ export interface TriggerReport {
 }
 
 export function useTriggerReport() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [report, setReport] = useState<TriggerReport | null>(null);
@@ -112,8 +112,8 @@ export function useTriggerReport() {
 
     if (!canGenerateReport()) {
       toast({
-        title: "Attendi",
-        description: `Puoi generare un nuovo report tra ${getDaysUntilNextReport()} giorno/i`,
+        title: t("trigger_tracking.report_wait_title"),
+        description: t("trigger_tracking.report_wait_desc", { days: getDaysUntilNextReport() }),
         variant: "destructive",
       });
       return;
@@ -132,27 +132,33 @@ export function useTriggerReport() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ language: i18n.language }),
+          body: JSON.stringify({
+            language: (i18n.resolvedLanguage || i18n.language || "en").toLowerCase().split("-")[0],
+          }),
         }
       );
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || "Failed to generate report");
+        const msg = typeof result.error === "string" ? result.error : "";
+        if (response.status === 400 && /no trigger logs/i.test(msg)) {
+          throw new Error(t("trigger_tracking.error_no_logs"));
+        }
+        throw new Error(msg || t("trigger_tracking.report_failed_desc"));
       }
 
       toast({
-        title: "Report trigger generato! 🎯",
-        description: "L'analisi dei tuoi pattern è pronta.",
+        title: t("trigger_tracking.report_generated_title"),
+        description: t("trigger_tracking.report_generated_desc"),
       });
 
       await fetchReport();
     } catch (err) {
       console.error("Failed to generate report:", err);
       toast({
-        title: "Generazione fallita",
-        description: err instanceof Error ? err.message : "Impossibile generare il report",
+        title: t("trigger_tracking.report_failed_title"),
+        description: err instanceof Error ? err.message : t("trigger_tracking.report_failed_desc"),
         variant: "destructive",
       });
     } finally {

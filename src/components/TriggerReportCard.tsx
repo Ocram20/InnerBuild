@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import {
   Zap,
@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTriggerReport, TriggerCause, TimingPattern, TriggerSolution } from "@/hooks/useTriggerReport";
 import { useTranslation } from "react-i18next";
 import { dateFnsLocale } from "@/lib/dateFnsLocale";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 export default function TriggerReportCard() {
   const { t, i18n } = useTranslation();
@@ -32,6 +33,35 @@ export default function TriggerReportCard() {
     getDaysUntilNextReport,
   } = useTriggerReport();
   const [expanded, setExpanded] = useState(false);
+
+  const triggerReportRawStrings = useMemo(() => {
+    if (!report) return [];
+    const arr: string[] = [];
+    if (report.summary?.trim()) arr.push(report.summary);
+    const da = report.detailed_analysis;
+    if (da) {
+      for (const c of da.main_causes ?? []) {
+        for (const x of [c.cause, c.frequency, c.description]) {
+          if (typeof x === "string" && x.trim()) arr.push(x);
+        }
+      }
+      for (const p of da.timing_patterns ?? []) {
+        for (const x of [p.when, p.frequency, p.likely_reason]) {
+          if (typeof x === "string" && x.trim()) arr.push(x);
+        }
+      }
+      for (const sol of da.solutions ?? []) {
+        for (const x of [sol.for_cause, sol.strategy, sol.why_it_helps]) {
+          if (typeof x === "string" && x.trim()) arr.push(x);
+        }
+      }
+      if (typeof da.encouragement === "string" && da.encouragement.trim()) {
+        arr.push(da.encouragement);
+      }
+    }
+    return arr;
+  }, [report]);
+  const { display } = useUiBatchTranslation(triggerReportRawStrings, !!report && triggerReportRawStrings.length > 0);
 
   if (loading) {
     return (
@@ -122,7 +152,7 @@ export default function TriggerReportCard() {
       </CardHeader>
 
       <CardContent className="pt-0 space-y-4">
-        <p className="text-sm text-foreground/90 leading-relaxed">{summary}</p>
+        <p className="text-sm text-foreground/90 leading-relaxed">{display(summary)}</p>
 
         {mainCauses.length > 0 && (
           <Badge variant="outline" className="gap-1 text-blue-600 border-blue-200 bg-blue-50/50">
@@ -145,12 +175,12 @@ export default function TriggerReportCard() {
                   {mainCauses.map((cause: TriggerCause, idx: number) => (
                     <div key={idx} className="rounded-lg bg-blue-50/50 dark:bg-blue-950/20 p-3 text-sm">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium">{cause.cause}</span>
+                        <span className="font-medium">{display(cause.cause)}</span>
                         <Badge variant="secondary" className="text-xs">
-                          {cause.frequency}
+                          {display(cause.frequency)}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">{cause.description}</p>
+                      <p className="text-xs text-muted-foreground">{display(cause.description)}</p>
                     </div>
                   ))}
                 </div>
@@ -166,9 +196,9 @@ export default function TriggerReportCard() {
                 <div className="space-y-2">
                   {timingPatterns.map((pattern: TimingPattern, idx: number) => (
                     <div key={idx} className="rounded-lg bg-purple-50/50 dark:bg-purple-950/20 p-3 text-sm">
-                      <div className="font-medium mb-1">{pattern.when}</div>
+                      <div className="font-medium mb-1">{display(pattern.when)}</div>
                       <p className="text-xs text-muted-foreground">
-                        {pattern.frequency} • {pattern.likely_reason}
+                        {display(pattern.frequency)} • {display(pattern.likely_reason)}
                       </p>
                     </div>
                   ))}
@@ -186,10 +216,10 @@ export default function TriggerReportCard() {
                   {solutions.map((solution: TriggerSolution, idx: number) => (
                     <div key={idx} className="rounded-lg bg-green-50/50 dark:bg-green-950/20 p-3 text-sm">
                       <div className="text-xs text-muted-foreground mb-1">
-                        {t("trigger_tracking.for_cause", { cause: solution.for_cause })}
+                        {t("trigger_tracking.for_cause", { cause: display(solution.for_cause) })}
                       </div>
-                      <div className="font-medium mb-1">{solution.strategy}</div>
-                      <p className="text-xs text-muted-foreground">{solution.why_it_helps}</p>
+                      <div className="font-medium mb-1">{display(solution.strategy)}</div>
+                      <p className="text-xs text-muted-foreground">{display(solution.why_it_helps)}</p>
                     </div>
                   ))}
                 </div>
@@ -200,7 +230,7 @@ export default function TriggerReportCard() {
               <div className="rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 p-3">
                 <div className="flex items-center gap-2">
                   <Heart className="h-4 w-4 text-primary" />
-                  <p className="text-sm text-foreground/90">{encouragement}</p>
+                  <p className="text-sm text-foreground/90">{display(encouragement)}</p>
                 </div>
               </div>
             )}

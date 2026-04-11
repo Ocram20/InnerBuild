@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useToast } from "@/hooks/use-toast";
 import { Brain, Footprints, MessageCircle, Check, Loader2 } from "lucide-react";
@@ -50,6 +50,17 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
   const [savingCheckin, setSavingCheckin] = useState(false);
   const [showSetbackDialog, setShowSetbackDialog] = useState(false);
 
+  const rawAiStrings = useMemo(() => {
+    if (!entry) return [];
+    return [entry.coach_message, entry.mental_mission, entry.behavioral_mission].filter(
+      (v): v is string => typeof v === "string" && v.trim().length > 0
+    );
+  }, [entry]);
+  const { display } = useUiBatchTranslation(
+    rawAiStrings,
+    !isLoading && !!entry && rawAiStrings.length > 0
+  );
+
   if (isLoading) {
     return (
       <Card className="glass rounded-2xl">
@@ -61,12 +72,6 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
   }
 
   if (!entry) return null;
-  const rawAiStrings = [
-    entry.coach_message,
-    entry.mental_mission,
-    entry.behavioral_mission,
-  ].filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawAiStrings, true);
   const phaseLabel =
     entry.phase_name
       ? (() => {

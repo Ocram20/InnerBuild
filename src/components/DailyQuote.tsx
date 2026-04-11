@@ -8,7 +8,8 @@ interface QuoteData {
   category: string;
 }
 
-const quoteModules = import.meta.glob<{ default: QuoteData[] }>("@/data/motivational_quotes.*.json");
+// Paths must be relative to this file so Vite records correct glob keys (alias keys are unreliable).
+const quoteModules = import.meta.glob<{ default: QuoteData[] }>("../data/motivational_quotes.*.json");
 
 export default function DailyQuote() {
   const { t, i18n } = useTranslation();
@@ -26,15 +27,18 @@ export default function DailyQuote() {
       setLoading(true);
       try {
         const lang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
-        const langPath = `@/data/motivational_quotes.${lang}.json`;
-        const fallbackPath = "@/data/motivational_quotes.it.json";
+        const langPath = `../data/motivational_quotes.${lang}.json`;
+        const fallbackPath = "../data/motivational_quotes.it.json";
         const loadForLang = quoteModules[langPath];
         const loadFallback = quoteModules[fallbackPath];
 
         if (loadForLang) {
           const quotesModule = await loadForLang();
-          setQuotes(quotesModule.default);
-          return;
+          const list = quotesModule.default;
+          if (Array.isArray(list) && list.length > 0) {
+            setQuotes(list);
+            return;
+          }
         }
 
         if (loadFallback) {

@@ -11,10 +11,30 @@ const corsHeaders = {
   'X-XSS-Protection': '1; mode=block',
 };
 
+function baseLanguage(code: string) {
+  return (code || "en").toLowerCase().split("-")[0];
+}
+
+function languageName(code: string) {
+  switch (baseLanguage(code)) {
+    case "it": return "Italian";
+    case "en": return "English";
+    case "zh": return "Simplified Chinese";
+    case "de": return "German";
+    case "fr": return "French";
+    case "es": return "Spanish";
+    case "pt": return "Portuguese";
+    case "ru": return "Russian";
+    case "ro": return "Romanian";
+    default: return "the user's language";
+  }
+}
+
 function getSystemPrompt(language: string) {
-  const langInstruction = language === "it"
-    ? "IMPORTANT: You MUST respond entirely in Italian. All text fields (summary, cause, description, frequency, when, likely_reason, for_cause, strategy, why_it_helps, encouragement) must be written in Italian."
-    : "Respond in English.";
+  const langInstruction =
+    `IMPORTANT: You MUST respond entirely in ${languageName(language)}. ` +
+    `All text fields (summary, cause, description, frequency, when, likely_reason, for_cause, strategy, why_it_helps, encouragement) must be written in ${languageName(language)}. ` +
+    `Do not include any English unless the user's language is English.`;
 
   return `You are an AI Coach analyzing user trigger data for addiction recovery. Your role is to:
 
@@ -95,7 +115,7 @@ serve(async (req) => {
     const userId = user.id;
 
     const body = await req.json().catch(() => ({}));
-    const langParsed = z.object({ language: z.enum(["en", "it"]).optional().default("en") }).safeParse(body);
+    const langParsed = z.object({ language: z.string().optional().default("en") }).safeParse(body);
     const language = langParsed.success ? langParsed.data.language : "en";
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);

@@ -10,6 +10,9 @@ import { useTranslation } from "react-i18next";
 
 const SUGGESTED_KEYS = ["sr1", "sr2", "sr3", "sr4", "sr5", "sr6", "sr7", "sr8"] as const;
 
+/** Sentinel date for storing quit reasons in journal_entries (column is a real date, not arbitrary text). */
+const QUIT_REASONS_ENTRY_DATE = "2000-01-01";
+
 export function ReasonsSection() {
   const { t } = useTranslation();
   const { user } = useAuth();
@@ -38,7 +41,7 @@ export function ReasonsSection() {
         .from("journal_entries")
         .select("*")
         .eq("user_id", user.id)
-        .eq("entry_date", "quit-reasons")
+        .eq("entry_date", QUIT_REASONS_ENTRY_DATE)
         .maybeSingle();
 
       if (data?.content) {
@@ -65,7 +68,7 @@ export function ReasonsSection() {
         .from("journal_entries")
         .select("id")
         .eq("user_id", user.id)
-        .eq("entry_date", "quit-reasons")
+        .eq("entry_date", QUIT_REASONS_ENTRY_DATE)
         .maybeSingle();
 
       if (existing) {
@@ -78,7 +81,7 @@ export function ReasonsSection() {
           .from("journal_entries")
           .insert({
             user_id: user.id,
-            entry_date: "quit-reasons",
+            entry_date: QUIT_REASONS_ENTRY_DATE,
             content: JSON.stringify(updatedReasons),
           });
       }

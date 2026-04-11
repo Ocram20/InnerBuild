@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { it, enUS } from "date-fns/locale";
-import i18n from "i18next";
 import { 
   Brain, 
   Sparkles, 
@@ -23,15 +21,19 @@ import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
 import { usePremiumLimits } from "@/hooks/usePremiumLimits";
 import PaywallModal from "@/components/PaywallModal";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { dateFnsLocale } from "@/lib/dateFnsLocale";
 
 function SuggestionItem({
   suggestion,
   onAccept,
   onDismiss,
+  display,
 }: {
   suggestion: HabitSuggestion;
   onAccept: () => void;
   onDismiss: () => void;
+  display: (s: string) => string;
 }) {
   const { t } = useTranslation();
   const isHandled = suggestion.status === "accepted" || suggestion.status === "dismissed";
@@ -42,21 +44,21 @@ function SuggestionItem({
     }`}>
       <div className="flex items-center justify-between mb-1">
         <div className="min-w-0 mr-3">
-          <span className="font-medium block truncate">{suggestion.habit_title}</span>
+          <span className="font-medium block truncate">{display(suggestion.habit_title)}</span>
         </div>
         <Badge variant="secondary" className="text-xs shrink-0">
           {suggestion.current_completion_rate}% {t("common.completed")}
         </Badge>
       </div>
       <p className="text-muted-foreground text-xs mb-2">
-        {suggestion.issue}
+        {display(suggestion.issue)}
       </p>
       <div className="flex items-center gap-2 text-primary mb-3">
         <Lightbulb className="h-3 w-3 shrink-0" />
-        <span className="text-xs font-medium">{suggestion.suggested_title}</span>
+        <span className="text-xs font-medium">{display(suggestion.suggested_title)}</span>
       </div>
       <p className="text-xs text-muted-foreground mb-3">
-        {suggestion.suggested_description || suggestion.reason}
+        {display(suggestion.suggested_description || suggestion.reason)}
       </p>
       
       {!isHandled ? (
@@ -90,8 +92,8 @@ function SuggestionItem({
 }
 
 export default function HabitReportCard() {
-  const dateLocale = i18n.language?.startsWith("it") ? it : enUS;
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dfLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
   const { isPremium } = usePremiumLimits();
   const { 
     report, 
@@ -106,6 +108,23 @@ export default function HabitReportCard() {
   } = useHabitReport();
   const [expanded, setExpanded] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
+
+  const habitReportRawStrings = useMemo(() => {
+    if (!report) return [];
+    const arr: string[] = [];
+    if (report.summary?.trim()) arr.push(report.summary);
+    const hs = report.detailed_analysis?.habit_suggestions ?? [];
+    for (const s of hs) {
+      for (const x of [s.habit_title, s.issue, s.suggested_title, s.suggested_description, s.reason]) {
+        if (typeof x === "string" && x.trim()) arr.push(x);
+      }
+    }
+    for (const tip of report.detailed_analysis?.tips ?? []) {
+      if (typeof tip === "string" && tip.trim()) arr.push(tip);
+    }
+    return arr;
+  }, [report]);
+  const { display } = useUiBatchTranslation(habitReportRawStrings, !!report && habitReportRawStrings.length > 0);
 
   if (loading) {
     return (
@@ -201,7 +220,7 @@ export default function HabitReportCard() {
               )}
             </div>
             <p className="text-xs text-muted-foreground">
-              {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dateLocale })}
+              {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dfLocale })}
             </p>
           </div>
         </div>
@@ -219,7 +238,7 @@ export default function HabitReportCard() {
       </div>
 
       <div className="space-y-4">
-        <p className="break-words text-sm text-foreground/90 leading-relaxed">{summary}</p>
+        <p className="break-words text-sm text-foreground/90 leading-relaxed">{display(summary)}</p>
 
         {pendingSuggestions.length > 0 && (
           <Badge variant="outline" className="max-w-full gap-1 border-primary/20 text-primary whitespace-normal">
@@ -241,6 +260,7 @@ export default function HabitReportCard() {
                     <SuggestionItem
                       key={suggestion.habit_id || idx}
                       suggestion={suggestion}
+                      display={display}
                       onAccept={() => acceptSuggestion(
                         suggestion.habit_id,
                         suggestion.suggested_title,
@@ -263,7 +283,7 @@ export default function HabitReportCard() {
                   {tips.map((tip, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="text-primary font-medium">{idx + 1}.</span>
-                      {tip}
+                      {display(tip)}
                     </li>
                   ))}
                 </ul>
