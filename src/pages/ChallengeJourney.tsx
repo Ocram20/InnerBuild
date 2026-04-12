@@ -238,9 +238,9 @@ export default function ChallengeJourney() {
   const isPausedByJokers = challenge.status === "paused" && jokers <= 0;
 
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-app-main">
       {/* Header */}
-      <header className="sticky top-0 z-50 glass border-b border-border/50">
+      <header className="sticky top-0 safe-area-header z-50 glass border-b border-border/50">
         <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
           <Button
             variant="ghost"

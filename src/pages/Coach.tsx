@@ -103,7 +103,7 @@ export default function Coach() {
   if (!isPremium) {
     return (
       <div className="min-h-screen bg-background flex flex-col">
-        <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
           <div className="container max-w-4xl mx-auto px-4 py-4">
             <div className="flex items-center gap-3">
               <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
@@ -121,7 +121,7 @@ export default function Coach() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -204,7 +204,7 @@ export default function Coach() {
           </>
         )}
 
-        <div className="pt-4 border-t border-border mt-auto">
+        <div className="pt-4 border-t border-border mt-auto safe-area-bottom">
           <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="flex gap-3">
             <Input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} placeholder={t("coach.input_placeholder")} disabled={isLoading} className="flex-1 h-12 rounded-xl bg-muted/50 border-border/50 focus:border-primary/50" />
             <Button type="submit" size="icon" disabled={isLoading || !input.trim()} className="h-12 w-12 rounded-xl">

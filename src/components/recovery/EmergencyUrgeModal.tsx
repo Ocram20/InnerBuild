@@ -109,24 +109,26 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
         className="relative w-full max-w-md max-h-[85vh] overflow-y-auto bg-background rounded-2xl border border-border/50 shadow-2xl animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-background/95 backdrop-blur-sm p-4 border-b border-border/50 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-rose-500/15 flex items-center justify-center">
-              <Shield className="w-4 h-4 text-rose-500" />
+        <div className="sticky top-0 safe-area-header bg-background/95 backdrop-blur-sm border-b border-border/50">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-rose-500/15 flex items-center justify-center">
+                <Shield className="w-4 h-4 text-rose-500" />
+              </div>
+              <span className="font-semibold text-foreground">{t("emergency_urge.header")}</span>
             </div>
-            <span className="font-semibold text-foreground">{t("emergency_urge.header")}</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClose();
+              }}
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 rounded-full"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClose();
-            }}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </div>
 
         <div className="p-5 space-y-5">

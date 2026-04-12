@@ -171,8 +171,8 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen overflow-x-hidden pb-24 bg-background">
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+    <div className="min-h-screen overflow-x-hidden pb-app-main bg-background">
+      <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
         <div className="flex max-w-lg flex-col gap-3 p-4 mx-auto sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">

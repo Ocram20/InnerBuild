@@ -30,7 +30,7 @@ export default function Learn() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background pb-24 flex items-center justify-center">
+      <div className="min-h-screen bg-background pb-app-main flex items-center justify-center">
         <LoadingSpinner />
         <BottomNavigation />
       </div>
@@ -39,8 +39,8 @@ export default function Learn() {
 
   if (!isPremium) {
     return (
-      <div className="min-h-screen bg-background pb-24">
-        <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <div className="min-h-screen bg-background pb-app-main">
+        <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
           <div className="container max-w-4xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -67,8 +67,8 @@ export default function Learn() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+    <div className="min-h-screen bg-background pb-app-main">
+      <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

@@ -138,12 +138,34 @@
     @apply bg-background text-foreground antialiased;
     background: var(--gradient-soft);
     min-height: 100vh;
+    min-height: 100dvh;
+    /* Horizontal insets on notched devices in landscape */
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 }
 
-/* Safe area for bottom navigation on iOS */
+/*
+ * Safe areas (iOS Dynamic Island, status bar, home indicator).
+ * Requires viewport-fit=cover on the meta viewport.
+ * max(12px, env(...)) gives a modest top fallback when env resolves to 0.
+ */
+.safe-area-header {
+  padding-top: max(12px, env(safe-area-inset-top, 0px));
+}
+
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Pages with fixed BottomNavigation: reserve nav height (4rem) + home indicator + small gap */
+.pb-app-main {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Long-scroll pages without bottom nav: keep last content above home indicator */
+.pb-scroll-safe {
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
 }
 
 @layer utilities {

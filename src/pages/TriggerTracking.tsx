@@ -34,8 +34,8 @@ export default function TriggerTracking() {
 
   if (!isPremium) {
     return (
-      <div className="min-h-screen pb-24 trigger-tracking-page">
-        <header className="sticky top-0 z-50 glass border-b border-border/50">
+      <div className="min-h-screen pb-app-main trigger-tracking-page">
+        <header className="sticky top-0 safe-area-header z-50 glass border-b border-border/50">
           <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
             <Button variant="ghost" size="icon" onClick={() => navigate(fromExplore ? "/explore" : "/dashboard")} className="rounded-full h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
             <div className="flex-1">
@@ -51,8 +51,8 @@ export default function TriggerTracking() {
   }
 
   return (
-    <div className="min-h-screen pb-24 trigger-tracking-page">
-      <header className="sticky top-0 z-50 glass border-b border-border/50">
+    <div className="min-h-screen pb-app-main trigger-tracking-page">
+      <header className="sticky top-0 safe-area-header z-50 glass border-b border-border/50">
         <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate(fromExplore ? "/explore" : "/dashboard")} className="rounded-full h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
           <div className="flex-1">

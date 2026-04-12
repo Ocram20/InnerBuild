@@ -105,7 +105,7 @@ export default function Landing() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/50">
+      <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/50">
         <div className="flex items-center justify-between px-3 py-2.5 md:px-8 md:py-4 max-w-7xl mx-auto w-full overflow-x-auto">
           <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl gradient-primary flex items-center justify-center shadow-soft flex-shrink-0">

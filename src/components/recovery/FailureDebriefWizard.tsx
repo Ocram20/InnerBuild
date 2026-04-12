@@ -205,26 +205,28 @@ export function FailureDebriefWizard({
   return (
     <Dialog open onOpenChange={onClose}>
       <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[90vh] overflow-y-auto p-0 gap-0">
-        <DialogHeader className="p-4 pb-2 border-b border-border/50 sticky top-0 bg-background z-10">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-lg font-semibold flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                {stepIcons[step - 1]}
-              </div>
-              {`Passo ${step}`}: {stepTitles[step - 1]}
-            </DialogTitle>
-            <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground mt-1">
-            {stepDescriptions[step - 1]}
-          </p>
-          <div className="flex items-center gap-2 mt-3">
-            <Progress value={progress} className="h-2" />
-            <span className="text-xs text-muted-foreground whitespace-nowrap">
-              {step}/3
-            </span>
+        <DialogHeader className="p-0 border-b border-border/50 sticky top-0 safe-area-header bg-background z-10">
+          <div className="px-4 pt-4 pb-2">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-lg font-semibold flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  {stepIcons[step - 1]}
+                </div>
+                {`Passo ${step}`}: {stepTitles[step - 1]}
+              </DialogTitle>
+              <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <p className="text-sm text-muted-foreground mt-1">
+              {stepDescriptions[step - 1]}
+            </p>
+            <div className="flex items-center gap-2 mt-3">
+              <Progress value={progress} className="h-2" />
+              <span className="text-xs text-muted-foreground whitespace-nowrap">
+                {step}/3
+              </span>
+            </div>
           </div>
         </DialogHeader>
 

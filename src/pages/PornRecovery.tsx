@@ -45,7 +45,7 @@ export default function PornRecovery() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -63,7 +63,7 @@ export default function PornRecovery() {
         </div>
       </header>
 
-      <main className="container max-w-4xl mx-auto px-4 py-6">
+      <main className="container max-w-4xl mx-auto px-4 py-6 pb-scroll-safe">
         {!isPremium ? <LockedPreview /> : (
           <Tabs defaultValue="progress" className="w-full">
             <TabsList className="w-full grid grid-cols-3 mb-6 h-11">

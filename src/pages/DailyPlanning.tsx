@@ -167,8 +167,8 @@ const DailyPlanning = () => {
   }, [user?.id, targetDateISO, modeKey, targetKey]);
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <header className="sticky top-0 z-50 glass border-b">
+    <div className="min-h-screen bg-background pb-app-main">
+      <header className="sticky top-0 safe-area-header z-50 glass border-b">
         <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-start sm:items-center justify-between gap-2">
             <div className="flex items-start sm:items-center gap-2 sm:gap-4 min-w-0 flex-1">

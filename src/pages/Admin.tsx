@@ -144,8 +144,8 @@ export default function Admin() {
   // Editing form
   if (editingArticle) {
     return (
-      <div className="min-h-screen bg-background pb-24">
-        <header className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border">
+      <div className="min-h-screen bg-background pb-app-main">
+        <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur border-b border-border">
           <div className="container max-w-4xl mx-auto px-4 py-4 flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={() => setEditingArticle(null)}>
               <ArrowLeft className="h-5 w-5" />
@@ -237,8 +237,8 @@ export default function Admin() {
 
   // Articles list
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border">
+    <div className="min-h-screen bg-background pb-app-main">
+      <header className="sticky top-0 safe-area-header z-10 bg-background/95 backdrop-blur border-b border-border">
         <div className="container max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")}>

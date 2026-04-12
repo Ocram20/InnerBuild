@@ -88,8 +88,8 @@ const Explore = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+    <div className="min-h-screen bg-background pb-app-main">
+      <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
         <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")} className="rounded-full h-9 w-9">
             <ArrowLeft className="h-5 w-5" />
