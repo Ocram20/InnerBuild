@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useTranslation } from "react-i18next";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 interface Habit {
   id: string;
   title: string;
@@ -75,7 +76,9 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
 
   const Icon = categoryIcons[habit.category] || Flame;
   const colorClass = categoryColors[habit.category] || categoryColors.general;
-  const displayTitle = localizeSuggestedHabitTitle(t, habit.title);
+  const rawStrings = useMemo(() => [habit.title].filter((v) => typeof v === "string" && v.trim().length > 0), [habit.title]);
+  const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
+  const displayTitle = display(localizeSuggestedHabitTitle(t, habit.title));
 
   const toggleCompletion = async () => {
     if (!user || isLoading) return;

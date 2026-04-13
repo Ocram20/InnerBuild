@@ -11,7 +11,6 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface Task {
   id: string;
@@ -41,10 +40,6 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
   const SUGGESTED_TASKS = t("todo_section.suggested_tasks", { returnObjects: true }) as string[];
-  const rawTaskTitles = tasks
-    .map((task) => task.title)
-    .filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawTaskTitles, true);
 
   useEffect(() => {
     if (userId) {
@@ -244,7 +239,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         ) : (
           <>
             <span className={`flex-1 ${task.is_completed ? "line-through text-muted-foreground" : ""}`}>
-              {display(task.title)}
+              {task.title}
             </span>
             <div className="flex gap-1">
               <Button size="icon" variant="ghost" onClick={() => startEditing(task)} className="h-8 w-8">

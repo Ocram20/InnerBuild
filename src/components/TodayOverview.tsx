@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { CheckCircle2, Circle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 import {
   Tooltip,
   TooltipContent,
@@ -34,6 +36,22 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
   const totalCount = habits.length;
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
   const allComplete = totalCount > 0 && completedCount === totalCount;
+
+  const visibleHabits = habits.slice(0, 5);
+
+  const rawStrings = useMemo(() => {
+    const out: string[] = [];
+    for (const h of visibleHabits) out.push(h.title);
+    if (getAdaptationForHabit) {
+      for (const h of visibleHabits) {
+        const a = getAdaptationForHabit(h.id);
+        if (a?.reason) out.push(a.reason);
+      }
+    }
+    return out.filter((v) => typeof v === "string" && v.trim().length > 0);
+  }, [visibleHabits, getAdaptationForHabit]);
+
+  const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
 
   return (
     <div className={`rounded-2xl border border-border/60 bg-card p-5 relative overflow-hidden ${
@@ -81,7 +99,7 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
                     <span className={`text-sm font-medium truncate block max-w-full ${
                       habit.completed_today ? "line-through text-muted-foreground" : "text-foreground"
                     }`}>
-                      {localizeSuggestedHabitTitle(t, habit.title)}
+                      {display(localizeSuggestedHabitTitle(t, habit.title))}
                     </span>
                   </button>
                   
@@ -95,7 +113,7 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
                           </div>
                         </TooltipTrigger>
                         <TooltipContent side="left" className="max-w-[200px]">
-                          <p className="text-xs">{adaptation.reason}</p>
+                          <p className="text-xs">{display(adaptation.reason)}</p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>

@@ -1055,7 +1055,30 @@
       "feature_2": "Track your current and longest streak",
       "feature_3": "Start fresh anytime",
       "start": "Start Challenge"
-    }
+    },
+    "toast_started_title": "Challenge started",
+    "toast_started_desc": "Your recovery journey has started. Good luck!",
+    "toast_start_failed_title": "Error",
+    "toast_start_failed_desc": "Couldn't start the challenge. Please try again.",
+    "toast_success_title": "Great job!",
+    "toast_success_desc": "Day {{day}} done. Keep going!",
+    "toast_paused_title": "Challenge paused",
+    "toast_paused_desc": "No jokers left. Resume or reset to continue.",
+    "toast_joker_used_title": "Stay strong",
+    "toast_joker_used_desc": "Joker used ({{remaining}} left). The day doesn't advance — you'll try again.",
+    "toast_checkin_failed_title": "Error",
+    "toast_checkin_failed_desc": "Couldn't save the check-in. Please try again.",
+    "toast_reset_failed_title": "Error",
+    "toast_reset_failed_desc": "Couldn't reset. Please try again.",
+    "toast_resumed_title": "Challenge resumed",
+    "toast_resumed_desc_with_jokers": "Let's continue!",
+    "toast_resumed_desc_no_jokers": "No jokers left — any relapse will pause it again.",
+    "toast_resume_failed_title": "Error",
+    "toast_resume_failed_desc": "Couldn't resume. Please try again.",
+    "toast_abandoned_title": "Challenge abandoned",
+    "toast_abandoned_desc": "You can start again anytime.",
+    "toast_abandon_failed_title": "Error",
+    "toast_abandon_failed_desc": "Couldn't abandon the challenge. Please try again."
   },
 
   "locked_preview": {
@@ -1117,7 +1140,9 @@
     "failed_desc": "Couldn't generate the report",
     "habit_updated_title": "Habit updated! ✓",
     "habit_updated_desc": "Changed to \"{{title}}\"",
-    "failed_update_habit": "Couldn't update the habit"
+    "failed_update_habit": "Couldn't update the habit",
+    "suggestion_ignored_title": "Suggestion ignored",
+    "suggestion_ignored_desc": "The habit stays unchanged"
   },
 
   "not_found": {

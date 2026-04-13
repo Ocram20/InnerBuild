@@ -189,19 +189,15 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
     const add = (s: string | null | undefined) => {
       if (s && String(s).trim()) out.push(String(s).trim());
     };
+    // Translate content that is expected to follow the app language.
+    // Do NOT translate user-entered free text like daily tasks, not-to-do items,
+    // reflections, or notes.
     for (const h of dayData.habits) add(h.title);
-    for (const task of dayData.tasks) add(task.title);
-    for (const item of dayData.notToDo) add(item.title);
     for (const c of dayData.detoxChallenges) add(c.title);
     for (const e of dayData.challengeEntries) {
       add(e.challenge_title);
       add(e.checkin_response ?? undefined);
     }
-    if (dayData.recoveryCheckIn?.notes) add(dayData.recoveryCheckIn.notes);
-    const dr = dayData.dailyReflection;
-    if (dr?.day_summary) add(dr.day_summary);
-    if (dr?.lessons_learned) add(dr.lessons_learned);
-    dr?.grateful_for?.forEach((g) => add(g));
     return out;
   }, [dayData]);
 
@@ -329,7 +325,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                         {completedTasks.map((task, i) => (
                           <div key={i} className="flex items-center gap-2">
                             <SmallCheck />
-                            <span className="text-sm text-foreground">{display(task.title)}</span>
+                            <span className="text-sm text-foreground">{task.title}</span>
                           </div>
                         ))}
                       </div>
@@ -339,7 +335,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                         {notCompletedTasks.map((task, i) => (
                           <div key={i} className="flex items-center gap-2">
                             <SmallX />
-                            <span className="text-sm text-muted-foreground">{display(task.title)}</span>
+                            <span className="text-sm text-muted-foreground">{task.title}</span>
                           </div>
                         ))}
                       </div>
@@ -368,7 +364,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                             ? "text-foreground" 
                             : "text-muted-foreground"
                         }`}>
-                          {display(item.title)}
+                          {item.title}
                           {item.status === "avoided" && ` — ${t("day_detail_modal.avoided")}`}
                           {item.status === "failed" && ` — ${t("day_detail_modal.not_avoided")}`}
                         </span>
@@ -426,7 +422,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
                     </div>
                     {dayData?.recoveryCheckIn?.notes && (
                       <p className="text-sm text-muted-foreground ml-5 italic">
-                        "{display(dayData.recoveryCheckIn.notes)}"
+                        "{dayData.recoveryCheckIn.notes}"
                       </p>
                     )}
                   </div>

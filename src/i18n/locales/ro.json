@@ -1045,7 +1045,30 @@
       "feature_2": "Urmărește-ți seria curentă și cea mai lungă",
       "feature_3": "Începe din nou oricând",
       "start": "Începe provocarea"
-    }
+    },
+    "toast_started_title": "Provocare începută",
+    "toast_started_desc": "Parcursul tău de recuperare a început. Mult succes!",
+    "toast_start_failed_title": "Eroare",
+    "toast_start_failed_desc": "Nu am putut porni provocarea. Încearcă din nou.",
+    "toast_success_title": "Bravo!",
+    "toast_success_desc": "Ziua {{day}} completată. Continuă!",
+    "toast_paused_title": "Provocare în pauză",
+    "toast_paused_desc": "Nu mai ai jokeri. Reia sau resetează pentru a continua.",
+    "toast_joker_used_title": "Rămâi puternic",
+    "toast_joker_used_desc": "Joker folosit ({{remaining}} rămași). Ziua nu avansează — vei încerca din nou.",
+    "toast_checkin_failed_title": "Eroare",
+    "toast_checkin_failed_desc": "Nu am putut salva check-in-ul. Încearcă din nou.",
+    "toast_reset_failed_title": "Eroare",
+    "toast_reset_failed_desc": "Nu am putut reseta. Încearcă din nou.",
+    "toast_resumed_title": "Provocare reluată",
+    "toast_resumed_desc_with_jokers": "Hai să continuăm!",
+    "toast_resumed_desc_no_jokers": "Nu mai ai jokeri — orice recădere o va pune din nou în pauză.",
+    "toast_resume_failed_title": "Eroare",
+    "toast_resume_failed_desc": "Nu am putut relua. Încearcă din nou.",
+    "toast_abandoned_title": "Provocare abandonată",
+    "toast_abandoned_desc": "Poți începe din nou oricând.",
+    "toast_abandon_failed_title": "Eroare",
+    "toast_abandon_failed_desc": "Nu am putut abandona provocarea. Încearcă din nou."
   },
 
   "locked_preview": {
@@ -1098,7 +1121,9 @@
     "suggested_adjustments": "Ajustări sugerate ale obișnuințelor",
     "tips": "Sfaturi",
     "next_report_in": "Următorul raport disponibil în {{days}} zi/zile",
-    "generate_new": "Generează raport nou"
+    "generate_new": "Generează raport nou",
+    "suggestion_ignored_title": "Sugestie ignorată",
+    "suggestion_ignored_desc": "Obișnuința rămâne neschimbată"
   },
 
   "not_found": {

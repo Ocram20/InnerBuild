@@ -5,9 +5,8 @@ import { Button } from "@/components/ui/button";
 import { ListTodo, ShieldAlert, ChevronRight, CheckCircle2, Circle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
-import { format, addDays } from "date-fns";
+import { format } from "date-fns";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 interface Task {
   id: string;
   title: string;
@@ -32,14 +31,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
   const { toast } = useToast();
   const navigate = useNavigate();
   const pollingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const today = new Date();
-  const tomorrow = addDays(today, 1);
-  const targetDate = format(tomorrow, "yyyy-MM-dd");
-  const rawQuickStrings = [
-    ...todos.map((task) => task.title),
-    ...notTodos.map((item) => item.title),
-  ].filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawQuickStrings, true);
+  const targetDate = format(new Date(), "yyyy-MM-dd");
 
   const fetchTodosAndNotTodos = async () => {
     if (!userId) return;
@@ -240,7 +232,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                         : "text-foreground"
                     }`}
                   >
-                    {display(task.title)}
+                    {task.title}
                   </span>
                 </button>
               ))}
@@ -278,7 +270,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                       ? "line-through text-muted-foreground"
                       : "text-foreground"
                   }`}>
-                    {display(item.title)}
+                    {item.title}
                   </span>
                 </button>
               ))}

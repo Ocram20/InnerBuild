@@ -1032,7 +1032,30 @@
       "feature_2": "Acompanhe a sua sequência atual e a mais longa",
       "feature_3": "Recomece a qualquer momento",
       "start": "Iniciar Desafio"
-    }
+    },
+    "toast_started_title": "Desafio iniciado",
+    "toast_started_desc": "A sua jornada de recuperação começou. Boa sorte!",
+    "toast_start_failed_title": "Erro",
+    "toast_start_failed_desc": "Não foi possível iniciar o desafio. Tente novamente.",
+    "toast_success_title": "Excelente!",
+    "toast_success_desc": "Dia {{day}} concluído. Continue assim!",
+    "toast_paused_title": "Desafio em pausa",
+    "toast_paused_desc": "Sem jokers restantes. Retome ou reinicie para continuar.",
+    "toast_joker_used_title": "Força",
+    "toast_joker_used_desc": "Joker usado ({{remaining}} restante(s)). O dia não avança — vai tentar novamente.",
+    "toast_checkin_failed_title": "Erro",
+    "toast_checkin_failed_desc": "Não foi possível guardar o check-in. Tente novamente.",
+    "toast_reset_failed_title": "Erro",
+    "toast_reset_failed_desc": "Não foi possível reiniciar. Tente novamente.",
+    "toast_resumed_title": "Desafio retomado",
+    "toast_resumed_desc_with_jokers": "Vamos continuar!",
+    "toast_resumed_desc_no_jokers": "Sem jokers — qualquer recaída irá colocá-lo em pausa novamente.",
+    "toast_resume_failed_title": "Erro",
+    "toast_resume_failed_desc": "Não foi possível retomar. Tente novamente.",
+    "toast_abandoned_title": "Desafio abandonado",
+    "toast_abandoned_desc": "Pode começar novamente quando quiser.",
+    "toast_abandon_failed_title": "Erro",
+    "toast_abandon_failed_desc": "Não foi possível abandonar o desafio. Tente novamente."
   },
 
   "locked_preview": {
@@ -1085,7 +1108,9 @@
     "suggested_adjustments": "Ajustes de Hábitos Sugeridos",
     "tips": "Dicas",
     "next_report_in": "Próximo relatório disponível em {{days}} dia(s)",
-    "generate_new": "Gerar Novo Relatório"
+    "generate_new": "Gerar Novo Relatório",
+    "suggestion_ignored_title": "Sugestão ignorada",
+    "suggestion_ignored_desc": "O hábito permanece inalterado"
   },
 
   "not_found": {

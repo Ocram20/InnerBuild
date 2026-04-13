@@ -4,6 +4,7 @@ import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 interface Journey {
   id: string;
@@ -25,6 +26,7 @@ interface CheckIn {
 export function useRecoveryJourney() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [journey, setJourney] = useState<Journey | null>(null);
   const [checkIns, setCheckIns] = useState<CheckIn[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,14 +95,14 @@ export function useRecoveryJourney() {
       setJourney(data as unknown as Journey);
       setCheckIns([]);
       toast({
-        title: "Sfida iniziata",
-        description: "Il tuo percorso di recupero è iniziato. In bocca al lupo!",
+        title: t("recovery.toast_started_title"),
+        description: t("recovery.toast_started_desc"),
       });
     } catch (error) {
       console.error("Error starting journey:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile avviare la sfida. Riprova.",
+        title: t("recovery.toast_start_failed_title"),
+        description: t("recovery.toast_start_failed_desc"),
         variant: "destructive",
       });
     }
@@ -149,8 +151,8 @@ export function useRecoveryJourney() {
         } : null);
 
         toast({
-          title: "Ottimo lavoro! 🔥",
-          description: `Giorno ${newStreak} fatto. Continua così!`,
+          title: t("recovery.toast_success_title"),
+          description: t("recovery.toast_success_desc", { day: newStreak }),
         });
       } else {
         // Failed - consume a joker, DON'T advance the day
@@ -172,13 +174,13 @@ export function useRecoveryJourney() {
 
         if (newJokers <= 0) {
           toast({
-            title: "Sfida in pausa",
-            description: "Nessun jolly rimasto. Riprendi o resetta per continuare.",
+            title: t("recovery.toast_paused_title"),
+            description: t("recovery.toast_paused_desc"),
           });
         } else {
           toast({
-            title: "Resta forte",
-            description: `Jolly usato (${newJokers} rimasti). Il giorno non avanza — riproverai.`,
+            title: t("recovery.toast_joker_used_title"),
+            description: t("recovery.toast_joker_used_desc", { remaining: newJokers }),
           });
         }
       }
@@ -187,8 +189,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error checking in:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile registrare il check-in. Riprova.",
+        title: t("recovery.toast_checkin_failed_title"),
+        description: t("recovery.toast_checkin_failed_desc"),
         variant: "destructive",
       });
     }
@@ -209,8 +211,8 @@ export function useRecoveryJourney() {
     } catch (error) {
       console.error("Error resetting journey:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile resettare. Riprova.",
+        title: t("recovery.toast_reset_failed_title"),
+        description: t("recovery.toast_reset_failed_desc"),
         variant: "destructive",
       });
     }
@@ -227,16 +229,17 @@ export function useRecoveryJourney() {
       setJourney(prev => prev ? { ...prev, status: "active" } : null);
 
       toast({
-        title: "Sfida ripresa",
-        description: journey.jokers_remaining > 0
-          ? "Continuiamo!"
-          : "Nessun jolly rimasto — ogni ricaduta metterà di nuovo in pausa.",
+        title: t("recovery.toast_resumed_title"),
+        description:
+          journey.jokers_remaining > 0
+            ? t("recovery.toast_resumed_desc_with_jokers")
+            : t("recovery.toast_resumed_desc_no_jokers"),
       });
     } catch (error) {
       console.error("Error resuming journey:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile riprendere. Riprova.",
+        title: t("recovery.toast_resume_failed_title"),
+        description: t("recovery.toast_resume_failed_desc"),
         variant: "destructive",
       });
     }
@@ -254,14 +257,14 @@ export function useRecoveryJourney() {
       setJourney(null);
       setCheckIns([]);
       toast({
-        title: "Sfida abbandonata",
-        description: "Puoi ricominciare quando vuoi.",
+        title: t("recovery.toast_abandoned_title"),
+        description: t("recovery.toast_abandoned_desc"),
       });
     } catch (error) {
       console.error("Error abandoning journey:", error);
       toast({
-        title: "Errore",
-        description: "Impossibile abbandonare la sfida. Riprova.",
+        title: t("recovery.toast_abandon_failed_title"),
+        description: t("recovery.toast_abandon_failed_desc"),
         variant: "destructive",
       });
     }

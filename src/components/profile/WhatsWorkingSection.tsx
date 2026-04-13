@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Sparkles, Loader2, RefreshCw, TrendingUp, Shield, Lightbulb } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface WhatsWorkingData {
   improving: string;
@@ -18,6 +19,15 @@ export function WhatsWorkingSection() {
   const [data, setData] = useState<WhatsWorkingData | null>(null);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
+
+  const rawStrings = useMemo(() => {
+    if (!data) return [];
+    return [data.improving, data.protect, data.adjustment].filter(
+      (v): v is string => typeof v === "string" && v.trim().length > 0
+    );
+  }, [data]);
+
+  const { display } = useUiBatchTranslation(rawStrings, !!data && rawStrings.length > 0);
 
   const fetchLatest = useCallback(async () => {
     if (!user) return;
@@ -135,7 +145,7 @@ export function WhatsWorkingSection() {
               <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">
                 {t("whats_working_section.improving")}
               </p>
-              <p className="text-sm text-foreground/85 leading-relaxed">{data.improving}</p>
+              <p className="text-sm text-foreground/85 leading-relaxed">{display(data.improving)}</p>
             </div>
           </div>
 
@@ -147,7 +157,7 @@ export function WhatsWorkingSection() {
               <p className="text-[10px] font-medium text-primary uppercase tracking-wider mb-0.5">
                 {t("whats_working_section.protect")}
               </p>
-              <p className="text-sm text-foreground/85 leading-relaxed">{data.protect}</p>
+              <p className="text-sm text-foreground/85 leading-relaxed">{display(data.protect)}</p>
             </div>
           </div>
 
@@ -159,7 +169,7 @@ export function WhatsWorkingSection() {
               <p className="text-[10px] font-medium text-accent uppercase tracking-wider mb-0.5">
                 {t("whats_working_section.adjustment")}
               </p>
-              <p className="text-sm text-foreground/85 leading-relaxed">{data.adjustment}</p>
+              <p className="text-sm text-foreground/85 leading-relaxed">{display(data.adjustment)}</p>
             </div>
           </div>
         </div>

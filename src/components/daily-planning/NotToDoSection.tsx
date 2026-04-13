@@ -10,7 +10,6 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface NotToDoItem {
   id: string;
@@ -37,10 +36,6 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
   const { toast } = useToast();
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
-  const rawItemTitles = items
-    .map((item) => item.title)
-    .filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawItemTitles, true);
   useEffect(() => {
     if (userId) {
       fetchItems();
@@ -194,7 +189,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         <div {...provided.dragHandleProps} className="cursor-grab">
           <GripVertical className="h-4 w-4 text-muted-foreground" />
         </div>
-        <span className="flex-1 text-sm">{display(item.title)}</span>
+        <span className="flex-1 text-sm">{item.title}</span>
 
         <div className="flex gap-1">
           <Button

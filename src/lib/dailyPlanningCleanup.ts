@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
 
 /**
  * Deletes expired daily-planning items (target_date before today).
@@ -7,7 +8,8 @@ import { supabase } from "@/integrations/supabase/client";
 export async function cleanupExpiredDailyPlanningItems(userId?: string) {
   if (!userId) return;
 
-  const todayISO = new Date().toISOString().split("T")[0];
+  // Use LOCAL day (not UTC) to avoid deleting "today" items late at night.
+  const todayISO = format(new Date(), "yyyy-MM-dd");
 
   await Promise.all([
     supabase

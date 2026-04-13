@@ -1055,7 +1055,30 @@
       "feature_2": "追踪您当前和最长的连续记录",
       "feature_3": "随时重新开始",
       "start": "开始挑战"
-    }
+    },
+    "toast_started_title": "挑战已开始",
+    "toast_started_desc": "你的恢复旅程已开始。加油！",
+    "toast_start_failed_title": "错误",
+    "toast_start_failed_desc": "无法开始挑战。请重试。",
+    "toast_success_title": "做得好！",
+    "toast_success_desc": "第 {{day}} 天完成。继续加油！",
+    "toast_paused_title": "挑战已暂停",
+    "toast_paused_desc": "没有可用的“免死金牌”了。恢复或重置以继续。",
+    "toast_joker_used_title": "坚持住",
+    "toast_joker_used_desc": "已使用“免死金牌”（剩余 {{remaining}}）。天数不会前进——你可以再试一次。",
+    "toast_checkin_failed_title": "错误",
+    "toast_checkin_failed_desc": "无法保存签到。请重试。",
+    "toast_reset_failed_title": "错误",
+    "toast_reset_failed_desc": "无法重置。请重试。",
+    "toast_resumed_title": "挑战已恢复",
+    "toast_resumed_desc_with_jokers": "继续前进！",
+    "toast_resumed_desc_no_jokers": "没有“免死金牌”了——任何复发都会再次暂停挑战。",
+    "toast_resume_failed_title": "错误",
+    "toast_resume_failed_desc": "无法恢复挑战。请重试。",
+    "toast_abandoned_title": "挑战已放弃",
+    "toast_abandoned_desc": "你随时可以重新开始。",
+    "toast_abandon_failed_title": "错误",
+    "toast_abandon_failed_desc": "无法放弃挑战。请重试。"
   },
 
   "locked_preview": {
@@ -1117,7 +1140,9 @@
     "failed_desc": "无法生成报告",
     "habit_updated_title": "习惯已更新！✓",
     "habit_updated_desc": "已更改为「{{title}}」",
-    "failed_update_habit": "无法更新该习惯"
+    "failed_update_habit": "无法更新该习惯",
+    "suggestion_ignored_title": "已忽略建议",
+    "suggestion_ignored_desc": "该习惯保持不变"
   },
 
   "not_found": {

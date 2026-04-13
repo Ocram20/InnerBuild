@@ -1045,7 +1045,30 @@
       "feature_2": "Registra tu racha actual y la más larga",
       "feature_3": "Comienza de nuevo en cualquier momento",
       "start": "Iniciar desafío"
-    }
+    },
+    "toast_started_title": "Desafío iniciado",
+    "toast_started_desc": "Tu camino de recuperación ha comenzado. ¡Ánimo!",
+    "toast_start_failed_title": "Error",
+    "toast_start_failed_desc": "No se pudo iniciar el desafío. Inténtalo de nuevo.",
+    "toast_success_title": "¡Buen trabajo!",
+    "toast_success_desc": "Día {{day}} completado. ¡Sigue así!",
+    "toast_paused_title": "Desafío en pausa",
+    "toast_paused_desc": "No quedan comodines. Reanuda o reinicia para continuar.",
+    "toast_joker_used_title": "Mantente fuerte",
+    "toast_joker_used_desc": "Comodín usado (quedan {{remaining}}). El día no avanza — lo intentarás de nuevo.",
+    "toast_checkin_failed_title": "Error",
+    "toast_checkin_failed_desc": "No se pudo guardar el check-in. Inténtalo de nuevo.",
+    "toast_reset_failed_title": "Error",
+    "toast_reset_failed_desc": "No se pudo reiniciar. Inténtalo de nuevo.",
+    "toast_resumed_title": "Desafío reanudado",
+    "toast_resumed_desc_with_jokers": "¡Sigamos!",
+    "toast_resumed_desc_no_jokers": "No quedan comodines — cualquier recaída lo pausará de nuevo.",
+    "toast_resume_failed_title": "Error",
+    "toast_resume_failed_desc": "No se pudo reanudar. Inténtalo de nuevo.",
+    "toast_abandoned_title": "Desafío abandonado",
+    "toast_abandoned_desc": "Puedes empezar de nuevo cuando quieras.",
+    "toast_abandon_failed_title": "Error",
+    "toast_abandon_failed_desc": "No se pudo abandonar el desafío. Inténtalo de nuevo."
   },
 
   "locked_preview": {
@@ -1107,7 +1130,9 @@
     "failed_desc": "No se pudo generar el informe",
     "habit_updated_title": "¡Hábito actualizado! ✓",
     "habit_updated_desc": "Cambiado a «{{title}}»",
-    "failed_update_habit": "No se pudo actualizar el hábito"
+    "failed_update_habit": "No se pudo actualizar el hábito",
+    "suggestion_ignored_title": "Sugerencia ignorada",
+    "suggestion_ignored_desc": "El hábito permanece sin cambios"
   },
 
   "not_found": {

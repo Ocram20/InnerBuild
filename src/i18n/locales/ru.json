@@ -1045,7 +1045,30 @@
       "feature_2": "Отслеживайте свою текущую и самую длинную серию",
       "feature_3": "Начните заново в любое время",
       "start": "Начать челлендж"
-    }
+    },
+    "toast_started_title": "Челлендж начат",
+    "toast_started_desc": "Ваш путь восстановления начался. Удачи!",
+    "toast_start_failed_title": "Ошибка",
+    "toast_start_failed_desc": "Не удалось начать челлендж. Попробуйте снова.",
+    "toast_success_title": "Отлично!",
+    "toast_success_desc": "День {{day}} выполнен. Продолжайте!",
+    "toast_paused_title": "Челлендж на паузе",
+    "toast_paused_desc": "Джокеров не осталось. Возобновите или сбросьте, чтобы продолжить.",
+    "toast_joker_used_title": "Держитесь",
+    "toast_joker_used_desc": "Джокер использован (осталось {{remaining}}). День не засчитывается — попробуете снова.",
+    "toast_checkin_failed_title": "Ошибка",
+    "toast_checkin_failed_desc": "Не удалось сохранить чек-ин. Попробуйте снова.",
+    "toast_reset_failed_title": "Ошибка",
+    "toast_reset_failed_desc": "Не удалось сбросить. Попробуйте снова.",
+    "toast_resumed_title": "Челлендж возобновлён",
+    "toast_resumed_desc_with_jokers": "Продолжаем!",
+    "toast_resumed_desc_no_jokers": "Джокеров не осталось — любой срыв снова поставит на паузу.",
+    "toast_resume_failed_title": "Ошибка",
+    "toast_resume_failed_desc": "Не удалось возобновить. Попробуйте снова.",
+    "toast_abandoned_title": "Челлендж прекращён",
+    "toast_abandoned_desc": "Вы можете начать снова в любое время.",
+    "toast_abandon_failed_title": "Ошибка",
+    "toast_abandon_failed_desc": "Не удалось прекратить челлендж. Попробуйте снова."
   },
 
   "locked_preview": {
@@ -1107,7 +1130,9 @@
     "failed_desc": "Не удалось сгенерировать отчет",
     "habit_updated_title": "Привычка обновлена! ✓",
     "habit_updated_desc": "Изменено на «{{title}}»",
-    "failed_update_habit": "Не удалось обновить привычку"
+    "failed_update_habit": "Не удалось обновить привычку",
+    "suggestion_ignored_title": "Предложение отклонено",
+    "suggestion_ignored_desc": "Привычка останется без изменений"
   },
 
   "not_found": {

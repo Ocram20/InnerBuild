@@ -1045,7 +1045,30 @@
       "feature_2": "Verfolge deine aktuelle und längste Serie",
       "feature_3": "Jederzeit neu starten",
       "start": "Challenge starten"
-    }
+    },
+    "toast_started_title": "Challenge gestartet",
+    "toast_started_desc": "Dein Recovery‑Weg hat begonnen. Viel Erfolg!",
+    "toast_start_failed_title": "Fehler",
+    "toast_start_failed_desc": "Challenge konnte nicht gestartet werden. Bitte versuche es erneut.",
+    "toast_success_title": "Super gemacht!",
+    "toast_success_desc": "Tag {{day}} geschafft. Weiter so!",
+    "toast_paused_title": "Challenge pausiert",
+    "toast_paused_desc": "Keine Joker mehr übrig. Setze fort oder resette, um weiterzumachen.",
+    "toast_joker_used_title": "Bleib stark",
+    "toast_joker_used_desc": "Joker verwendet ({{remaining}} übrig). Der Tag zählt nicht weiter — du versuchst es erneut.",
+    "toast_checkin_failed_title": "Fehler",
+    "toast_checkin_failed_desc": "Check-in konnte nicht gespeichert werden. Bitte versuche es erneut.",
+    "toast_reset_failed_title": "Fehler",
+    "toast_reset_failed_desc": "Reset nicht möglich. Bitte versuche es erneut.",
+    "toast_resumed_title": "Challenge fortgesetzt",
+    "toast_resumed_desc_with_jokers": "Weiter geht’s!",
+    "toast_resumed_desc_no_jokers": "Keine Joker mehr — jeder Rückfall pausiert sie erneut.",
+    "toast_resume_failed_title": "Fehler",
+    "toast_resume_failed_desc": "Fortsetzen nicht möglich. Bitte versuche es erneut.",
+    "toast_abandoned_title": "Challenge beendet",
+    "toast_abandoned_desc": "Du kannst jederzeit neu starten.",
+    "toast_abandon_failed_title": "Fehler",
+    "toast_abandon_failed_desc": "Challenge konnte nicht beendet werden. Bitte versuche es erneut."
   },
 
   "locked_preview": {
@@ -1107,7 +1130,9 @@
     "failed_desc": "Der Bericht konnte nicht erstellt werden",
     "habit_updated_title": "Gewohnheit aktualisiert! ✓",
     "habit_updated_desc": "Geändert zu „{{title}}“",
-    "failed_update_habit": "Die Gewohnheit konnte nicht aktualisiert werden"
+    "failed_update_habit": "Die Gewohnheit konnte nicht aktualisiert werden",
+    "suggestion_ignored_title": "Vorschlag ignoriert",
+    "suggestion_ignored_desc": "Die Gewohnheit bleibt unverändert"
   },
 
   "not_found": {

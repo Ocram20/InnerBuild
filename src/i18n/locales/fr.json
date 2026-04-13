@@ -1045,7 +1045,30 @@
       "feature_2": "Suivez votre série actuelle et la plus longue",
       "feature_3": "Recommencez à tout moment",
       "start": "Commencer le défi"
-    }
+    },
+    "toast_started_title": "Défi commencé",
+    "toast_started_desc": "Votre parcours de récupération a commencé. Bon courage !",
+    "toast_start_failed_title": "Erreur",
+    "toast_start_failed_desc": "Impossible de démarrer le défi. Réessayez.",
+    "toast_success_title": "Bravo !",
+    "toast_success_desc": "Jour {{day}} terminé. Continuez !",
+    "toast_paused_title": "Défi en pause",
+    "toast_paused_desc": "Plus de jokers. Reprenez ou réinitialisez pour continuer.",
+    "toast_joker_used_title": "Tenez bon",
+    "toast_joker_used_desc": "Joker utilisé ({{remaining}} restant(s)). Le jour n’avance pas — vous réessayerez.",
+    "toast_checkin_failed_title": "Erreur",
+    "toast_checkin_failed_desc": "Impossible d’enregistrer le check-in. Réessayez.",
+    "toast_reset_failed_title": "Erreur",
+    "toast_reset_failed_desc": "Impossible de réinitialiser. Réessayez.",
+    "toast_resumed_title": "Défi repris",
+    "toast_resumed_desc_with_jokers": "On continue !",
+    "toast_resumed_desc_no_jokers": "Plus de jokers — toute rechute le remettra en pause.",
+    "toast_resume_failed_title": "Erreur",
+    "toast_resume_failed_desc": "Impossible de reprendre. Réessayez.",
+    "toast_abandoned_title": "Défi abandonné",
+    "toast_abandoned_desc": "Vous pouvez recommencer quand vous voulez.",
+    "toast_abandon_failed_title": "Erreur",
+    "toast_abandon_failed_desc": "Impossible d’abandonner le défi. Réessayez."
   },
 
   "locked_preview": {
@@ -1107,7 +1130,9 @@
     "failed_desc": "Impossible de générer le rapport",
     "habit_updated_title": "Habitude mise à jour ! ✓",
     "habit_updated_desc": "Modifiée en « {{title}} »",
-    "failed_update_habit": "Impossible de mettre à jour l'habitude"
+    "failed_update_habit": "Impossible de mettre à jour l'habitude",
+    "suggestion_ignored_title": "Suggestion ignorée",
+    "suggestion_ignored_desc": "L’habitude reste inchangée"
   },
 
   "not_found": {

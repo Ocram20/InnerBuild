@@ -1053,7 +1053,30 @@
       "feature_2": "Monitora la tua serie attuale e la più lunga",
       "feature_3": "Ricomincia da zero quando vuoi",
       "start": "Inizia Sfida"
-    }
+    },
+    "toast_started_title": "Sfida iniziata",
+    "toast_started_desc": "Il tuo percorso di recupero è iniziato. In bocca al lupo!",
+    "toast_start_failed_title": "Errore",
+    "toast_start_failed_desc": "Impossibile avviare la sfida. Riprova.",
+    "toast_success_title": "Ottimo lavoro!",
+    "toast_success_desc": "Giorno {{day}} fatto. Continua così!",
+    "toast_paused_title": "Sfida in pausa",
+    "toast_paused_desc": "Nessun jolly rimasto. Riprendi o resetta per continuare.",
+    "toast_joker_used_title": "Resta forte",
+    "toast_joker_used_desc": "Jolly usato ({{remaining}} rimasti). Il giorno non avanza — riproverai.",
+    "toast_checkin_failed_title": "Errore",
+    "toast_checkin_failed_desc": "Impossibile registrare il check-in. Riprova.",
+    "toast_reset_failed_title": "Errore",
+    "toast_reset_failed_desc": "Impossibile resettare. Riprova.",
+    "toast_resumed_title": "Sfida ripresa",
+    "toast_resumed_desc_with_jokers": "Continuiamo!",
+    "toast_resumed_desc_no_jokers": "Nessun jolly rimasto — ogni ricaduta metterà di nuovo in pausa.",
+    "toast_resume_failed_title": "Errore",
+    "toast_resume_failed_desc": "Impossibile riprendere. Riprova.",
+    "toast_abandoned_title": "Sfida abbandonata",
+    "toast_abandoned_desc": "Puoi ricominciare quando vuoi.",
+    "toast_abandon_failed_title": "Errore",
+    "toast_abandon_failed_desc": "Impossibile abbandonare la sfida. Riprova."
   },
 
   "locked_preview": {
@@ -1115,7 +1138,9 @@
     "failed_desc": "Impossibile generare il report",
     "habit_updated_title": "Abitudine aggiornata! ✓",
     "habit_updated_desc": "Cambiata in \"{{title}}\"",
-    "failed_update_habit": "Impossibile aggiornare l'abitudine"
+    "failed_update_habit": "Impossibile aggiornare l'abitudine",
+    "suggestion_ignored_title": "Suggerimento ignorato",
+    "suggestion_ignored_desc": "L'abitudine resta invariata"
   },
 
   "not_found": {
