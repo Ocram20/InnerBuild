@@ -2,25 +2,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 
 /**
- * Deletes expired daily-planning items (target_date before today).
- * Keeps today's and tomorrow's plans untouched.
+ * Keeps daily-planning data intact for historical calendar/activity views.
+ * We intentionally avoid hard-deleting past rows so users can still review
+ * completed vs missed tasks in previous days.
  */
 export async function cleanupExpiredDailyPlanningItems(userId?: string) {
   if (!userId) return;
 
-  // Use LOCAL day (not UTC) to avoid deleting "today" items late at night.
+  // Run a lightweight query to keep a valid async flow/caller contract.
+  // (No-op cleanup by design; UI hides non-current planning dates.)
   const todayISO = format(new Date(), "yyyy-MM-dd");
-
-  await Promise.all([
-    supabase
-      .from("daily_tasks")
-      .delete()
-      .eq("user_id", userId)
-      .lt("target_date", todayISO),
-    supabase
-      .from("not_to_do_items")
-      .delete()
-      .eq("user_id", userId)
-      .lt("target_date", todayISO),
-  ]);
+  await supabase
+    .from("daily_tasks")
+    .select("id")
+    .eq("user_id", userId)
+    .lt("target_date", todayISO)
+    .limit(1);
 }

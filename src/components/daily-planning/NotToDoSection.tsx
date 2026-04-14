@@ -10,6 +10,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface NotToDoItem {
   id: string;
@@ -28,7 +29,7 @@ const SUGGESTED_NOT_TO_DO_KEY = "not_to_do_section.suggested_items";
 
 
 export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSectionProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [items, setItems] = useState<NotToDoItem[]>([]);
   const [newItem, setNewItem] = useState("");
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,9 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
   const { toast } = useToast();
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
+  const rawItemTitles = items.map((item) => item.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawItemTitles, shouldTranslateContent && rawItemTitles.length > 0);
   useEffect(() => {
     if (userId) {
       fetchItems();
@@ -189,7 +193,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         <div {...provided.dragHandleProps} className="cursor-grab">
           <GripVertical className="h-4 w-4 text-muted-foreground" />
         </div>
-        <span className="flex-1 text-sm">{item.title}</span>
+        <span className="flex-1 text-sm">{shouldTranslateContent ? display(item.title) : item.title}</span>
 
         <div className="flex gap-1">
           <Button

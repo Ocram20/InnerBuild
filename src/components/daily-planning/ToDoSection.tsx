@@ -1,24 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { Plus, Trash2, Edit2, Check, X, ListTodo, GripVertical } from "lucide-react";
+import { Plus, Trash2, Edit2, Check, X, ListTodo } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface Task {
   id: string;
   title: string;
   description: string | null;
   is_completed: boolean;
-  order_index?: number;
+  created_at: string;
 }
+
+type TaskPriority = "focus" | "standard" | "quick";
 
 interface ToDoSectionProps {
   userId: string | undefined;
@@ -31,15 +33,68 @@ interface ToDoSectionProps {
 export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
+  const [newTaskPriority, setNewTaskPriority] = useState<TaskPriority>("standard");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState("");
   const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { toast } = useToast();
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
   const SUGGESTED_TASKS = t("todo_section.suggested_tasks", { returnObjects: true }) as string[];
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
+  const rawTaskTitles = tasks.map((task) => task.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawTaskTitles, shouldTranslateContent && rawTaskTitles.length > 0);
+  const priorityCycle: TaskPriority[] = ["focus", "standard", "quick"];
+
+  const getPriority = (task: Pick<Task, "description">): TaskPriority => {
+    const raw = (task.description || "").trim();
+    if (raw === "__priority:focus") return "focus";
+    if (raw === "__priority:quick") return "quick";
+    return "standard";
+  };
+
+  const encodePriority = (priority: TaskPriority): string => `__priority:${priority}`;
+  const priorityOrder: Record<TaskPriority, number> = { focus: 0, standard: 1, quick: 2 };
+  const priorityAccent: Record<TaskPriority, string> = {
+    focus: "border-l-[#ff7f6e]",
+    standard: "border-l-primary",
+    quick: "border-l-zinc-500",
+  };
+
+  const priorityTitle = (priority: TaskPriority) => {
+    if (priority === "focus") {
+      return t("todo_section.priority_focus_title", { defaultValue: "Focus del Giorno" });
+    }
+    if (priority === "quick") {
+      return t("todo_section.priority_quick_title", { defaultValue: "Quick Wins" });
+    }
+    return t("todo_section.priority_standard_title", { defaultValue: "Obiettivi Standard" });
+  };
+
+  const priorityHint = (priority: TaskPriority) => {
+    if (priority === "focus") {
+      return t("todo_section.priority_focus_hint", { defaultValue: "Priorita alta - max 3 task" });
+    }
+    if (priority === "quick") {
+      return t("todo_section.priority_quick_hint", { defaultValue: "Priorita bassa - se avanza tempo" });
+    }
+    return t("todo_section.priority_standard_hint", { defaultValue: "Priorita media" });
+  };
+
+  const sortedTasks = useMemo(() => {
+    return [...tasks].sort((a, b) => {
+      const pa = priorityOrder[getPriority(a)];
+      const pb = priorityOrder[getPriority(b)];
+      if (pa !== pb) return pa - pb;
+      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+    });
+  }, [tasks]);
+
+  const focusTasks = sortedTasks.filter((task) => getPriority(task) === "focus");
+  const standardTasks = sortedTasks.filter((task) => getPriority(task) === "standard");
+  const quickTasks = sortedTasks.filter((task) => getPriority(task) === "quick");
 
   useEffect(() => {
     if (userId) {
@@ -71,12 +126,20 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
     if (!userId) return;
     const taskTitle = title || newTask.trim();
     if (!taskTitle) return;
+    if (newTaskPriority === "focus" && focusTasks.length >= 3) {
+      toast({
+        title: t("todo_section.focus_limit_title", { defaultValue: "Limite Focus raggiunto" }),
+        description: t("todo_section.focus_limit_desc", { defaultValue: "Puoi inserire massimo 3 task in Focus del Giorno." }),
+      });
+      return;
+    }
 
     const { data, error } = await supabase
       .from("daily_tasks")
       .insert({
         user_id: userId,
         title: taskTitle,
+        description: encodePriority(newTaskPriority),
         target_date: targetDate,
       })
       .select()
@@ -89,7 +152,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         variant: "destructive",
       });
     } else if (data) {
-      setTasks([...tasks, data]);
+      setTasks([...tasks, data as Task]);
       setNewTask("");
       setShowSuggestions(false);
       toast({
@@ -165,15 +228,10 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
       setEditingTitle("");
     }
   };
-
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
-
-    const items = Array.from(tasks);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setTasks(items);
+  const cyclePriority = () => {
+    const currentIndex = priorityCycle.indexOf(newTaskPriority);
+    const next = priorityCycle[(currentIndex + 1) % priorityCycle.length];
+    setNewTaskPriority(next);
   };
 
   const completedCount = tasks.filter(t => t.is_completed).length;
@@ -185,35 +243,14 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
 
   const allTasksComplete = tasks.length > 0 && tasks.every(t => t.is_completed);
 
-  const renderTaskRow = (
-    task: Task,
-    provided: DraggableProvided,
-    snapshot: DraggableStateSnapshot,
-    options?: { isClone?: boolean }
-  ) => {
-    const isClone = options?.isClone ?? false;
-
+  const renderTaskRow = (task: Task) => {
+    const priority = getPriority(task);
     return (
       <div
-        ref={provided.innerRef}
-        {...provided.draggableProps}
-        style={{
-          ...provided.draggableProps.style,
-          opacity: 1,
-        }}
-        className={`flex items-center gap-3 p-3 rounded-lg border transition-colors ${
-          isClone ? "pointer-events-none" : ""
-        } ${
-          snapshot.isDragging
-            ? "shadow-lg bg-card border-primary/30 z-50"
-            : task.is_completed
-              ? "bg-success/5 border-success/20"
-              : "bg-muted/30 border-border/50 hover:border-border"
-        }`}
+        className={`flex items-center gap-3 p-3 rounded-lg border border-l-2 transition-colors ${
+          task.is_completed ? "bg-success/5 border-success/20" : "bg-muted/30 border-border/50 hover:border-border"
+        } ${priorityAccent[priority]}`}
       >
-        <div {...provided.dragHandleProps} className="cursor-grab">
-          <GripVertical className="h-4 w-4 text-muted-foreground" />
-        </div>
         <Checkbox
           checked={task.is_completed}
           onCheckedChange={() => toggleTask(task)}
@@ -239,7 +276,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         ) : (
           <>
             <span className={`flex-1 ${task.is_completed ? "line-through text-muted-foreground" : ""}`}>
-              {task.title}
+              {shouldTranslateContent ? display(task.title) : task.title}
             </span>
             <div className="flex gap-1">
               <Button size="icon" variant="ghost" onClick={() => startEditing(task)} className="h-8 w-8">
@@ -286,19 +323,6 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         )}
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex gap-2">
-          <Input
-            placeholder={t("todo_section.add_task")}
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && addTask()}
-            className="flex-1"
-          />
-          <Button onClick={() => addTask()} size="icon" className="shrink-0">
-            <Plus className="h-4 w-4" />
-          </Button>
-        </div>
-
         {showSuggestions && availableSuggestions.length > 0 && (
           <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
             <p className="text-xs font-medium text-muted-foreground mb-2">
@@ -321,40 +345,83 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
           </div>
         )}
 
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable
-            droppableId="tasks"
-            renderClone={(provided, snapshot, rubric: DraggableRubric) => {
-              const task = tasks[rubric.source.index];
-              return task ? renderTaskRow(task, provided, snapshot, { isClone: true }) : null;
-            }}
+        <div className="flex gap-2">
+          <Input
+            placeholder={t("todo_section.add_task")}
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && addTask()}
+            className="flex-1"
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={cyclePriority}
+            className="shrink-0 min-w-[124px] text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+            title={priorityHint(newTaskPriority)}
           >
-            {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className="space-y-2 max-h-64 overflow-y-auto"
-              >
-                {loading ? (
-                  <div className="flex items-center justify-center py-4"><LoadingSpinner /></div>
-                ) : tasks.length === 0 ? (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <ListTodo className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p>{t("todo_section.no_tasks")}</p>
-                    <p className="text-sm">{t("todo_section.add_goals", { day: dayLabelLower })}</p>
-                  </div>
-                ) : (
-                  tasks.map((task, index) => (
-                    <Draggable key={task.id} draggableId={task.id} index={index}>
-                      {(provided, snapshot) => renderTaskRow(task, provided, snapshot)}
-                    </Draggable>
-                  ))
-                )}
-                {provided.placeholder}
+            {priorityTitle(newTaskPriority)}
+          </Button>
+          <Button onClick={() => addTask()} size="icon" className="shrink-0">
+            <Plus className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
+          {loading ? (
+            <div className="flex items-center justify-center py-4"><LoadingSpinner /></div>
+          ) : sortedTasks.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <ListTodo className="h-10 w-10 mx-auto mb-2 opacity-50" />
+              <p>{t("todo_section.no_tasks")}</p>
+              <p className="text-sm">{t("todo_section.add_goals", { day: dayLabelLower })}</p>
+            </div>
+          ) : (
+            <>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70">
+                    {priorityTitle("focus")}
+                  </p>
+                  <span className="text-[11px] text-muted-foreground/70">{focusTasks.length}/3</span>
+                </div>
+                <div className="space-y-2 border-t border-border/40 pt-2">
+                  {focusTasks.length > 0 ? (
+                    focusTasks.map(renderTaskRow)
+                  ) : (
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_focus", { defaultValue: "Nessun task focus." })}</p>
+                  )}
+                </div>
               </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70">
+                  {priorityTitle("standard")}
+                </p>
+                <div className="space-y-2 border-t border-border/40 pt-2">
+                  {standardTasks.length > 0 ? (
+                    standardTasks.map(renderTaskRow)
+                  ) : (
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_standard", { defaultValue: "Nessun obiettivo standard." })}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70">
+                  {priorityTitle("quick")}
+                </p>
+                <div className="space-y-2 border-t border-border/40 pt-2">
+                  {quickTasks.length > 0 ? (
+                    quickTasks.map(renderTaskRow)
+                  ) : (
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_quick", { defaultValue: "Nessun quick win." })}</p>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

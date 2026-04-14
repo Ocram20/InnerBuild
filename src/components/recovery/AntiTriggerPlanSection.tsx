@@ -7,22 +7,32 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface AntiTriggerPlan {
   id: string;
   trigger: string;
   action: string;
   benefit: string;
+  source_lang?: string;
 }
 
+/** Sentinel date for storing anti-trigger plans in journal_entries (date column). */
+const ANTI_TRIGGER_ENTRY_DATE = "2000-01-02";
+
 export function AntiTriggerPlanSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [plans, setPlans] = useState<AntiTriggerPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [newPlan, setNewPlan] = useState({ trigger: "", action: "", benefit: "" });
+  const currentLang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
+  const rawPlanStrings = plans.flatMap((p) => [p.trigger, p.action, p.benefit]).filter(
+    (v): v is string => typeof v === "string" && v.trim().length > 0
+  );
+  const { display } = useUiBatchTranslation(rawPlanStrings, rawPlanStrings.length > 0);
 
   useEffect(() => {
     if (user) {
@@ -38,7 +48,7 @@ export function AntiTriggerPlanSection() {
         .from("journal_entries")
         .select("*")
         .eq("user_id", user.id)
-        .eq("entry_date", "anti-trigger-plans")
+        .eq("entry_date", ANTI_TRIGGER_ENTRY_DATE)
         .maybeSingle();
 
       if (data?.content) {
@@ -65,7 +75,7 @@ export function AntiTriggerPlanSection() {
         .from("journal_entries")
         .select("id")
         .eq("user_id", user.id)
-        .eq("entry_date", "anti-trigger-plans")
+        .eq("entry_date", ANTI_TRIGGER_ENTRY_DATE)
         .maybeSingle();
 
       if (existing) {
@@ -73,7 +83,7 @@ export function AntiTriggerPlanSection() {
       } else {
         await supabase.from("journal_entries").insert({
           user_id: user.id,
-          entry_date: "anti-trigger-plans",
+          entry_date: ANTI_TRIGGER_ENTRY_DATE,
           content: JSON.stringify(updatedPlans),
         });
       }
@@ -102,6 +112,7 @@ export function AntiTriggerPlanSection() {
 
     const plan: AntiTriggerPlan = {
       id: Date.now().toString(),
+      source_lang: currentLang,
       ...newPlan,
     };
 
@@ -142,11 +153,14 @@ export function AntiTriggerPlanSection() {
               <div key={plan.id} className="p-3 rounded-lg bg-muted/30 border border-border/50 group">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm">
-                    {t("anti_trigger_plan.template", {
-                      trigger: plan.trigger,
-                      action: plan.action,
-                      benefit: plan.benefit,
-                    })}
+                      {(() => {
+                        const shouldTranslatePlan = (plan.source_lang || currentLang) !== currentLang;
+                        return t("anti_trigger_plan.template", {
+                          trigger: shouldTranslatePlan ? display(plan.trigger) : plan.trigger,
+                          action: shouldTranslatePlan ? display(plan.action) : plan.action,
+                          benefit: shouldTranslatePlan ? display(plan.benefit) : plan.benefit,
+                        });
+                      })()}
                   </p>
                   <Button
                     variant="ghost"

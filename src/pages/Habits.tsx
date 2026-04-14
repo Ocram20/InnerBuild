@@ -152,14 +152,14 @@ export default function Habits() {
               <DialogDescription className="mt-2 text-sm">
                 {t("habits.guide_subtitle")}
               </DialogDescription>
-              <div className="mt-2 text-sm space-y-4">
-                <h3 className="font-medium">{t("habits.guide_content.intro_title")}</h3>
+              <div className="mt-2 text-sm text-muted-foreground space-y-4">
+                <h3 className="font-medium text-muted-foreground">{t("habits.guide_content.intro_title")}</h3>
                 <p>{t("habits.guide_content.intro_p1")}</p>
                 <p>{t("habits.guide_content.intro_p2")}</p>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.identity_title")}</h3>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.identity_title")}</h3>
                 <p>{t("habits.guide_content.identity_p1")}</p>
                 <p>{t("habits.guide_content.identity_p2")}</p>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.understanding_title")}</h3>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.understanding_title")}</h3>
                 <p>{t("habits.guide_content.understanding_p1")}</p>
                 <ul className="list-disc list-inside ml-4">
                   <li><strong>{t("habits.guide_content.understanding_cue")}</strong> – {t("habits.guide_content.understanding_cue_desc")}</li>
@@ -167,45 +167,45 @@ export default function Habits() {
                   <li><strong>{t("habits.guide_content.understanding_response")}</strong> – {t("habits.guide_content.understanding_response_desc")}</li>
                   <li><strong>{t("habits.guide_content.understanding_reward")}</strong> – {t("habits.guide_content.understanding_reward_desc")}</li>
                 </ul>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.laws_title")}</h3>
-                <h4 className="font-medium mt-3">{t("habits.guide_content.law1_title")}</h4>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.laws_title")}</h3>
+                <h4 className="font-medium text-muted-foreground mt-3">{t("habits.guide_content.law1_title")}</h4>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.law1_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h4 className="font-medium mt-3">{t("habits.guide_content.law2_title")}</h4>
+                <h4 className="font-medium text-muted-foreground mt-3">{t("habits.guide_content.law2_title")}</h4>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.law2_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h4 className="font-medium mt-3">{t("habits.guide_content.law3_title")}</h4>
+                <h4 className="font-medium text-muted-foreground mt-3">{t("habits.guide_content.law3_title")}</h4>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.law3_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h4 className="font-medium mt-3">{t("habits.guide_content.law4_title")}</h4>
+                <h4 className="font-medium text-muted-foreground mt-3">{t("habits.guide_content.law4_title")}</h4>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.law4_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.breaking_title")}</h3>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.breaking_title")}</h3>
                 <p>{t("habits.guide_content.breaking_intro")}</p>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.breaking_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.advanced_title")}</h3>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.advanced_title")}</h3>
                 <ul className="list-disc list-inside ml-4">
                   {(t("habits.guide_content.advanced_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <h3 className="font-medium mt-4">{t("habits.guide_content.final_title")}</h3>
+                <h3 className="font-medium text-muted-foreground mt-4">{t("habits.guide_content.final_title")}</h3>
                 <p>{t("habits.guide_content.final_p1")}</p>
                 <p className="font-medium italic">{t("habits.guide_content.final_p2")}</p>
               </div>

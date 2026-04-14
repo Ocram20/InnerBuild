@@ -7,10 +7,13 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 interface Task {
   id: string;
   title: string;
   is_completed: boolean;
+  description?: string | null;
+  created_at?: string;
 }
 
 interface NotToDoItem {
@@ -24,7 +27,7 @@ interface QuickAccessTodosProps {
 }
 
 export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [todos, setTodos] = useState<Task[]>([]);
   const [notTodos, setNotTodos] = useState<NotToDoItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +35,11 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
   const navigate = useNavigate();
   const pollingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const targetDate = format(new Date(), "yyyy-MM-dd");
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
+  const rawStrings = [...todos.map((task) => task.title), ...notTodos.map((item) => item.title)].filter(
+    (v): v is string => typeof v === "string" && v.trim().length > 0
+  );
+  const { display } = useUiBatchTranslation(rawStrings, shouldTranslateContent && rawStrings.length > 0);
 
   const fetchTodosAndNotTodos = async () => {
     if (!userId) return;
@@ -40,11 +48,10 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
       await cleanupExpiredDailyPlanningItems(userId);
       const { data: todosData, error: todosError } = await supabase
         .from("daily_tasks")
-        .select("id, title, is_completed")
+        .select("id, title, is_completed, description, created_at")
         .eq("user_id", userId)
         .eq("target_date", targetDate)
-        .order("created_at", { ascending: true })
-        .limit(5);
+        .order("created_at", { ascending: true });
 
       const { data: notTodosData, error: notTodosError } = await supabase
         .from("not_to_do_items")
@@ -57,7 +64,18 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
       if (todosError) console.error("Error fetching todos:", todosError);
       if (notTodosError) console.error("Error fetching not-to-do items:", notTodosError);
 
-      setTodos(todosData || []);
+      const getPriorityOrder = (description?: string | null) => {
+        if ((description || "").trim() === "__priority:focus") return 0;
+        if ((description || "").trim() === "__priority:quick") return 2;
+        return 1;
+      };
+      const sortedTodos = [...(todosData || [])].sort((a, b) => {
+        const pa = getPriorityOrder(a.description);
+        const pb = getPriorityOrder(b.description);
+        if (pa !== pb) return pa - pb;
+        return new Date(a.created_at || 0).getTime() - new Date(b.created_at || 0).getTime();
+      });
+      setTodos(sortedTodos.slice(0, 5));
       setNotTodos((notTodosData || []).map(item => ({
         ...item,
         status: item.status as "pending" | "avoided" | "broken",
@@ -232,7 +250,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                         : "text-foreground"
                     }`}
                   >
-                    {task.title}
+                    {shouldTranslateContent ? display(task.title) : task.title}
                   </span>
                 </button>
               ))}
@@ -270,7 +288,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                       ? "line-through text-muted-foreground"
                       : "text-foreground"
                   }`}>
-                    {item.title}
+                    {shouldTranslateContent ? display(item.title) : item.title}
                   </span>
                 </button>
               ))}

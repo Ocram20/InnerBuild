@@ -24,13 +24,13 @@ export interface LocalizedArticle {
   created_at: string;
 }
 
-function localizeArticle(article: Article, lang: string): LocalizedArticle {
-  const isIt = lang === "it";
+function localizeArticle(article: Article): LocalizedArticle {
   return {
     id: article.id,
-    title: (isIt && article.title_it) ? article.title_it : article.title,
-    content: (isIt && article.content_it) ? article.content_it : article.content,
-    summary: (isIt && article.summary_it) ? article.summary_it : article.summary,
+    // Use a single source text; UI handles runtime translation.
+    title: article.title_it || article.title,
+    content: article.content_it || article.content,
+    summary: article.summary_it || article.summary,
     published_at: article.published_at,
     is_published: article.is_published,
     created_at: article.created_at,
@@ -46,7 +46,7 @@ export function useArticles() {
         .order("published_at", { ascending: false });
 
       if (error) throw error;
-      return (data as Article[]).map(a => localizeArticle(a, i18n.language));
+      return (data as Article[]).map((a) => localizeArticle(a));
     },
   });
 }
@@ -63,7 +63,7 @@ export function useArticle(id: string | undefined) {
         .single();
 
       if (error) throw error;
-      return localizeArticle(data as Article, i18n.language);
+      return localizeArticle(data as Article);
     },
     enabled: !!id,
   });

@@ -5,6 +5,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { it, enUS } from "date-fns/locale";
 import type { LocalizedArticle } from "@/hooks/useArticles";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface ArticleCardProps {
   article: LocalizedArticle;
@@ -12,8 +13,11 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, onClick }: ArticleCardProps) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
+  const rawStrings = [article.title, article.summary].filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawStrings, shouldTranslateContent && rawStrings.length > 0);
   const publishedDate = new Date(article.published_at);
   const isRecent = Date.now() - publishedDate.getTime() < 7 * 24 * 60 * 60 * 1000;
 
@@ -28,7 +32,7 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
             <div className="flex items-center gap-2 mb-2">
               {isRecent && (
                 <Badge variant="default" className="text-xs bg-primary/10 text-primary border-0">
-                  {"Nuovo"}
+                  {t("common.new")}
                 </Badge>
               )}
               <span className="text-xs text-muted-foreground flex items-center gap-1">
@@ -37,7 +41,7 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
               </span>
             </div>
             <h3 className="font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-              {article.title}
+              {shouldTranslateContent ? display(article.title) : article.title}
             </h3>
           </div>
           <ChevronRight className="h-5 w-5 text-muted-foreground shrink-0 group-hover:text-primary transition-colors" />
@@ -45,7 +49,7 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
       </CardHeader>
       <CardContent className="pt-0">
         <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
-          {article.summary}
+          {shouldTranslateContent ? display(article.summary) : article.summary}
         </p>
         <div className="flex items-center gap-1 mt-3 text-xs text-muted-foreground">
           <Clock className="h-3 w-3" />

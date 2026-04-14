@@ -6,6 +6,7 @@ import { it, enUS } from "date-fns/locale";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { LocalizedArticle } from "@/hooks/useArticles";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface ArticleDetailProps {
   article: LocalizedArticle | null | undefined;
@@ -14,15 +15,23 @@ interface ArticleDetailProps {
 }
 
 export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
+  const contentBlocks = article?.content ? article.content.split("\\n\\n") : [];
+  const rawStrings = article
+    ? [article.title, article.summary, ...contentBlocks]
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0)
+    : [];
+  const { display } = useUiBatchTranslation(rawStrings, shouldTranslateContent && rawStrings.length > 0);
 
   if (isLoading) {
     return (
       <div className="space-y-6">
         <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          {"Torna agli articoli"}
+          {t("learn_content.back_to_articles")}
         </Button>
         <div className="space-y-4">
           <Skeleton className="h-8 w-3/4" />
@@ -43,10 +52,10 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
       <div className="space-y-6">
         <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          {"Torna agli articoli"}
+          {t("learn_content.back_to_articles")}
         </Button>
         <div className="text-center py-12">
-          <p className="text-muted-foreground">{"Articolo non trovato"}</p>
+          <p className="text-muted-foreground">{t("learn_content.no_articles_title")}</p>
         </div>
       </div>
     );
@@ -58,13 +67,13 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
     <div className="space-y-6">
       <Button variant="ghost" size="sm" onClick={onBack} className="gap-2 -ml-2">
         <ArrowLeft className="h-4 w-4" />
-        {"Torna agli articoli"}
+        {t("learn_content.back_to_articles")}
       </Button>
 
       <article className="space-y-6">
         <header className="space-y-4">
           <h1 className="text-2xl font-bold leading-tight tracking-tight">
-            {article.title}
+            {shouldTranslateContent ? display(article.title) : article.title}
           </h1>
           
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -79,54 +88,55 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
           </div>
 
           <p className="text-muted-foreground leading-relaxed text-base italic border-l-2 border-primary/30 pl-4">
-            {article.summary}
+            {shouldTranslateContent ? display(article.summary) : article.summary}
           </p>
         </header>
 
         <Separator />
 
         <div className="space-y-4">
-          {article.content.split("\\n\\n").map((block, index) => {
+          {contentBlocks.map((block, index) => {
             const trimmed = block.trim();
+            const shown = shouldTranslateContent ? display(trimmed) : trimmed;
             
-            if (trimmed.startsWith('## ')) {
+            if (shown.startsWith('## ')) {
               return (
                 <h2 key={index} className="text-xl font-bold text-foreground mt-6 mb-2">
-                  {trimmed.replace(/^##\s*/, '')}
+                  {shown.replace(/^##\s*/, '')}
                 </h2>
               );
             }
             
-            if (trimmed.startsWith('### ')) {
+            if (shown.startsWith('### ')) {
               return (
                 <h3 key={index} className="text-lg font-semibold text-foreground mt-4 mb-1">
-                  {trimmed.replace(/^###\s*/, '')}
+                  {shown.replace(/^###\s*/, '')}
                 </h3>
               );
             }
 
-            if (trimmed.startsWith('# ')) {
+            if (shown.startsWith('# ')) {
               return (
                 <h2 key={index} className="text-xl font-bold text-foreground mt-6 mb-2">
-                  {trimmed.replace(/^#\s*/, '')}
+                  {shown.replace(/^#\s*/, '')}
                 </h2>
               );
             }
 
-            if (trimmed.split("\\n").every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
+            if (shown.split("\\n").every(line => /^[\-\*]\s/.test(line.trim()) || line.trim() === '')) {
               return (
                 <ul key={index} className="list-disc pl-5 space-y-1 text-foreground/90 leading-relaxed text-sm">
-                  {trimmed.split("\\n").filter(l => l.trim()).map((item, i) => (
+                  {shown.split("\\n").filter(l => l.trim()).map((item, i) => (
                     <li key={i}>{item.replace(/^[\-\*]\s*/, '')}</li>
                   ))}
                 </ul>
               );
             }
 
-            if (/^\*\*(.+)\*\*$/.test(trimmed) && !trimmed.includes('\n')) {
+            if (/^\*\*(.+)\*\*$/.test(shown) && !shown.includes('\n')) {
               return (
                 <p key={index} className="text-base font-semibold text-foreground mt-4 mb-1">
-                  {trimmed.replace(/^\*\*|\*\*$/g, '')}
+                  {shown.replace(/^\*\*|\*\*$/g, '')}
                 </p>
               );
             }
@@ -143,7 +153,7 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
 
             return (
               <p key={index} className="text-sm leading-relaxed text-foreground/90">
-                {renderInlineFormatting(trimmed)}
+                {renderInlineFormatting(shown)}
               </p>
             );
           })}

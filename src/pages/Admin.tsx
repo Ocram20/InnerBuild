@@ -87,9 +87,10 @@ export default function Admin() {
       title: editingArticle.title,
       content: editingArticle.content,
       summary: editingArticle.summary,
-      title_it: editingArticle.title_it || "",
-      content_it: editingArticle.content_it || "",
-      summary_it: editingArticle.summary_it || "",
+      // Keep legacy Italian columns aligned with the source content.
+      title_it: editingArticle.title,
+      content_it: editingArticle.content,
+      summary_it: editingArticle.summary,
       is_published: editingArticle.is_published ?? true,
       published_at: editingArticle.published_at || new Date().toISOString(),
     };
@@ -154,54 +155,21 @@ export default function Admin() {
           </div>
         </header>
         <main className="container max-w-4xl mx-auto px-4 py-6 space-y-6">
-          {/* English Section */}
           <div className="space-y-4">
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">🇬🇧 English</h2>
-            <div>
-              <Label>Title</Label>
-              <Input
-                value={editingArticle.title || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, title: e.target.value }))}
-                placeholder="Article title"
-              />
-            </div>
-            <div>
-              <Label>Summary</Label>
-              <Textarea
-                value={editingArticle.summary || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, summary: e.target.value }))}
-                placeholder="Short summary..."
-                rows={2}
-              />
-            </div>
-            <div>
-              <Label>Content (Markdown supported)</Label>
-              <Textarea
-                value={editingArticle.content || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, content: e.target.value }))}
-                placeholder="Full article content..."
-                rows={10}
-                className="font-mono text-sm"
-              />
-            </div>
-          </div>
-
-          {/* Italian Section */}
-          <div className="space-y-4 border-t border-border pt-6">
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">🇮🇹 Italiano</h2>
             <div>
               <Label>Titolo</Label>
               <Input
-                value={editingArticle.title_it || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, title_it: e.target.value }))}
+                value={editingArticle.title || ""}
+                onChange={e => setEditingArticle(p => ({ ...p, title: e.target.value }))}
                 placeholder="Titolo dell'articolo"
               />
             </div>
             <div>
               <Label>Riassunto</Label>
               <Textarea
-                value={editingArticle.summary_it || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, summary_it: e.target.value }))}
+                value={editingArticle.summary || ""}
+                onChange={e => setEditingArticle(p => ({ ...p, summary: e.target.value }))}
                 placeholder="Breve riassunto..."
                 rows={2}
               />
@@ -209,8 +177,8 @@ export default function Admin() {
             <div>
               <Label>Contenuto (Markdown supportato)</Label>
               <Textarea
-                value={editingArticle.content_it || ""}
-                onChange={e => setEditingArticle(p => ({ ...p, content_it: e.target.value }))}
+                value={editingArticle.content || ""}
+                onChange={e => setEditingArticle(p => ({ ...p, content: e.target.value }))}
                 placeholder="Contenuto completo dell'articolo..."
                 rows={10}
                 className="font-mono text-sm"

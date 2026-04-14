@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 const SUGGESTED_KEYS = ["sr1", "sr2", "sr3", "sr4", "sr5", "sr6", "sr7", "sr8"] as const;
 
@@ -14,18 +15,21 @@ const SUGGESTED_KEYS = ["sr1", "sr2", "sr3", "sr4", "sr5", "sr6", "sr7", "sr8"] 
 const QUIT_REASONS_ENTRY_DATE = "2000-01-01";
 
 export function ReasonsSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [reasons, setReasons] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [newReason, setNewReason] = useState("");
+  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
 
   const suggestedReasons = useMemo(
     () => SUGGESTED_KEYS.map((key) => t(`reasons_section.${key}`)),
     [t]
   );
+  const rawReasons = reasons.filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawReasons, shouldTranslateContent && rawReasons.length > 0);
 
   useEffect(() => {
     if (user) {
@@ -148,7 +152,9 @@ export function ReasonsSection() {
                 className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 group"
               >
                 <Sparkles className="h-4 w-4 text-primary shrink-0" />
-                <p className="text-sm text-foreground flex-1">{reason}</p>
+                <p className="text-sm text-foreground flex-1">
+                  {shouldTranslateContent ? display(reason) : reason}
+                </p>
                 <Button
                   variant="ghost"
                   size="icon"

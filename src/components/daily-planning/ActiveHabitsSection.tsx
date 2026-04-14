@@ -7,6 +7,7 @@ import { Repeat, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface Habit {
   id: string;
@@ -34,6 +35,10 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
   const [habits, setHabits] = useState<Habit[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const rawHabitTitles = habits
+    .map((habit) => localizeSuggestedHabitTitle(t, habit.title))
+    .filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  const { display } = useUiBatchTranslation(rawHabitTitles, rawHabitTitles.length > 0);
   const fetchHabits = useCallback(async () => {
     if (!userId) return;
 
@@ -185,7 +190,7 @@ export function ActiveHabitsSection({ userId, targetDate }: ActiveHabitsSectionP
                 />
                 <div className="flex-1 min-w-0">
                   <p className={`font-medium truncate text-sm sm:text-base ${habit.completed_today ? "line-through text-muted-foreground" : ""}`}>
-                    {localizeSuggestedHabitTitle(t, habit.title)}
+                    {display(localizeSuggestedHabitTitle(t, habit.title))}
                   </p>
                   <span className={`text-xs px-2 py-0.5 rounded-full inline-block mt-1 ${categoryColors[habit.category] || categoryColors.general}`}>
                     {t(`habits.categories.${habit.category}`)}
