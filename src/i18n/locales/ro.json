@@ -1589,6 +1589,17 @@
       "Scrie în jurnal",
       "Fă exerciții 30 de minute"
     ],
+    "priority_focus_title": "Focalizarea Zilei",
+    "priority_standard_title": "Obiective Standard",
+    "priority_quick_title": "Câștiguri Rapide",
+    "priority_focus_hint": "Prioritate ridicată - până la 3 sarcini",
+    "priority_standard_hint": "Prioritate medie",
+    "priority_quick_hint": "Prioritate mică - dacă rămâne timp",
+    "focus_limit_title": "Limită Focalizare atinsă",
+    "focus_limit_desc": "Poți adăuga până la 3 sarcini în Focalizarea Zilei.",
+    "empty_focus": "Nicio sarcină în Focalizare.",
+    "empty_standard": "Niciun obiectiv standard.",
+    "empty_quick": "Niciun câștig rapid.",
     "add_goals": "Adaugă-ți obiectivele pentru {{day}}"
   },
   "not_to_do_section": {

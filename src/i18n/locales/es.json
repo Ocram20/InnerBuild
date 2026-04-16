@@ -1598,6 +1598,17 @@
       "Escribe en tu diario",
       "Ejercítate 30 minutos"
     ],
+    "priority_focus_title": "Enfoque del Día",
+    "priority_standard_title": "Objetivos Estándar",
+    "priority_quick_title": "Pequeñas Victorias",
+    "priority_focus_hint": "Alta prioridad - hasta 3 tareas",
+    "priority_standard_hint": "Prioridad media",
+    "priority_quick_hint": "Prioridad baja - si queda tiempo",
+    "focus_limit_title": "Límite de Enfoque alcanzado",
+    "focus_limit_desc": "Puedes añadir hasta 3 tareas en Enfoque del Día.",
+    "empty_focus": "Sin tareas de Enfoque.",
+    "empty_standard": "Sin objetivos estándar.",
+    "empty_quick": "Sin pequeñas victorias.",
     "add_goals": "Añade tus metas para {{day}}"
   },
   "not_to_do_section": {

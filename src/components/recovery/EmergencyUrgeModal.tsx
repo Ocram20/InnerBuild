@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Heart, Shield, Sparkles, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/hooks/useAuth";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { RecoveryImpactSimulation } from "./RecoveryImpactSimulation";
 
 type Step = "feeling" | "location" | "alone" | "loading" | "guidance";
 
@@ -22,25 +26,60 @@ interface EmergencyGuidance {
   calming_message: string;
 }
 
+interface AntiTriggerPlan {
+  id: string;
+  trigger: string;
+  action: string;
+  benefit: string;
+  source_lang?: string;
+}
+
 interface EmergencyUrgeModalProps {
   open: boolean;
   onClose: () => void;
+  hasCheckedInToday?: boolean;
+  onDeclareRelapse?: () => void;
+  journey?: {
+    id: string;
+    current_streak: number;
+    jokers_remaining: number;
+    status: string;
+  } | null;
 }
 
-export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
+const QUIT_REASONS_ENTRY_DATE = "2000-01-01";
+const ANTI_TRIGGER_ENTRY_DATE = "2000-01-02";
+
+export function EmergencyUrgeModal({
+  open,
+  onClose,
+  hasCheckedInToday = false,
+  onDeclareRelapse,
+  journey,
+}: EmergencyUrgeModalProps) {
   const { t, i18n } = useTranslation();
+  const { user } = useAuth();
   const [step, setStep] = useState<Step>("feeling");
   const [feelingKey, setFeelingKey] = useState<string>("");
+  const [manualFeeling, setManualFeeling] = useState<string>("");
   const [locationKey, setLocationKey] = useState<string>("");
   const [alone, setAlone] = useState<boolean | null>(null);
   const [guidance, setGuidance] = useState<EmergencyGuidance | null>(null);
+  const [personalExpanded, setPersonalExpanded] = useState(false);
+  const [personalLoading, setPersonalLoading] = useState(false);
+  const [personalReasons, setPersonalReasons] = useState<string[]>([]);
+  const [personalPlans, setPersonalPlans] = useState<AntiTriggerPlan[]>([]);
 
   const reset = () => {
     setStep("feeling");
     setFeelingKey("");
+    setManualFeeling("");
     setLocationKey("");
     setAlone(null);
     setGuidance(null);
+    setPersonalExpanded(false);
+    setPersonalReasons([]);
+    setPersonalPlans([]);
   };
 
   const handleClose = () => {
@@ -55,7 +94,12 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const feelingLabel = feelingKey ? t(`emergency_urge.feelings.${feelingKey}`) : "";
+      const manual = manualFeeling.trim();
+      const feelingLabel = manual
+        ? manual
+        : feelingKey
+          ? t(`emergency_urge.feelings.${feelingKey}`)
+          : "";
       const locationLabel = locationKey ? t(`emergency_urge.locations.${locationKey}`) : "";
 
       const resp = await fetch(
@@ -93,6 +137,77 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
       setStep("guidance");
     }
   };
+
+  const currentLangBase = useMemo(() => (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0], [i18n.resolvedLanguage, i18n.language]);
+  const shouldTranslateReasons = currentLangBase !== "it";
+
+  const rawReasonStrings = useMemo(
+    () => personalReasons.map((r) => String(r)).filter((v) => v.trim().length > 0),
+    [personalReasons]
+  );
+  const { display: displayReasons } = useUiBatchTranslation(rawReasonStrings, shouldTranslateReasons && rawReasonStrings.length > 0);
+
+  const rawPlanStrings = useMemo(
+    () => personalPlans.flatMap((p) => [p.trigger, p.action, p.benefit]).filter((v): v is string => typeof v === "string" && v.trim().length > 0),
+    [personalPlans]
+  );
+  const { display: displayPlans } = useUiBatchTranslation(rawPlanStrings, rawPlanStrings.length > 0);
+
+  const fetchPersonalData = async () => {
+    if (!user) return;
+    setPersonalLoading(true);
+    try {
+      const [reasonsRes, plansRes] = await Promise.all([
+        supabase
+          .from("journal_entries")
+          .select("content")
+          .eq("user_id", user.id)
+          .eq("entry_date", QUIT_REASONS_ENTRY_DATE)
+          .maybeSingle(),
+        supabase
+          .from("journal_entries")
+          .select("content")
+          .eq("user_id", user.id)
+          .eq("entry_date", ANTI_TRIGGER_ENTRY_DATE)
+          .maybeSingle(),
+      ]);
+
+      const reasonsContent = reasonsRes.data?.content ?? null;
+      const plansContent = plansRes.data?.content ?? null;
+
+      let parsedReasons: string[] = [];
+      if (typeof reasonsContent === "string" && reasonsContent.trim()) {
+        try {
+          parsedReasons = JSON.parse(reasonsContent);
+        } catch {
+          parsedReasons = [];
+        }
+      }
+
+      let parsedPlans: AntiTriggerPlan[] = [];
+      if (typeof plansContent === "string" && plansContent.trim()) {
+        try {
+          parsedPlans = JSON.parse(plansContent);
+        } catch {
+          parsedPlans = [];
+        }
+      }
+
+      setPersonalReasons(Array.isArray(parsedReasons) ? parsedReasons : []);
+      setPersonalPlans(Array.isArray(parsedPlans) ? parsedPlans : []);
+    } catch (e) {
+      console.error("Error loading personal motivations/plans:", e);
+    } finally {
+      setPersonalLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (open && step === "guidance" && user) {
+      void fetchPersonalData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, step, user]);
 
   if (!open) return null;
 
@@ -146,6 +261,7 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                     onClick={(e) => {
                       e.stopPropagation();
                       setFeelingKey(key);
+                      setManualFeeling("");
                       setStep("location");
                     }}
                     className="px-4 py-2 rounded-full text-sm font-medium bg-muted/60 text-foreground hover:bg-muted transition-all"
@@ -153,6 +269,18 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                     {t(`emergency_urge.feelings.${key}`)}
                   </button>
                 ))}
+              </div>
+
+              <div className="space-y-2">
+                <Textarea
+                  value={manualFeeling}
+                  onChange={(e) => setManualFeeling(e.target.value)}
+                  placeholder={t("emergency_urge.feeling_subtitle")}
+                  className="min-h-[90px] resize-none"
+                />
+                <p className="text-xs text-muted-foreground">
+                  {t("emergency_urge.manual_feeling_hint")}
+                </p>
               </div>
             </div>
           )}
@@ -270,15 +398,92 @@ export function EmergencyUrgeModal({ open, onClose }: EmergencyUrgeModalProps) {
                 </CardContent>
               </Card>
 
-              <Button
-                className="w-full"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClose();
-                }}
-              >
-                {t("emergency_urge.close_button")}
-              </Button>
+              <div className="border border-border/50 rounded-xl bg-muted/30 overflow-hidden">
+                <button
+                  type="button"
+                  className="w-full px-4 py-3 flex items-center justify-between text-left"
+                  onClick={() => setPersonalExpanded((v) => !v)}
+                >
+                  <span className="text-sm font-semibold text-foreground">{t("reasons_section.title")}</span>
+                  <span className="text-xs text-muted-foreground">{t("common.details")}</span>
+                </button>
+                {personalExpanded && (
+                  <div className="px-4 pb-4">
+                    {personalLoading ? (
+                      <div className="flex items-center gap-2 text-muted-foreground py-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>{t("common.loading")}</span>
+                      </div>
+                    ) : (
+                      <div className="space-y-3 pt-1">
+                        {personalReasons.length > 0 && (
+                          <div className="space-y-2">
+                            <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/80">{t("reasons_section.title")}</h4>
+                            <div className="space-y-2">
+                              {personalReasons.map((r, idx) => (
+                                <div key={`${idx}-${r}`} className="text-sm text-foreground">
+                                  • {shouldTranslateReasons ? displayReasons(r) : r}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {personalPlans.length > 0 && (
+                          <div className="space-y-2">
+                            <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/80">{t("anti_trigger_plan.title")}</h4>
+                            <div className="space-y-2">
+                              {personalPlans.map((plan) => {
+                                const source = plan.source_lang || currentLangBase;
+                                const shouldTranslatePlan = source !== currentLangBase;
+                                const trigger = shouldTranslatePlan ? displayPlans(plan.trigger) : plan.trigger;
+                                const action = shouldTranslatePlan ? displayPlans(plan.action) : plan.action;
+                                const benefit = shouldTranslatePlan ? displayPlans(plan.benefit) : plan.benefit;
+                                return (
+                                  <div key={plan.id} className="text-sm text-foreground">
+                                    {t("anti_trigger_plan.template", { trigger, action, benefit })}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {personalReasons.length === 0 && personalPlans.length === 0 && (
+                          <p className="text-xs text-muted-foreground italic">
+                            {t("reasons_section.description")}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {journey ? (
+                <RecoveryImpactSimulation
+                  journeyId={journey.id}
+                  currentStreak={journey.current_streak}
+                  jokersRemaining={journey.jokers_remaining}
+                  status={journey.status}
+                  hasCheckedInToday={hasCheckedInToday}
+                  onExit={handleClose}
+                  onDeclareRelapse={() => {
+                    onDeclareRelapse?.();
+                    handleClose();
+                  }}
+                />
+              ) : (
+                <Button
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClose();
+                  }}
+                >
+                  {t("emergency_urge.close_button")}
+                </Button>
+              )}
               <p className="text-xs text-center text-muted-foreground">{t("emergency_urge.footer_note")}</p>
             </div>
           )}

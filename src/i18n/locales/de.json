@@ -1598,6 +1598,17 @@
       "Schreibe Tagebuch",
       "Bewege dich 30 Minuten"
     ],
+    "priority_focus_title": "Tagesfokus",
+    "priority_standard_title": "Standardziele",
+    "priority_quick_title": "Schnelle Erfolge",
+    "priority_focus_hint": "Hohe Priorität - bis zu 3 Aufgaben",
+    "priority_standard_hint": "Mittlere Priorität",
+    "priority_quick_hint": "Niedrige Priorität - falls noch Zeit ist",
+    "focus_limit_title": "Tagesfokus-Limit erreicht",
+    "focus_limit_desc": "Du kannst bis zu 3 Aufgaben im Tagesfokus hinzufügen.",
+    "empty_focus": "Keine Tagesfokus-Aufgaben.",
+    "empty_standard": "Keine Standardziele.",
+    "empty_quick": "Keine schnellen Erfolge.",
     "add_goals": "Füge deine Ziele für {{day}} hinzu"
   },
   "not_to_do_section": {

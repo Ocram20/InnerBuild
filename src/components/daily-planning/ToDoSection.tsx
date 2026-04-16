@@ -65,22 +65,22 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
 
   const priorityTitle = (priority: TaskPriority) => {
     if (priority === "focus") {
-      return t("todo_section.priority_focus_title", { defaultValue: "Focus del Giorno" });
+      return t("todo_section.priority_focus_title");
     }
     if (priority === "quick") {
-      return t("todo_section.priority_quick_title", { defaultValue: "Quick Wins" });
+      return t("todo_section.priority_quick_title");
     }
-    return t("todo_section.priority_standard_title", { defaultValue: "Obiettivi Standard" });
+    return t("todo_section.priority_standard_title");
   };
 
   const priorityHint = (priority: TaskPriority) => {
     if (priority === "focus") {
-      return t("todo_section.priority_focus_hint", { defaultValue: "Priorita alta - max 3 task" });
+      return t("todo_section.priority_focus_hint");
     }
     if (priority === "quick") {
-      return t("todo_section.priority_quick_hint", { defaultValue: "Priorita bassa - se avanza tempo" });
+      return t("todo_section.priority_quick_hint");
     }
-    return t("todo_section.priority_standard_hint", { defaultValue: "Priorita media" });
+    return t("todo_section.priority_standard_hint");
   };
 
   const sortedTasks = useMemo(() => {
@@ -128,8 +128,8 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
     if (!taskTitle) return;
     if (newTaskPriority === "focus" && focusTasks.length >= 3) {
       toast({
-        title: t("todo_section.focus_limit_title", { defaultValue: "Limite Focus raggiunto" }),
-        description: t("todo_section.focus_limit_desc", { defaultValue: "Puoi inserire massimo 3 task in Focus del Giorno." }),
+        title: t("todo_section.focus_limit_title"),
+        description: t("todo_section.focus_limit_desc"),
       });
       return;
     }
@@ -389,7 +389,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
                   {focusTasks.length > 0 ? (
                     focusTasks.map(renderTaskRow)
                   ) : (
-                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_focus", { defaultValue: "Nessun task focus." })}</p>
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_focus")}</p>
                   )}
                 </div>
               </div>
@@ -402,7 +402,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
                   {standardTasks.length > 0 ? (
                     standardTasks.map(renderTaskRow)
                   ) : (
-                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_standard", { defaultValue: "Nessun obiettivo standard." })}</p>
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_standard")}</p>
                   )}
                 </div>
               </div>
@@ -415,7 +415,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
                   {quickTasks.length > 0 ? (
                     quickTasks.map(renderTaskRow)
                   ) : (
-                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_quick", { defaultValue: "Nessun quick win." })}</p>
+                    <p className="text-xs text-muted-foreground/70">{t("todo_section.empty_quick")}</p>
                   )}
                 </div>
               </div>

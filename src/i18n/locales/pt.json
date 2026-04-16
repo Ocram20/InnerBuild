@@ -1576,6 +1576,17 @@
       "Escreva no diário",
       "Faça exercício 30 minutos"
     ],
+    "priority_focus_title": "Foco do Dia",
+    "priority_standard_title": "Objetivos Padrão",
+    "priority_quick_title": "Vitórias Rápidas",
+    "priority_focus_hint": "Alta prioridade - até 3 tarefas",
+    "priority_standard_hint": "Prioridade média",
+    "priority_quick_hint": "Baixa prioridade - se sobrar tempo",
+    "focus_limit_title": "Limite do Foco atingido",
+    "focus_limit_desc": "Você pode adicionar até 3 tarefas no Foco do Dia.",
+    "empty_focus": "Sem tarefas de Foco.",
+    "empty_standard": "Sem objetivos padrão.",
+    "empty_quick": "Sem vitórias rápidas.",
     "add_goals": "Adicione os seus objetivos para {{day}}"
   },
   "not_to_do_section": {

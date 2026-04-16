@@ -1598,6 +1598,17 @@
       "Écrivez dans votre journal",
       "Faites de l'exercice 30 minutes"
     ],
+    "priority_focus_title": "Focus du Jour",
+    "priority_standard_title": "Objectifs Standard",
+    "priority_quick_title": "Petites Victoires",
+    "priority_focus_hint": "Priorité élevée - jusqu'à 3 tâches",
+    "priority_standard_hint": "Priorité moyenne",
+    "priority_quick_hint": "Priorité basse - s'il reste du temps",
+    "focus_limit_title": "Limite Focus atteinte",
+    "focus_limit_desc": "Vous pouvez ajouter jusqu'à 3 tâches dans le Focus du Jour.",
+    "empty_focus": "Aucune tâche Focus.",
+    "empty_standard": "Aucun objectif standard.",
+    "empty_quick": "Aucune petite victoire.",
     "add_goals": "Ajoutez vos objectifs pour {{day}}"
   },
   "not_to_do_section": {

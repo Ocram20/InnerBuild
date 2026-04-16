@@ -21,6 +21,7 @@ import { RecoveryTracker } from "@/components/recovery/RecoveryTracker";
 import { FailureDebriefSection } from "@/components/recovery/FailureDebriefSection";
 import { EmergencyUrgeModal } from "@/components/recovery/EmergencyUrgeModal";
 import { RecoveryJourneyPath } from "@/components/recovery/RecoveryJourneyPath";
+import { RecoveryImpactCard } from "@/components/recovery/RecoveryImpactCard";
 import { useRecoveryPhase } from "@/hooks/useRecoveryPhase";
 import { useTranslation } from "react-i18next";
 
@@ -74,6 +75,14 @@ export default function PornRecovery() {
 
             <TabsContent value="progress" className="space-y-6 animate-in fade-in duration-200">
               {journey && phaseProgress && <RecoveryJourneyPath progress={phaseProgress} />}
+              {journey && (
+                <RecoveryImpactCard
+                  journeyId={journey.id}
+                  currentStreak={journey.current_streak}
+                  jokersRemaining={journey.jokers_remaining}
+                  status={journey.status}
+                />
+              )}
               {!journey && !declined ? <RecoveryOnboarding onStart={startJourney} onDecline={declineJourney} /> : journey ? <RecoveryTracker startedAt={journey.started_at} checkIns={checkIns} onCheckIn={checkIn} onReset={resetJourney} onAbandon={abandonJourney} onResume={resumeJourney} hasCheckedInToday={hasCheckedInToday} currentStreak={journey.current_streak} longestStreak={journey.longest_streak} jokersRemaining={journey.jokers_remaining} status={journey.status} /> : null}
               <FailureDebriefSection />
               <ReasonsSection />
@@ -97,7 +106,16 @@ export default function PornRecovery() {
           </Tabs>
         )}
       </main>
-      <EmergencyUrgeModal open={showEmergency} onClose={() => setShowEmergency(false)} />
+      <EmergencyUrgeModal
+        open={showEmergency}
+        onClose={() => setShowEmergency(false)}
+        journey={journey}
+        hasCheckedInToday={hasCheckedInToday}
+        onDeclareRelapse={() => {
+          checkIn("failed");
+          setShowEmergency(false);
+        }}
+      />
     </div>
   );
 }

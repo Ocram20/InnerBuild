@@ -1598,6 +1598,17 @@
       "Напишите в дневнике",
       "Позанимайтесь спортом 30 минут"
     ],
+    "priority_focus_title": "Фокус дня",
+    "priority_standard_title": "Стандартные цели",
+    "priority_quick_title": "Быстрые победы",
+    "priority_focus_hint": "Высокий приоритет - до 3 задач",
+    "priority_standard_hint": "Средний приоритет",
+    "priority_quick_hint": "Низкий приоритет - если останется время",
+    "focus_limit_title": "Лимит фокуса достигнут",
+    "focus_limit_desc": "Можно добавить до 3 задач в Фокус дня.",
+    "empty_focus": "Нет задач в фокусе.",
+    "empty_standard": "Нет стандартных целей.",
+    "empty_quick": "Нет быстрых побед.",
     "add_goals": "Добавьте ваши цели на {{day}}"
   },
   "not_to_do_section": {

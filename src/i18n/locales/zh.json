@@ -1611,6 +1611,17 @@
       "写日记",
       "锻炼 30 分钟"
     ],
+    "priority_focus_title": "今日重点",
+    "priority_standard_title": "标准目标",
+    "priority_quick_title": "快速小胜",
+    "priority_focus_hint": "高优先级 - 最多 3 个任务",
+    "priority_standard_hint": "中优先级",
+    "priority_quick_hint": "低优先级 - 如果还有时间",
+    "focus_limit_title": "今日重点上限已达",
+    "focus_limit_desc": "最多可以在“今日重点”添加 3 个任务。",
+    "empty_focus": "暂无今日重点任务。",
+    "empty_standard": "暂无标准目标。",
+    "empty_quick": "暂无快速小胜。",
     "add_goals": "添加您{{day}}的目标"
   },
   "not_to_do_section": {
