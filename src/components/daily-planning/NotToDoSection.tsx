@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ interface NotToDoItem {
   id: string;
   title: string;
   status: "pending" | "avoided" | "broken";
+  log_id?: string | null;
 }
 
 interface NotToDoSectionProps {
@@ -50,20 +52,29 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
     if (!userId) return;
     await cleanupExpiredDailyPlanningItems(userId);
     
-    const { data, error } = await supabase
-      .from("not_to_do_items")
+    const { data: itemsData, error: itemsError } = await untypedTable("not_to_do_items")
       .select("*")
       .eq("user_id", userId)
-      .eq("target_date", targetDate)
+      .eq("is_active", true)
       .order("created_at", { ascending: true });
 
-    if (error) {
-      console.error("Error fetching not-to-do items:", error);
+    const { data: logsData, error: logsError } = await untypedTable("not_to_do_logs")
+      .select("*")
+      .eq("user_id", userId)
+      .eq("log_date", targetDate);
+
+    if (itemsError) {
+      console.error("Error fetching not-to-do items:", itemsError);
     } else {
-      const typedData = (data || []).map(item => ({
-        ...item,
-        status: item.status as "pending" | "avoided" | "broken",
-      }));
+      const typedData: NotToDoItem[] = (itemsData || []).map((item: any) => {
+        const log = logsData?.find((l: any) => l.not_to_do_id === item.id);
+        return {
+          id: item.id,
+          title: item.title,
+          status: log ? (log.status as "avoided" | "broken" | "pending") : "pending",
+          log_id: log ? log.id : null,
+        };
+      });
       setItems(typedData);
       setShowSuggestions(typedData.length === 0);
     }
@@ -75,12 +86,11 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
     const itemTitle = title || newItem.trim();
     if (!itemTitle) return;
 
-    const { data, error } = await supabase
-      .from("not_to_do_items")
+    const { data, error } = await untypedTable("not_to_do_items")
       .insert({
         user_id: userId,
         title: itemTitle,
-        target_date: targetDate,
+        is_active: true,
       })
       .select()
       .single();
@@ -92,7 +102,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         variant: "destructive",
       });
     } else if (data) {
-      setItems([...items, { ...data, status: data.status as "pending" | "avoided" | "broken" }]);
+      setItems([...items, { id: data.id, title: data.title, status: "pending", log_id: null }]);
       setNewItem("");
       setShowSuggestions(false);
       toast({
@@ -103,10 +113,29 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
   };
 
   const updateStatus = async (item: NotToDoItem, newStatus: "avoided" | "broken") => {
-    const { error } = await supabase
-      .from("not_to_do_items")
-      .update({ status: newStatus })
-      .eq("id", item.id);
+    let error = null;
+    let newLogId = item.log_id;
+
+    if (item.log_id) {
+      const res = await untypedTable("not_to_do_logs")
+        .update({ status: newStatus })
+        .eq("id", item.log_id)
+        .select()
+        .single();
+      error = res.error;
+    } else {
+      const res = await untypedTable("not_to_do_logs")
+        .insert({
+          not_to_do_id: item.id,
+          user_id: userId,
+          log_date: targetDate,
+          status: newStatus,
+        })
+        .select()
+        .single();
+      error = res.error;
+      if (res.data) newLogId = res.data.id;
+    }
 
     if (error) {
       toast({
@@ -116,7 +145,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
       });
     } else {
       setItems(items.map(i => 
-        i.id === item.id ? { ...i, status: newStatus } : i
+        i.id === item.id ? { ...i, status: newStatus, log_id: newLogId } : i
       ));
       if (newStatus === "avoided") {
         toast({
@@ -128,9 +157,8 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
   };
 
   const deleteItem = async (id: string) => {
-    const { error } = await supabase
-      .from("not_to_do_items")
-      .delete()
+    const { error } = await untypedTable("not_to_do_items")
+      .update({ is_active: false })
       .eq("id", id);
 
     if (error) {

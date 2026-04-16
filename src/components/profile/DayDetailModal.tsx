@@ -102,9 +102,10 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
         challengesRes,
         checkInsRes,
         tasksRes,
-        notToDoRes,
+        notToDoItemsRes,
         dailyCheckInRes,
         challengeEntriesRes,
+        notToDoLogsRes,
       ] = await Promise.all([
         supabase.from("habits").select("id, title, created_at, is_active, updated_at").eq("user_id", user.id),
         supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("completed_at", dateStr),
@@ -112,9 +113,10 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
         supabase.from("detox_challenges").select("id, title, current_streak, status, last_check_in, start_date, duration_days").eq("user_id", user.id),
         supabase.from("recovery_checkins").select("status, notes").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
         supabase.from("daily_tasks").select("title, is_completed").eq("user_id", user.id).eq("target_date", dateStr),
-        supabase.from("not_to_do_items").select("title, status").eq("user_id", user.id).eq("target_date", dateStr),
+        untypedTable("not_to_do_items").select("id, title, created_at").eq("user_id", user.id).eq("is_active", true),
         untypedTable("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
         untypedTable("challenge_daily_entries").select("challenge_id, created_at, checkin_response, is_failure, mental_mission_completed, behavioral_mission_completed").eq("user_id", user.id),
+        untypedTable("not_to_do_logs").select("not_to_do_id, status").eq("user_id", user.id).eq("log_date", dateStr),
       ]);
 
       const completedHabitIds = new Set(habitLogsRes.data?.map(log => log.habit_id) || []);
@@ -147,13 +149,26 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
           behavioral_mission_completed: e.behavioral_mission_completed || false,
         }));
 
+      // Filter out not-to-do items created after the viewed date
+      const activeNotToDoItems = (notToDoItemsRes.data || []).filter(
+        (item: any) => format(new Date(item.created_at), "yyyy-MM-dd") <= dateStr
+      );
+      const notToDoLogs = notToDoLogsRes.data || [];
+      const notToDo = activeNotToDoItems.map(item => {
+        const log = notToDoLogs.find((l: any) => l.not_to_do_id === item.id);
+        return {
+          title: item.title,
+          status: log ? log.status : "pending",
+        };
+      });
+
       setDayData({
         habits,
         dailyReflection: dailyReflectionsRes.data,
         detoxChallenges,
         recoveryCheckIn: checkInsRes.data,
         tasks: tasksRes.data || [],
-        notToDo: notToDoRes.data || [],
+        notToDo: notToDo,
         dailyCheckIn: dailyCheckInRes.data,
         challengeEntries,
       });

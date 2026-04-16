@@ -80,7 +80,7 @@ export function ActivityCalendar() {
         supabase.from("habit_logs").select("habit_id, completed_at").eq("user_id", user.id).gte("completed_at", startDate).lte("completed_at", endDate),
         supabase.from("daily_reflections").select("reflection_date").eq("user_id", user.id).gte("reflection_date", startDate).lte("reflection_date", endDate),
         supabase.from("daily_tasks").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
-        supabase.from("not_to_do_items").select("target_date").eq("user_id", user.id).gte("target_date", startDate).lte("target_date", endDate),
+        untypedTable("not_to_do_logs").select("log_date").eq("user_id", user.id).gte("log_date", startDate).lte("log_date", endDate),
         supabase.from("detox_challenges").select("last_check_in, status, start_date, duration_days").eq("user_id", user.id),
         supabase.from("recovery_checkins").select("checkin_date, status").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
         untypedTable("daily_checkins").select("checkin_date").eq("user_id", user.id).gte("checkin_date", startDate).lte("checkin_date", endDate),
@@ -100,7 +100,7 @@ export function ActivityCalendar() {
 
       const dailyReflectionDates = new Set(dailyReflectionsRes.data?.map(r => r.reflection_date) || []);
       const taskDates = new Set(tasksRes.data?.map(t => t.target_date) || []);
-      const notToDoDates = new Set(notToDoRes.data?.map(n => n.target_date) || []);
+      const notToDoDates = new Set(notToDoRes.data?.map((n: any) => n.log_date) || []);
       
       const detoxCheckInByDate = new Map<string, boolean>();
       for (const c of challengesFull) {
