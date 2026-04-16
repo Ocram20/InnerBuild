@@ -60,7 +60,8 @@
     "i_will": "Vou",
     "because_gives_me": "Porque me dá",
     "month": "mês",
-    "refresh": "Atualizar"
+    "refresh": "Atualizar",
+    "pro_tip": "Dica Pro"
   },
 
   "auth": {
@@ -1971,6 +1972,7 @@
     "no_with_others": "Não, com outras pessoas",
     "loading_title": "Estou a preparar os seus conselhos...",
     "loading_subtitle": "Respire fundo enquanto preparo tudo.",
+    "manual_feeling_hint": "Se precisar de mais precisão, use a caixa de texto acima em vez das opções predefinidas.",
     "actions_title": "Faça isto agora",
     "remember_why": "Lembre-se do seu porquê",
     "close_button": "Sinto-me melhor",
@@ -1980,6 +1982,10 @@
     "fallback_action_1": "Tome um duche frio",
     "fallback_action_2": "Vá dar um passeio ou correr",
     "fallback_action_3": "Faça exercício físico",
+    "no_data_hint_both": "Ainda não configurou os seus motivos ou planos de ação. Fazê-lo ajudará imenso em momentos difíceis.",
+    "no_data_hint_reasons": "Os seus planos anti-gatilho são ótimos, mas lembre-se de adicionar também os seus motivos pessoais para parar!",
+    "no_data_hint_plans": "Os seus motivos são fortes! Para uma defesa completa, configure também planos 'Se-Então' (If-Then).",
+    "configure_now": "Configurar agora no perfil",
     "feelings": {
       "stressed": "Stressado",
       "bored": "Entediado",
@@ -2303,5 +2309,41 @@
     "common_emotions": "Emoções comuns: {{emotions}}",
     "top_recommendations": "Principais Recomendações",
     "generate_new": "Gerar Novo Relatório"
-    }
-    }
+  },
+  "recovery_impact": {
+    "title": "Seu Impacto",
+    "subtitle": "Uma visão neutra do que sua constância está protegendo agora.",
+    "clean_days_label": "Dias Clean",
+    "homeostasis_caption": "Anel de homeostase baseado em energia e sequência.",
+    "time_saved_label": "Tempo Recuperado",
+    "hours_recovered": "horas de vida recuperadas",
+    "energy_label": "Tendência de Energia",
+    "energy_unknown": "Ainda não há dados suficientes",
+    "energy_up": "+{{value}} energia em dias clean",
+    "energy_down": "-{{value}} energia em dias clean",
+    "energy_stable": "La tendência de energia está estável",
+    "clean_vs_relapse": "Comparação dias clean vs dias pós-recaída",
+    "tasks_label": "Produtividade Protegida",
+    "tasks_protected": "tarefas concluídas em dias clean",
+    "simulation_title": "Simulação Projetiva",
+    "simulation_subtitle": "Antes de decidir, veja o impacto provável com base nos seus padrões.",
+    "if_you_give_in": "Se Você Ceder",
+    "if_you_resist": "Se Você Resistir",
+    "givein_time_loss": "Você perde cerca de 40 minutos esta noite.",
+    "givein_energy": "Amanhã a energia tenderá para {{energy}}.",
+    "givein_slowdown": "Seu cartão de jornada desacelera por cerca de {{days}} dia(s), mas não reseta.",
+    "givein_pause": "Seu cartão de jornada pode pausar porque não restam coringas.",
+    "resist_gain_task": "Você ganha tempo para: {{task}}.",
+    "resist_gain_time": "Você protege mais 40 minutes de tempo focado.",
+    "resist_energy": "É mais provável que mantenha a energia em {{energy}}.",
+    "resist_journey": "Você preserva o ímpeto e fica perto do próximo marco da jornada.",
+    "exit_save": "Sair e Salvar Progreso",
+    "declare_relapse": "Declarar recaída",
+    "already_checked_in": "Check-in de hoje já registrado",
+    "energy_unknown_short": "incerta",
+    "energy_high": "alta",
+    "energy_medium": "média",
+    "energy_low": "baixa",
+    "ring_trigger_caption": "Estado atual de gatilhos."
+  }
+}

@@ -60,7 +60,8 @@
     "i_will": "Je vais",
     "because_gives_me": "Parce que cela me donne",
     "month": "mois",
-    "refresh": "Actualiser"
+    "refresh": "Actualiser",
+    "pro_tip": "Conseil Pro"
   },
 
   "auth": {
@@ -1993,6 +1994,7 @@
     "no_with_others": "Non, avec d'autres personnes",
     "loading_title": "Je prépare vos conseils...",
     "loading_subtitle": "Prenez une profonde respiration pendant que je prépare tout.",
+    "manual_feeling_hint": "Si vous avez besoin de plus de précision, utilisez la zone de texte ci-dessus à la place des options prédéfinies.",
     "actions_title": "Faites ceci maintenant",
     "remember_why": "Rappelez-vous votre pourquoi",
     "close_button": "Je me sens mieux",
@@ -2002,6 +2004,10 @@
     "fallback_action_1": "Prenez une douche froide",
     "fallback_action_2": "Allez vous promener ou courir",
     "fallback_action_3": "Faites de l'exercice physique",
+    "no_data_hint_both": "Vous n'avez pas encore configuré vos motifs ou plans d'action. Le faire vous aidera énormément dans les moments difficiles.",
+    "no_data_hint_reasons": "Vos plans anti-déclencheurs sont excellents, mais n'oubliez pas d'ajouter aussi vos motifs personnels pour arrêter !",
+    "no_data_hint_plans": "Vos motifs sont forts ! Pour une défense complète, configurez aussi des plans 'Si-Alors' (If-Then).",
+    "configure_now": "Configurer maintenant dans le profil",
     "feelings": {
       "stressed": "Stressé",
       "bored": "Ennuyé",
@@ -2362,5 +2368,41 @@
       "send_failed": "Envoi du message échoué",
       "clear_failed": "Impossible d'effacer le chat"
     }
+  },
+  "recovery_impact": {
+    "title": "Votre Impact",
+    "subtitle": "Une vision neutre de ce que votre constance protège en ce moment.",
+    "clean_days_label": "Jours Clean",
+    "homeostasis_caption": "Anneau d'homéostasie basé sur l'énergie et la série.",
+    "time_saved_label": "Temps Récupéré",
+    "hours_recovered": "heures de vie récupérées",
+    "energy_label": "Tendance d'Énergie",
+    "energy_unknown": "Pas encore assez de données",
+    "energy_up": "+{{value}} d'énergie les jours clean",
+    "energy_down": "-{{value}} d'énergie les jours clean",
+    "energy_stable": "La tendance de l'énergie est stable",
+    "clean_vs_relapse": "Comparaison jours clean vs jours post-rechute",
+    "tasks_label": "Productivité Protégée",
+    "tasks_protected": "tâches accomplies les jours clean",
+    "simulation_title": "Simulation Projective",
+    "simulation_subtitle": "Avant de décider, regardez l'impact probable basé sur vos modèles.",
+    "if_you_give_in": "Si Vous Cédez",
+    "if_you_resist": "Si Vous Résistez",
+    "givein_time_loss": "Vous perdez environ 40 minutes ce soir.",
+    "givein_energy": "Demain l'énergie tendra vers {{energy}}.",
+    "givein_slowdown": "Votre carte de voyage ralentit d'environ {{days}} jour(s), mais ne se réinitialise pas.",
+    "givein_pause": "Votre carte de voyage pourrait se mettre en pause car il ne reste plus de jokers.",
+    "resist_gain_task": "Vous gagnez du temps pour : {{task}}.",
+    "resist_gain_time": "Vous protégez encore 40 minutes de temps concentré.",
+    "resist_energy": "Il est plus probable de maintenir l'énergie à {{energy}}.",
+    "resist_journey": "Vous préservez l'élan et restez proche de la prochaine étape du voyage.",
+    "exit_save": "Quitter et Sauvegarder la Progression",
+    "declare_relapse": "Déclarer une rechute",
+    "already_checked_in": "Check-in d'aujourd'hui déjà enregistré",
+    "energy_unknown_short": "incertaine",
+    "energy_high": "élevée",
+    "energy_medium": "moyenne",
+    "energy_low": "basse",
+    "ring_trigger_caption": "État actuel des déclencheurs."
   }
 }

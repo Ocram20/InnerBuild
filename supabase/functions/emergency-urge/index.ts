@@ -1,5 +1,8 @@
+// @ts-ignore
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+// @ts-ignore
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
+// @ts-ignore
 import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
@@ -11,7 +14,7 @@ const corsHeaders = {
   "X-XSS-Protection": "1; mode=block",
 };
 
-serve(async (req) => {
+serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -25,7 +28,9 @@ serve(async (req) => {
       });
     }
 
+    // @ts-ignore
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    // @ts-ignore
     const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
       global: { headers: { Authorization: authHeader } },
@@ -40,22 +45,19 @@ serve(async (req) => {
     }
 
     const userId = user.id;
-    const body = await req.json();
-    const RequestSchema = z.object({
-      feeling: z.string().max(500).optional().default(""),
-      location: z.string().max(200).optional().default(""),
-      alone: z.boolean().optional().default(true),
-      language: z.enum(["en", "it"]).optional().default("en"),
-    });
-    const parsed = RequestSchema.safeParse(body);
-    if (!parsed.success) {
-      return new Response(JSON.stringify({ error: "Invalid request" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-    const { feeling, location, alone, language } = parsed.data;
-    const lang = language === "it" ? "Italian" : "English";
+    const body = await req.json().catch(() => ({}));
+    
+    // Very permissive parsing to avoid 400 errors
+    const feeling = typeof body.feeling === 'string' ? body.feeling.substring(0, 500) : "";
+    const location = typeof body.location === 'string' ? body.location.substring(0, 200) : "";
+    const alone = typeof body.alone === 'boolean' ? body.alone : true;
+    const language = typeof body.language === 'string' ? body.language.substring(0, 10) : "en";
+    
+    const langMap: Record<string, string> = {
+      en: "English", it: "Italian", de: "German", es: "Spanish",
+      fr: "French", pt: "Portuguese", ro: "Romanian", ru: "Russian", zh: "Chinese",
+    };
+    const lang = langMap[language] || "English";
 
     // Fetch user's personal reasons to quit
     let reasons: string[] = [];
@@ -87,10 +89,11 @@ serve(async (req) => {
       }
     } catch {}
 
+    // @ts-ignore
     const GROQ_API_KEY = Deno.env.get("GROQ_API_KEY");
     if (!GROQ_API_KEY) throw new Error("GROQ_API_KEY not configured");
 
-    const prompt = `You are a calm, supportive recovery coach helping someone who is experiencing a strong urge RIGHT NOW. They need immediate, practical help.
+    const prompt = `You are a professional recovery coach helping someone experiencing a strong urge RIGHT NOW.
 
 User's current state:
 - Feeling: ${feeling}
@@ -108,15 +111,17 @@ Provide a response in this JSON format:
   "calming_message": "A short, calming and grounding message (2-3 sentences, warm and supportive)"
 }
 
-Rules:
-- Be warm, calm, and non-judgmental
-- Immediate actions should be things they can do RIGHT NOW given their location and situation
-- If they're not alone, suggest involving the other person
-- Reference their personal reasons if available
-- Keep everything short and actionable — they're in crisis mode
-- NO shame, NO lectures
-- IMPORTANT: Respond entirely in ${lang}
-- Respond ONLY with valid JSON`;
+CRITICAL RULES for Coherence and Value:
+1. VARIETY: Do NOT just suggest the same "take a walk, take a cold shower, call a friend" loop.
+2. CONTEXT AWARENESS: 
+   - If User is TIRED or EXHAUSTED: DO NOT suggest a walk, run, or intense exercise. Instead, suggest grounding, breathing, changing the room, or sensory engagement (e.g., "wash your face with cold water", "listen to a specific 5-min guided meditation").
+   - If User is BORED: Suggest active engagement or a creative micro-task.
+   - If User is STRESSED: Suggest specific breathing techniques (Box breathing, 4-7-8).
+3. COHERENCE: The actions MUST be possible in their ${location}.
+4. PERSONALIZATION: Integrate their specific "reasons to quit" into the reminder.
+5. NO GENERIC LOOPS: Use the provided anti-trigger plans if they match the current feeling/context.
+6. Respond entirely in ${lang}.
+7. Respond ONLY with valid JSON.`;
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -144,11 +149,11 @@ Rules:
     const result = await response.json();
     const content = result.choices?.[0]?.message?.content || "";
 
-    let parsed;
+    let parsedContent;
     try {
-      parsed = JSON.parse(content);
+      parsedContent = JSON.parse(content);
     } catch {
-      parsed = {
+      parsedContent = {
         immediate_actions: [
           "Step away from your device and go to another room",
           "Splash cold water on your face or take a cold shower",
@@ -161,7 +166,7 @@ Rules:
       };
     }
 
-    return new Response(JSON.stringify(parsed), {
+    return new Response(JSON.stringify(parsedContent), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {

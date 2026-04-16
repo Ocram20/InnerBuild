@@ -60,7 +60,8 @@
     "i_will": "Haré",
     "because_gives_me": "Porque me da",
     "month": "mes",
-    "refresh": "Actualizar"
+    "refresh": "Actualizar",
+    "pro_tip": "Consejo Pro"
   },
 
   "auth": {
@@ -1993,6 +1994,7 @@
     "no_with_others": "No, con otras personas",
     "loading_title": "Estoy preparando tus consejos...",
     "loading_subtitle": "Respira hondo mientras preparo todo.",
+    "manual_feeling_hint": "Si necesitas más precisión, usa el cuadro de texto de arriba en lugar de las opciones predefinidas.",
     "actions_title": "Haz esto ahora",
     "remember_why": "Recuerda tu porqué",
     "close_button": "Me siento mejor",
@@ -2002,6 +2004,10 @@
     "fallback_action_1": "Toma una ducha fría",
     "fallback_action_2": "Sal a caminar o correr",
     "fallback_action_3": "Haz ejercicio físico",
+    "no_data_hint_both": "Aún no has configurado tus motivos o planes de acción. Hacerlo te ayudará enormemente en momentos difíciles.",
+    "no_data_hint_reasons": "Tus planes anti-disparadores son geniales, ¡pero recuerda también añadir tus motivos personales para dejarlo!",
+    "no_data_hint_plans": "¡Tus motivos son fuertes! Para una defensa completa, configura también planes 'Si-Entonces' (If-Then).",
+    "configure_now": "Configurar ahora en el perfil",
     "feelings": {
       "stressed": "Estresado",
       "bored": "Aburrido",
@@ -2362,5 +2368,41 @@
       "send_failed": "Error al enviar el mensaje",
       "clear_failed": "Error al borrar el chat"
     }
+  },
+  "recovery_impact": {
+    "title": "Tu Impacto",
+    "subtitle": "Una visión neutral de lo que tu constancia está protegiendo ahora mismo.",
+    "clean_days_label": "Días Limpios",
+    "homeostasis_caption": "Anillo de homeostasis basado en energía y racha.",
+    "time_saved_label": "Tiempo Recuperado",
+    "hours_recovered": "horas de vida recuperadas",
+    "energy_label": "Tendencia de Energía",
+    "energy_unknown": "Aún no hay suficientes datos",
+    "energy_up": "+{{value}} energía en días limpios",
+    "energy_down": "-{{value}} energía en días limpios",
+    "energy_stable": "La tendencia de energía es estable",
+    "clean_vs_relapse": "Comparación días limpios vs días post-recaída",
+    "tasks_label": "Productividad Protegida",
+    "tasks_protected": "tareas completadas en días limpios",
+    "simulation_title": "Simulación Proyectiva",
+    "simulation_subtitle": "Antes de decidir, mira el impacto probable basado en tus patrones.",
+    "if_you_give_in": "Si Cedes",
+    "if_you_resist": "Si Resistes",
+    "givein_time_loss": "Pierdes unos 40 minutos esta noche.",
+    "givein_energy": "Mañana la energía tenderá a {{energy}}.",
+    "givein_slowdown": "Tu tarjeta de viaje se ralentiza unos {{days}} día(s), pero no se reinicia.",
+    "givein_pause": "Tu tarjeta de viaje podría pausarse porque no quedan comodines.",
+    "resist_gain_task": "Ganas tiempo para: {{task}}.",
+    "resist_gain_time": "Proteges otros 40 minutos de tiempo concentrado.",
+    "resist_energy": "Es más probable mantener la energía en {{energy}}.",
+    "resist_journey": "Preservas el impulso y te mantienes cerca del próximo hito del viaje.",
+    "exit_save": "Salir y Guardar Progreso",
+    "declare_relapse": "Declarar recaída",
+    "already_checked_in": "Check-in de hoy ya registrado",
+    "energy_unknown_short": "incierta",
+    "energy_high": "alta",
+    "energy_medium": "media",
+    "energy_low": "baja",
+    "ring_trigger_caption": "Estado actual de disparadores."
   }
 }

@@ -47,12 +47,14 @@ export function RecoveryImpactCard({
           </div>
         ) : (
           <>
-            <HomeostasisRing
-              state={data.ringState}
-              primaryLabel={String(currentStreak)}
-              secondaryLabel={t("recovery_impact.clean_days_label")}
-              caption={t("recovery_impact.homeostasis_caption")}
-            />
+            <div className="flex justify-center py-2">
+              <HomeostasisRing
+                state={data.ringState}
+                primaryLabel={String(currentStreak)}
+                secondaryLabel={t("recovery_impact.clean_days_label")}
+                caption={t("recovery_impact.homeostasis_caption")}
+              />
+            </div>
 
             <div className="grid gap-3 md:grid-cols-3">
               <div className="rounded-xl border border-border/50 bg-muted/30 p-4">

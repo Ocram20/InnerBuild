@@ -60,7 +60,8 @@
     "i_will": "Voi",
     "because_gives_me": "Pentru că îmi oferă",
     "month": "lună",
-    "refresh": "Reîmprospătează"
+    "refresh": "Reîmprospătează",
+    "pro_tip": "Sfat Pro"
   },
 
   "auth": {
@@ -1984,6 +1985,7 @@
     "no_with_others": "Nu, cu alte persoane",
     "loading_title": "Pregătesc sfaturile tale...",
     "loading_subtitle": "Respiră adânc în timp ce pregătesc totul.",
+    "manual_feeling_hint": "Dacă aveți nevoie de mai multă precizie, utilizați caseta de text de mai sus în locul opțiunilor predefinite.",
     "actions_title": "Fă asta acum",
     "remember_why": "Amintește-ți de ce",
     "close_button": "Mă simt mai bine",
@@ -1993,6 +1995,10 @@
     "fallback_action_1": "Fă un duș rece",
     "fallback_action_2": "Ieși la o plimbare sau la alergat",
     "fallback_action_3": "Fă exerciții fizice",
+    "no_data_hint_both": "Nu ai configurat încă motivele sau planurile de acțiune. Acest lucru te va ajuta enorm în momentele dificile.",
+    "no_data_hint_reasons": "Planurile tale anti-declanșator sunt grozave, dar amintește-ți să adaugi și motivele personale pentru a te opri!",
+    "no_data_hint_plans": "Motivele tale sunt puternice! Pentru o apărare completă, configurează și planuri 'Dacă-Atunci' (If-Then).",
+    "configure_now": "Configurează acum în profil",
     "feelings": {
       "stressed": "Stresat",
       "bored": "Plictisit",
@@ -2353,5 +2359,41 @@
       "send_failed": "Trimiterea mesajului a eșuat",
       "clear_failed": "Ștergerea chatului a eșuat"
     }
+  },
+  "recovery_impact": {
+    "title": "Impactul Tău",
+    "subtitle": "O viziune neutră asupra a ceea ce protejează consecvența ta chiar acum.",
+    "clean_days_label": "Zile Curate",
+    "homeostasis_caption": "Inel de homeostazie bazat pe energie și serie.",
+    "time_saved_label": "Timp Recuperat",
+    "hours_recovered": "ore de viață recuperate",
+    "energy_label": "Tendința Energiei",
+    "energy_unknown": "Nu există încă suficiente date",
+    "energy_up": "+{{value}} energie în zile curate",
+    "energy_down": "-{{value}} energie în zile curate",
+    "energy_stable": "Tendința energiei este stabilă",
+    "clean_vs_relapse": "Comparație zile curate vs zile post-recădere",
+    "tasks_label": "Productivitate Protejată",
+    "tasks_protected": "sarcini finalizate în zile curate",
+    "simulation_title": "Simulare Proiectivă",
+    "simulation_subtitle": "Înainte de a decide, privește impactul probabil bazat pe tiparele tale.",
+    "if_you_give_in": "Dacă Cedezi",
+    "if_you_resist": "Dacă Rezisti",
+    "givein_time_loss": "Pierzi aproximativ 40 de minute în această seară.",
+    "givein_energy": "Mâine energia va tinde spre {{energy}}.",
+    "givein_slowdown": "Cardul tău de călătorie încetinește cu aproximativ {{days}} zi(le), dar nu se resetează.",
+    "givein_pause": "Cardul tău de călătorie s-ar putea întrerupe deoarece nu mai există joker.",
+    "resist_gain_task": "Câștigi timp pentru: {{task}}.",
+    "resist_gain_time": "Protejezi încă 40 de minute de timp concentrat.",
+    "resist_energy": "Este mai probabil să menții energia la {{energy}}.",
+    "resist_journey": "Păstrezi impulsul și rămâi aproape de următorul reper.",
+    "exit_save": "Ieși și Salvează Progresul",
+    "declare_relapse": "Declară recădere",
+    "already_checked_in": "Check-in-ul de azi a fost deja înregistrat",
+    "energy_unknown_short": "incertă",
+    "energy_high": "ridicată",
+    "energy_medium": "medie",
+    "energy_low": "scăzută",
+    "ring_trigger_caption": "Starea actuală a declanșatorilor."
   }
 }

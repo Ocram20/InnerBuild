@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Heart, Shield, Sparkles, X, Loader2 } from "lucide-react";
+import { AlertTriangle, Heart, Shield, Sparkles, X, Loader2, ArrowRight, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useRecoveryJourney } from "@/hooks/useRecoveryJourney";
 import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 import { RecoveryImpactSimulation } from "./RecoveryImpactSimulation";
 
@@ -55,14 +57,18 @@ export function EmergencyUrgeModal({
   onClose,
   hasCheckedInToday = false,
   onDeclareRelapse,
-  journey,
+  journey: initialJourney,
 }: EmergencyUrgeModalProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const { user } = useAuth();
+  const { journey: fetchedJourney } = useRecoveryJourney();
+  const journey = initialJourney || fetchedJourney;
   const [step, setStep] = useState<Step>("feeling");
   const [feelingKey, setFeelingKey] = useState<string>("");
   const [manualFeeling, setManualFeeling] = useState<string>("");
   const [locationKey, setLocationKey] = useState<string>("");
+  const [manualLocation, setManualLocation] = useState<string>("");
   const [alone, setAlone] = useState<boolean | null>(null);
   const [guidance, setGuidance] = useState<EmergencyGuidance | null>(null);
   const [personalExpanded, setPersonalExpanded] = useState(false);
@@ -75,6 +81,7 @@ export function EmergencyUrgeModal({
     setFeelingKey("");
     setManualFeeling("");
     setLocationKey("");
+    setManualLocation("");
     setAlone(null);
     setGuidance(null);
     setPersonalExpanded(false);
@@ -100,7 +107,11 @@ export function EmergencyUrgeModal({
         : feelingKey
           ? t(`emergency_urge.feelings.${feelingKey}`)
           : "";
-      const locationLabel = locationKey ? t(`emergency_urge.locations.${locationKey}`) : "";
+      const locationLabel = manualLocation.trim()
+        ? manualLocation.trim()
+        : locationKey
+          ? t(`emergency_urge.locations.${locationKey}`)
+          : "";
 
       const resp = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/emergency-urge`,
@@ -114,7 +125,7 @@ export function EmergencyUrgeModal({
             feeling: feelingLabel,
             location: locationLabel,
             alone,
-            language: i18n.resolvedLanguage || i18n.language,
+            language: (i18n.resolvedLanguage || i18n.language || "en").split("-")[0],
           }),
         }
       );
@@ -271,13 +282,25 @@ export function EmergencyUrgeModal({
                 ))}
               </div>
 
-              <div className="space-y-2">
+<div className="space-y-2 relative">
                 <Textarea
                   value={manualFeeling}
                   onChange={(e) => setManualFeeling(e.target.value)}
                   placeholder={t("emergency_urge.feeling_subtitle")}
-                  className="min-h-[90px] resize-none"
+                  className="min-h-[90px] resize-none pr-12"
                 />
+                {manualFeeling.trim().length > 0 && (
+                  <Button
+                    size="icon"
+                    className="absolute bottom-10 right-2 w-8 h-8 rounded-full shadow-lg animate-in fade-in zoom-in duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setStep("location");
+                    }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                )}
                 <p className="text-xs text-muted-foreground">
                   {t("emergency_urge.manual_feeling_hint")}
                 </p>
@@ -299,6 +322,7 @@ export function EmergencyUrgeModal({
                     onClick={(e) => {
                       e.stopPropagation();
                       setLocationKey(key);
+                      setManualLocation("");
                       setStep("alone");
                     }}
                     className="px-4 py-2 rounded-full text-sm font-medium bg-muted/60 text-foreground hover:bg-muted transition-all"
@@ -306,6 +330,27 @@ export function EmergencyUrgeModal({
                     {t(`emergency_urge.locations.${key}`)}
                   </button>
                 ))}
+              </div>
+
+              <div className="space-y-2 relative">
+                <Textarea
+                  value={manualLocation}
+                  onChange={(e) => setManualLocation(e.target.value)}
+                  placeholder={t("emergency_urge.location_subtitle")}
+                  className="min-h-[90px] resize-none pr-12"
+                />
+                {manualLocation.trim().length > 0 && (
+                  <Button
+                    size="icon"
+                    className="absolute bottom-1 right-2 w-8 h-8 rounded-full shadow-lg animate-in fade-in zoom-in duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setStep("alone");
+                    }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                )}
               </div>
             </div>
           )}
@@ -418,7 +463,6 @@ export function EmergencyUrgeModal({
                       <div className="space-y-3 pt-1">
                         {personalReasons.length > 0 && (
                           <div className="space-y-2">
-                            <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/80">{t("reasons_section.title")}</h4>
                             <div className="space-y-2">
                               {personalReasons.map((r, idx) => (
                                 <div key={`${idx}-${r}`} className="text-sm text-foreground">
@@ -431,7 +475,7 @@ export function EmergencyUrgeModal({
 
                         {personalPlans.length > 0 && (
                           <div className="space-y-2">
-                            <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/80">{t("anti_trigger_plan.title")}</h4>
+                            <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/80 pt-2 border-t border-border/30">{t("anti_trigger_plan.title")}</h4>
                             <div className="space-y-2">
                               {personalPlans.map((plan) => {
                                 const source = plan.source_lang || currentLangBase;
@@ -449,10 +493,33 @@ export function EmergencyUrgeModal({
                           </div>
                         )}
 
-                        {personalReasons.length === 0 && personalPlans.length === 0 && (
-                          <p className="text-xs text-muted-foreground italic">
-                            {t("reasons_section.description")}
-                          </p>
+                        {/* Recommendations for missing data */}
+                        {(personalReasons.length === 0 || personalPlans.length === 0) && (
+                          <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/10 space-y-2">
+                            <div className="flex items-center gap-2 text-primary">
+                              <Lightbulb className="w-4 h-4" />
+                              <span className="text-xs font-bold uppercase tracking-wider">
+                                {t("common.pro_tip") || "Suggerimento"}
+                              </span>
+                            </div>
+                            <p className="text-xs text-foreground/80 leading-relaxed">
+                              {personalReasons.length === 0 && personalPlans.length === 0
+                                ? t("emergency_urge.no_data_hint_both")
+                                : personalReasons.length === 0
+                                  ? t("emergency_urge.no_data_hint_reasons")
+                                  : t("emergency_urge.no_data_hint_plans")}
+                            </p>
+                            <Button 
+                              variant="link" 
+                              className="h-auto p-0 text-xs font-semibold"
+                              onClick={() => {
+                                handleClose();
+                                navigate("/porn-recovery");
+                              }}
+                            >
+                              {t("emergency_urge.configure_now")}
+                            </Button>
+                          </div>
                         )}
                       </div>
                     )}

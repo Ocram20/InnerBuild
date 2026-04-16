@@ -58,6 +58,7 @@
     "history": "History",
     "when": "When",
     "i_will": "I will",
+    "pro_tip": "Pro Tip",
     "because_gives_me": "Because it gives me",
     "month": "month",
     "refresh": "Refresh"
@@ -682,7 +683,7 @@
     "failed_clear": "Failed to clear chat",
     "hey_there": "Hey there! 👋",
     "intro": "I'm your AI coach, here to support your journey toward better habits and personal growth.",
-    "quick_actions_label": "Quick actions to get started:",
+    "quick_actions_title": "Quick actions to get started:",
     "input_placeholder": "Ask about your habits, challenges, recovery...",
     "not_authenticated": "Not authenticated. Please log in.",
     "rate_limit": "Rate limit exceeded. Please try again in a moment.",
@@ -690,16 +691,31 @@
     "api_error": "Invalid API key or quota exceeded.",
     "failed_response": "Failed to get response",
     "failed_send": "Failed to send message",
-    "quick_actions": {
-      "suggest_habit": "Suggest a habit",
-      "start_challenge": "Start a challenge",
-      "motivate_me": "Motivate me",
-      "help_reflect": "Help me reflect"
-    },
-    "stats": {
+    "tip_default": "Small steps, done consistently, change everything.",
+    "pillars": {
       "track_progress": "Track progress",
       "build_habits": "Build habits",
-      "take_challenges": "Take challenges"
+      "take_challenges": "Take on challenges"
+    },
+    "quick_actions": {
+      "habit_label": "Suggest a habit",
+      "habit_prompt": "Can you suggest a healthy habit I could start building today?",
+      "challenge_label": "Start a challenge",
+      "challenge_prompt": "I want to challenge myself. Can you suggest a detox or self‑improvement challenge with daily steps?",
+      "motivation_label": "Motivate me",
+      "motivation_prompt": "I'm feeling low on motivation today. Can you give me an encouraging perspective?",
+      "reflect_label": "Help me reflect",
+      "reflect_prompt": "I'd like to do some self‑reflection. Can you ask me a few thoughtful questions?"
+    },
+    "errors": {
+      "not_authenticated": "Not authenticated. Please sign in again.",
+      "rate_limited": "Too many requests. Try again in a moment.",
+      "unauthorized": "Authentication required. Please sign in again.",
+      "api_key_or_quota": "API key invalid or quota exceeded.",
+      "failed_response": "Failed to get a response",
+      "default_ai_reply": "Sorry — I couldn't generate a response.",
+      "send_failed": "Failed to send message",
+      "clear_failed": "Failed to clear chat"
     },
     "tips": {
       "1": "Every small step counts toward your bigger goals",
@@ -2016,6 +2032,10 @@
     "fallback_action_1": "Take a cold shower",
     "fallback_action_2": "Go for a walk or run",
     "fallback_action_3": "Do physical exercise",
+    "no_data_hint_both": "You haven't configured your reasons or action plans yet. Doing so will help you enormously in difficult moments.",
+    "no_data_hint_reasons": "Your anti-trigger plans are great, but remember to also add your personal reasons for stopping!",
+    "no_data_hint_plans": "Your reasons are strong! For a complete defense, also configure 'If-Then' plans.",
+    "configure_now": "Configure now in profile",
     "feelings": {
       "stressed": "Stressed",
       "bored": "Bored",
@@ -2375,42 +2395,5 @@
     "common_emotions": "Common emotions: {{emotions}}",
     "top_recommendations": "Top Recommendations",
     "generate_new": "Generate New Report"
-  },
-
-  "coach": {
-    "title": "AI Coach",
-    "subtitle": "Your personal guide",
-    "clear_chat": "Clear chat",
-    "greeting": "Hi!",
-    "intro": "I'm your AI coach, here to support your journey toward better habits and personal growth.",
-    "tip_default": "Small steps, done consistently, change everything.",
-    "quick_actions_title": "Quick actions to get started:",
-    "input_placeholder": "Ask about your habits, challenges, recovery...",
-    "chat_cleared": "Chat cleared",
-    "pillars": {
-      "track_progress": "Track progress",
-      "build_habits": "Build habits",
-      "take_challenges": "Take on challenges"
-    },
-    "quick_actions": {
-      "habit_label": "Suggest a habit",
-      "habit_prompt": "Can you suggest a healthy habit I could start building today?",
-      "challenge_label": "Start a challenge",
-      "challenge_prompt": "I want to challenge myself. Can you suggest a detox or self‑improvement challenge with daily steps?",
-      "motivation_label": "Motivate me",
-      "motivation_prompt": "I'm feeling low on motivation today. Can you give me an encouraging perspective?",
-      "reflect_label": "Help me reflect",
-      "reflect_prompt": "I'd like to do some self‑reflection. Can you ask me a few thoughtful questions?"
-    },
-    "errors": {
-      "not_authenticated": "Not authenticated. Please sign in again.",
-      "rate_limited": "Too many requests. Try again in a moment.",
-      "unauthorized": "Authentication required. Please sign in again.",
-      "api_key_or_quota": "API key invalid or quota exceeded.",
-      "failed_response": "Failed to get a response",
-      "default_ai_reply": "Sorry — I couldn't generate a response.",
-      "send_failed": "Failed to send message",
-      "clear_failed": "Failed to clear chat"
-    }
   }
 }

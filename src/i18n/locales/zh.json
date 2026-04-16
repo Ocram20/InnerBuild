@@ -60,7 +60,8 @@
     "i_will": "我将",
     "because_gives_me": "因为它给我",
     "month": "月",
-    "refresh": "刷新"
+    "refresh": "刷新",
+    "pro_tip": "小贴士"
   },
 
   "auth": {
@@ -2006,6 +2007,7 @@
     "no_with_others": "不，和其他人在一起",
     "loading_title": "我正在准备你的建议...",
     "loading_subtitle": "在我准备一切的时候，深呼吸。",
+    "manual_feeling_hint": "如果您需要更精准的描述，请在上方文本框输入，而不是选择预设选项。",
     "actions_title": "现在就做这个",
     "remember_why": "记住你的初衷",
     "close_button": "我感觉好多了",
@@ -2015,6 +2017,10 @@
     "fallback_action_1": "洗个冷水澡",
     "fallback_action_2": "去散步或跑步",
     "fallback_action_3": "做体育锻炼",
+    "no_data_hint_both": "您尚未配置原因或行动计划。在困难时刻这样做将为您提供巨大的帮助。",
+    "no_data_hint_reasons": "您的反触发计划很棒，但记得也要添加个人停止理由！",
+    "no_data_hint_plans": "您的理由很强大！为了更完整的防御，请同时配置“如果-那么”(If-Then)计划。",
+    "configure_now": "立即在个人中心配置",
     "feelings": {
       "stressed": "压力大",
       "bored": "无聊",
@@ -2375,5 +2381,41 @@
       "send_failed": "发送消息失败",
       "clear_failed": "清空聊天失败"
     }
+  },
+  "recovery_impact": {
+    "title": "您的影响",
+    "subtitle": "中立地看待您的坚持目前正在保护着什么。",
+    "clean_days_label": "清醒天数",
+    "homeostasis_caption": "基于能量和连续记录的稳态环。",
+    "time_saved_label": "收回的时间",
+    "hours_recovered": "小时回收的生命",
+    "energy_label": "能量趋势",
+    "energy_unknown": "尚无足够数据",
+    "energy_up": "在清醒的日子里能量 +{{value}}",
+    "energy_down": "在清醒的日子里能量 -{{value}}",
+    "energy_stable": "能量趋势稳定",
+    "clean_vs_relapse": "清醒日与复发后的对比",
+    "tasks_label": "受保护的生产力",
+    "tasks_protected": "在清醒日子里完成的任务",
+    "simulation_title": "投射模拟",
+    "simulation_subtitle": "在决定之前，根据您的模式看到可能的影响。",
+    "if_you_give_in": "如果您屈服",
+    "if_you_resist": "如果您抵抗",
+    "givein_time_loss": "今晚您将失去约 40 分钟。",
+    "givein_energy": "明天能量将趋向于 {{energy}}。",
+    "givein_slowdown": "您的旅程卡减慢约 {{days}} 天，但不会重置。",
+    "givein_pause": "您的旅程卡可能会暂停，因为没有万能卡了。",
+    "resist_gain_task": "您有时间去做：{{task}}。",
+    "resist_gain_time": "您额外保护了 40 分钟的专注时间。",
+    "resist_energy": "更有可能将能量维持在 {{energy}}。",
+    "resist_journey": "您保持动力，接近下一个旅程里程碑。",
+    "exit_save": "退出并保存进度",
+    "declare_relapse": "声明复发",
+    "already_checked_in": "今日签到已记录",
+    "energy_unknown_short": "不确定",
+    "energy_high": "高",
+    "energy_medium": "中",
+    "energy_low": "低",
+    "ring_trigger_caption": "当前触发状态。"
   }
 }
