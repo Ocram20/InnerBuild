@@ -27,17 +27,26 @@ const HABIT_CATEGORY_VALUES = [
 
 const FREQUENCY_VALUES = ["daily", "weekly", "weekdays", "weekends"] as const;
 
-interface CreateHabitModalProps {
+interface Habit {
+  id: string;
+  title: string;
+  description: string | null;
+  frequency: string;
+  category: string;
+  reminder_time?: string | null;
+}
+
+interface EditHabitModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSuccess: () => void;
+  habitToEdit: Habit | null;
 }
 
-export default function CreateHabitModal({ open, onOpenChange, onSuccess }: CreateHabitModalProps) {
+export default function EditHabitModal({ open, onOpenChange, onSuccess, habitToEdit }: EditHabitModalProps) {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
-  const { isPremium, canCreateHabit, habitsRemaining, refetch: refetchLimits } = usePremiumLimits();
 
   const [title, setTitle] = useState("");
   const [anchor, setAnchor] = useState("");
@@ -45,34 +54,43 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
   const [frequency, setFrequency] = useState("daily");
   const [reminderTime, setReminderTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(true);
-  const [showPaywall, setShowPaywall] = useState(false);
 
   useEffect(() => {
-    if (open && !canCreateHabit) setShowPaywall(true);
-  }, [open, canCreateHabit]);
+    if (open && habitToEdit) {
+      setTitle(habitToEdit.title);
+      
+      const desc = habitToEdit.description || "";
+      if (desc.startsWith("ANCHOR:")) {
+        setAnchor(desc.replace("ANCHOR:", ""));
+      } else {
+        setAnchor(desc); // backwards compatibility
+      }
+      
+      setCategory(habitToEdit.category || "general");
+      setFrequency(habitToEdit.frequency || "daily");
+      setReminderTime(habitToEdit.reminder_time || "");
+    }
+  }, [open, habitToEdit]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !title.trim()) return;
-    if (!canCreateHabit) {
-      setShowPaywall(true);
-      return;
-    }
+    if (!user || !title.trim() || !habitToEdit) return;
+    
     setIsLoading(true);
     try {
-      const { error } = await supabase.from("habits").insert({
-        user_id: user.id,
-        title: title.trim(),
-        description: anchor.trim() ? `ANCHOR:${anchor.trim()}` : null,
-        category,
-        frequency,
-        reminder_time: reminderTime || null,
-      });
+      const { error } = await supabase.from("habits")
+        .update({
+          title: title.trim(),
+          description: anchor.trim() ? `ANCHOR:${anchor.trim()}` : null,
+          category,
+          frequency,
+          reminder_time: reminderTime || null,
+        })
+        .eq("id", habitToEdit.id)
+        .eq("user_id", user.id);
+
       if (error) throw error;
-      toast({ title: t("create_habit.habit_created"), description: t("create_habit.habit_created_desc") });
-      resetForm();
-      refetchLimits();
+      toast({ title: t("common.success", { defaultValue: "Success" }), description: t("common.updated", { defaultValue: "Habit updated" }) });
       onOpenChange(false);
       onSuccess();
     } catch {
@@ -82,29 +100,13 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
     }
   };
 
-  const resetForm = () => {
-    setTitle("");
-    setAnchor("");
-    setCategory("general");
-    setFrequency("daily");
-    setReminderTime("");
-    setShowSuggestions(true);
-  };
 
-  const handleSelectSuggestion = (suggestion: { title: string; description: string; category: string; frequency: string }) => {
-    setTitle(suggestion.title);
-    setAnchor(suggestion.description || "");
-    setCategory(suggestion.category);
-    setFrequency(suggestion.frequency);
-    setShowSuggestions(false);
-  };
 
   return (
     <>
       <Dialog
-        open={open && !showPaywall}
+        open={open}
         onOpenChange={(isOpen) => {
-          if (!isOpen) resetForm();
           onOpenChange(isOpen);
         }}
       >
@@ -112,31 +114,14 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
-              {t("create_habit.title")}
+              {t("common.edit")}
             </DialogTitle>
             <DialogDescription>
               {t("create_habit.description_placeholder")}
             </DialogDescription>
           </DialogHeader>
 
-          {!isPremium && (
-            <div className="flex items-center justify-between p-3 rounded-xl bg-muted/50 border border-border/50">
-              <div className="flex items-center gap-2">
-                <Crown className="h-4 w-4 text-accent" />
-                <span className="text-sm text-muted-foreground">
-                  {habitsRemaining === 0
-                    ? t("create_habit.habit_limit_reached")
-                    : t("create_habit.habits_remaining", { remaining: habitsRemaining, max: FREE_LIMITS.MAX_HABITS })}
-                </span>
-              </div>
-            </div>
-          )}
 
-          {showSuggestions && !title && (
-            <div className="border-b border-border pb-4 mb-4">
-              <SuggestedHabits onSelect={handleSelectSuggestion} />
-            </div>
-          )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-4 bg-muted/30 p-4 rounded-xl border border-border/50">
@@ -145,10 +130,7 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
                 <Input
                   id="title"
                   value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                    if (e.target.value) setShowSuggestions(false);
-                  }}
+                  onChange={(e) => setTitle(e.target.value)}
                   placeholder={t("create_habit.habit_placeholder")}
                   className="rounded-xl flex-1 bg-background"
                   required
@@ -226,20 +208,13 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
                 disabled={!title.trim() || isLoading}
                 className="flex-1 gradient-primary text-primary-foreground rounded-xl shadow-soft"
               >
-                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("habits.create_habit")}
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("common.save", { defaultValue: "Save" })}
               </Button>
             </div>
           </form>
         </DialogContent>
       </Dialog>
-      <PaywallModal
-        open={showPaywall}
-        onOpenChange={(isOpen) => {
-          setShowPaywall(isOpen);
-          if (!isOpen && !canCreateHabit) onOpenChange(false);
-        }}
-        reason="habit_limit"
-      />
+
     </>
   );
 }

@@ -9,6 +9,7 @@ import { ArrowLeft, Plus, Search, Filter, Heart, Brain, Dumbbell, BookOpen, User
 import HabitProgressCard from "@/components/HabitProgressCard";
 import HabitTips from "@/components/HabitTips";
 import CreateHabitModal from "@/components/CreateHabitModal";
+import EditHabitModal from "@/components/EditHabitModal";
 import BottomNavigation from "@/components/BottomNavigation";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -277,6 +278,12 @@ export default function Habits() {
       </main>
 
       <CreateHabitModal open={showCreateModal} onOpenChange={setShowCreateModal} onSuccess={fetchHabits} />
+      <EditHabitModal 
+        open={!!editingHabit} 
+        onOpenChange={(open) => !open && setEditingHabit(null)} 
+        onSuccess={fetchHabits} 
+        habitToEdit={editingHabit} 
+      />
       <BottomNavigation />
     </div>
   );

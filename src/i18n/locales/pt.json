@@ -63,7 +63,6 @@
     "refresh": "Atualizar",
     "pro_tip": "Dica Pro"
   },
-
   "auth": {
     "welcome_back": "Bem-vindo de volta",
     "start_journey": "Inicie a sua jornada",
@@ -96,13 +95,11 @@
     "sign_out": "Terminar sessão",
     "log_out": "Sair"
   },
-
   "auth_validation": {
     "invalid_email": "Introduza um endereço de e-mail válido",
     "password_min": "A palavra-passe deve ter pelo menos 6 caracteres",
     "password_complexity": "A palavra-passe deve incluir pelo menos: uma minúscula, uma maiúscula, um número e um carácter especial."
   },
-
   "forgot_password": {
     "title": "Esqueceu a palavra-passe",
     "description": "Introduza o seu endereço de e-mail e enviaremos um link para repor a sua palavra-passe.",
@@ -122,7 +119,6 @@
     "rate_limit_desc": "Aguarde alguns minutos antes de tentar novamente.",
     "remember_password": "Lembra-se da sua palavra-passe?"
   },
-
   "dashboard": {
     "good_morning": "Bom dia",
     "good_afternoon": "Boa tarde",
@@ -149,7 +145,6 @@
     "could_not_update": "Não foi possível atualizar a tarefa",
     "could_not_update_status": "Não foi possível atualizar o estado"
   },
-
   "landing": {
     "your_companion": "O seu companheiro completo para o crescimento pessoal",
     "hero_title_1": "Construa a vida que merece,",
@@ -241,7 +236,11 @@
         "Adaptado à sua jornada"
       ],
       "learn_desc": "Compreenda a ciência por trás dos seus hábitos, dopamina e recuperação cerebral.",
-      "learn_features": ["Artigos aprofundados", "Guias de recuperação", "Linha do tempo de cura cerebral"],
+      "learn_features": [
+        "Artigos aprofundados",
+        "Guias de recuperação",
+        "Linha do tempo de cura cerebral"
+      ],
       "habit_adaptation_desc": "A IA analisa os seus padrões reais de conclusão e sugere ajustes mais inteligentes.",
       "habit_adaptation_features": [
         "Deteção de padrões",
@@ -276,12 +275,29 @@
         "Adaptado a si"
       ],
       "learn_mobile_desc": "A ciência por trás dos hábitos, dopamina e recuperação cerebral. O conhecimento torna cada esforço significativo.",
-      "learn_mobile_features": ["Artigos aprofundados", "Guias de recuperação", "Linha do tempo de cura cerebral"],
+      "learn_mobile_features": [
+        "Artigos aprofundados",
+        "Guias de recuperação",
+        "Linha do tempo de cura cerebral"
+      ],
       "habit_adaptation_mobile_desc": "A IA analisa os seus padrões reais de conclusão e sugere ajustes mais inteligentes.",
-      "habit_adaptation_mobile_features": ["Deteção de padrões", "Escala inteligente", "Recomendações IA"]
+      "habit_adaptation_mobile_features": [
+        "Deteção de padrões",
+        "Escala inteligente",
+        "Recomendações IA"
+      ]
+    },
+    "footer": {
+      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
+      "legal": "Legale",
+      "support": "Supporto",
+      "follow": "Seguici",
+      "privacy": "Informativa Privacy",
+      "terms": "Termini di Servizio",
+      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
+      "back_to_top": "Torna su"
     }
   },
-
   "explore": {
     "title": "Ferramentas",
     "subtitle": "Tudo o que precisa para crescer",
@@ -305,7 +321,6 @@
       "ai_coach_desc": "Orientação pessoal baseada em IA"
     }
   },
-
   "habits": {
     "title": "Os Meus Hábitos",
     "completed_today": "{{completed}}/{{total}} concluídos hoje • {{percent}}%",
@@ -395,7 +410,6 @@
       "final_p2": "Pequenas mudanças. Resultados extraordinários. Um hábito de cada vez."
     }
   },
-
   "challenges": {
     "title": "Desafios Detox",
     "active_completed": "{{active}} ativos • {{completed}} concluídos",
@@ -466,7 +480,6 @@
       "final_p2": "Quebre o padrão. Construa a vida que merece."
     }
   },
-
   "create_habit": {
     "title": "Criar Novo Hábito",
     "habit_name": "Nome do hábito *",
@@ -488,7 +501,6 @@
       "weekends": "Fins de semana"
     }
   },
-
   "create_challenge": {
     "title": "Criar Desafio Personalizado",
     "challenge_name": "Nome do desafio *",
@@ -519,7 +531,6 @@
       "90_desc": "Transformação profunda"
     }
   },
-
   "pricing": {
     "choose_plan": "Escolha o Seu Plano",
     "subtitle": "Comece grátis e atualize quando estiver pronto. Sem custos ocultos, cancele quando quiser.",
@@ -567,7 +578,6 @@
       "priority": "Acesso prioritário a novas funcionalidades"
     }
   },
-
   "profile": {
     "title": "O Meu Perfil",
     "premium_plan": "Plano Premium",
@@ -664,7 +674,6 @@
     "oauth_email_locked": "O e-mail não pode ser alterado porque iniciou sessão com {{provider}}. Para o alterar, atualize o endereço na sua conta {{provider}}.",
     "avatar_alt": "Foto de perfil"
   },
-
   "coach": {
     "title": "Coach IA",
     "subtitle": "O seu guia pessoal",
@@ -685,7 +694,15 @@
       "suggest_habit": "Sugerir um hábito",
       "start_challenge": "Iniciar um desafio",
       "motivate_me": "Motivar-me",
-      "help_reflect": "Ajudar-me a refletir"
+      "help_reflect": "Ajudar-me a refletir",
+      "habit_label": "Suggerisci un'abitudine",
+      "habit_prompt": "Puoi suggerirmi un'abitudine sana che potrei iniziare a costruire oggi?",
+      "challenge_label": "Inizia una sfida",
+      "challenge_prompt": "Voglio mettermi alla prova. Puoi suggerirmi una sfida detox o di crescita personale con passi giornalieri?",
+      "motivation_label": "Motivami",
+      "motivation_prompt": "Oggi mi sento poco motivato. Puoi darmi una prospettiva incoraggiante?",
+      "reflect_label": "Aiutami a riflettere",
+      "reflect_prompt": "Vorrei fare un po' di auto‑riflessione. Puoi farmi alcune domande profonde?"
     },
     "stats": {
       "track_progress": "Acompanhar progresso",
@@ -698,9 +715,25 @@
       "3": "Já está a fazer melhor só por estar aqui",
       "4": "A consistência vence a perfeição todas as vezes",
       "5": "Hoje é uma nova oportunidade para crescer"
+    },
+    "quick_actions_title": "Azioni rapide per iniziare:",
+    "tip_default": "Ogni piccolo passo, fatto con costanza, cambia tutto.",
+    "pillars": {
+      "track_progress": "Traccia progressi",
+      "build_habits": "Costruisci abitudini",
+      "take_challenges": "Affronta sfide"
+    },
+    "errors": {
+      "not_authenticated": "Non autenticato. Effettua di nuovo l'accesso.",
+      "rate_limited": "Limite richieste superato. Riprova tra un momento.",
+      "unauthorized": "Autenticazione richiesta. Accedi di nuovo.",
+      "api_key_or_quota": "Chiave API non valida o quota superata.",
+      "failed_response": "Risposta fallita",
+      "default_ai_reply": "Mi dispiace — non sono riuscito a generare una risposta.",
+      "send_failed": "Invio messaggio fallito",
+      "clear_failed": "Cancellazione chat fallita"
     }
   },
-
   "learn": {
     "title": "Aprender",
     "subtitle": "Educação e conhecimento sobre recuperação",
@@ -715,7 +748,6 @@
       "timeline": "Linha do tempo de recuperação e marcos"
     }
   },
-
   "porn_recovery": {
     "title": "Recuperação de Pornografia",
     "subtitle": "Ferramentas científicas para a sua jornada",
@@ -827,7 +859,6 @@
     "strategies_title": "Estratégias Práticas de Recuperação",
     "strategies_desc": "A recuperação não é apenas parar — é construir uma vida onde não precisa da fuga. Estas estratégias abordam tanto o comportamento como as necessidades subjacentes."
   },
-
   "trigger_tracking": {
     "title": "Rastreio de Gatilhos",
     "subtitle": "Registe e analise os seus impulsos",
@@ -928,9 +959,11 @@
       "morning": "Manhã",
       "afternoon": "Tarde",
       "evening": "Entardecer"
-    }
+    },
+    "toast_log_failed": "Impossibile salvare il registro",
+    "toast_logged_title": "✓ Trigger registrato",
+    "toast_logged_desc": "Continua a monitorare per scoprire i tuoi pattern"
   },
-
   "evening_reflection": {
     "title": "Reflexão Noturna",
     "daily_checkin": "Check-in Diário",
@@ -963,7 +996,6 @@
     "reflection_saved_desc": "Bom trabalho a refletir sobre o seu dia",
     "could_not_save": "Não foi possível guardar a reflexão"
   },
-
   "daily_planning": {
     "title": "Planeamento Diário",
     "tomorrow": "Amanhã",
@@ -1018,7 +1050,6 @@
       "no_procrastinate": "Não procrastine nas tarefas"
     }
   },
-
   "recovery": {
     "recovery_streak": "Sequência de Recuperação",
     "clean_day": "Dia limpo",
@@ -1056,9 +1087,18 @@
     "toast_abandoned_title": "Desafio abandonado",
     "toast_abandoned_desc": "Pode começar novamente quando quiser.",
     "toast_abandon_failed_title": "Erro",
-    "toast_abandon_failed_desc": "Não foi possível abandonar o desafio. Tente novamente."
+    "toast_abandon_failed_desc": "Não foi possível abandonar o desafio. Tente novamente.",
+    "title": "Porn Recovery",
+    "subtitle": "Strumenti scientifici per il tuo percorso",
+    "emergency": "Emergenza",
+    "sos": "SOS",
+    "emergency_urge": "🚨 Emergenza Impulso",
+    "tabs": {
+      "progress": "Progressi",
+      "manage": "Gestisci",
+      "learn": "Impara"
+    }
   },
-
   "locked_preview": {
     "unlock_premium": "Desbloquear Premium",
     "trigger": {
@@ -1097,7 +1137,6 @@
       "recovery_timeline": "Linha do tempo de recuperação e marcos"
     }
   },
-
   "habit_report": {
     "habit_analysis": "Análise de Hábitos",
     "loading_insights": "A carregar insights de hábitos...",
@@ -1111,15 +1150,22 @@
     "next_report_in": "Próximo relatório disponível em {{days}} dia(s)",
     "generate_new": "Gerar Novo Relatório",
     "suggestion_ignored_title": "Sugestão ignorada",
-    "suggestion_ignored_desc": "O hábito permanece inalterado"
+    "suggestion_ignored_desc": "O hábito permanece inalterado",
+    "wait_title": "Attendi",
+    "wait_desc": "Puoi generare un nuovo report tra {{days}} giorno/i",
+    "generated_title": "Report abitudini generato! 🎯",
+    "generated_desc": "Le tue analisi personalizzate sono pronte.",
+    "failed_title": "Generazione fallita",
+    "failed_desc": "Impossibile generare il report",
+    "habit_updated_title": "Abitudine aggiornata! ✓",
+    "habit_updated_desc": "Cambiata in \"{{title}}\"",
+    "failed_update_habit": "Impossibile aggiornare l'abitudine"
   },
-
   "not_found": {
     "title": "404",
     "message": "Ops! Página não encontrada",
     "return_home": "Voltar ao Início"
   },
-
   "paywall": {
     "habit_limit_title": "Desbloqueie Hábitos Ilimitados",
     "habit_limit_desc": "Atingiu o limite gratuito de 5 hábitos. Atualize para criar todos os hábitos de que precisa.",
@@ -1147,7 +1193,6 @@
     "maybe_later": "Talvez mais tarde",
     "cancel_guarantee": "Cancele quando quiser • Garantia de 30 dias"
   },
-
   "footer": {
     "tagline": "Transforme a sua vida com hábitos baseados na ciência e o poder da recuperação.",
     "legal": "Legal",
@@ -1157,14 +1202,12 @@
     "follow_us": "Siga-nos",
     "copyright": "© {{year}} InnerBuild. Todos os direitos reservados. Construído com amor para o seu crescimento <3."
   },
-
   "nav": {
     "home": "Início",
     "tools": "Ferramentas",
     "learn": "Aprender",
     "profile": "Perfil"
   },
-
   "habit_tips": {
     "one_min_tip": "Dica de 1 Min",
     "next_tip": "Próxima dica",
@@ -1191,7 +1234,6 @@
       "friction": "Cada passo entre si e um hábito reduz a probabilidade de o fazer."
     }
   },
-
   "profile_info_section": {
     "title": "Informações do Perfil",
     "manage_info_desc": "Gerencie as suas informações pessoais e foto de perfil",
@@ -1334,7 +1376,10 @@
     "improving": "Continue assim – está a construir impulso.",
     "protect": "A sua consistência é o seu maior ativo.",
     "adjustment": "Tente ajustar uma pequena coisa esta semana.",
-    "available_in": "Disponível em {{days}} dias"
+    "available_in": "Disponível em {{days}} dias",
+    "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
+    "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
   },
   "recovery_tracker": {
     "title": "Desafio de Recuperação",
@@ -1944,16 +1989,46 @@
     "medium": "Médio",
     "challenge": "Desafio",
     "items": {
-      "drink_water": { "title": "Beba 8 copos de água", "description": "Mantenha-se hidratado durante o dia" },
-      "deep_breaths": { "title": "Faça 5 respirações profundas", "description": "Reinício rápido de atenção plena" },
-      "make_bed": { "title": "Faça a cama", "description": "Comece o dia com uma pequena vitória" },
-      "read_10min": { "title": "Leia 10 minutos", "description": "Expanda o seu conhecimento todos os dias" },
-      "walk_10min": { "title": "Caminhe 10 minutos", "description": "Exercício leve para corpo e mente" },
-      "eat_fruit": { "title": "Coma uma fruta", "description": "Adicione mais nutrientes à sua dieta" },
-      "gratitude": { "title": "Pratique gratidão", "description": "Escreva 3 coisas pelas quais está grato" },
-      "meditate_15min": { "title": "Medite 15 minutos", "description": "Foco profundo e relaxamento" },
-      "exercise_30min": { "title": "Faça exercício 30 minutos", "description": "Construa força e resistência" },
-      "sleep_8hrs": { "title": "Durma 8 horas", "description": "Priorize descanso de qualidade" },
+      "drink_water": {
+        "title": "Beba 8 copos de água",
+        "description": "Mantenha-se hidratado durante o dia"
+      },
+      "deep_breaths": {
+        "title": "Faça 5 respirações profundas",
+        "description": "Reinício rápido de atenção plena"
+      },
+      "make_bed": {
+        "title": "Faça a cama",
+        "description": "Comece o dia com uma pequena vitória"
+      },
+      "read_10min": {
+        "title": "Leia 10 minutos",
+        "description": "Expanda o seu conhecimento todos os dias"
+      },
+      "walk_10min": {
+        "title": "Caminhe 10 minutos",
+        "description": "Exercício leve para corpo e mente"
+      },
+      "eat_fruit": {
+        "title": "Coma uma fruta",
+        "description": "Adicione mais nutrientes à sua dieta"
+      },
+      "gratitude": {
+        "title": "Pratique gratidão",
+        "description": "Escreva 3 coisas pelas quais está grato"
+      },
+      "meditate_15min": {
+        "title": "Medite 15 minutos",
+        "description": "Foco profundo e relaxamento"
+      },
+      "exercise_30min": {
+        "title": "Faça exercício 30 minutos",
+        "description": "Construa força e resistência"
+      },
+      "sleep_8hrs": {
+        "title": "Durma 8 horas",
+        "description": "Priorize descanso de qualidade"
+      },
       "no_phone_1hr": {
         "title": "Sem telemóvel na primeira hora",
         "description": "Comece o dia com intenção"
@@ -2118,182 +2193,179 @@
       "title": "Detox de Redes Sociais de 7 Dias",
       "description": "Faça uma pausa de uma semana em todas as redes sociais para recuperar foco e presença.",
       "science_note": "Estudos mostram que mesmo uma semana sem redes sociais pode reduzir a ansiedade em 23% e melhorar significativamente a qualidade do sono.",
-    "daily_steps": [
-    "Elimine ou termine sessão nas apps sociais",
-    "Substitua o tempo de deslocamento por uma caminhada de 10 min",
-    "Anote os seus impulsos e emoções",
-    "Conecte-se com alguém pessoalmente ou por telefone",
-    "Reflita sobre o que ganhou hoje"
-    ]
+      "daily_steps": [
+        "Elimine ou termine sessão nas apps sociais",
+        "Substitua o tempo de deslocamento por uma caminhada de 10 min",
+        "Anote os seus impulsos e emoções",
+        "Conecte-se com alguém pessoalmente ou por telefone",
+        "Reflita sobre o que ganhou hoje"
+      ]
     },
     "screen-time-21": {
-    "title": "Reinício do Tempo de Ecrã de 21 Dias",
-    "description": "Reduza gradualmente o tempo de ecrã e construa hábitos digitais mais saudáveis.",
-    "science_note": "O cérebro leva cerca de 21 dias para formar novas vias neurais. Esta duração otimiza a formação de hábitos.",
-    "daily_steps": [
-    "Defina um limite diário de tempo de ecrã (reduza 30 min/semana)",
-    "Sem telemóvel durante as refeições",
-    "Primeira hora após acordar sem telemóvel",
-    "Leia livros físicos antes de dormir",
-    "Sessão semanal de limpeza digital"
-    ]
+      "title": "Reinício do Tempo de Ecrã de 21 Dias",
+      "description": "Reduza gradualmente o tempo de ecrã e construa hábitos digitais mais saudáveis.",
+      "science_note": "O cérebro leva cerca de 21 dias para formar novas vias neurais. Esta duração otimiza a formação de hábitos.",
+      "daily_steps": [
+        "Defina um limite diário de tempo de ecrã (reduza 30 min/semana)",
+        "Sem telemóvel durante as refeições",
+        "Primeira hora após acordar sem telemóvel",
+        "Leia livros físicos antes de dormir",
+        "Sessão semanal de limpeza digital"
+      ]
     },
     "dopamine-detox-3": {
-    "title": "Reinício da Dopamina de 3 Dias",
-    "description": "Um reinício curto mas intenso para quebrar o ciclo de estimulação constante.",
-    "science_note": "A sensibilidade dos recetores de dopamina pode começar a recuperar dentro de 72 horas após a redução de atividades de alta estimulação.",
-    "daily_steps": [
-    "Sem redes sociais, jogos ou streaming",
-    "Coma alimentos simples e não processados",
-    "Pratique 15 minutos de meditação",
-    "Dê um passeio na natureza",
-    "Escreva sobre a sua experiência"
-    ]
+      "title": "Reinício da Dopamina de 3 Dias",
+      "description": "Um reinício curto mas intenso para quebrar o ciclo de estimulação constante.",
+      "science_note": "A sensibilidade dos recetores de dopamina pode começar a recuperar dentro de 72 horas após a redução de atividades de alta estimulação.",
+      "daily_steps": [
+        "Sem redes sociais, jogos ou streaming",
+        "Coma alimentos simples e não processados",
+        "Pratique 15 minutos de meditação",
+        "Dê um passeio na natureza",
+        "Escreva sobre a sua experiência"
+      ]
     },
     "mindfulness-30": {
-    "title": "Jornada de Atenção Plena de 30 Dias",
-    "description": "Construa uma prática consistente de meditação e transforme a sua clareza mental.",
-    "science_note": "30 dias de meditação podem aumentar a massa cinzenta no córtex pré-frontal e reduzir a atividade na amígdala.",
-    "daily_steps": [
-    "Meditação matinal (comece com 5 min, aumente para 20)",
-    "3 respirações conscientes antes de cada refeição",
-    "Diário de gratidão noturno",
-    "Uma atividade consciente (caminhada, refeição)",
-    "Escaneamento corporal antes de dormir"
-    ]
+      "title": "Jornada de Atenção Plena de 30 Dias",
+      "description": "Construa uma prática consistente de meditação e transforme a sua clareza mental.",
+      "science_note": "30 dias de meditação podem aumentar a massa cinzenta no córtex pré-frontal e reduzir a atividade na amígdala.",
+      "daily_steps": [
+        "Meditação matinal (comece com 5 min, aumente para 20)",
+        "3 respirações conscientes antes de cada refeição",
+        "Diário de gratidão noturno",
+        "Uma atividade consciente (caminhada, refeição)",
+        "Escaneamento corporal antes de dormir"
+      ]
     },
     "negativity-fast-7": {
-    "title": "Jejum de Negatividade de 7 Dias",
-    "description": "Elimine queixas, críticas e diálogo interno negativo durante uma semana.",
-    "science_note": "Padrões de pensamento negativo fortalecem vias neurais. Quebrar o ciclo por 7 dias pode começar a reconectar o cérebro.",
-    "daily_steps": [
-    "Apanhe e reformule pensamentos negativos",
-    "Sem queixas ou fofocas",
-    "Substitua a crítica por curiosidade",
-    "Pratique exercícios de autocompaixão",
-    "Termine o dia com 3 observações positivas"
-    ]
+      "title": "Jejum de Negatividade de 7 Dias",
+      "description": "Elimine queixas, críticas e diálogo interno negativo durante uma semana.",
+      "science_note": "Padrões de pensamento negativo fortalecem vias neurais. Quebrar o ciclo por 7 dias pode começar a reconectar o cérebro.",
+      "daily_steps": [
+        "Apanhe e reformule pensamentos negativos",
+        "Sem queixas ou fofocas",
+        "Substitua a crítica por curiosidade",
+        "Pratique exercícios de autocompaixão",
+        "Termine o dia com 3 observações positivas"
+      ]
     },
     "sleep-reset-14": {
-    "title": "Reinício do Sono de 14 Dias",
-    "description": "Otimize o seu horário de sono e acorde verdadeiramente descansado.",
-    "science_note": "Reiniciar o ritmo circadiano pode levar 1‑2 semanas. Horários de sono consistentes são mais importantes do que as horas totais.",
-    "daily_steps": [
-    "Mesmas horas de dormir e acordar todos os dias",
-    "Sem ecrãs 1 hora antes de dormir",
-    "Atenue as luzes após o pôr do sol",
-    "Exposição à luz matinal (15 min)",
-    "Sem cafeína após as 14h"
-    ]
+      "title": "Reinício do Sono de 14 Dias",
+      "description": "Otimize o seu horário de sono e acorde verdadeiramente descansado.",
+      "science_note": "Reiniciar o ritmo circadiano pode levar 1‑2 semanas. Horários de sono consistentes são mais importantes do que as horas totais.",
+      "daily_steps": [
+        "Mesmas horas de dormir e acordar todos os dias",
+        "Sem ecrãs 1 hora antes de dormir",
+        "Atenue as luzes após o pôr do sol",
+        "Exposição à luz matinal (15 min)",
+        "Sem cafeína após as 14h"
+      ]
     },
     "nofap-30": {
-    "title": "Mente Limpa 30 Dias",
-    "description": "Liberte-se da pornografia e recupere a sua clareza mental e energia.",
-    "science_note": "A sensibilidade dos recetores de dopamina geralmente começa a normalizar após 2‑4 semanas de abstinência de super-estímulos.",
-    "daily_steps": [
-    "Instale bloqueadores de sites em todos os dispositivos",
-    "Exercício físico diário (mínimo 20 min)",
-    "Registe impulsos e gatilhos em diário",
-    "Pratique a técnica de surfar o impulso",
-    "Conecte-se com um parceiro de responsabilidade"
-    ]
+      "title": "Mente Limpa 30 Dias",
+      "description": "Liberte-se da pornografia e recupere a sua clareza mental e energia.",
+      "science_note": "A sensibilidade dos recetores de dopamina geralmente começa a normalizar após 2‑4 semanas de abstinência de super-estímulos.",
+      "daily_steps": [
+        "Instale bloqueadores de sites em todos os dispositivos",
+        "Exercício físico diário (mínimo 20 min)",
+        "Registe impulsos e gatilhos em diário",
+        "Pratique a técnica de surfar o impulso",
+        "Conecte-se com um parceiro de responsabilidade"
+      ]
     },
     "recovery-90": {
-    "title": "Recuperação Profunda de 90 Dias",
-    "description": "Uma jornada abrangente para reconectar o cérebro e construir liberdade duradoura.",
-    "science_note": "A recuperação completa do sistema dopaminérgico e a formação de novas vias neurais geralmente requerem 90 dias de esforço consistente.",
-    "daily_steps": [
-    "Duche frio diário para disciplina",
-    "Meditação ou oração (15 min)",
-    "Exercício físico",
-    "Check-in semanal com grupo de apoio",
-    "Reflexão diária e acompanhamento do progresso"
-    ]
+      "title": "Recuperação Profunda de 90 Dias",
+      "description": "Uma jornada abrangente para reconectar o cérebro e construir liberdade duradoura.",
+      "science_note": "A recuperação completa do sistema dopaminérgico e a formação de novas vias neurais geralmente requerem 90 dias de esforço consistente.",
+      "daily_steps": [
+        "Duche frio diário para disciplina",
+        "Meditação ou oração (15 min)",
+        "Exercício físico",
+        "Check-in semanal com grupo de apoio",
+        "Reflexão diária e acompanhamento do progresso"
+      ]
     },
     "awareness-week-7": {
-    "title": "Semana de Consciência",
-    "description": "Compreenda os seus gatilhos e padrões antes de se comprometer com um desafio mais longo.",
-    "science_note": "A autoconsciência é o primeiro passo para a mudança. Compreender os gatilhos aumenta as taxas de sucesso em 60%.",
-    "daily_steps": [
-    "Registe cada impulso (hora, gatilho, intensidade)",
-    "Identifique os seus 3 principais gatilhos",
-    "Crie um plano de ação de emergência",
-    "Remova pontos de acesso fáceis",
-    "Prepare o seu ambiente para o sucesso"
-    ]
+      "title": "Semana de Consciência",
+      "description": "Compreenda os seus gatilhos e padrões antes de se comprometer com um desafio mais longo.",
+      "science_note": "A autoconsciência é o primeiro passo para a mudança. Compreender os gatilhos aumenta as taxas de sucesso em 60%.",
+      "daily_steps": [
+        "Registe cada impulso (hora, gatilho, intensidade)",
+        "Identifique os seus 3 principais gatilhos",
+        "Crie um plano de ação de emergência",
+        "Remova pontos de acesso fáceis",
+        "Prepare o seu ambiente para o sucesso"
+      ]
     }
-    },
-
-    "privacy_policy": {
+  },
+  "privacy_policy": {
     "title": "Política de Privacidade",
     "back_to_home": "Voltar ao Início",
     "last_updated": "Última atualização: fevereiro de 2026",
     "introduction": {
-    "title": "1. Introdução",
-    "content": "A InnerBuild (\"nós\", \"nosso\") opera a aplicação InnerBuild. Esta página informa-o sobre as nossas políticas em relação à recolha, uso e divulgação de dados pessoais quando utiliza o nosso Serviço e as escolhas que tem associadas a esses dados."
+      "title": "1. Introdução",
+      "content": "A InnerBuild (\"nós\", \"nosso\") opera a aplicação InnerBuild. Esta página informa-o sobre as nossas políticas em relação à recolha, uso e divulgação de dados pessoais quando utiliza o nosso Serviço e as escolhas que tem associadas a esses dados."
     },
     "information_collection": {
-    "title": "2. Recolha e Uso de Informações",
-    "content": "Recolhemos vários tipos de informações para diversos fins, para fornecer e melhorar o nosso Serviço.",
-    "items": {
-    "email": "Endereço de e-mail para autenticação e comunicação",
-    "habit_data": "Dados de hábitos e registos pessoais que escolhe guardar",
-    "analytics": "Análises de utilização para melhorar a nossa plataforma",
-    "device_info": "Informações do dispositivo para resolução de problemas"
-    }
+      "title": "2. Recolha e Uso de Informações",
+      "content": "Recolhemos vários tipos de informações para diversos fins, para fornecer e melhorar o nosso Serviço.",
+      "items": {
+        "email": "Endereço de e-mail para autenticação e comunicação",
+        "habit_data": "Dados de hábitos e registos pessoais que escolhe guardar",
+        "analytics": "Análises de utilização para melhorar a nossa plataforma",
+        "device_info": "Informações do dispositivo para resolução de problemas"
+      }
     },
     "security": {
-    "title": "3. Segurança",
-    "content": "A segurança dos seus dados é importante para nós, mas lembre-se que nenhum método de transmissão pela Internet ou método de armazenamento eletrónico é 100% seguro. Embora nos esforcemos para usar meios comercialmente aceitáveis para proteger os seus dados pessoais, não podemos garantir a sua segurança absoluta."
+      "title": "3. Segurança",
+      "content": "A segurança dos seus dados é importante para nós, mas lembre-se que nenhum método de transmissão pela Internet ou método de armazenamento eletrónico é 100% seguro. Embora nos esforcemos para usar meios comercialmente aceitáveis para proteger os seus dados pessoais, não podemos garantir a sua segurança absoluta."
     },
     "changes": {
-    "title": "4. Alterações a Esta Política de Privacidade",
-    "content": "Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Notificá-lo-emos de quaisquer alterações atualizando a data \"Última atualização\" nesta página."
+      "title": "4. Alterações a Esta Política de Privacidade",
+      "content": "Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Notificá-lo-emos de quaisquer alterações atualizando a data \"Última atualização\" nesta página."
     },
     "contact": {
-    "title": "5. Contacte-nos",
-    "content": "Se tiver alguma dúvida sobre esta Política de Privacidade, contacte-nos em"
+      "title": "5. Contacte-nos",
+      "content": "Se tiver alguma dúvida sobre esta Política de Privacidade, contacte-nos em"
     }
-    },
-
-    "terms_of_service": {
+  },
+  "terms_of_service": {
     "title": "Termos de Serviço",
     "back_to_home": "Voltar ao Início",
     "last_updated": "Última atualização: fevereiro de 2026",
     "acceptance": {
-    "title": "1. Aceitação dos Termos",
-    "content": "Ao aceder e utilizar a aplicação InnerBuild, concorda e aceita ficar vinculado pelos termos e disposições deste acordo. Se não concordar em cumprir o acima exposto, não utilize este Serviço."
+      "title": "1. Aceitação dos Termos",
+      "content": "Ao aceder e utilizar a aplicação InnerBuild, concorda e aceita ficar vinculado pelos termos e disposições deste acordo. Se não concordar em cumprir o acima exposto, não utilize este Serviço."
     },
     "use_license": {
-    "title": "2. Licença de Uso",
-    "content": "É concedida permissão para transferir temporariamente uma cópia dos materiais (informação ou software) no InnerBuild apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título, e sob esta licença não pode:",
-    "items": {
-    "modify": "Modificar ou copiar os materiais",
-    "commercial": "Usar os materiais para qualquer finalidade comercial ou para qualquer exibição pública",
-    "decompile": "Tentar descompilar ou fazer engenharia reversa de qualquer software contido no InnerBuild",
-    "remove_notices": "Remover quaisquer direitos de autor ou outras notações de propriedade dos materiais",
-    "transfer": "Transferir os materiais para outra pessoa ou \"espelhar\" os materiais em qualquer outro servidor"
-    }
+      "title": "2. Licença de Uso",
+      "content": "É concedida permissão para transferir temporariamente uma cópia dos materiais (informação ou software) no InnerBuild apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título, e sob esta licença não pode:",
+      "items": {
+        "modify": "Modificar ou copiar os materiais",
+        "commercial": "Usar os materiais para qualquer finalidade comercial ou para qualquer exibição pública",
+        "decompile": "Tentar descompilar ou fazer engenharia reversa de qualquer software contido no InnerBuild",
+        "remove_notices": "Remover quaisquer direitos de autor ou outras notações de propriedade dos materiais",
+        "transfer": "Transferir os materiais para outra pessoa ou \"espelhar\" os materiais em qualquer outro servidor"
+      }
     },
     "disclaimer": {
-    "title": "3. Isenção de Responsabilidade",
-    "content": "Os materiais no InnerBuild são fornecidos \"como estão\". A InnerBuild não oferece garantias, expressas ou implícitas, e pelo presente se isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos."
+      "title": "3. Isenção de Responsabilidade",
+      "content": "Os materiais no InnerBuild são fornecidos \"como estão\". A InnerBuild não oferece garantias, expressas ou implícitas, e pelo presente se isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos."
     },
     "limitations": {
-    "title": "4. Limitações",
-    "content": "Em nenhum caso a InnerBuild ou os seus fornecedores serão responsáveis por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro, ou devido a interrupção de negócios) decorrentes do uso ou da incapacidade de usar os materiais no InnerBuild."
+      "title": "4. Limitações",
+      "content": "Em nenhum caso a InnerBuild ou os seus fornecedores serão responsáveis por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro, ou devido a interrupção de negócios) decorrentes do uso ou da incapacidade de usar os materiais no InnerBuild."
     },
     "accuracy": {
-    "title": "5. Precisão dos Materiais",
-    "content": "Os materiais que aparecem no InnerBuild podem incluir erros técnicos, tipográficos ou fotográficos. A InnerBuild não garante que qualquer dos materiais no seu site seja preciso, completo ou atual. A InnerBuild pode fazer alterações aos materiais contidos no seu site a qualquer momento, sem aviso prévio."
+      "title": "5. Precisão dos Materiais",
+      "content": "Os materiais que aparecem no InnerBuild podem incluir erros técnicos, tipográficos ou fotográficos. A InnerBuild não garante que qualquer dos materiais no seu site seja preciso, completo ou atual. A InnerBuild pode fazer alterações aos materiais contidos no seu site a qualquer momento, sem aviso prévio."
     },
     "contact": {
-    "title": "6. Contacte-nos",
-    "content": "Se tiver alguma dúvida sobre estes Termos de Serviço, contacte-nos em"
+      "title": "6. Contacte-nos",
+      "content": "Se tiver alguma dúvida sobre estes Termos de Serviço, contacte-nos em"
     }
-    },
-
-    "ai_coach_insight": {
+  },
+  "ai_coach_insight": {
     "title": "Relatório do Coach IA",
     "loading": "A carregar insights IA...",
     "time_for_new": "Está na Hora de um Novo Relatório",

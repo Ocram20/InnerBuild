@@ -63,7 +63,6 @@
     "refresh": "Actualiser",
     "pro_tip": "Conseil Pro"
   },
-
   "auth": {
     "welcome_back": "Bon retour",
     "start_journey": "Commencez votre voyage",
@@ -96,13 +95,11 @@
     "sign_out": "Se déconnecter",
     "log_out": "Déconnexion"
   },
-
   "auth_validation": {
     "invalid_email": "Veuillez saisir une adresse e-mail valide",
     "password_min": "Le mot de passe doit comporter au moins 6 caractères",
     "password_complexity": "Le mot de passe doit contenir au moins : une minuscule, une majuscule, un chiffre et un caractère spécial."
   },
-
   "forgot_password": {
     "title": "Mot de passe oublié",
     "description": "Saisissez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
@@ -122,7 +119,6 @@
     "rate_limit_desc": "Veuillez attendre quelques minutes avant de réessayer.",
     "remember_password": "Vous vous souvenez de votre mot de passe ?"
   },
-
   "dashboard": {
     "good_morning": "Bonjour",
     "good_afternoon": "Bon après-midi",
@@ -149,7 +145,6 @@
     "could_not_update": "Impossible de mettre à jour la tâche",
     "could_not_update_status": "Impossible de mettre à jour le statut"
   },
-
   "landing": {
     "your_companion": "Votre compagnon complet pour la croissance personnelle",
     "hero_title_1": "Construisez la vie que vous méritez,",
@@ -241,7 +236,11 @@
         "Adapté à votre parcours"
       ],
       "learn_desc": "Comprenez la science derrière vos habitudes, la dopamine et la récupération cérébrale.",
-      "learn_features": ["Articles approfondis", "Guides de récupération", "Chronologie de guérison cérébrale"],
+      "learn_features": [
+        "Articles approfondis",
+        "Guides de récupération",
+        "Chronologie de guérison cérébrale"
+      ],
       "habit_adaptation_desc": "L'IA analyse vos schémas réels de complétion et suggère des ajustements plus intelligents.",
       "habit_adaptation_features": [
         "Détection de schémas",
@@ -276,12 +275,29 @@
         "Adapté à vous"
       ],
       "learn_mobile_desc": "La science derrière les habitudes, la dopamine et la récupération cérébrale. La connaissance rend chaque effort significatif.",
-      "learn_mobile_features": ["Articles approfondis", "Guides de récupération", "Chronologie de guérison cérébrale"],
+      "learn_mobile_features": [
+        "Articles approfondis",
+        "Guides de récupération",
+        "Chronologie de guérison cérébrale"
+      ],
       "habit_adaptation_mobile_desc": "L'IA analyse vos schémas réels de complétion et suggère des ajustements plus intelligents.",
-      "habit_adaptation_mobile_features": ["Détection de schémas", "Ajustement intelligent", "Recommandations IA"]
+      "habit_adaptation_mobile_features": [
+        "Détection de schémas",
+        "Ajustement intelligent",
+        "Recommandations IA"
+      ]
+    },
+    "footer": {
+      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
+      "legal": "Legale",
+      "support": "Supporto",
+      "follow": "Seguici",
+      "privacy": "Informativa Privacy",
+      "terms": "Termini di Servizio",
+      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
+      "back_to_top": "Torna su"
     }
   },
-
   "explore": {
     "title": "Outils",
     "subtitle": "Tout ce dont vous avez besoin pour grandir",
@@ -305,7 +321,6 @@
       "ai_coach_desc": "Guide personnel basé sur l'IA"
     }
   },
-
   "habits": {
     "title": "Mes habitudes",
     "completed_today": "{{completed}}/{{total}} terminées aujourd'hui • {{percent}}%",
@@ -395,7 +410,6 @@
       "final_p2": "Petits changements. Résultats remarquables. Une habitude à la fois."
     }
   },
-
   "challenges": {
     "title": "Défis Detox",
     "active_completed": "{{active}} actifs • {{completed}} terminés",
@@ -466,7 +480,6 @@
       "final_p2": "Brisez le schéma. Construisez la vie que vous méritez."
     }
   },
-
   "create_habit": {
     "title": "Créer une nouvelle habitude",
     "habit_name": "Nom de l'habitude *",
@@ -488,7 +501,6 @@
       "weekends": "Week-ends"
     }
   },
-
   "create_challenge": {
     "title": "Créer un défi personnalisé",
     "challenge_name": "Nom du défi *",
@@ -519,7 +531,6 @@
       "90_desc": "Transformation profonde"
     }
   },
-
   "pricing": {
     "choose_plan": "Choisissez votre formule",
     "subtitle": "Commencez gratuitement et passez à Premium quand vous êtes prêt. Pas de frais cachés, annulation à tout moment.",
@@ -567,7 +578,6 @@
       "priority": "Accès prioritaire aux nouvelles fonctionnalités"
     }
   },
-
   "profile": {
     "title": "Mon profil",
     "premium_plan": "Formule Premium",
@@ -664,43 +674,57 @@
     "oauth_email_locked": "L'e-mail ne peut pas être modifié car vous vous êtes connecté avec {{provider}}. Pour le changer, mettez à jour l'adresse dans votre compte {{provider}}.",
     "avatar_alt": "Photo de profil"
   },
-
   "coach": {
     "title": "Coach IA",
     "subtitle": "Votre guide personnel",
     "clear_chat": "Effacer le chat",
+    "greeting": "Salut !",
+    "intro": "Je suis votre coach IA, là pour soutenir vos habitudes, vos défis et votre récupération.",
+    "tip_default": "De petits pas, faits avec constance, changent tout.",
+    "quick_actions_title": "Actions rapides :",
+    "input_placeholder": "Demandez à propos des habitudes, défis, recovery...",
     "chat_cleared": "Chat effacé",
-    "failed_clear": "Échec de l'effacement du chat",
-    "hey_there": "Bonjour ! 👋",
-    "intro": "Je suis votre coach IA, ici pour soutenir votre voyage vers de meilleures habitudes et une croissance personnelle.",
-    "quick_actions_label": "Actions rapides pour commencer :",
-    "input_placeholder": "Posez des questions sur vos habitudes, défis, récupération...",
-    "not_authenticated": "Non authentifié. Veuillez vous connecter.",
-    "rate_limit": "Limite de requêtes dépassée. Veuillez réessayer dans un instant.",
-    "auth_required": "Authentification requise. Veuillez vous reconnecter.",
-    "api_error": "Clé API invalide ou quota dépassé.",
-    "failed_response": "Échec de l'obtention de la réponse",
-    "failed_send": "Échec de l'envoi du message",
-    "quick_actions": {
-      "suggest_habit": "Suggérer une habitude",
-      "start_challenge": "Commencer un défi",
-      "motivate_me": "Me motiver",
-      "help_reflect": "M'aider à réfléchir"
-    },
-    "stats": {
+    "pillars": {
       "track_progress": "Suivre les progrès",
       "build_habits": "Construire des habitudes",
       "take_challenges": "Relever des défis"
     },
+    "quick_actions": {
+      "habit_label": "Suggérer une habitude",
+      "habit_prompt": "Peux-tu suggérer une habitude saine que je peux commencer aujourd'hui ?",
+      "challenge_label": "Démarrer un défi",
+      "challenge_prompt": "Je veux me challenger. Peux-tu suggérer un défi detox ou développement personnel avec des étapes quotidiennes ?",
+      "motivation_label": "Me motiver",
+      "motivation_prompt": "Je manque de motivation aujourd'hui. Peux-tu m'encourager ?",
+      "reflect_label": "M'aider à réfléchir",
+      "reflect_prompt": "J'aimerais faire une introspection. Peux-tu me poser quelques questions pertinentes ?"
+    },
+    "errors": {
+      "not_authenticated": "Non authentifié. Veuillez vous reconnecter.",
+      "rate_limited": "Trop de requêtes. Réessayez dans un instant.",
+      "unauthorized": "Authentification requise. Reconnectez-vous.",
+      "api_key_or_quota": "Clé API invalide ou quota dépassé.",
+      "failed_response": "Réponse échouée",
+      "default_ai_reply": "Désolé — je n'ai pas pu générer de réponse.",
+      "send_failed": "Envoi du message échoué",
+      "clear_failed": "Impossible d'effacer le chat"
+    },
+    "failed_clear": "Cancellazione chat fallita",
+    "hey_there": "Ciao! 👋",
+    "not_authenticated": "Non autenticato. Effettua l'accesso.",
+    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
+    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
+    "api_error": "Chiave API non valida o quota superata.",
+    "failed_response": "Risposta fallita",
+    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Chaque petit pas compte vers vos plus grands objectifs",
-      "2": "Les progrès ne sont pas toujours linéaires, et c'est normal",
-      "3": "Vous faites déjà mieux en étant ici",
-      "4": "La constance bat la perfection à chaque fois",
-      "5": "Aujourd'hui est une nouvelle opportunité de grandir"
+      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
+      "2": "Il progresso non è sempre lineare, e va bene così",
+      "3": "Stai già facendo meglio essendo qui",
+      "4": "La costanza batte la perfezione ogni volta",
+      "5": "Oggi è una nuova opportunità per crescere"
     }
   },
-
   "learn": {
     "title": "Apprendre",
     "subtitle": "Éducation et connaissances sur la récupération",
@@ -715,7 +739,6 @@
       "timeline": "Chronologie de récupération et jalons"
     }
   },
-
   "porn_recovery": {
     "title": "Récupération de la pornographie",
     "subtitle": "Outils scientifiques pour votre parcours",
@@ -827,7 +850,6 @@
     "strategies_title": "Stratégies pratiques de récupération",
     "strategies_desc": "La récupération ne consiste pas seulement à arrêter – mais à construire une vie où vous n'avez pas besoin de l'échappatoire. Ces stratégies abordent à la fois le comportement et les besoins sous-jacents."
   },
-
   "trigger_tracking": {
     "title": "Suivi des déclencheurs",
     "subtitle": "Enregistrez et analysez vos pulsions",
@@ -933,7 +955,6 @@
       "evening": "Soir"
     }
   },
-
   "evening_reflection": {
     "title": "Réflexion du soir",
     "daily_checkin": "Bilan quotidien",
@@ -966,7 +987,6 @@
     "reflection_saved_desc": "Bon travail en réfléchissant à votre journée",
     "could_not_save": "Impossible d'enregistrer la réflexion"
   },
-
   "daily_planning": {
     "title": "Planification quotidienne",
     "tomorrow": "Demain",
@@ -1021,7 +1041,6 @@
       "no_procrastinate": "Ne procrastinez pas sur les tâches"
     }
   },
-
   "recovery": {
     "recovery_streak": "Série de récupération",
     "clean_day": "Jour propre",
@@ -1071,7 +1090,6 @@
     "toast_abandon_failed_title": "Erreur",
     "toast_abandon_failed_desc": "Impossible d’abandonner le défi. Réessayez."
   },
-
   "locked_preview": {
     "unlock_premium": "Débloquer Premium",
     "trigger": {
@@ -1110,7 +1128,6 @@
       "recovery_timeline": "Chronologie de récupération et jalons"
     }
   },
-
   "habit_report": {
     "habit_analysis": "Analyse des habitudes",
     "loading_insights": "Chargement des insights sur les habitudes...",
@@ -1135,13 +1152,11 @@
     "suggestion_ignored_title": "Suggestion ignorée",
     "suggestion_ignored_desc": "L’habitude reste inchangée"
   },
-
   "not_found": {
     "title": "404",
     "message": "Oups ! Page non trouvée",
     "return_home": "Retour à l'accueil"
   },
-
   "paywall": {
     "habit_limit_title": "Débloquer des habitudes illimitées",
     "habit_limit_desc": "Vous avez atteint la limite gratuite de 5 habitudes. Mettez à niveau pour créer toutes les habitudes dont vous avez besoin.",
@@ -1169,7 +1184,6 @@
     "maybe_later": "Peut-être plus tard",
     "cancel_guarantee": "Annulation à tout moment • Garantie de remboursement de 30 jours"
   },
-
   "footer": {
     "tagline": "Transformez votre vie avec des habitudes basées sur la science et le pouvoir de la récupération.",
     "legal": "Mentions légales",
@@ -1179,14 +1193,12 @@
     "follow_us": "Suivez-nous",
     "copyright": "© {{year}} InnerBuild. Tous droits réservés. Construit avec amour pour votre croissance <3."
   },
-
   "nav": {
     "home": "Accueil",
     "tools": "Outils",
     "learn": "Apprendre",
     "profile": "Profil"
   },
-
   "habit_tips": {
     "one_min_tip": "Astuce en 1 min",
     "next_tip": "Astuce suivante",
@@ -1213,7 +1225,6 @@
       "friction": "Chaque étape entre vous et une habitude réduit la probabilité que vous la fassiez."
     }
   },
-
   "profile_info_section": {
     "title": "Informations du profil",
     "manage_info_desc": "Gérez vos informations personnelles et votre photo de profil",
@@ -1356,7 +1367,10 @@
     "improving": "Continuez comme ça – vous construisez une dynamique.",
     "protect": "Votre constance est votre plus grand atout.",
     "adjustment": "Essayez d'ajuster une petite chose cette semaine.",
-    "available_in": "Disponible dans {{days}} jours"
+    "available_in": "Disponible dans {{days}} jours",
+    "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
+    "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
   },
   "recovery_tracker": {
     "title": "Défi de récupération",
@@ -1966,16 +1980,46 @@
     "medium": "Moyen",
     "challenge": "Défi",
     "items": {
-      "drink_water": { "title": "Buvez 8 verres d'eau", "description": "Restez hydraté tout au long de la journée" },
-      "deep_breaths": { "title": "Prenez 5 respirations profondes", "description": "Réinitialisation rapide de la pleine conscience" },
-      "make_bed": { "title": "Faites votre lit", "description": "Commencez la journée par une petite victoire" },
-      "read_10min": { "title": "Lisez 10 minutes", "description": "Élargissez vos connaissances chaque jour" },
-      "walk_10min": { "title": "Marchez 10 minutes", "description": "Exercice léger pour le corps et l'esprit" },
-      "eat_fruit": { "title": "Mangez un fruit", "description": "Ajoutez plus de nutriments à votre alimentation" },
-      "gratitude": { "title": "Pratiquez la gratitude", "description": "Écrivez 3 choses pour lesquelles vous êtes reconnaissant" },
-      "meditate_15min": { "title": "Méditez 15 minutes", "description": "Concentration profonde et relaxation" },
-      "exercise_30min": { "title": "Faites de l'exercice 30 minutes", "description": "Développez force et endurance" },
-      "sleep_8hrs": { "title": "Dormez 8 heures", "description": "Priorisez un repos de qualité" },
+      "drink_water": {
+        "title": "Buvez 8 verres d'eau",
+        "description": "Restez hydraté tout au long de la journée"
+      },
+      "deep_breaths": {
+        "title": "Prenez 5 respirations profondes",
+        "description": "Réinitialisation rapide de la pleine conscience"
+      },
+      "make_bed": {
+        "title": "Faites votre lit",
+        "description": "Commencez la journée par une petite victoire"
+      },
+      "read_10min": {
+        "title": "Lisez 10 minutes",
+        "description": "Élargissez vos connaissances chaque jour"
+      },
+      "walk_10min": {
+        "title": "Marchez 10 minutes",
+        "description": "Exercice léger pour le corps et l'esprit"
+      },
+      "eat_fruit": {
+        "title": "Mangez un fruit",
+        "description": "Ajoutez plus de nutriments à votre alimentation"
+      },
+      "gratitude": {
+        "title": "Pratiquez la gratitude",
+        "description": "Écrivez 3 choses pour lesquelles vous êtes reconnaissant"
+      },
+      "meditate_15min": {
+        "title": "Méditez 15 minutes",
+        "description": "Concentration profonde et relaxation"
+      },
+      "exercise_30min": {
+        "title": "Faites de l'exercice 30 minutes",
+        "description": "Développez force et endurance"
+      },
+      "sleep_8hrs": {
+        "title": "Dormez 8 heures",
+        "description": "Priorisez un repos de qualité"
+      },
       "no_phone_1hr": {
         "title": "Pas de téléphone pendant la première heure",
         "description": "Commencez la journée avec intention"
@@ -2245,7 +2289,6 @@
       ]
     }
   },
-
   "privacy_policy": {
     "title": "Politique de confidentialité",
     "back_to_home": "Retour à l'accueil",
@@ -2277,7 +2320,6 @@
       "content": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à"
     }
   },
-
   "terms_of_service": {
     "title": "Conditions d'utilisation",
     "back_to_home": "Retour à l'accueil",
@@ -2314,7 +2356,6 @@
       "content": "Si vous avez des questions concernant ces Conditions d'utilisation, veuillez nous contacter à"
     }
   },
-
   "ai_coach_insight": {
     "title": "Rapport du Coach IA",
     "loading": "Chargement des insights IA...",
@@ -2331,43 +2372,6 @@
     "common_emotions": "Émotions courantes : {{emotions}}",
     "top_recommendations": "Meilleures recommandations",
     "generate_new": "Générer un nouveau rapport"
-  },
-
-  "coach": {
-    "title": "Coach IA",
-    "subtitle": "Votre guide personnel",
-    "clear_chat": "Effacer le chat",
-    "greeting": "Salut !",
-    "intro": "Je suis votre coach IA, là pour soutenir vos habitudes, vos défis et votre récupération.",
-    "tip_default": "De petits pas, faits avec constance, changent tout.",
-    "quick_actions_title": "Actions rapides :",
-    "input_placeholder": "Demandez à propos des habitudes, défis, recovery...",
-    "chat_cleared": "Chat effacé",
-    "pillars": {
-      "track_progress": "Suivre les progrès",
-      "build_habits": "Construire des habitudes",
-      "take_challenges": "Relever des défis"
-    },
-    "quick_actions": {
-      "habit_label": "Suggérer une habitude",
-      "habit_prompt": "Peux-tu suggérer une habitude saine que je peux commencer aujourd'hui ?",
-      "challenge_label": "Démarrer un défi",
-      "challenge_prompt": "Je veux me challenger. Peux-tu suggérer un défi detox ou développement personnel avec des étapes quotidiennes ?",
-      "motivation_label": "Me motiver",
-      "motivation_prompt": "Je manque de motivation aujourd'hui. Peux-tu m'encourager ?",
-      "reflect_label": "M'aider à réfléchir",
-      "reflect_prompt": "J'aimerais faire une introspection. Peux-tu me poser quelques questions pertinentes ?"
-    },
-    "errors": {
-      "not_authenticated": "Non authentifié. Veuillez vous reconnecter.",
-      "rate_limited": "Trop de requêtes. Réessayez dans un instant.",
-      "unauthorized": "Authentification requise. Reconnectez-vous.",
-      "api_key_or_quota": "Clé API invalide ou quota dépassé.",
-      "failed_response": "Réponse échouée",
-      "default_ai_reply": "Désolé — je n'ai pas pu générer de réponse.",
-      "send_failed": "Envoi du message échoué",
-      "clear_failed": "Impossible d'effacer le chat"
-    }
   },
   "recovery_impact": {
     "title": "Votre Impact",

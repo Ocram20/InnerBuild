@@ -214,10 +214,10 @@ export function ActivityCalendar() {
             
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1.5">
-                <svg className="h-3 w-3 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span className="text-xs text-muted-foreground">{"Fatto"}</span>
+                <span className="text-xs text-muted-foreground">{t("activity_calendar.legend.done")}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <svg className="h-3 w-3 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

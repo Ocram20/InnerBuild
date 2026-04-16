@@ -10,6 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useMemo } from "react";
 interface Habit {
   id: string;
   title: string;
@@ -25,9 +28,19 @@ interface HabitCardProps {
 }
 
 export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+
+  const isAnchor = habit.description?.startsWith("ANCHOR:");
+  const anchorText = isAnchor ? habit.description!.replace("ANCHOR:", "") : null;
+
+  const rawStrings = useMemo(() => [habit.title, anchorText].filter((v): v is string => typeof v === "string" && v.trim().length > 0), [habit.title, anchorText]);
+  const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
+
+  const displayTitle = display(habit.title);
+  const displayAnchor = anchorText ? display(anchorText) : null;
 
   const toggleCompletion = async () => {
     if (!user || isLoading) return;
@@ -57,8 +70,8 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Aggiornamento abitudine fallito",
+        title: t("common.error"),
+        description: t("dashboard.failed_update_habit"),
         variant: "destructive",
       });
     } finally {
@@ -76,15 +89,15 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
         .eq("id", habit.id);
       
       toast({
-        title: "Abitudine eliminata",
-        description: "L'abitudine è stata rimossa",
+        title: t("habit_card.habit_deleted"),
+        description: t("habit_card.habit_removed"),
       });
       
       onUpdate();
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Aggiornamento abitudine fallito",
+        title: t("common.error"),
+        description: t("dashboard.failed_update_habit"),
         variant: "destructive",
       });
     }
@@ -121,9 +134,14 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
               ? "text-muted-foreground line-through decoration-primary/50" 
               : "text-foreground"
           }`}>
-            {habit.title}
+            {displayTitle}
           </h3>
-          {habit.description && (
+          {displayAnchor && (
+            <p className="text-[11px] text-muted-foreground/70 truncate mt-0.5">
+              {t("create_habit.after_i", { defaultValue: "Dopo che ho" })} {displayAnchor}
+            </p>
+          )}
+          {habit.description && !isAnchor && (
             <p className="text-sm text-muted-foreground/70 truncate mt-0.5">{habit.description}</p>
           )}
         </button>
@@ -140,7 +158,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
               className="text-destructive focus:text-destructive"
             >
               <Trash2 className="h-4 w-4 mr-2" />
-              Delete
+              {t("common.delete")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

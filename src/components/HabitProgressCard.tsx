@@ -76,9 +76,14 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
 
   const Icon = categoryIcons[habit.category] || Flame;
   const colorClass = categoryColors[habit.category] || categoryColors.general;
-  const rawStrings = useMemo(() => [habit.title].filter((v) => typeof v === "string" && v.trim().length > 0), [habit.title]);
+  const isAnchor = habit.description?.startsWith("ANCHOR:");
+  const anchorText = isAnchor ? habit.description!.replace("ANCHOR:", "") : null;
+  
+  const rawStrings = useMemo(() => [habit.title, anchorText].filter((v): v is string => typeof v === "string" && v.trim().length > 0), [habit.title, anchorText]);
   const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
+  
   const displayTitle = display(localizeSuggestedHabitTitle(t, habit.title));
+  const displayAnchor = anchorText ? display(anchorText) : null;
 
   const toggleCompletion = async () => {
     if (!user || isLoading) return;
@@ -178,13 +183,18 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <h3 className={`font-medium text-[15px] leading-tight truncate ${
+              <h3 className={`font-medium text-[15px] leading-tight ${
                 habit.completed_today 
                   ? "text-muted-foreground line-through" 
                   : "text-foreground"
               }`}>
                 {displayTitle}
               </h3>
+              {displayAnchor && (
+                <p className="text-[11px] text-muted-foreground font-medium mt-1">
+                  {t("create_habit.after_i", { defaultValue: "Dopo che ho" })} <span className="text-foreground/70">{displayAnchor}</span>
+                </p>
+              )}
               
               <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                 <span className={`text-xs px-2 py-0.5 rounded-full ${colorClass}`}>

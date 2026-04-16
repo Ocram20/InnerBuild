@@ -63,7 +63,6 @@
     "refresh": "刷新",
     "pro_tip": "小贴士"
   },
-
   "auth": {
     "welcome_back": "欢迎回来",
     "start_journey": "开始您的旅程",
@@ -96,13 +95,11 @@
     "sign_out": "退出登录",
     "log_out": "登出"
   },
-
   "auth_validation": {
     "invalid_email": "请输入有效的电子邮箱地址",
     "password_min": "密码至少需要6个字符",
     "password_complexity": "密码必须至少包含：小写字母、大写字母、数字和特殊字符。"
   },
-
   "forgot_password": {
     "title": "忘记密码",
     "description": "输入您的电子邮箱，我们将发送重置密码的链接。",
@@ -122,7 +119,6 @@
     "rate_limit_desc": "请稍等几分钟后再试。",
     "remember_password": "记得密码？"
   },
-
   "dashboard": {
     "good_morning": "早上好",
     "good_afternoon": "下午好",
@@ -149,7 +145,6 @@
     "could_not_update": "无法更新任务",
     "could_not_update_status": "无法更新状态"
   },
-
   "landing": {
     "your_companion": "您个人成长的完整伴侣",
     "hero_title_1": "建立您应得的生活，",
@@ -241,7 +236,11 @@
         "为您量身定制"
       ],
       "learn_desc": "了解您习惯、多巴胺和大脑恢复背后的科学。",
-      "learn_features": ["深度文章", "恢复指南", "大脑愈合时间线"],
+      "learn_features": [
+        "深度文章",
+        "恢复指南",
+        "大脑愈合时间线"
+      ],
       "habit_adaptation_desc": "AI 分析您真实的完成模式并提出更智能的调整建议。",
       "habit_adaptation_features": [
         "模式检测",
@@ -276,9 +275,17 @@
         "为您量身定制"
       ],
       "learn_mobile_desc": "习惯、多巴胺和大脑恢复背后的科学。知识让每一次努力都有意义。",
-      "learn_mobile_features": ["深度文章", "恢复指南", "大脑愈合时间线"],
+      "learn_mobile_features": [
+        "深度文章",
+        "恢复指南",
+        "大脑愈合时间线"
+      ],
       "habit_adaptation_mobile_desc": "AI 分析您真实的完成模式并提出更智能的调整建议。",
-      "habit_adaptation_mobile_features": ["模式检测", "智能调整", "AI 建议"]
+      "habit_adaptation_mobile_features": [
+        "模式检测",
+        "智能调整",
+        "AI 建议"
+      ]
     },
     "footer": {
       "tagline": "用科学的习惯与康复的力量改变你的生活。",
@@ -291,7 +298,6 @@
       "back_to_top": "返回顶部"
     }
   },
-
   "explore": {
     "title": "工具",
     "subtitle": "成长所需的一切",
@@ -315,7 +321,6 @@
       "ai_coach_desc": "基于 AI 的个人指导"
     }
   },
-
   "habits": {
     "title": "我的习惯",
     "completed_today": "今日完成 {{completed}}/{{total}} • {{percent}}%",
@@ -405,7 +410,6 @@
       "final_p2": "小改变，大成就。一次一个习惯。"
     }
   },
-
   "challenges": {
     "title": "排毒挑战",
     "active_completed": "{{active}} 个进行中 • {{completed}} 个已完成",
@@ -476,7 +480,6 @@
       "final_p2": "打破模式。建立您应得的生活。"
     }
   },
-
   "create_habit": {
     "title": "创建新习惯",
     "habit_name": "习惯名称 *",
@@ -498,7 +501,6 @@
       "weekends": "周末"
     }
   },
-
   "create_challenge": {
     "title": "创建自定义挑战",
     "challenge_name": "挑战名称 *",
@@ -529,7 +531,6 @@
       "90_desc": "深度转变"
     }
   },
-
   "pricing": {
     "choose_plan": "选择您的套餐",
     "subtitle": "免费开始，准备就绪时升级。无隐藏费用，随时取消。",
@@ -577,7 +578,6 @@
       "priority": "优先体验新功能"
     }
   },
-
   "profile": {
     "title": "我的资料",
     "premium_plan": "高级套餐",
@@ -674,43 +674,57 @@
     "oauth_email_locked": "无法更改邮箱，因为你使用 {{provider}} 登录。请在 {{provider}} 账户中更新地址。",
     "avatar_alt": "头像"
   },
-
   "coach": {
     "title": "AI 教练",
-    "subtitle": "您的个人向导",
+    "subtitle": "你的个人向导",
     "clear_chat": "清空聊天",
+    "greeting": "你好！",
+    "intro": "我是你的 AI 教练，帮助你建立更好的习惯并支持你的成长。",
+    "tip_default": "坚持的小步前进，会带来巨大的改变。",
+    "quick_actions_title": "快速开始：",
+    "input_placeholder": "问我关于习惯、挑战、恢复等问题...",
     "chat_cleared": "聊天已清空",
-    "failed_clear": "清空聊天失败",
-    "hey_there": "你好！👋",
-    "intro": "我是您的 AI 教练，在这里支持您走向更好习惯和个人成长的旅程。",
-    "quick_actions_label": "快速开始行动：",
-    "input_placeholder": "询问关于您的习惯、挑战、恢复...",
-    "not_authenticated": "未认证，请登录。",
-    "rate_limit": "请求次数超限，请稍后再试。",
-    "auth_required": "需要认证，请重新登录。",
-    "api_error": "API 密钥无效或配额已超。",
-    "failed_response": "获取回复失败",
-    "failed_send": "发送消息失败",
-    "quick_actions": {
-      "suggest_habit": "建议一个习惯",
-      "start_challenge": "开始一个挑战",
-      "motivate_me": "激励我",
-      "help_reflect": "帮助我反思"
-    },
-    "stats": {
+    "pillars": {
       "track_progress": "追踪进度",
-      "build_habits": "培养习惯",
+      "build_habits": "建立习惯",
       "take_challenges": "接受挑战"
     },
+    "quick_actions": {
+      "habit_label": "建议一个习惯",
+      "habit_prompt": "你能建议一个我今天可以开始培养的健康习惯吗？",
+      "challenge_label": "开始一个挑战",
+      "challenge_prompt": "我想挑战自己。你能建议一个排毒或自我提升挑战，并提供每日步骤吗？",
+      "motivation_label": "激励我",
+      "motivation_prompt": "我今天动力不足。你能给我一些鼓励吗？",
+      "reflect_label": "帮助我反思",
+      "reflect_prompt": "我想做些自我反思。你能问我几个有深度的问题吗？"
+    },
+    "errors": {
+      "not_authenticated": "未登录。请重新登录。",
+      "rate_limited": "请求过多。请稍后再试。",
+      "unauthorized": "需要认证。请重新登录。",
+      "api_key_or_quota": "API 密钥无效或配额已用完。",
+      "failed_response": "获取回复失败",
+      "default_ai_reply": "抱歉，我无法生成回复。",
+      "send_failed": "发送消息失败",
+      "clear_failed": "清空聊天失败"
+    },
+    "failed_clear": "Cancellazione chat fallita",
+    "hey_there": "Ciao! 👋",
+    "not_authenticated": "Non autenticato. Effettua l'accesso.",
+    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
+    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
+    "api_error": "Chiave API non valida o quota superata.",
+    "failed_response": "Risposta fallita",
+    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "每一个小步都为实现您的更大目标做出贡献",
-      "2": "进步并非总是线性的，这很正常",
-      "3": "您已经因为在这里而变得更好",
-      "4": "坚持总能战胜完美",
-      "5": "今天是成长的新机会"
+      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
+      "2": "Il progresso non è sempre lineare, e va bene così",
+      "3": "Stai già facendo meglio essendo qui",
+      "4": "La costanza batte la perfezione ogni volta",
+      "5": "Oggi è una nuova opportunità per crescere"
     }
   },
-
   "learn": {
     "title": "学习",
     "subtitle": "关于恢复的教育和知识",
@@ -725,7 +739,6 @@
       "timeline": "恢复时间线和里程碑"
     }
   },
-
   "porn_recovery": {
     "title": "色情恢复",
     "subtitle": "为您旅程提供的科学工具",
@@ -837,7 +850,6 @@
     "strategies_title": "实用恢复策略",
     "strategies_desc": "恢复不仅仅是停止——而是建立一种您不需要逃避的生活。这些策略同时解决行为和潜在需求。"
   },
-
   "trigger_tracking": {
     "title": "触发器追踪",
     "subtitle": "记录并分析您的冲动",
@@ -943,7 +955,6 @@
       "evening": "傍晚"
     }
   },
-
   "evening_reflection": {
     "title": "晚间反思",
     "daily_checkin": "每日签到",
@@ -976,7 +987,6 @@
     "reflection_saved_desc": "反思您的一天，做得很好",
     "could_not_save": "无法保存反思"
   },
-
   "daily_planning": {
     "title": "每日计划",
     "tomorrow": "明天",
@@ -1031,7 +1041,6 @@
       "no_procrastinate": "不拖延任务"
     }
   },
-
   "recovery": {
     "recovery_streak": "恢复连续记录",
     "clean_day": "干净的一天",
@@ -1081,7 +1090,6 @@
     "toast_abandon_failed_title": "错误",
     "toast_abandon_failed_desc": "无法放弃挑战。请重试。"
   },
-
   "locked_preview": {
     "unlock_premium": "解锁高级版",
     "trigger": {
@@ -1120,7 +1128,6 @@
       "recovery_timeline": "恢复时间线和里程碑"
     }
   },
-
   "habit_report": {
     "habit_analysis": "习惯分析",
     "loading_insights": "加载习惯洞察...",
@@ -1145,13 +1152,11 @@
     "suggestion_ignored_title": "已忽略建议",
     "suggestion_ignored_desc": "该习惯保持不变"
   },
-
   "not_found": {
     "title": "404",
     "message": "哎呀！页面未找到",
     "return_home": "返回首页"
   },
-
   "paywall": {
     "habit_limit_title": "解锁无限习惯",
     "habit_limit_desc": "您已达到 5 个习惯的免费上限。升级以创建您需要的所有习惯。",
@@ -1179,7 +1184,6 @@
     "maybe_later": "稍后再说",
     "cancel_guarantee": "随时取消 • 30 天退款保证"
   },
-
   "footer": {
     "tagline": "用基于科学的习惯和恢复的力量改变您的生活。",
     "legal": "法律信息",
@@ -1189,14 +1193,12 @@
     "follow_us": "关注我们",
     "copyright": "© {{year}} InnerBuild。保留所有权利。为您的成长倾心打造 <3。"
   },
-
   "nav": {
     "home": "首页",
     "tools": "工具",
     "learn": "学习",
     "profile": "个人资料"
   },
-
   "habit_tips": {
     "one_min_tip": "1 分钟小贴士",
     "next_tip": "下一个贴士",
@@ -1223,7 +1225,6 @@
       "friction": "你与习惯之间的每一步都会降低你执行它的可能性。"
     }
   },
-
   "profile_info_section": {
     "title": "个人资料信息",
     "manage_info_desc": "管理您的个人信息和头像",
@@ -1979,16 +1980,46 @@
     "medium": "中等",
     "challenge": "挑战",
     "items": {
-      "drink_water": { "title": "喝 8 杯水", "description": "全天保持水分" },
-      "deep_breaths": { "title": "做 5 次深呼吸", "description": "快速正念重置" },
-      "make_bed": { "title": "整理床铺", "description": "用小胜利开始一天" },
-      "read_10min": { "title": "阅读 10 分钟", "description": "每天扩展知识" },
-      "walk_10min": { "title": "散步 10 分钟", "description": "身体和心灵的轻度锻炼" },
-      "eat_fruit": { "title": "吃一个水果", "description": "为饮食添加更多营养" },
-      "gratitude": { "title": "练习感恩", "description": "写下 3 件感恩的事" },
-      "meditate_15min": { "title": "冥想 15 分钟", "description": "深度专注和放松" },
-      "exercise_30min": { "title": "锻炼 30 分钟", "description": "建立力量和耐力" },
-      "sleep_8hrs": { "title": "睡 8 小时", "description": "优先保证优质休息" },
+      "drink_water": {
+        "title": "喝 8 杯水",
+        "description": "全天保持水分"
+      },
+      "deep_breaths": {
+        "title": "做 5 次深呼吸",
+        "description": "快速正念重置"
+      },
+      "make_bed": {
+        "title": "整理床铺",
+        "description": "用小胜利开始一天"
+      },
+      "read_10min": {
+        "title": "阅读 10 分钟",
+        "description": "每天扩展知识"
+      },
+      "walk_10min": {
+        "title": "散步 10 分钟",
+        "description": "身体和心灵的轻度锻炼"
+      },
+      "eat_fruit": {
+        "title": "吃一个水果",
+        "description": "为饮食添加更多营养"
+      },
+      "gratitude": {
+        "title": "练习感恩",
+        "description": "写下 3 件感恩的事"
+      },
+      "meditate_15min": {
+        "title": "冥想 15 分钟",
+        "description": "深度专注和放松"
+      },
+      "exercise_30min": {
+        "title": "锻炼 30 分钟",
+        "description": "建立力量和耐力"
+      },
+      "sleep_8hrs": {
+        "title": "睡 8 小时",
+        "description": "优先保证优质休息"
+      },
       "no_phone_1hr": {
         "title": "第一小时不用手机",
         "description": "带着意图开始一天"
@@ -2258,7 +2289,6 @@
       ]
     }
   },
-
   "privacy_policy": {
     "title": "隐私政策",
     "back_to_home": "返回首页",
@@ -2290,7 +2320,6 @@
       "content": "如果您对本隐私政策有任何疑问，请通过以下方式联系我们"
     }
   },
-
   "terms_of_service": {
     "title": "服务条款",
     "back_to_home": "返回首页",
@@ -2327,7 +2356,6 @@
       "content": "如果您对这些服务条款有任何疑问，请通过以下方式联系我们"
     }
   },
-
   "ai_coach_insight": {
     "title": "AI 教练报告",
     "loading": "加载 AI 洞察...",
@@ -2344,43 +2372,6 @@
     "common_emotions": "常见情绪：{{emotions}}",
     "top_recommendations": "首选推荐",
     "generate_new": "生成新报告"
-  },
-
-  "coach": {
-    "title": "AI 教练",
-    "subtitle": "你的个人向导",
-    "clear_chat": "清空聊天",
-    "greeting": "你好！",
-    "intro": "我是你的 AI 教练，帮助你建立更好的习惯并支持你的成长。",
-    "tip_default": "坚持的小步前进，会带来巨大的改变。",
-    "quick_actions_title": "快速开始：",
-    "input_placeholder": "问我关于习惯、挑战、恢复等问题...",
-    "chat_cleared": "聊天已清空",
-    "pillars": {
-      "track_progress": "追踪进度",
-      "build_habits": "建立习惯",
-      "take_challenges": "接受挑战"
-    },
-    "quick_actions": {
-      "habit_label": "建议一个习惯",
-      "habit_prompt": "你能建议一个我今天可以开始培养的健康习惯吗？",
-      "challenge_label": "开始一个挑战",
-      "challenge_prompt": "我想挑战自己。你能建议一个排毒或自我提升挑战，并提供每日步骤吗？",
-      "motivation_label": "激励我",
-      "motivation_prompt": "我今天动力不足。你能给我一些鼓励吗？",
-      "reflect_label": "帮助我反思",
-      "reflect_prompt": "我想做些自我反思。你能问我几个有深度的问题吗？"
-    },
-    "errors": {
-      "not_authenticated": "未登录。请重新登录。",
-      "rate_limited": "请求过多。请稍后再试。",
-      "unauthorized": "需要认证。请重新登录。",
-      "api_key_or_quota": "API 密钥无效或配额已用完。",
-      "failed_response": "获取回复失败",
-      "default_ai_reply": "抱歉，我无法生成回复。",
-      "send_failed": "发送消息失败",
-      "clear_failed": "清空聊天失败"
-    }
   },
   "recovery_impact": {
     "title": "您的影响",

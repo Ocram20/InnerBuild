@@ -12,6 +12,7 @@ import {
 interface Habit {
   id: string;
   title: string;
+  description?: string | null;
   completed_today?: boolean;
 }
 
@@ -41,7 +42,12 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
 
   const rawStrings = useMemo(() => {
     const out: string[] = [];
-    for (const h of visibleHabits) out.push(h.title);
+    for (const h of visibleHabits) {
+      out.push(h.title);
+      if (h.description && h.description.startsWith("ANCHOR:")) {
+        out.push(h.description.replace("ANCHOR:", ""));
+      }
+    }
     if (getAdaptationForHabit) {
       for (const h of visibleHabits) {
         const a = getAdaptationForHabit(h.id);
@@ -100,6 +106,11 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
                       habit.completed_today ? "line-through text-muted-foreground" : "text-foreground"
                     }`}>
                       {display(localizeSuggestedHabitTitle(t, habit.title))}
+                      {habit.description && habit.description.startsWith("ANCHOR:") && (
+                        <span className="block text-[10px] text-muted-foreground font-normal tracking-tight">
+                          {t("create_habit.after_i", { defaultValue: "Dopo che ho" })} {display(habit.description.replace("ANCHOR:", ""))}
+                        </span>
+                      )}
                     </span>
                   </button>
                   
