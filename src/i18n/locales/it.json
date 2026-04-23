@@ -296,6 +296,47 @@
       "terms": "Termini di Servizio",
       "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
       "back_to_top": "Torna su"
+    },
+    "privacy": {
+      "title": "Informativa Privacy",
+      "last_updated": "Ultimo aggiornamento: Febbraio 2026",
+      "back_home": "Torna alla Home",
+      "s1_title": "1. Introduzione",
+      "s1_content": "InnerBuild (\"noi\", \"nostro\") gestisce l'applicazione InnerBuild. Questa pagina ti informa sulle nostre politiche riguardanti la raccolta, l'uso e la divulgazione dei dati personali quando utilizzi il nostro servizio e sulle scelte che hai associate a quei dati.",
+      "s2_title": "2. Raccolta e Utilizzo delle Informazioni",
+      "s2_content": "Raccogliamo diversi tipi di informazioni per vari scopi per fornire e migliorare il nostro servizio.",
+      "s2_item1": "Indirizzo email per autenticazione e comunicazione",
+      "s2_item2": "Dati sulle abitudini e log personali che scegli di registrare",
+      "s2_item3": "Analisi sull'utilizzo per migliorare la nostra piattaforma",
+      "s2_item4": "Informazioni sul dispositivo per risolvere problemi",
+      "s3_title": "3. Sicurezza",
+      "s3_content": "La sicurezza dei tuoi dati è importante per noi, ma ricorda che nessun metodo di trasmissione su Internet o metodo di archiviazione elettronica è sicuro al 100%. Sebbene ci sforziamo di usare mezzi commercialmente accettabili per proteggere i tuoi dati personali, non possiamo garantirne la sicurezza assoluta.",
+      "s4_title": "4. Modifiche a Questa Informativa Privacy",
+      "s4_content": "Potremmo aggiornare la nostra Informativa Privacy di tanto in tanto. Ti notificheremo eventuali modifiche aggiornando la data \"Ultimo aggiornamento\" su questa pagina.",
+      "s5_title": "5. Contattaci",
+      "s5_content": "Se hai domande su questa Informativa Privacy, contattaci a"
+    },
+    "terms": {
+      "title": "Termini di Servizio",
+      "last_updated": "Ultimo aggiornamento: Febbraio 2026",
+      "back_home": "Torna alla Home",
+      "s1_title": "1. Accettazione dei Termini",
+      "s1_content": "Accedendo e utilizzando l'applicazione InnerBuild, accetti e accetti di essere vincolato dai termini e dalle disposizioni di questo accordo. Se non accetti di rispettare quanto sopra, non utilizzare questo servizio.",
+      "s2_title": "2. Licenza di Utilizzo",
+      "s2_content": "È concessa l'autorizzazione a scaricare temporaneamente una copia dei materiali (informazioni o software) su InnerBuild solo per la visione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e in base a questa licenza non puoi:",
+      "s2_item1": "Modificare o copiare i materiali",
+      "s2_item2": "Utilizzare i materiali per qualsiasi scopo commerciale o per qualsiasi display pubblico",
+      "s2_item3": "Tentare di decompilare o decodificare qualsiasi software contenuto su InnerBuild",
+      "s2_item4": "Rimuovere qualsiasi nota di copyright o altre notazioni di proprietà dai materiali",
+      "s2_item5": "Trasferire i materiali a un'altra persona o \"mirroring\" i materiali su qualsiasi altro server",
+      "s3_title": "3. Disclaimer",
+      "s3_content": "I materiali su InnerBuild sono forniti \"così come sono\". InnerBuild non rilascia garanzie, espresse o implicite, e con il presente nega e invalida tutte le altre garanzie, inclusi, senza limitazione, garanzie o condizioni implicite di commerciabilità, idoneità per uno scopo particolare, o non violazione di proprietà intellettuale o altra violazione di diritti.",
+      "s4_title": "4. Limitazioni",
+      "s4_content": "In nessun caso InnerBuild o i suoi fornitori saranno responsabili per qualsiasi danno (inclusi, senza limitazione, danni per perdita di dati o profitto, o dovuti a interruzione di attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali su InnerBuild.",
+      "s5_title": "5. Accuratezza dei Materiali",
+      "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
+      "s6_title": "6. Contattaci",
+      "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
     }
   },
   "explore": {
@@ -480,6 +521,8 @@
     }
   },
   "create_habit": {
+    "after_i": "Dopo che io",
+    "anchor_hint": "Opzionale. Es: Dopo che io ho fatto il caffè, mi dedicherò a questa abitudine.",
     "title": "Crea Nuova Abitudine",
     "habit_name": "Nome abitudine *",
     "habit_placeholder": "es., Meditazione mattutina",
@@ -609,6 +652,9 @@
     "avatar_upload_failed": "Caricamento fallito",
     "avatar_too_large": "Carica un'immagine inferiore a 5MB.",
     "avatar_invalid_type": "Carica un file immagine.",
+    "avatar_removed": "Avatar rimosso",
+    "avatar_removed_desc": "La tua foto profilo è stata rimossa.",
+    "remove_photo": "Rimuovi foto",
     "whats_working": "Cosa Funziona",
     "improving": "In Miglioramento",
     "protect": "Proteggi",
@@ -673,6 +719,7 @@
     "avatar_alt": "Foto profilo"
   },
   "coach": {
+    "greeting": "Ciao! Come posso aiutarti oggi?",
     "title": "Coach AI",
     "subtitle": "La tua guida personale",
     "clear_chat": "Cancella chat",

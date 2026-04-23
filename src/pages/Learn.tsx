@@ -106,10 +106,22 @@ export default function Learn() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="articles" className="mt-0">
-            <ArticlesList />
+            <ArticlesList category="article" />
           </TabsContent>
-          <TabsContent value="education" className="mt-0">
-            <RecoveryEducation />
+          <TabsContent value="education" className="mt-0 space-y-8">
+            <ArticlesList 
+              category="guide" 
+              icon={<BookOpen className="h-5 w-5 text-primary" />} 
+              descriptionKey="learn_content.guides_description"
+              emptyTitleKey="learn_content.no_articles_title"
+              emptyDescKey="learn_content.no_articles_description"
+            />
+            <div className="pt-4 border-t border-border/50">
+              <h3 className="font-semibold text-lg mb-4 text-foreground">
+                {t("learn_content.core_principles", "Core Principles")}
+              </h3>
+              <RecoveryEducation />
+            </div>
           </TabsContent>
           <TabsContent value="timeline" className="mt-0">
             <RecoveryTimeline />

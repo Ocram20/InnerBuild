@@ -4,26 +4,21 @@ import { Leaf, Mail, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function LandingFooter() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
-  const currentLng = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
-  const tFooter = (primary: string, fallback?: string, defaultValue?: string) => {
-    const primaryValue = t(primary);
-    const hasPrimaryInCurrentLang = i18n.exists(primary, { lng: currentLng, fallbackLng: false });
-    if (hasPrimaryInCurrentLang) return t(primary, { lng: currentLng, fallbackLng: false });
-    if (fallback) {
-      const hasFallbackInCurrentLang = i18n.exists(fallback, { lng: currentLng, fallbackLng: false });
-      if (hasFallbackInCurrentLang) return t(fallback, { lng: currentLng, fallbackLng: false });
-    }
-    return defaultValue ?? primaryValue;
-  };
+
   const footerLinks = [
-    { label: tFooter("landing.footer.privacy", "footer.privacy_policy", "Privacy Policy"), href: "/privacy-policy" },
-    { label: tFooter("landing.footer.terms", "footer.terms_of_service", "Terms of Service"), href: "/terms-of-service" },
+    { label: t("landing.footer.privacy"), href: "/privacy-policy" },
+    { label: t("landing.footer.terms"), href: "/terms-of-service" },
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: "https://www.instagram.com/inner.build/", label: "Instagram", color: "hover:text-pink-600 dark:hover:text-pink-400" },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/inner.build/",
+      label: "Instagram",
+      color: "hover:text-pink-600 dark:hover:text-pink-400",
+    },
     {
       icon: () => (
         <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -40,6 +35,7 @@ export default function LandingFooter() {
     <footer className="border-t border-border/50 bg-background/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-soft">
@@ -47,22 +43,28 @@ export default function LandingFooter() {
               </div>
               <span className="font-bold text-lg text-foreground">InnerBuild</span>
             </div>
-            <p className="text-sm text-muted-foreground">{tFooter("landing.footer.tagline", "footer.tagline")}</p>
+            <p className="text-sm text-muted-foreground">{t("landing.footer.tagline")}</p>
           </div>
 
+          {/* Legal */}
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.legal", "footer.legal", "Legal")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.legal")}</h3>
             <nav className="flex flex-col gap-2">
               {footerLinks.map((link) => (
-                <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 hover:underline">
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 hover:underline"
+                >
                   {link.label}
                 </Link>
               ))}
             </nav>
           </div>
 
+          {/* Support */}
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.support", "footer.support", "Support")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.support")}</h3>
             <a
               href="mailto:inner.build07@gmail.com"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2 hover:gap-3 group"
@@ -72,8 +74,9 @@ export default function LandingFooter() {
             </a>
           </div>
 
+          {/* Social */}
           <div className="md:col-span-1">
-            <h3 className="font-semibold text-foreground mb-4">{tFooter("landing.footer.follow", "footer.follow_us", "Follow us")}</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("landing.footer.follow")}</h3>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -97,10 +100,17 @@ export default function LandingFooter() {
         <div className="h-px bg-border/50 my-8" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">{tFooter("landing.footer.copyright", "footer.copyright").replace("{{year}}", String(currentYear))}</p>
+          <p className="text-sm text-muted-foreground">
+            {t("landing.footer.copyright", { year: currentYear })}
+          </p>
           <div className="flex gap-4">
-            <Button variant="ghost" size="sm" asChild className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              <a href="#top">{tFooter("landing.footer.back_to_top", undefined, "Back to top")}</a>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-xs text-muted-foreground"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              {t("landing.footer.back_to_top")} ↑
             </Button>
           </div>
         </div>

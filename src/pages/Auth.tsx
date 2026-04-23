@@ -120,7 +120,7 @@ export default function Auth() {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: window.location.origin },
+        options: { redirectTo: `${window.location.origin}/dashboard` },
       });
       if (error) {
         toast({ title: t("auth.google_signin_failed"), description: error.message, variant: "destructive" });

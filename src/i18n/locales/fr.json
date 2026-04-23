@@ -288,14 +288,14 @@
       ]
     },
     "footer": {
-      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
-      "legal": "Legale",
-      "support": "Supporto",
-      "follow": "Seguici",
-      "privacy": "Informativa Privacy",
-      "terms": "Termini di Servizio",
-      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
-      "back_to_top": "Torna su"
+      "tagline": "Transformez votre vie avec des habitudes basées sur la science et le pouvoir de la recovery.",
+      "legal": "Légal",
+      "support": "Support",
+      "follow": "Suivez-nous",
+      "privacy": "Politique de Confidentialité",
+      "terms": "Conditions d'Utilisation",
+      "copyright": "© {{year}} InnerBuild. Tous droits réservés. Construit avec amour pour votre croissance <3.",
+      "back_to_top": "Retour en haut"
     }
   },
   "explore": {
@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "Après avoir",
+    "anchor_hint": "Facultatif. Ex: Après avoir bu mon café du matin, je pratiquerai cette habitude.",
     "title": "Créer une nouvelle habitude",
     "habit_name": "Nom de l'habitude *",
     "habit_placeholder": "ex., Méditation matinale",
@@ -611,6 +613,9 @@
     "avatar_upload_failed": "Échec du téléchargement",
     "avatar_too_large": "Veuillez télécharger une image de moins de 5 Mo.",
     "avatar_invalid_type": "Veuillez télécharger un fichier image.",
+    "remove_photo": "Supprimer la photo",
+    "avatar_removed": "Photo supprimée",
+    "avatar_removed_desc": "Votre photo de profil a été supprimée.",
     "whats_working": "Ce qui fonctionne",
     "improving": "Amélioration",
     "protect": "Protéger",
@@ -709,20 +714,12 @@
       "send_failed": "Envoi du message échoué",
       "clear_failed": "Impossible d'effacer le chat"
     },
-    "failed_clear": "Cancellazione chat fallita",
-    "hey_there": "Ciao! 👋",
-    "not_authenticated": "Non autenticato. Effettua l'accesso.",
-    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
-    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
-    "api_error": "Chiave API non valida o quota superata.",
-    "failed_response": "Risposta fallita",
-    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
-      "2": "Il progresso non è sempre lineare, e va bene così",
-      "3": "Stai già facendo meglio essendo qui",
-      "4": "La costanza batte la perfezione ogni volta",
-      "5": "Oggi è una nuova opportunità per crescere"
+      "1": "Chaque petit pas compte pour atteindre vos objectifs",
+      "2": "Le progrès n'est pas toujours linéaire, et c'est normal",
+      "3": "Vous faites déjà mieux simplement en étant ici",
+      "4": "La régularité l'emporte toujours sur la perfection",
+      "5": "Aujourd'hui est une nouvelle opportunité de grandir"
     }
   },
   "learn": {

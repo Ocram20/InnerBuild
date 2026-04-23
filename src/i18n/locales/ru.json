@@ -288,14 +288,14 @@
       ]
     },
     "footer": {
-      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
-      "legal": "Legale",
-      "support": "Supporto",
-      "follow": "Seguici",
-      "privacy": "Informativa Privacy",
-      "terms": "Termini di Servizio",
-      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
-      "back_to_top": "Torna su"
+      "tagline": "Преобразите свою жизнь с помощью научно обоснованных привычек и силы восстановления.",
+      "legal": "Юридическая информация",
+      "support": "Поддержка",
+      "follow": "Подпишитесь на нас",
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия использования",
+      "copyright": "© {{year}} InnerBuild. Все права защищены. Создано с любовью для вашего роста <3.",
+      "back_to_top": "Наверх"
     }
   },
   "explore": {
@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "После того как я",
+    "anchor_hint": "Необязательно. Например: После того как я выпью утренний кофе, я сделаю эту привычку.",
     "title": "Создать новую привычку",
     "habit_name": "Название привычки *",
     "habit_placeholder": "например, Утренняя медитация",
@@ -611,6 +613,9 @@
     "avatar_upload_failed": "Ошибка загрузки",
     "avatar_too_large": "Пожалуйста, загрузите изображение размером менее 5 МБ.",
     "avatar_invalid_type": "Пожалуйста, загрузите файл изображения.",
+    "remove_photo": "Удалить фото",
+    "avatar_removed": "Фото удалено",
+    "avatar_removed_desc": "Ваше фото профиля было удалено.",
     "whats_working": "Что работает",
     "improving": "Улучшение",
     "protect": "Защитить",
@@ -709,20 +714,12 @@
       "send_failed": "Не удалось отправить сообщение",
       "clear_failed": "Не удалось очистить чат"
     },
-    "failed_clear": "Cancellazione chat fallita",
-    "hey_there": "Ciao! 👋",
-    "not_authenticated": "Non autenticato. Effettua l'accesso.",
-    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
-    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
-    "api_error": "Chiave API non valida o quota superata.",
-    "failed_response": "Risposta fallita",
-    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
-      "2": "Il progresso non è sempre lineare, e va bene così",
-      "3": "Stai già facendo meglio essendo qui",
-      "4": "La costanza batte la perfezione ogni volta",
-      "5": "Oggi è una nuova opportunità per crescere"
+      "1": "Каждый маленький шаг приближает вас к большим целям",
+      "2": "Прогресс не всегда линеен, и это нормально",
+      "3": "Вы уже молодец просто потому, что вы здесь",
+      "4": "Постоянство важнее совершенства каждый раз",
+      "5": "Сегодня — новая возможность для роста"
     }
   },
   "learn": {

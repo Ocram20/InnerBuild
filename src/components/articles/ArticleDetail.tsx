@@ -71,6 +71,15 @@ export function ArticleDetail({ article, isLoading, onBack }: ArticleDetailProps
       </Button>
 
       <article className="space-y-6">
+        {article.cover_image_url && (
+          <div className="w-full h-64 sm:h-80 overflow-hidden rounded-xl bg-muted border border-border">
+            <img 
+              src={article.cover_image_url} 
+              alt={article.title} 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
         <header className="space-y-4">
           <h1 className="text-2xl font-bold leading-tight tracking-tight">
             {shouldTranslateContent ? display(article.title) : article.title}

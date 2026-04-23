@@ -194,7 +194,7 @@ export default function Dashboard() {
               </button>
             )}
             <LanguageSelector />
-            <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full h-9 w-9" title={t("common.view_site")}>
+            <Button variant="ghost" size="icon" onClick={() => navigate("/?no_redirect=true")} className="rounded-full h-9 w-9" title={t("common.view_site")}>
               <Home className="h-4 w-4" />
             </Button>
             <Button variant="ghost" size="icon" onClick={() => navigate("/profile")} className="rounded-full h-9 w-9">

@@ -11,13 +11,15 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DraggableRubric } from "@hello-pangea/dnd";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
+import { useMemo } from "react";
 
 interface NotToDoItem {
   id: string;
   title: string;
   status: "pending" | "avoided" | "broken";
   log_id?: string | null;
+  original_language?: string | null;
 }
 
 interface NotToDoSectionProps {
@@ -39,9 +41,12 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
   const { toast } = useToast();
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
-  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
-  const rawItemTitles = items.map((item) => item.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawItemTitles, shouldTranslateContent && rawItemTitles.length > 0);
+  
+  const rawItemTitles = useMemo(() => items.map((item) => item.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0), [items]);
+  // We take the first item's original_language as a representative for the batch, 
+  // or we could handle them individually, but since it's a section, usually they share the same origin.
+  // Actually, useDynamicTranslation takes one originalLanguage.
+  const { display } = useDynamicTranslation(rawItemTitles, items[0]?.original_language);
   useEffect(() => {
     if (userId) {
       fetchItems();
@@ -67,12 +72,13 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
       console.error("Error fetching not-to-do items:", itemsError);
     } else {
       const typedData: NotToDoItem[] = (itemsData || []).map((item: any) => {
-        const log = logsData?.find((l: any) => l.not_to_do_id === item.id);
+        const log = logsData?.find((l: any) => l.item_id === item.id);
         return {
           id: item.id,
           title: item.title,
           status: log ? (log.status as "avoided" | "broken" | "pending") : "pending",
           log_id: log ? log.id : null,
+          original_language: item.original_language,
         };
       });
       setItems(typedData);
@@ -91,6 +97,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         user_id: userId,
         title: itemTitle,
         is_active: true,
+        original_language: i18n.resolvedLanguage || i18n.language || "it",
       })
       .select()
       .single();
@@ -102,7 +109,13 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         variant: "destructive",
       });
     } else if (data) {
-      setItems([...items, { id: data.id, title: data.title, status: "pending", log_id: null }]);
+      setItems([...items, { 
+        id: data.id, 
+        title: data.title, 
+        status: "pending", 
+        log_id: null,
+        original_language: data.original_language
+      }]);
       setNewItem("");
       setShowSuggestions(false);
       toast({
@@ -221,7 +234,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         <div {...provided.dragHandleProps} className="cursor-grab">
           <GripVertical className="h-4 w-4 text-muted-foreground" />
         </div>
-        <span className="flex-1 text-sm">{shouldTranslateContent ? display(item.title) : item.title}</span>
+        <span className="flex-1 text-sm">{display(item.title)}</span>
 
         <div className="flex gap-1">
           <Button

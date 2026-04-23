@@ -23,10 +23,19 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
 
   return (
     <Card 
-      className="cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary/20 group"
+      className="cursor-pointer transition-all duration-200 hover:shadow-md hover:border-primary/20 group overflow-hidden"
       onClick={onClick}
     >
-      <CardHeader className="pb-3">
+      {article.cover_image_url && (
+        <div className="w-full h-40 overflow-hidden bg-muted">
+          <img 
+            src={article.cover_image_url} 
+            alt={article.title} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+      <CardHeader className={article.cover_image_url ? "pt-4 pb-3" : "pb-3"}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">

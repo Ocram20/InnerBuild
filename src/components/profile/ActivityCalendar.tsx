@@ -93,27 +93,31 @@ export function ActivityCalendar() {
 
       const habitsByDate = new Map<string, Set<string>>();
       habitLogsRes.data?.forEach(log => {
-        const date = log.completed_at;
+        if (!log.completed_at) return;
+        const date = log.completed_at.substring(0, 10);
         if (!habitsByDate.has(date)) habitsByDate.set(date, new Set());
         habitsByDate.get(date)!.add(log.habit_id);
       });
 
-      const dailyReflectionDates = new Set(dailyReflectionsRes.data?.map(r => r.reflection_date) || []);
-      const taskDates = new Set(tasksRes.data?.map(t => t.target_date) || []);
-      const notToDoDates = new Set(notToDoRes.data?.map((n: any) => n.log_date) || []);
+      const dailyReflectionDates = new Set(dailyReflectionsRes.data?.map(r => r.reflection_date?.substring(0, 10)) || []);
+      const taskDates = new Set(tasksRes.data?.map(t => t.target_date?.substring(0, 10)) || []);
+      const notToDoDates = new Set(notToDoRes.data?.map((n: any) => n.log_date?.substring(0, 10)) || []);
       
       const detoxCheckInByDate = new Map<string, boolean>();
       for (const c of challengesFull) {
         if (!c.last_check_in) continue;
-        if (detoxChallengeAppliesOnDateStr(c, c.last_check_in)) {
-          detoxCheckInByDate.set(c.last_check_in, true);
+        const datePart = c.last_check_in.substring(0, 10);
+        if (detoxChallengeAppliesOnDateStr(c, datePart)) {
+          detoxCheckInByDate.set(datePart, true);
         }
       }
 
       const recoveryCheckInMap = new Map<string, boolean>();
-      recoveryCheckInsRes.data?.forEach(c => { recoveryCheckInMap.set(c.checkin_date, c.status === "success"); });
+      recoveryCheckInsRes.data?.forEach(c => { 
+        if (c.checkin_date) recoveryCheckInMap.set(c.checkin_date.substring(0, 10), c.status === "success"); 
+      });
 
-      const dailyCheckInDates = new Set(dailyCheckInsRes.data?.map(c => c.checkin_date) || []);
+      const dailyCheckInDates = new Set(dailyCheckInsRes.data?.map(c => c.checkin_date?.substring(0, 10)) || []);
 
       const challengeEntryMap = new Map<string, boolean>();
       challengeEntriesRes.data?.forEach(e => {

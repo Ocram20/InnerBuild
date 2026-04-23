@@ -288,14 +288,14 @@
       ]
     },
     "footer": {
-      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
-      "legal": "Legale",
-      "support": "Supporto",
-      "follow": "Seguici",
-      "privacy": "Informativa Privacy",
-      "terms": "Termini di Servizio",
-      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
-      "back_to_top": "Torna su"
+      "tagline": "Transformă-ți viața cu obiceiuri bazate pe știință și puterea recuperării.",
+      "legal": "Legal",
+      "support": "Suport",
+      "follow": "Urmărește-ne",
+      "privacy": "Politica de Confidențialitate",
+      "terms": "Termeni și Condiții",
+      "copyright": "© {{year}} InnerBuild. Toate drepturile rezervate. Construit cu dragoste pentru creșterea ta <3.",
+      "back_to_top": "Înapoi sus"
     }
   },
   "explore": {
@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "După ce",
+    "anchor_hint": "Opțional. Ex: După ce îmi beau cafeaua de dimineață, voi practica acest obicei.",
     "title": "Creează obișnuință nouă",
     "habit_name": "Numele obișnuinței *",
     "habit_placeholder": "ex., Meditația de dimineață",
@@ -709,20 +711,12 @@
       "send_failed": "Trimiterea mesajului a eșuat",
       "clear_failed": "Ștergerea chatului a eșuat"
     },
-    "failed_clear": "Cancellazione chat fallita",
-    "hey_there": "Ciao! 👋",
-    "not_authenticated": "Non autenticato. Effettua l'accesso.",
-    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
-    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
-    "api_error": "Chiave API non valida o quota superata.",
-    "failed_response": "Risposta fallita",
-    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
-      "2": "Il progresso non è sempre lineare, e va bene così",
-      "3": "Stai già facendo meglio essendo qui",
-      "4": "La costanza batte la perfezione ogni volta",
-      "5": "Oggi è una nuova opportunità per crescere"
+      "1": "Fiecare pas mic contează pentru obiectivele tale mari",
+      "2": "Progresul nu este întotdeauna liniar, și este în regulă",
+      "3": "Deja te descurci mai bine doar prin faptul că ești aici",
+      "4": "Consecvența bate perfecțiunea de fiecare dată",
+      "5": "Astăzi este o nouă oportunitate de a crește"
     }
   },
   "learn": {

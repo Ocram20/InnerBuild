@@ -288,14 +288,14 @@
       ]
     },
     "footer": {
-      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
-      "legal": "Legale",
-      "support": "Supporto",
-      "follow": "Seguici",
-      "privacy": "Informativa Privacy",
-      "terms": "Termini di Servizio",
-      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
-      "back_to_top": "Torna su"
+      "tagline": "Verwandle dein Leben mit wissenschaftlich fundierten Gewohnheiten und der Kraft der Recovery.",
+      "legal": "Rechtliches",
+      "support": "Support",
+      "follow": "Folge uns",
+      "privacy": "Datenschutzerklärung",
+      "terms": "Nutzungsbedingungen",
+      "copyright": "© {{year}} InnerBuild. Alle Rechte vorbehalten. Mit Liebe für dein Wachstum gebaut <3.",
+      "back_to_top": "Nach oben"
     }
   },
   "explore": {
@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "Nachdem ich",
+    "anchor_hint": "Optional. Z.B.: Nachdem ich meinen Morgenkaffee getrunken habe, werde ich diese Gewohnheit ausführen.",
     "title": "Neue Gewohnheit erstellen",
     "habit_name": "Name der Gewohnheit *",
     "habit_placeholder": "z.B. Morgenmeditation",
@@ -611,6 +613,9 @@
     "avatar_upload_failed": "Hochladen fehlgeschlagen",
     "avatar_too_large": "Bitte lade ein Bild kleiner als 5 MB hoch.",
     "avatar_invalid_type": "Bitte lade eine Bilddatei hoch.",
+    "remove_photo": "Foto entfernen",
+    "avatar_removed": "Foto entfernt",
+    "avatar_removed_desc": "Dein Profilbild wurde entfernt.",
     "whats_working": "Was funktioniert",
     "improving": "Verbesserung",
     "protect": "Schützen",
@@ -709,20 +714,12 @@
       "send_failed": "Senden fehlgeschlagen",
       "clear_failed": "Chat konnte nicht gelöscht werden"
     },
-    "failed_clear": "Cancellazione chat fallita",
-    "hey_there": "Ciao! 👋",
-    "not_authenticated": "Non autenticato. Effettua l'accesso.",
-    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
-    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
-    "api_error": "Chiave API non valida o quota superata.",
-    "failed_response": "Risposta fallita",
-    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
-      "2": "Il progresso non è sempre lineare, e va bene così",
-      "3": "Stai già facendo meglio essendo qui",
-      "4": "La costanza batte la perfezione ogni volta",
-      "5": "Oggi è una nuova opportunità per crescere"
+      "1": "Jeder kleine Schritt zählt für deine großen Ziele",
+      "2": "Fortschritt ist nicht immer linear, und das ist okay",
+      "3": "Du machst es schon besser, indem du einfach hier bist",
+      "4": "Beständigkeit schlägt Perfektion jedes Mal",
+      "5": "Heute ist eine neue Gelegenheit zu wachsen"
     }
   },
   "learn": {

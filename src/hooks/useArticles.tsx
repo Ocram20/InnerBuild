@@ -12,6 +12,8 @@ export interface Article {
   published_at: string;
   is_published: boolean;
   created_at: string;
+  category?: "article" | "guide";
+  cover_image_url?: string;
 }
 
 export interface LocalizedArticle {
@@ -22,6 +24,8 @@ export interface LocalizedArticle {
   published_at: string;
   is_published: boolean;
   created_at: string;
+  category?: "article" | "guide";
+  cover_image_url?: string;
 }
 
 function localizeArticle(article: Article): LocalizedArticle {
@@ -34,16 +38,26 @@ function localizeArticle(article: Article): LocalizedArticle {
     published_at: article.published_at,
     is_published: article.is_published,
     created_at: article.created_at,
+    category: article.category || "article",
+    cover_image_url: article.cover_image_url,
   };
 }
 
-export function useArticles() {
+export function useArticles(category?: "article" | "guide") {
   return useQuery({
-    queryKey: ["articles", i18n.language],
+    queryKey: ["articles", i18n.language, category],
     queryFn: async () => {
-      const { data, error } = await untypedTable("articles")
+      let query = untypedTable("articles")
         .select("*")
         .order("published_at", { ascending: false });
+
+      if (category) {
+        query = query.eq("category", category);
+      } else {
+        query = query.eq("category", "article");
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
       return (data as Article[]).map((a) => localizeArticle(a));

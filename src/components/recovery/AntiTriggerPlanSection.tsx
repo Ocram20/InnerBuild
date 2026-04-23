@@ -7,7 +7,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
+import { useMemo } from "react";
 
 interface AntiTriggerPlan {
   id: string;
@@ -29,10 +30,10 @@ export function AntiTriggerPlanSection() {
   const [saving, setSaving] = useState(false);
   const [newPlan, setNewPlan] = useState({ trigger: "", action: "", benefit: "" });
   const currentLang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
-  const rawPlanStrings = plans.flatMap((p) => [p.trigger, p.action, p.benefit]).filter(
+  const rawPlanStrings = useMemo(() => plans.flatMap((p) => [p.trigger, p.action, p.benefit]).filter(
     (v): v is string => typeof v === "string" && v.trim().length > 0
-  );
-  const { display } = useUiBatchTranslation(rawPlanStrings, rawPlanStrings.length > 0);
+  ), [plans]);
+  const { display } = useDynamicTranslation(rawPlanStrings, plans[0]?.source_lang);
 
   useEffect(() => {
     if (user) {
@@ -153,14 +154,11 @@ export function AntiTriggerPlanSection() {
               <div key={plan.id} className="p-3 rounded-lg bg-muted/30 border border-border/50 group">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm">
-                      {(() => {
-                        const shouldTranslatePlan = (plan.source_lang || currentLang) !== currentLang;
-                        return t("anti_trigger_plan.template", {
-                          trigger: shouldTranslatePlan ? display(plan.trigger) : plan.trigger,
-                          action: shouldTranslatePlan ? display(plan.action) : plan.action,
-                          benefit: shouldTranslatePlan ? display(plan.benefit) : plan.benefit,
-                        });
-                      })()}
+                    {t("anti_trigger_plan.template", {
+                      trigger: display(plan.trigger),
+                      action: display(plan.action),
+                      benefit: display(plan.benefit),
+                    })}
                   </p>
                   <Button
                     variant="ghost"

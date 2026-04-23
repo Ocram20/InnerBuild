@@ -1,8 +1,42 @@
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useTranslation } from "react-i18next";
+
+const CONTENT = [
+  "Torna alla Home",
+  "Termini di Servizio",
+  "Ultimo aggiornamento: Febbraio 2026",
+  "1. Accettazione dei Termini",
+  "Accedendo o utilizzando l'applicazione InnerBuild, accetti di essere vincolato da questi Termini di Servizio. Se non accetti una qualsiasi parte dei termini, non puoi accedere al servizio.",
+  "2. Utilizzo del Servizio",
+  "Il nostro servizio ti permette di monitorare abitudini, impostare obiettivi e analizzare i tuoi progressi. Ti impegni a utilizzare il servizio in modo responsabile e nel rispetto delle leggi vigenti.",
+  "3. Account Utente",
+  "Quando crei un account con noi, devi fornire informazioni accurate e complete. Sei responsabile della protezione della tua password e di qualsiasi attività sotto il tuo account.",
+  "4. Limitazione di Responsabilità",
+  "InnerBuild non sarà responsabile per eventuali danni indiretti, incidentali, speciali, consequenziali o punitivi derivanti dal tuo accesso o utilizzo del servizio.",
+  "5. Risoluzione",
+  "Possiamo interrompere o sospendere il tuo accesso immediatamente, senza preavviso o responsabilità, per qualsiasi motivo, inclusa la violazione dei Termini.",
+  "6. Legge Applicabile",
+  "Questi Termini saranno regolati e interpretati in conformità con le leggi italiane, senza riguardo alle disposizioni sui conflitti di legge.",
+  "7. Contattaci",
+  "Se hai domande su questi Termini, contattaci a"
+];
+
 export default function TermsOfService() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { display, ready } = useUiBatchTranslation(CONTENT, true);
+
+  if (!ready) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
@@ -10,14 +44,14 @@ export default function TermsOfService() {
         <div className="max-w-4xl mx-auto px-4 py-6">
           <Button
             variant="ghost"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/?no_redirect=true")}
             className="mb-4 hover:bg-muted transition-all duration-300"
           >
             <ChevronLeft className="h-4 w-4 mr-2" />
-            {"Torna alla Home"}
+            {display(CONTENT[0])}
           </Button>
-          <h1 className="text-4xl font-bold text-foreground">{"Termini di Servizio"}</h1>
-          <p className="text-muted-foreground mt-2">{"Ultimo aggiornamento: Febbraio 2026"}</p>
+          <h1 className="text-4xl font-bold text-foreground">{display(CONTENT[1])}</h1>
+          <p className="text-muted-foreground mt-2">{display(CONTENT[2])}</p>
         </div>
       </header>
 
@@ -26,51 +60,51 @@ export default function TermsOfService() {
         <div className="max-w-4xl mx-auto px-4 py-12">
           <div className="space-y-8">
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"1. Accettazione dei Termini"}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[3])}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {"Accedendo e utilizzando l'applicazione InnerBuild, accetti e accetti di essere vincolato dai termini e dalle disposizioni di questo accordo. Se non accetti di rispettare quanto sopra, non utilizzare questo servizio."}
+                {display(CONTENT[4])}
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"2. Licenza di Utilizzo"}</h2>
-              <p className="text-muted-foreground leading-relaxed mb-3">
-                {"È concessa l'autorizzazione a scaricare temporaneamente una copia dei materiali (informazioni o software) su InnerBuild solo per la visione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e in base a questa licenza non puoi:"}
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li>{"Modificare o copiare i materiali"}</li>
-                <li>{"Utilizzare i materiali per qualsiasi scopo commerciale o per qualsiasi display pubblico"}</li>
-                <li>{"Tentare di decompilare o decodificare qualsiasi software contenuto su InnerBuild"}</li>
-                <li>{"Rimuovere qualsiasi nota di copyright o altre notazioni di proprietà dai materiali"}</li>
-                <li>{"Trasferire i materiali a un'altra persona o \"mirroring\" i materiali su qualsiasi altro server"}</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"3. Disclaimer"}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[5])}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {"I materiali su InnerBuild sono forniti \"così come sono\". InnerBuild non rilascia garanzie, espresse o implicite, e con il presente nega e invalida tutte le altre garanzie, inclusi, senza limitazione, garanzie o condizioni implicite di commerciabilità, idoneità per uno scopo particolare, o non violazione di proprietà intellettuale o altra violazione di diritti."}
+                {display(CONTENT[6])}
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"4. Limitazioni"}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[7])}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {"In nessun caso InnerBuild o i suoi fornitori saranno responsabili per qualsiasi danno (inclusi, senza limitazione, danni per perdita di dati o profitto, o dovuti a interruzione di attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali su InnerBuild."}
+                {display(CONTENT[8])}
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"5. Accuratezza dei Materiali"}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[9])}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {"I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso."}
+                {display(CONTENT[10])}
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">{"6. Contattaci"}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[11])}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                {"Se hai domande su questi Termini di Servizio, contattaci a"}{" "}
+                {display(CONTENT[12])}
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[13])}</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {display(CONTENT[14])}
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-foreground mb-4">{display(CONTENT[15])}</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {display(CONTENT[16])}{" "}
                 <a href="mailto:inner.build07@gmail.com" className="text-primary hover:underline transition-colors">
                   inner.build07@gmail.com
                 </a>

@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "在我",
+    "anchor_hint": "可选。例如：在我喝完早咖啡后，我会做这个习惯。",
     "title": "创建新习惯",
     "habit_name": "习惯名称 *",
     "habit_placeholder": "例如，早晨冥想",
@@ -611,6 +613,9 @@
     "avatar_upload_failed": "上传失败",
     "avatar_too_large": "请上传小于 5 MB 的图片。",
     "avatar_invalid_type": "请上传图片文件。",
+    "remove_photo": "删除照片",
+    "avatar_removed": "照片已删除",
+    "avatar_removed_desc": "您的个人资料照片已被删除。",
     "whats_working": "有效方法",
     "improving": "改进中",
     "protect": "保护",
@@ -709,20 +714,12 @@
       "send_failed": "发送消息失败",
       "clear_failed": "清空聊天失败"
     },
-    "failed_clear": "Cancellazione chat fallita",
-    "hey_there": "Ciao! 👋",
-    "not_authenticated": "Non autenticato. Effettua l'accesso.",
-    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
-    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
-    "api_error": "Chiave API non valida o quota superata.",
-    "failed_response": "Risposta fallita",
-    "failed_send": "Invio messaggio fallito",
     "tips": {
-      "1": "Ogni piccolo passo conta verso i tuoi obiettivi più grandi",
-      "2": "Il progresso non è sempre lineare, e va bene così",
-      "3": "Stai già facendo meglio essendo qui",
-      "4": "La costanza batte la perfezione ogni volta",
-      "5": "Oggi è una nuova opportunità per crescere"
+      "1": "迈向大目标的每一步都很重要",
+      "2": "进步并不总是线性的，这没关系",
+      "3": "来到这里，你就已经做得更好了",
+      "4": "持之以恒总是胜过追求完美",
+      "5": "今天是一个成长的新机会"
     }
   },
   "learn": {

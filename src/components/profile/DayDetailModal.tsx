@@ -47,11 +47,12 @@ interface HabitLog {
   id: string;
   title: string;
   completed: boolean;
+  original_language?: string;
 }
 
 interface DayData {
   habits: HabitLog[];
-  dailyReflection: { day_summary?: string; grateful_for?: string[]; lessons_learned?: string } | null;
+  dailyReflection: { day_summary?: string; grateful_for?: string[]; lessons_learned?: string; original_language?: string } | null;
   detoxChallenges: {
     title: string;
     current_streak: number;
@@ -60,11 +61,11 @@ interface DayData {
     start_date: string;
     duration_days: number;
   }[];
-  recoveryCheckIn: { status: string; notes?: string } | null;
-  tasks: { title: string; is_completed: boolean }[];
-  notToDo: { title: string; status: string }[];
-  dailyCheckIn: { mood: string; energy_level: number } | null;
-  challengeEntries: { challenge_title: string; checkin_response: string | null; is_failure: boolean; mental_mission_completed: boolean; behavioral_mission_completed: boolean }[];
+  recoveryCheckIn: { status: string; notes?: string; original_language?: string } | null;
+  tasks: { title: string; is_completed: boolean; original_language?: string }[];
+  notToDo: { title: string; status: string; original_language?: string }[];
+  dailyCheckIn: { mood: string; energy_level: number; original_language?: string } | null;
+  challengeEntries: { challenge_title: string; checkin_response: string | null; is_failure: boolean; mental_mission_completed: boolean; behavioral_mission_completed: boolean; original_language?: string }[];
 }
 
 const MOOD_EMOJI_MAP: Record<string, string> = {
@@ -107,15 +108,15 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
         challengeEntriesRes,
         notToDoLogsRes,
       ] = await Promise.all([
-        supabase.from("habits").select("id, title, created_at, is_active, updated_at").eq("user_id", user.id),
+        supabase.from("habits").select("id, title, created_at, is_active, updated_at, original_language").eq("user_id", user.id),
         supabase.from("habit_logs").select("habit_id").eq("user_id", user.id).eq("completed_at", dateStr),
-        supabase.from("daily_reflections").select("day_summary, grateful_for, lessons_learned").eq("user_id", user.id).eq("reflection_date", dateStr).maybeSingle(),
+        supabase.from("daily_reflections").select("day_summary, grateful_for, lessons_learned, original_language").eq("user_id", user.id).eq("reflection_date", dateStr).maybeSingle(),
         supabase.from("detox_challenges").select("id, title, current_streak, status, last_check_in, start_date, duration_days").eq("user_id", user.id),
-        supabase.from("recovery_checkins").select("status, notes").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
-        supabase.from("daily_tasks").select("title, is_completed").eq("user_id", user.id).eq("target_date", dateStr),
+        supabase.from("recovery_checkins").select("status, notes, original_language").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
+        supabase.from("daily_tasks").select("title, is_completed, original_language").eq("user_id", user.id).eq("target_date", dateStr),
         untypedTable("not_to_do_items").select("id, title, created_at").eq("user_id", user.id).eq("is_active", true),
-        untypedTable("daily_checkins").select("mood, energy_level").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
-        untypedTable("challenge_daily_entries").select("challenge_id, created_at, checkin_response, is_failure, mental_mission_completed, behavioral_mission_completed").eq("user_id", user.id),
+        untypedTable("daily_checkins").select("mood, energy_level, original_language").eq("user_id", user.id).eq("checkin_date", dateStr).maybeSingle(),
+        untypedTable("challenge_daily_entries").select("challenge_id, created_at, checkin_response, is_failure, mental_mission_completed, behavioral_mission_completed, original_language").eq("user_id", user.id),
         untypedTable("not_to_do_logs").select("not_to_do_id, status").eq("user_id", user.id).eq("log_date", dateStr),
       ]);
 
@@ -128,6 +129,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
           id: habit.id,
           title: habit.title,
           completed: completedHabitIds.has(habit.id),
+          original_language: habit.original_language,
         }));
 
       const challengesAll = challengesRes.data || [];
@@ -147,6 +149,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
           is_failure: e.is_failure || false,
           mental_mission_completed: e.mental_mission_completed || false,
           behavioral_mission_completed: e.behavioral_mission_completed || false,
+          original_language: e.original_language,
         }));
 
       // Filter out not-to-do items created after the viewed date
@@ -159,6 +162,7 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
         return {
           title: item.title,
           status: log ? log.status : "pending",
+          original_language: item.original_language,
         };
       });
 
@@ -200,34 +204,40 @@ export function DayDetailModal({ date, open, onClose }: DayDetailModalProps) {
 
   const stringsToTranslate = useMemo(() => {
     if (!dayData) return [];
+    const currentLang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
     const out: string[] = [];
-    const add = (s: string | null | undefined) => {
-      if (s && String(s).trim()) out.push(String(s).trim());
+    const add = (s: string | null | undefined, origLang?: string | null) => {
+      if (s && String(s).trim()) {
+        const cLang = (origLang || "it").toLowerCase().split("-")[0];
+        if (cLang !== currentLang) {
+          out.push(String(s).trim());
+        }
+      }
     };
     // Translate content dynamically so when users change language, their past 
     // reflections and tasks are translated to the new active language.
-    for (const h of dayData.habits) add(h.title);
-    for (const c of dayData.detoxChallenges) add(c.title);
+    for (const h of dayData.habits) add(h.title, h.original_language);
+    for (const c of dayData.detoxChallenges) add(c.title); // Challenges don't have original_language right now
     for (const e of dayData.challengeEntries) {
       add(e.challenge_title);
-      add(e.checkin_response ?? undefined);
+      add(e.checkin_response ?? undefined, e.original_language);
     }
-    for (const t of dayData.tasks) add(t.title);
-    for (const n of dayData.notToDo) add(n.title);
+    for (const t of dayData.tasks) add(t.title, t.original_language);
+    for (const n of dayData.notToDo) add(n.title, n.original_language);
     
     if (dayData.dailyReflection) {
-      add(dayData.dailyReflection.day_summary);
+      add(dayData.dailyReflection.day_summary, dayData.dailyReflection.original_language);
       if (dayData.dailyReflection.grateful_for) {
-        for (const item of dayData.dailyReflection.grateful_for) add(item);
+        for (const item of dayData.dailyReflection.grateful_for) add(item, dayData.dailyReflection.original_language);
       }
-      add(dayData.dailyReflection.lessons_learned);
+      add(dayData.dailyReflection.lessons_learned, dayData.dailyReflection.original_language);
     }
     
     if (dayData.recoveryCheckIn?.notes) {
-      add(dayData.recoveryCheckIn.notes);
+      add(dayData.recoveryCheckIn.notes, dayData.recoveryCheckIn.original_language);
     }
     return out;
-  }, [dayData]);
+  }, [dayData, i18n.resolvedLanguage, i18n.language]);
 
   const { display, ready: translateReady, needsRemote } = useUiBatchTranslation(
     stringsToTranslate,

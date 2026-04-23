@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
 
 interface Task {
   id: string;
@@ -18,6 +18,7 @@ interface Task {
   description: string | null;
   is_completed: boolean;
   created_at: string;
+  original_language?: string | null;
 }
 
 type TaskPriority = "focus" | "standard" | "quick";
@@ -43,9 +44,9 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
   const dayLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const dayLabelLower = dayLabel.charAt(0).toLowerCase() + dayLabel.slice(1);
   const SUGGESTED_TASKS = t("todo_section.suggested_tasks", { returnObjects: true }) as string[];
-  const shouldTranslateContent = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0] !== "it";
-  const rawTaskTitles = tasks.map((task) => task.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  const { display } = useUiBatchTranslation(rawTaskTitles, shouldTranslateContent && rawTaskTitles.length > 0);
+  
+  const rawTaskTitles = useMemo(() => tasks.map((task) => task.title).filter((v): v is string => typeof v === "string" && v.trim().length > 0), [tasks]);
+  const { display } = useDynamicTranslation(rawTaskTitles, tasks[0]?.original_language);
   const priorityCycle: TaskPriority[] = ["focus", "standard", "quick"];
 
   const getPriority = (task: Pick<Task, "description">): TaskPriority => {
@@ -141,6 +142,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         title: taskTitle,
         description: encodePriority(newTaskPriority),
         target_date: targetDate,
+        original_language: i18n.resolvedLanguage || i18n.language || "it",
       })
       .select()
       .single();
@@ -276,7 +278,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
         ) : (
           <>
             <span className={`flex-1 ${task.is_completed ? "line-through text-muted-foreground" : ""}`}>
-              {shouldTranslateContent ? display(task.title) : task.title}
+              {display(task.title)}
             </span>
             <div className="flex gap-1">
               <Button size="icon" variant="ghost" onClick={() => startEditing(task)} className="h-8 w-8">

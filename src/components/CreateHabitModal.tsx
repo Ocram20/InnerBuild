@@ -34,7 +34,7 @@ interface CreateHabitModalProps {
 }
 
 export default function CreateHabitModal({ open, onOpenChange, onSuccess }: CreateHabitModalProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const { isPremium, canCreateHabit, habitsRemaining, refetch: refetchLimits } = usePremiumLimits();
@@ -68,6 +68,7 @@ export default function CreateHabitModal({ open, onOpenChange, onSuccess }: Crea
         category,
         frequency,
         reminder_time: reminderTime || null,
+        original_language: i18n.resolvedLanguage || i18n.language || "en",
       });
       if (error) throw error;
       toast({ title: t("create_habit.habit_created"), description: t("create_habit.habit_created_desc") });

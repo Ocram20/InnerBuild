@@ -14,6 +14,7 @@ interface DailyReflection {
   day_summary: string | null;
   grateful_for: string[];
   lessons_learned: string | null;
+  original_language?: string | null;
 }
 
 interface EveningReflectionSectionProps {
@@ -27,6 +28,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     day_summary: "",
     grateful_for: [],
     lessons_learned: "",
+    original_language: null,
   });
   const [newGratitude, setNewGratitude] = useState("");
   const [loading, setLoading] = useState(true);
@@ -34,7 +36,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { toast } = useToast();
   const MOTIVATIONAL_MESSAGES =
     t("evening_reflection_section.motivation_messages", { returnObjects: true }) as string[];
@@ -63,6 +65,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
         day_summary: data.day_summary,
         grateful_for: data.grateful_for || [],
         lessons_learned: data.lessons_learned,
+        original_language: (data as any).original_language,
       });
     }
     setLoading(false);
@@ -106,6 +109,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
       day_summary: reflection.day_summary,
       grateful_for: reflection.grateful_for,
       lessons_learned: reflection.lessons_learned,
+      original_language: reflection.original_language || i18n.resolvedLanguage || i18n.language || "it",
     };
 
     let error;

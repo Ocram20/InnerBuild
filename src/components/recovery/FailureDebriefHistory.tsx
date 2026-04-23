@@ -17,7 +17,8 @@ import {
 import { X, ChevronDown, Calendar, CloudRain, AlertTriangle, Lightbulb } from "lucide-react";
 import { FailureDebrief } from "@/hooks/useFailureDebrief";
 import { useTranslation } from "react-i18next";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
+import { useMemo } from "react";
 interface FailureDebriefHistoryProps {
   debriefs: FailureDebrief[];
   onClose: () => void;
@@ -29,7 +30,7 @@ export function FailureDebriefHistory({
 }: FailureDebriefHistoryProps) {
   const { t, i18n } = useTranslation();
   const dateLocale = i18n.language === "it" ? it : enUS;
-  const rawDebriefStrings = debriefs.flatMap((debrief) => {
+  const rawDebriefStrings = useMemo(() => debriefs.flatMap((debrief) => {
     const values = [
       debrief.context,
       debrief.trigger,
@@ -38,8 +39,9 @@ export function FailureDebriefHistory({
       ...(debrief.ai_suggestions ?? []),
     ];
     return values.filter((v): v is string => typeof v === "string" && v.trim().length > 0);
-  });
-  const { display } = useUiBatchTranslation(rawDebriefStrings, true);
+  }), [debriefs]);
+  
+  const { display } = useDynamicTranslation(rawDebriefStrings, debriefs[0]?.original_language);
 
   return (
     <Dialog open onOpenChange={onClose}>

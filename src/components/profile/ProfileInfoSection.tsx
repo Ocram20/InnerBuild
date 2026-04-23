@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/hooks/use-toast";
-import { Camera, Save, Loader2, User, Clock, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Camera, Save, Loader2, User, Clock, Mail, Lock, Eye, EyeOff, Trash2 } from "lucide-react";
 import { differenceInDays } from "date-fns";
 import { useTranslation } from "react-i18next";
 
@@ -158,6 +158,37 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       toast({
         title: t("profile.avatar_upload_failed"),
         description: error.message || t("profile.avatar_upload_failed"),
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleRemoveAvatar = async () => {
+    if (!user) return;
+
+    setUploading(true);
+    try {
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ avatar_url: null })
+        .eq("user_id", user.id);
+
+      if (updateError) throw updateError;
+
+      setFormData((prev) => ({ ...prev, avatar_url: "" }));
+      onProfileUpdate();
+
+      toast({
+        title: t("profile.avatar_removed"),
+        description: t("profile.avatar_removed_desc"),
+      });
+    } catch (error: any) {
+      console.error("Error removing avatar:", error);
+      toast({
+        title: t("common.error"),
+        description: error.message || t("profile.failed_save"),
         variant: "destructive",
       });
     } finally {
@@ -351,27 +382,40 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Avatar Section */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="relative">
-            <Avatar className="h-24 w-24 border-4 border-primary/20">
-              <AvatarImage src={formData.avatar_url} alt={t("profile.avatar_alt")} className="object-cover" />
-              <AvatarFallback className="bg-primary/10 text-primary text-xl font-semibold">
-                {getInitials()}
-              </AvatarFallback>
-            </Avatar>
-            <button
-              onClick={handleAvatarClick}
-              disabled={uploading}
-              className="absolute bottom-0 right-0 p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
-            >
-              {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-            </button>
-            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+          <div className="flex flex-col items-center gap-4">
+            <div className="relative">
+              <Avatar className="h-24 w-24 border-4 border-primary/20">
+                <AvatarImage src={formData.avatar_url} alt={t("profile.avatar_alt")} className="object-cover" />
+                <AvatarFallback className="bg-primary/10 text-primary text-xl font-semibold">
+                  {getInitials()}
+                </AvatarFallback>
+              </Avatar>
+              <div className="absolute -bottom-2 -right-2 flex gap-1">
+                <button
+                  onClick={handleAvatarClick}
+                  disabled={uploading}
+                  className="p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
+                  title={t("profile.upload_photo")}
+                >
+                  {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+                </button>
+                {formData.avatar_url && (
+                  <button
+                    onClick={handleRemoveAvatar}
+                    disabled={uploading}
+                    className="p-2 rounded-full bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-colors shadow-lg"
+                    title={t("profile.remove_photo")}
+                  >
+                    {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+                  </button>
+                )}
+              </div>
+              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {t("profile.upload_photo")}
+            </p>
           </div>
-          <p className="text-sm text-muted-foreground">
-            {t("profile.upload_photo")}
-          </p>
-        </div>
 
         {/* Form Fields */}
         <div className="grid gap-4 sm:grid-cols-2 notranslate" translate="no">

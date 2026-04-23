@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
 import { useMemo } from "react";
 interface Habit {
   id: string;
@@ -20,6 +20,7 @@ interface Habit {
   frequency: string;
   is_active: boolean;
   completed_today?: boolean;
+  original_language: string;
 }
 
 interface HabitCardProps {
@@ -37,7 +38,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
   const anchorText = isAnchor ? habit.description!.replace("ANCHOR:", "") : null;
 
   const rawStrings = useMemo(() => [habit.title, anchorText].filter((v): v is string => typeof v === "string" && v.trim().length > 0), [habit.title, anchorText]);
-  const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
+  const { display } = useDynamicTranslation(rawStrings, habit.original_language);
 
   const displayTitle = display(habit.title);
   const displayAnchor = anchorText ? display(anchorText) : null;

@@ -7,6 +7,7 @@ interface RecoveryStreakCardProps {
   journey: {
     id: string;
     started_at: string;
+    current_streak: number;
   } | null;
   checkIns: {
     checkin_date: string;
@@ -28,18 +29,7 @@ export default function RecoveryStreakCard({
     return null;
   }
 
-  let currentStreak = 0;
-  const sortedCheckIns = [...checkIns].sort(
-    (a, b) => new Date(b.checkin_date).getTime() - new Date(a.checkin_date).getTime()
-  );
-  
-  for (const checkIn of sortedCheckIns) {
-    if (checkIn.status === "success") {
-      currentStreak++;
-    } else {
-      break;
-    }
-  }
+  const currentStreak = journey.current_streak;
 
   // Journey day = number of successful check-ins (aligned with challenge progression)
   const successDays = checkIns.filter(c => c.status === "success").length;

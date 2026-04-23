@@ -19,6 +19,7 @@ export interface FailureDebrief {
   ai_suggestions: string[] | null;
   is_completed: boolean;
   created_at: string;
+  original_language?: string | null;
 }
 
 export interface DebriefFormData {
@@ -127,6 +128,7 @@ export function useFailureDebrief() {
       const { data, error } = await untypedTable("failure_debriefs")
         .insert({
           user_id: user.id,
+          original_language: i18n.resolvedLanguage || i18n.language || "it",
         })
         .select()
         .single();

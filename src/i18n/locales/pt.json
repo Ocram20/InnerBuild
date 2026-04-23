@@ -288,14 +288,14 @@
       ]
     },
     "footer": {
-      "tagline": "Trasforma la tua vita con abitudini basate sulla scienza e il potere del recovery.",
-      "legal": "Legale",
-      "support": "Supporto",
-      "follow": "Seguici",
-      "privacy": "Informativa Privacy",
-      "terms": "Termini di Servizio",
-      "copyright": "© {{year}} InnerBuild. Tutti i diritti riservati. Costruito con amore per la tua crescita <3.",
-      "back_to_top": "Torna su"
+      "tagline": "Transforme sua vida com hábitos baseados na ciência e o poder da recuperação.",
+      "legal": "Legal",
+      "support": "Suporte",
+      "follow": "Siga-nos",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Serviço",
+      "copyright": "© {{year}} InnerBuild. Todos os derechos reservados. Construído com amor para o seu crescimento <3.",
+      "back_to_top": "Voltar ao topo"
     }
   },
   "explore": {
@@ -481,6 +481,8 @@
     }
   },
   "create_habit": {
+    "after_i": "Depois de",
+    "anchor_hint": "Opcional. Ex: Depois de tomar o meu café da manhã, eu vou praticar este hábito.",
     "title": "Criar Novo Hábito",
     "habit_name": "Nome do hábito *",
     "habit_placeholder": "ex., Meditação matinal",
@@ -691,18 +693,14 @@
     "failed_response": "Falha ao obter resposta",
     "failed_send": "Falha ao enviar mensagem",
     "quick_actions": {
-      "suggest_habit": "Sugerir um hábito",
-      "start_challenge": "Iniciar um desafio",
-      "motivate_me": "Motivar-me",
-      "help_reflect": "Ajudar-me a refletir",
-      "habit_label": "Suggerisci un'abitudine",
-      "habit_prompt": "Puoi suggerirmi un'abitudine sana che potrei iniziare a costruire oggi?",
-      "challenge_label": "Inizia una sfida",
-      "challenge_prompt": "Voglio mettermi alla prova. Puoi suggerirmi una sfida detox o di crescita personale con passi giornalieri?",
-      "motivation_label": "Motivami",
-      "motivation_prompt": "Oggi mi sento poco motivato. Puoi darmi una prospettiva incoraggiante?",
-      "reflect_label": "Aiutami a riflettere",
-      "reflect_prompt": "Vorrei fare un po' di auto‑riflessione. Puoi farmi alcune domande profonde?"
+      "habit_label": "Sugerir um hábito",
+      "habit_prompt": "Consegue sugerir um hábito saudável que eu possa começar a construir hoje?",
+      "challenge_label": "Iniciar um desafio",
+      "challenge_prompt": "Quero desafiar-me. Consegue sugerir um desafio detox ou de crescimento pessoal com passos diários?",
+      "motivation_label": "Motivar-me",
+      "motivation_prompt": "Hoje sinto-me pouco motivado. Pode dar-me uma perspetiva encorajadora?",
+      "reflect_label": "Ajudar-me a refletir",
+      "reflect_prompt": "Gostaria de fazer um pouco de autorreflexão. Consegue fazer-me algumas perguntas profundas?"
     },
     "stats": {
       "track_progress": "Acompanhar progresso",
@@ -716,22 +714,22 @@
       "4": "A consistência vence a perfeição todas as vezes",
       "5": "Hoje é uma nova oportunidade para crescer"
     },
-    "quick_actions_title": "Azioni rapide per iniziare:",
-    "tip_default": "Ogni piccolo passo, fatto con costanza, cambia tutto.",
+    "greeting": "Olá!",
+    "tip_default": "Pequenos passos, dados com consistência, mudam tudo.",
     "pillars": {
-      "track_progress": "Traccia progressi",
-      "build_habits": "Costruisci abitudini",
-      "take_challenges": "Affronta sfide"
+      "track_progress": "Acompanhar progresso",
+      "build_habits": "Construir hábitos",
+      "take_challenges": "Aceitar desafios"
     },
     "errors": {
-      "not_authenticated": "Non autenticato. Effettua di nuovo l'accesso.",
-      "rate_limited": "Limite richieste superato. Riprova tra un momento.",
-      "unauthorized": "Autenticazione richiesta. Accedi di nuovo.",
-      "api_key_or_quota": "Chiave API non valida o quota superata.",
-      "failed_response": "Risposta fallita",
-      "default_ai_reply": "Mi dispiace — non sono riuscito a generare una risposta.",
-      "send_failed": "Invio messaggio fallito",
-      "clear_failed": "Cancellazione chat fallita"
+      "not_authenticated": "Não autenticado. Por favor, inicie sessão novamente.",
+      "rate_limited": "Excesso de pedidos. Tente novamente daqui a pouco.",
+      "unauthorized": "Autenticação necessária. Inicie sessão novamente.",
+      "api_key_or_quota": "Chave API inválida ou quota excedida.",
+      "failed_response": "Falha na resposta",
+      "default_ai_reply": "Desculpe — não consegui gerar uma resposta.",
+      "send_failed": "Falha ao enviar mensagem",
+      "clear_failed": "Falha ao limpar chat"
     }
   },
   "learn": {

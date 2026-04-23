@@ -5,6 +5,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Smile, Meh, Frown, Heart, Sparkles, Loader2, Edit3 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
+import { useMemo } from "react";
 
 interface Reflection {
   id: string;
@@ -12,6 +15,7 @@ interface Reflection {
   content: string;
   mood: string | null;
   reflection_date: string;
+  original_language: string;
 }
 
 interface ReflectionCardProps {
@@ -29,12 +33,18 @@ const moodOptions = [
 ];
 
 export default function ReflectionCard({ reflection, prompt, onUpdate }: ReflectionCardProps) {
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const [content, setContent] = useState(reflection?.content || "");
   const [mood, setMood] = useState<string | null>(reflection?.mood || null);
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(!reflection);
+
+  const rawStrings = useMemo(() => [reflection?.content].filter((v): v is string => typeof v === "string" && v.trim().length > 0), [reflection?.content]);
+  const { display } = useDynamicTranslation(rawStrings, reflection?.original_language);
+
+  const displayContent = reflection ? display(reflection.content) : "";
 
   const saveReflection = async () => {
     if (!user || !content.trim()) return;
@@ -49,6 +59,7 @@ export default function ReflectionCard({ reflection, prompt, onUpdate }: Reflect
           .update({
             content: content.trim(),
             mood,
+            original_language: i18n.resolvedLanguage || i18n.language || "it",
           })
           .eq("id", reflection.id);
       } else {
@@ -60,6 +71,7 @@ export default function ReflectionCard({ reflection, prompt, onUpdate }: Reflect
             content: content.trim(),
             mood,
             reflection_date: today,
+            original_language: i18n.resolvedLanguage || i18n.language || "it",
           });
       }
       
@@ -159,7 +171,7 @@ export default function ReflectionCard({ reflection, prompt, onUpdate }: Reflect
                   })()}
                 </div>
               )}
-              <p className="text-foreground whitespace-pre-wrap leading-relaxed">{reflection.content}</p>
+              <p className="text-foreground whitespace-pre-wrap leading-relaxed">{displayContent}</p>
               <Button
                 variant="ghost"
                 size="sm"

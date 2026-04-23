@@ -45,10 +45,13 @@ export default function Landing() {
   const { theme, setTheme } = useTheme();
   const isFirstLoad = useFirstLoad();
   useEffect(() => {
-    if (!loading && user && isFirstLoad) {
+    const params = new URLSearchParams(window.location.search);
+    const noRedirect = params.get("no_redirect") === "true";
+    
+    if (!loading && user && !noRedirect) {
       navigate("/dashboard", { replace: true });
     }
-  }, [user, loading, isFirstLoad, navigate]);
+  }, [user, loading, navigate]);
 
   if (loading) {
     return (
@@ -60,7 +63,10 @@ export default function Landing() {
     );
   }
 
-  if (user && isFirstLoad) return null;
+  const params = new URLSearchParams(window.location.search);
+  const noRedirect = params.get("no_redirect") === "true";
+
+  if (user && !noRedirect) return null;
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
