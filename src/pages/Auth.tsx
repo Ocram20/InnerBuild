@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Leaf, Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react";
+import { Leaf, Eye, EyeOff, ArrowLeft, Loader2, Check, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -222,13 +223,42 @@ export default function Auth() {
                     <p className="text-sm text-destructive font-medium">{errors.password}</p>
                   </div>
                 )}
+                {!isLogin && (
+                  <div className="space-y-2 mt-3 px-1">
+                    {[
+                      { label: t("auth_validation.min_8_chars"), met: password.length >= 8 },
+                      { label: t("auth_validation.one_number"), met: /\d/.test(password) },
+                      { label: t("auth_validation.one_upper"), met: /[A-Z]/.test(password) },
+                      { label: t("auth_validation.one_lower"), met: /[a-z]/.test(password) },
+                    ].map((req, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className={cn(
+                          "w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
+                          req.met ? "bg-emerald-500" : "bg-muted-foreground/20"
+                        )}>
+                          {req.met ? (
+                            <Check className="h-2.5 w-2.5 text-white" />
+                          ) : (
+                            <X className="h-2.5 w-2.5 text-muted-foreground" />
+                          )}
+                        </div>
+                        <span className={cn(
+                          "text-xs transition-colors duration-300",
+                          req.met ? "text-emerald-500" : "text-muted-foreground"
+                        )}>
+                          {req.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
             <Button
               type="submit"
               className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft"
-              disabled={isLoading || isGoogleLoading}
+              disabled={isLoading || isGoogleLoading || (!isLogin && !(password.length >= 8 && /\d/.test(password) && /[A-Z]/.test(password) && /[a-z]/.test(password)))}
             >
               {isLoading ? t("common.please_wait") : isLogin ? t("auth.sign_in") : t("auth.create_account")}
             </Button>

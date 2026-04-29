@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAdminAccess } from "@/hooks/useAdminAccess";
+import { useCategoryPreferences } from "@/hooks/useCategoryPreferences";
 import {
-  Brain, Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon,
+  Brain, Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon, Settings2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import BottomNavigation from "@/components/BottomNavigation";
 import PaywallModal from "@/components/PaywallModal";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 type ToolDef = {
   id: string;
@@ -31,7 +34,7 @@ const freeTools: ToolDef[] = [
 
 const premiumTools: ToolDef[] = [
   { id: "trigger-tracking", titleKey: "explore.tools.trigger_tracking", descriptionKey: "explore.tools.trigger_tracking_desc", icon: Zap, path: "/trigger-tracking", iconBg: "bg-orange-500/15", iconColor: "text-orange-500", premium: true },
-  { id: "porn-recovery", titleKey: "explore.tools.porn_recovery", descriptionKey: "explore.tools.porn_recovery_desc", icon: Brain, path: "/porn-recovery", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", premium: true },
+  { id: "the-forge", titleKey: "explore.tools.the_forge", descriptionKey: "explore.tools.the_forge_desc", icon: Brain, path: "/the-forge", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", premium: true },
   { id: "coach", titleKey: "explore.tools.ai_coach", descriptionKey: "explore.tools.ai_coach_desc", icon: Bot, path: "/coach", iconBg: "bg-blue-500/15", iconColor: "text-blue-500", premium: true },
 ];
 
@@ -40,7 +43,9 @@ const Explore = () => {
   const navigate = useNavigate();
   const { subscription } = useSubscription();
   const { hasAdminRole } = useAdminAccess();
+  const { preferences, updatePreference, loading: prefsLoading } = useCategoryPreferences();
   const [showPaywall, setShowPaywall] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const isPremium = hasAdminRole || subscription.subscribed;
 
   const handleNavigate = (path: string, premium: boolean) => {
@@ -51,9 +56,20 @@ const Explore = () => {
     }
   };
 
+  const handleToggle = (id: string, currentStatus: boolean, isPremiumTool: boolean) => {
+    if (!currentStatus && isPremiumTool && !isPremium) {
+      setShowPaywall(true);
+    } else {
+      updatePreference(id as any, !currentStatus);
+    }
+  };
+
   const ToolCard = ({ item, premium = false }: { item: ToolDef; premium?: boolean }) => {
     const Icon = item.icon;
     const isLocked = premium && !isPremium;
+
+    // Filter out if disabled in preferences
+    if (!preferences[item.id as keyof typeof preferences]) return null;
 
     return (
       <button
@@ -87,45 +103,108 @@ const Explore = () => {
     );
   };
 
+  const allTools = [...freeTools, ...premiumTools];
+  const visibleFreeTools = freeTools.filter(item => preferences[item.id as keyof typeof preferences]);
+  const visiblePremiumTools = premiumTools.filter(item => preferences[item.id as keyof typeof preferences]);
+
   return (
     <div className="min-h-screen bg-background pb-app-main">
       <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="flex items-center gap-3 p-4 max-w-lg mx-auto">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")} className="rounded-full h-9 w-9">
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
-          <div>
-            <h1 className="font-bold text-foreground">{t("explore.title")}</h1>
-            <p className="text-xs text-muted-foreground">{t("explore.subtitle")}</p>
+        <div className="flex items-center justify-between p-4 max-w-lg mx-auto">
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")} className="rounded-full h-9 w-9">
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <div>
+              <h1 className="font-bold text-foreground">{t("explore.title")}</h1>
+              <p className="text-xs text-muted-foreground">{t("explore.subtitle")}</p>
+            </div>
           </div>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setShowSettings(!showSettings)}
+            className={cn("rounded-full h-9 w-9", showSettings && "bg-primary/10 text-primary")}
+          >
+            <Settings2 className="h-5 w-5" />
+          </Button>
         </div>
       </header>
 
       <div className="w-full max-w-lg mx-auto px-4 pt-6 space-y-6">
-        <section className="animate-fade-in" style={{ animationDelay: "50ms" }}>
-          <h2 className="text-sm font-medium text-muted-foreground mb-3 px-1">{t("explore.free_tools")}</h2>
-          <div className="space-y-3">
-            {freeTools.map((item) => (
-              <ToolCard key={item.id} item={item} premium={false} />
-            ))}
-          </div>
-        </section>
+        {showSettings && (
+          <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-card rounded-2xl border border-border/60 p-4 space-y-4">
+            <div className="space-y-1">
+              <h2 className="font-semibold text-sm">{t("explore.display_settings.title")}</h2>
+              <p className="text-xs text-muted-foreground">{t("explore.display_settings.subtitle")}</p>
+            </div>
+            <div className="space-y-3 pt-2">
+              {allTools.map((tool) => (
+                <div key={tool.id} className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", tool.iconBg)}>
+                      <tool.icon className={cn("h-4 w-4", tool.iconColor)} />
+                    </div>
+                    <Label htmlFor={`toggle-${tool.id}`} className="text-sm cursor-pointer">
+                      {t(tool.titleKey)}
+                      {tool.premium && !isPremium && (
+                        <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                          PRO
+                        </span>
+                      )}
+                    </Label>
+                  </div>
+                  <Switch
+                    id={`toggle-${tool.id}`}
+                    checked={!!preferences[tool.id as keyof typeof preferences]}
+                    onCheckedChange={() => handleToggle(tool.id, !!preferences[tool.id as keyof typeof preferences], !!tool.premium)}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
-        <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-          <div className="flex items-center gap-2 mb-3 px-1">
-            <h2 className="text-sm font-medium text-muted-foreground">{t("explore.premium_tools")}</h2>
-            {!isPremium && (
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                {t("common.pro")}
-              </span>
-            )}
+        {visibleFreeTools.length > 0 && (
+          <section className="animate-fade-in" style={{ animationDelay: "50ms" }}>
+            <h2 className="text-sm font-medium text-muted-foreground mb-3 px-1">{t("explore.free_tools")}</h2>
+            <div className="space-y-3">
+              {freeTools.map((item) => (
+                <ToolCard key={item.id} item={item} premium={false} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {visiblePremiumTools.length > 0 && (
+          <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
+            <div className="flex items-center gap-2 mb-3 px-1">
+              <h2 className="text-sm font-medium text-muted-foreground">{t("explore.premium_tools")}</h2>
+              {!isPremium && (
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                  {t("common.pro")}
+                </span>
+              )}
+            </div>
+            <div className="space-y-3">
+              {premiumTools.map((item) => (
+                <ToolCard key={item.id} item={item} premium />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {visibleFreeTools.length === 0 && visiblePremiumTools.length === 0 && !showSettings && (
+          <div className="text-center py-12 space-y-4">
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+              <Settings2 className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <p className="text-sm text-muted-foreground">{t("explore.no_visible_tools")}</p>
+            <Button variant="outline" onClick={() => setShowSettings(true)}>
+              {t("explore.display_settings.title")}
+            </Button>
           </div>
-          <div className="space-y-3">
-            {premiumTools.map((item) => (
-              <ToolCard key={item.id} item={item} premium />
-            ))}
-          </div>
-        </section>
+        )}
 
         {!isPremium && (
           <section className="pt-2 animate-fade-in" style={{ animationDelay: "150ms" }}>
@@ -150,3 +229,4 @@ const Explore = () => {
 };
 
 export default Explore;
+

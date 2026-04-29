@@ -97,8 +97,12 @@
   },
   "auth_validation": {
     "invalid_email": "Veuillez saisir une adresse e-mail valide",
-    "password_min": "Le mot de passe doit comporter au moins 6 caractères",
-    "password_complexity": "Le mot de passe doit contenir au moins : une minuscule, une majuscule, un chiffre et un caractère spécial."
+    "password_min": "Le mot de passe doit comporter au moins 8 caractères",
+    "password_complexity": "Le mot de passe doit contenir au moins : une minuscule, une majuscule, un chiffre.",
+    "min_8_chars": "Au moins 8 caractères",
+    "one_number": "Au moins un chiffre",
+    "one_upper": "Au moins une majuscule",
+    "one_lower": "Au moins une minuscule"
   },
   "forgot_password": {
     "title": "Mot de passe oublié",
@@ -172,8 +176,8 @@
       "smart_habit_desc": "Suivez vos habitudes quotidiennes avec un suivi visuel, des séries et des suggestions IA intelligentes qui s'adaptent à vos schémas réels.",
       "detox_challenges": "Défis Detox",
       "detox_challenges_desc": "Libérez-vous de la dépendance numérique, des mauvaises habitudes et des schémas négatifs avec des défis basés sur la science (de 3 à 90 jours).",
-      "porn_recovery": "Programme de récupération de la pornographie",
-      "porn_recovery_desc": "Un programme dédié et basé sur la science avec suivi des séries, bilans quotidiens, analyse des déclencheurs et soutien spécialisé.",
+      "the_forge": "La Renaissance (Récupération de la Pornographie)",
+      "the_forge_desc": "Un programme dédié et basé sur la science pour la récupération de la pornographie, la maîtrise de soi et le soutien spécialisé.",
       "ai_coach": "Coach IA personnel",
       "ai_coach_desc": "Compagnon IA disponible 24h/24 et 7j/7 qui vous motive, suggère des habitudes personnalisées, aide à gérer les envies et guide votre transformation.",
       "trigger_tracking": "Suivi et analyse des déclencheurs",
@@ -208,8 +212,8 @@
       "t6": "Les défis detox sont bien structurés. J'ai fait le detox des réseaux sociaux de 30 jours et je me suis vraiment senti plus calme après deux semaines."
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "Ce n'est pas une question de volonté. Le programme est basé sur les neurosciences – il vous aide à comprendre exactement pourquoi votre cerveau s'est accroché, et comment le restructurer étape par étape.",
-      "porn_recovery_features": [
+      "the_forge_desc": "Ce n'est pas une question de volonté. Le programme est basé sur les neurosciences – il vous aide à comprendre exactement pourquoi votre cerveau s'est accroché, et comment le restructurer étape par étape.",
+      "the_forge_features": [
         "Suivi scientifique des séries",
         "Bilans quotidiens et progrès",
         "Outils de débriefing et d'apprentissage",
@@ -247,8 +251,8 @@
         "Ajustement intelligent de la difficulté",
         "Recommandations IA personnalisées"
       ],
-      "porn_recovery_mobile_desc": "Basé sur les neurosciences – comprenez pourquoi votre cerveau s'est accroché et restructurez-le étape par étape.",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "Basé sur les neurosciences – comprenez pourquoi votre cerveau s'est accroché et restructurez-le étape par étape.",
+      "the_forge_mobile_features": [
         "Suivi scientifique des séries",
         "Bilans quotidiens et progrès",
         "Outils de débriefing",
@@ -304,6 +308,12 @@
     "free_tools": "Outils gratuits",
     "premium_tools": "Outils Premium",
     "unlock_all": "Débloquez tous les outils avec Premium",
+    "display_settings": {
+      "title": "Paramètres d'affichage",
+      "subtitle": "Personnalisez votre expérience",
+      "update_error": "Échec de la mise à jour des préférences"
+    },
+    "no_visible_tools": "Aucun outil sélectionné. Personnalisez votre expérience dans les paramètres.",
     "tools": {
       "habits": "Habitudes",
       "habits_desc": "Suivez et construisez des habitudes quotidiennes",
@@ -315,8 +325,8 @@
       "daily_planning_desc": "Listes de choses à faire et objectifs",
       "trigger_tracking": "Suivi des déclencheurs",
       "trigger_tracking_desc": "Enregistrez les pulsions et l'analyse des schémas par IA",
-      "porn_recovery": "Récupération de la pornographie",
-      "porn_recovery_desc": "Chemin scientifique vers la liberté",
+      "the_forge": "La Renaissance",
+      "the_forge_desc": "Chemin scientifique vers la liberté",
       "ai_coach": "Coach IA",
       "ai_coach_desc": "Guide personnel basé sur l'IA"
     }
@@ -573,7 +583,7 @@
       "unlimited_habits": "Habitudes illimitées",
       "unlimited_challenges": "Défis detox illimités",
       "ai_coach": "Coach IA personnel (24h/24)",
-      "recovery": "Programme de récupération de la pornographie avec suivi des séries",
+      "recovery": "Programme La Renaissance avec suivi des séries",
       "trigger_tracking": "Suivi des déclencheurs et analyse des schémas par IA",
       "habit_adaptation": "Suggestions d'adaptation des habitudes par IA",
       "learn": "Section Apprendre (articles, guides et chronologie)",
@@ -736,8 +746,8 @@
       "timeline": "Chronologie de récupération et jalons"
     }
   },
-  "porn_recovery": {
-    "title": "Récupération de la pornographie",
+  "the_forge": {
+    "title": "La Renaissance",
     "subtitle": "Outils scientifiques pour votre parcours",
     "emergency": "Urgence",
     "sos": "SOS",

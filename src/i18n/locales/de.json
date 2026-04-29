@@ -97,8 +97,12 @@
   },
   "auth_validation": {
     "invalid_email": "Bitte gib eine gültige E-Mail-Adresse ein",
-    "password_min": "Das Passwort muss mindestens 6 Zeichen lang sein",
-    "password_complexity": "Das Passwort muss mindestens enthalten: einen Kleinbuchstaben, einen Großbuchstaben, eine Ziffer und ein Sonderzeichen."
+    "password_min": "Das Passwort muss mindestens 8 Zeichen lang sein",
+    "password_complexity": "Das Passwort muss mindestens enthalten: einen Kleinbuchstaben, einen Großbuchstaben, eine Ziffer.",
+    "min_8_chars": "Mindestens 8 Zeichen",
+    "one_number": "Mindestens eine Zahl",
+    "one_upper": "Mindestens ein Großbuchstabe",
+    "one_lower": "Mindestens ein Kleinbuchstabe"
   },
   "forgot_password": {
     "title": "Passwort vergessen",
@@ -172,8 +176,8 @@
       "smart_habit_desc": "Verfolge tägliche Gewohnheiten mit visuellem Fortschritt, Serien und intelligenten KI-Vorschlägen, die sich an deine tatsächlichen Muster anpassen.",
       "detox_challenges": "Detox-Challenges",
       "detox_challenges_desc": "Befreie dich von digitaler Sucht, schlechten Gewohnheiten und negativen Mustern mit wissenschaftlich basierten Herausforderungen (3 bis 90 Tage).",
-      "porn_recovery": "Pornografie-Recovery-Programm",
-      "porn_recovery_desc": "Ein spezielles, wissenschaftlich fundiertes Programm mit Serien-Tracking, täglichen Check-ins, Trigger-Analyse und spezialisierter Unterstützung.",
+      "the_forge": "Der Neubeginn (Pornografie-Erholung)",
+      "the_forge_desc": "Ein spezielles, wissenschaftlich fundiertes Programm für Porno-Recovery, Selbstbeherrschung und spezialisierte Unterstützung.",
       "ai_coach": "Persönlicher KI-Coach",
       "ai_coach_desc": "24/7 KI-Begleiter, der dich motiviert, personalisierte Gewohnheiten vorschlägt, bei Gelüsten hilft und deine Transformation begleitet.",
       "trigger_tracking": "Trigger-Tracking & -Analyse",
@@ -208,8 +212,8 @@
       "t6": "Die Detox-Challenges sind gut strukturiert. Ich habe die 30-tägige Social-Media-Detox gemacht und fühlte mich nach zwei Wochen tatsächlich ruhiger."
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "Es geht nicht um Willenskraft. Das Programm basiert auf Neurowissenschaften – es hilft dir zu verstehen, warum dein Gehirn süchtig wurde und wie du es Schritt für Schritt umprogrammierst.",
-      "porn_recovery_features": [
+      "the_forge_desc": "Es geht nicht um Willenskraft. Das Programm basiert auf Neurowissenschaften – es hilft dir zu verstehen, warum dein Gehirn süchtig wurde und wie du es Schritt für Schritt umprogrammierst.",
+      "the_forge_features": [
         "Wissenschaftliches Serien-Tracking",
         "Tägliche Check-ins und Fortschritt",
         "Debriefing- und Lernwerkzeuge",
@@ -247,8 +251,8 @@
         "Intelligente Schwierigkeitsskalierung",
         "Personalisierte KI-Empfehlungen"
       ],
-      "porn_recovery_mobile_desc": "Basiert auf Neurowissenschaften – verstehe, warum dein Gehirn süchtig wurde, und programmiere es Schritt für Schritt um.",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "Basiert auf Neurowissenschaften – verstehe, warum dein Gehirn süchtig wurde, und programmiere es Schritt für Schritt um.",
+      "the_forge_mobile_features": [
         "Wissenschaftliches Serien-Tracking",
         "Tägliche Check-ins und Fortschritt",
         "Debriefing-Tools",
@@ -304,6 +308,12 @@
     "free_tools": "Kostenlose Tools",
     "premium_tools": "Premium-Tools",
     "unlock_all": "Schalte alle Tools mit Premium frei",
+    "display_settings": {
+      "title": "Anzeige-Einstellungen",
+      "subtitle": "Personalisiere dein Erlebnis",
+      "update_error": "Fehler beim Aktualisieren der Einstellungen"
+    },
+    "no_visible_tools": "Keine Tools ausgewählt. Personalisiere dein Erlebnis in den Einstellungen.",
     "tools": {
       "habits": "Gewohnheiten",
       "habits_desc": "Verfolge und baue tägliche Gewohnheiten auf",
@@ -315,8 +325,8 @@
       "daily_planning_desc": "Aufgabenlisten und Ziele",
       "trigger_tracking": "Trigger-Tracking",
       "trigger_tracking_desc": "Erfasse Impulse und KI-Musteranalyse",
-      "porn_recovery": "Porno-Recovery",
-      "porn_recovery_desc": "Wissenschaftlich basierter Weg zur Freiheit",
+      "the_forge": "Der Neubeginn",
+      "the_forge_desc": "Wissenschaftlich basierter Weg zur Freiheit",
       "ai_coach": "KI-Coach",
       "ai_coach_desc": "Personalisierte KI-gestützte Anleitung"
     }
@@ -573,7 +583,7 @@
       "unlimited_habits": "Unbegrenzte Gewohnheiten",
       "unlimited_challenges": "Unbegrenzte Detox-Challenges",
       "ai_coach": "Persönlicher KI-Coach (24/7)",
-      "recovery": "Pornografie-Recovery-Programm mit Serien-Tracking",
+      "recovery": "Der Neubeginn Programm mit Serien-Tracking",
       "trigger_tracking": "Trigger-Tracking und KI-Musteranalyse",
       "habit_adaptation": "KI-Gewohnheitsanpassungsvorschläge",
       "learn": "Lernbereich (Artikel, Guides & Zeitachse)",
@@ -736,8 +746,8 @@
       "timeline": "Recovery-Zeitachse und Meilensteine"
     }
   },
-  "porn_recovery": {
-    "title": "Porno-Recovery",
+  "the_forge": {
+    "title": "Der Neubeginn",
     "subtitle": "Wissenschaftlich fundierte Werkzeuge für deine Reise",
     "emergency": "Notfall",
     "sos": "SOS",

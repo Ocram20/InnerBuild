@@ -77,7 +77,7 @@ export default function Landing() {
   const mainFeatureDefs = [
     { icon: Target, titleKey: "landing.features.smart_habit_tracking", descKey: "landing.features.smart_habit_desc", color: "text-emerald-500", bgColor: "bg-emerald-500/10" },
     { icon: Flame, titleKey: "landing.features.detox_challenges", descKey: "landing.features.detox_challenges_desc", color: "text-orange-500", bgColor: "bg-orange-500/10" },
-    { icon: Eye, titleKey: "landing.features.porn_recovery", descKey: "landing.features.porn_recovery_desc", color: "text-violet-500", bgColor: "bg-violet-500/10" },
+    { icon: Eye, titleKey: "landing.features.the_forge", descKey: "landing.features.the_forge_desc", color: "text-violet-500", bgColor: "bg-violet-500/10" },
     { icon: Bot, titleKey: "landing.features.ai_coach", descKey: "landing.features.ai_coach_desc", color: "text-primary", bgColor: "bg-primary/10" },
     { icon: ShieldAlert, titleKey: "landing.features.trigger_tracking", descKey: "landing.features.trigger_tracking_desc", color: "text-rose-500", bgColor: "bg-rose-500/10" },
     { icon: CalendarCheck, titleKey: "landing.features.daily_planning", descKey: "landing.features.daily_planning_desc", color: "text-indigo-500", bgColor: "bg-indigo-500/10" },
@@ -377,7 +377,7 @@ export default function Landing() {
             <ScrollReveal className="md:hidden" delay={200}>
               <Carousel opts={{ align: "center", loop: true }}>
                 <CarouselContent>
-                  {/* Porn Recovery */}
+                  {/* The Forge */}
                   <CarouselItem className="basis-[90%]">
                     <div className="glass rounded-2xl border border-border/60 p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
@@ -385,15 +385,15 @@ export default function Landing() {
                           <Eye className="h-6 w-6 text-violet-500" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
+                          <h3 className="text-lg font-bold text-foreground">{t("landing.features.the_forge")}</h3>
                           <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
                         </div>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                        {t("landing.premium_deep_dive.porn_recovery_mobile_desc")}
+                        {t("landing.premium_deep_dive.the_forge_mobile_desc")}
                       </p>
                       <div className="space-y-1.5">
-                        {(t("landing.premium_deep_dive.porn_recovery_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                        {(t("landing.premium_deep_dive.the_forge_mobile_features", { returnObjects: true }) as string[]).map((item) => (
                           <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
                             <CheckCircle2 className="h-3.5 w-3.5 text-violet-500 flex-shrink-0" />{item}
                           </div>
@@ -498,7 +498,7 @@ export default function Landing() {
 
             {/* Desktop: stacked layout */}
             <div className="hidden md:block space-y-6">
-              {/* Porn Recovery Program */}
+              {/* The Forge Program */}
               <ScrollReveal variant="left">
                 <div className="glass rounded-2xl border border-border/60 p-6 md:p-8 hover:border-violet-500/30 transition-all duration-300 group">
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
@@ -507,14 +507,14 @@ export default function Landing() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-bold text-foreground">{t("landing.features.porn_recovery")}</h3>
+                        <h3 className="text-xl font-bold text-foreground">{t("landing.features.the_forge")}</h3>
                         <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
                       </div>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        {t("landing.premium_deep_dive.porn_recovery_desc")}
+                        {t("landing.premium_deep_dive.the_forge_desc")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
-                        {(t("landing.premium_deep_dive.porn_recovery_features", { returnObjects: true }) as string[]).map((item) => (
+                        {(t("landing.premium_deep_dive.the_forge_features", { returnObjects: true }) as string[]).map((item) => (
                           <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                             <CheckCircle2 className="h-4 w-4 text-violet-500 flex-shrink-0" />{item}
                           </div>

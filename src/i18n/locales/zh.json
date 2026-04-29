@@ -97,8 +97,12 @@
   },
   "auth_validation": {
     "invalid_email": "请输入有效的电子邮箱地址",
-    "password_min": "密码至少需要6个字符",
-    "password_complexity": "密码必须至少包含：小写字母、大写字母、数字和特殊字符。"
+    "password_min": "密码至少需要8个字符",
+    "password_complexity": "密码必须至少包含：小写字母、大写字母、数字。",
+    "min_8_chars": "至少8个字符",
+    "one_number": "至少一个数字",
+    "one_upper": "至少一个大写字母",
+    "one_lower": "至少一个小写字母"
   },
   "forgot_password": {
     "title": "忘记密码",
@@ -172,8 +176,8 @@
       "smart_habit_desc": "追踪每日习惯，带有视觉进度、连续记录和智能 AI 建议，适应您的真实模式。",
       "detox_challenges": "排毒挑战",
       "detox_challenges_desc": "通过基于科学的挑战（3至90天）摆脱数字成瘾、坏习惯和负面模式。",
-      "porn_recovery": "色情恢复计划",
-      "porn_recovery_desc": "专门的科学计划，包含连续记录追踪、每日签到、触发分析及专业支持。",
+      "the_forge": "重生 (色情恢复)",
+      "the_forge_desc": "专门的科学计划，用于色情恢复、自我掌控及专业支持。",
       "ai_coach": "个人 AI 教练",
       "ai_coach_desc": "24/7 AI 伴侣，激励您、建议个性化习惯、帮助应对渴求并引导您的转变。",
       "trigger_tracking": "触发器追踪与分析",
@@ -208,8 +212,8 @@
       "t6": "排毒挑战结构很好。我做了30天社交媒体排毒，两周后真的感觉更平静了。"
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "这不是意志力的问题。该程序基于神经科学——帮助您确切理解您的大脑为何上瘾，以及如何一步步重新连接。",
-      "porn_recovery_features": [
+      "the_forge_desc": "这不是意志力的问题。该程序基于神经科学——帮助您确切理解您的大脑为何上瘾，以及如何一步步重新连接。",
+      "the_forge_features": [
         "科学连续记录追踪",
         "每日签到和进度",
         "复盘和学习工具",
@@ -247,8 +251,8 @@
         "智能难度调整",
         "个性化 AI 建议"
       ],
-      "porn_recovery_mobile_desc": "基于神经科学——理解您的大脑为何上瘾，并一步步重新连接它。",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "基于神经科学——理解您的大脑为何上瘾，并一步步重新连接它。",
+      "the_forge_mobile_features": [
         "科学连续记录追踪",
         "每日签到和进度",
         "复盘工具",
@@ -304,6 +308,12 @@
     "free_tools": "免费工具",
     "premium_tools": "高级工具",
     "unlock_all": "使用高级版解锁所有工具",
+    "display_settings": {
+      "title": "显示设置",
+      "subtitle": "自定义您的体验",
+      "update_error": "更新偏好设置失败"
+    },
+    "no_visible_tools": "未选择工具。在设置中自定义您的体验。",
     "tools": {
       "habits": "习惯",
       "habits_desc": "追踪和培养日常习惯",
@@ -315,8 +325,8 @@
       "daily_planning_desc": "待办清单和目标",
       "trigger_tracking": "触发器追踪",
       "trigger_tracking_desc": "记录冲动和 AI 模式分析",
-      "porn_recovery": "色情恢复",
-      "porn_recovery_desc": "通往自由的科学之路",
+      "the_forge": "重生",
+      "the_forge_desc": "通往自由的科学之路",
       "ai_coach": "AI 教练",
       "ai_coach_desc": "基于 AI 的个人指导"
     }
@@ -573,7 +583,7 @@
       "unlimited_habits": "无限习惯",
       "unlimited_challenges": "无限排毒挑战",
       "ai_coach": "个人 AI 教练 (24/7)",
-      "recovery": "带连续记录追踪的色情恢复计划",
+      "recovery": "重生计划：带连续记录追踪",
       "trigger_tracking": "触发器追踪和 AI 模式分析",
       "habit_adaptation": "AI 习惯适应建议",
       "learn": "学习板块（文章、指南和时间线）",
@@ -736,8 +746,8 @@
       "timeline": "恢复时间线和里程碑"
     }
   },
-  "porn_recovery": {
-    "title": "色情恢复",
+  "the_forge": {
+    "title": "重生",
     "subtitle": "为您旅程提供的科学工具",
     "emergency": "紧急",
     "sos": "SOS",

@@ -9,7 +9,7 @@ import { enUS, it as itLocale, zhCN, de, fr, es, ptBR, ru, ro } from "date-fns/l
 import { ToDoSection } from "@/components/daily-planning/ToDoSection";
 import { NotToDoSection } from "@/components/daily-planning/NotToDoSection";
 import { ActiveHabitsSection } from "@/components/daily-planning/ActiveHabitsSection";
-import { EveningReminderBanner } from "@/components/daily-planning/EveningReminderBanner";
+
 import BottomNavigation from "@/components/BottomNavigation";
 import { useTranslation } from "react-i18next";
 import { cleanupExpiredDailyPlanningItems } from "@/lib/dailyPlanningCleanup";
@@ -219,7 +219,7 @@ const DailyPlanning = () => {
       </header>
 
       <main className="container mx-auto px-4 py-6 space-y-6 max-w-4xl">
-        <EveningReminderBanner userId={user?.id} />
+
         <div className="grid md:grid-cols-2 gap-6">
           <ToDoSection userId={user?.id} targetDate={effectiveTargetDateISO} planningMode={planningMode} />
           <NotToDoSection userId={user?.id} targetDate={effectiveTargetDateISO} planningMode={planningMode} />

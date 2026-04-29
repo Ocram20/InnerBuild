@@ -100,7 +100,11 @@
   "auth_validation": {
     "invalid_email": "Please enter a valid email address",
     "password_min": "Password must be at least 6 characters",
-    "password_complexity": "Password must include at least: one lowercase letter, one uppercase letter, one number, and one special character."
+    "password_complexity": "Password does not meet requirements",
+    "min_8_chars": "At least 8 characters",
+    "one_number": "At least one number",
+    "one_upper": "At least one uppercase",
+    "one_lower": "At least one lowercase"
   },
 
   "forgot_password": {
@@ -177,8 +181,8 @@
       "smart_habit_desc": "Track daily habits with visual progress, streaks, and smart AI suggestions that adapt to your real patterns.",
       "detox_challenges": "Detox Challenges",
       "detox_challenges_desc": "Break free from digital addiction, bad habits, and negative patterns with science‑based challenges (3 to 90 days).",
-      "porn_recovery": "Porn Recovery Program",
-      "porn_recovery_desc": "A dedicated, science‑based program with streak tracking, daily check‑ins, trigger analysis and specialized support.",
+      "the_forge": "The Renewal (Porn Recovery)",
+      "the_forge_desc": "A dedicated, science‑based program for porn recovery, self‑mastery, and specialized support.",
       "ai_coach": "Personal AI Coach",
       "ai_coach_desc": "24/7 AI companion that motivates you, suggests personalized habits, helps with cravings, and guides your transformation.",
       "trigger_tracking": "Trigger Tracking & Analysis",
@@ -213,8 +217,8 @@
       "t6": "The detox challenges are well structured. I did the 30‑day social media detox and actually felt calmer after two weeks."
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "It's not about willpower. The program is built on neuroscience — it helps you understand exactly why your brain got hooked, and how to rewire it step by step.",
-      "porn_recovery_features": [
+      "the_forge_desc": "It's not about willpower. The program is built on neuroscience — it helps you understand exactly why your brain got hooked, and how to rewire it step by step.",
+      "the_forge_features": [
         "Scientific streak tracking",
         "Daily check‑ins and progress",
         "Debrief and learning tools",
@@ -248,8 +252,8 @@
         "Smart difficulty scaling",
         "Personalized AI recommendations"
       ],
-      "porn_recovery_mobile_desc": "Based on neuroscience — understand why your brain got hooked and rewire it step by step.",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "Based on neuroscience — understand why your brain got hooked and rewire it step by step.",
+      "the_forge_mobile_features": [
         "Scientific streak tracking",
         "Daily check‑ins and progress",
         "Debrief tools",
@@ -339,6 +343,12 @@
     "free_tools": "Free Tools",
     "premium_tools": "Premium Tools",
     "unlock_all": "Unlock all tools with Premium",
+    "display_settings": {
+      "title": "Display Settings",
+      "subtitle": "Customize your experience",
+      "update_error": "Failed to update preferences"
+    },
+    "no_visible_tools": "No tools selected. Customize your experience in settings.",
     "tools": {
       "habits": "Habits",
       "habits_desc": "Track and build daily habits",
@@ -350,8 +360,8 @@
       "daily_planning_desc": "To‑do lists and goals",
       "trigger_tracking": "Trigger Tracking",
       "trigger_tracking_desc": "Log urges and AI pattern analysis",
-      "porn_recovery": "Porn Recovery",
-      "porn_recovery_desc": "Science‑based path to freedom",
+      "the_forge": "The Renewal",
+      "the_forge_desc": "Scientific path to freedom",
       "ai_coach": "AI Coach",
       "ai_coach_desc": "Personal AI‑powered guidance"
     }
@@ -613,7 +623,7 @@
       "unlimited_habits": "Unlimited habits",
       "unlimited_challenges": "Unlimited detox challenges",
       "ai_coach": "Personal AI Coach (24/7)",
-      "recovery": "Porn Recovery Program with streak tracking",
+      "recovery": "The Renewal Program with streak tracking",
       "trigger_tracking": "Trigger tracking and AI pattern analysis",
       "habit_adaptation": "AI habit adaptation suggestions",
       "learn": "Learn section (articles, guides & timeline)",
@@ -788,8 +798,8 @@
     }
   },
 
-  "porn_recovery": {
-    "title": "Porn Recovery",
+  "the_forge": {
+    "title": "The Renewal",
     "subtitle": "Science‑based tools for your journey",
     "emergency": "Emergency",
     "sos": "SOS",
@@ -804,8 +814,8 @@
       "anti_trigger": "Personal anti‑trigger plan",
       "motivation": "Motivation tracking"
     },
-    "recovery_challenge": "Recovery Challenge",
-    "start_challenge_question": "Do you want to start the Porn Recovery Challenge? You'll be able to track your daily progress and build streaks.",
+    "recovery_challenge": "Renewal Challenge",
+    "start_challenge_question": "Do you want to start the Renewal Challenge? You'll be able to track your daily progress and build streaks.",
     "mark_success_fail": "Mark each day as \"Success\" or \"Failed\"",
     "track_streaks": "Track your current and longest streak",
     "start_fresh_anytime": "Start fresh anytime",
@@ -1101,7 +1111,7 @@
     "checked_in_today": "Checked in today. Keep it up!",
     "day_of_journey": "Day {{day}} of journey",
     "active_challenges": "Active Challenges",
-    "title": "Porn Recovery",
+    "title": "The Forge",
     "subtitle": "Science-backed tools for your journey",
     "emergency": "Emergency",
     "sos": "SOS",
@@ -1112,8 +1122,8 @@
       "learn": "Learn"
     },
     "onboarding": {
-      "title": "Recovery Challenge",
-      "description": "Do you want to start the Porn Recovery Challenge? You'll be able to track your daily progress and build streaks.",
+      "title": "The Forge Challenge",
+      "description": "Do you want to start The Forge Challenge? You'll be able to track your daily progress and build streaks.",
       "feature_1": "Mark each day as \"Success\" or \"Failure\"",
       "feature_2": "Track your current and longest streak",
       "feature_3": "Start fresh anytime",
@@ -1222,7 +1232,7 @@
     "ai_coach_title": "Access AI Coach",
     "ai_coach_desc": "Get personalized guidance, support, and motivation from your AI coach whenever you need it.",
     "recovery_title": "Unlock Recovery Tools",
-    "recovery_desc": "Access the full Porn Recovery Program with streak tracking, neuroscience content, and debrief tools.",
+    "recovery_desc": "Access the full The Forge Program with streak tracking, neuroscience content, and debrief tools.",
     "advanced_stats_title": "Unlock Habit Analysis",
     "advanced_stats_desc": "Get AI insights on your habits, personalized suggestions, and smart recommendations to improve your routine.",
     "general_title": "Upgrade to Premium",
@@ -1232,7 +1242,7 @@
       "unlimited_habits": "Unlimited habits",
       "unlimited_challenges": "Unlimited detox challenges",
       "ai_coach": "AI Coach access",
-      "recovery": "Porn Recovery Program",
+      "recovery": "The Forge Program",
       "trigger_tracking": "Trigger tracking and AI analysis",
       "learn": "Learn section (articles, guides & timeline)",
       "priority": "Priority access to new features"

@@ -514,7 +514,7 @@ export function EmergencyUrgeModal({
                               className="h-auto p-0 text-xs font-semibold"
                               onClick={() => {
                                 handleClose();
-                                navigate("/porn-recovery");
+                                navigate("/the-forge");
                               }}
                             >
                               {t("emergency_urge.configure_now")}

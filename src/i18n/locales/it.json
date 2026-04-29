@@ -98,7 +98,11 @@
   "auth_validation": {
     "invalid_email": "Inserisci un indirizzo email valido",
     "password_min": "La password deve avere almeno 6 caratteri",
-    "password_complexity": "La password deve contenere almeno: una lettera minuscola, una maiuscola, un numero e un carattere speciale."
+    "password_complexity": "La password non rispetta i requisiti",
+    "min_8_chars": "Almeno 8 caratteri",
+    "one_number": "Almeno un numero",
+    "one_upper": "Almeno una maiuscola",
+    "one_lower": "Almeno una minuscola"
   },
   "forgot_password": {
     "title": "Password Dimenticata",
@@ -172,8 +176,8 @@
       "smart_habit_desc": "Traccia le abitudini quotidiane con progressi visivi, serie e suggerimenti AI intelligenti che si adattano ai tuoi schemi reali.",
       "detox_challenges": "Sfide Detox",
       "detox_challenges_desc": "Liberati dalla dipendenza digitale, dalle cattive abitudini e dai pattern negativi con sfide basate sulla scienza (da 3 a 90 giorni).",
-      "porn_recovery": "Programma Porn Recovery",
-      "porn_recovery_desc": "Un programma dedicato e basato sulla scienza con tracciamento serie, check-in giornalieri, analisi trigger e supporto specializzato.",
+      "the_forge": "La rinascita (Recupero Pornografia)",
+      "the_forge_desc": "Un percorso basato sulle neuroscienze per il recupero dalla pornografia, il self-mastery e supporto specializzato.",
       "ai_coach": "Coach AI Personale",
       "ai_coach_desc": "Compagno AI disponibile 24/7 che ti motiva, suggerisce abitudini personalizzate, aiuta con le voglie e guida la tua trasformazione.",
       "trigger_tracking": "Tracciamento & Analisi Trigger",
@@ -208,8 +212,8 @@
       "t6": "Le sfide detox sono ben strutturate. Ho fatto il detox social media di 30 giorni e mi sono sentito davvero più calmo dopo due settimane."
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "Non si tratta di forza di volontà. Il programma è basato sulle neuroscienze — ti aiuta a capire esattamente perché il tuo cervello si è agganciato, e come ricablarlo passo dopo passo.",
-      "porn_recovery_features": [
+      "the_forge_desc": "Non si tratta di forza di volontà. Il programma è basato sulle neuroscienze — ti aiuta a capire esattamente perché il tuo cervello si è agganciato, e come ricablarlo passo dopo passo.",
+      "the_forge_features": [
         "Tracciamento serie scientifico",
         "Check-in giornalieri e progressi",
         "Strumenti debrief e apprendimento",
@@ -247,8 +251,8 @@
         "Scalabilità intelligente della difficoltà",
         "Raccomandazioni personalizzate dall'AI"
       ],
-      "porn_recovery_mobile_desc": "Basato sulle neuroscienze — capisci perché il tuo cervello si è agganciato e ricablalo passo dopo passo.",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "Basato sulle neuroscienze — capisci perché il tuo cervello si è agganciato e ricablalo passo dopo passo.",
+      "the_forge_mobile_features": [
         "Tracciamento serie scientifico",
         "Check-in giornalieri e progressi",
         "Strumenti debrief",
@@ -345,6 +349,12 @@
     "free_tools": "Strumenti Gratuiti",
     "premium_tools": "Strumenti Premium",
     "unlock_all": "Sblocca tutti gli strumenti con Premium",
+    "display_settings": {
+      "title": "Impostazioni Visualizzazione",
+      "subtitle": "Personalizza la tua esperienza",
+      "update_error": "Errore durante l'aggiornamento delle preferenze"
+    },
+    "no_visible_tools": "Nessuno strumento selezionato. Personalizza la tua esperienza nelle impostazioni.",
     "tools": {
       "habits": "Abitudini",
       "habits_desc": "Traccia e costruisci abitudini quotidiane",
@@ -356,8 +366,8 @@
       "daily_planning_desc": "Lista cose da fare e obiettivi",
       "trigger_tracking": "Tracciamento Trigger",
       "trigger_tracking_desc": "Registra impulsi e analisi AI dei pattern",
-      "porn_recovery": "Porn Recovery",
-      "porn_recovery_desc": "Percorso scientifico verso la libertà",
+      "the_forge": "La rinascita",
+      "the_forge_desc": "Percorso scientifico per il recupero dalla pornografia",
       "ai_coach": "Coach AI",
       "ai_coach_desc": "Guida personale basata sull'AI"
     }
@@ -612,7 +622,7 @@
       "unlimited_habits": "Abitudini illimitate",
       "unlimited_challenges": "Sfide detox illimitate",
       "ai_coach": "Coach AI Personale (24/7)",
-      "recovery": "Programma Porn Recovery con tracciamento serie",
+      "recovery": "Programma La rinascita con tracciamento serie",
       "trigger_tracking": "Tracciamento trigger e analisi AI dei pattern",
       "habit_adaptation": "Suggerimenti adattamento abitudini AI",
       "learn": "Sezione Impara (articoli, guide & timeline)",
@@ -783,8 +793,8 @@
       "timeline": "Timeline recovery e traguardi"
     }
   },
-  "porn_recovery": {
-    "title": "Porn Recovery",
+  "the_forge": {
+    "title": "La rinascita",
     "subtitle": "Strumenti scientifici per il tuo percorso",
     "emergency": "Emergenza",
     "sos": "SOS",
@@ -799,8 +809,8 @@
       "anti_trigger": "Piano personale anti-trigger",
       "motivation": "Tracciamento motivazione"
     },
-    "recovery_challenge": "Sfida Recovery",
-    "start_challenge_question": "Vuoi iniziare la Sfida Porn Recovery? Potrai tracciare i tuoi progressi giornalieri e costruire serie.",
+    "recovery_challenge": "Sfida Rinascita",
+    "start_challenge_question": "Vuoi iniziare la Sfida Rinascita? Potrai tracciare i tuoi progressi giornalieri e costruire serie.",
     "mark_success_fail": "Segna ogni giorno come \"Successo\" o \"Fallito\"",
     "track_streaks": "Traccia la tua serie attuale e la più lunga",
     "start_fresh_anytime": "Ricomincia in qualsiasi momento",
@@ -1092,7 +1102,7 @@
     "checked_in_today": "Check-in fatto oggi. Continua così!",
     "day_of_journey": "Giorno {{day}} del percorso",
     "active_challenges": "Sfide Attive",
-    "title": "Porn Recovery",
+    "title": "The Forge",
     "subtitle": "Strumenti scientifici per il tuo percorso",
     "emergency": "Emergenza",
     "sos": "SOS",
@@ -1104,7 +1114,7 @@
     },
     "onboarding": {
       "title": "Sfida Recovery",
-      "description": "Vuoi iniziare la Sfida di Porn Recovery? Potrai monitorare i tuoi progressi giornalieri e costruire serie di successi.",
+      "description": "Vuoi iniziare la Sfida The Forge? Potrai monitorare i tuoi progressi giornalieri e costruire serie di successi.",
       "feature_1": "Segna ogni giorno come \"Successo\" o \"Fallimento\"",
       "feature_2": "Monitora la tua serie attuale e la più lunga",
       "feature_3": "Ricomincia da zero quando vuoi",
@@ -1209,7 +1219,7 @@
     "ai_coach_title": "Accedi al Coach AI",
     "ai_coach_desc": "Ottieni guida personalizzata, supporto e motivazione dal tuo coach AI quando ne hai bisogno.",
     "recovery_title": "Sblocca Strumenti Recovery",
-    "recovery_desc": "Accedi al Programma Porn Recovery completo con tracciamento serie, contenuti neuroscientifici e strumenti di debrief.",
+    "recovery_desc": "Accedi al Programma The Forge completo con tracciamento serie, contenuti neuroscientifici e strumenti di debrief.",
     "advanced_stats_title": "Sblocca Analisi Abitudini",
     "advanced_stats_desc": "Ottieni insight AI sulle tue abitudini, suggerimenti personalizzati e consigli smart per migliorare la tua routine.",
     "general_title": "Aggiorna a Premium",
@@ -1219,7 +1229,7 @@
       "unlimited_habits": "Abitudini illimitate",
       "unlimited_challenges": "Sfide detox illimitate",
       "ai_coach": "Accesso Coach AI",
-      "recovery": "Programma Porn Recovery",
+      "recovery": "Programma The Forge",
       "trigger_tracking": "Tracciamento trigger e analisi AI",
       "learn": "Sezione Impara (articoli, guide & timeline)",
       "priority": "Accesso prioritario a nuove funzionalità"

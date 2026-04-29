@@ -27,7 +27,7 @@ import { useTranslation } from "react-i18next";
 
 
 
-export default function PornRecovery() {
+export default function TheForge() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,13 +51,13 @@ export default function PornRecovery() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
-              <div><h1 className="text-xl font-bold">{t("recovery.title")}</h1><p className="text-sm text-muted-foreground">{t("recovery.subtitle")}</p></div>
+              <div><h1 className="text-xl font-bold">{t("the_forge.title")}</h1><p className="text-sm text-muted-foreground">{t("the_forge.subtitle")}</p></div>
             </div>
             {isPremium && journey && (
               <Button type="button" size="sm" variant="destructive" onClick={() => setShowEmergency(true)} className="gap-1.5 bg-rose-600 hover:bg-rose-700 text-white shadow-lg">
                 <AlertTriangle className="h-4 w-4" />
-                <span className="hidden sm:inline">{t("recovery.emergency")}</span>
-                <span className="sm:hidden">{t("recovery.sos")}</span>
+                <span className="hidden sm:inline">{t("the_forge.emergency")}</span>
+                <span className="sm:hidden">{t("the_forge.sos")}</span>
               </Button>
             )}
           </div>
@@ -68,9 +68,9 @@ export default function PornRecovery() {
         {!isPremium ? <LockedPreview /> : (
           <Tabs defaultValue="progress" className="w-full">
             <TabsList className="w-full grid grid-cols-3 mb-6 h-11">
-              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5"><TrendingUp className="h-3.5 w-3.5" /><span>{t("recovery.tabs.progress")}</span></TabsTrigger>
-              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5"><Shield className="h-3.5 w-3.5" /><span>{t("recovery.tabs.manage")}</span></TabsTrigger>
-              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5"><BookOpen className="h-3.5 w-3.5" /><span>{t("recovery.tabs.learn")}</span></TabsTrigger>
+              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5"><TrendingUp className="h-3.5 w-3.5" /><span>{t("the_forge.progress")}</span></TabsTrigger>
+              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5"><Shield className="h-3.5 w-3.5" /><span>{t("the_forge.manage_tab")}</span></TabsTrigger>
+              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5"><BookOpen className="h-3.5 w-3.5" /><span>{t("the_forge.learn_tab")}</span></TabsTrigger>
             </TabsList>
 
             <TabsContent value="progress" className="space-y-6 animate-in fade-in duration-200">
@@ -91,7 +91,7 @@ export default function PornRecovery() {
             <TabsContent value="manage" className="space-y-6 animate-in fade-in duration-200">
               <Button type="button" size="lg" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full h-14 text-base gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-lg rounded-xl">
                 <AlertTriangle className="h-5 w-5" />
-                {t("recovery.emergency_urge")}
+                {t("the_forge.emergency_urge")}
               </Button>
               <CravingActionsSection />
               <TriggersSection />

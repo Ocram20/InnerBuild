@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import LanguageSelector from "@/components/LanguageSelector";
+import { useCategoryPreferences } from "@/hooks/useCategoryPreferences";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -53,6 +54,7 @@ export default function Dashboard() {
   const { subscription, openPortal } = useSubscription();
   const { isPremium } = usePremiumLimits();
   const { journey, checkIns, hasCheckedInToday, checkIn } = useRecoveryJourney();
+  const { preferences, loading: prefsLoading } = useCategoryPreferences();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -225,37 +227,45 @@ export default function Dashboard() {
       </header>
 
       <main className="max-w-lg mx-auto px-4 pt-6 space-y-5">
-        {loading ? (
+        {loading || prefsLoading ? (
           <LoadingSpinner className="py-20" />
         ) : (
           <>
             <section className="animate-fade-in"><DailyQuote /></section>
-            <section className="animate-fade-in" style={{ animationDelay: "25ms" }}><HabitReportCard /></section>
-            <section className="animate-fade-in" style={{ animationDelay: "50ms" }}><QuickAccessTodos userId={user?.id} /></section>
+            
+            {preferences.habits && (
+              <section className="animate-fade-in" style={{ animationDelay: "25ms" }}><HabitReportCard /></section>
+            )}
 
-            <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-              <SectionTitle
-                action={
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Button size="sm" variant="ghost" onClick={() => navigate("/habits")} className="h-8 text-muted-foreground">
-                      <Target className="h-4 w-4 mr-1" />
-                      {t("common.all")}
-                    </Button>
-                    <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                }
-              >
-                {t("dashboard.todays_habits")}
-              </SectionTitle>
-              <p className="text-sm text-muted-foreground -mt-2 mb-3">
-                {t("dashboard.completed_stats", { completed: completedCount, total: totalHabits, percent: progressPercent })}
-              </p>
-              <TodayOverview habits={habits} onToggleHabit={toggleHabit} />
-            </section>
+            {preferences["daily-planning"] && (
+              <section className="animate-fade-in" style={{ animationDelay: "50ms" }}><QuickAccessTodos userId={user?.id} /></section>
+            )}
 
-            {journey && (
+            {preferences.habits && (
+              <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
+                <SectionTitle
+                  action={
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Button size="sm" variant="ghost" onClick={() => navigate("/habits")} className="h-8 text-muted-foreground">
+                        <Target className="h-4 w-4 mr-1" />
+                        {t("common.all")}
+                      </Button>
+                      <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  }
+                >
+                  {t("dashboard.todays_habits")}
+                </SectionTitle>
+                <p className="text-sm text-muted-foreground -mt-2 mb-3">
+                  {t("dashboard.completed_stats", { completed: completedCount, total: totalHabits, percent: progressPercent })}
+                </p>
+                <TodayOverview habits={habits} onToggleHabit={toggleHabit} />
+              </section>
+            )}
+
+            {preferences["the-forge"] && journey && (
               <section className="animate-fade-in" style={{ animationDelay: "150ms" }}>
                 <RecoveryStreakCard journey={journey} checkIns={checkIns} hasCheckedInToday={hasCheckedInToday} onCheckIn={checkIn} />
                 <Button type="button" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full mt-3 gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-md rounded-xl h-12">
@@ -265,9 +275,11 @@ export default function Dashboard() {
               </section>
             )}
 
-            <section className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-              <ActiveChallengesCard challenges={challenges} />
-            </section>
+            {preferences.challenges && (
+              <section className="animate-fade-in" style={{ animationDelay: "200ms" }}>
+                <ActiveChallengesCard challenges={challenges} />
+              </section>
+            )}
 
             <section className="animate-fade-in" style={{ animationDelay: "250ms" }}>
               <button onClick={() => navigate("/explore")} className="w-full rounded-2xl border border-border/60 bg-card p-4 flex items-center gap-4 hover:bg-muted/50 hover:border-primary/30 transition-all">

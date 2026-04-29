@@ -97,8 +97,12 @@
   },
   "auth_validation": {
     "invalid_email": "Introdu o adresă de e-mail validă",
-    "password_min": "Parola trebuie să aibă cel puțin 6 caractere",
-    "password_complexity": "Parola trebuie să conțină cel puțin: o literă mică, o literă mare, o cifră și un caracter special."
+    "password_min": "Parola trebuie să aibă cel puțin 8 caractere",
+    "password_complexity": "Parola trebuie să conțină cel puțin: o literă mică, o literă mare, o cifră.",
+    "min_8_chars": "Cel puțin 8 caractere",
+    "one_number": "Cel puțin un număr",
+    "one_upper": "Cel puțin o majusculă",
+    "one_lower": "Cel puțin o literă mică"
   },
   "forgot_password": {
     "title": "Ai uitat parola",
@@ -172,8 +176,8 @@
       "smart_habit_desc": "Urmărește obișnuințele zilnice cu progres vizual, serii și sugestii AI inteligente care se adaptează la modelele tale reale.",
       "detox_challenges": "Provocări Detox",
       "detox_challenges_desc": "Eliberează-te de dependența digitală, obiceiurile proaste și modelele negative cu provocări bazate pe știință (de la 3 la 90 de zile).",
-      "porn_recovery": "Program de recuperare a dependenței de pornografie",
-      "porn_recovery_desc": "Un program dedicat, bazat pe știință, cu urmărirea seriilor, verificări zilnice, analiza declanșatorilor și suport specializat.",
+      "the_forge": "Renașterea (Recuperare după Pornografie)",
+      "the_forge_desc": "Un program dedicat, bazat pe știință, pentru recuperarea dependenței de pornografie, stăpânirea de sine și suport specializat.",
       "ai_coach": "Coach AI personal",
       "ai_coach_desc": "Însoțitor AI disponibil non-stop, care te motivează, îți sugerează obișnuințe personalizate, te ajută cu poftele și îți ghidează transformarea.",
       "trigger_tracking": "Urmărirea și analiza declanșatorilor",
@@ -208,8 +212,8 @@
       "t6": "Provocările detox sunt bine structurate. Am făcut detox-ul de 30 de zile de pe rețelele sociale și m-am simțit cu adevărat mai calm după două săptămâni."
     },
     "premium_deep_dive": {
-      "porn_recovery_desc": "Nu este vorba de voință. Programul se bazează pe neuroștiință – te ajută să înțelegi exact de ce creierul tău s-a prins și cum să îl reconfigurați pas cu pas.",
-      "porn_recovery_features": [
+      "the_forge_desc": "Nu este vorba de voință. Programul se bazează pe neuroștiință – te ajută să înțelegi exact de ce creierul tău s-a prins și cum să îl reconfigurați pas cu pas.",
+      "the_forge_features": [
         "Urmărire științifică a seriei",
         "Verificări zilnice și progres",
         "Instrumente de analiză și învățare",
@@ -247,8 +251,8 @@
         "Scalare inteligentă a dificultății",
         "Recomandări personalizate AI"
       ],
-      "porn_recovery_mobile_desc": "Bazat pe neuroștiință – înțelege de ce creierul tău s-a prins și reconfigurează-l pas cu pas.",
-      "porn_recovery_mobile_features": [
+      "the_forge_mobile_desc": "Bazat pe neuroștiință – înțelege de ce creierul tău s-a prins și reconfigurează-l pas cu pas.",
+      "the_forge_mobile_features": [
         "Urmărire științifică a seriei",
         "Verificări zilnice și progres",
         "Instrumente de analiză",
@@ -304,6 +308,12 @@
     "free_tools": "Instrumente gratuite",
     "premium_tools": "Instrumente Premium",
     "unlock_all": "Deblochează toate instrumentele cu Premium",
+    "display_settings": {
+      "title": "Setări de Afișare",
+      "subtitle": "Personalizează-ți experiența",
+      "update_error": "Actualizarea preferințelor a eșuat"
+    },
+    "no_visible_tools": "Niciun instrument selectat. Personalizează-ți experiența în setări.",
     "tools": {
       "habits": "Obișnuințe",
       "habits_desc": "Urmărește și construiește obișnuințe zilnice",
@@ -315,8 +325,8 @@
       "daily_planning_desc": "Liste de făcut și obiective",
       "trigger_tracking": "Urmărirea declanșatorilor",
       "trigger_tracking_desc": "Înregistrează impulsurile și analiza tiparelor AI",
-      "porn_recovery": "Recuperarea de pornografie",
-      "porn_recovery_desc": "Calea științifică spre libertate",
+      "the_forge": "Renașterea",
+      "the_forge_desc": "Calea științifică spre libertate",
       "ai_coach": "Coach AI",
       "ai_coach_desc": "Ghid personal bazat pe AI"
     }
@@ -573,7 +583,7 @@
       "unlimited_habits": "Obișnuințe nelimitate",
       "unlimited_challenges": "Provocări detox nelimitate",
       "ai_coach": "Coach AI personal (24/7)",
-      "recovery": "Program de recuperare a dependenței de pornografie cu urmărirea seriei",
+      "recovery": "Programul Renașterea cu urmărirea seriei",
       "trigger_tracking": "Urmărirea declanșatorilor și analiza tiparelor cu AI",
       "habit_adaptation": "Sugestii de adaptare a obișnuințelor cu AI",
       "learn": "Secțiunea Învață (articole, ghiduri și cronologie)",
@@ -733,8 +743,8 @@
       "timeline": "Cronologia recuperării și repere"
     }
   },
-  "porn_recovery": {
-    "title": "Recuperarea de pornografie",
+  "the_forge": {
+    "title": "Renașterea",
     "subtitle": "Instrumente științifice pentru călătoria ta",
     "emergency": "Urgență",
     "sos": "SOS",

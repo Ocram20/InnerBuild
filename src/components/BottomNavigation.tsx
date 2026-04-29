@@ -22,7 +22,7 @@ const BottomNavigation = () => {
     if (path === "/explore") {
       return [
         "/explore", 
-        "/porn-recovery", 
+        "/the-forge", 
         "/coach", 
         "/trigger-tracking",
         "/daily-planning",

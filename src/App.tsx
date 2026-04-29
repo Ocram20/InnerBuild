@@ -16,7 +16,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Dashboard from "./pages/Dashboard";
 import Habits from "./pages/Habits";
 import Challenges from "./pages/Challenges";
-import PornRecovery from "./pages/PornRecovery";
+import TheForge from "./pages/TheForge";
 import Coach from "./pages/Coach";
 import Pricing from "./pages/Pricing";
 import DailyPlanning from "./pages/DailyPlanning";
@@ -122,10 +122,10 @@ const App = () => (
                 } 
               />
               <Route 
-                path="/porn-recovery" 
+                path="/the-forge" 
                 element={
                   <PremiumRoute paywallReason="recovery">
-                    <PornRecovery />
+                    <TheForge />
                   </PremiumRoute>
                 } 
               />
