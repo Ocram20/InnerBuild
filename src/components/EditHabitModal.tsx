@@ -90,7 +90,7 @@ export default function EditHabitModal({ open, onOpenChange, onSuccess, habitToE
         .eq("user_id", user.id);
 
       if (error) throw error;
-      toast({ title: t("common.success", { defaultValue: "Success" }), description: t("common.updated", { defaultValue: "Habit updated" }) });
+      toast({ title: t("common.success", { defaultValue: "Success" }), description: t("habit_report.habit_updated_title", { defaultValue: "Habit updated! ✓" }) });
       onOpenChange(false);
       onSuccess();
     } catch {

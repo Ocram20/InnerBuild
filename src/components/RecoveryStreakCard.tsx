@@ -63,7 +63,7 @@ export default function RecoveryStreakCard({
               {t("recovery.recovery_streak")}
             </h2>
             <button
-              onClick={() => navigate("/porn-recovery")}
+              onClick={() => navigate("/the-forge")}
               className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
             >
               {t("common.details")}

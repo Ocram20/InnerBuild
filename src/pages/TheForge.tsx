@@ -91,7 +91,7 @@ export default function TheForge() {
             <TabsContent value="manage" className="space-y-6 animate-in fade-in duration-200">
               <Button type="button" size="lg" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full h-14 text-base gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-lg rounded-xl">
                 <AlertTriangle className="h-5 w-5" />
-                {t("the_forge.emergency_urge")}
+                {t("dashboard.emergency_urge")}
               </Button>
               <CravingActionsSection />
               <TriggersSection />
