@@ -235,18 +235,25 @@ export default function HabitProgressCard({ habit, onUpdate, onEdit }: HabitProg
           </div>
 
           {/* Weekly progress bar */}
-          {habit.weeklyProgress !== undefined && (
-            <div className="mt-3">
-              <div className="flex items-center justify-between text-xs mb-1">
-                <span className="text-muted-foreground">{t("habits.this_week")}</span>
-                <span className="font-medium text-foreground">{habit.weeklyProgress}/7</span>
+          {habit.weeklyProgress !== undefined && (() => {
+            const denominator = habit.frequency === "weekly" ? 1 
+                              : habit.frequency === "weekdays" ? 5 
+                              : habit.frequency === "weekends" ? 2 
+                              : 7;
+            const displayProgress = Math.min(habit.weeklyProgress, denominator);
+            return (
+              <div className="mt-3">
+                <div className="flex items-center justify-between text-xs mb-1">
+                  <span className="text-muted-foreground">{t("habits.this_week")}</span>
+                  <span className="font-medium text-foreground">{displayProgress}/{denominator}</span>
+                </div>
+                <Progress 
+                  value={(displayProgress / denominator) * 100} 
+                  className="h-1.5" 
+                />
               </div>
-              <Progress 
-                value={(habit.weeklyProgress / 7) * 100} 
-                className="h-1.5" 
-              />
-            </div>
-          )}
+            );
+          })()}
         </div>
       </div>
     </div>

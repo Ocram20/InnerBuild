@@ -24,30 +24,51 @@ export default function ResetPassword() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Listen for auth state changes (PASSWORD_RECOVERY event)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    // AuthEventHandler (in App.tsx) already redirected us here when
+    // PASSWORD_RECOVERY fired, so we just need to confirm the event
+    // and handle edge cases (direct URL access, page refresh).
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") {
         setIsValidSession(true);
-      } else if (event === "SIGNED_IN" && session) {
-        // Also valid if user is signed in (came from recovery link)
-        setIsValidSession(true);
+      } else if (event === "SIGNED_OUT") {
+        setIsValidSession(false);
       }
     });
 
-    // Check URL hash for recovery token and exchange it
+    // Check URL for recovery token (handles both PKCE ?code= and legacy #access_token=)
+    const queryParams = new URLSearchParams(window.location.search);
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = hashParams.get("access_token");
-    const type = hashParams.get("type");
+    const hasRecoveryToken =
+      queryParams.has("code") ||
+      (hashParams.get("access_token") && hashParams.get("type") === "recovery");
 
-    if (accessToken && type === "recovery") {
-      // Supabase will automatically handle the token exchange
-      // The onAuthStateChange will fire PASSWORD_RECOVERY event
-      setIsValidSession(true);
+    if (hasRecoveryToken) {
+      // Token present — Supabase will exchange it and fire PASSWORD_RECOVERY
+      // Set a generous timeout in case the event fires before this component mounts
+      const timeout = setTimeout(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (isValidSession === null) {
+            setIsValidSession(!!session);
+          }
+        });
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+        subscription.unsubscribe();
+      };
     } else {
-      // Check if there's already a valid session
+      // No token in URL — check if already in a PASSWORD_RECOVERY session
+      // (e.g. user refreshed the page after arriving correctly)
       supabase.auth.getSession().then(({ data: { session } }) => {
+        // Only valid if there's an active session (user arrived via recovery)
+        // We can't distinguish a normal session from a recovery one after the fact,
+        // so if there's no token and no prior PASSWORD_RECOVERY event, deny access.
         if (session) {
-          setIsValidSession(true);
+          // Let onAuthStateChange decide; if no event comes, deny after timeout
+          const deny = setTimeout(() => {
+            setIsValidSession((prev) => (prev === null ? false : prev));
+          }, 1500);
+          return () => clearTimeout(deny);
         } else {
           setIsValidSession(false);
         }
@@ -55,6 +76,7 @@ export default function ResetPassword() {
     }
 
     return () => subscription.unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const validateForm = () => {

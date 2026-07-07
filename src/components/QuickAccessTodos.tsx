@@ -29,6 +29,7 @@ interface QuickAccessTodosProps {
 export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
   const { t, i18n } = useTranslation();
   const [todos, setTodos] = useState<Task[]>([]);
+  const [allTodos, setAllTodos] = useState<Task[]>([]);
   const [notTodos, setNotTodos] = useState<NotToDoItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -75,6 +76,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
         if (pa !== pb) return pa - pb;
         return new Date(a.created_at || 0).getTime() - new Date(b.created_at || 0).getTime();
       });
+      setAllTodos(sortedTodos);
       setTodos(sortedTodos.slice(0, 5));
       setNotTodos((notTodosData || []).map(item => ({
         ...item,
@@ -128,6 +130,9 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
       setTodos(todos.map(t => 
         t.id === task.id ? { ...t, is_completed: newCompleted } : t
       ));
+      setAllTodos(allTodos.map(t => 
+        t.id === task.id ? { ...t, is_completed: newCompleted } : t
+      ));
     } catch (error) {
       toast({
         title: t("common.error"),
@@ -167,7 +172,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
     }
   };
 
-  const isEmpty = todos.length === 0 && notTodos.length === 0;
+  const isEmpty = allTodos.length === 0 && notTodos.length === 0;
 
   if (loading) return null;
 
@@ -194,7 +199,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
     );
   }
 
-  const completedTodos = todos.filter(t => t.is_completed).length;
+  const completedTodos = allTodos.filter(t => t.is_completed).length;
   const avoidedItems = notTodos.filter(i => i.status === "avoided").length;
 
   return (
@@ -224,7 +229,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
               <span>{t("dashboard.todo_list")}</span>
               <span className="text-xs">
-                {completedTodos}/{todos.length}
+                {completedTodos}/{allTodos.length}
               </span>
             </h3>
             <div className="space-y-2">

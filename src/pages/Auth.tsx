@@ -31,7 +31,17 @@ export default function Auth() {
 
   useEffect(() => {
     if (user) {
-      navigate("/dashboard");
+      // Don't redirect if the user arrived via a password reset link.
+      // Check both PKCE flow (?code=) and legacy hash flow (#type=recovery).
+      const queryParams = new URLSearchParams(window.location.search);
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const isRecoveryFlow =
+        queryParams.has("code") ||
+        hashParams.get("type") === "recovery";
+
+      if (!isRecoveryFlow) {
+        navigate("/dashboard");
+      }
     }
   }, [user, navigate]);
 

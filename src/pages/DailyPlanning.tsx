@@ -39,7 +39,7 @@ const DailyPlanning = () => {
   const dateLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language || "it");
 
   type PlanningMode = "today" | "tomorrow";
-  const [planningMode, setPlanningMode] = useState<PlanningMode>("tomorrow");
+  const [planningMode, setPlanningMode] = useState<PlanningMode>("today");
   const [targetDateISO, setTargetDateISO] = useState<string>("");
 
   const getTodayTomorrow = () => {
@@ -53,7 +53,7 @@ const DailyPlanning = () => {
 
   const { todayISO, tomorrowISO } = getTodayTomorrow();
 
-  const effectiveTargetDateISO = targetDateISO || tomorrowISO;
+  const effectiveTargetDateISO = targetDateISO || todayISO;
   const selectedLabel = planningMode === "today" ? t("activity_calendar.legend.today") : t("daily_planning.tomorrow");
   const selectedDate = new Date(`${effectiveTargetDateISO}T00:00:00`);
 
@@ -64,46 +64,15 @@ const DailyPlanning = () => {
     targetDateISORef.current = targetDateISO;
   }, [targetDateISO]);
 
-  // Load stored selection (per user). If it's expired, reset it for the current day.
+  // Always default to today's planning when the page loads.
   useEffect(() => {
     if (!user?.id || !modeKey || !targetKey) return;
 
-    const storedTarget = localStorage.getItem(targetKey);
-
-    const isExpired = storedTarget ? storedTarget < todayISO : false;
-
-    if (!storedTarget) {
-      setPlanningMode("tomorrow");
-      setTargetDateISO(tomorrowISO);
-      localStorage.setItem(modeKey, "tomorrow");
-      localStorage.setItem(targetKey, tomorrowISO);
-      return;
-    }
-
-    if (isExpired) {
-      setPlanningMode("tomorrow");
-      setTargetDateISO(tomorrowISO);
-      localStorage.setItem(modeKey, "tomorrow");
-      localStorage.setItem(targetKey, tomorrowISO);
-      return;
-    }
-
-    const isValidWindow = storedTarget === todayISO || storedTarget === tomorrowISO;
-    if (!isValidWindow) {
-      setPlanningMode("tomorrow");
-      setTargetDateISO(tomorrowISO);
-      localStorage.setItem(modeKey, "tomorrow");
-      localStorage.setItem(targetKey, tomorrowISO);
-      return;
-    }
-
-    // Derive which button should be active from the stored target day itself.
-    const finalMode: PlanningMode = storedTarget === todayISO ? "today" : "tomorrow";
-    setPlanningMode(finalMode);
-    setTargetDateISO(storedTarget);
-    localStorage.setItem(modeKey, finalMode);
-    localStorage.setItem(targetKey, storedTarget);
-  }, [user?.id, modeKey, targetKey, todayISO, tomorrowISO]);
+    setPlanningMode("today");
+    setTargetDateISO(todayISO);
+    localStorage.setItem(modeKey, "today");
+    localStorage.setItem(targetKey, todayISO);
+  }, [user?.id, modeKey, targetKey, todayISO]);
 
   useEffect(() => {
     if (!user?.id) return;

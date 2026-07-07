@@ -30,7 +30,7 @@ export default function ForgotPassword() {
     setIsLoading(true);
     try {
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
+        redirectTo: `${window.location.origin}/auth/callback`,
       });
       if (resetError) {
         if (resetError.message.includes("rate limit")) {
