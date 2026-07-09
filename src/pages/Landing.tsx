@@ -412,107 +412,295 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* How InnerBuild Works — 3 steps */}
+        {/* Premium Features Deep Dive */}
         <section className="relative overflow-hidden px-4 py-20 md:py-28">
           <div className="pointer-events-none absolute inset-0 grid-pattern" />
-          <div className="glow-blob left-1/2 top-1/3 h-80 w-80 -translate-x-1/2 gradient-primary" />
-          <div className="relative mx-auto max-w-4xl">
-            <ScrollReveal className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                {t("landing.how_it_works.eyebrow", "How it works")}
-              </p>
-              <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                {t("landing.how_it_works.title", "How InnerBuild Works")}
+          <div className="relative max-w-5xl mx-auto">
+            <ScrollReveal className="text-center mb-4">
+              <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
+                <Crown className="h-3.5 w-3.5 mr-2 text-accent" />
+                {t("common.premium")}
+              </Badge>
+            </ScrollReveal>
+            <ScrollReveal className="text-center mb-14" delay={100}>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {t("landing.tools_change_lives")}
               </h2>
-              <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
-                {t("landing.how_it_works.subtitle", "Three simple steps to break bad habits, understand your triggers, and build lasting self-mastery.")}
+              <p className="text-muted-foreground max-w-2xl mx-auto text-base">
+                {t("landing.tools_description")}
               </p>
             </ScrollReveal>
 
-            <div className="flex flex-col gap-5">
-              {howItWorks.map((step, index) => (
-                <ScrollReveal key={step.number} variant="left" delay={index * 120}>
-                  <div className="premium-card group relative overflow-hidden rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:premium-ring md:p-8">
-                    {/* Green accent glow */}
-                    <div className="glow-blob -left-10 top-1/2 h-40 w-40 -translate-y-1/2 gradient-primary opacity-0 transition-opacity duration-500 group-hover:opacity-40" />
-                    <div className="relative flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-                      {/* Number + icon */}
-                      <div className="flex items-center gap-4">
-                        <span className="text-3xl font-extrabold tabular-nums text-primary/25 transition-colors group-hover:text-primary/50 md:text-4xl">
-                          {step.number}
-                        </span>
-                        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20 transition-transform group-hover:scale-110">
-                          <step.icon className="h-7 w-7 text-primary" />
+            {/* Mobile: swipeable carousel */}
+            <ScrollReveal className="md:hidden" delay={200}>
+              <Carousel opts={{ align: "center", loop: true }}>
+                <CarouselContent>
+                  {/* The Forge */}
+                  <CarouselItem className="basis-[90%]">
+                    <div className="premium-card rounded-3xl p-6 h-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                          <Eye className="h-6 w-6 text-violet-500" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-foreground">{t("landing.features.the_forge")}</h3>
+                          <Badge className="text-[10px] bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
                         </div>
                       </div>
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="mb-1.5 text-lg font-bold text-foreground md:text-xl">
-                          {t(step.titleKey, step.titleFallback)}
-                        </h3>
-                        <p className="text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
-                          {t(step.descKey, step.descFallback)}
-                        </p>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {t("landing.premium_deep_dive.the_forge_mobile_desc")}
+                      </p>
+                      <div className="space-y-1.5">
+                        {(t("landing.premium_deep_dive.the_forge_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-violet-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
                       </div>
-                      <ArrowRight className="hidden h-5 w-5 flex-shrink-0 text-primary/40 transition-all group-hover:translate-x-1 group-hover:text-primary sm:block" />
+                    </div>
+                  </CarouselItem>
+
+                  {/* Trigger Tracking */}
+                  <CarouselItem className="basis-[90%]">
+                    <div className="premium-card rounded-3xl p-6 h-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center flex-shrink-0">
+                          <BarChart3 className="h-6 w-6 text-rose-500" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.trigger_tracking")}</h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {t("landing.premium_deep_dive.trigger_tracking_mobile_desc")}
+                      </p>
+                      <div className="space-y-1.5">
+                        {(t("landing.premium_deep_dive.trigger_tracking_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-rose-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CarouselItem>
+
+                  {/* AI Coach */}
+                  <CarouselItem className="basis-[90%]">
+                    <div className="premium-card rounded-3xl p-6 h-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Bot className="h-6 w-6 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_coach")}</h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {t("landing.premium_deep_dive.ai_coach_mobile_desc")}
+                      </p>
+                      <div className="space-y-1.5">
+                        {(t("landing.premium_deep_dive.ai_coach_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-primary flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CarouselItem>
+
+                  {/* Learn Section */}
+                  <CarouselItem className="basis-[90%]">
+                    <div className="premium-card rounded-3xl p-6 h-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                          <BookOpen className="h-6 w-6 text-indigo-500" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.learn_section")}</h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {t("landing.premium_deep_dive.learn_mobile_desc")}
+                      </p>
+                      <div className="space-y-1.5">
+                        {(t("landing.premium_deep_dive.learn_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-indigo-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CarouselItem>
+
+                  {/* Adaptive Habit Suggestions */}
+                  <CarouselItem className="basis-[90%]">
+                    <div className="premium-card rounded-3xl p-6 h-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                          <Brain className="h-6 w-6 text-emerald-500" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground">{t("landing.features.ai_habit_adaptation")}</h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {t("landing.premium_deep_dive.habit_adaptation_mobile_desc")}
+                      </p>
+                      <div className="space-y-1.5">
+                        {(t("landing.premium_deep_dive.habit_adaptation_mobile_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+              </Carousel>
+              <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
+                <span>←</span> {t("common.swipe_explore")} <span>→</span>
+              </p>
+            </ScrollReveal>
+
+            {/* Desktop: stacked layout */}
+            <div className="hidden md:block space-y-6">
+              {/* The Forge Program */}
+              <ScrollReveal variant="left">
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-violet-500/30 transition-all duration-300 group">
+                  <div className="flex flex-col md:flex-row md:items-start gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-violet-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <Eye className="h-7 w-7 text-violet-500" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="text-xl font-bold text-foreground">{t("landing.features.the_forge")}</h3>
+                        <Badge className="text-xs bg-violet-500/10 text-violet-600 border-violet-500/20 border">{t("landing.most_impactful")}</Badge>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        {t("landing.premium_deep_dive.the_forge_desc")}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(t("landing.premium_deep_dive.the_forge_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="h-4 w-4 text-violet-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Trigger Tracking */}
+              <ScrollReveal variant="left" delay={100}>
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-rose-500/30 transition-all duration-300 group">
+                  <div className="flex flex-col md:flex-row md:items-start gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <BarChart3 className="h-7 w-7 text-rose-500" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.trigger_tracking")}</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        {t("landing.premium_deep_dive.trigger_tracking_desc")}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(t("landing.premium_deep_dive.trigger_tracking_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="h-4 w-4 text-rose-500 flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* AI Coach */}
+              <ScrollReveal variant="left" delay={200}>
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-primary/30 transition-all duration-300 group">
+                  <div className="flex flex-col md:flex-row md:items-start gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <Bot className="h-7 w-7 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-foreground mb-2">{t("landing.features.ai_coach")}</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        {t("landing.premium_deep_dive.ai_coach_desc")}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(t("landing.premium_deep_dive.ai_coach_features", { returnObjects: true }) as string[]).map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />{item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Learn Section + Habit Analysis — side by side */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <ScrollReveal variant="scale" delay={100}>
+                  <div className="premium-card rounded-3xl p-6 hover:border-indigo-500/30 transition-all duration-300 group h-full">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <BookOpen className="h-6 w-6 text-indigo-500" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.learn_section")}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                          {t("landing.premium_deep_dive.learn_desc")}
+                        </p>
+                        <div className="space-y-1.5">
+                          {(t("landing.premium_deep_dive.learn_features", { returnObjects: true }) as string[]).map((item) => (
+                            <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-indigo-500 flex-shrink-0" />{item}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Pricing */}
-        <section className="relative overflow-hidden px-4 py-16 md:py-24">
-          <div className="pointer-events-none absolute inset-0 grid-pattern" />
-          <div className="relative mx-auto max-w-md">
-            <ScrollReveal className="mb-10 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                {t("landing.pricing_eyebrow", "Pricing")}
-              </p>
-              <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                {t("landing.pricing_title", "One plan, everything unlocked")}
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal variant="scale" delay={150}>
-              <div className="premium-card group relative overflow-hidden rounded-[2rem] p-8 text-center premium-ring transition-all duration-300 hover:-translate-y-1">
-                <div className="glow-blob left-1/2 top-0 h-48 w-48 -translate-x-1/2 gradient-accent opacity-30 transition-opacity duration-500 group-hover:opacity-60" />
-                <div className="relative">
-                  <Badge className="mb-5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-foreground">
-                    <Crown className="mr-1.5 h-3.5 w-3.5 text-accent" />
-                    {t("common.premium")}
-                  </Badge>
-                  <p className="mb-1 text-sm text-muted-foreground">{t("landing.all_premium_for")}</p>
-                  <p className="mb-6 flex items-end justify-center gap-1 font-extrabold tracking-tight text-foreground">
-                    <span className="text-6xl text-gradient-primary">€9.99</span>
-                    <span className="mb-1.5 text-base font-normal text-muted-foreground">/{t("common.month")}</span>
-                  </p>
-
-                  <div className="mb-7 space-y-2.5 text-left">
-                    {pricingHighlights.map((item) => (
-                      <div key={item.key} className="flex items-center gap-3">
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/15">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
-                        </div>
-                        <span className="text-sm text-foreground">{t(item.key, item.fallback)}</span>
+                <ScrollReveal variant="scale" delay={200}>
+                  <div className="premium-card rounded-3xl p-6 hover:border-emerald-500/30 transition-all duration-300 group h-full">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <Brain className="h-6 w-6 text-emerald-500" />
                       </div>
-                    ))}
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{t("landing.features.ai_habit_adaptation")}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                          {t("landing.premium_deep_dive.habit_adaptation_desc")}
+                        </p>
+                        <div className="space-y-1.5">
+                          {(t("landing.premium_deep_dive.habit_adaptation_features", { returnObjects: true }) as string[]).map((item) => (
+                            <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />{item}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </ScrollReveal>
+              </div>
+            </div>
 
-                  <Button
-                    size="lg"
-                    onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
-                    className="h-14 w-full rounded-full gradient-accent px-10 text-base font-semibold text-accent-foreground shadow-soft transition-all hover:shadow-lg hover:scale-[1.02] active:scale-95"
-                  >
-                    <Crown className="mr-2 h-5 w-5" />
-                    {t("landing.unlock_premium")}
-                  </Button>
-                  <p className="mt-4 text-xs text-muted-foreground">
-                    {t("landing.pricing_reassurance", "Cancel anytime. No hidden fees.")}
-                  </p>
-                </div>
+            {/* Pricing CTA inside premium section */}
+            <ScrollReveal className="mt-14" delay={300}>
+              <div className="premium-card mx-auto max-w-md overflow-hidden rounded-3xl p-8 text-center premium-ring">
+                <Badge className="mb-4 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-foreground">
+                  <Crown className="mr-1.5 h-3.5 w-3.5 text-accent" />
+                  {t("common.premium")}
+                </Badge>
+                <p className="mb-1 text-sm text-muted-foreground">{t("landing.all_premium_for")}</p>
+                <p className="mb-6 flex items-end justify-center gap-1 font-extrabold tracking-tight text-foreground">
+                  <span className="text-5xl">€9.99</span>
+                  <span className="mb-1 text-base font-normal text-muted-foreground">/{t("common.month")}</span>
+                </p>
+                <Button
+                  size="lg"
+                  onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
+                  className="h-14 w-full rounded-full gradient-accent px-10 text-base font-semibold text-accent-foreground shadow-soft transition-all hover:shadow-lg hover:scale-[1.02] active:scale-95"
+                >
+                  <Crown className="mr-2 h-5 w-5" />
+                  {t("landing.unlock_premium")}
+                </Button>
               </div>
             </ScrollReveal>
           </div>
