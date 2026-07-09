@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useFirstLoad } from "@/hooks/useFirstLoad";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LandingFooter from "@/components/LandingFooter";
+import LandingAppPreview from "@/components/LandingAppPreview";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { 
   Carousel,
@@ -99,6 +99,14 @@ export default function Landing() {
     { value: "24/7", labelKey: "landing.stats.ai_coach_available" },
   ];
 
+  const socialProof = [
+    { initial: "M", name: "Marco", color: "bg-primary" },
+    { initial: "S", name: "Sara", color: "bg-accent" },
+    { initial: "L", name: "Luca", color: "bg-indigo-500" },
+    { initial: "A", name: "Alex", color: "bg-rose-500" },
+    { initial: "D", name: "Davide", color: "bg-emerald-600" },
+  ];
+
   const testimonialDefs = [
     { stars: 5, quoteKey: "landing.testimonials_data.t1", author: "Marco B." },
     { stars: 5, quoteKey: "landing.testimonials_data.t2", author: "Sara L." },
@@ -110,45 +118,45 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/50">
-        <div className="flex items-center justify-between px-3 py-2.5 md:px-8 md:py-4 max-w-7xl mx-auto w-full overflow-x-auto">
-          <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl gradient-primary flex items-center justify-center shadow-soft flex-shrink-0">
-              <Leaf className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
+      {/* Header — floating pill nav */}
+      <header className="sticky top-0 safe-area-header z-50 px-3 pt-3 md:pt-4">
+        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-2 rounded-full border border-border/60 bg-card/70 px-3 py-2 pl-4 shadow-lg backdrop-blur-xl md:px-4">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full gradient-primary shadow-soft md:h-9 md:w-9">
+              <Leaf className="h-4 w-4 text-primary-foreground md:h-[18px] md:w-[18px]" />
             </div>
-            <span className="font-bold text-base md:text-xl text-foreground truncate notranslate" translate="no">InnerBuild</span>
+            <span className="notranslate truncate text-base font-bold tracking-tight text-foreground md:text-lg" translate="no">InnerBuild</span>
           </div>
-          
-          <div className="flex items-center gap-1 md:gap-2">
+
+          <div className="flex items-center gap-1">
             <LanguageSelector />
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full h-9 w-9 md:h-10 md:w-10"
+              className="h-9 w-9 rounded-full"
             >
-              {isDark ? <Sun className="h-4 w-4 md:h-5 md:w-5" /> : <Moon className="h-4 w-4 md:h-5 md:w-5" />}
+              {isDark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
             </Button>
             {user ? (
               <Button
                 onClick={() => navigate("/dashboard")}
-                className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
+                className="h-9 rounded-full gradient-primary px-4 text-xs font-semibold text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-lg active:scale-95 md:text-sm"
               >
                 {t("landing.dashboard")}
               </Button>
             ) : (
               <>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   onClick={() => navigate("/auth")}
-                  className="hidden sm:inline-flex rounded-lg transition-all duration-300 text-xs md:text-sm px-2 md:px-3 h-9 md:h-10 active:scale-95"
+                  className="hidden h-9 rounded-full px-3 text-xs font-medium sm:inline-flex md:text-sm"
                 >
                   {t("auth.sign_in")}
                 </Button>
                 <Button
                   onClick={() => navigate("/auth?mode=signup")}
-                  className="gradient-primary text-primary-foreground rounded-lg md:rounded-xl shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm px-3 md:px-4 h-9 md:h-10"
+                  className="h-9 rounded-full gradient-primary px-4 text-xs font-semibold text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-lg active:scale-95 md:text-sm"
                 >
                   {t("landing.get_started")}
                 </Button>
@@ -160,54 +168,93 @@ export default function Landing() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="px-4 py-16 md:py-24">
-          <ScrollReveal className="max-w-4xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm">
-              <Sparkles className="h-4 w-4 mr-2" />
-              {t("landing.your_companion")}
-            </Badge>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-6">
-              {t("landing.hero_title_1")}{" "}
-              <span className="relative inline-block">
-                <span className="text-primary">{t("landing.hero_title_2")}</span>
-                <span className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full animate-underline-slide"></span>
-              </span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {t("landing.hero_description")}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
-                className="gradient-primary text-primary-foreground rounded-xl h-14 px-8 text-lg shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+        <section className="relative overflow-hidden px-4 pt-12 pb-16 md:pt-20 md:pb-24">
+          {/* Ambient background */}
+          <div className="pointer-events-none absolute inset-0 grid-pattern" />
+          <div className="glow-blob left-1/4 top-0 h-72 w-72 gradient-primary" />
+          <div className="glow-blob right-1/4 top-20 h-72 w-72 gradient-accent animate-float-slow" />
+
+          <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-8">
+            {/* Left: copy */}
+            <ScrollReveal className="text-center lg:text-left">
+              <Badge
+                variant="secondary"
+                className="mb-6 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-medium backdrop-blur"
               >
-                {t("landing.start_your_journey")}
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate("/pricing")}
-                className="rounded-xl h-14 px-8 text-lg transition-all duration-300 hover:scale-105 active:scale-95 border-primary/20 hover:border-primary/50"
-              >
-                {t("landing.view_pricing")}
-              </Button>
-            </div>
-          </ScrollReveal>
+                <span className="mr-2 inline-block h-2 w-2 rounded-full bg-primary animate-pulse-glow" />
+                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+                {t("landing.your_companion")}
+              </Badge>
+
+              <h1 className="mb-6 text-balance text-5xl font-extrabold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
+                {t("landing.hero_title_1")}{" "}
+                <span className="text-gradient-primary">{t("landing.hero_title_2")}</span>
+              </h1>
+
+              <p className="mx-auto mb-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground lg:mx-0">
+                {t("landing.hero_description")}
+              </p>
+
+              <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+                <Button
+                  size="lg"
+                  onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
+                  className="group h-14 rounded-full gradient-primary px-8 text-base font-semibold text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-95"
+                >
+                  {t("landing.start_your_journey")}
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => navigate("/pricing")}
+                  className="h-14 rounded-full border-border/70 bg-card/40 px-8 text-base font-medium backdrop-blur transition-all duration-300 hover:bg-card hover:scale-[1.02] active:scale-95"
+                >
+                  {t("landing.view_pricing")}
+                </Button>
+              </div>
+
+              {/* Social proof */}
+              <div className="mt-10 flex items-center justify-center gap-3 lg:justify-start">
+                <div className="flex -space-x-2.5">
+                  {socialProof.map((p) => (
+                    <div
+                      key={p.name}
+                      className={`flex h-9 w-9 items-center justify-center rounded-full border-2 border-background text-[11px] font-bold text-white ${p.color}`}
+                    >
+                      {p.initial}
+                    </div>
+                  ))}
+                </div>
+                <div className="text-left">
+                  <div className="flex items-center gap-0.5 text-accent">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-xs">★</span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">{t("landing.trusted_by_people", "Loved by people building better habits")}</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Right: app preview */}
+            <ScrollReveal variant="scale" delay={150} className="flex justify-center lg:justify-end">
+              <LandingAppPreview />
+            </ScrollReveal>
+          </div>
         </section>
 
-        {/* Main Features */}
-        <section className="px-4 py-16 bg-muted/30">
+        {/* Main Features — bento */}
+        <section className="px-4 py-16 md:py-24">
           <div className="max-w-6xl mx-auto">
-            <ScrollReveal className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <ScrollReveal className="mb-12 text-center">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {t("landing.features_eyebrow", "Features")}
+              </p>
+              <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl">
                 {t("landing.everything_transform")}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
                 {t("landing.complete_toolkit")}
               </p>
             </ScrollReveal>
@@ -218,69 +265,65 @@ export default function Landing() {
                 <CarouselContent>
                   {mainFeatureDefs.map((feature) => (
                     <CarouselItem key={feature.titleKey} className="basis-[85%]">
-                      <Card className="glass border-border/50 overflow-hidden group h-full">
-                        <CardContent className="p-6">
-                          <div className="flex items-start gap-4">
-                            <div className={`w-14 h-14 rounded-xl ${feature.bgColor} flex items-center justify-center flex-shrink-0`}>
-                              <feature.icon className={`h-7 w-7 ${feature.color}`} />
-                            </div>
-                            <div>
-                              <h3 className="text-xl font-semibold text-foreground mb-2">{t(feature.titleKey)}</h3>
-                              <p className="text-muted-foreground">{t(feature.descKey)}</p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <div className="premium-card h-full rounded-3xl p-6">
+                        <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${feature.bgColor}`}>
+                          <feature.icon className={`h-6 w-6 ${feature.color}`} />
+                        </div>
+                        <h3 className="mb-2 text-lg font-semibold text-foreground">{t(feature.titleKey)}</h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{t(feature.descKey)}</p>
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
               </Carousel>
-              <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
+              <p className="mt-4 flex items-center justify-center gap-1 text-center text-xs text-muted-foreground">
                 <span>←</span> {t("common.swipe_explore")} <span>→</span>
               </p>
             </ScrollReveal>
 
-            {/* Desktop: grid */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mainFeatureDefs.map((feature, index) => (
-                <ScrollReveal key={feature.titleKey} delay={index * 100} variant="scale">
-                  <Card className="glass border-border/50 hover:border-primary/30 transition-all duration-300 overflow-hidden group h-full">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-14 h-14 rounded-xl ${feature.bgColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                          <feature.icon className={`h-7 w-7 ${feature.color}`} />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-foreground mb-2">{t(feature.titleKey)}</h3>
-                          <p className="text-muted-foreground">{t(feature.descKey)}</p>
-                        </div>
+            {/* Desktop: bento grid */}
+            <div className="hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
+              {mainFeatureDefs.map((feature, index) => {
+                const wide = index === 0 || index === 5;
+                return (
+                  <ScrollReveal
+                    key={feature.titleKey}
+                    delay={index * 80}
+                    variant="scale"
+                    className={wide ? "md:col-span-2" : ""}
+                  >
+                    <div className="premium-card group relative h-full overflow-hidden rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:premium-ring">
+                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${feature.bgColor} transition-transform group-hover:scale-110`}>
+                        <feature.icon className={`h-6 w-6 ${feature.color}`} />
                       </div>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Additional Features */}
-        <section className="px-4 py-16">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {t("landing.and_more")}
-              </h2>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {additionalFeatureDefs.map((feature, index) => (
-                <ScrollReveal key={feature.titleKey} delay={index * 80} variant="scale">
-                  <div className="glass rounded-xl p-5 text-center hover:bg-muted/50 transition-colors h-full">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                      <feature.icon className="h-6 w-6 text-primary" />
+                      <h3 className="mb-2 text-lg font-semibold text-foreground">{t(feature.titleKey)}</h3>
+                      <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{t(feature.descKey)}</p>
+                      {wide && (
+                        <div className="mt-5 flex items-end gap-1.5">
+                          {[40, 65, 50, 80, 60, 95, 72].map((h, i) => (
+                            <div
+                              key={i}
+                              className={`w-full rounded-full ${feature.bgColor}`}
+                              style={{ height: `${h * 0.4}px` }}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    <h3 className="font-semibold text-foreground text-sm mb-1">{t(feature.titleKey)}</h3>
-                    <p className="text-xs text-muted-foreground">{t(feature.descKey)}</p>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
+
+            {/* Additional features — elegant chips */}
+            <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+              {additionalFeatureDefs.map((feature, index) => (
+                <ScrollReveal key={feature.titleKey} delay={index * 60} variant="scale">
+                  <div className="premium-card flex h-full flex-col items-center gap-2 rounded-2xl p-4 text-center transition-all duration-300 hover:-translate-y-1">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                      <feature.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-xs font-semibold text-foreground">{t(feature.titleKey)}</h3>
                   </div>
                 </ScrollReveal>
               ))}
@@ -289,75 +332,90 @@ export default function Landing() {
         </section>
 
         {/* Stats */}
-        <section className="px-4 py-16 bg-gradient-to-br from-primary/5 via-transparent to-accent/5">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {statDefs.map((stat, index) => (
-                <ScrollReveal key={stat.labelKey} delay={index * 120}>
-                  <div className="text-center">
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground">{t(stat.labelKey)}</p>
-                  </div>
-                </ScrollReveal>
+        <section className="px-4 pb-16 md:pb-24">
+          <ScrollReveal className="mx-auto max-w-5xl">
+            <div className="premium-card grid grid-cols-2 gap-y-8 rounded-3xl px-6 py-10 md:grid-cols-4 md:divide-x md:divide-border/60">
+              {statDefs.map((stat) => (
+                <div key={stat.labelKey} className="px-4 text-center">
+                  <p className="mb-1 text-4xl font-extrabold tracking-tight text-gradient-primary md:text-5xl">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{t(stat.labelKey)}</p>
+                </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </section>
 
         {/* Testimonials */}
-        <section className="px-4 py-16 bg-muted/30">
+        <section className="px-4 py-16 md:py-24">
           <div className="max-w-5xl mx-auto">
-            <ScrollReveal className="text-center mb-12">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{t("landing.testimonials")}</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t("landing.real_people")}</h2>
+            <ScrollReveal className="mb-12 text-center">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t("landing.testimonials")}</p>
+              <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl">{t("landing.real_people")}</h2>
             </ScrollReveal>
 
             {/* Mobile: swipeable carousel — Desktop: grid */}
             <ScrollReveal className="md:hidden" delay={100}>
               <Carousel opts={{ align: "center", loop: true }}>
                 <CarouselContent>
-                  {testimonialDefs.map((review, index) => (
-                    <CarouselItem key={review.quoteKey} className="basis-[85%]">
-                      <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
-                        <div className="flex gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <span key={i} className={i < review.stars ? "text-yellow-400" : "text-muted"}>★</span>
-                          ))}
+                  {testimonialDefs.map((review) => {
+                    const avatar = socialProof.find((s) => review.author.startsWith(s.name));
+                    return (
+                      <CarouselItem key={review.quoteKey} className="basis-[85%]">
+                        <div className="premium-card flex h-full flex-col gap-4 rounded-3xl p-6">
+                          <div className="flex gap-0.5 text-accent">
+                            {[...Array(5)].map((_, i) => (
+                              <span key={i} className={i < review.stars ? "" : "text-muted"}>★</span>
+                            ))}
+                          </div>
+                          <p className="flex-1 text-sm leading-relaxed text-foreground">&ldquo;{t(review.quoteKey)}&rdquo;</p>
+                          <div className="flex items-center gap-2.5">
+                            <div className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold text-white ${avatar?.color ?? "bg-primary"}`}>
+                              {review.author.charAt(0)}
+                            </div>
+                            <p className="text-sm font-medium text-muted-foreground">{review.author}</p>
+                          </div>
                         </div>
-                        <p className="text-foreground text-sm leading-relaxed flex-1">&ldquo;{t(review.quoteKey)}&rdquo;</p>
-                        <p className="text-muted-foreground text-sm font-medium">— {review.author}</p>
-                      </Card>
-                    </CarouselItem>
-                  ))}
+                      </CarouselItem>
+                    );
+                  })}
                 </CarouselContent>
               </Carousel>
-              <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
+              <p className="mt-4 flex items-center justify-center gap-1 text-center text-xs text-muted-foreground">
                 <span>←</span> {t("common.swipe_read_more")} <span>→</span>
               </p>
             </ScrollReveal>
 
             {/* Desktop: grid layout */}
-            <div className="hidden md:grid md:grid-cols-3 gap-6">
-              {testimonialDefs.map((review, index) => (
-                <ScrollReveal key={review.quoteKey} delay={index * 80} variant="scale">
-                  <Card className="glass border-border/50 p-6 flex flex-col gap-4 h-full">
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className={i < review.stars ? "text-yellow-400" : "text-muted"}>★</span>
-                      ))}
+            <div className="hidden gap-4 md:grid md:grid-cols-3">
+              {testimonialDefs.map((review, index) => {
+                const avatar = socialProof.find((s) => review.author.startsWith(s.name));
+                return (
+                  <ScrollReveal key={review.quoteKey} delay={index * 80} variant="scale">
+                    <div className="premium-card flex h-full flex-col gap-4 rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1">
+                      <div className="flex gap-0.5 text-accent">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className={i < review.stars ? "" : "text-muted"}>★</span>
+                        ))}
+                      </div>
+                      <p className="flex-1 text-sm leading-relaxed text-foreground">&ldquo;{t(review.quoteKey)}&rdquo;</p>
+                      <div className="flex items-center gap-2.5">
+                        <div className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold text-white ${avatar?.color ?? "bg-primary"}`}>
+                          {review.author.charAt(0)}
+                        </div>
+                        <p className="text-sm font-medium text-muted-foreground">{review.author}</p>
+                      </div>
                     </div>
-                    <p className="text-foreground text-sm leading-relaxed flex-1">&ldquo;{t(review.quoteKey)}&rdquo;</p>
-                    <p className="text-muted-foreground text-sm font-medium">— {review.author}</p>
-                  </Card>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Premium Features Deep Dive */}
-        <section className="px-4 py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
-          <div className="max-w-5xl mx-auto">
+        <section className="relative overflow-hidden px-4 py-20 md:py-28">
+          <div className="pointer-events-none absolute inset-0 grid-pattern" />
+          <div className="relative max-w-5xl mx-auto">
             <ScrollReveal className="text-center mb-4">
               <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
                 <Crown className="h-3.5 w-3.5 mr-2 text-accent" />
@@ -379,7 +437,7 @@ export default function Landing() {
                 <CarouselContent>
                   {/* The Forge */}
                   <CarouselItem className="basis-[90%]">
-                    <div className="glass rounded-2xl border border-border/60 p-6 h-full">
+                    <div className="premium-card rounded-3xl p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
                           <Eye className="h-6 w-6 text-violet-500" />
@@ -404,7 +462,7 @@ export default function Landing() {
 
                   {/* Trigger Tracking */}
                   <CarouselItem className="basis-[90%]">
-                    <div className="glass rounded-2xl border border-border/60 p-6 h-full">
+                    <div className="premium-card rounded-3xl p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center flex-shrink-0">
                           <BarChart3 className="h-6 w-6 text-rose-500" />
@@ -426,7 +484,7 @@ export default function Landing() {
 
                   {/* AI Coach */}
                   <CarouselItem className="basis-[90%]">
-                    <div className="glass rounded-2xl border border-border/60 p-6 h-full">
+                    <div className="premium-card rounded-3xl p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <Bot className="h-6 w-6 text-primary" />
@@ -448,7 +506,7 @@ export default function Landing() {
 
                   {/* Learn Section */}
                   <CarouselItem className="basis-[90%]">
-                    <div className="glass rounded-2xl border border-border/60 p-6 h-full">
+                    <div className="premium-card rounded-3xl p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                           <BookOpen className="h-6 w-6 text-indigo-500" />
@@ -470,7 +528,7 @@ export default function Landing() {
 
                   {/* Adaptive Habit Suggestions */}
                   <CarouselItem className="basis-[90%]">
-                    <div className="glass rounded-2xl border border-border/60 p-6 h-full">
+                    <div className="premium-card rounded-3xl p-6 h-full">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                           <Brain className="h-6 w-6 text-emerald-500" />
@@ -500,7 +558,7 @@ export default function Landing() {
             <div className="hidden md:block space-y-6">
               {/* The Forge Program */}
               <ScrollReveal variant="left">
-                <div className="glass rounded-2xl border border-border/60 p-6 md:p-8 hover:border-violet-500/30 transition-all duration-300 group">
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-violet-500/30 transition-all duration-300 group">
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
                     <div className="w-14 h-14 rounded-2xl bg-violet-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <Eye className="h-7 w-7 text-violet-500" />
@@ -527,7 +585,7 @@ export default function Landing() {
 
               {/* Trigger Tracking */}
               <ScrollReveal variant="left" delay={100}>
-                <div className="glass rounded-2xl border border-border/60 p-6 md:p-8 hover:border-rose-500/30 transition-all duration-300 group">
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-rose-500/30 transition-all duration-300 group">
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
                     <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <BarChart3 className="h-7 w-7 text-rose-500" />
@@ -551,7 +609,7 @@ export default function Landing() {
 
               {/* AI Coach */}
               <ScrollReveal variant="left" delay={200}>
-                <div className="glass rounded-2xl border border-border/60 p-6 md:p-8 hover:border-primary/30 transition-all duration-300 group">
+                <div className="premium-card rounded-3xl p-6 md:p-8 hover:border-primary/30 transition-all duration-300 group">
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
                     <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <Bot className="h-7 w-7 text-primary" />
@@ -576,7 +634,7 @@ export default function Landing() {
               {/* Learn Section + Habit Analysis — side by side */}
               <div className="grid md:grid-cols-2 gap-6">
                 <ScrollReveal variant="scale" delay={100}>
-                  <div className="glass rounded-2xl border border-border/60 p-6 hover:border-indigo-500/30 transition-all duration-300 group h-full">
+                  <div className="premium-card rounded-3xl p-6 hover:border-indigo-500/30 transition-all duration-300 group h-full">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <BookOpen className="h-6 w-6 text-indigo-500" />
@@ -599,7 +657,7 @@ export default function Landing() {
                 </ScrollReveal>
 
                 <ScrollReveal variant="scale" delay={200}>
-                  <div className="glass rounded-2xl border border-border/60 p-6 hover:border-emerald-500/30 transition-all duration-300 group h-full">
+                  <div className="premium-card rounded-3xl p-6 hover:border-emerald-500/30 transition-all duration-300 group h-full">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <Brain className="h-6 w-6 text-emerald-500" />
@@ -624,41 +682,52 @@ export default function Landing() {
             </div>
 
             {/* Pricing CTA inside premium section */}
-            <ScrollReveal className="text-center mt-14" delay={300}>
-              <p className="text-sm text-muted-foreground mb-2">{t("landing.all_premium_for")}</p>
-              <p className="text-4xl font-bold text-foreground mb-1">
-                €9.99
-                <span className="text-lg text-muted-foreground font-normal">/{t("common.month")}</span>
-              </p>
-              <Button
-                size="lg"
-                onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
-                className="mt-4 gradient-accent text-accent-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
-              >
-                <Crown className="h-5 w-5 mr-2" />
-                {t("landing.unlock_premium")}
-              </Button>
+            <ScrollReveal className="mt-14" delay={300}>
+              <div className="premium-card mx-auto max-w-md overflow-hidden rounded-3xl p-8 text-center premium-ring">
+                <Badge className="mb-4 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-foreground">
+                  <Crown className="mr-1.5 h-3.5 w-3.5 text-accent" />
+                  {t("common.premium")}
+                </Badge>
+                <p className="mb-1 text-sm text-muted-foreground">{t("landing.all_premium_for")}</p>
+                <p className="mb-6 flex items-end justify-center gap-1 font-extrabold tracking-tight text-foreground">
+                  <span className="text-5xl">€9.99</span>
+                  <span className="mb-1 text-base font-normal text-muted-foreground">/{t("common.month")}</span>
+                </p>
+                <Button
+                  size="lg"
+                  onClick={() => navigate(user ? "/pricing" : "/auth?mode=signup")}
+                  className="h-14 w-full rounded-full gradient-accent px-10 text-base font-semibold text-accent-foreground shadow-soft transition-all hover:shadow-lg hover:scale-[1.02] active:scale-95"
+                >
+                  <Crown className="mr-2 h-5 w-5" />
+                  {t("landing.unlock_premium")}
+                </Button>
+              </div>
             </ScrollReveal>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="px-4 py-20">
-          <ScrollReveal className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t("landing.ready_to_start")}
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              {t("landing.join_thousands")}
-            </p>
-            <Button
-              size="lg"
-              onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
-              className="gradient-primary text-primary-foreground rounded-xl h-14 px-10 text-lg shadow-soft hover:shadow-lg transition-all hover:scale-105 active:scale-95"
-            >
-              {t("landing.get_started_free")}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+        <section className="px-4 py-16 md:py-24">
+          <ScrollReveal className="mx-auto max-w-5xl">
+            <div className="relative overflow-hidden rounded-[2.5rem] gradient-primary px-6 py-16 text-center shadow-glow md:px-12 md:py-20">
+              <div className="glow-blob left-1/2 top-0 h-64 w-64 -translate-x-1/2 bg-primary-foreground/30" />
+              <div className="relative">
+                <h2 className="mx-auto mb-4 max-w-2xl text-balance text-3xl font-extrabold tracking-tight text-primary-foreground md:text-5xl">
+                  {t("landing.ready_to_start")}
+                </h2>
+                <p className="mx-auto mb-8 max-w-xl text-pretty text-primary-foreground/90">
+                  {t("landing.join_thousands")}
+                </p>
+                <Button
+                  size="lg"
+                  onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
+                  className="group h-14 rounded-full bg-background px-10 text-base font-semibold text-foreground shadow-lg transition-all hover:scale-[1.03] hover:shadow-xl active:scale-95"
+                >
+                  {t("landing.get_started_free")}
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </div>
+            </div>
           </ScrollReveal>
         </section>
       </main>

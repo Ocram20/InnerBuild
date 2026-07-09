@@ -277,6 +277,69 @@
   .gradient-badge {
     background: linear-gradient(135deg, hsl(var(--badge-gold)), hsl(40 90% 65%));
   }
+
+  /* ── Premium landing utilities ───────────────────────────── */
+
+  /* Gradient text for hero headline accents */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(180 45% 50%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Subtle dotted grid backdrop for large sections */
+  .grid-pattern {
+    background-image: radial-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  /* Ambient glow blobs used behind the hero */
+  .glow-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Premium card: layered translucent surface with fine border */
+  .premium-card {
+    position: relative;
+    background: linear-gradient(180deg, hsl(var(--card) / 0.9), hsl(var(--card) / 0.55));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.7);
+    box-shadow: 0 1px 0 hsl(0 0% 100% / 0.06) inset, var(--shadow-card);
+  }
+
+  .premium-ring {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.25), 0 0 40px -8px hsl(var(--primary) / 0.35);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 9s ease-in-out infinite;
+  }
+
+  .marquee-track {
+    animation: marquee 26s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes fadeIn {
