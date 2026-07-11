@@ -61,9 +61,9 @@ export default function DailyQuote() {
 
   if (loading || quotes.length === 0) {
     return (
-      <div className="rounded-2xl border border-border/60 bg-card p-4 relative overflow-hidden">
+      <div className="rounded-[32px] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1a212e]/50 dark:glass-card p-6 relative overflow-hidden card-glow dark:card-lift">
         <div className="flex items-center justify-center h-16">
-          <div className="animate-pulse text-muted-foreground">{t("common.loading")}</div>
+          <div className="animate-pulse text-muted-foreground dark:text-[#6c8093]">{t("common.loading")}</div>
         </div>
       </div>
     );
@@ -73,22 +73,16 @@ export default function DailyQuote() {
   const dailyQuote = quotes[quoteIndex].quote;
 
   return (
-    <div className="rounded-2xl border border-border/60 bg-card p-4 relative overflow-hidden">
-      <div className="absolute top-3 right-3 opacity-10">
-        <Quote className="h-12 w-12 text-primary" />
-      </div>
-      <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <Quote className="h-5 w-5 text-primary" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-medium">
-            {t("dashboard.quote_of_the_day")}
-          </p>
-          <p className="text-foreground font-medium italic leading-relaxed">
-            "{dailyQuote}"
-          </p>
-        </div>
+    <div className="rounded-[32px] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1a212e]/50 dark:glass-card p-6 relative overflow-hidden card-glow dark:card-lift">
+      <div className="absolute top-0 right-0 w-24 h-24 bg-[#4b9b75]/5 dark:bg-[#4b9b75]/5 rounded-bl-[100px]" />
+      <Quote className="text-3xl text-[#4b9b75]/20 dark:text-[#4b9b75]/40 mb-2 block" />
+      <p className="text-lg font-semibold text-[#29333d] dark:text-white/90 leading-snug italic">
+        "{dailyQuote}"
+      </p>
+      <div className="mt-4 flex items-center gap-2">
+        <span className="text-[10px] font-bold text-[#4b9b75] uppercase tracking-widest">
+          {t("dashboard.quote_of_the_day")}
+        </span>
       </div>
     </div>
   );

@@ -178,9 +178,9 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
   if (isEmpty) {
     return (
-      <div className="rounded-2xl border border-border/60 bg-card p-5">
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-elevated card-elevated card-alt">
         <div className="text-center">
-          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 shadow-soft">
             <ListTodo className="h-6 w-6 text-primary" />
           </div>
           <h2 className="text-base font-semibold text-foreground mb-1">{t("dashboard.start_daily_plan")}</h2>
@@ -203,114 +203,117 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
   const avoidedItems = notTodos.filter(i => i.status === "avoided").length;
 
   return (
-    <div className="rounded-2xl border border-border/60 bg-card p-5">
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex min-w-0 items-center gap-2">
-          <div className="p-2 rounded-lg bg-primary/10">
-            <ListTodo className="h-5 w-5 text-primary" />
+    <div className="rounded-2xl border border-border/60 dark:border-white/5 bg-[#4b9b75] p-5 card-glow dark:card-lift relative overflow-hidden">
+      <div className="relative z-10">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="p-2 rounded-lg bg-white/20 shadow-soft">
+              <ListTodo className="h-5 w-5 text-white" />
+            </div>
+            <h2 className="truncate text-base font-semibold text-white">{t("daily_planning.title")}</h2>
           </div>
-          <h2 className="truncate text-base font-semibold text-foreground">{t("daily_planning.title")}</h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/daily-planning")}
+            className="h-8 self-start text-white/80 hover:text-white sm:self-auto"
+          >
+            {t("common.view_all")}
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate("/daily-planning")}
-          className="h-8 self-start text-muted-foreground hover:text-foreground sm:self-auto"
-        >
-          {t("common.view_all")}
-          <ChevronRight className="ml-1 h-4 w-4" />
-        </Button>
-      </div>
 
-      <div className="space-y-4">
-        {/* To-Do List */}
-        {todos.length > 0 && (
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
-              <span>{t("dashboard.todo_list")}</span>
-              <span className="text-xs">
-                {completedTodos}/{allTodos.length}
-              </span>
-            </h3>
-            <div className="space-y-2">
-              {todos.map((task) => (
-                <button
-                  key={task.id}
-                  onClick={() => toggleTodo(task)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
-                    task.is_completed
-                      ? "bg-primary/10 border border-primary/20"
-                      : "bg-muted/50 hover:bg-muted border border-transparent"
-                  }`}
-                >
-                  {task.is_completed ? (
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                  ) : (
-                    <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                  )}
-                  <span
-                    className={`flex-1 text-left text-sm font-medium truncate ${
+        <div className="space-y-4">
+          {/* To-Do List */}
+          {todos.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-white/80 mb-3 flex items-center justify-between">
+                <span>{t("dashboard.todo_list")}</span>
+                <span className="text-xs">
+                  {completedTodos}/{allTodos.length}
+                </span>
+              </h3>
+              <div className="space-y-2">
+                {todos.map((task) => (
+                  <button
+                    key={task.id}
+                    onClick={() => toggleTodo(task)}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
                       task.is_completed
-                        ? "line-through text-muted-foreground"
-                        : "text-foreground"
+                        ? "bg-white/20 border border-white/30"
+                        : "bg-white/10 hover:bg-white/20 border border-transparent"
                     }`}
                   >
-                    {shouldTranslateContent ? display(task.title) : task.title}
-                  </span>
-                </button>
-              ))}
+                    {task.is_completed ? (
+                      <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0" />
+                    ) : (
+                      <Circle className="h-5 w-5 text-white/60 flex-shrink-0" />
+                    )}
+                    <span
+                      className={`flex-1 text-left text-sm font-medium truncate ${
+                        task.is_completed
+                          ? "line-through text-white/60"
+                          : "text-white"
+                      }`}
+                    >
+                      {shouldTranslateContent ? display(task.title) : task.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Not-To-Do List */}
-        {notTodos.length > 0 && (
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
-              <span>{t("dashboard.not_todo_list")}</span>
-              <span className="text-xs">
-                {avoidedItems}/{notTodos.length}
-              </span>
-            </h3>
-            <div className="space-y-2">
-              {notTodos.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => toggleNotTodoStatus(item)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
-                    item.status === "avoided"
-                      ? "bg-primary/10 border border-primary/20"
-                      : "bg-muted/50 hover:bg-muted border border-transparent"
-                  }`}
-                >
-                  {item.status === "avoided" ? (
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                  ) : (
-                    <ShieldAlert className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                  )}
-                  <span className={`flex-1 text-left text-sm font-medium truncate ${
-                    item.status === "avoided"
-                      ? "line-through text-muted-foreground"
-                      : "text-foreground"
-                  }`}>
-                    {shouldTranslateContent ? display(item.title) : item.title}
-                  </span>
-                </button>
-              ))}
+          {/* Not-To-Do List */}
+          {notTodos.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-white/80 mb-3 flex items-center justify-between">
+                <span>{t("dashboard.not_todo_list")}</span>
+                <span className="text-xs">
+                  {avoidedItems}/{notTodos.length}
+                </span>
+              </h3>
+              <div className="space-y-2">
+                {notTodos.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => toggleNotTodoStatus(item)}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
+                      item.status === "avoided"
+                        ? "bg-white/20 border border-white/30"
+                        : "bg-white/10 hover:bg-white/20 border border-transparent"
+                    }`}
+                  >
+                    {item.status === "avoided" ? (
+                      <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0" />
+                    ) : (
+                      <ShieldAlert className="h-5 w-5 text-white/60 flex-shrink-0" />
+                    )}
+                    <span className={`flex-1 text-left text-sm font-medium truncate ${
+                      item.status === "avoided"
+                        ? "line-through text-white/60"
+                        : "text-white"
+                    }`}>
+                      {shouldTranslateContent ? display(item.title) : item.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* View Full Planning Button */}
-        <Button
-          variant="outline"
-          className="w-full mt-2"
-          onClick={() => navigate("/daily-planning")}
-        >
-          <ChevronRight className="mr-2 h-4 w-4" />
-          {t("dashboard.edit_full_plan")}
-        </Button>
+          {/* View Full Planning Button */}
+          <Button
+            variant="outline"
+            className="w-full mt-2 bg-white text-[#4b9b75] border-white hover:bg-white/90"
+            onClick={() => navigate("/daily-planning")}
+          >
+            <ChevronRight className="mr-2 h-4 w-4" />
+            {t("dashboard.edit_full_plan")}
+          </Button>
+        </div>
       </div>
+      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
     </div>
   );
 }

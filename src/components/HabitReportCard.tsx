@@ -128,10 +128,10 @@ export default function HabitReportCard() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-border/60 bg-card p-6 animate-pulse">
+      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-6 animate-pulse card-glow dark:card-lift">
         <div className="flex items-center justify-center gap-3">
-          <Brain className="h-6 w-6 text-primary/50" />
-          <span className="text-muted-foreground">{t("habit_report.loading_insights")}</span>
+          <Brain className="h-6 w-6 text-purple-500/50 dark:text-[#8b5cf6]" />
+          <span className="text-muted-foreground dark:text-[#6c8093]">{t("habit_report.loading_insights")}</span>
         </div>
       </div>
     );
@@ -140,22 +140,22 @@ export default function HabitReportCard() {
   if (!isPremium) {
     return (
       <>
-        <div className="rounded-2xl border border-border/60 bg-card p-5">
+        <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 card-glow dark:card-lift">
           <div className="text-center space-y-4">
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto relative">
-              <Brain className="h-7 w-7 text-primary" />
-              <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-muted flex items-center justify-center border-2 border-background">
-                <Lock className="h-2.5 w-2.5 text-muted-foreground" />
+            <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center mx-auto relative shadow-soft">
+              <Brain className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
+              <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-muted dark:bg-white/5 flex items-center justify-center border-2 border-background dark:border-[#0f1419]">
+                <Lock className="h-2.5 w-2.5 text-muted-foreground dark:text-[#6c8093]" />
               </div>
             </div>
             <div>
-              <h2 className="text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h2 className="text-base font-semibold text-foreground dark:text-white">{t("habit_report.habit_analysis")}</h2>
+              <p className="text-sm text-muted-foreground dark:text-[#6c8093] mt-1">
                 {t("habit_report.locked_desc")}
               </p>
             </div>
             <Button onClick={() => setShowPaywall(true)} className="gap-2" variant="outline">
-              <Crown className="h-4 w-4 text-primary" />
+              <Crown className="h-4 w-4 text-purple-500 dark:text-[#8b5cf6]" />
               {t("habit_report.unlock_premium")}
             </Button>
           </div>
@@ -172,14 +172,14 @@ export default function HabitReportCard() {
 
   if (!report) {
     return (
-      <div className="rounded-2xl border border-border/60 bg-card p-5">
+      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 card-glow dark:card-lift">
         <div className="text-center space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
-            <Brain className="h-7 w-7 text-primary" />
+          <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center mx-auto shadow-soft">
+            <Brain className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-foreground">{t("habit_report.get_report")}</h2>
-            <p className="text-sm text-muted-foreground mt-1">
+            <h2 className="text-base font-semibold text-foreground dark:text-white">{t("habit_report.get_report")}</h2>
+            <p className="text-sm text-muted-foreground dark:text-[#6c8093] mt-1">
               {t("habit_report.analyze_last_days")}
             </p>
           </div>
@@ -204,22 +204,22 @@ export default function HabitReportCard() {
   const { summary, created_at, is_read, id } = report;
 
   return (
-    <div className={`rounded-2xl border border-border/60 bg-card p-5 overflow-hidden ${!is_read ? 'ring-2 ring-primary/30' : ''}`}>
+    <div className={`rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 overflow-hidden card-glow dark:card-lift ${!is_read ? 'ring-2 ring-purple-300/30 dark:ring-[#8b5cf6]/30' : ''}`}>
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-            <Brain className="h-5 w-5 text-primary" />
+          <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center shadow-soft">
+            <Brain className="h-6 w-6 text-purple-500 dark:text-[#8b5cf6]" />
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="break-words text-base font-semibold text-foreground">{t("habit_report.habit_analysis")}</h2>
+              <h2 className="break-words text-base font-semibold text-foreground dark:text-white">{t("habit_report.habit_analysis")}</h2>
               {!is_read && (
-                <Badge variant="secondary" className="shrink-0 text-xs bg-primary/10 text-primary">
+                <Badge variant="secondary" className="shrink-0 text-xs bg-purple-200 dark:bg-[#8b5cf6]/20 text-purple-700 dark:text-[#8b5cf6]">
                   {t("common.new")}
                 </Badge>
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground dark:text-[#6c8093]">
               {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dfLocale })}
             </p>
           </div>

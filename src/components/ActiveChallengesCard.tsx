@@ -23,10 +23,10 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
   }
 
   return (
-    <div className="rounded-2xl border border-border/60 bg-card p-5">
+    <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-elevated card-elevated">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shadow-soft">
             <Flame className="h-4 w-4 text-primary" />
           </div>
           <h2 className="truncate text-base font-semibold text-foreground">{t("recovery.active_challenges")}</h2>
@@ -48,11 +48,11 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
             science_note: null,
             daily_steps: null,
           });
-          
+
           return (
             <div
               key={challenge.id}
-              className="p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer"
+              className="p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer shadow-sm hover:shadow-md"
               onClick={() => navigate("/challenges")}
             >
               <div className="flex items-center justify-between mb-2">

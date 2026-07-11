@@ -22,11 +22,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { 
-  Leaf, Plus, LogOut, Moon, Sun, Crown, 
-  ChevronRight, Target, User, Compass, Home, AlertTriangle,
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Leaf, Plus, LogOut, Moon, Sun, Crown,
+  ChevronRight, Target, User, Compass, Home, AlertTriangle, Flame, X,
 } from "lucide-react";
 import CreateHabitModal from "@/components/CreateHabitModal";
+import CreateChallengeModal from "@/components/CreateChallengeModal";
 import TodayOverview from "@/components/TodayOverview";
 import PaywallModal from "@/components/PaywallModal";
 import DailyQuote from "@/components/DailyQuote";
@@ -64,9 +70,11 @@ export default function Dashboard() {
   const { theme, setTheme } = useTheme();
   const [firstName, setFirstName] = useState<string | null>(null);
   const [showCreateHabit, setShowCreateHabit] = useState(false);
+  const [showCreateChallenge, setShowCreateChallenge] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [showEmergency, setShowEmergency] = useState(false);
   const [paywallReason, setPaywallReason] = useState<"ai_coach" | "recovery" | "general">("general");
+  const [fabMenuOpen, setFabMenuOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -232,7 +240,7 @@ export default function Dashboard() {
         ) : (
           <>
             <section className="animate-fade-in"><DailyQuote /></section>
-            
+
             {preferences.habits && (
               <section className="animate-fade-in" style={{ animationDelay: "25ms" }}><HabitReportCard /></section>
             )}
@@ -250,7 +258,7 @@ export default function Dashboard() {
                         <Target className="h-4 w-4 mr-1" />
                         {t("common.all")}
                       </Button>
-                      <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8">
+                      <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8 w-9 bg-[#4b9b75] text-white border-none btn-shadow">
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>
@@ -268,7 +276,7 @@ export default function Dashboard() {
             {preferences["the-forge"] && journey && (
               <section className="animate-fade-in" style={{ animationDelay: "150ms" }}>
                 <RecoveryStreakCard journey={journey} checkIns={checkIns} hasCheckedInToday={hasCheckedInToday} onCheckIn={checkIn} />
-                <Button type="button" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full mt-3 gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-md rounded-xl h-12">
+                <Button type="button" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full mt-3 gap-2 bg-[#ff4757] hover:bg-[#ff4757] text-white shadow-lg shadow-red-500/20 rounded-2xl h-12 text-[15px] font-extrabold uppercase tracking-wider active:scale-[0.98] transition-all">
                   <AlertTriangle className="h-4 w-4" />
                   {t("dashboard.emergency_urge")}
                 </Button>
@@ -282,8 +290,8 @@ export default function Dashboard() {
             )}
 
             <section className="animate-fade-in" style={{ animationDelay: "250ms" }}>
-              <button onClick={() => navigate("/explore")} className="w-full rounded-2xl border border-border/60 bg-card p-4 flex items-center gap-4 hover:bg-muted/50 hover:border-primary/30 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <button onClick={() => navigate("/explore")} className="w-full rounded-2xl border border-border/60 bg-card p-4 flex items-center gap-4 hover:bg-muted/50 hover:border-primary/30 transition-all shadow-elevated card-elevated card-alt">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shadow-soft">
                   <Compass className="h-6 w-6 text-primary" />
                 </div>
                 <div className="flex-1 text-left">
@@ -298,9 +306,49 @@ export default function Dashboard() {
       </main>
 
       <CreateHabitModal open={showCreateHabit} onOpenChange={setShowCreateHabit} onSuccess={fetchData} />
+      <CreateChallengeModal open={showCreateChallenge} onOpenChange={setShowCreateChallenge} onSuccess={fetchData} />
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason={paywallReason} />
       <EmergencyUrgeModal open={showEmergency} onClose={() => setShowEmergency(false)} />
       <BottomNavigation />
+
+      {/* Central FAB Button */}
+      <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+34px+16px)] left-1/2 transform -translate-x-1/2 z-50">
+        <Popover open={fabMenuOpen} onOpenChange={setFabMenuOpen}>
+          <PopoverTrigger asChild>
+            <button className="w-16 h-16 bg-[#0f172a] dark:bg-[#4b9b75] rounded-[22px] dark:rounded-[24px] text-white flex items-center justify-center shadow-lg shadow-[#0f172a]/40 dark:fab-glow dark:border-4 dark:border-[#0f1419] active:scale-[0.95] transition-all">
+              <Plus className="h-7 w-7" />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-48 p-2 mb-2" align="center" side="top">
+            <div className="space-y-1">
+              <button
+                onClick={() => {
+                  setFabMenuOpen(false);
+                  setShowCreateHabit(true);
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#4b9b75]/10 flex items-center justify-center">
+                  <Target className="h-4 w-4 text-[#4b9b75]" />
+                </div>
+                <span className="text-sm font-medium text-foreground dark:text-white">Nuova Abitudine</span>
+              </button>
+              <button
+                onClick={() => {
+                  setFabMenuOpen(false);
+                  setShowCreateChallenge(true);
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#ff4757]/10 flex items-center justify-center">
+                  <Flame className="h-4 w-4 text-[#ff4757]" />
+                </div>
+                <span className="text-sm font-medium text-foreground dark:text-white">Nuova Sfida Detox</span>
+              </button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
     </div>
   );
 }
