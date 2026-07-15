@@ -359,17 +359,17 @@
       "habits": "Abitudini",
       "habits_desc": "Traccia e costruisci abitudini quotidiane",
       "detox_challenges": "Sfide Detox",
-      "detox_challenges_desc": "Sfide per rompere le cattive abitudini",
-      "evening_reflection": "Riflessione Serale",
-      "evening_reflection_desc": "Check-in giornaliero e gratitudine",
-      "daily_planning": "Pianificazione Giornaliera",
+      "detox_challenges_desc": "Rompi le cattive abitudini",
+      "evening_reflection": "Riflessione",
+      "evening_reflection_desc": "Check-in e gratitudine",
+      "daily_planning": "Pianificazione",
       "daily_planning_desc": "Lista cose da fare e obiettivi",
-      "trigger_tracking": "Tracciamento Trigger",
-      "trigger_tracking_desc": "Registra impulsi e analisi AI dei pattern",
+      "trigger_tracking": "Trigger",
+      "trigger_tracking_desc": "Analisi pattern impulsivi",
       "the_forge": "La rinascita",
-      "the_forge_desc": "Percorso scientifico per il recupero dalla pornografia",
+      "the_forge_desc": "Percorso scientifico di recupero",
       "ai_coach": "Coach AI",
-      "ai_coach_desc": "Guida personale basata sull'AI"
+      "ai_coach_desc": "Assistant"
     }
   },
   "habits": {

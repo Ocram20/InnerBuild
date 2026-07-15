@@ -5,14 +5,17 @@ import { useSubscription } from "@/hooks/useSubscription";
 import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { useCategoryPreferences } from "@/hooks/useCategoryPreferences";
 import {
-  Brain, Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon, Settings2,
+  Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon,
+  SlidersHorizontal, Plus, LayoutGrid, Compass, BookOpen, User,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import BottomNavigation from "@/components/BottomNavigation";
 import PaywallModal from "@/components/PaywallModal";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import CreateHabitModal from "@/components/CreateHabitModal";
+import CreateChallengeModal from "@/components/CreateChallengeModal";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 type ToolDef = {
   id: string;
@@ -26,16 +29,16 @@ type ToolDef = {
 };
 
 const freeTools: ToolDef[] = [
-  { id: "habits", titleKey: "explore.tools.habits", descriptionKey: "explore.tools.habits_desc", icon: Target, path: "/habits", iconBg: "bg-emerald-500/15", iconColor: "text-emerald-500" },
-  { id: "challenges", titleKey: "explore.tools.detox_challenges", descriptionKey: "explore.tools.detox_challenges_desc", icon: Flame, path: "/challenges", iconBg: "bg-amber-500/15", iconColor: "text-amber-500" },
-  { id: "evening-reflection", titleKey: "explore.tools.evening_reflection", descriptionKey: "explore.tools.evening_reflection_desc", icon: Moon, path: "/evening-reflection", iconBg: "bg-indigo-500/15", iconColor: "text-indigo-500" },
-  { id: "daily-planning", titleKey: "explore.tools.daily_planning", descriptionKey: "explore.tools.daily_planning_desc", icon: Calendar, path: "/daily-planning", iconBg: "bg-primary/15", iconColor: "text-primary" },
+  { id: "habits", titleKey: "explore.tools.habits", descriptionKey: "explore.tools.habits_desc", icon: Target, path: "/habits", iconBg: "bg-[#d4f5ea] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75]" },
+  { id: "challenges", titleKey: "explore.tools.detox_challenges", descriptionKey: "explore.tools.detox_challenges_desc", icon: Flame, path: "/challenges", iconBg: "bg-[#ffe8cc] dark:bg-[#ee9d2b]/20", iconColor: "text-[#ee9d2b]" },
+  { id: "evening-reflection", titleKey: "explore.tools.evening_reflection", descriptionKey: "explore.tools.evening_reflection_desc", icon: Moon, path: "/evening-reflection", iconBg: "bg-[#ede5ff] dark:bg-[#8b5cf6]/20", iconColor: "text-[#8b5cf6]" },
+  { id: "daily-planning", titleKey: "explore.tools.daily_planning", descriptionKey: "explore.tools.daily_planning_desc", icon: Calendar, path: "/daily-planning", iconBg: "bg-[#f0f9f6] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75]" },
 ];
 
 const premiumTools: ToolDef[] = [
-  { id: "trigger-tracking", titleKey: "explore.tools.trigger_tracking", descriptionKey: "explore.tools.trigger_tracking_desc", icon: Zap, path: "/trigger-tracking", iconBg: "bg-orange-500/15", iconColor: "text-orange-500", premium: true },
-  { id: "the-forge", titleKey: "explore.tools.the_forge", descriptionKey: "explore.tools.the_forge_desc", icon: Brain, path: "/the-forge", iconBg: "bg-violet-500/15", iconColor: "text-violet-500", premium: true },
-  { id: "coach", titleKey: "explore.tools.ai_coach", descriptionKey: "explore.tools.ai_coach_desc", icon: Bot, path: "/coach", iconBg: "bg-blue-500/15", iconColor: "text-blue-500", premium: true },
+  { id: "the-forge", titleKey: "explore.tools.the_forge", descriptionKey: "explore.tools.the_forge_desc", icon: Sparkles, path: "/the-forge", iconBg: "bg-[#fde8f5] dark:bg-[#d946ef]/20", iconColor: "text-[#d946ef]", premium: true },
+  { id: "trigger-tracking", titleKey: "explore.tools.trigger_tracking", descriptionKey: "explore.tools.trigger_tracking_desc", icon: Zap, path: "/trigger-tracking", iconBg: "bg-[#ffe8cc] dark:bg-[#ee9d2b]/20", iconColor: "text-[#ee9d2b]", premium: true },
+  { id: "coach", titleKey: "explore.tools.ai_coach", descriptionKey: "explore.tools.ai_coach_desc", icon: Bot, path: "/coach", iconBg: "bg-[#d0e8ff] dark:bg-[#3b82f6]/20", iconColor: "text-[#3b82f6]", premium: true },
 ];
 
 const Explore = () => {
@@ -43,9 +46,13 @@ const Explore = () => {
   const navigate = useNavigate();
   const { subscription } = useSubscription();
   const { hasAdminRole } = useAdminAccess();
-  const { preferences, updatePreference, loading: prefsLoading } = useCategoryPreferences();
+  const { preferences, updatePreference } = useCategoryPreferences();
   const [showPaywall, setShowPaywall] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showCreateHabit, setShowCreateHabit] = useState(false);
+  const [showCreateChallenge, setShowCreateChallenge] = useState(false);
+  const [fabMenuOpen, setFabMenuOpen] = useState(false);
+  
   const isPremium = hasAdminRole || subscription.subscribed;
 
   const handleNavigate = (path: string, premium: boolean) => {
@@ -64,88 +71,59 @@ const Explore = () => {
     }
   };
 
-  const ToolCard = ({ item, premium = false }: { item: ToolDef; premium?: boolean }) => {
-    const Icon = item.icon;
-    const isLocked = premium && !isPremium;
-
-    // Filter out if disabled in preferences
-    if (!preferences[item.id as keyof typeof preferences]) return null;
-
-    return (
-      <button
-        type="button"
-        onClick={() => handleNavigate(item.path, premium)}
-        className={cn(
-          "w-full text-left rounded-2xl border border-border/60 bg-card p-4",
-          "transition-all duration-200 active:scale-[0.98]",
-          "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
-          isLocked && "opacity-80",
-        )}
-      >
-        <div className="flex items-center gap-4">
-          <div className="relative flex-shrink-0">
-            <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", item.iconBg)}>
-              <Icon className={cn("h-6 w-6", item.iconColor)} />
-            </div>
-            {isLocked && (
-              <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-muted flex items-center justify-center border-2 border-background">
-                <Lock className="h-2.5 w-2.5 text-muted-foreground" />
-              </div>
-            )}
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground text-sm mb-0.5">{t(item.titleKey)}</h3>
-            <p className="text-xs text-muted-foreground leading-snug">{t(item.descriptionKey)}</p>
-          </div>
-          <ChevronRight className="h-5 w-5 text-muted-foreground/50 flex-shrink-0" />
-        </div>
-      </button>
-    );
-  };
-
-  const allTools = [...freeTools, ...premiumTools];
   const visibleFreeTools = freeTools.filter(item => preferences[item.id as keyof typeof preferences]);
   const visiblePremiumTools = premiumTools.filter(item => preferences[item.id as keyof typeof preferences]);
 
   return (
-    <div className="min-h-screen bg-background pb-app-main">
-      <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="flex items-center justify-between p-4 max-w-lg mx-auto">
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard")} className="rounded-full h-9 w-9">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div>
-              <h1 className="font-bold text-foreground">{t("explore.title")}</h1>
-              <p className="text-xs text-muted-foreground">{t("explore.subtitle")}</p>
-            </div>
-          </div>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setShowSettings(!showSettings)}
-            className={cn("rounded-full h-9 w-9", showSettings && "bg-primary/10 text-primary")}
+    <div className="w-full h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#0f1419] overflow-hidden relative">
+      {/* Background blur circles for dark mode */}
+      <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
+      <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
+
+      {/* Header */}
+      <header className="shrink-0 pt-14 px-6 pb-4 flex items-center justify-between z-30">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate("/dashboard")}
+            id="back-btn"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-white/5 transition-colors"
           >
-            <Settings2 className="h-5 w-5" />
-          </Button>
+            <ArrowLeft className="h-6 w-6 text-[#29333d] dark:text-white" />
+          </button>
+          <div>
+            <h1 className="text-xl font-extrabold text-[#29333d] dark:text-white">{t("explore.title")}</h1>
+            <p className="text-xs font-medium text-[#6c8093]">{t("explore.subtitle")}</p>
+          </div>
         </div>
+        <button
+          onClick={() => setShowSettings(!showSettings)}
+          id="settings-btn"
+          className={cn(
+            "w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center premium-shadow",
+            showSettings && "bg-primary/10 text-primary"
+          )}
+        >
+          <SlidersHorizontal className="h-5 w-5 text-[#4b9b75]" />
+        </button>
       </header>
 
-      <div className="w-full max-w-lg mx-auto px-4 pt-6 space-y-6">
+      {/* Main Scrollable Content */}
+      <main className="flex-1 overflow-y-auto px-6 py-6 space-y-12 pb-32 relative z-10">
+        {/* Settings display preferences section */}
         {showSettings && (
-          <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-card rounded-2xl border border-border/60 p-4 space-y-4">
+          <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-white dark:bg-white/5 rounded-[32px] border border-gray-100 dark:border-white/10 p-6 space-y-4 premium-shadow">
             <div className="space-y-1">
-              <h2 className="font-semibold text-sm">{t("explore.display_settings.title")}</h2>
-              <p className="text-xs text-muted-foreground">{t("explore.display_settings.subtitle")}</p>
+              <h2 className="font-semibold text-sm text-[#29333d] dark:text-white">{t("explore.display_settings.title")}</h2>
+              <p className="text-xs text-[#6c8093]">{t("explore.display_settings.subtitle")}</p>
             </div>
             <div className="space-y-3 pt-2">
-              {allTools.map((tool) => (
+              {[...freeTools, ...premiumTools].map((tool) => (
                 <div key={tool.id} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", tool.iconBg)}>
+                    <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-sm")}>
                       <tool.icon className={cn("h-4 w-4", tool.iconColor)} />
                     </div>
-                    <Label htmlFor={`toggle-${tool.id}`} className="text-sm cursor-pointer">
+                    <Label htmlFor={`toggle-${tool.id}`} className="text-sm cursor-pointer text-[#29333d] dark:text-white font-medium">
                       {t(tool.titleKey)}
                       {tool.premium && !isPremium && (
                         <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
@@ -165,39 +143,217 @@ const Explore = () => {
           </section>
         )}
 
-        {visibleFreeTools.length > 0 && (
-          <section className="animate-fade-in" style={{ animationDelay: "50ms" }}>
-            <h2 className="text-sm font-medium text-muted-foreground mb-3 px-1">{t("explore.free_tools")}</h2>
-            <div className="space-y-3">
-              {freeTools.map((item) => (
-                <ToolCard key={item.id} item={item} premium={false} />
-              ))}
-            </div>
-          </section>
-        )}
+        {/* STRUMENTI GRATUITI (Free Tools) */}
+        {(preferences.habits || preferences.challenges || preferences["evening-reflection"] || preferences["daily-planning"]) && (
+          <section className="relative">
+            <h2 className="text-xs font-bold text-[#6c8093] uppercase tracking-[0.2em] mb-8 ml-1">
+              {t("explore.free_tools")}
+            </h2>
+            <div className="relative flex flex-col gap-6">
+              {/* Habits Card */}
+              {preferences.habits && (
+                <button
+                  type="button"
+                  onClick={() => handleNavigate("/habits", false)}
+                  id="tool-habits"
+                  className="block text-left w-full p-6 rounded-[32px] bg-[#d4f5ea] dark:bg-[#4b9b75]/10 border border-teal-200 dark:border-[#4b9b75]/25 premium-shadow relative z-10 transition-transform active:scale-95"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#4b9b75]/20 border border-teal-100 dark:border-[#4b9b75]/30 flex items-center justify-center shrink-0">
+                      <Target className="h-7 w-7 text-[#4b9b75]" />
+                    </div>
+                    <div>
+                      <h3 className="text-[17px] font-extrabold text-[#29333d] dark:text-white mb-1">
+                        {t("explore.tools.habits")}
+                      </h3>
+                      <p className="text-sm text-[#6c8093] leading-snug">
+                        {t("explore.tools.habits_desc")}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              )}
 
-        {visiblePremiumTools.length > 0 && (
-          <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-            <div className="flex items-center gap-2 mb-3 px-1">
-              <h2 className="text-sm font-medium text-muted-foreground">{t("explore.premium_tools")}</h2>
-              {!isPremium && (
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                  {t("common.pro")}
-                </span>
+              {/* Asymmetric Flex Row for Detox and Reflection */}
+              {(preferences.challenges || preferences["evening-reflection"]) && (
+                <div className="flex gap-4 w-full">
+                  {/* Detox Challenges */}
+                  {preferences.challenges && (
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate("/challenges", false)}
+                      id="tool-detox"
+                      className="flex-1 text-left p-5 rounded-[28px] bg-[#ffe8cc] dark:bg-[#ee9d2b]/10 border border-orange-200 dark:border-[#ee9d2b]/25 premium-shadow active:scale-95 transition-transform"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#ee9d2b]/20 border border-orange-100 dark:border-[#ee9d2b]/30 flex items-center justify-center mb-4 shrink-0">
+                        <Flame className="h-6 w-6 text-[#ee9d2b]" />
+                      </div>
+                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
+                        {t("explore.tools.detox_challenges")}
+                      </h3>
+                      <p className="text-[12px] text-[#6c8093] leading-tight">
+                        {t("explore.tools.detox_challenges_desc")}
+                      </p>
+                    </button>
+                  )}
+
+                  {/* Evening Reflection */}
+                  {preferences["evening-reflection"] && (
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate("/evening-reflection", false)}
+                      id="tool-evening"
+                      className="flex-1 text-left p-5 rounded-[28px] bg-[#ede5ff] dark:bg-[#8b5cf6]/10 border border-purple-200 dark:border-[#8b5cf6]/25 premium-shadow mt-4 active:scale-95 transition-transform"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#8b5cf6]/20 border border-purple-100 dark:border-[#8b5cf6]/30 flex items-center justify-center mb-4 shrink-0">
+                        <Moon className="h-6 w-6 text-[#8b5cf6]" />
+                      </div>
+                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
+                        {t("explore.tools.evening_reflection")}
+                      </h3>
+                      <p className="text-[12px] text-[#6c8093] leading-tight">
+                        {t("explore.tools.evening_reflection_desc")}
+                      </p>
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {/* Daily Planning */}
+              {preferences["daily-planning"] && (
+                <button
+                  type="button"
+                  onClick={() => handleNavigate("/daily-planning", false)}
+                  id="tool-planning"
+                  className="block text-left w-full p-5 rounded-[32px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 premium-shadow z-20 active:scale-95 transition-transform"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#f0f9f6] dark:bg-[#4b9b75]/20 flex items-center justify-center shrink-0">
+                      <Calendar className="h-5 w-5 text-[#4b9b75]" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-[#29333d] dark:text-white">
+                        {t("explore.tools.daily_planning")}
+                      </h3>
+                      <p className="text-[11px] text-[#6c8093]">
+                        {t("explore.tools.daily_planning_desc")}
+                      </p>
+                    </div>
+                  </div>
+                </button>
               )}
             </div>
-            <div className="space-y-3">
-              {premiumTools.map((item) => (
-                <ToolCard key={item.id} item={item} premium />
-              ))}
+          </section>
+        )}
+
+        {/* STRUMENTI PREMIUM (Premium Tools) */}
+        {(preferences["the-forge"] || preferences["trigger-tracking"] || preferences.coach) && (
+          <section className="relative">
+            <h2 className="text-xs font-bold text-[#6c8093] uppercase tracking-[0.2em] mb-8 ml-1">
+              {t("explore.premium_tools")}
+            </h2>
+            <div className="space-y-6">
+              {/* The Forge / La Rinascita */}
+              {preferences["the-forge"] && (
+                <button
+                  type="button"
+                  onClick={() => handleNavigate("/the-forge", true)}
+                  id="tool-rebirth"
+                  className="block text-left w-full p-6 rounded-[36px] bg-[#fde8f5] dark:bg-[#d946ef]/10 border border-pink-200 dark:border-[#d946ef]/20 premium-shadow relative overflow-hidden active:scale-95 transition-transform"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="relative shrink-0">
+                        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#d946ef]/20 border border-pink-100 dark:border-[#d946ef]/30 flex items-center justify-center shrink-0">
+                          <Sparkles className="h-7 w-7 text-[#d946ef]" />
+                        </div>
+                        {!isPremium && (
+                          <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
+                            <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-[#29333d] dark:text-white">
+                          {t("explore.tools.the_forge")}
+                        </h3>
+                        <p className="text-xs text-[#6c8093]">
+                          {t("explore.tools.the_forge_desc")}
+                        </p>
+                      </div>
+                    </div>
+                    <ChevronRight className="h-6 w-6 text-[#d946ef] shrink-0" />
+                  </div>
+                </button>
+              )}
+
+              {/* Grid Row for Trigger and Coach AI */}
+              {(preferences["trigger-tracking"] || preferences.coach) && (
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Trigger Tracking */}
+                  {preferences["trigger-tracking"] && (
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate("/trigger-tracking", true)}
+                      id="tool-trigger"
+                      className="p-6 text-left rounded-[32px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 premium-shadow active:scale-95 transition-transform"
+                    >
+                      <div className="relative mb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-[#ffe8cc] dark:bg-[#ee9d2b]/20 border border-transparent dark:border-[#ee9d2b]/30 flex items-center justify-center shrink-0">
+                          <Zap className="h-6 w-6 text-[#ee9d2b]" />
+                        </div>
+                        {!isPremium && (
+                          <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
+                            <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
+                          </div>
+                        )}
+                      </div>
+                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white">
+                        {t("explore.tools.trigger_tracking")}
+                      </h3>
+                      <p className="text-[11px] text-[#6c8093] mt-1">
+                        {t("explore.tools.trigger_tracking_desc")}
+                      </p>
+                    </button>
+                  )}
+
+                  {/* Coach AI */}
+                  {preferences.coach && (
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate("/coach", true)}
+                      id="tool-ai"
+                      className="p-5 text-center rounded-[32px] bg-[#d0e8ff] dark:bg-[#3b82f6]/10 border border-blue-200 dark:border-[#3b82f6]/20 premium-shadow flex flex-col items-center justify-center active:scale-95 transition-transform"
+                    >
+                      <div className="relative mb-3">
+                        <div className="w-14 h-14 rounded-full bg-white dark:bg-[#3b82f6]/20 border border-blue-100 dark:border-[#3b82f6]/30 flex items-center justify-center shrink-0">
+                          <Bot className="h-7 w-7 text-[#3b82f6]" />
+                        </div>
+                        {!isPremium && (
+                          <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
+                            <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
+                          </div>
+                        )}
+                      </div>
+                      <h3 className="text-sm font-extrabold text-[#29333d] dark:text-white">
+                        {t("explore.tools.ai_coach")}
+                      </h3>
+                      <p className="text-[10px] text-[#6c8093] uppercase font-bold tracking-tighter">
+                        {t("explore.tools.ai_coach_desc")}
+                      </p>
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </section>
         )}
 
+        {/* Fallback layout if all tools are hidden */}
         {visibleFreeTools.length === 0 && visiblePremiumTools.length === 0 && !showSettings && (
           <div className="text-center py-12 space-y-4">
-            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
-              <Settings2 className="h-8 w-8 text-muted-foreground" />
+            <div className="w-16 h-16 bg-muted dark:bg-white/5 rounded-full flex items-center justify-center mx-auto">
+              <SlidersHorizontal className="h-8 w-8 text-[#6c8093]" />
             </div>
             <p className="text-sm text-muted-foreground">{t("explore.no_visible_tools")}</p>
             <Button variant="outline" onClick={() => setShowSettings(true)}>
@@ -205,25 +361,101 @@ const Explore = () => {
             </Button>
           </div>
         )}
+      </main>
 
-        {!isPremium && (
-          <section className="pt-2 animate-fade-in" style={{ animationDelay: "150ms" }}>
-            <button
-              type="button"
-              onClick={() => navigate("/pricing")}
-              className="w-full p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 hover:border-primary/40 transition-colors"
-            >
-              <div className="flex items-center justify-center gap-2 text-primary">
-                <Sparkles className="h-4 w-4" />
-                <span className="font-medium text-sm">{t("explore.unlock_all")}</span>
+      {/* Custom 5-column navigation footer */}
+      <nav className="shrink-0 pb-[34px] bg-white dark:bg-[#1a212e]/90 border-t border-gray-100 dark:border-white/5 flex justify-around items-center px-4 pt-4 z-40 relative">
+        <button
+          onClick={() => navigate("/dashboard")}
+          id="nav-home"
+          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
+        >
+          <div className="w-10 h-10 flex items-center justify-center">
+            <LayoutGrid className="h-6 w-6" />
+          </div>
+          <span className="text-[10px] font-bold">Home</span>
+        </button>
+
+        <button
+          onClick={() => navigate("/explore")}
+          id="nav-tools"
+          className="flex flex-col items-center gap-1.5 text-[#4b9b75]"
+        >
+          <div className="w-10 h-10 flex items-center justify-center bg-[#4b9b75]/10 rounded-2xl dark:rounded-xl transition-all">
+            <Compass className="h-6 w-6" />
+          </div>
+          <span className="text-[10px] font-extrabold">Strumenti</span>
+        </button>
+
+        <div className="relative flex flex-col items-center">
+          <Popover open={fabMenuOpen} onOpenChange={setFabMenuOpen}>
+            <PopoverTrigger asChild>
+              <button
+                id="fab-add"
+                className="w-16 h-16 bg-[#0f172a] dark:bg-[#4b9b75] rounded-[24px] text-white flex items-center justify-center -mt-12 fab-shadow dark:fab-glow border-4 border-[#F8FAFC] dark:border-[#0f1419] transition-transform active:scale-95"
+              >
+                <Plus className="h-7 w-7" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-48 p-2 mb-2 z-50" align="center" side="top">
+              <div className="space-y-1">
+                <button
+                  onClick={() => {
+                    setFabMenuOpen(false);
+                    setShowCreateHabit(true);
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-[#4b9b75]/10 flex items-center justify-center shrink-0">
+                    <Target className="h-4 w-4 text-[#4b9b75]" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground dark:text-white">Nuova Abitudine</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setFabMenuOpen(false);
+                    setShowCreateChallenge(true);
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-[#ff4757]/10 flex items-center justify-center shrink-0">
+                    <Flame className="h-4 w-4 text-[#ff4757]" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground dark:text-white">Nuova Sfida Detox</span>
+                </button>
               </div>
-            </button>
-          </section>
-        )}
-      </div>
+            </PopoverContent>
+          </Popover>
+          <span className="text-[10px] font-bold text-[#6c8093] mt-1">Nuovo</span>
+        </div>
 
+        <button
+          onClick={() => navigate("/learn")}
+          id="nav-learn"
+          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
+        >
+          <div className="w-10 h-10 flex items-center justify-center">
+            <BookOpen className="h-6 w-6" />
+          </div>
+          <span className="text-[10px] font-bold">Impara</span>
+        </button>
+
+        <button
+          onClick={() => navigate("/profile")}
+          id="nav-profile"
+          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
+        >
+          <div className="w-10 h-10 flex items-center justify-center">
+            <User className="h-6 w-6" />
+          </div>
+          <span className="text-[10px] font-bold">Profilo</span>
+        </button>
+      </nav>
+
+      {/* Creation Modals and Paywall Modal */}
+      <CreateHabitModal open={showCreateHabit} onOpenChange={setShowCreateHabit} onSuccess={() => {}} />
+      <CreateChallengeModal open={showCreateChallenge} onOpenChange={setShowCreateChallenge} onSuccess={() => {}} />
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason="general" />
-      <BottomNavigation />
     </div>
   );
 };

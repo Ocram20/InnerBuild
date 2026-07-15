@@ -531,3 +531,55 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
 }
+
+/* Explore Redesign Styles */
+.premium-shadow {
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06), 0 10px 15px -5px rgba(0, 0, 0, 0.03);
+}
+
+.dark .premium-shadow {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+.floating-shape {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.fab-shadow {
+  box-shadow: 0 15px 30px -5px rgba(15, 23, 42, 0.4);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.dark .glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bg-blur-circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  opacity: 0.12;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-anim {
+  animation: float 6s ease-in-out infinite;
+}
