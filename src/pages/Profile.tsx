@@ -100,7 +100,10 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-background pb-app-main">
+    <div className="min-h-screen overflow-x-hidden bg-[#F8FAFC] dark:bg-[#0f1419] pb-app-main relative">
+      {/* Background blur circles for dark mode */}
+      <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
+      <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
       <header className="sticky top-0 safe-area-header z-40 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-4">

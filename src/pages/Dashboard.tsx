@@ -22,13 +22,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Leaf, Plus, LogOut, Moon, Sun, Crown,
+  Leaf, LogOut, Moon, Sun, Crown, Plus,
   ChevronRight, Target, User, Compass, Home, AlertTriangle, Flame, X,
 } from "lucide-react";
 import CreateHabitModal from "@/components/CreateHabitModal";
@@ -181,7 +177,10 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen overflow-x-hidden pb-app-main bg-background">
+    <div className="min-h-screen overflow-x-hidden pb-app-main bg-[#F8FAFC] dark:bg-[#0f1419] relative">
+      {/* Background blur circles for dark mode */}
+      <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
+      <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
       <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
         <div className="flex max-w-lg flex-col gap-3 p-4 mx-auto sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -310,45 +309,6 @@ export default function Dashboard() {
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason={paywallReason} />
       <EmergencyUrgeModal open={showEmergency} onClose={() => setShowEmergency(false)} />
       <BottomNavigation />
-
-      {/* Central FAB Button */}
-      <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+34px+16px)] left-1/2 transform -translate-x-1/2 z-50">
-        <Popover open={fabMenuOpen} onOpenChange={setFabMenuOpen}>
-          <PopoverTrigger asChild>
-            <button className="w-16 h-16 bg-[#0f172a] dark:bg-[#4b9b75] rounded-[22px] dark:rounded-[24px] text-white flex items-center justify-center shadow-lg shadow-[#0f172a]/40 dark:fab-glow dark:border-4 dark:border-[#0f1419] active:scale-[0.95] transition-all">
-              <Plus className="h-7 w-7" />
-            </button>
-          </PopoverTrigger>
-          <PopoverContent className="w-48 p-2 mb-2" align="center" side="top">
-            <div className="space-y-1">
-              <button
-                onClick={() => {
-                  setFabMenuOpen(false);
-                  setShowCreateHabit(true);
-                }}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#4b9b75]/10 flex items-center justify-center">
-                  <Target className="h-4 w-4 text-[#4b9b75]" />
-                </div>
-                <span className="text-sm font-medium text-foreground dark:text-white">Nuova Abitudine</span>
-              </button>
-              <button
-                onClick={() => {
-                  setFabMenuOpen(false);
-                  setShowCreateChallenge(true);
-                }}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#ff4757]/10 flex items-center justify-center">
-                  <Flame className="h-4 w-4 text-[#ff4757]" />
-                </div>
-                <span className="text-sm font-medium text-foreground dark:text-white">Nuova Sfida Detox</span>
-              </button>
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
     </div>
   );
 }

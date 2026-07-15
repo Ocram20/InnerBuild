@@ -6,16 +6,14 @@ import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { useCategoryPreferences } from "@/hooks/useCategoryPreferences";
 import {
   Bot, ChevronRight, Sparkles, Lock, Zap, Calendar, Flame, ArrowLeft, Target, Moon,
-  SlidersHorizontal, Plus, LayoutGrid, Compass, BookOpen, User,
+  SlidersHorizontal,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PaywallModal from "@/components/PaywallModal";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import CreateHabitModal from "@/components/CreateHabitModal";
-import CreateChallengeModal from "@/components/CreateChallengeModal";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import BottomNavigation from "@/components/BottomNavigation";
 
 type ToolDef = {
   id: string;
@@ -49,9 +47,6 @@ const Explore = () => {
   const { preferences, updatePreference } = useCategoryPreferences();
   const [showPaywall, setShowPaywall] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [showCreateHabit, setShowCreateHabit] = useState(false);
-  const [showCreateChallenge, setShowCreateChallenge] = useState(false);
-  const [fabMenuOpen, setFabMenuOpen] = useState(false);
   
   const isPremium = hasAdminRole || subscription.subscribed;
 
@@ -75,40 +70,42 @@ const Explore = () => {
   const visiblePremiumTools = premiumTools.filter(item => preferences[item.id as keyof typeof preferences]);
 
   return (
-    <div className="w-full h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#0f1419] overflow-hidden relative">
+    <div className="min-h-screen overflow-x-hidden pb-app-main bg-[#F8FAFC] dark:bg-[#0f1419] relative">
       {/* Background blur circles for dark mode */}
       <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
       <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
 
       {/* Header */}
-      <header className="shrink-0 pt-14 px-6 pb-4 flex items-center justify-between z-30">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate("/dashboard")}
-            id="back-btn"
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-white/5 transition-colors"
-          >
-            <ArrowLeft className="h-6 w-6 text-[#29333d] dark:text-white" />
-          </button>
-          <div>
-            <h1 className="text-xl font-extrabold text-[#29333d] dark:text-white">{t("explore.title")}</h1>
-            <p className="text-xs font-medium text-[#6c8093]">{t("explore.subtitle")}</p>
+      <header className="pt-14 pb-4 z-30">
+        <div className="max-w-lg mx-auto w-full px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate("/dashboard")}
+              id="back-btn"
+              className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-white/5 transition-colors"
+            >
+              <ArrowLeft className="h-6 w-6 text-[#29333d] dark:text-white" />
+            </button>
+            <div>
+              <h1 className="text-xl font-extrabold text-[#29333d] dark:text-white">{t("explore.title")}</h1>
+              <p className="text-xs font-medium text-[#6c8093]">{t("explore.subtitle")}</p>
+            </div>
           </div>
+          <button
+            onClick={() => setShowSettings(!showSettings)}
+            id="settings-btn"
+            className={cn(
+              "w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center premium-shadow",
+              showSettings && "bg-primary/10 text-primary"
+            )}
+          >
+            <SlidersHorizontal className="h-5 w-5 text-[#4b9b75]" />
+          </button>
         </div>
-        <button
-          onClick={() => setShowSettings(!showSettings)}
-          id="settings-btn"
-          className={cn(
-            "w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center premium-shadow",
-            showSettings && "bg-primary/10 text-primary"
-          )}
-        >
-          <SlidersHorizontal className="h-5 w-5 text-[#4b9b75]" />
-        </button>
       </header>
 
-      {/* Main Scrollable Content */}
-      <main className="flex-1 overflow-y-auto px-6 py-6 space-y-12 pb-32 relative z-10">
+      {/* Main Content */}
+      <main className="w-full max-w-lg mx-auto px-6 py-6 space-y-12 relative z-10">
         {/* Settings display preferences section */}
         {showSettings && (
           <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-white dark:bg-white/5 rounded-[32px] border border-gray-100 dark:border-white/10 p-6 space-y-4 premium-shadow">
@@ -363,98 +360,7 @@ const Explore = () => {
         )}
       </main>
 
-      {/* Custom 5-column navigation footer */}
-      <nav className="shrink-0 pb-[34px] bg-white dark:bg-[#1a212e]/90 border-t border-gray-100 dark:border-white/5 flex justify-around items-center px-4 pt-4 z-40 relative">
-        <button
-          onClick={() => navigate("/dashboard")}
-          id="nav-home"
-          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
-        >
-          <div className="w-10 h-10 flex items-center justify-center">
-            <LayoutGrid className="h-6 w-6" />
-          </div>
-          <span className="text-[10px] font-bold">Home</span>
-        </button>
-
-        <button
-          onClick={() => navigate("/explore")}
-          id="nav-tools"
-          className="flex flex-col items-center gap-1.5 text-[#4b9b75]"
-        >
-          <div className="w-10 h-10 flex items-center justify-center bg-[#4b9b75]/10 rounded-2xl dark:rounded-xl transition-all">
-            <Compass className="h-6 w-6" />
-          </div>
-          <span className="text-[10px] font-extrabold">Strumenti</span>
-        </button>
-
-        <div className="relative flex flex-col items-center">
-          <Popover open={fabMenuOpen} onOpenChange={setFabMenuOpen}>
-            <PopoverTrigger asChild>
-              <button
-                id="fab-add"
-                className="w-16 h-16 bg-[#0f172a] dark:bg-[#4b9b75] rounded-[24px] text-white flex items-center justify-center -mt-12 fab-shadow dark:fab-glow border-4 border-[#F8FAFC] dark:border-[#0f1419] transition-transform active:scale-95"
-              >
-                <Plus className="h-7 w-7" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-48 p-2 mb-2 z-50" align="center" side="top">
-              <div className="space-y-1">
-                <button
-                  onClick={() => {
-                    setFabMenuOpen(false);
-                    setShowCreateHabit(true);
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#4b9b75]/10 flex items-center justify-center shrink-0">
-                    <Target className="h-4 w-4 text-[#4b9b75]" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground dark:text-white">Nuova Abitudine</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setFabMenuOpen(false);
-                    setShowCreateChallenge(true);
-                  }}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#ff4757]/10 flex items-center justify-center shrink-0">
-                    <Flame className="h-4 w-4 text-[#ff4757]" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground dark:text-white">Nuova Sfida Detox</span>
-                </button>
-              </div>
-            </PopoverContent>
-          </Popover>
-          <span className="text-[10px] font-bold text-[#6c8093] mt-1">Nuovo</span>
-        </div>
-
-        <button
-          onClick={() => navigate("/learn")}
-          id="nav-learn"
-          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
-        >
-          <div className="w-10 h-10 flex items-center justify-center">
-            <BookOpen className="h-6 w-6" />
-          </div>
-          <span className="text-[10px] font-bold">Impara</span>
-        </button>
-
-        <button
-          onClick={() => navigate("/profile")}
-          id="nav-profile"
-          className="flex flex-col items-center gap-1.5 text-[#6c8093] hover:text-[#4b9b75] dark:hover:text-white transition-colors"
-        >
-          <div className="w-10 h-10 flex items-center justify-center">
-            <User className="h-6 w-6" />
-          </div>
-          <span className="text-[10px] font-bold">Profilo</span>
-        </button>
-      </nav>
-
-      {/* Creation Modals and Paywall Modal */}
-      <CreateHabitModal open={showCreateHabit} onOpenChange={setShowCreateHabit} onSuccess={() => {}} />
-      <CreateChallengeModal open={showCreateChallenge} onOpenChange={setShowCreateChallenge} onSuccess={() => {}} />
+      <BottomNavigation />
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason="general" />
     </div>
   );
