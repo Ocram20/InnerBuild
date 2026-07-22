@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Shield, TrendingUp, AlertTriangle } from "lucide-react";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -10,8 +11,7 @@ import { useRecoveryJourney } from "@/hooks/useRecoveryJourney";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LockedPreview } from "@/components/recovery/LockedPreview";
 import { UnderstandingSection } from "@/components/recovery/UnderstandingSection";
-import { BrainScienceSection } from "@/components/recovery/BrainScienceSection";
-import { StrategiesSection } from "@/components/recovery/StrategiesSection";
+import { StrategiesSection, LearnGuideCTACard } from "@/components/recovery/StrategiesSection";
 import { CravingActionsSection } from "@/components/recovery/CravingActionsSection";
 import { TriggersSection } from "@/components/recovery/TriggersSection";
 import { AntiTriggerPlanSection } from "@/components/recovery/AntiTriggerPlanSection";
@@ -24,8 +24,6 @@ import { RecoveryJourneyPath } from "@/components/recovery/RecoveryJourneyPath";
 import { RecoveryImpactCard } from "@/components/recovery/RecoveryImpactCard";
 import { useRecoveryPhase } from "@/hooks/useRecoveryPhase";
 import { useTranslation } from "react-i18next";
-
-
 
 export default function TheForge() {
   const { t } = useTranslation();
@@ -54,11 +52,16 @@ export default function TheForge() {
               <div><h1 className="text-xl font-bold">{t("the_forge.title")}</h1><p className="text-sm text-muted-foreground">{t("the_forge.subtitle")}</p></div>
             </div>
             {isPremium && journey && (
-              <Button type="button" size="sm" variant="destructive" onClick={() => setShowEmergency(true)} className="gap-1.5 bg-rose-600 hover:bg-rose-700 text-white shadow-lg">
-                <AlertTriangle className="h-4 w-4" />
-                <span className="hidden sm:inline">{t("the_forge.emergency")}</span>
-                <span className="sm:hidden">{t("the_forge.sos")}</span>
-              </Button>
+              <motion.div
+                whileTap={{ scale: 0.94 }}
+                transition={{ duration: 0.1 }}
+              >
+                <Button type="button" size="sm" variant="destructive" onClick={() => setShowEmergency(true)} className="gap-1.5 bg-rose-600 hover:bg-rose-700 text-white shadow-lg">
+                  <AlertTriangle className="h-4 w-4 animate-bounce" />
+                  <span className="hidden sm:inline">{t("the_forge.emergency")}</span>
+                  <span className="sm:hidden">{t("the_forge.sos")}</span>
+                </Button>
+              </motion.div>
             )}
           </div>
         </div>
@@ -67,13 +70,13 @@ export default function TheForge() {
       <main className="container max-w-4xl mx-auto px-4 py-6 pb-scroll-safe">
         {!isPremium ? <LockedPreview /> : (
           <Tabs defaultValue="progress" className="w-full">
-            <TabsList className="w-full grid grid-cols-3 mb-6 h-11">
-              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5"><TrendingUp className="h-3.5 w-3.5" /><span>{t("the_forge.progress")}</span></TabsTrigger>
-              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5"><Shield className="h-3.5 w-3.5" /><span>{t("the_forge.manage_tab")}</span></TabsTrigger>
-              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5"><BookOpen className="h-3.5 w-3.5" /><span>{t("the_forge.learn_tab")}</span></TabsTrigger>
+            <TabsList className="w-full grid grid-cols-3 mb-6 h-11 bg-slate-900/80 border border-border/50 rounded-xl p-1">
+              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"><TrendingUp className="h-3.5 w-3.5" /><span>{t("the_forge.progress")}</span></TabsTrigger>
+              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5 rounded-lg data-[state=active]:bg-emerald-600 data-[state=active]:text-white"><Shield className="h-3.5 w-3.5" /><span>{t("the_forge.manage_tab")}</span></TabsTrigger>
+              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5 rounded-lg data-[state=active]:bg-purple-600 data-[state=active]:text-white"><BookOpen className="h-3.5 w-3.5" /><span>{t("the_forge.learn_tab")}</span></TabsTrigger>
             </TabsList>
 
-            <TabsContent value="progress" className="space-y-6 animate-in fade-in duration-200">
+            <TabsContent value="progress" className="space-y-6 animate-in fade-in duration-150">
               {journey && phaseProgress && <RecoveryJourneyPath progress={phaseProgress} />}
               {journey && (
                 <RecoveryImpactCard
@@ -88,20 +91,46 @@ export default function TheForge() {
               <ReasonsSection />
             </TabsContent>
 
-            <TabsContent value="manage" className="space-y-6 animate-in fade-in duration-200">
-              <Button type="button" size="lg" variant="destructive" onClick={() => setShowEmergency(true)} className="w-full h-14 text-base gap-2 bg-rose-600 hover:bg-rose-700 text-white shadow-lg rounded-xl">
-                <AlertTriangle className="h-5 w-5" />
-                {t("dashboard.emergency_urge")}
-              </Button>
+            <TabsContent value="manage" className="space-y-6 animate-in fade-in duration-150">
+              {/* Emergency Impulse SOS Button with short bounce and subtle pulsing glow */}
+              <motion.div
+                initial={{ scale: 1 }}
+                animate={{
+                  scale: [1, 1.02, 1],
+                  boxShadow: [
+                    "0 0 0px rgba(225,29,72,0)",
+                    "0 0 18px rgba(225,29,72,0.5)",
+                    "0 0 0px rgba(225,29,72,0)",
+                  ],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.8,
+                  ease: "easeInOut",
+                }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="destructive"
+                  onClick={() => setShowEmergency(true)}
+                  className="w-full h-14 text-base font-bold gap-2.5 bg-gradient-to-r from-rose-600 via-red-600 to-rose-700 hover:from-rose-500 hover:to-red-500 text-white shadow-xl shadow-rose-950/60 rounded-2xl border border-rose-400/30"
+                >
+                  <AlertTriangle className="h-5 w-5 text-rose-100 animate-bounce" />
+                  <span>{t("dashboard.emergency_urge")}</span>
+                </Button>
+              </motion.div>
+
               <CravingActionsSection />
-              <TriggersSection />
+              <StrategiesSection />
               <AntiTriggerPlanSection />
             </TabsContent>
 
-            <TabsContent value="learn" className="space-y-6 animate-in fade-in duration-200">
+            <TabsContent value="learn" className="space-y-6 animate-in fade-in duration-150">
               <UnderstandingSection />
-              <BrainScienceSection />
-              <StrategiesSection />
+              <TriggersSection />
+              <LearnGuideCTACard />
             </TabsContent>
           </Tabs>
         )}
@@ -119,3 +148,4 @@ export default function TheForge() {
     </div>
   );
 }
+

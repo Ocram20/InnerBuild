@@ -35,14 +35,21 @@ export function RecoveryImpactCard({
         : t("recovery_impact.energy_stable");
 
   return (
-    <Card className="overflow-hidden border-border/50 bg-gradient-to-br from-card to-card/80">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">{t("recovery_impact.title")}</CardTitle>
-        <p className="text-sm text-muted-foreground">{t("recovery_impact.subtitle")}</p>
+    <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
+      <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shadow-[0_0_12px_rgba(6,182,212,0.15)]">
+            <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
+          </div>
+          <div>
+            <CardTitle className="text-base sm:text-lg font-bold text-foreground">{t("recovery_impact.title")}</CardTitle>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">{t("recovery_impact.subtitle")}</p>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent className="space-y-5">
+      <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-5">
         {loading || !data ? (
-          <div className="rounded-xl bg-muted/30 p-6 text-center text-sm text-muted-foreground">
+          <div className="rounded-xl bg-slate-900/60 border border-border/40 p-6 text-center text-sm text-muted-foreground">
             {t("common.loading")}
           </div>
         ) : (
@@ -57,31 +64,31 @@ export function RecoveryImpactCard({
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
-              <div className="rounded-xl border border-border/50 bg-muted/30 p-4">
-                <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-cyan-500/30 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-cyan-400 font-semibold">
                   <Clock3 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.time_saved_label")}</span>
                 </div>
-                <p className="text-2xl font-semibold text-foreground">{hoursRecovered}</p>
-                <p className="text-xs text-muted-foreground">{t("recovery_impact.hours_recovered")}</p>
+                <p className="text-2xl font-extrabold text-foreground">{hoursRecovered}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t("recovery_impact.hours_recovered")}</p>
               </div>
 
-              <div className="rounded-xl border border-border/50 bg-muted/30 p-4">
-                <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-emerald-500/30 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-emerald-400 font-semibold">
                   <TrendingUp className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.energy_label")}</span>
                 </div>
-                <p className="text-sm font-semibold text-foreground">{energySummary}</p>
+                <p className="text-sm font-bold text-foreground">{energySummary}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{t("recovery_impact.clean_vs_relapse")}</p>
               </div>
 
-              <div className="rounded-xl border border-border/50 bg-muted/30 p-4">
-                <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-purple-500/30 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-purple-400 font-semibold">
                   <CheckSquare2 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.tasks_label")}</span>
                 </div>
-                <p className="text-2xl font-semibold text-foreground">{data.protectedTasks}</p>
-                <p className="text-xs text-muted-foreground">{t("recovery_impact.tasks_protected")}</p>
+                <p className="text-2xl font-extrabold text-foreground">{data.protectedTasks}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t("recovery_impact.tasks_protected")}</p>
               </div>
             </div>
           </>

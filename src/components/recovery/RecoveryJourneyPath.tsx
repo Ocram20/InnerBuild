@@ -128,29 +128,34 @@ export function RecoveryJourneyPath({ progress }: Props) {
   };
 
   return (
-    <Card className="overflow-hidden border-border/50">
-      <CardContent className="p-4 space-y-4">
+    <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
+      <CardContent className="p-4 sm:p-6 space-y-5">
         {/* Title */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-semibold text-foreground">{t("recovery_journey.title")}</h3>
-            <p className="text-xs text-muted-foreground">
-              {t("recovery_journey.day_phase", { day: progress.successCount, phase: t(`recovery_journey.phases.${progress.currentPhase.id}.name`) })}
-            </p>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl bg-primary/10 text-primary border border-primary/20 shadow-[0_0_12px_rgba(59,130,246,0.15)]">
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
+            </div>
+            <div>
+              <h3 className="text-sm sm:text-base font-bold text-foreground">{t("recovery_journey.title")}</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {t("recovery_journey.day_phase", { day: progress.successCount, phase: t(`recovery_journey.phases.${progress.currentPhase.id}.name`) })}
+              </p>
+            </div>
           </div>
-          <span className="text-2xl">{progress.currentPhase.icon}</span>
+          <span className="text-2xl sm:text-3xl p-1.5 rounded-xl bg-slate-900/60 border border-border/40 shadow-sm">{progress.currentPhase.icon}</span>
         </div>
 
         {/* Phase description */}
-        <p className="text-xs text-muted-foreground leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed bg-slate-950/40 p-3 rounded-xl border border-border/30">
           {t(`recovery_journey.phases.${progress.currentPhase.id}.description`)}
         </p>
 
         {/* SVG Roadmap */}
-        <div className="flex justify-center">
+        <div className="flex justify-center py-1">
           <svg
             viewBox={`0 0 ${pathWidth} ${totalHeight}`}
-            className="w-full max-w-[280px]"
+            className="w-full max-w-[290px]"
             style={{ height: totalHeight }}
           >
             <path
@@ -160,6 +165,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
               strokeWidth="4"
               strokeLinecap="round"
               strokeDasharray="8 6"
+              opacity="0.6"
             />
             <path
               d={svgPath}
@@ -178,11 +184,11 @@ export function RecoveryJourneyPath({ progress }: Props) {
               return (
                 <g key={phase.id}>
                   {isActive && (
-                    <circle cx={pos.x} cy={pos.y} r={nodeRadius + 6} fill="none" stroke={phase.color} strokeWidth="2" opacity="0.3" className="animate-pulse" />
+                    <circle cx={pos.x} cy={pos.y} r={nodeRadius + 6} fill="none" stroke={phase.color} strokeWidth="2" opacity="0.4" className="animate-pulse" />
                   )}
                   <circle cx={pos.x} cy={pos.y} r={nodeRadius} fill={isPast || isActive ? phase.color : "hsl(var(--muted))"} opacity={isFuture ? 0.4 : 1} stroke={isActive ? phase.color : "none"} strokeWidth={isActive ? 3 : 0} />
                   <text x={pos.x} y={pos.y + 1} textAnchor="middle" dominantBaseline="central" fontSize="14" className={isFuture ? "opacity-40" : ""}>{phase.icon}</text>
-                  <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y - 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-foreground" fontSize="11" fontWeight={isActive ? "600" : "400"} opacity={isFuture ? 0.4 : 1}>{t(`recovery_journey.phases.${phase.id}.name`)}</text>
+                  <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y - 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-foreground" fontSize="11" fontWeight={isActive ? "700" : "500"} opacity={isFuture ? 0.4 : 1}>{t(`recovery_journey.phases.${phase.id}.name`)}</text>
                   <text x={i % 2 === 0 ? pos.x + nodeRadius + 10 : pos.x - nodeRadius - 10} y={pos.y + 8} textAnchor={i % 2 === 0 ? "start" : "end"} className="fill-muted-foreground" fontSize="9" opacity={isFuture ? 0.3 : 0.7}>
                     {phase.maxDays < 999 ? `${t("recovery_journey.day_label")} ${phase.minDays}–${phase.maxDays}` : `${t("recovery_journey.day_label")} ${phase.minDays}+`}
                   </text>
@@ -193,18 +199,18 @@ export function RecoveryJourneyPath({ progress }: Props) {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-2 text-center">
-          <div className="rounded-lg bg-muted/50 p-2">
-            <p className="text-xs font-semibold text-foreground">{progress.successCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.clean_days")}</p>
+        <div className="grid grid-cols-3 gap-2.5 text-center">
+          <div className="rounded-xl bg-slate-900/60 border border-emerald-500/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-emerald-400">{progress.successCount}</p>
+            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.clean_days")}</p>
           </div>
-          <div className="rounded-lg bg-muted/50 p-2">
-            <p className="text-xs font-semibold text-foreground">{progress.failureCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.setbacks")}</p>
+          <div className="rounded-xl bg-slate-900/60 border border-rose-500/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-rose-400">{progress.failureCount}</p>
+            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.setbacks")}</p>
           </div>
-          <div className="rounded-lg bg-muted/50 p-2">
-            <p className="text-xs font-semibold text-foreground">{progress.debriefCount}</p>
-            <p className="text-[10px] text-muted-foreground">{t("recovery_journey.debriefs", "Debrief")}</p>
+          <div className="rounded-xl bg-slate-900/60 border border-amber-500/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-amber-400">{progress.debriefCount}</p>
+            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.debriefs", "Debrief")}</p>
           </div>
         </div>
 
@@ -213,22 +219,22 @@ export function RecoveryJourneyPath({ progress }: Props) {
           variant="outline"
           size="sm"
           onClick={fetchAIInsight}
-          className="w-full gap-2 text-xs"
+          className="w-full gap-2 text-xs h-10 border-border/60 bg-slate-900/40 hover:bg-slate-900/80 rounded-xl transition-all"
         >
-          <Sparkles className="h-3.5 w-3.5 text-primary" />
-          {alreadyUsedToday ? t("recovery_journey.view_insight") : t("recovery_journey.ai_insight")}
-          {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+          <Sparkles className="h-3.5 w-3.5 text-primary animate-pulse" />
+          <span>{alreadyUsedToday ? t("recovery_journey.view_insight") : t("recovery_journey.ai_insight")}</span>
+          {expanded ? <ChevronUp className="h-3 w-3 text-muted-foreground" /> : <ChevronDown className="h-3 w-3 text-muted-foreground" />}
         </Button>
 
         {expanded && (
-          <div className="rounded-xl bg-muted/40 p-3 animate-fade-in">
+          <div className="rounded-xl bg-slate-950/70 border border-border/50 p-4 animate-fade-in shadow-inner">
             {aiLoading ? (
               <div className="flex items-center justify-center gap-2 py-3">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 <span className="text-xs text-muted-foreground">{t("recovery_journey.analyzing")}</span>
               </div>
             ) : aiInsight ? (
-              <p className="text-xs text-foreground leading-relaxed whitespace-pre-line">{aiInsight}</p>
+              <p className="text-xs text-foreground/90 leading-relaxed whitespace-pre-line font-medium">{aiInsight}</p>
             ) : (
               <p className="text-xs text-muted-foreground">{t("recovery_journey.insight_error")}</p>
             )}

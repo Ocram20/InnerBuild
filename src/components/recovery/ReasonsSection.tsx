@@ -133,15 +133,17 @@ export function ReasonsSection() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Heart className="h-5 w-5 text-primary" />
-          {t("reasons_section.title")}
+    <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
+      <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
+        <CardTitle className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-foreground">
+          <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
+            <Heart className="h-4 w-4 sm:h-5 sm:w-5" />
+          </div>
+          <span>{t("reasons_section.title")}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-muted-foreground text-sm">{t("reasons_section.description")}</p>
+      <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-4">
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{t("reasons_section.description")}</p>
 
         {/* User's reasons */}
         {reasons.length > 0 && (
@@ -149,19 +151,19 @@ export function ReasonsSection() {
             {reasons.map((reason, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 group"
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-purple-500/20 shadow-sm group hover:border-purple-500/40 transition-all"
               >
-                <Sparkles className="h-4 w-4 text-primary shrink-0" />
-                <p className="text-sm text-foreground flex-1">
+                <Sparkles className="h-4 w-4 text-purple-400 shrink-0" />
+                <p className="text-xs sm:text-sm text-foreground flex-1 font-medium leading-snug">
                   {shouldTranslateContent ? display(reason) : reason}
                 </p>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                  className="h-7 w-7 opacity-70 group-hover:opacity-100 transition-opacity shrink-0 hover:bg-rose-500/10 hover:text-rose-400"
                   onClick={() => removeReason(index)}
                 >
-                  <Trash2 className="h-3 w-3 text-destructive" />
+                  <Trash2 className="h-3.5 w-3.5" />
                 </Button>
               </div>
             ))}
@@ -174,36 +176,36 @@ export function ReasonsSection() {
             placeholder={t("reasons_section.new_placeholder")}
             value={newReason}
             onChange={(e) => setNewReason(e.target.value)}
-            className="min-h-[60px] text-sm"
+            className="min-h-[70px] text-xs sm:text-sm bg-slate-950/60 border-border/60 rounded-xl focus:border-purple-500/50"
           />
           <Button 
             size="sm" 
             onClick={() => addReason(newReason)}
             disabled={saving || !newReason.trim()}
-            className="w-full"
+            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold rounded-xl h-10 gap-1.5 shadow-md shadow-purple-950/40"
           >
             {saving ? (
-              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="h-4 w-4" />
             )}
-            {t("reasons_section.add_my_reason")}
+            <span>{t("reasons_section.add_my_reason")}</span>
           </Button>
         </div>
 
         {/* Suggested reasons */}
         <div>
-          <p className="text-xs text-muted-foreground mb-2">{t("reasons_section.suggested_prompt")}</p>
-          <div className="flex flex-wrap gap-2">
+          <p className="text-xs text-muted-foreground mb-2 font-medium">{t("reasons_section.suggested_prompt")}</p>
+          <div className="flex flex-wrap gap-1.5">
             {suggestedReasons
               .filter(r => !reasons.includes(r))
               .map((reason) => (
                 <button
                   key={reason}
                   onClick={() => addReason(reason)}
-                  className="text-xs px-3 py-1.5 rounded-full bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-xs px-3 py-1.5 rounded-full bg-slate-900/60 border border-border/40 hover:border-purple-500/40 text-muted-foreground hover:text-purple-300 transition-all font-medium"
                 >
-                  {reason}
+                  + {reason}
                 </button>
               ))}
           </div>

@@ -1,14 +1,22 @@
-import { useState, useEffect } from "react";
-import { Shield, Plus, Trash2, Loader2 } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Shield, Plus, Trash2, Loader2, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { useDynamicTranslation } from "@/hooks/useDynamicTranslation";
-import { useMemo } from "react";
 
 interface AntiTriggerPlan {
   id: string;
@@ -28,11 +36,17 @@ export function AntiTriggerPlanSection() {
   const [plans, setPlans] = useState<AntiTriggerPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [newPlan, setNewPlan] = useState({ trigger: "", action: "", benefit: "" });
+
   const currentLang = (i18n.resolvedLanguage || i18n.language || "it").toLowerCase().split("-")[0];
-  const rawPlanStrings = useMemo(() => plans.flatMap((p) => [p.trigger, p.action, p.benefit]).filter(
-    (v): v is string => typeof v === "string" && v.trim().length > 0
-  ), [plans]);
+  const rawPlanStrings = useMemo(
+    () =>
+      plans
+        .flatMap((p) => [p.trigger, p.action, p.benefit])
+        .filter((v): v is string => typeof v === "string" && v.trim().length > 0),
+    [plans]
+  );
   const { display } = useDynamicTranslation(rawPlanStrings, plans[0]?.source_lang);
 
   useEffect(() => {
@@ -102,7 +116,7 @@ export function AntiTriggerPlanSection() {
   };
 
   const addPlan = () => {
-    if (!newPlan.trigger || !newPlan.action || !newPlan.benefit) {
+    if (!newPlan.trigger || !newPlan.action) {
       toast({
         title: t("anti_trigger_plan.incomplete_title"),
         description: t("anti_trigger_plan.incomplete_desc"),
@@ -114,12 +128,15 @@ export function AntiTriggerPlanSection() {
     const plan: AntiTriggerPlan = {
       id: Date.now().toString(),
       source_lang: currentLang,
-      ...newPlan,
+      trigger: newPlan.trigger.trim(),
+      action: newPlan.action.trim(),
+      benefit: newPlan.benefit.trim() || t("anti_trigger_plan.default_benefit", { defaultValue: "Proteggo la mia concentrazione" }),
     };
 
     const updatedPlans = [...plans, plan];
     savePlans(updatedPlans);
     setNewPlan({ trigger: "", action: "", benefit: "" });
+    setIsModalOpen(false);
   };
 
   const removePlan = (id: string) => {
@@ -129,92 +146,196 @@ export function AntiTriggerPlanSection() {
 
   if (loading) {
     return (
-      <Card>
+      <Card className="border-border/60 bg-card/80 backdrop-blur-md">
         <CardContent className="py-8 flex justify-center">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          <Loader2 className="h-6 w-6 animate-spin text-emerald-500" />
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-primary" />
-          {t("anti_trigger_plan.title")}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-muted-foreground text-sm">{t("anti_trigger_plan.description")}</p>
-
-        {plans.length > 0 && (
-          <div className="space-y-2">
-            {plans.map((plan) => (
-              <div key={plan.id} className="p-3 rounded-lg bg-muted/30 border border-border/50 group">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm">
-                    {t("anti_trigger_plan.template", {
-                      trigger: display(plan.trigger),
-                      action: display(plan.action),
-                      benefit: display(plan.benefit),
-                    })}
-                  </p>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                    onClick={() => removePlan(plan.id)}
-                  >
-                    <Trash2 className="h-3 w-3 text-destructive" />
-                  </Button>
-                </div>
+    <>
+      <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden">
+        <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg font-bold text-foreground">
+              <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <Shield className="h-4 w-4" />
               </div>
-            ))}
-          </div>
-        )}
+              <span>{t("anti_trigger_plan.title")}</span>
+            </CardTitle>
 
-        <div className="space-y-3 p-4 rounded-lg bg-primary/5 border border-primary/20">
-          <p className="text-sm font-medium text-foreground">{t("anti_trigger_plan.add_new")}</p>
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.when")}</span>
+            <motion.div whileTap={{ scale: 0.95 }} transition={{ duration: 0.1 }}>
+              <Button
+                size="sm"
+                onClick={() => setIsModalOpen(true)}
+                className="h-8 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-medium gap-1 px-3 rounded-xl shadow-md shadow-emerald-950/40"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                <span>Nuova Ricetta</span>
+              </Button>
+            </motion.div>
+          </div>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+            {t("anti_trigger_plan.description")}
+          </p>
+        </CardHeader>
+
+        <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-3">
+          {plans.length === 0 ? (
+            <div className="p-6 text-center border border-dashed border-border/60 rounded-2xl bg-slate-900/40">
+              <Sparkles className="h-8 w-8 text-emerald-400/60 mx-auto mb-2" />
+              <p className="text-xs sm:text-sm font-medium text-foreground">Nessuna ricetta anti-trigger creata</p>
+              <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
+                Crea il tuo primo piano automatizzato "SE (Trigger) ➔ ALLORA (Azione)".
+              </p>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setIsModalOpen(true)}
+                className="mt-3 text-xs border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 rounded-xl"
+              >
+                <Plus className="h-3.5 w-3.5 mr-1" />
+                Crea la prima ricetta
+              </Button>
+            </div>
+          ) : (
+            <AnimatePresence>
+              <div className="space-y-2.5">
+                {plans.map((plan) => (
+                  <motion.div
+                    key={plan.id}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    className="p-3.5 rounded-2xl bg-slate-900/80 border border-border/60 hover:border-emerald-500/30 transition-all shadow-sm group relative"
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                        <span>Ricetta Anti-Trigger</span>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-muted-foreground hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                        onClick={() => removePlan(plan.id)}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                      {/* Badge 1: SE */}
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium">
+                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-400 opacity-80">
+                          SE:
+                        </span>
+                        <span>"{display(plan.trigger)}"</span>
+                      </div>
+
+                      {/* Arrow */}
+                      <ArrowRight className="h-4 w-4 text-emerald-400 shrink-0" />
+
+                      {/* Badge 2: ALLORA */}
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-medium">
+                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-400 opacity-80">
+                          ALLORA:
+                        </span>
+                        <span>"{display(plan.action)}"</span>
+                      </div>
+                    </div>
+
+                    {plan.benefit && (
+                      <p className="text-[11px] text-muted-foreground/80 mt-2 pl-1 italic">
+                        Perché: {display(plan.benefit)}
+                      </p>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatePresence>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Modern Compact Modal / Bottom Sheet */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="sm:max-w-md bg-slate-950 border-border/80 text-foreground rounded-2xl p-5 shadow-2xl">
+          <DialogHeader className="pb-2">
+            <DialogTitle className="flex items-center gap-2 text-base font-bold text-emerald-400">
+              <Shield className="h-5 w-5 text-emerald-400" />
+              Nuova Ricetta Anti-Trigger
+            </DialogTitle>
+            <DialogDescription className="text-xs text-muted-foreground">
+              Programma una risposta automatica istantanea quando si presenta uno specifico trigger.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3.5 py-2">
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-amber-300 flex items-center gap-1">
+                <span>SE (Qual è il trigger o situazione a rischio?)</span>
+              </label>
               <Input
-                placeholder={t("anti_trigger_plan.trigger_placeholder")}
+                placeholder="Es. Mi sento solo / annoiato a tarda notte..."
                 value={newPlan.trigger}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, trigger: e.target.value }))}
-                className="h-8 text-sm"
+                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.i_will")}</span>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-emerald-300 flex items-center gap-1">
+                <span>ALLORA (Quale azione esegui immediatamente?)</span>
+              </label>
               <Input
-                placeholder={t("anti_trigger_plan.action_placeholder")}
+                placeholder="Es. Faccio 15 piegamenti o metto il telefono in cucina..."
                 value={newPlan.action}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, action: e.target.value }))}
-                className="h-8 text-sm"
+                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground shrink-0">{t("anti_trigger_plan.because_gives_me")}</span>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1">
+                <span>PERCHÉ (Beneficio atteso - opzionale)</span>
+              </label>
               <Input
-                placeholder={t("anti_trigger_plan.benefit_placeholder")}
+                placeholder="Es. Rompe l'automatismo e rinfresca la mente..."
                 value={newPlan.benefit}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, benefit: e.target.value }))}
-                className="h-8 text-sm"
+                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
           </div>
-          <Button size="sm" onClick={addPlan} disabled={saving} className="w-full">
-            {saving ? (
-              <Loader2 className="h-4 w-4 animate-spin mr-2" />
-            ) : (
-              <Plus className="h-4 w-4 mr-2" />
-            )}
-            {t("anti_trigger_plan.add_button")}
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+
+          <DialogFooter className="pt-2 flex-row gap-2 justify-end">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsModalOpen(false)}
+              className="text-xs text-muted-foreground rounded-xl"
+            >
+              Annulla
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={addPlan}
+              disabled={saving}
+              className="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-medium gap-1 rounded-xl px-4"
+            >
+              {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Plus className="h-3.5 w-3.5" />}
+              Salva Ricetta
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
+

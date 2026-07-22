@@ -69,56 +69,58 @@ export function RecoveryTracker({
   const startedLabel = format(new Date(startedAt), "dd MMM yyyy", { locale: dfLocale });
 
   return (
-    <Card className="border-primary/20">
-      <CardHeader className="pb-4">
+    <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
+      <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Flame className="h-6 w-6 text-primary" />
+            <div className="p-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-xl shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+              <Flame className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t("recovery_tracker.title")}</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <CardTitle className="text-base sm:text-lg font-bold text-foreground">{t("recovery_tracker.title")}</CardTitle>
+              <p className="text-xs text-muted-foreground mt-0.5">
                 {t("recovery_tracker.started", { date: startedLabel })}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-0.5 mr-1" title={`${jokers}`}>
+            <div className="flex items-center gap-1 mr-1" title={`${jokers}`}>
               {[0, 1, 2].map((i) => (
                 <div
                   key={i}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    i < jokers ? "bg-accent" : "bg-muted-foreground/20"
+                    i < jokers ? "bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.5)]" : "bg-muted-foreground/20"
                   }`}
                 />
               ))}
             </div>
-            <Badge variant="secondary">{t("recovery_tracker.day_n", { n: successDays })}</Badge>
+            <Badge variant="secondary" className="bg-slate-900/60 border border-border/40 text-xs font-semibold px-2.5 py-0.5">
+              {t("recovery_tracker.day_n", { n: successDays })}
+            </Badge>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <Flame className="h-5 w-5 text-orange-500 mx-auto mb-1" />
-            <p className="text-2xl font-bold">{currentStreak}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.current_streak")}</p>
+      <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="text-center p-3.5 bg-slate-900/60 border border-amber-500/20 rounded-xl shadow-sm">
+            <Flame className="h-5 w-5 text-amber-400 mx-auto mb-1" />
+            <p className="text-2xl font-extrabold text-foreground">{currentStreak}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.current_streak")}</p>
           </div>
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <Trophy className="h-5 w-5 text-yellow-500 mx-auto mb-1" />
-            <p className="text-2xl font-bold">{longestStreak}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.longest_streak")}</p>
+          <div className="text-center p-3.5 bg-slate-900/60 border border-yellow-500/20 rounded-xl shadow-sm">
+            <Trophy className="h-5 w-5 text-yellow-400 mx-auto mb-1" />
+            <p className="text-2xl font-extrabold text-foreground">{longestStreak}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.longest_streak")}</p>
           </div>
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <CheckCircle2 className="h-5 w-5 text-green-500 mx-auto mb-1" />
-            <p className="text-2xl font-bold">{successDays}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.success_days")}</p>
+          <div className="text-center p-3.5 bg-slate-900/60 border border-emerald-500/20 rounded-xl shadow-sm">
+            <CheckCircle2 className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+            <p className="text-2xl font-extrabold text-foreground">{successDays}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.success_days")}</p>
           </div>
-          <div className="text-center p-3 bg-muted/50 rounded-lg">
-            <XCircle className="h-5 w-5 text-red-500 mx-auto mb-1" />
-            <p className="text-2xl font-bold">{failedDays}</p>
-            <p className="text-xs text-muted-foreground">{t("recovery_tracker.failed_days")}</p>
+          <div className="text-center p-3.5 bg-slate-900/60 border border-rose-500/20 rounded-xl shadow-sm">
+            <XCircle className="h-5 w-5 text-rose-400 mx-auto mb-1" />
+            <p className="text-2xl font-extrabold text-foreground">{failedDays}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.failed_days")}</p>
           </div>
         </div>
 

@@ -57,17 +57,17 @@ export function FailureDebriefSection() {
 
   return (
     <>
-      <Card className="border-border/50 bg-gradient-to-br from-card to-card/80 overflow-hidden">
-        <CardHeader className="pb-2">
-          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-              <Heart className="w-4 h-4 text-primary" />
+      <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
+        <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
+          <CardTitle className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-foreground">
+            <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
+              <Heart className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            {t("failure_debrief.title")}
+            <span>{t("failure_debrief.title")}</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground leading-relaxed">
+        <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-4">
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             {t("failure_debrief.description")}
           </p>
 
@@ -75,21 +75,21 @@ export function FailureDebriefSection() {
             <Button
               onClick={handleStartDebrief}
               disabled={saving}
-              className="flex-1 bg-primary/90 hover:bg-primary"
+              className="flex-1 bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-semibold shadow-lg shadow-rose-950/40 rounded-xl h-11 gap-1.5"
             >
-              {incompleteDebrief ? t("failure_debrief.continue") : t("failure_debrief.start")}
-              <ChevronRight className="w-4 h-4 ml-1" />
+              <span>{incompleteDebrief ? t("failure_debrief.continue") : t("failure_debrief.start")}</span>
+              <ChevronRight className="w-4 h-4" />
             </Button>
 
             {completedDebriefs.length > 0 && (
               <Button
                 variant="outline"
                 onClick={() => setShowHistory(true)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 h-11 rounded-xl border-border/60 bg-slate-900/40 hover:bg-slate-900/80"
               >
-                <History className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("failure_debrief.history")}</span>
-                <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                <History className="w-4 h-4 text-muted-foreground" />
+                <span className="hidden sm:inline text-xs">{t("failure_debrief.history")}</span>
+                <span className="text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full">
                   {completedDebriefs.length}
                 </span>
               </Button>
@@ -97,8 +97,8 @@ export function FailureDebriefSection() {
           </div>
 
           {incompleteDebrief && (
-            <p className="text-xs text-amber-600 dark:text-amber-400">
-              {t("failure_debrief.unfinished_notice")}
+            <p className="text-xs text-amber-400 font-medium flex items-center gap-1.5">
+              <span>⚠️</span> {t("failure_debrief.unfinished_notice")}
             </p>
           )}
         </CardContent>
