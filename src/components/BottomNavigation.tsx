@@ -8,6 +8,7 @@ import {
   Plus,
   Target,
   Flame,
+  Calendar,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
@@ -116,6 +117,15 @@ const BottomNavigation = () => {
                         <Flame className="h-4 w-4 text-destructive" />
                       </div>
                       <span className="text-sm font-medium text-foreground">Nuova Sfida Detox</span>
+                    </button>
+                    <button
+                      onClick={() => { setFabOpen(false); navigate("/daily-planning"); }}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Calendar className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground">Nuova Task</span>
                     </button>
                   </div>
                 </PopoverContent>

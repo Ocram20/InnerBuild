@@ -81,7 +81,7 @@ export default function TriggerTracking() {
             {logs.length > 0 && (
               <>
                 <section className="animate-fade-in" style={{ animationDelay: "50ms" }}><TriggerReportCard /></section>
-                <section className="animate-fade-in" style={{ animationDelay: "75ms" }}><TriggerHeatmap data={heatmapData} /></section>
+                <section className="animate-fade-in" style={{ animationDelay: "75ms" }}><TriggerHeatmap data={heatmapData} allLogs={logs} /></section>
                 <section className="animate-fade-in" style={{ animationDelay: "100ms" }}><RecentTriggersCard logs={logs} onDelete={deleteTrigger} /></section>
               </>
             )}

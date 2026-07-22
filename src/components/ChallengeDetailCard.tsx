@@ -82,6 +82,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
   const today = new Date().toISOString().split("T")[0];
@@ -238,6 +239,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
       });
       
       onUpdate();
+      setShowDeleteDialog(false);
     } catch (error) {
       toast({
         title: t("common.error"),
@@ -319,7 +321,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
                   {t("challenge_card.reset")}
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  onClick={deleteChallenge}
+                  onClick={() => setShowDeleteDialog(true)}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
@@ -497,6 +499,26 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
             </AlertDialogCancel>
             <AlertDialogAction onClick={resetChallenge} className="rounded-xl gradient-primary text-primary-foreground">
               {t("challenge_card.fresh_start")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Delete confirmation dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-destructive">{t("challenge_card.delete_challenge_title")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("challenge_card.delete_challenge_desc")}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="rounded-xl">
+              {t("common.cancel")}
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={deleteChallenge} className="rounded-xl bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              {t("challenge_card.confirm_delete")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

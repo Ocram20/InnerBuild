@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { CheckCircle2, Circle, Sparkles } from "lucide-react";
+import { CheckCircle2, Circle, Sparkles, Target } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
@@ -60,20 +60,27 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
   const { display } = useUiBatchTranslation(rawStrings, rawStrings.length > 0);
 
   return (
-    <div className={`rounded-2xl border border-border/60 dark:border-white/5 bg-card dark:bg-[#1a212e]/50 dark:glass-card p-5 relative overflow-hidden shadow-elevated card-elevated dark:card-lift ${
+    <div className={`rounded-2xl border border-border/60 dark:border-white/5 bg-card dark:bg-[#1a212e]/50 p-5 card-glow dark:card-lift relative overflow-hidden ${
       allComplete ? "ring-2 ring-primary/30" : ""
     }`}>
-      {allComplete && (
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 pointer-events-none" />
-      )}
-
       <div className="relative">
         {/* Progress bar */}
-        <div className="h-2 bg-muted dark:bg-white/5 rounded-full overflow-hidden mb-4">
-          <div
-            className="h-full bg-primary rounded-full transition-all duration-700 ease-out"
-            style={{ width: `${progressPercent}%` }}
-          />
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 shadow-soft">
+                <Target className="h-5 w-5 text-primary" />
+              </div>
+              <h2 className="truncate text-base font-semibold text-foreground">{t("dashboard.todays_habits")}</h2>
+            </div>
+            <span className="text-xs font-medium text-muted-foreground">{progressPercent}%</span>
+          </div>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
         </div>
 
         {/* Habit toggles */}
@@ -85,12 +92,12 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
               return (
                 <div
                   key={habit.id}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 card-glow dark:card-lift ${
+                  className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
                     habit.completed_today
                       ? "bg-primary/10 border border-primary/20"
                       : adaptation
                         ? "bg-primary/5 border border-primary/30"
-                        : "bg-white dark:bg-[#1a212e]/50 dark:glass-card border border-gray-100 dark:border-white/5"
+                        : "bg-muted/50 hover:bg-muted border border-transparent"
                   }`}
                 >
                   <button
@@ -100,14 +107,14 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
                     {habit.completed_today ? (
                       <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                     ) : (
-                      <Circle className="h-5 w-5 text-muted-foreground dark:text-[#6c8093] flex-shrink-0" />
+                      <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                     )}
                     <span className={`text-sm font-medium truncate block max-w-full ${
-                      habit.completed_today ? "line-through text-muted-foreground dark:text-[#6c8093]" : "text-foreground dark:text-white"
+                      habit.completed_today ? "line-through text-muted-foreground" : "text-foreground"
                     }`}>
                       {display(localizeSuggestedHabitTitle(t, habit.title))}
                       {habit.description && habit.description.startsWith("ANCHOR:") && (
-                        <span className="block text-[10px] text-muted-foreground dark:text-[#6c8093] font-normal tracking-tight">
+                        <span className="block text-[10px] text-muted-foreground font-normal tracking-tight">
                           {t("create_habit.after_i", { defaultValue: "Dopo che ho" })} {display(habit.description.replace("ANCHOR:", ""))}
                         </span>
                       )}
@@ -133,24 +140,13 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
               );
             })}
             {habits.length > 5 && (
-              <p className="text-xs text-muted-foreground dark:text-[#6c8093] text-center pt-1">
+              <p className="text-xs text-muted-foreground text-center pt-1">
                 {t("today_overview.more_habits", { count: habits.length - 5 })}
               </p>
             )}
           </div>
         ) : (
-          <p className="text-sm text-muted-foreground dark:text-[#6c8093] text-center py-4">{t("today_overview.no_habits")}</p>
-        )}
-
-        {/* Motivational message */}
-        {habits.length > 0 && (
-          <p className="text-sm text-muted-foreground dark:text-[#6c8093] mt-4 text-center">
-            {allComplete
-              ? t("today_overview.all_done")
-              : completedCount === 0
-                ? t("today_overview.lets_go")
-                : t("today_overview.left_count", { count: totalCount - completedCount })}
-          </p>
+          <p className="text-sm text-muted-foreground text-center py-4">{t("today_overview.no_habits")}</p>
         )}
       </div>
     </div>

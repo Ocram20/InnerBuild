@@ -193,7 +193,6 @@ const DailyPlanning = () => {
           <ToDoSection userId={user?.id} targetDate={effectiveTargetDateISO} planningMode={planningMode} />
           <NotToDoSection userId={user?.id} targetDate={effectiveTargetDateISO} planningMode={planningMode} />
         </div>
-        <ActiveHabitsSection userId={user?.id} targetDate={todayISO} />
       </main>
       <BottomNavigation />
     </div>

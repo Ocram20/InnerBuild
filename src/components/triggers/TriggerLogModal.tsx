@@ -25,7 +25,7 @@ interface TriggerLogModalProps {
   }) => Promise<boolean>;
 }
 
-const EMOTION_IDS = ["stress", "boredom", "sadness", "anxiety", "anger", "loneliness", "tiredness", "excitement"] as const;
+const EMOTION_IDS = ["stress", "boredom", "sadness", "anxiety", "anger", "loneliness", "tiredness", "excitement", "other"] as const;
 const EMOTION_EMOJI: Record<(typeof EMOTION_IDS)[number], string> = {
   stress: "😰",
   boredom: "😑",
@@ -35,6 +35,7 @@ const EMOTION_EMOJI: Record<(typeof EMOTION_IDS)[number], string> = {
   loneliness: "😔",
   tiredness: "😴",
   excitement: "🤩",
+  other: "📝",
 };
 
 const SITUATION_IDS = [
@@ -54,8 +55,11 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
   const { t } = useTranslation();
   const [intensity, setIntensity] = useState(5);
   const [emotion, setEmotion] = useState("");
+  const [customEmotion, setCustomEmotion] = useState("");
   const [situation, setSituation] = useState("");
+  const [customSituation, setCustomSituation] = useState("");
   const [location, setLocation] = useState("");
+  const [customLocation, setCustomLocation] = useState("");
   const [wasAlone, setWasAlone] = useState(true);
   const [notes, setNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -70,8 +74,36 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
 
   const handleSubmit = async () => {
     if (!emotion || !situation) return;
+    
+    // Validate custom inputs for 'other' options
+    if (emotion === "other" && !customEmotion.trim()) {
+      return;
+    }
+    if (situation === "other" && !customSituation.trim()) {
+      return;
+    }
+    if (location === "other" && !customLocation.trim()) {
+      return;
+    }
 
     setSubmitting(true);
+    
+    // Build notes with custom context if provided
+    let enhancedNotes = notes.trim();
+    const customDetails = [];
+    if (emotion === "other" && customEmotion.trim()) {
+      customDetails.push(`Emozione: ${customEmotion.trim()}`);
+    }
+    if (situation === "other" && customSituation.trim()) {
+      customDetails.push(`Situazione: ${customSituation.trim()}`);
+    }
+    if (location === "other" && customLocation.trim()) {
+      customDetails.push(`Luogo: ${customLocation.trim()}`);
+    }
+    if (customDetails.length > 0) {
+      enhancedNotes = enhancedNotes ? `${enhancedNotes}\n\n${customDetails.join("\n")}` : customDetails.join("\n");
+    }
+
     const success = await onSubmit({
       impulse_intensity: intensity,
       emotion,
@@ -79,14 +111,17 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
       time_context: getTimeContext(),
       location_context: location || undefined,
       was_alone: wasAlone,
-      notes: notes.trim() || undefined,
+      notes: enhancedNotes || undefined,
     });
 
     if (success) {
       setIntensity(5);
       setEmotion("");
+      setCustomEmotion("");
       setSituation("");
+      setCustomSituation("");
       setLocation("");
+      setCustomLocation("");
       setWasAlone(true);
       setNotes("");
       onOpenChange(false);
@@ -94,7 +129,10 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
     setSubmitting(false);
   };
 
-  const isValid = emotion && situation;
+  const isValid = emotion && situation && 
+    (emotion !== "other" || customEmotion.trim()) &&
+    (situation !== "other" || customSituation.trim()) &&
+    (location !== "other" || customLocation.trim());
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -143,11 +181,26 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                       : "bg-muted/50 hover:bg-muted"
                   }`}
                 >
-                  <span className="text-lg">{EMOTION_EMOJI[id]}</span>
+                  <span className="text-lg">{EMOTION_EMOJI[id] || "📝"}</span>
                   <p className="text-[10px] mt-0.5 truncate">{t(`trigger_tracking.emotions.${id}`)}</p>
                 </button>
               ))}
             </div>
+            {emotion === "other" && (
+              <div className="mt-2">
+                <input
+                  type="text"
+                  value={customEmotion}
+                  onChange={(e) => setCustomEmotion(e.target.value)}
+                  placeholder={t("trigger_tracking.specify_emotion")}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm"
+                  required
+                />
+                {!customEmotion.trim() && (
+                  <p className="text-xs text-destructive mt-1">{t("trigger_tracking.required_field")}</p>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -168,6 +221,21 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                 </button>
               ))}
             </div>
+            {situation === "other" && (
+              <div className="mt-2">
+                <input
+                  type="text"
+                  value={customSituation}
+                  onChange={(e) => setCustomSituation(e.target.value)}
+                  placeholder={t("trigger_tracking.specify_situation")}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm"
+                  required
+                />
+                {!customSituation.trim() && (
+                  <p className="text-xs text-destructive mt-1">{t("trigger_tracking.required_field")}</p>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -189,6 +257,21 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                 </button>
               ))}
             </div>
+            {location === "other" && (
+              <div className="mt-2">
+                <input
+                  type="text"
+                  value={customLocation}
+                  onChange={(e) => setCustomLocation(e.target.value)}
+                  placeholder={t("trigger_tracking.specify_location")}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm"
+                  required
+                />
+                {!customLocation.trim() && (
+                  <p className="text-xs text-destructive mt-1">{t("trigger_tracking.required_field")}</p>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">

@@ -178,7 +178,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
   if (isEmpty) {
     return (
-      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-elevated card-elevated card-alt">
+      <div className="rounded-2xl border border-border/60 dark:border-white/5 bg-card dark:bg-[#1a212e]/50 p-5 card-glow dark:card-lift">
         <div className="text-center">
           <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 shadow-soft">
             <ListTodo className="h-6 w-6 text-primary" />
@@ -201,33 +201,37 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
 
   const completedTodos = allTodos.filter(t => t.is_completed).length;
   const avoidedItems = notTodos.filter(i => i.status === "avoided").length;
+  const totalItems = allTodos.length + notTodos.length;
+  const completedItems = completedTodos + avoidedItems;
+  const progressPercent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
 
   return (
-    <div className="rounded-2xl border border-border/60 dark:border-white/5 bg-[#4b9b75] p-5 card-glow dark:card-lift relative overflow-hidden">
+    <div className="rounded-2xl border border-border/60 dark:border-white/5 bg-card dark:bg-[#1a212e]/50 p-5 card-glow dark:card-lift relative overflow-hidden">
       <div className="relative z-10">
-        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex min-w-0 items-center gap-2">
-            <div className="p-2 rounded-lg bg-white/20 shadow-soft">
-              <ListTodo className="h-5 w-5 text-white" />
+        {/* Progress bar */}
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 shadow-soft">
+                <ListTodo className="h-5 w-5 text-primary" />
+              </div>
+              <h2 className="truncate text-base font-semibold text-foreground">{t("daily_planning.title")}</h2>
             </div>
-            <h2 className="truncate text-base font-semibold text-white">{t("daily_planning.title")}</h2>
+            <span className="text-xs font-medium text-muted-foreground">{progressPercent}%</span>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate("/daily-planning")}
-            className="h-8 self-start text-white/80 hover:text-white sm:self-auto"
-          >
-            {t("common.view_all")}
-            <ChevronRight className="ml-1 h-4 w-4" />
-          </Button>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
         </div>
 
         <div className="space-y-4">
           {/* To-Do List */}
           {todos.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-white/80 mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
                 <span>{t("dashboard.todo_list")}</span>
                 <span className="text-xs">
                   {completedTodos}/{allTodos.length}
@@ -240,20 +244,20 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                     onClick={() => toggleTodo(task)}
                     className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
                       task.is_completed
-                        ? "bg-white/20 border border-white/30"
-                        : "bg-white/10 hover:bg-white/20 border border-transparent"
+                        ? "bg-primary/10 border border-primary/20"
+                        : "bg-muted/50 hover:bg-muted border border-transparent"
                     }`}
                   >
                     {task.is_completed ? (
-                      <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0" />
+                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                     ) : (
-                      <Circle className="h-5 w-5 text-white/60 flex-shrink-0" />
+                      <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                     )}
                     <span
                       className={`flex-1 text-left text-sm font-medium truncate ${
                         task.is_completed
-                          ? "line-through text-white/60"
-                          : "text-white"
+                          ? "line-through text-muted-foreground"
+                          : "text-foreground"
                       }`}
                     >
                       {shouldTranslateContent ? display(task.title) : task.title}
@@ -267,7 +271,7 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
           {/* Not-To-Do List */}
           {notTodos.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-white/80 mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center justify-between">
                 <span>{t("dashboard.not_todo_list")}</span>
                 <span className="text-xs">
                   {avoidedItems}/{notTodos.length}
@@ -280,19 +284,19 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
                     onClick={() => toggleNotTodoStatus(item)}
                     className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
                       item.status === "avoided"
-                        ? "bg-white/20 border border-white/30"
-                        : "bg-white/10 hover:bg-white/20 border border-transparent"
+                        ? "bg-primary/10 border border-primary/20"
+                        : "bg-muted/50 hover:bg-muted border border-transparent"
                     }`}
                   >
                     {item.status === "avoided" ? (
-                      <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0" />
+                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                     ) : (
-                      <ShieldAlert className="h-5 w-5 text-white/60 flex-shrink-0" />
+                      <ShieldAlert className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                     )}
                     <span className={`flex-1 text-left text-sm font-medium truncate ${
                       item.status === "avoided"
-                        ? "line-through text-white/60"
-                        : "text-white"
+                        ? "line-through text-muted-foreground"
+                        : "text-foreground"
                     }`}>
                       {shouldTranslateContent ? display(item.title) : item.title}
                     </span>
@@ -301,19 +305,8 @@ export default function QuickAccessTodos({ userId }: QuickAccessTodosProps) {
               </div>
             </div>
           )}
-
-          {/* View Full Planning Button */}
-          <Button
-            variant="outline"
-            className="w-full mt-2 bg-white text-[#4b9b75] border-white hover:bg-white/90"
-            onClick={() => navigate("/daily-planning")}
-          >
-            <ChevronRight className="mr-2 h-4 w-4" />
-            {t("dashboard.edit_full_plan")}
-          </Button>
         </div>
       </div>
-      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
     </div>
   );
 }

@@ -236,6 +236,8 @@ export default function ChallengeJourney() {
   const originalEndReached = hasReachedOriginalEnd && challenge.duration_days < 90;
   const jokers = challenge.jokers_remaining ?? 3;
   const isPausedByJokers = challenge.status === "paused" && jokers <= 0;
+  const today = new Date().toISOString().split("T")[0];
+  const manualCheckInDone = challenge.last_check_in === today && !selectedEntry?.checkin_response;
 
   return (
     <div className="min-h-screen pb-app-main">
@@ -375,6 +377,7 @@ export default function ChallengeJourney() {
             challengeId={challenge.id}
             jokersRemaining={jokers}
             onUpdate={refreshData}
+            manualCheckInDone={manualCheckInDone}
           />
         </div>
       </main>

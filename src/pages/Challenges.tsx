@@ -6,7 +6,16 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Plus, Flame, Smartphone, Brain, Shield, Sparkles, Trophy, Crown } from "lucide-react";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import ChallengeDetailCard from "@/components/ChallengeDetailCard";
 import SuggestedChallengesList, { SuggestedChallenge } from "@/components/SuggestedChallenges";
 import CreateChallengeModal from "@/components/CreateChallengeModal";
@@ -41,6 +50,7 @@ export default function Challenges() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedSuggested, setSelectedSuggested] = useState<SuggestedChallenge | null>(null);
+  const [showStartConfirmation, setShowStartConfirmation] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
 
   useEffect(() => { if (user) fetchChallenges(); }, [user]);
@@ -61,16 +71,24 @@ export default function Challenges() {
   const startSuggestedChallenge = async (suggested: SuggestedChallenge) => {
     if (!user) return;
     if (!canCreateChallenge) { setShowPaywall(true); return; }
+    setSelectedSuggested(suggested);
+    setShowStartConfirmation(true);
+  };
+
+  const confirmStartChallenge = async () => {
+    if (!user || !selectedSuggested) return;
     try {
       const today = new Date().toISOString().split("T")[0];
       const { error } = await supabase.from("detox_challenges").insert({
-        user_id: user.id, title: suggested.title, description: suggested.description,
-        duration_days: suggested.duration_days, category: suggested.category,
-        daily_steps: suggested.daily_steps, science_note: suggested.science_note, start_date: today,
+        user_id: user.id, title: selectedSuggested.title, description: selectedSuggested.description,
+        duration_days: selectedSuggested.duration_days, category: selectedSuggested.category,
+        daily_steps: selectedSuggested.daily_steps, science_note: selectedSuggested.science_note, start_date: today,
       });
       if (error) throw error;
-      toast({ title: t("challenges.challenge_started"), description: t("challenges.challenge_started_desc", { days: suggested.duration_days }) });
+      toast({ title: t("challenges.challenge_started"), description: t("challenges.challenge_started_desc", { days: selectedSuggested.duration_days }) });
       refetchLimits(); fetchChallenges();
+      setShowStartConfirmation(false);
+      setSelectedSuggested(null);
     } catch (error) {
       console.error("Error starting challenge:", error);
       toast({ title: t("common.error"), description: t("challenges.failed_start"), variant: "destructive" });
@@ -101,70 +119,6 @@ export default function Challenges() {
       </header>
 
       <main className="max-w-lg mx-auto px-4 pt-4 space-y-5">
-        <div className="animate-fade-in">
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="w-full text-left glass rounded-2xl p-4 flex items-center justify-between hover:shadow-md transition">
-                <div>
-                  <p className="font-semibold">{t("challenges.guide_title")}</p>
-                  <p className="text-xs text-muted-foreground">{t("challenges.guide_subtitle")}</p>
-                </div>
-                <div className="text-primary">{t("common.open")}</div>
-              </button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[85vh] w-full overflow-y-auto sm:rounded-lg">
-              <DialogTitle>{t("challenges.guide_dialog_title")}</DialogTitle>
-              <DialogDescription className="mt-2 text-sm space-y-4">
-                <h3 className="font-medium">{t("challenges.guide_content.intro_title")}</h3>
-                <p>{t("challenges.guide_content.intro_p1")}</p>
-                <p>{t("challenges.guide_content.intro_p2")}</p>
-                <h3 className="font-medium mt-4">{t("challenges.guide_content.why_title")}</h3>
-                <p>{t("challenges.guide_content.why_p1")}</p>
-                <p>{t("challenges.guide_content.why_p2")}</p>
-                <h3 className="font-medium mt-4">{t("challenges.guide_content.inversion_title")}</h3>
-                <p>{t("challenges.guide_content.inversion_intro")}</p>
-                <h4 className="font-medium mt-3">{t("challenges.guide_content.inv1_title")}</h4>
-                <ul className="list-disc list-inside ml-4">
-                  {(t("challenges.guide_content.inv1_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <h4 className="font-medium mt-3">{t("challenges.guide_content.inv2_title")}</h4>
-                <ul className="list-disc list-inside ml-4">
-                  {(t("challenges.guide_content.inv2_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <h4 className="font-medium mt-3">{t("challenges.guide_content.inv3_title")}</h4>
-                <ul className="list-disc list-inside ml-4">
-                  {(t("challenges.guide_content.inv3_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <h4 className="font-medium mt-3">{t("challenges.guide_content.inv4_title")}</h4>
-                <ul className="list-disc list-inside ml-4">
-                  {(t("challenges.guide_content.inv4_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <h3 className="font-medium mt-4">{t("challenges.guide_content.replacement_title")}</h3>
-                <p>{t("challenges.guide_content.replacement_p1")}</p>
-                <ul className="list-disc list-inside ml-4">
-                  {(t("challenges.guide_content.replacement_items", { returnObjects: true }) as string[]).map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <h3 className="font-medium mt-4">{t("challenges.guide_content.mindset_title")}</h3>
-                <p>{t("challenges.guide_content.mindset_p1")}</p>
-                <p>{t("challenges.guide_content.mindset_p2")}</p>
-                <h3 className="font-medium mt-4">{t("challenges.guide_content.final_title")}</h3>
-                <p>{t("challenges.guide_content.final_p1")}</p>
-                <p className="font-medium italic">{t("challenges.guide_content.final_p2")}</p>
-              </DialogDescription>
-            </DialogContent>
-          </Dialog>
-        </div>
-
         <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none animate-fade-in">
           {categories.map((cat) => {
             const Icon = cat.icon;
@@ -223,6 +177,20 @@ export default function Challenges() {
 
       <CreateChallengeModal open={showCreateModal} onOpenChange={setShowCreateModal} onSuccess={fetchChallenges} />
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason="challenge_limit" />
+      <AlertDialog open={showStartConfirmation} onOpenChange={setShowStartConfirmation}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("challenges.start_confirmation_title")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("challenges.start_confirmation_desc", { title: selectedSuggested?.title, days: selectedSuggested?.duration_days })}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmStartChallenge}>{t("challenges.start_challenge")}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <BottomNavigation />
     </div>
   );

@@ -1,10 +1,15 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { format, subDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isSameMonth } from "date-fns";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { HeatmapData } from "@/hooks/useTriggerTracking";
 import { useTranslation } from "react-i18next";
+import { dateFnsLocale } from "@/lib/dateFnsLocale";
 
 interface TriggerHeatmapProps {
   data: HeatmapData[];
+  allLogs?: any[];
 }
 
 const HOURS = [
@@ -25,8 +30,12 @@ const PERIOD_HOURS: Record<(typeof PERIOD_KEYS)[number], number[]> = {
   evening: [18, 19, 20, 21, 22, 23],
 };
 
-export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
-  const { t } = useTranslation();
+export default function TriggerHeatmap({ data, allLogs }: TriggerHeatmapProps) {
+  const { t, i18n } = useTranslation();
+  const dfLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [showDateModal, setShowDateModal] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const dayLabels = DAY_KEYS.map((k) => t(`trigger_tracking.days.${k}`));
 
@@ -61,6 +70,75 @@ export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
     return { backgroundColor: `rgba(234, 179, 8, ${opacity})` };
   };
 
+  const handlePrevMonth = () => {
+    const prevMonth = addMonths(currentMonth, -1);
+    if (availableMonths.some(m => isSameMonth(m, prevMonth))) {
+      setCurrentMonth(prevMonth);
+    }
+  };
+
+  const handleNextMonth = () => {
+    const nextMonth = addMonths(currentMonth, 1);
+    if (availableMonths.some(m => isSameMonth(m, nextMonth))) {
+      setCurrentMonth(nextMonth);
+    }
+  };
+
+  // Generate months from first log to current month
+  const availableMonths = useMemo(() => {
+    if (!allLogs || allLogs.length === 0) {
+      return [new Date()];
+    }
+    const firstLogDate = new Date(allLogs[allLogs.length - 1].created_at);
+    const months = [];
+    let current = startOfMonth(firstLogDate);
+    const now = new Date();
+    while (current <= now) {
+      months.push(new Date(current));
+      current = addMonths(current, 1);
+    }
+    return months.reverse();
+  }, [allLogs]);
+
+  // Get days for current month
+  const currentMonthDays = useMemo(() => {
+    const start = startOfMonth(currentMonth);
+    const end = endOfMonth(currentMonth);
+    return eachDayOfInterval({ start, end });
+  }, [currentMonth]);
+
+  // Get trigger count for a specific date
+  const getTriggerCountForDate = (date: Date) => {
+    if (!allLogs) return 0;
+    return allLogs.filter((log: any) => {
+      const logDate = new Date(log.created_at);
+      return isSameDay(logDate, date);
+    }).length;
+  };
+
+  const getAvgIntensityForDate = (date: Date) => {
+    if (!allLogs) return 0;
+    const dayLogs = allLogs.filter((log: any) => {
+      const logDate = new Date(log.created_at);
+      return isSameDay(logDate, date);
+    });
+    if (dayLogs.length === 0) return 0;
+    return dayLogs.reduce((sum: number, log: any) => sum + (log.impulse_intensity || 0), 0) / dayLogs.length;
+  };
+
+  const handleDateClick = (date: Date) => {
+    setSelectedDate(date);
+    setShowDateModal(true);
+  };
+
+  const getLogsForDate = (date: Date) => {
+    if (!allLogs) return [];
+    return allLogs.filter((log: any) => {
+      const logDate = new Date(log.created_at);
+      return isSameDay(logDate, date);
+    });
+  };
+
   if (data.length === 0) {
     return (
       <Card className="glass rounded-2xl">
@@ -75,91 +153,128 @@ export default function TriggerHeatmap({ data }: TriggerHeatmapProps) {
   }
 
   return (
-    <Card className="glass rounded-2xl">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base flex items-center justify-between">
-          <span>{t("trigger_tracking.heatmap_title")}</span>
-          <span className="text-xs font-normal text-muted-foreground">{t("trigger_tracking.last_30_days")}</span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="block sm:hidden">
-          <div className="grid grid-cols-5 gap-1">
-            <div className="text-[10px] text-muted-foreground" />
-            {hourGroups.map((group) => (
-              <div key={group.key} className="text-[10px] text-muted-foreground text-center">
-                {group.label}
-              </div>
-            ))}
-            {dayLabels.map((dayLabel, dayIndex) => (
-              <div key={dayLabel} className="contents">
-                <div className="text-[10px] text-muted-foreground flex items-center">{dayLabel}</div>
-                {hourGroups.map((group) => {
-                  const cell = getGroupedCell(dayIndex, group.hours);
-                  return (
-                    <div
-                      key={`${dayIndex}-${group.key}`}
-                      className="aspect-square rounded-md relative group cursor-pointer"
-                      style={getCellStyle(cell.count, cell.avgIntensity)}
-                      title={`${dayLabel} ${group.label}: ${cell.count}`}
-                    >
-                      {cell.count > 0 && (
-                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium text-white drop-shadow-sm">
-                          {cell.count}
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hidden sm:block overflow-x-auto trigger-tracking-scroll">
-          <div className="min-w-[600px]">
-            <div className="grid grid-cols-[40px_repeat(24,1fr)] gap-0.5 mb-1">
-              <div />
-              {HOURS.map((hour) => (
-                <div key={hour} className="text-[8px] text-muted-foreground text-center">
-                  {parseInt(hour, 10) % 3 === 0 ? hour : ""}
-                </div>
-              ))}
+    <>
+      <Card className="glass rounded-2xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base flex items-center justify-between">
+            <span>{t("trigger_tracking.heatmap_title")}</span>
+            <span className="text-xs font-normal text-muted-foreground">{t("trigger_tracking.all_time")}</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={handlePrevMonth}
+              disabled={!availableMonths.some(m => isSameMonth(m, addMonths(currentMonth, -1)))}
+              className="p-2 rounded-lg hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <div className="text-center">
+              <h3 className="text-lg font-semibold capitalize">
+                {format(currentMonth, 'MMMM yyyy', { locale: dfLocale })}
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                {availableMonths.findIndex(m => isSameMonth(m, currentMonth)) + 1} / {availableMonths.length}
+              </p>
             </div>
-            {dayLabels.map((dayLabel, dayIndex) => (
-              <div key={dayLabel} className="grid grid-cols-[40px_repeat(24,1fr)] gap-0.5 mb-0.5">
-                <div className="text-[10px] text-muted-foreground flex items-center">{dayLabel}</div>
-                {HOURS.map((_, hourIndex) => {
-                  const cell = getCell(dayIndex, hourIndex);
-                  return (
-                    <div
-                      key={`${dayIndex}-${hourIndex}`}
-                      className="aspect-square rounded-sm relative group cursor-pointer transition-transform hover:scale-150 hover:z-10"
-                      style={getCellStyle(cell.count, cell.avgIntensity)}
-                      title={`${dayLabel} ${hourIndex}:00 — ${cell.count}`}
-                    />
-                  );
-                })}
-              </div>
-            ))}
+            <button
+              onClick={handleNextMonth}
+              disabled={!availableMonths.some(m => isSameMonth(m, addMonths(currentMonth, 1)))}
+              className="p-2 rounded-lg hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
-        </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {currentMonthDays.map((date, index) => {
+              const count = getTriggerCountForDate(date);
+              const avgIntensity = getAvgIntensityForDate(date);
+              const style = getCellStyle(count, avgIntensity);
+              const isToday = isSameDay(date, new Date());
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleDateClick(date)}
+                  className={`w-8 h-8 rounded-full relative transition-transform hover:scale-125 hover:z-10 ${
+                    isToday ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
+                  }`}
+                  style={style}
+                  title={`${format(date, 'MMM d', { locale: dfLocale })}: ${count} trigger${count !== 1 ? 's' : ''}`}
+                >
+                  {count > 0 && (
+                    <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium text-white drop-shadow-sm">
+                      {count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-        <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground flex-wrap">
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-sm bg-yellow-500/70" />
-            <span>{t("trigger_tracking.heatmap_legend.mild")}</span>
+          <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground flex-wrap">
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+              <span>{t("trigger_tracking.heatmap_legend.mild")}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-orange-500/70" />
+              <span>{t("trigger_tracking.heatmap_legend.medium")}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 rounded-full bg-red-500/70" />
+              <span>{t("trigger_tracking.heatmap_legend.strong")}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-sm bg-orange-500/70" />
-            <span>{t("trigger_tracking.heatmap_legend.medium")}</span>
+        </CardContent>
+      </Card>
+
+      <Dialog open={showDateModal} onOpenChange={setShowDateModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy', { locale: dfLocale })}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            {selectedDate && (
+              <>
+                <div className="text-sm text-muted-foreground">
+                  {t("trigger_tracking.triggers_on_date", { count: getLogsForDate(selectedDate).length })}
+                </div>
+                {getLogsForDate(selectedDate).length > 0 ? (
+                  <div className="space-y-2 max-h-60 overflow-y-auto">
+                    {getLogsForDate(selectedDate).map((log: any, idx: number) => (
+                      <div key={idx} className="p-3 rounded-lg bg-muted/50">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(log.created_at).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                          <span className="text-xs font-medium">
+                            Intensità: {log.impulse_intensity}/10
+                          </span>
+                        </div>
+                        <div className="text-sm">
+                          {t(`trigger_tracking.emotions.${log.emotion}`)} • {t(`trigger_tracking.situations.${log.situation}`)}
+                        </div>
+                        {log.notes && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {log.notes}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-4 text-muted-foreground">
+                    {t("trigger_tracking.no_triggers_this_day")}
+                  </div>
+                )}
+              </>
+            )}
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-sm bg-red-500/70" />
-            <span>{t("trigger_tracking.heatmap_legend.strong")}</span>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

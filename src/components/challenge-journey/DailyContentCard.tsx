@@ -35,6 +35,7 @@ interface DailyContentCardProps {
   challengeId?: string;
   jokersRemaining?: number;
   onUpdate: () => void;
+  manualCheckInDone?: boolean;
 }
 
 const checkinOptions = [
@@ -43,7 +44,7 @@ const checkinOptions = [
   { value: "strong", labelKey: "daily_content.strong", emoji: "💪" },
 ];
 
-export default function DailyContentCard({ entry, isLoading, isCurrentDay, challengeId, jokersRemaining = 3, onUpdate }: DailyContentCardProps) {
+export default function DailyContentCard({ entry, isLoading, isCurrentDay, challengeId, jokersRemaining = 3, onUpdate, manualCheckInDone = false }: DailyContentCardProps) {
   const { t } = useTranslation();
   const { toast } = useToast();
   const [savingMission, setSavingMission] = useState<string | null>(null);
@@ -113,6 +114,14 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
       .update({ checkin_response: value })
       .eq("id", entry.id);
 
+    // Auto check-in for the challenge when difficulty is selected
+    if (challengeId) {
+      const today = new Date().toISOString().split("T")[0];
+      await untypedTable("detox_challenges")
+        .update({ last_check_in: today })
+        .eq("id", challengeId);
+    }
+
     toast({
       title: t("daily_content.checkin_saved"),
       description: t("daily_content.great_reflecting"),
@@ -125,12 +134,12 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
     if (!isCurrentDay || !challengeId) return;
     setSavingCheckin(true);
 
-    // Mark entry as failure
+    // Mark entry as failure - check-in fails
     await untypedTable("challenge_daily_entries")
       .update({ is_failure: true, checkin_response: "setback" })
       .eq("id", entry.id);
 
-    // Consume a joker — does NOT advance the day
+    // Consume a joker — visual indicator will empty
     const newJokers = Math.max(0, jokersRemaining - 1);
     const updates: Record<string, any> = { jokers_remaining: newJokers };
 
@@ -249,19 +258,24 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
               {t("daily_content.how_was_today")}
             </p>
             <div className="flex gap-2">
-              {checkinOptions.map(opt => (
-                <button
-                  key={opt.value}
-                  onClick={() => submitCheckin(opt.value)}
-                  disabled={savingCheckin}
-                  className="flex-1 py-3 rounded-xl bg-muted hover:bg-muted/80 transition-all text-center"
-                >
-                  <span className="text-lg">{opt.emoji}</span>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {t(opt.labelKey)}
-                  </p>
-                </button>
-              ))}
+              {checkinOptions.map(opt => {
+                const isDisabled = manualCheckInDone && opt.value !== "manageable";
+                return (
+                  <button
+                    key={opt.value}
+                    onClick={() => submitCheckin(opt.value)}
+                    disabled={savingCheckin || isDisabled}
+                    className={`flex-1 py-3 rounded-xl transition-all text-center ${
+                      isDisabled ? "bg-muted/50 opacity-50 cursor-not-allowed" : "bg-muted hover:bg-muted/80"
+                    }`}
+                  >
+                    <span className="text-lg">{opt.emoji}</span>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {t(opt.labelKey)}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
             <button
               onClick={() => setShowSetbackDialog(true)}

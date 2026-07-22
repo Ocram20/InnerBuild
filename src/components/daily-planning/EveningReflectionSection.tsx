@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Moon, Heart, Lightbulb, Save, Plus, X, Check, PartyPopper } from "lucide-react";
+import { Moon, Heart, Lightbulb, Save, Plus, X, Check, PartyPopper, Zap, Coffee, Book, Smile, Target } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useTranslation } from "react-i18next";
 
 interface DailyReflection {
   id?: string;
-  day_summary: string | null;
+  day_summary: string[];
   grateful_for: string[];
-  lessons_learned: string | null;
+  lessons_learned: string[];
   original_language?: string | null;
 }
 
@@ -25,9 +24,9 @@ interface EveningReflectionSectionProps {
 
 export function EveningReflectionSection({ userId, reflectionDate }: EveningReflectionSectionProps) {
   const [reflection, setReflection] = useState<DailyReflection>({
-    day_summary: "",
+    day_summary: [],
     grateful_for: [],
-    lessons_learned: "",
+    lessons_learned: [],
     original_language: null,
   });
   const [newGratitude, setNewGratitude] = useState("");
@@ -60,11 +59,23 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     if (error) {
       console.error("Error fetching reflection:", error);
     } else if (data) {
+      const parseArray = (value: any): string[] => {
+        if (Array.isArray(value)) return value;
+        if (typeof value === 'string') {
+          try {
+            const parsed = JSON.parse(value);
+            return Array.isArray(parsed) ? parsed : [value];
+          } catch {
+            return [value];
+          }
+        }
+        return [];
+      };
       setReflection({
         id: data.id,
-        day_summary: data.day_summary,
+        day_summary: parseArray(data.day_summary),
         grateful_for: data.grateful_for || [],
-        lessons_learned: data.lessons_learned,
+        lessons_learned: parseArray(data.lessons_learned),
         original_language: (data as any).original_language,
       });
     }
@@ -89,6 +100,15 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     setHasUnsavedChanges(true);
   };
 
+  const toggleTag = (field: 'day_summary' | 'lessons_learned', value: string) => {
+    const currentArray = reflection[field];
+    const newArray = currentArray.includes(value)
+      ? currentArray.filter(item => item !== value)
+      : [...currentArray, value];
+    setReflection({ ...reflection, [field]: newArray });
+    setHasUnsavedChanges(true);
+  };
+
   const updateField = (field: keyof DailyReflection, value: string) => {
     setReflection({ ...reflection, [field]: value });
     setHasUnsavedChanges(true);
@@ -99,16 +119,16 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
     setSaving(true);
 
     const isComplete = 
-      reflection.day_summary?.trim() && 
+      reflection.day_summary.length > 0 && 
       reflection.grateful_for.length > 0 && 
-      reflection.lessons_learned?.trim();
+      reflection.lessons_learned.length > 0;
 
     const reflectionData = {
       user_id: userId,
       reflection_date: reflectionDate,
-      day_summary: reflection.day_summary,
+      day_summary: JSON.stringify(reflection.day_summary),
       grateful_for: reflection.grateful_for,
-      lessons_learned: reflection.lessons_learned,
+      lessons_learned: JSON.stringify(reflection.lessons_learned),
       original_language: reflection.original_language || i18n.resolvedLanguage || i18n.language || "it",
     };
 
@@ -157,9 +177,27 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
   };
 
   const isComplete = 
-    reflection.day_summary?.trim() && 
+    reflection.day_summary.length > 0 && 
     reflection.grateful_for.length > 0 && 
-    reflection.lessons_learned?.trim();
+    reflection.lessons_learned.length > 0;
+
+  const daySummaryOptions = [
+    { value: "productive", label: "Produttivo", icon: Zap, color: "bg-blue-500/20 text-blue-600 border-blue-500/30" },
+    { value: "relaxing", label: "Rilassante", icon: Coffee, color: "bg-green-500/20 text-green-600 border-green-500/30" },
+    { value: "challenging", label: "Sfida", icon: Target, color: "bg-orange-500/20 text-orange-600 border-orange-500/30" },
+    { value: "learning", label: "Imparativo", icon: Book, color: "bg-purple-500/20 text-purple-600 border-purple-500/30" },
+    { value: "social", label: "Sociale", icon: Smile, color: "bg-pink-500/20 text-pink-600 border-pink-500/30" },
+    { value: "mixed", label: "Misto", icon: Moon, color: "bg-gray-500/20 text-gray-600 border-gray-500/30" },
+  ];
+
+  const lessonsOptions = [
+    { value: "patience", label: "Pazienza", icon: Moon, color: "bg-indigo-500/20 text-indigo-600 border-indigo-500/30" },
+    { value: "focus", label: "Focus", icon: Target, color: "bg-blue-500/20 text-blue-600 border-blue-500/30" },
+    { value: "self_care", label: "Self-care", icon: Heart, color: "bg-pink-500/20 text-pink-600 border-pink-500/30" },
+    { value: "gratitude", label: "Gratitudine", icon: Lightbulb, color: "bg-yellow-500/20 text-yellow-600 border-yellow-500/30" },
+    { value: "resilience", label: "Resilienza", icon: Zap, color: "bg-orange-500/20 text-orange-600 border-orange-500/30" },
+    { value: "balance", label: "Equilibrio", icon: Coffee, color: "bg-green-500/20 text-green-600 border-green-500/30" },
+  ];
 
   return (
     <Card className="glass shadow-card animate-slide-up border-2 border-primary/10" style={{ animationDelay: "0.3s" }}>
@@ -197,12 +235,25 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                 <Moon className="h-4 w-4 text-muted-foreground" />
                 {t("evening_reflection.how_was_day")}
               </label>
-              <Textarea
-                placeholder={t("evening_reflection.day_placeholder")}
-                value={reflection.day_summary || ""}
-                onChange={(e) => updateField("day_summary", e.target.value)}
-                className="min-h-20 resize-none"
-              />
+              <div className="flex flex-wrap gap-2">
+                {daySummaryOptions.map((option) => {
+                  const Icon = option.icon;
+                  const isSelected = reflection.day_summary.includes(option.value);
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => toggleTag('day_summary', option.value)}
+                      className={`px-3 py-2 rounded-lg border transition-all flex items-center gap-2 ${
+                        isSelected ? option.color + " border-2" : "bg-muted/50 border-border hover:bg-muted"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="text-sm">{option.label}</span>
+                      {isSelected && <Check className="h-3 w-3 ml-1" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Gratitude */}
@@ -254,19 +305,32 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                 <Lightbulb className="h-4 w-4 text-yellow-500" />
                 {t("evening_reflection.lessons_learned")}
               </label>
-              <Textarea
-                placeholder={t("evening_reflection.lessons_placeholder")}
-                value={reflection.lessons_learned || ""}
-                onChange={(e) => updateField("lessons_learned", e.target.value)}
-                className="min-h-20 resize-none"
-              />
+              <div className="flex flex-wrap gap-2">
+                {lessonsOptions.map((option) => {
+                  const Icon = option.icon;
+                  const isSelected = reflection.lessons_learned.includes(option.value);
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => toggleTag('lessons_learned', option.value)}
+                      className={`px-3 py-2 rounded-lg border transition-all flex items-center gap-2 ${
+                        isSelected ? option.color + " border-2" : "bg-muted/50 border-border hover:bg-muted"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="text-sm">{option.label}</span>
+                      {isSelected && <Check className="h-3 w-3 ml-1" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Save Button */}
             <div className="flex justify-end">
               <Button 
                 onClick={saveReflection} 
-                disabled={saving || !hasUnsavedChanges || !(reflection.day_summary?.trim() || reflection.grateful_for.length > 0 || reflection.lessons_learned?.trim())}
+                disabled={saving || !hasUnsavedChanges || !(reflection.day_summary.length > 0 || reflection.grateful_for.length > 0 || reflection.lessons_learned.length > 0)}
                 className="gap-2"
               >
                 {saving ? (

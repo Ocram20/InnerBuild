@@ -53,7 +53,7 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
             <div
               key={challenge.id}
               className="p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer shadow-sm hover:shadow-md"
-              onClick={() => navigate("/challenges")}
+              onClick={() => navigate(`/challenges/${challenge.id}`)}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-foreground truncate flex-1">

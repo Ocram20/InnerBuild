@@ -25,7 +25,7 @@ import {
 
 import {
   Leaf, LogOut, Moon, Sun, Crown, Plus,
-  ChevronRight, Target, User, Compass, Home, AlertTriangle, Flame, X,
+  ChevronRight, Target, User, Compass, Home, AlertTriangle, Flame, X, MoreVertical,
 } from "lucide-react";
 import CreateHabitModal from "@/components/CreateHabitModal";
 import CreateChallengeModal from "@/components/CreateChallengeModal";
@@ -35,7 +35,14 @@ import DailyQuote from "@/components/DailyQuote";
 import BottomNavigation from "@/components/BottomNavigation";
 import ActiveChallengesCard from "@/components/ActiveChallengesCard";
 import RecoveryStreakCard from "@/components/RecoveryStreakCard";
-import HabitReportCard from "@/components/HabitReportCard";
+import InnerBuildScore from "@/components/InnerBuildScore";
+import { useInnerBuildScore } from "@/hooks/useInnerBuildScore";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import QuickAccessTodos from "@/components/QuickAccessTodos";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { EmergencyUrgeModal } from "@/components/recovery/EmergencyUrgeModal";
@@ -71,6 +78,7 @@ export default function Dashboard() {
   const [showEmergency, setShowEmergency] = useState(false);
   const [paywallReason, setPaywallReason] = useState<"ai_coach" | "recovery" | "general">("general");
   const [fabMenuOpen, setFabMenuOpen] = useState(false);
+  const { score, loading: scoreLoading } = useInnerBuildScore();
 
   useEffect(() => {
     if (user) {
@@ -182,67 +190,64 @@ export default function Dashboard() {
       <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
       <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
       <header className="sticky top-0 safe-area-header z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="flex max-w-lg flex-col gap-3 p-4 mx-auto sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex max-w-lg items-center justify-between p-4 mx-auto">
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
               <Leaf className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
-              <h1 className="font-bold text-foreground break-words">{getGreeting()}</h1>
-              <p className="text-xs text-muted-foreground break-words">
-                {new Date().toLocaleDateString(i18n.language || "it", { weekday: "long", day: "numeric", month: "long" })}
-              </p>
+              <div className="flex items-center gap-2">
+                <h1 className="font-bold text-foreground break-words">{getGreeting()}</h1>
+                {subscription.subscribed && (
+                  <button onClick={handleManageSubscription} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold flex items-center gap-1 hover:bg-primary/20 transition-colors shrink-0">
+                    <Crown className="h-2.5 w-2.5" />
+                    {t("common.pro")}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-end gap-1 self-end sm:self-auto">
-            {subscription.subscribed && (
-              <button onClick={handleManageSubscription} className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium flex items-center gap-1 hover:bg-primary/20 transition-colors">
-                <Crown className="h-3 w-3" />
-                {t("common.pro")}
-              </button>
-            )}
+          <div className="flex items-center gap-2">
             <LanguageSelector />
-            <Button variant="ghost" size="icon" onClick={() => navigate("/?no_redirect=true")} className="rounded-full h-9 w-9" title={t("common.view_site")}>
-              <Home className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" onClick={() => navigate("/profile")} className="rounded-full h-9 w-9">
-              <User className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full h-9 w-9">
-              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full h-9 w-9">
-                  <LogOut className="h-4 w-4" />
+                  <MoreVertical className="h-4 w-4" />
                 </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>{t("dashboard.logout_confirm_title")}</AlertDialogTitle>
-                  <AlertDialogDescription>{t("dashboard.logout_confirm_desc")}</AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleSignOut}>{t("auth.sign_out")}</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 backdrop-blur-md bg-background/95">
+                <DropdownMenuItem onClick={() => navigate("/?no_redirect=true")} className="cursor-pointer">
+                  <Home className="h-4 w-4 mr-2" />
+                  {t("common.view_site")}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
+                  {isDark ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
+                  {isDark ? "Light Mode" : "Dark Mode"}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/profile")} className="cursor-pointer">
+                  <User className="h-4 w-4 mr-2" />
+                  {t("nav.profile")}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                  <LogOut className="h-4 w-4 mr-2" />
+                  {t("auth.sign_out")}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
 
       <main className="max-w-lg mx-auto px-4 pt-6 space-y-5">
-        {loading || prefsLoading ? (
+        {loading || prefsLoading || scoreLoading ? (
           <LoadingSpinner className="py-20" />
         ) : (
           <>
-            <section className="animate-fade-in"><DailyQuote /></section>
-
-            {preferences.habits && (
-              <section className="animate-fade-in" style={{ animationDelay: "25ms" }}><HabitReportCard /></section>
-            )}
+            <section className="animate-fade-in flex flex-col items-center justify-center py-8">
+              <InnerBuildScore score={score} />
+              <DailyQuote />
+            </section>
 
             {preferences["daily-planning"] && (
               <section className="animate-fade-in" style={{ animationDelay: "50ms" }}><QuickAccessTodos userId={user?.id} /></section>
@@ -250,24 +255,6 @@ export default function Dashboard() {
 
             {preferences.habits && (
               <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-                <SectionTitle
-                  action={
-                    <div className="flex flex-wrap items-center gap-2">
-                      <Button size="sm" variant="ghost" onClick={() => navigate("/habits")} className="h-8 text-muted-foreground">
-                        <Target className="h-4 w-4 mr-1" />
-                        {t("common.all")}
-                      </Button>
-                      <Button size="sm" variant="outline" onClick={() => setShowCreateHabit(true)} className="h-8 w-9 bg-[#4b9b75] text-white border-none btn-shadow">
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  }
-                >
-                  {t("dashboard.todays_habits")}
-                </SectionTitle>
-                <p className="text-sm text-muted-foreground -mt-2 mb-3">
-                  {t("dashboard.completed_stats", { completed: completedCount, total: totalHabits, percent: progressPercent })}
-                </p>
                 <TodayOverview habits={habits} onToggleHabit={toggleHabit} />
               </section>
             )}
@@ -287,19 +274,6 @@ export default function Dashboard() {
                 <ActiveChallengesCard challenges={challenges} />
               </section>
             )}
-
-            <section className="animate-fade-in" style={{ animationDelay: "250ms" }}>
-              <button onClick={() => navigate("/explore")} className="w-full rounded-2xl border border-border/60 bg-card p-4 flex items-center gap-4 hover:bg-muted/50 hover:border-primary/30 transition-all shadow-elevated card-elevated card-alt">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shadow-soft">
-                  <Compass className="h-6 w-6 text-primary" />
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="text-base font-semibold text-foreground">{t("dashboard.explore_tools")}</p>
-                  <p className="text-xs text-muted-foreground">{t("dashboard.explore_tools_desc")}</p>
-                </div>
-                <ChevronRight className="h-5 w-5 text-muted-foreground" />
-              </button>
-            </section>
           </>
         )}
       </main>
