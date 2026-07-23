@@ -27,9 +27,16 @@
     --muted: 150 15% 95%;
     --muted-foreground: 210 15% 50%;
 
-    /* Warm amber accent */
-    --accent: 35 85% 55%;
-    --accent-foreground: 35 90% 15%;
+    /* Category Accents: Violetto (Mindfulness/AI), Azzurro (Forge/Triggers), Verde Salvia (Abitudini/Azione) */
+    --violetto: 287 54% 65%;
+    --violetto-foreground: 0 0% 100%;
+    --azzurro: 215 65% 57%;
+    --azzurro-foreground: 0 0% 100%;
+    --salvia: 152 35% 45%;
+
+    /* Purple accent for Mind, Introspection, Science & AI */
+    --accent: 287 54% 65%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
@@ -43,24 +50,24 @@
     /* Custom tokens */
     --success: 152 55% 45%;
     --success-foreground: 0 0% 100%;
-    --warning: 35 85% 55%;
-    --warning-foreground: 35 90% 15%;
+    --warning: 287 54% 65%;
+    --warning-foreground: 0 0% 100%;
 
     /* Gamification colors */
-    --xp: 270 60% 60%;
+    --xp: 287 54% 65%;
     --xp-foreground: 0 0% 100%;
-    --level: 200 80% 55%;
+    --level: 152 35% 45%;
     --level-foreground: 0 0% 100%;
-    --badge-gold: 45 90% 55%;
-    --badge-silver: 220 10% 70%;
-    --badge-bronze: 25 60% 50%;
+    --badge-gold: 152 35% 45%;
+    --badge-silver: 210 15% 50%;
+    --badge-bronze: 210 15% 50%;
 
     /* Gradients */
-    --gradient-calm: linear-gradient(135deg, hsl(152 35% 45%), hsl(180 30% 50%));
-    --gradient-warm: linear-gradient(135deg, hsl(35 85% 55%), hsl(25 80% 55%));
+    --gradient-calm: linear-gradient(135deg, hsl(152 35% 45%), hsl(152 45% 35%));
+    --gradient-warm: linear-gradient(135deg, hsl(287 54% 65%), hsl(287 50% 50%));
     --gradient-soft: linear-gradient(180deg, hsl(150 20% 98%), hsl(150 25% 95%));
-    --gradient-xp: linear-gradient(135deg, hsl(270 60% 60%), hsl(300 50% 55%));
-    --gradient-level: linear-gradient(135deg, hsl(200 80% 55%), hsl(180 70% 50%));
+    --gradient-xp: linear-gradient(135deg, hsl(287 54% 65%), hsl(287 50% 50%));
+    --gradient-level: linear-gradient(135deg, hsl(152 35% 45%), hsl(152 55% 35%));
 
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(152 35% 45% / 0.15);
@@ -68,7 +75,7 @@
     --shadow-glow: 0 0 30px hsl(152 35% 45% / 0.2);
     --shadow-elevated: 0 8px 30px -6px hsl(210 20% 20% / 0.12);
     --shadow-elevated-strong: 0 12px 40px -8px hsl(210 20% 20% / 0.15);
-    --shadow-card-alt: 0 4px 16px -4px hsl(35 85% 55% / 0.12);
+    --shadow-card-alt: 0 4px 16px -4px hsl(287 54% 65% / 0.12);
   }
 
   .dark {
@@ -91,11 +98,17 @@
     --muted: 220 20% 16%;
     --muted-foreground: 150 15% 60%;
 
-    /* Warm amber accent */
-    --accent: 35 80% 60%;
+    /* Category Accents in Dark Mode */
+    --violetto: 287 62% 72%;
+    --violetto-foreground: 220 25% 10%;
+    --azzurro: 215 82% 66%;
+    --azzurro-foreground: 220 25% 10%;
+    --salvia: 152 40% 55%;
+
+    --accent: 287 62% 72%;
     --accent-foreground: 220 25% 10%;
 
-    --destructive: 0 55% 50%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 20% 18%;
@@ -104,30 +117,30 @@
 
     --success: 152 50% 50%;
     --success-foreground: 220 25% 10%;
-    --warning: 35 80% 60%;
-    --warning-foreground: 220 25% 10%;
+    --warning: 287 62% 72%;
+    --warning-foreground: 0 0% 100%;
 
     /* Gamification colors */
-    --xp: 270 55% 65%;
-    --xp-foreground: 220 25% 10%;
-    --level: 200 75% 60%;
+    --xp: 287 62% 72%;
+    --xp-foreground: 0 0% 100%;
+    --level: 152 40% 55%;
     --level-foreground: 220 25% 10%;
-    --badge-gold: 45 85% 60%;
-    --badge-silver: 220 10% 75%;
-    --badge-bronze: 25 55% 55%;
+    --badge-gold: 152 40% 55%;
+    --badge-silver: 210 15% 50%;
+    --badge-bronze: 210 15% 50%;
 
-    --gradient-calm: linear-gradient(135deg, hsl(152 40% 35%), hsl(180 25% 35%));
-    --gradient-warm: linear-gradient(135deg, hsl(35 80% 50%), hsl(25 75% 45%));
+    --gradient-calm: linear-gradient(135deg, hsl(152 40% 35%), hsl(152 50% 25%));
+    --gradient-warm: linear-gradient(135deg, hsl(287 62% 72%), hsl(287 50% 55%));
     --gradient-soft: linear-gradient(180deg, hsl(220 25% 10%), hsl(220 25% 12%));
-    --gradient-xp: linear-gradient(135deg, hsl(270 55% 55%), hsl(300 45% 50%));
-    --gradient-level: linear-gradient(135deg, hsl(200 75% 50%), hsl(180 65% 45%));
+    --gradient-xp: linear-gradient(135deg, hsl(287 62% 72%), hsl(287 50% 55%));
+    --gradient-level: linear-gradient(135deg, hsl(152 40% 55%), hsl(152 50% 40%));
 
     --shadow-soft: 0 4px 20px -4px hsl(152 40% 55% / 0.2);
     --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.3);
     --shadow-glow: 0 0 30px hsl(152 40% 55% / 0.15);
     --shadow-elevated: 0 8px 30px -6px hsl(0 0% 0% / 0.4);
     --shadow-elevated-strong: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
-    --shadow-card-alt: 0 4px 16px -4px hsl(35 80% 60% / 0.2);
+    --shadow-card-alt: 0 4px 16px -4px hsl(287 62% 72% / 0.2);
   }
 }
 

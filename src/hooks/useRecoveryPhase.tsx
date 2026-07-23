@@ -30,7 +30,7 @@ export const RECOVERY_PHASES: RecoveryPhase[] = [
     description: "Cravings become less intense. Your brain's dopamine baseline is slowly normalizing. Building new routines is key here.",
     minDays: 15,
     maxDays: 45,
-    color: "hsl(35, 85%, 55%)",
+    color: "hsl(152, 35%, 45%)",
     icon: "🛡️",
   },
   {
@@ -39,7 +39,7 @@ export const RECOVERY_PHASES: RecoveryPhase[] = [
     description: "Neural pathways are rewiring. Emotional regulation improves. You're building the person you want to become.",
     minDays: 46,
     maxDays: 90,
-    color: "hsl(152, 55%, 45%)",
+    color: "hsl(152, 40%, 55%)",
     icon: "✨",
   },
   {
@@ -48,7 +48,7 @@ export const RECOVERY_PHASES: RecoveryPhase[] = [
     description: "New habits feel natural. Your brain has significantly healed. Vigilance is still important, but you have strong foundations.",
     minDays: 91,
     maxDays: 999,
-    color: "hsl(250, 60%, 60%)",
+    color: "hsl(270, 60%, 60%)",
     icon: "👑",
   },
 ];

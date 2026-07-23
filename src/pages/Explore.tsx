@@ -27,16 +27,16 @@ type ToolDef = {
 };
 
 const freeTools: ToolDef[] = [
-  { id: "habits", titleKey: "explore.tools.habits", descriptionKey: "explore.tools.habits_desc", icon: Target, path: "/habits", iconBg: "bg-[#d4f5ea] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75]" },
-  { id: "challenges", titleKey: "explore.tools.detox_challenges", descriptionKey: "explore.tools.detox_challenges_desc", icon: Flame, path: "/challenges", iconBg: "bg-[#ffe8cc] dark:bg-[#ee9d2b]/20", iconColor: "text-[#ee9d2b]" },
-  { id: "evening-reflection", titleKey: "explore.tools.evening_reflection", descriptionKey: "explore.tools.evening_reflection_desc", icon: Moon, path: "/evening-reflection", iconBg: "bg-[#ede5ff] dark:bg-[#8b5cf6]/20", iconColor: "text-[#8b5cf6]" },
-  { id: "daily-planning", titleKey: "explore.tools.daily_planning", descriptionKey: "explore.tools.daily_planning_desc", icon: Calendar, path: "/daily-planning", iconBg: "bg-[#f0f9f6] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75]" },
+  { id: "habits", titleKey: "explore.tools.habits", descriptionKey: "explore.tools.habits_desc", icon: Target, path: "/habits", iconBg: "bg-[#d4f5ea] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75] dark:text-[#5ec396]" },
+  { id: "challenges", titleKey: "explore.tools.detox_challenges", descriptionKey: "explore.tools.detox_challenges_desc", icon: Flame, path: "/challenges", iconBg: "bg-[#d4f5ea] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75] dark:text-[#5ec396]" },
+  { id: "evening-reflection", titleKey: "explore.tools.evening_reflection", descriptionKey: "explore.tools.evening_reflection_desc", icon: Moon, path: "/evening-reflection", iconBg: "bg-[#f4e6f8] dark:bg-[#C377D7]/20", iconColor: "text-[#C377D7] dark:text-[#D28CE4]" },
+  { id: "daily-planning", titleKey: "explore.tools.daily_planning", descriptionKey: "explore.tools.daily_planning_desc", icon: Calendar, path: "/daily-planning", iconBg: "bg-[#d4f5ea] dark:bg-[#4b9b75]/20", iconColor: "text-[#4b9b75] dark:text-[#5ec396]" },
 ];
 
 const premiumTools: ToolDef[] = [
-  { id: "the-forge", titleKey: "explore.tools.the_forge", descriptionKey: "explore.tools.the_forge_desc", icon: Sparkles, path: "/the-forge", iconBg: "bg-[#fde8f5] dark:bg-[#d946ef]/20", iconColor: "text-[#d946ef]", premium: true },
-  { id: "trigger-tracking", titleKey: "explore.tools.trigger_tracking", descriptionKey: "explore.tools.trigger_tracking_desc", icon: Zap, path: "/trigger-tracking", iconBg: "bg-[#ffe8cc] dark:bg-[#ee9d2b]/20", iconColor: "text-[#ee9d2b]", premium: true },
-  { id: "coach", titleKey: "explore.tools.ai_coach", descriptionKey: "explore.tools.ai_coach_desc", icon: Bot, path: "/coach", iconBg: "bg-[#d0e8ff] dark:bg-[#3b82f6]/20", iconColor: "text-[#3b82f6]", premium: true },
+  { id: "the-forge", titleKey: "explore.tools.the_forge", descriptionKey: "explore.tools.the_forge_desc", icon: Sparkles, path: "/the-forge", iconBg: "bg-[#e3edfc] dark:bg-[#4D87D9]/20", iconColor: "text-[#4D87D9] dark:text-[#619BF0]", premium: true },
+  { id: "trigger-tracking", titleKey: "explore.tools.trigger_tracking", descriptionKey: "explore.tools.trigger_tracking_desc", icon: Zap, path: "/trigger-tracking", iconBg: "bg-[#e3edfc] dark:bg-[#4D87D9]/20", iconColor: "text-[#4D87D9] dark:text-[#619BF0]", premium: true },
+  { id: "coach", titleKey: "explore.tools.ai_coach", descriptionKey: "explore.tools.ai_coach_desc", icon: Bot, path: "/coach", iconBg: "bg-[#f4e6f8] dark:bg-[#C377D7]/20", iconColor: "text-[#C377D7] dark:text-[#D28CE4]", premium: true },
 ];
 
 const Explore = () => {
@@ -73,7 +73,7 @@ const Explore = () => {
     <div className="min-h-screen overflow-x-hidden pb-app-main bg-[#F8FAFC] dark:bg-[#0f1419] relative">
       {/* Background blur circles for dark mode */}
       <div className="hidden dark:block bg-blur-circle bg-[#4b9b75] -top-20 -left-20" />
-      <div className="hidden dark:block bg-blur-circle bg-[#8b5cf6] top-1/2 -right-20" />
+      <div className="hidden dark:block bg-blur-circle bg-[#4D87D9] top-1/2 -right-20" />
 
       {/* Header */}
       <header className="pt-14 pb-4 z-30">
@@ -108,7 +108,7 @@ const Explore = () => {
       <main className="w-full max-w-lg mx-auto px-6 py-6 space-y-12 relative z-10">
         {/* Settings display preferences section */}
         {showSettings && (
-          <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-white dark:bg-white/5 rounded-[32px] border border-gray-100 dark:border-white/10 p-6 space-y-4 premium-shadow">
+          <section className="animate-in fade-in slide-in-from-top-4 duration-300 bg-white dark:bg-[#192028] rounded-[32px] border border-gray-100 dark:border-[#252d37] p-6 space-y-4 premium-shadow">
             <div className="space-y-1">
               <h2 className="font-semibold text-sm text-[#29333d] dark:text-white">{t("explore.display_settings.title")}</h2>
               <p className="text-xs text-[#6c8093]">{t("explore.display_settings.subtitle")}</p>
@@ -156,8 +156,8 @@ const Explore = () => {
                   className="block text-left w-full p-6 rounded-[32px] bg-[#d4f5ea] dark:bg-[#4b9b75]/10 border border-teal-200 dark:border-[#4b9b75]/25 premium-shadow relative z-10 transition-transform active:scale-95"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#4b9b75]/20 border border-teal-100 dark:border-[#4b9b75]/30 flex items-center justify-center shrink-0">
-                      <Target className="h-7 w-7 text-[#4b9b75]" />
+                    <div className="w-14 h-14 rounded-full bg-white dark:bg-[#4b9b75]/20 border border-teal-100 dark:border-[#4b9b75]/30 flex items-center justify-center shrink-0">
+                      <Target className="h-7 w-7 text-[#4b9b75] dark:text-[#5ec396]" />
                     </div>
                     <div>
                       <h3 className="text-[17px] font-extrabold text-[#29333d] dark:text-white mb-1">
@@ -171,26 +171,28 @@ const Explore = () => {
                 </button>
               )}
 
-              {/* Asymmetric Flex Row for Detox and Reflection */}
+              {/* Asymmetric/Grid Row for Detox and Reflection */}
               {(preferences.challenges || preferences["evening-reflection"]) && (
-                <div className="flex gap-4 w-full">
+                <div className="grid grid-cols-2 gap-4 w-full">
                   {/* Detox Challenges */}
                   {preferences.challenges && (
                     <button
                       type="button"
                       onClick={() => handleNavigate("/challenges", false)}
                       id="tool-detox"
-                      className="flex-1 text-left p-5 rounded-[28px] bg-[#ffe8cc] dark:bg-[#ee9d2b]/10 border border-orange-200 dark:border-[#ee9d2b]/25 premium-shadow active:scale-95 transition-transform"
+                      className="text-left p-5 rounded-[28px] bg-[#d4f5ea] dark:bg-[#4b9b75]/10 border border-teal-200 dark:border-[#4b9b75]/25 premium-shadow active:scale-95 transition-transform flex flex-col justify-between"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#ee9d2b]/20 border border-orange-100 dark:border-[#ee9d2b]/30 flex items-center justify-center mb-4 shrink-0">
-                        <Flame className="h-6 w-6 text-[#ee9d2b]" />
+                      <div>
+                        <div className="w-12 h-12 rounded-full bg-white dark:bg-[#4b9b75]/20 border border-teal-100 dark:border-[#4b9b75]/30 flex items-center justify-center mb-3 shrink-0">
+                          <Flame className="h-6 w-6 text-[#4b9b75] dark:text-[#5ec396]" />
+                        </div>
+                        <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
+                          {t("explore.tools.detox_challenges")}
+                        </h3>
+                        <p className="text-[12px] text-[#6c8093] leading-tight">
+                          {t("explore.tools.detox_challenges_desc")}
+                        </p>
                       </div>
-                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
-                        {t("explore.tools.detox_challenges")}
-                      </h3>
-                      <p className="text-[12px] text-[#6c8093] leading-tight">
-                        {t("explore.tools.detox_challenges_desc")}
-                      </p>
                     </button>
                   )}
 
@@ -200,17 +202,19 @@ const Explore = () => {
                       type="button"
                       onClick={() => handleNavigate("/evening-reflection", false)}
                       id="tool-evening"
-                      className="flex-1 text-left p-5 rounded-[28px] bg-[#ede5ff] dark:bg-[#8b5cf6]/10 border border-purple-200 dark:border-[#8b5cf6]/25 premium-shadow mt-4 active:scale-95 transition-transform"
+                      className="text-left p-5 rounded-[28px] bg-[#f4e6f8] dark:bg-[#C377D7]/10 border border-purple-200 dark:border-[#C377D7]/25 premium-shadow active:scale-95 transition-transform flex flex-col justify-between"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#8b5cf6]/20 border border-purple-100 dark:border-[#8b5cf6]/30 flex items-center justify-center mb-4 shrink-0">
-                        <Moon className="h-6 w-6 text-[#8b5cf6]" />
+                      <div>
+                        <div className="w-12 h-12 rounded-full bg-white dark:bg-[#C377D7]/20 border border-purple-100 dark:border-[#C377D7]/30 flex items-center justify-center mb-3 shrink-0">
+                          <Moon className="h-6 w-6 text-[#C377D7] dark:text-[#D28CE4]" />
+                        </div>
+                        <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
+                          {t("explore.tools.evening_reflection")}
+                        </h3>
+                        <p className="text-[12px] text-[#6c8093] leading-tight">
+                          {t("explore.tools.evening_reflection_desc")}
+                        </p>
                       </div>
-                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
-                        {t("explore.tools.evening_reflection")}
-                      </h3>
-                      <p className="text-[12px] text-[#6c8093] leading-tight">
-                        {t("explore.tools.evening_reflection_desc")}
-                      </p>
                     </button>
                   )}
                 </div>
@@ -222,17 +226,17 @@ const Explore = () => {
                   type="button"
                   onClick={() => handleNavigate("/daily-planning", false)}
                   id="tool-planning"
-                  className="block text-left w-full p-5 rounded-[32px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 premium-shadow z-20 active:scale-95 transition-transform"
+                  className="block text-left w-full p-6 rounded-[32px] bg-[#d4f5ea] dark:bg-[#4b9b75]/10 border border-teal-200 dark:border-[#4b9b75]/25 premium-shadow z-20 active:scale-95 transition-transform"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#f0f9f6] dark:bg-[#4b9b75]/20 flex items-center justify-center shrink-0">
-                      <Calendar className="h-5 w-5 text-[#4b9b75]" />
+                    <div className="w-12 h-12 rounded-full bg-white dark:bg-[#4b9b75]/20 border border-teal-100 dark:border-[#4b9b75]/30 flex items-center justify-center shrink-0">
+                      <Calendar className="h-6 w-6 text-[#4b9b75] dark:text-[#5ec396]" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-[#29333d] dark:text-white">
+                      <h3 className="text-base font-extrabold text-[#29333d] dark:text-white mb-1">
                         {t("explore.tools.daily_planning")}
                       </h3>
-                      <p className="text-[11px] text-[#6c8093]">
+                      <p className="text-xs text-[#6c8093] leading-snug">
                         {t("explore.tools.daily_planning_desc")}
                       </p>
                     </div>
@@ -256,30 +260,27 @@ const Explore = () => {
                   type="button"
                   onClick={() => handleNavigate("/the-forge", true)}
                   id="tool-rebirth"
-                  className="block text-left w-full p-6 rounded-[36px] bg-[#fde8f5] dark:bg-[#d946ef]/10 border border-pink-200 dark:border-[#d946ef]/20 premium-shadow relative overflow-hidden active:scale-95 transition-transform"
+                  className="block text-left w-full p-6 rounded-[36px] bg-[#e3edfc] dark:bg-[#4D87D9]/10 border border-blue-200 dark:border-[#4D87D9]/25 premium-shadow relative overflow-hidden active:scale-95 transition-transform"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="relative shrink-0">
-                        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#d946ef]/20 border border-pink-100 dark:border-[#d946ef]/30 flex items-center justify-center shrink-0">
-                          <Sparkles className="h-7 w-7 text-[#d946ef]" />
+                  <div className="flex items-center gap-4 relative z-10">
+                    <div className="relative shrink-0">
+                      <div className="w-14 h-14 rounded-full bg-white dark:bg-[#4D87D9]/20 border border-blue-100 dark:border-[#4D87D9]/30 flex items-center justify-center shrink-0">
+                        <Sparkles className="h-7 w-7 text-[#4D87D9] dark:text-[#619BF0]" />
+                      </div>
+                      {!isPremium && (
+                        <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
+                          <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
                         </div>
-                        {!isPremium && (
-                          <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
-                            <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
-                          </div>
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-[#29333d] dark:text-white">
-                          {t("explore.tools.the_forge")}
-                        </h3>
-                        <p className="text-xs text-[#6c8093]">
-                          {t("explore.tools.the_forge_desc")}
-                        </p>
-                      </div>
+                      )}
                     </div>
-                    <ChevronRight className="h-6 w-6 text-[#d946ef] shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-bold text-[#29333d] dark:text-white">
+                        {t("explore.tools.the_forge")}
+                      </h3>
+                      <p className="text-xs text-[#6c8093]">
+                        {t("explore.tools.the_forge_desc")}
+                      </p>
+                    </div>
                   </div>
                 </button>
               )}
@@ -293,11 +294,11 @@ const Explore = () => {
                       type="button"
                       onClick={() => handleNavigate("/trigger-tracking", true)}
                       id="tool-trigger"
-                      className="p-6 text-left rounded-[32px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 premium-shadow active:scale-95 transition-transform"
+                      className="p-6 text-left rounded-[32px] bg-[#e3edfc] dark:bg-[#4D87D9]/10 border border-blue-200 dark:border-[#4D87D9]/25 premium-shadow active:scale-95 transition-transform"
                     >
                       <div className="relative mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-[#ffe8cc] dark:bg-[#ee9d2b]/20 border border-transparent dark:border-[#ee9d2b]/30 flex items-center justify-center shrink-0">
-                          <Zap className="h-6 w-6 text-[#ee9d2b]" />
+                        <div className="w-12 h-12 rounded-full bg-white dark:bg-[#4D87D9]/20 border border-blue-100 dark:border-[#4D87D9]/30 flex items-center justify-center shrink-0">
+                          <Zap className="h-6 w-6 text-[#4D87D9] dark:text-[#619BF0]" />
                         </div>
                         {!isPremium && (
                           <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
@@ -320,24 +321,26 @@ const Explore = () => {
                       type="button"
                       onClick={() => handleNavigate("/coach", true)}
                       id="tool-ai"
-                      className="p-5 text-center rounded-[32px] bg-[#d0e8ff] dark:bg-[#3b82f6]/10 border border-blue-200 dark:border-[#3b82f6]/20 premium-shadow flex flex-col items-center justify-center active:scale-95 transition-transform"
+                      className="p-6 text-left rounded-[32px] bg-[#f4e6f8] dark:bg-[#C377D7]/10 border border-purple-200 dark:border-[#C377D7]/25 premium-shadow flex flex-col justify-between active:scale-95 transition-transform"
                     >
-                      <div className="relative mb-3">
-                        <div className="w-14 h-14 rounded-full bg-white dark:bg-[#3b82f6]/20 border border-blue-100 dark:border-[#3b82f6]/30 flex items-center justify-center shrink-0">
-                          <Bot className="h-7 w-7 text-[#3b82f6]" />
-                        </div>
-                        {!isPremium && (
-                          <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
-                            <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
+                      <div>
+                        <div className="relative mb-4">
+                          <div className="w-12 h-12 rounded-full bg-white dark:bg-[#C377D7]/20 border border-purple-100 dark:border-[#C377D7]/30 flex items-center justify-center shrink-0">
+                            <Bot className="h-6 w-6 text-[#C377D7] dark:text-[#D28CE4]" />
                           </div>
-                        )}
+                          {!isPremium && (
+                            <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center border-2 border-white dark:border-[#0f1419] z-20">
+                              <Lock className="h-2.5 w-2.5 text-slate-500 dark:text-slate-400" />
+                            </div>
+                          )}
+                        </div>
+                        <h3 className="text-base font-extrabold text-[#29333d] dark:text-white text-left">
+                          {t("explore.tools.ai_coach")}
+                        </h3>
+                        <p className="text-[11px] text-[#6c8093] font-medium text-left mt-1">
+                          Assistant
+                        </p>
                       </div>
-                      <h3 className="text-sm font-extrabold text-[#29333d] dark:text-white">
-                        {t("explore.tools.ai_coach")}
-                      </h3>
-                      <p className="text-[10px] text-[#6c8093] uppercase font-bold tracking-tighter">
-                        {t("explore.tools.ai_coach_desc")}
-                      </p>
                     </button>
                   )}
                 </div>

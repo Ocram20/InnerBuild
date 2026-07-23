@@ -38,7 +38,7 @@ export function RecoveryImpactCard({
     <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
       <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shadow-[0_0_12px_rgba(6,182,212,0.15)]">
+          <div className="p-2 rounded-xl bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border border-[#4D87D9]/20 shadow-[0_0_12px_rgba(77,135,217,0.15)]">
             <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
           <div>
@@ -64,8 +64,8 @@ export function RecoveryImpactCard({
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
-              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-cyan-500/30 transition-all shadow-sm">
-                <div className="mb-2 flex items-center gap-2 text-cyan-400 font-semibold">
+              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <Clock3 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.time_saved_label")}</span>
                 </div>
@@ -73,8 +73,8 @@ export function RecoveryImpactCard({
                 <p className="text-xs text-muted-foreground mt-0.5">{t("recovery_impact.hours_recovered")}</p>
               </div>
 
-              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-emerald-500/30 transition-all shadow-sm">
-                <div className="mb-2 flex items-center gap-2 text-emerald-400 font-semibold">
+              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <TrendingUp className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.energy_label")}</span>
                 </div>
@@ -82,8 +82,8 @@ export function RecoveryImpactCard({
                 <p className="mt-1 text-xs text-muted-foreground">{t("recovery_impact.clean_vs_relapse")}</p>
               </div>
 
-              <div className="rounded-xl border border-border/40 bg-slate-900/60 backdrop-blur-sm p-4 hover:border-purple-500/30 transition-all shadow-sm">
-                <div className="mb-2 flex items-center gap-2 text-purple-400 font-semibold">
+              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <CheckSquare2 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.tasks_label")}</span>
                 </div>

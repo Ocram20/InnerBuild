@@ -182,7 +182,7 @@ export function ReasonsSection() {
             size="sm" 
             onClick={() => addReason(newReason)}
             disabled={saving || !newReason.trim()}
-            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold rounded-xl h-10 gap-1.5 shadow-md shadow-purple-950/40"
+            className="w-full bg-[#C377D7] hover:bg-[#C377D7]/90 dark:bg-[#D28CE4] text-white font-semibold rounded-xl h-10 gap-1.5 shadow-md shadow-purple-950/40"
           >
             {saving ? (
               <Loader2 className="h-4 w-4 animate-spin" />

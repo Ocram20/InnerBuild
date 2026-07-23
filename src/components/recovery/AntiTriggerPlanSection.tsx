@@ -148,7 +148,7 @@ export function AntiTriggerPlanSection() {
     return (
       <Card className="border-border/60 bg-card/80 backdrop-blur-md">
         <CardContent className="py-8 flex justify-center">
-          <Loader2 className="h-6 w-6 animate-spin text-emerald-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#4D87D9] dark:text-[#619BF0]" />
         </CardContent>
       </Card>
     );
@@ -160,7 +160,7 @@ export function AntiTriggerPlanSection() {
         <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg font-bold text-foreground">
-              <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <div className="p-1.5 rounded-lg bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border border-[#4D87D9]/20">
                 <Shield className="h-4 w-4" />
               </div>
               <span>{t("anti_trigger_plan.title")}</span>
@@ -170,7 +170,7 @@ export function AntiTriggerPlanSection() {
               <Button
                 size="sm"
                 onClick={() => setIsModalOpen(true)}
-                className="h-8 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-medium gap-1 px-3 rounded-xl shadow-md shadow-emerald-950/40"
+                className="h-8 text-xs bg-[#4D87D9] hover:bg-[#3b75c7] text-white font-medium gap-1 px-3 rounded-xl shadow-md shadow-blue-950/40"
               >
                 <Plus className="h-3.5 w-3.5" />
                 <span>Nuova Ricetta</span>
@@ -185,7 +185,7 @@ export function AntiTriggerPlanSection() {
         <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-3">
           {plans.length === 0 ? (
             <div className="p-6 text-center border border-dashed border-border/60 rounded-2xl bg-slate-900/40">
-              <Sparkles className="h-8 w-8 text-emerald-400/60 mx-auto mb-2" />
+              <Sparkles className="h-8 w-8 text-[#4D87D9] dark:text-[#619BF0] mx-auto mb-2" />
               <p className="text-xs sm:text-sm font-medium text-foreground">Nessuna ricetta anti-trigger creata</p>
               <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
                 Crea il tuo primo piano automatizzato "SE (Trigger) ➔ ALLORA (Azione)".
@@ -194,7 +194,7 @@ export function AntiTriggerPlanSection() {
                 size="sm"
                 variant="outline"
                 onClick={() => setIsModalOpen(true)}
-                className="mt-3 text-xs border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 rounded-xl"
+                className="mt-3 text-xs border-[#4D87D9]/40 text-[#4D87D9] dark:text-[#619BF0] hover:bg-[#4D87D9]/10 rounded-xl"
               >
                 <Plus className="h-3.5 w-3.5 mr-1" />
                 Crea la prima ricetta
@@ -210,10 +210,10 @@ export function AntiTriggerPlanSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    className="p-3.5 rounded-2xl bg-slate-900/80 border border-border/60 hover:border-emerald-500/30 transition-all shadow-sm group relative"
+                    className="p-3.5 rounded-2xl bg-slate-900/80 border border-border/60 hover:border-[#4D87D9]/30 transition-all shadow-sm group relative"
                   >
                     <div className="flex items-center justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <div className="flex items-center gap-1.5 text-xs text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         <span>Ricetta Anti-Trigger</span>
                       </div>
@@ -237,11 +237,11 @@ export function AntiTriggerPlanSection() {
                       </div>
 
                       {/* Arrow */}
-                      <ArrowRight className="h-4 w-4 text-emerald-400 shrink-0" />
+                      <ArrowRight className="h-4 w-4 text-[#4D87D9] dark:text-[#619BF0] shrink-0" />
 
                       {/* Badge 2: ALLORA */}
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-medium">
-                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-400 opacity-80">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#4D87D9]/10 border border-[#4D87D9]/30 text-[#4D87D9] dark:text-[#619BF0] font-medium">
+                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-[#4D87D9] dark:text-[#619BF0] opacity-80">
                           ALLORA:
                         </span>
                         <span>"{display(plan.action)}"</span>
@@ -265,8 +265,8 @@ export function AntiTriggerPlanSection() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-md bg-slate-950 border-border/80 text-foreground rounded-2xl p-5 shadow-2xl">
           <DialogHeader className="pb-2">
-            <DialogTitle className="flex items-center gap-2 text-base font-bold text-emerald-400">
-              <Shield className="h-5 w-5 text-emerald-400" />
+            <DialogTitle className="flex items-center gap-2 text-base font-bold text-[#4D87D9] dark:text-[#619BF0]">
+              <Shield className="h-5 w-5 text-[#4D87D9] dark:text-[#619BF0]" />
               Nuova Ricetta Anti-Trigger
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground">
@@ -283,19 +283,19 @@ export function AntiTriggerPlanSection() {
                 placeholder="Es. Mi sento solo / annoiato a tarda notte..."
                 value={newPlan.trigger}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, trigger: e.target.value }))}
-                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
+                className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-emerald-300 flex items-center gap-1">
+              <label className="text-xs font-semibold text-[#4D87D9] dark:text-[#619BF0] flex items-center gap-1">
                 <span>ALLORA (Quale azione esegui immediatamente?)</span>
               </label>
               <Input
                 placeholder="Es. Faccio 15 piegamenti o metto il telefono in cucina..."
                 value={newPlan.action}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, action: e.target.value }))}
-                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
+                className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
 
@@ -307,7 +307,7 @@ export function AntiTriggerPlanSection() {
                 placeholder="Es. Rompe l'automatismo e rinfresca la mente..."
                 value={newPlan.benefit}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, benefit: e.target.value }))}
-                className="bg-slate-900 border-border/60 focus:border-emerald-500 text-xs sm:text-sm h-10 rounded-xl"
+                className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
           </div>
@@ -327,7 +327,7 @@ export function AntiTriggerPlanSection() {
               size="sm"
               onClick={addPlan}
               disabled={saving}
-              className="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-medium gap-1 rounded-xl px-4"
+              className="text-xs bg-[#4D87D9] hover:bg-[#3b75c7] text-white font-medium gap-1 rounded-xl px-4"
             >
               {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Plus className="h-3.5 w-3.5" />}
               Salva Ricetta

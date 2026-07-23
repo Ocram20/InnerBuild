@@ -60,7 +60,7 @@ export function FailureDebriefSection() {
       <Card className="border-border/60 bg-card/80 backdrop-blur-md shadow-xl overflow-hidden rounded-2xl">
         <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
           <CardTitle className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-foreground">
-            <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
+            <div className="p-2 rounded-xl bg-[#9B5BDB]/10 text-[#9B5BDB] dark:text-[#D28CE4] border border-[#9B5BDB]/20 shadow-[0_0_12px_rgba(155,91,219,0.15)]">
               <Heart className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
             <span>{t("failure_debrief.title")}</span>
@@ -75,7 +75,7 @@ export function FailureDebriefSection() {
             <Button
               onClick={handleStartDebrief}
               disabled={saving}
-              className="flex-1 bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-semibold shadow-lg shadow-rose-950/40 rounded-xl h-11 gap-1.5"
+              className="flex-1 bg-[#9B5BDB] hover:bg-[#8B4BCA] text-white font-semibold shadow-lg shadow-purple-950/40 rounded-xl h-11 gap-1.5"
             >
               <span>{incompleteDebrief ? t("failure_debrief.continue") : t("failure_debrief.start")}</span>
               <ChevronRight className="w-4 h-4" />
@@ -89,7 +89,7 @@ export function FailureDebriefSection() {
               >
                 <History className="w-4 h-4 text-muted-foreground" />
                 <span className="hidden sm:inline text-xs">{t("failure_debrief.history")}</span>
-                <span className="text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold bg-[#6c8093]/20 text-[#6c8093] dark:text-slate-300 border border-[#6c8093]/30 px-2 py-0.5 rounded-full">
                   {completedDebriefs.length}
                 </span>
               </Button>
@@ -97,7 +97,7 @@ export function FailureDebriefSection() {
           </div>
 
           {incompleteDebrief && (
-            <p className="text-xs text-amber-400 font-medium flex items-center gap-1.5">
+            <p className="text-xs text-[#9B5BDB] dark:text-[#D28CE4] font-medium flex items-center gap-1.5">
               <span>⚠️</span> {t("failure_debrief.unfinished_notice")}
             </p>
           )}

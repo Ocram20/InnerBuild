@@ -73,7 +73,7 @@ export function RecoveryTracker({
       <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-xl shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+            <div className="p-2 bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border border-[#4D87D9]/20 rounded-xl shadow-[0_0_12px_rgba(77,135,217,0.15)]">
               <Flame className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
             <div>
@@ -89,12 +89,12 @@ export function RecoveryTracker({
                 <div
                   key={i}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    i < jokers ? "bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.5)]" : "bg-muted-foreground/20"
+                    i < jokers ? "bg-[#4D87D9] dark:bg-[#619BF0] shadow-[0_0_8px_rgba(77,135,217,0.5)]" : "bg-muted-foreground/20"
                   }`}
                 />
               ))}
             </div>
-            <Badge variant="secondary" className="bg-slate-900/60 border border-border/40 text-xs font-semibold px-2.5 py-0.5">
+            <Badge variant="secondary" className="bg-[#4D87D9]/10 border border-[#4D87D9]/30 text-[#4D87D9] dark:text-[#619BF0] text-xs font-semibold px-2.5 py-0.5">
               {t("recovery_tracker.day_n", { n: successDays })}
             </Badge>
           </div>
@@ -102,23 +102,27 @@ export function RecoveryTracker({
       </CardHeader>
       <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="text-center p-3.5 bg-slate-900/60 border border-amber-500/20 rounded-xl shadow-sm">
-            <Flame className="h-5 w-5 text-amber-400 mx-auto mb-1" />
-            <p className="text-2xl font-extrabold text-foreground">{currentStreak}</p>
+          {/* Serie Corrente: Azzurro */}
+          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#4D87D9]/30 rounded-xl shadow-sm">
+            <Flame className="h-5 w-5 text-[#4D87D9] dark:text-[#619BF0] mx-auto mb-1" />
+            <p className="text-2xl font-extrabold text-[#4D87D9] dark:text-[#619BF0]">{currentStreak}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.current_streak")}</p>
           </div>
-          <div className="text-center p-3.5 bg-slate-900/60 border border-yellow-500/20 rounded-xl shadow-sm">
-            <Trophy className="h-5 w-5 text-yellow-400 mx-auto mb-1" />
-            <p className="text-2xl font-extrabold text-foreground">{longestStreak}</p>
-            <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.longest_streak")}</p>
+          {/* Serie Più Lunga: Oro Solo Scritte, Icone e Bordi */}
+          <div className="text-center p-3.5 bg-[#192028]/60 border border-amber-500/30 rounded-xl shadow-sm">
+            <Trophy className="h-5 w-5 text-amber-400 dark:text-amber-300 mx-auto mb-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+            <p className="text-2xl font-extrabold text-amber-400 dark:text-amber-300">{longestStreak}</p>
+            <p className="text-xs text-amber-400/90 font-semibold mt-0.5">{t("recovery_tracker.longest_streak")}</p>
           </div>
-          <div className="text-center p-3.5 bg-slate-900/60 border border-emerald-500/20 rounded-xl shadow-sm">
-            <CheckCircle2 className="h-5 w-5 text-emerald-400 mx-auto mb-1" />
+          {/* Giorni di Successo: Verde */}
+          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#4b9b75]/20 rounded-xl shadow-sm">
+            <CheckCircle2 className="h-5 w-5 text-[#4b9b75] dark:text-[#5ec396] mx-auto mb-1" />
             <p className="text-2xl font-extrabold text-foreground">{successDays}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.success_days")}</p>
           </div>
-          <div className="text-center p-3.5 bg-slate-900/60 border border-rose-500/20 rounded-xl shadow-sm">
-            <XCircle className="h-5 w-5 text-rose-400 mx-auto mb-1" />
+          {/* Giorni Falliti */}
+          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#ef4444]/20 rounded-xl shadow-sm">
+            <XCircle className="h-5 w-5 text-[#ef4444] mx-auto mb-1" />
             <p className="text-2xl font-extrabold text-foreground">{failedDays}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.failed_days")}</p>
           </div>
@@ -137,7 +141,7 @@ export function RecoveryTracker({
               <button
                 type="button"
                 onClick={onResume}
-                className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-[#4b9b75] dark:bg-[#5ec396] text-white text-sm font-medium"
               >
                 {t("challenge_card.resume")}
               </button>
@@ -175,16 +179,16 @@ export function RecoveryTracker({
 
             {hasCheckedInToday ? (
               <div className="p-4 bg-muted/50 rounded-lg text-center">
-                <CheckCircle2 className="h-8 w-8 text-primary mx-auto mb-2" />
+                <CheckCircle2 className="h-8 w-8 text-[#4b9b75] dark:text-[#5ec396] mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">{t("recovery_tracker.already_checked_in")}</p>
               </div>
             ) : status === "active" ? (
               <div className="flex gap-3">
-                <Button onClick={() => onCheckIn("success")} className="flex-1 bg-green-600 hover:bg-green-700">
+                <Button onClick={() => onCheckIn("success")} className="flex-1 bg-[#4b9b75] hover:bg-[#4b9b75]/90 dark:bg-[#5ec396] text-white">
                   <CheckCircle2 className="h-4 w-4 mr-2" />
                   {t("recovery_tracker.success")}
                 </Button>
-                <Button onClick={() => onCheckIn("failed")} variant="destructive" className="flex-1">
+                <Button onClick={() => onCheckIn("failed")} variant="destructive" className="flex-1 bg-[#ef4444] hover:bg-[#ef4444]/90 text-white">
                   <XCircle className="h-4 w-4 mr-2" />
                   {t("recovery_tracker.failed")}
                 </Button>

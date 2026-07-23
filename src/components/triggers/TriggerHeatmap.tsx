@@ -186,30 +186,38 @@ export default function TriggerHeatmap({ data, allLogs }: TriggerHeatmapProps) {
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {currentMonthDays.map((date, index) => {
-              const count = getTriggerCountForDate(date);
-              const avgIntensity = getAvgIntensityForDate(date);
-              const style = getCellStyle(count, avgIntensity);
-              const isToday = isSameDay(date, new Date());
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleDateClick(date)}
-                  className={`w-8 h-8 rounded-full relative transition-transform hover:scale-125 hover:z-10 ${
-                    isToday ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
-                  }`}
-                  style={style}
-                  title={`${format(date, 'MMM d', { locale: dfLocale })}: ${count} trigger${count !== 1 ? 's' : ''}`}
-                >
-                  {count > 0 && (
-                    <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium text-white drop-shadow-sm">
-                      {count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+          <div className="space-y-3">
+            <div className="grid grid-cols-7 gap-2 max-w-[290px] mx-auto text-center text-[10px] font-semibold text-muted-foreground uppercase">
+              {dayLabels.map((label, idx) => (
+                <span key={idx}>{label ? label.slice(0, 3) : ""}</span>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-2 max-w-[290px] mx-auto justify-items-center">
+              {currentMonthDays.map((date, index) => {
+                const count = getTriggerCountForDate(date);
+                const avgIntensity = getAvgIntensityForDate(date);
+                const style = getCellStyle(count, avgIntensity);
+                const isToday = isSameDay(date, new Date());
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleDateClick(date)}
+                    className={`w-8 h-8 rounded-full shrink-0 relative flex items-center justify-center transition-transform hover:scale-110 hover:z-10 ${
+                      isToday ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
+                    }`}
+                    style={style}
+                    title={`${format(date, 'MMM d', { locale: dfLocale })}: ${count} trigger${count !== 1 ? 's' : ''}`}
+                  >
+                    {count > 0 && (
+                      <span className="text-[10px] font-bold text-white drop-shadow-sm leading-none pointer-events-none">
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground flex-wrap">

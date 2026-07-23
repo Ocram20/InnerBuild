@@ -200,16 +200,16 @@ export function RecoveryJourneyPath({ progress }: Props) {
 
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-2.5 text-center">
-          <div className="rounded-xl bg-slate-900/60 border border-emerald-500/20 p-2.5 shadow-sm">
-            <p className="text-sm font-bold text-emerald-400">{progress.successCount}</p>
+          <div className="rounded-xl bg-[#192028]/60 border border-[#4b9b75]/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-[#4b9b75] dark:text-[#5ec396]">{progress.successCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.clean_days")}</p>
           </div>
-          <div className="rounded-xl bg-slate-900/60 border border-rose-500/20 p-2.5 shadow-sm">
-            <p className="text-sm font-bold text-rose-400">{progress.failureCount}</p>
+          <div className="rounded-xl bg-[#192028]/60 border border-[#ef4444]/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-[#ef4444]">{progress.failureCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.setbacks")}</p>
           </div>
-          <div className="rounded-xl bg-slate-900/60 border border-amber-500/20 p-2.5 shadow-sm">
-            <p className="text-sm font-bold text-amber-400">{progress.debriefCount}</p>
+          <div className="rounded-xl bg-[#192028]/60 border border-[#8b5cf6]/20 p-2.5 shadow-sm">
+            <p className="text-sm font-bold text-[#8b5cf6] dark:text-[#9b5bdb]">{progress.debriefCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.debriefs", "Debrief")}</p>
           </div>
         </div>

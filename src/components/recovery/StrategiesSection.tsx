@@ -82,18 +82,18 @@ const STRATEGY_ICONS: Record<StrategyId, LucideIcon> = {
 };
 
 const STRATEGY_STYLES: Record<StrategyId, { color: string; bgColor: string }> = {
-  remove_access: { color: "text-rose-400", bgColor: "bg-rose-500/10" },
-  change_env: { color: "text-blue-400", bgColor: "bg-blue-500/10" },
-  track_streak: { color: "text-amber-400", bgColor: "bg-amber-500/10" },
-  exercise: { color: "text-emerald-400", bgColor: "bg-emerald-500/10" },
-  meditation: { color: "text-purple-400", bgColor: "bg-purple-500/10" },
-  cold_showers: { color: "text-cyan-400", bgColor: "bg-cyan-500/10" },
-  journaling: { color: "text-pink-400", bgColor: "bg-pink-500/10" },
-  social: { color: "text-indigo-400", bgColor: "bg-indigo-500/10" },
-  nature: { color: "text-green-400", bgColor: "bg-green-500/10" },
-  hobbies: { color: "text-orange-400", bgColor: "bg-orange-500/10" },
-  prioritize_sleep: { color: "text-slate-300", bgColor: "bg-slate-500/10" },
-  self_compassion: { color: "text-rose-300", bgColor: "bg-rose-400/10" },
+  remove_access: { color: "text-[#4D87D9] dark:text-[#619BF0]", bgColor: "bg-[#4D87D9]/10" },
+  change_env: { color: "text-[#4D87D9] dark:text-[#619BF0]", bgColor: "bg-[#4D87D9]/10" },
+  track_streak: { color: "text-[#4b9b75] dark:text-[#5ec396]", bgColor: "bg-[#4b9b75]/10" },
+  exercise: { color: "text-[#4b9b75] dark:text-[#5ec396]", bgColor: "bg-[#4b9b75]/10" },
+  meditation: { color: "text-[#C377D7] dark:text-[#D28CE4]", bgColor: "bg-[#C377D7]/10" },
+  cold_showers: { color: "text-[#4b9b75] dark:text-[#5ec396]", bgColor: "bg-[#4b9b75]/10" },
+  journaling: { color: "text-[#C377D7] dark:text-[#D28CE4]", bgColor: "bg-[#C377D7]/10" },
+  social: { color: "text-[#6c8093]", bgColor: "bg-[#6c8093]/10" },
+  nature: { color: "text-[#4b9b75] dark:text-[#5ec396]", bgColor: "bg-[#4b9b75]/10" },
+  hobbies: { color: "text-[#C377D7] dark:text-[#D28CE4]", bgColor: "bg-[#C377D7]/10" },
+  prioritize_sleep: { color: "text-[#4b9b75] dark:text-[#5ec396]", bgColor: "bg-[#4b9b75]/10" },
+  self_compassion: { color: "text-[#C377D7] dark:text-[#D28CE4]", bgColor: "bg-[#C377D7]/10" },
 };
 
 export function StrategiesSection() {
@@ -120,7 +120,7 @@ export function StrategiesSection() {
         <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg font-bold text-foreground">
-              <div className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              <div className="p-1.5 rounded-lg bg-[#C377D7]/10 text-[#C377D7] dark:text-[#D28CE4] border border-[#C377D7]/20">
                 <Lightbulb className="h-4 w-4" />
               </div>
               <span>Strategie di Recupero</span>
@@ -145,8 +145,8 @@ export function StrategiesSection() {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-all ${
                     isActive
-                      ? "bg-purple-600 text-white shadow-md shadow-purple-950/40 border border-purple-400/40"
-                      : "bg-slate-900/80 text-muted-foreground hover:text-foreground border border-border/50"
+                      ? "bg-[#C377D7] dark:bg-[#D28CE4] text-white shadow-md border border-purple-400/40"
+                      : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground border border-border/50"
                   }`}
                 >
                   <CatIcon className="h-3.5 w-3.5" />
@@ -172,7 +172,7 @@ export function StrategiesSection() {
                 return (
                   <div
                     key={strategy.id}
-                    className="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-border/50 hover:border-purple-500/30 transition-colors"
+                    className="flex items-start gap-3 p-3 rounded-2xl bg-[#192028]/60 border border-border/50 hover:border-[#8b5cf6]/30 transition-colors"
                   >
                     <div className={`p-2 rounded-xl ${strategy.bgColor} shrink-0 mt-0.5`}>
                       <Icon className={`h-4 w-4 ${strategy.color}`} />
@@ -203,20 +203,19 @@ export function LearnGuideCTACard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.15, delay: 0.15 }}
     >
-      <Card className="relative border-purple-500/40 bg-gradient-to-br from-purple-950/60 via-slate-900/90 to-emerald-950/40 backdrop-blur-xl shadow-2xl overflow-hidden p-5 sm:p-6 text-foreground rounded-2xl">
-        <div className="absolute -top-12 -right-12 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+      <Card className="relative border-[#8b5cf6]/40 bg-gradient-to-br from-[#192028] via-[#192028] to-[#192028] backdrop-blur-xl shadow-2xl overflow-hidden p-5 sm:p-6 text-foreground rounded-2xl">
+        <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#8b5cf6]/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1 max-w-lg">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-1">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#8b5cf6]/20 text-[#8b5cf6] dark:text-[#9b5bdb] border border-[#8b5cf6]/30 mb-1">
               <BookOpen className="h-3 w-3" />
               Guida Completa
             </div>
             <h3 className="text-base sm:text-lg font-bold text-white">
               Vuoi approfondire la scienza del recupero?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300">
+            <p className="text-xs sm:text-sm text-[#6c8093]">
               Leggi le guide complete, gli studi neuroscientifici e gli articoli dedicati.
             </p>
           </div>
@@ -225,7 +224,7 @@ export function LearnGuideCTACard() {
             <Button
               type="button"
               onClick={() => navigate("/learn")}
-              className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-500 hover:to-emerald-500 text-white font-semibold text-xs sm:text-sm gap-2 h-11 px-5 rounded-xl shadow-lg shadow-purple-950/50"
+              className="w-full sm:w-auto bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 dark:bg-[#9b5bdb] text-white font-semibold text-xs sm:text-sm gap-2 h-11 px-5 rounded-xl shadow-lg shadow-purple-950/50"
             >
               <span>Vai alla sezione Learn</span>
               <ArrowRight className="h-4 w-4" />

@@ -58,9 +58,9 @@ export function TriggersSection() {
         category: "Stato Emotivo",
         question: t("triggers_section.question_emotion", "Cosa provi prima del craving?"),
         examples: t("triggers_section.examples_emotion", "Noia, solitudine, stress, frustrazione, stanchezza mentale"),
-        color: "text-amber-400",
-        bgColor: "bg-amber-500/10",
-        borderColor: "border-amber-500/20",
+        color: "text-[#4D87D9] dark:text-[#619BF0]",
+        bgColor: "bg-[#4D87D9]/10",
+        borderColor: "border-[#4D87D9]/20",
       },
       {
         id: "time",
@@ -68,9 +68,9 @@ export function TriggersSection() {
         category: "Orario & Routine",
         question: t("triggers_section.question_time", "In quali orari sei più vulnerabile?"),
         examples: t("triggers_section.examples_time", "Tarda sera, notte prima di dormire, weekend senza piani"),
-        color: "text-cyan-400",
-        bgColor: "bg-cyan-500/10",
-        borderColor: "border-cyan-500/20",
+        color: "text-[#4b9b75] dark:text-[#5ec396]",
+        bgColor: "bg-[#4b9b75]/10",
+        borderColor: "border-[#4b9b75]/20",
       },
       {
         id: "where",
@@ -78,9 +78,9 @@ export function TriggersSection() {
         category: "Ambiente Fisico",
         question: t("triggers_section.question_where", "Dove ti trovi solitamente?"),
         examples: t("triggers_section.examples_where", "In camera da solo, al computer a porte chiuse, nel letto"),
-        color: "text-emerald-400",
-        bgColor: "bg-emerald-500/10",
-        borderColor: "border-emerald-500/20",
+        color: "text-[#4b9b75] dark:text-[#5ec396]",
+        bgColor: "bg-[#4b9b75]/10",
+        borderColor: "border-[#4b9b75]/20",
       },
       {
         id: "before",
@@ -88,9 +88,9 @@ export function TriggersSection() {
         category: "Azione Precedente",
         question: t("triggers_section.question_before", "Cosa fai subito prima dell'impulso?"),
         examples: t("triggers_section.examples_before", "Scroll infinito sui social, navigare senza meta, isolamento"),
-        color: "text-purple-400",
-        bgColor: "bg-purple-500/10",
-        borderColor: "border-purple-500/20",
+        color: "text-[#4D87D9] dark:text-[#619BF0]",
+        bgColor: "bg-[#4D87D9]/10",
+        borderColor: "border-[#4D87D9]/20",
       },
     ],
     [t]
@@ -104,8 +104,8 @@ export function TriggersSection() {
         trigger: t("triggers_section.trigger_computer", "PC in camera da solo di notte"),
         tip: t("triggers_section.tip_computer", "Sposta il computer in un'area comune o usa spegnimento programmato"),
         badge: "Ambiente",
-        color: "text-amber-400",
-        bgColor: "bg-amber-500/10",
+        color: "text-[#4D87D9] dark:text-[#619BF0]",
+        bgColor: "bg-[#4D87D9]/10",
       },
       {
         id: "phone_bed",
@@ -113,8 +113,8 @@ export function TriggersSection() {
         trigger: t("triggers_section.trigger_phone_bed", "Smartphone a letto prima di dormire"),
         tip: t("triggers_section.tip_phone_bed", "Lascia il telefono in carica lontano dal letto o in un'altra stanza"),
         badge: "Dispositivo",
-        color: "text-cyan-400",
-        bgColor: "bg-cyan-500/10",
+        color: "text-[#4D87D9] dark:text-[#619BF0]",
+        bgColor: "bg-[#4D87D9]/10",
       },
       {
         id: "social",
@@ -122,8 +122,8 @@ export function TriggersSection() {
         trigger: t("triggers_section.trigger_social", "Scroll compulsivo & Stimolazione social"),
         tip: t("triggers_section.tip_social", "Imposta limiti di tempo o usa blocchi app dopo 15 minuti di uso"),
         badge: "Abitudine",
-        color: "text-purple-400",
-        bgColor: "bg-purple-500/10",
+        color: "text-[#4D87D9] dark:text-[#619BF0]",
+        bgColor: "bg-[#4D87D9]/10",
       },
       {
         id: "late_nights",
@@ -131,8 +131,8 @@ export function TriggersSection() {
         trigger: t("triggers_section.trigger_late_nights", "Stanchezza & Notti in bianco"),
         tip: t("triggers_section.tip_late_nights", "Imposta una sveglia serale per andare a dormire a orario fisso"),
         badge: "Fisiologico",
-        color: "text-rose-400",
-        bgColor: "bg-rose-500/10",
+        color: "text-[#4b9b75] dark:text-[#5ec396]",
+        bgColor: "bg-[#4b9b75]/10",
       },
     ],
     [t]
@@ -155,13 +155,13 @@ export function TriggersSection() {
       <CardHeader className="pb-3 pt-5 px-4 sm:px-6">
         <div className="flex items-center justify-between gap-3">
           <CardTitle className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-foreground">
-            <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+            <div className="p-2 rounded-xl bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border border-[#4D87D9]/20 shadow-[0_0_12px_rgba(77,135,217,0.15)]">
               <Search className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
             <span>{titleText}</span>
           </CardTitle>
 
-          <Badge variant="outline" className="bg-amber-500/10 text-amber-400 border-amber-500/30 text-xs font-semibold px-2.5 py-0.5">
+          <Badge variant="outline" className="bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border-[#4D87D9]/30 text-xs font-semibold px-2.5 py-0.5">
             {identifiedTriggers.length} Riconosciuti
           </Badge>
         </div>
@@ -177,8 +177,8 @@ export function TriggersSection() {
             onClick={() => setActiveFilter("all")}
             className={`px-3 py-1 text-xs font-medium rounded-full transition-all shrink-0 ${
               activeFilter === "all"
-                ? "bg-amber-500 text-slate-950 shadow-md font-semibold"
-                : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                ? "bg-[#4D87D9] dark:bg-[#619BF0] text-white shadow-md font-semibold"
+                : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
             Tutti ({guidedQuestions.length + commonTriggers.length})
@@ -187,8 +187,8 @@ export function TriggersSection() {
             onClick={() => setActiveFilter("guided")}
             className={`px-3 py-1 text-xs font-medium rounded-full transition-all shrink-0 ${
               activeFilter === "guided"
-                ? "bg-amber-500 text-slate-950 shadow-md font-semibold"
-                : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                ? "bg-[#4D87D9] dark:bg-[#619BF0] text-white shadow-md font-semibold"
+                : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
             Domande Guida ({guidedQuestions.length})
@@ -197,8 +197,8 @@ export function TriggersSection() {
             onClick={() => setActiveFilter("common")}
             className={`px-3 py-1 text-xs font-medium rounded-full transition-all shrink-0 ${
               activeFilter === "common"
-                ? "bg-amber-500 text-slate-950 shadow-md font-semibold"
-                : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                ? "bg-[#4D87D9] dark:bg-[#619BF0] text-white shadow-md font-semibold"
+                : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
             Pattern Comuni ({commonTriggers.length})
@@ -211,7 +211,7 @@ export function TriggersSection() {
         {(activeFilter === "all" || activeFilter === "guided") && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#4D87D9] dark:text-[#619BF0] flex items-center gap-1.5">
                 <Eye className="h-3.5 w-3.5" />
                 <span>{t("triggers_section.ask_questions", "Domande Guida per la Consapevolezza")}</span>
               </p>
@@ -233,7 +233,7 @@ export function TriggersSection() {
                     onClick={() => setExpandedId(isExpanded ? null : item.id)}
                     className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
                       item.bgColor
-                    } ${item.borderColor} hover:border-amber-500/40 relative overflow-hidden`}
+                    } ${item.borderColor} hover:border-[#4D87D9]/40 relative overflow-hidden`}
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
@@ -261,7 +261,7 @@ export function TriggersSection() {
                           className="mt-2.5 pt-2 border-t border-border/40 text-xs text-muted-foreground space-y-1"
                         >
                           <p className="font-medium text-foreground/80 flex items-center gap-1">
-                            <ArrowRight className="h-3 w-3 text-amber-400 shrink-0" /> Esempi da osservare:
+                            <ArrowRight className="h-3 w-3 text-[#4D87D9] dark:text-[#619BF0] shrink-0" /> Esempi da osservare:
                           </p>
                           <p className="pl-4 italic">{item.examples}</p>
                         </motion.div>
@@ -284,7 +284,7 @@ export function TriggersSection() {
         {(activeFilter === "all" || activeFilter === "common") && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#4b9b75] dark:text-[#5ec396] flex items-center gap-1.5">
                 <Zap className="h-3.5 w-3.5" />
                 <span>{t("triggers_section.common_triggers_heading", "Trigger Comuni & Contromisure")}</span>
               </p>
@@ -304,7 +304,7 @@ export function TriggersSection() {
                     transition={{ duration: 0.2 }}
                     className={`p-3.5 rounded-xl border transition-all ${
                       isIdentified
-                        ? "bg-amber-500/10 border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.12)]"
+                        ? "bg-[#4D87D9]/10 border-[#4D87D9]/50 shadow-[0_0_15px_rgba(77,135,217,0.12)]"
                         : "bg-muted/20 border-border/40 hover:border-border/80"
                     }`}
                   >
@@ -323,7 +323,7 @@ export function TriggersSection() {
                             </Badge>
                           </div>
                           <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5 leading-relaxed">
-                            <span className="text-emerald-400 font-semibold shrink-0">→ Soluzione:</span>
+                            <span className="text-[#4b9b75] dark:text-[#5ec396] font-semibold shrink-0">→ Soluzione:</span>
                             {item.tip}
                           </p>
                         </div>
@@ -335,11 +335,11 @@ export function TriggersSection() {
                         onClick={() => toggleIdentified(item.id)}
                         className={`h-8 text-xs shrink-0 gap-1 rounded-lg transition-all ${
                           isIdentified
-                            ? "bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold"
+                            ? "bg-[#4D87D9] dark:bg-[#619BF0] hover:bg-[#4D87D9]/90 text-white font-semibold"
                             : "border-border/60 hover:bg-muted text-muted-foreground"
                         }`}
                       >
-                        <CheckCircle2 className={`h-3.5 w-3.5 ${isIdentified ? "text-slate-950" : "text-muted-foreground"}`} />
+                        <CheckCircle2 className={`h-3.5 w-3.5 ${isIdentified ? "text-white" : "text-muted-foreground"}`} />
                         <span className="hidden sm:inline">{isIdentified ? "Identificato" : "Segnala"}</span>
                       </Button>
                     </div>
@@ -351,9 +351,9 @@ export function TriggersSection() {
         )}
 
         {/* Bottom Banner */}
-        <div className="p-3 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/20 flex items-center justify-between text-xs">
+        <div className="p-3 rounded-xl bg-[#4D87D9]/10 border border-[#4D87D9]/20 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
+            <Sparkles className="h-4 w-4 text-[#4D87D9] dark:text-[#619BF0] shrink-0" />
             <span className="text-muted-foreground">
               <strong className="text-foreground">Suggerimento Neuroscienze:</strong> Riconoscere il trigger attiva la corteccia prefrontale, riducendo l'impulso fino al 50%.
             </span>

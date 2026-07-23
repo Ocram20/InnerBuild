@@ -15,22 +15,22 @@ const STATE_STYLE: Record<
   { stroke: string; track: string; dashArray: string; dashOffset: string; pulseClass: string }
 > = {
   stable: {
-    stroke: "#34d399",
-    track: "rgba(52, 211, 153, 0.18)",
+    stroke: "#5EC396",
+    track: "rgba(94, 195, 150, 0.2)",
     dashArray: "251",
     dashOffset: "0",
     pulseClass: "animate-pulse",
   },
   trigger: {
-    stroke: "#b68b2d",
-    track: "rgba(182, 139, 45, 0.18)",
+    stroke: "#4D87D9",
+    track: "rgba(77, 135, 217, 0.2)",
     dashArray: "251",
     dashOffset: "0",
     pulseClass: "",
   },
   broken: {
-    stroke: "#7f1d1d",
-    track: "rgba(127, 29, 29, 0.18)",
+    stroke: "#EF4444",
+    track: "rgba(239, 68, 68, 0.2)",
     dashArray: "170 81",
     dashOffset: "20",
     pulseClass: "",
