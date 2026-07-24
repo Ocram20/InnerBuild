@@ -172,7 +172,7 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
     <div className="space-y-4 animate-fade-in">
       {/* Phase indicator */}
       {phaseLabel && (
-        <div className="px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-medium w-fit">
+        <div className="px-3.5 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/30 text-xs font-medium w-fit">
           {phaseLabel} — {t("challenge_card.day_of", {
             current: entry.day_number,
             total: "{{total}}",
@@ -230,12 +230,12 @@ export default function DailyContentCard({ entry, isLoading, isCurrentDay, chall
             onClick={() => toggleMission("behavioral")}
             disabled={!isCurrentDay || savingMission === "behavioral"}
             className={`w-full text-left glass rounded-2xl p-4 transition-all duration-300 ${
-              entry.behavioral_mission_completed ? "ring-1 ring-accent/30 bg-accent/5" : ""
+              entry.behavioral_mission_completed ? "ring-1 ring-primary/30 bg-primary/5" : ""
             }`}
           >
             <div className="flex items-start gap-3">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                entry.behavioral_mission_completed ? "bg-accent text-accent-foreground" : "bg-muted"
+                entry.behavioral_mission_completed ? "bg-primary text-primary-foreground" : "bg-muted"
               }`}>
                 {entry.behavioral_mission_completed ? <Check className="h-4 w-4" /> : <Footprints className="h-4 w-4 text-muted-foreground" />}
               </div>

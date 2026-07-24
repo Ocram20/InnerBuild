@@ -106,12 +106,15 @@ export default function Challenges() {
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div className="flex-1">
-            <h1 className="font-bold text-foreground">{t("challenges.title")}</h1>
+            <h1 className="font-bold text-foreground flex items-center gap-2">
+              <Flame className="h-5 w-5 text-[#4b9b75]" />
+              {t("challenges.title")}
+            </h1>
             <p className="text-xs text-muted-foreground">
               {t("challenges.active_completed", { active: challenges.length, completed: completedCount })}
             </p>
           </div>
-          <Button size="sm" onClick={() => setShowCreateModal(true)} className="gradient-accent text-accent-foreground rounded-xl shadow-soft">
+          <Button size="sm" onClick={() => setShowCreateModal(true)} className="gradient-primary text-primary-foreground rounded-xl shadow-soft">
             <Plus className="h-4 w-4 mr-1" />
             {t("common.custom")}
           </Button>
@@ -125,7 +128,7 @@ export default function Challenges() {
             const isActive = selectedCategory === cat.id;
             return (
               <button key={cat.id} onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${isActive ? "gradient-accent text-accent-foreground shadow-soft" : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"}`}>
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${isActive ? "gradient-primary text-primary-foreground shadow-soft" : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"}`}>
                 <Icon className="h-4 w-4" />
                 {t(`challenges.categories.${cat.id}`)}
               </button>
@@ -140,7 +143,7 @@ export default function Challenges() {
             {activeChallenges.length > 0 && (
               <section className="animate-fade-in">
                 <div className="flex items-center gap-2 mb-3">
-                  <Flame className="h-5 w-5 text-accent" />
+                  <Flame className="h-5 w-5 text-primary" />
                   <h2 className="font-semibold text-foreground">{t("challenges.your_active")}</h2>
                 </div>
                 <div className="space-y-3">

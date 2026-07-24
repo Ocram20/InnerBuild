@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Shield, TrendingUp, AlertTriangle } from "lucide-react";
+import { ArrowLeft, BookOpen, Shield, TrendingUp, AlertTriangle, Sparkles } from "lucide-react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
@@ -49,7 +49,13 @@ export default function TheForge() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Button variant="ghost" size="icon" onClick={handleBack} className="h-9 w-9"><ArrowLeft className="h-5 w-5" /></Button>
-              <div><h1 className="text-xl font-bold">{t("the_forge.title")}</h1><p className="text-sm text-muted-foreground">{t("the_forge.subtitle")}</p></div>
+              <div>
+                <h1 className="text-xl font-bold flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-[#4D87D9]" />
+                  {t("the_forge.title")}
+                </h1>
+                <p className="text-sm text-muted-foreground">{t("the_forge.subtitle")}</p>
+              </div>
             </div>
             {isPremium && journey && (
               <motion.div

@@ -256,16 +256,16 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
       }`}>
         {/* Header with streak */}
         <div className={`px-4 py-3 flex items-center justify-between ${
-          isCompleted ? "bg-accent/10" : "bg-accent/5"
+          isCompleted ? "bg-primary/10" : "bg-primary/5"
         }`}>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
-              <Flame className={`h-5 w-5 ${currentDay > 0 ? "text-accent" : "text-muted-foreground"}`} />
+              <Flame className={`h-5 w-5 ${currentDay > 0 ? "text-primary" : "text-muted-foreground"}`} />
               <span className="text-2xl font-bold text-foreground">{currentDay}</span>
             </div>
             <div className="text-sm text-muted-foreground">
               {isCompleted ? (
-                <span className="text-accent font-medium flex items-center gap-1">
+                <span className="text-primary font-medium flex items-center gap-1">
                   <Trophy className="h-4 w-4" />
                   {t("challenge_card.complete_excl")}
                 </span>
@@ -286,7 +286,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
                 <div
                   key={i}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    i < jokers ? "bg-accent" : "bg-muted-foreground/20"
+                    i < jokers ? "bg-primary" : "bg-muted-foreground/20"
                   }`}
                 />
               ))}
@@ -296,7 +296,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
             </span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8 opacity-60 hover:opacity-100">
+                <Button variant="ghost" size="icon" className="h-8 w-8 opacity-60 hover:opacity-100 data-[state=open]:opacity-100 data-[state=open]:bg-primary/20 data-[state=open]:text-primary">
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -397,7 +397,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               className={`w-full py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
                 checkedInToday
                   ? "bg-muted text-muted-foreground"
-                  : "gradient-accent text-accent-foreground active:scale-[0.98] shadow-soft"
+                  : "gradient-primary text-primary-foreground active:scale-[0.98] shadow-soft"
               }`}
             >
               {checkedInToday ? (
@@ -423,7 +423,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
           {/* Enter Journey CTA */}
           <button
             onClick={() => navigate(`/challenges/${challenge.id}`)}
-            className="w-full mt-3 py-2.5 rounded-xl bg-primary/5 hover:bg-primary/10 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2"
+            className="w-full mt-3 py-2.5 rounded-xl bg-primary/10 border border-primary/30 hover:bg-primary/20 text-primary text-sm font-medium transition-all flex items-center justify-center gap-2"
           >
             {t("challenge_card.enter_journey")}
           </button>

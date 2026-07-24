@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Plus, Search, Filter, Heart, Brain, Dumbbell, BookOpen, Users, Palette, Sparkles, Flame, X } from "lucide-react";
+import { ArrowLeft, Plus, Search, Filter, Heart, Brain, Dumbbell, BookOpen, Users, Palette, Sparkles, Flame, Target, X } from "lucide-react";
 import HabitProgressCard from "@/components/HabitProgressCard";
 import HabitTips from "@/components/HabitTips";
 import HabitReportCard from "@/components/HabitReportCard";
@@ -125,7 +125,10 @@ export default function Habits() {
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div className="flex-1">
-            <h1 className="font-bold text-foreground">{t("habits.title")}</h1>
+            <h1 className="font-bold text-foreground flex items-center gap-2">
+              <Target className="h-5 w-5 text-[#4b9b75]" />
+              {t("habits.title")}
+            </h1>
             <p className="text-xs text-muted-foreground">
               {t("habits.completed_today", { completed: completedToday, total: totalHabits, percent: progressPercent })}
             </p>

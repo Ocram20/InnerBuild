@@ -116,7 +116,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
         <DialogContent className="rounded-2xl max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-accent" />
+              <Sparkles className="h-5 w-5 text-primary" />
               {t("create_challenge.title")}
             </DialogTitle>
           </DialogHeader>
@@ -232,7 +232,7 @@ export default function CreateChallengeModal({ open, onOpenChange, onSuccess }: 
               <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 rounded-xl">
                 {t("common.cancel")}
               </Button>
-              <Button type="submit" disabled={!title.trim() || isLoading} className="flex-1 gradient-accent text-accent-foreground rounded-xl shadow-soft">
+              <Button type="submit" disabled={!title.trim() || isLoading} className="flex-1 gradient-primary text-primary-foreground rounded-xl shadow-soft">
                 {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("create_challenge.start_challenge")}
               </Button>
             </div>

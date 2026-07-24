@@ -93,7 +93,7 @@ const EveningReflectionPage = () => {
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon" onClick={() => navigate(fromExplore ? "/explore" : "/dashboard")} className="rounded-full"><ArrowLeft className="h-5 w-5" /></Button>
               <div>
-                <h1 className="text-xl font-bold flex items-center gap-2"><Moon className="h-5 w-5 text-primary" />{t("evening_reflection.title")}</h1>
+                <h1 className="text-xl font-bold flex items-center gap-2"><Moon className="h-5 w-5 text-[#9B5BDB]" />{t("evening_reflection.title")}</h1>
                 <p className="text-sm text-muted-foreground">{format(today, "EEEE, MMMM d", { locale: dateLocale })}</p>
               </div>
             </div>
@@ -107,7 +107,7 @@ const EveningReflectionPage = () => {
             <CardTitle className="text-lg flex items-center gap-2">
               <Heart className="h-5 w-5 text-rose-500" />
               {t("evening_reflection.daily_checkin")}
-              {checkedIn && <Badge variant="secondary" className="ml-auto bg-green-500/20 text-green-600">{t("evening_reflection.complete")}</Badge>}
+              {checkedIn && <Badge variant="secondary" className="ml-auto bg-[#9B5BDB]/20 text-[#9B5BDB] font-medium">{t("evening_reflection.complete")}</Badge>}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -131,13 +131,13 @@ const EveningReflectionPage = () => {
                     <p className="text-sm text-muted-foreground">{t("evening_reflection.energy_level")}</p>
                     <Badge variant="outline" className="font-mono">{energyLevel[0]}/10</Badge>
                   </div>
-                  <Slider value={energyLevel} onValueChange={!checkedIn ? setEnergyLevel : undefined} max={10} min={1} step={1} className="w-full" disabled={checkedIn} />
+                  <Slider value={energyLevel} onValueChange={!checkedIn ? setEnergyLevel : undefined} max={10} min={1} step={1} className="w-full" rangeClassName="bg-[#9B5BDB]" thumbClassName="border-[#9B5BDB] bg-[#9B5BDB]" disabled={checkedIn} />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>{t("evening_reflection.low_energy")}</span><span>{t("evening_reflection.high_energy")}</span>
                   </div>
                 </div>
                 {!checkedIn && (
-                  <Button onClick={handleCheckIn} className="w-full" disabled={saving}>
+                  <Button onClick={handleCheckIn} className="w-full bg-[#9B5BDB] hover:bg-[#8b4bca] text-white font-semibold shadow-soft" disabled={saving}>
                     {saving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
                     {t("evening_reflection.complete_checkin")}
                   </Button>

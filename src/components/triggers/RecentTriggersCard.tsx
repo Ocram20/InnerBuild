@@ -89,8 +89,13 @@ export default function RecentTriggersCard({ logs, onDelete }: RecentTriggersCar
           <div key={log.id} className="flex items-center gap-3 p-3 rounded-xl bg-muted/30 group">
             <div className="text-2xl">{emotionEmojis[log.emotion] || "😐"}</div>
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
+              <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                 <span className="text-sm font-medium">{getEmotionLabel(log.emotion)}</span>
+                {log.bad_habit && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-md font-medium bg-[#4D87D9]/15 text-[#4D87D9] border border-[#4D87D9]/30">
+                    {log.bad_habit}
+                  </span>
+                )}
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${getIntensityColor(log.impulse_intensity)}`}>
                   {log.impulse_intensity}/10
                 </span>

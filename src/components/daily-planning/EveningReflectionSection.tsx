@@ -331,7 +331,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
               <Button 
                 onClick={saveReflection} 
                 disabled={saving || !hasUnsavedChanges || !(reflection.day_summary.length > 0 || reflection.grateful_for.length > 0 || reflection.lessons_learned.length > 0)}
-                className="gap-2"
+                className="gap-2 bg-[#9B5BDB] hover:bg-[#8b4bca] text-white font-semibold shadow-soft"
               >
                 {saving ? (
                   <>{t("common.saving")}</>

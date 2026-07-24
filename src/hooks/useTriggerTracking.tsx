@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 export interface TriggerLog {
   id: string;
   logged_at: string;
+  bad_habit?: string | null;
   impulse_intensity: number;
   emotion: string;
   situation: string;
@@ -81,6 +82,7 @@ export function useTriggerTracking() {
   }, [user]);
 
   const logTrigger = useCallback(async (data: {
+    bad_habit?: string;
     impulse_intensity: number;
     emotion: string;
     situation: string;
@@ -94,6 +96,7 @@ export function useTriggerTracking() {
     const { error } = await untypedTable("trigger_logs")
       .insert({
         user_id: user.id,
+        bad_habit: data.bad_habit || null,
         impulse_intensity: data.impulse_intensity,
         emotion: data.emotion,
         situation: data.situation,

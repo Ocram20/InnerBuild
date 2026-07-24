@@ -149,7 +149,7 @@ export default function HabitCard({ habit, onUpdate }: HabitCardProps) {
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8 flex-shrink-0 opacity-50 hover:opacity-100">
+            <Button variant="ghost" size="icon" className="h-8 w-8 flex-shrink-0 opacity-50 hover:opacity-100 data-[state=open]:opacity-100 data-[state=open]:bg-emerald-500/20 data-[state=open]:text-emerald-400">
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>

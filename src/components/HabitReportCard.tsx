@@ -73,9 +73,9 @@ export default function HabitReportCard() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-6 animate-pulse">
+      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
-          <Brain className="h-6 w-6 text-purple-500/50 dark:text-[#8b5cf6]" />
+          <Brain className="h-6 w-6 text-emerald-400" />
           <span className="text-muted-foreground dark:text-[#6c8093]">Caricamento AI Recovery Sprint...</span>
         </div>
       </div>
@@ -85,10 +85,10 @@ export default function HabitReportCard() {
   if (!isPremium) {
     return (
       <>
-        <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 card-glow dark:card-lift">
+        <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-5 card-glow dark:card-lift">
           <div className="text-center space-y-4">
-            <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center mx-auto relative shadow-soft">
-              <Zap className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto relative shadow-soft">
+              <Zap className="h-7 w-7 text-emerald-400" />
               <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-muted dark:bg-white/5 flex items-center justify-center border-2 border-background dark:border-[#0f1419]">
                 <Lock className="h-2.5 w-2.5 text-muted-foreground dark:text-[#6c8093]" />
               </div>
@@ -100,7 +100,7 @@ export default function HabitReportCard() {
               </p>
             </div>
             <Button onClick={() => setShowPaywall(true)} className="gap-2" variant="outline">
-              <Crown className="h-4 w-4 text-purple-500 dark:text-[#8b5cf6]" />
+              <Crown className="h-4 w-4 text-emerald-400" />
               {t("habit_report.unlock_premium", "Sblocca con Premium")}
             </Button>
           </div>
@@ -113,7 +113,7 @@ export default function HabitReportCard() {
   // If no report or no pending suggestions
   if (!report || pendingSuggestions.length === 0) {
     return (
-      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-3 shadow-lg backdrop-blur-md w-full">
+      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-3 shadow-lg backdrop-blur-md w-full">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-emerald-400 fill-emerald-400 shrink-0" />
@@ -151,7 +151,7 @@ export default function HabitReportCard() {
   }
 
   return (
-    <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-4 shadow-lg backdrop-blur-md w-full">
+    <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-4 shadow-lg backdrop-blur-md w-full">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>

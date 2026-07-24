@@ -255,7 +255,7 @@ export default function ChallengeJourney() {
           <div className="flex-1 min-w-0">
             <h1 className="font-bold text-foreground truncate">{localized.title}</h1>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Flame className="h-3.5 w-3.5 text-accent" />
+              <Flame className="h-3.5 w-3.5 text-primary" />
               <span>
                   {t("challenge_card.day_of", { current: challenge.current_streak, total: challenge.duration_days })}
               </span>
@@ -267,7 +267,7 @@ export default function ChallengeJourney() {
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
-                    className={`w-2 h-2 rounded-full ${i < jokers ? "bg-accent" : "bg-muted-foreground/20"}`}
+                    className={`w-2 h-2 rounded-full ${i < jokers ? "bg-primary" : "bg-muted-foreground/20"}`}
                   />
                 ))}
               </div>
@@ -292,7 +292,7 @@ export default function ChallengeJourney() {
             <div className="flex gap-2 mt-1">
               <button
                 onClick={handleResume}
-                className="flex-1 px-4 py-2.5 rounded-xl gradient-accent text-accent-foreground text-sm font-medium transition-all hover:opacity-90"
+                className="flex-1 px-4 py-2.5 rounded-xl gradient-primary text-primary-foreground text-sm font-medium transition-all hover:opacity-90"
               >
                 {t("challenge_card.resume_detox")}
               </button>
@@ -321,10 +321,9 @@ export default function ChallengeJourney() {
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full transition-all duration-700 ease-out"
+              className="h-full rounded-full transition-all duration-700 ease-out bg-primary"
               style={{
                 width: `${progressPercent}%`,
-                background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
               }}
             />
           </div>
