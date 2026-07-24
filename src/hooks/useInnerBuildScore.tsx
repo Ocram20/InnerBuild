@@ -1,33 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { format } from "date-fns";
 
-interface ScoreData {
+export interface ModuleBreakdown {
+  key: "habits" | "tasks" | "not_to_do" | "detox";
+  titleKey: string;
+  defaultTitle: string;
+  emoji: string;
+  completed: number;
+  total: number;
+  weight: number; // Weight percentage allocated to this module (e.g. 35 or 41.2)
+  points: number; // Percentage contribution to overall ring (e.g. 15%)
+  progressRatio: number; // 0..1
+  textCounter: string; // "2/4" or "Completato"
+  isComplete: boolean;
+}
+
+export interface ScoreData {
   score: number;
   loading: boolean;
+  breakdown: ModuleBreakdown[];
+  refetch: () => void;
 }
 
 export function useInnerBuildScore(): ScoreData {
   const { user } = useAuth();
   const [score, setScore] = useState<number>(0);
+  const [breakdown, setBreakdown] = useState<ModuleBreakdown[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      calculateScore();
-    } else {
+  const calculateScore = useCallback(async () => {
+    if (!user) {
       setLoading(false);
+      return;
     }
-  }, [user]);
-
-  const calculateScore = async () => {
-    if (!user) return;
 
     try {
       const today = format(new Date(), "yyyy-MM-dd");
 
-      // 1. Get habits completion (40%)
+      // 1. Fetch habits (Base weight: 35)
       const { data: habitsData } = await supabase
         .from("habits")
         .select("id")
@@ -41,14 +54,10 @@ export function useInnerBuildScore(): ScoreData {
         .eq("completed_at", today);
 
       const totalHabits = habitsData?.length || 0;
-      const completedHabits = new Set(habitLogs?.map(l => l.habit_id) || []).size;
-      
-      // If no habits planned, default to max score for this section
-      const habitsScore = totalHabits > 0 
-        ? (completedHabits / totalHabits) * 40 
-        : 40;
+      const completedHabits = new Set(habitLogs?.map((l) => l.habit_id) || []).size;
+      const habitsActive = totalHabits > 0;
 
-      // 2. Get tasks completion (30%)
+      // 2. Fetch daily tasks (Base weight: 35)
       const { data: tasksData } = await supabase
         .from("daily_tasks")
         .select("id, is_completed")
@@ -56,14 +65,27 @@ export function useInnerBuildScore(): ScoreData {
         .eq("target_date", today);
 
       const totalTasks = tasksData?.length || 0;
-      const completedTasks = tasksData?.filter(t => t.is_completed).length || 0;
-      
-      // If no tasks planned, default to max score for this section
-      const tasksScore = totalTasks > 0 
-        ? (completedTasks / totalTasks) * 30 
-        : 30;
+      const completedTasks = tasksData?.filter((t) => t.is_completed).length || 0;
+      const tasksActive = totalTasks > 0;
 
-      // 3. Get recovery status (20%)
+      // 3. Fetch Not To-Do items (Base weight: 15)
+      const { data: notToDoData } = await untypedTable("not_to_do_items")
+        .select("id, status")
+        .eq("user_id", user.id)
+        .or(`target_date.eq.${today},is_active.eq.true`);
+
+      const totalNotToDo = notToDoData?.length || 0;
+      const unbrokenNotToDo =
+        notToDoData?.filter((item: any) => item.status !== "broken").length || 0;
+      const notToDoActive = totalNotToDo > 0;
+
+      // 4. Fetch Detox / Recovery status (Base weight: 15)
+      const { data: detoxData } = await supabase
+        .from("detox_challenges")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("status", "active");
+
       const { data: journeyData } = await supabase
         .from("recovery_journey")
         .select("status, last_check_in")
@@ -71,35 +93,125 @@ export function useInnerBuildScore(): ScoreData {
         .eq("is_active", true)
         .maybeSingle();
 
-      const recoveryScore = journeyData?.status === "active" && journeyData.last_check_in === today ? 20 : 0;
+      const detoxActive =
+        (detoxData && detoxData.length > 0) || journeyData?.status === "active";
+      const detoxCheckedIn = journeyData?.status === "active" && journeyData.last_check_in === today;
 
-      // 4. Get reflection/journal completion (10%)
-      const { data: reflectionData } = await supabase
-        .from("daily_reflections")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("reflection_date", today)
-        .maybeSingle();
+      // Base weights
+      const BASE_WEIGHTS = {
+        habits: 35,
+        tasks: 35,
+        not_to_do: 15,
+        detox: 15,
+      };
 
-      const { data: journalData } = await supabase
-        .from("journal_entries")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("entry_date", today)
-        .maybeSingle();
+      const sumActiveBaseWeight =
+        (habitsActive ? BASE_WEIGHTS.habits : 0) +
+        (tasksActive ? BASE_WEIGHTS.tasks : 0) +
+        (notToDoActive ? BASE_WEIGHTS.not_to_do : 0) +
+        (detoxActive ? BASE_WEIGHTS.detox : 0);
 
-      const reflectionScore = (reflectionData || journalData) ? 10 : 0;
+      const activeBreakdown: ModuleBreakdown[] = [];
+      let totalCalculatedScore = 0;
 
-      // Calculate total score
-      const totalScore = Math.round(habitsScore + tasksScore + recoveryScore + reflectionScore);
-      setScore(Math.min(100, Math.max(0, totalScore)));
+      if (sumActiveBaseWeight > 0) {
+        if (habitsActive) {
+          const weight = (BASE_WEIGHTS.habits / sumActiveBaseWeight) * 100;
+          const ratio = totalHabits > 0 ? completedHabits / totalHabits : 0;
+          const points = ratio * weight;
+          totalCalculatedScore += points;
+          activeBreakdown.push({
+            key: "habits",
+            titleKey: "dashboard.breakdown.habits",
+            defaultTitle: "Abitudini",
+            emoji: "🚰",
+            completed: completedHabits,
+            total: totalHabits,
+            weight,
+            points: Math.round(points),
+            progressRatio: ratio,
+            textCounter: `${completedHabits}/${totalHabits}`,
+            isComplete: completedHabits === totalHabits && totalHabits > 0,
+          });
+        }
+
+        if (tasksActive) {
+          const weight = (BASE_WEIGHTS.tasks / sumActiveBaseWeight) * 100;
+          const ratio = totalTasks > 0 ? completedTasks / totalTasks : 0;
+          const points = ratio * weight;
+          totalCalculatedScore += points;
+          activeBreakdown.push({
+            key: "tasks",
+            titleKey: "dashboard.breakdown.tasks",
+            defaultTitle: "Task",
+            emoji: "🎯",
+            completed: completedTasks,
+            total: totalTasks,
+            weight,
+            points: Math.round(points),
+            progressRatio: ratio,
+            textCounter: `${completedTasks}/${totalTasks}`,
+            isComplete: completedTasks === totalTasks && totalTasks > 0,
+          });
+        }
+
+        if (notToDoActive) {
+          const weight = (BASE_WEIGHTS.not_to_do / sumActiveBaseWeight) * 100;
+          const ratio = totalNotToDo > 0 ? unbrokenNotToDo / totalNotToDo : 0;
+          const points = ratio * weight;
+          totalCalculatedScore += points;
+          activeBreakdown.push({
+            key: "not_to_do",
+            titleKey: "dashboard.breakdown.not_to_do",
+            defaultTitle: "Not To-Do",
+            emoji: "🚫",
+            completed: unbrokenNotToDo,
+            total: totalNotToDo,
+            weight,
+            points: Math.round(points),
+            progressRatio: ratio,
+            textCounter: `${unbrokenNotToDo}/${totalNotToDo}`,
+            isComplete: unbrokenNotToDo === totalNotToDo && totalNotToDo > 0,
+          });
+        }
+
+        if (detoxActive) {
+          const weight = (BASE_WEIGHTS.detox / sumActiveBaseWeight) * 100;
+          const ratio = detoxCheckedIn ? 1 : 0;
+          const points = ratio * weight;
+          totalCalculatedScore += points;
+          activeBreakdown.push({
+            key: "detox",
+            titleKey: "dashboard.breakdown.detox",
+            defaultTitle: "Detox",
+            emoji: "🛡️",
+            completed: detoxCheckedIn ? 1 : 0,
+            total: 1,
+            weight,
+            points: Math.round(points),
+            progressRatio: ratio,
+            textCounter: detoxCheckedIn ? "Completato" : "0/1",
+            isComplete: !!detoxCheckedIn,
+          });
+        }
+      }
+
+      const finalScore = Math.min(100, Math.max(0, Math.round(totalCalculatedScore)));
+      setScore(finalScore);
+      setBreakdown(activeBreakdown);
     } catch (error) {
       console.error("Error calculating InnerBuild score:", error);
       setScore(0);
+      setBreakdown([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
-  return { score, loading };
+  useEffect(() => {
+    calculateScore();
+  }, [calculateScore]);
+
+  return { score, breakdown, loading, refetch: calculateScore };
 }
+

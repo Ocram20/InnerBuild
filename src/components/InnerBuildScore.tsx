@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ModuleBreakdown } from "@/hooks/useInnerBuildScore";
+import { useTranslation } from "react-i18next";
 
 interface InnerBuildScoreProps {
   score: number;
+  breakdown?: ModuleBreakdown[];
 }
 
-export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
+export default function InnerBuildScore({ score, breakdown = [] }: InnerBuildScoreProps) {
+  const { t } = useTranslation();
   const [animatedScore, setAnimatedScore] = useState(0);
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
@@ -30,7 +35,8 @@ export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
   }, [score]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
+      {/* Central Growth Ring */}
       <div className="relative">
         <svg width="160" height="160" className="transform -rotate-90">
           <defs>
@@ -47,7 +53,7 @@ export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
               </feMerge>
             </filter>
           </defs>
-          
+
           {/* Background circle */}
           <circle
             cx="80"
@@ -58,7 +64,7 @@ export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
             fill="none"
             className="text-muted/40 dark:text-muted/30"
           />
-          
+
           {/* Progress circle */}
           <circle
             cx="80"
@@ -74,7 +80,7 @@ export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
             filter="url(#glow)"
           />
         </svg>
-        
+
         {/* Score text in center */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-4xl font-bold text-foreground">
@@ -82,11 +88,57 @@ export default function InnerBuildScore({ score }: InnerBuildScoreProps) {
           </span>
         </div>
       </div>
-      
-      {/* Label */}
-      <p className="mt-3 text-sm font-medium text-muted-foreground">
-        Crescita Odierna
+
+      {/* Main Label */}
+      <p className="mt-3 text-sm font-medium text-muted-foreground text-center">
+        {t("dashboard.today_growth", "Crescita Odierna")}
       </p>
+
+      {/* Dynamic Breakdown Pills */}
+      {breakdown.length > 0 && (
+        <div className="w-full mt-4 space-y-1.5 animate-fade-in">
+          {breakdown.map((item) => (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex items-center justify-between gap-2.5 px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-800 dark:bg-[#131922] dark:border-white/10 shadow-sm backdrop-blur-sm"
+              >
+                {/* Left: Emoji + Title */}
+                <div className="flex items-center gap-2 shrink-0 min-w-[92px]">
+                  <span className="text-base select-none">{item.emoji}</span>
+                  <span className="text-xs font-medium text-slate-200 dark:text-slate-200 truncate">
+                    {t(item.titleKey, item.defaultTitle)}
+                  </span>
+                </div>
+
+                {/* Center: Mini progressBar (4px height) + text counter */}
+                <div className="flex-1 flex items-center gap-2 min-w-0">
+                  <div className="flex-1 h-1 bg-slate-800 dark:bg-emerald-950/60 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-emerald-500 dark:bg-emerald-400 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${Math.round(item.progressRatio * 100)}%` }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400 dark:text-slate-400 shrink-0">
+                    {item.textCounter}
+                  </span>
+                </div>
+
+                {/* Right: Percent contribution */}
+                <div className="shrink-0 text-right min-w-[40px]">
+                  <span className="text-xs font-bold font-mono text-emerald-400">
+                    +{item.points}%
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+        </div>
+      )}
     </div>
   );
 }
+

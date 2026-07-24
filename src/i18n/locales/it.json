@@ -2425,6 +2425,15 @@
   },
 
   "habit_report": {
+    "sprint_title": "AI Recovery Sprint",
+    "four_days_no": "4 Giorni No",
+    "sprint_subtitle": "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.",
+    "apply_all": "Applica Tutti gli Aggiustamenti",
+    "no_delay": "Nessun ritardo di 4 giorni rilevato! Ottima frequenza! 🎉",
+    "recovery_target": "Target Salvagente",
+    "adjustment_applied": "Aggiustamento Applicato!",
+    "all_applied_title": "Modalità Salvagente Attiva! ⚡",
+    "all_applied_desc": "Tutti gli aggiustamenti sono stati applicati per i prossimi 4 giorni.",
 
     "habit_analysis": "Analisi Abitudini",
 

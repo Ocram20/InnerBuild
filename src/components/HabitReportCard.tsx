@@ -1,137 +1,82 @@
-import { useMemo, useState } from "react";
-import { formatDistanceToNow } from "date-fns";
+import { useEffect, useState, useMemo } from "react";
 import { 
+  Zap, 
+  Check, 
+  X, 
   Brain, 
-  Sparkles, 
-  TrendingDown, 
-  Lightbulb,
-  ChevronDown,
-  ChevronUp,
+  Crown, 
+  Lock, 
+  Heart, 
+  BookOpen, 
+  Dumbbell, 
+  Sparkles,
   RefreshCw,
-  Check,
-  X,
-  Clock,
-  CheckCircle2,
-  Lock,
-  Crown,
+  Sparkle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
+import { useAuth } from "@/hooks/useAuth";
 import { usePremiumLimits } from "@/hooks/usePremiumLimits";
 import PaywallModal from "@/components/PaywallModal";
+import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
-import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
-import { dateFnsLocale } from "@/lib/dateFnsLocale";
-
-function SuggestionItem({
-  suggestion,
-  onAccept,
-  onDismiss,
-  display,
-}: {
-  suggestion: HabitSuggestion;
-  onAccept: () => void;
-  onDismiss: () => void;
-  display: (s: string) => string;
-}) {
-  const { t } = useTranslation();
-  const isHandled = suggestion.status === "accepted" || suggestion.status === "dismissed";
-
-  return (
-    <div className={`rounded-xl p-3 text-sm transition-opacity ${
-      isHandled ? 'opacity-50 bg-muted/30' : 'bg-muted/50'
-    }`}>
-      <div className="flex items-center justify-between mb-1">
-        <div className="min-w-0 mr-3">
-          <span className="font-medium block truncate">{display(suggestion.habit_title)}</span>
-        </div>
-        <Badge variant="secondary" className="text-xs shrink-0">
-          {suggestion.current_completion_rate}% {t("common.completed")}
-        </Badge>
-      </div>
-      <p className="text-muted-foreground text-xs mb-2">
-        {display(suggestion.issue)}
-      </p>
-      <div className="flex items-center gap-2 text-primary mb-3">
-        <Lightbulb className="h-3 w-3 shrink-0" />
-        <span className="text-xs font-medium">{display(suggestion.suggested_title)}</span>
-      </div>
-      <p className="text-xs text-muted-foreground mb-3">
-        {display(suggestion.suggested_description || suggestion.reason)}
-      </p>
-      
-      {!isHandled ? (
-        <div className="flex items-center gap-2">
-          <Button size="sm" className="h-7 px-3 gap-1" onClick={onAccept}>
-            <Check className="h-3 w-3" />
-            {t("common.accept")}
-          </Button>
-          <Button size="sm" variant="outline" className="h-7 px-3 gap-1" onClick={onDismiss}>
-            <X className="h-3 w-3" />
-            {t("common.dismiss")}
-          </Button>
-        </div>
-      ) : (
-        <Badge variant="outline" className={
-          suggestion.status === "accepted" 
-            ? "text-primary border-primary/30" 
-            : "text-muted-foreground"
-        }>
-          {suggestion.status === "accepted" ? (
-            <>
-              <CheckCircle2 className="h-3 w-3 mr-1" /> {t("common.applied")}
-            </>
-          ) : (
-            t("common.dismissed")
-          )}
-        </Badge>
-      )}
-    </div>
-  );
-}
+import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
 
 export default function HabitReportCard() {
-  const { t, i18n } = useTranslation();
-  const dfLocale = dateFnsLocale(i18n.resolvedLanguage || i18n.language);
+  const { t } = useTranslation();
+  const { user } = useAuth();
   const { isPremium } = usePremiumLimits();
+  const { toast } = useToast();
+  
   const { 
     report, 
     loading, 
     generating, 
     generateReport, 
-    acceptSuggestion,
+    acceptSuggestion, 
     dismissSuggestion,
-    markAsRead,
     canGenerateReport,
-    getDaysUntilNextReport,
   } = useHabitReport();
-  const [expanded, setExpanded] = useState(false);
-  const [showPaywall, setShowPaywall] = useState(false);
 
-  const habitReportRawStrings = useMemo(() => {
-    if (!report) return [];
-    const arr: string[] = [];
-    if (report.summary?.trim()) arr.push(report.summary);
-    const hs = report.detailed_analysis?.habit_suggestions ?? [];
-    for (const s of hs) {
-      for (const x of [s.habit_title, s.issue, s.suggested_title, s.suggested_description, s.reason]) {
-        if (typeof x === "string" && x.trim()) arr.push(x);
-      }
-    }
-    for (const tip of report.detailed_analysis?.tips ?? []) {
-      if (typeof tip === "string" && tip.trim()) arr.push(tip);
-    }
-    return arr;
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [applyingAll, setApplyingAll] = useState(false);
+
+  const rawSuggestions: HabitSuggestion[] = useMemo(() => {
+    return report?.detailed_analysis?.habit_suggestions || [];
   }, [report]);
-  const { display } = useUiBatchTranslation(habitReportRawStrings, !!report && habitReportRawStrings.length > 0);
+
+  const pendingSuggestions = useMemo(() => {
+    return rawSuggestions.filter(s => s.status !== "accepted" && s.status !== "dismissed");
+  }, [rawSuggestions]);
+
+  const handleApplyAll = async () => {
+    if (pendingSuggestions.length === 0) return;
+    setApplyingAll(true);
+    try {
+      for (const suggestion of pendingSuggestions) {
+        await acceptSuggestion(
+          suggestion.habit_id,
+          suggestion.suggested_title,
+          suggestion.suggested_description || suggestion.reason
+        );
+      }
+      toast({
+        title: t("habit_report.all_applied_title", "Modalità Salvagente Attiva! ⚡"),
+        description: t("habit_report.all_applied_desc", "Tutti gli aggiustamenti AI sono stati applicati per ritrovare il ritmo."),
+      });
+    } catch (err) {
+      console.error("Error applying all suggestions:", err);
+    } finally {
+      setApplyingAll(false);
+    }
+  };
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-6 animate-pulse card-glow dark:card-lift">
+      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
           <Brain className="h-6 w-6 text-purple-500/50 dark:text-[#8b5cf6]" />
-          <span className="text-muted-foreground dark:text-[#6c8093]">{t("habit_report.loading_insights")}</span>
+          <span className="text-muted-foreground dark:text-[#6c8093]">Caricamento AI Recovery Sprint...</span>
         </div>
       </div>
     );
@@ -143,20 +88,20 @@ export default function HabitReportCard() {
         <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 card-glow dark:card-lift">
           <div className="text-center space-y-4">
             <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center mx-auto relative shadow-soft">
-              <Brain className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
+              <Zap className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
               <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-muted dark:bg-white/5 flex items-center justify-center border-2 border-background dark:border-[#0f1419]">
                 <Lock className="h-2.5 w-2.5 text-muted-foreground dark:text-[#6c8093]" />
               </div>
             </div>
             <div>
-              <h2 className="text-base font-semibold text-foreground dark:text-white">{t("habit_report.habit_analysis")}</h2>
+              <h2 className="text-base font-semibold text-foreground dark:text-white">AI Recovery Sprint</h2>
               <p className="text-sm text-muted-foreground dark:text-[#6c8093] mt-1">
-                {t("habit_report.locked_desc")}
+                {t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
               </p>
             </div>
             <Button onClick={() => setShowPaywall(true)} className="gap-2" variant="outline">
               <Crown className="h-4 w-4 text-purple-500 dark:text-[#8b5cf6]" />
-              {t("habit_report.unlock_premium")}
+              {t("habit_report.unlock_premium", "Sblocca con Premium")}
             </Button>
           </div>
         </div>
@@ -165,162 +110,158 @@ export default function HabitReportCard() {
     );
   }
 
-  const habitSuggestions = report?.detailed_analysis?.habit_suggestions || [];
-  const tips = report?.detailed_analysis?.tips || [];
-  const pendingSuggestions = habitSuggestions.filter(s => s.status !== "accepted" && s.status !== "dismissed");
-  const daysUntilNext = getDaysUntilNextReport();
-
-  if (!report) {
+  // If no report or no pending suggestions
+  if (!report || pendingSuggestions.length === 0) {
     return (
-      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 card-glow dark:card-lift">
-        <div className="text-center space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center mx-auto shadow-soft">
-            <Brain className="h-7 w-7 text-purple-500 dark:text-[#8b5cf6]" />
+      <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-3 shadow-lg backdrop-blur-md w-full">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Zap className="h-4 w-4 text-emerald-400 fill-emerald-400 shrink-0" />
+            <h2 className="text-base font-bold text-slate-100 dark:text-white">
+              {t("habit_report.sprint_title", "AI Recovery Sprint")}
+            </h2>
+            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
+              {t("habit_report.four_days_no", "4 Giorni No")}
+            </Badge>
           </div>
-          <div>
-            <h2 className="text-base font-semibold text-foreground dark:text-white">{t("habit_report.get_report")}</h2>
-            <p className="text-sm text-muted-foreground dark:text-[#6c8093] mt-1">
-              {t("habit_report.analyze_last_days")}
-            </p>
-          </div>
-          <Button onClick={generateReport} disabled={generating} className="gap-2">
-            {generating ? (
-              <>
-                <RefreshCw className="h-4 w-4 animate-spin" />
-                {t("common.analyzing")}
-              </>
-            ) : (
-              <>
-                <Sparkles className="h-4 w-4" />
-                {t("habit_report.generate_new")}
-              </>
-            )}
-          </Button>
         </div>
+
+        <p className="text-xs text-slate-400 leading-relaxed">
+          {report 
+            ? t("habit_report.no_delay", "Tutti gli aggiustamenti AI per i 4 giorni no sono stati applicati! 🎉")
+            : t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
+        </p>
+
+        {canGenerateReport() && (
+          <Button
+            onClick={generateReport}
+            disabled={generating}
+            className="w-full h-9 text-xs font-semibold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 gap-2 mt-2"
+          >
+            {generating ? (
+              <RefreshCw className="h-4 w-4 animate-spin" />
+            ) : (
+              <Sparkle className="h-4 w-4 fill-slate-950" />
+            )}
+            Analizza ultimi 4 Giorni con AI
+          </Button>
+        )}
       </div>
     );
   }
 
-  const { summary, created_at, is_read, id } = report;
-
   return (
-    <div className={`rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/20 bg-[#f8f6ff] dark:bg-[#1a212e]/50 dark:glass-card p-5 overflow-hidden card-glow dark:card-lift ${!is_read ? 'ring-2 ring-purple-300/30 dark:ring-[#8b5cf6]/30' : ''}`}>
-      <div className="mb-3 flex items-start justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-[#8b5cf6]/20 flex items-center justify-center shadow-soft">
-            <Brain className="h-6 w-6 text-purple-500 dark:text-[#8b5cf6]" />
+    <div className="rounded-2xl border border-indigo-100 dark:border-[#8b5cf6]/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-4 shadow-lg backdrop-blur-md w-full">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="flex items-center gap-2">
+            <Zap className="h-4 w-4 text-emerald-400 fill-emerald-400 shrink-0" />
+            <h2 className="text-base font-bold text-slate-100 dark:text-white">
+              {t("habit_report.sprint_title", "AI Recovery Sprint")}
+            </h2>
+            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
+              {t("habit_report.four_days_no", "4 Giorni No")}
+            </Badge>
           </div>
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="break-words text-base font-semibold text-foreground dark:text-white">{t("habit_report.habit_analysis")}</h2>
-              {!is_read && (
-                <Badge variant="secondary" className="shrink-0 text-xs bg-purple-200 dark:bg-[#8b5cf6]/20 text-purple-700 dark:text-[#8b5cf6]">
-                  {t("common.new")}
-                </Badge>
-              )}
-            </div>
-            <p className="text-xs text-muted-foreground dark:text-[#6c8093]">
-              {formatDistanceToNow(new Date(created_at), { addSuffix: true, locale: dfLocale })}
-            </p>
-          </div>
+          <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 leading-relaxed">
+            {t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
+          </p>
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            setExpanded(!expanded);
-            if (!is_read) markAsRead(id);
-          }}
-          className="h-8 w-8 p-0"
-        >
-          {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-        </Button>
       </div>
 
-      <div className="space-y-4">
-        <p className="break-words text-sm text-foreground/90 leading-relaxed">{display(summary)}</p>
+      {/* Habit Cards (AI Suggestions) */}
+      <div className="space-y-3">
+        {pendingSuggestions.map((suggestion) => {
+          const aiAdvice = suggestion.suggested_description || suggestion.suggested_title || suggestion.reason || "Riduci l'obiettivo per ritrovare l'inerzia";
 
-        {pendingSuggestions.length > 0 && (
-          <Badge variant="outline" className="max-w-full gap-1 border-primary/20 text-primary whitespace-normal">
-            <TrendingDown className="h-3 w-3" />
-            {t("habit_report.suggestions_for_you", { count: pendingSuggestions.length })}
-          </Badge>
-        )}
+          const titleLower = suggestion.habit_title.toLowerCase();
+          let ItemIcon = Sparkles;
+          if (titleLower.includes("acqua") || titleLower.includes("salute") || titleLower.includes("sonno")) ItemIcon = Heart;
+          else if (titleLower.includes("lettura") || titleLower.includes("studio") || titleLower.includes("piano") || titleLower.includes("suonare")) ItemIcon = BookOpen;
+          else if (titleLower.includes("allenamento") || titleLower.includes("passi") || titleLower.includes("palestra")) ItemIcon = Dumbbell;
 
-        {expanded && (
-          <div className="space-y-4 pt-2 border-t border-border/50">
-            {habitSuggestions.length > 0 && (
-              <div>
-                <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
-                  <TrendingDown className="h-4 w-4 text-primary" />
-                  {t("habit_report.suggested_adjustments")}
-                </h3>
-                <div className="space-y-2">
-                  {habitSuggestions.map((suggestion, idx) => (
-                    <SuggestionItem
-                      key={suggestion.habit_id || idx}
-                      suggestion={suggestion}
-                      display={display}
-                      onAccept={() => acceptSuggestion(
-                        suggestion.habit_id,
-                        suggestion.suggested_title,
-                        suggestion.suggested_description || suggestion.reason
-                      )}
-                      onDismiss={() => dismissSuggestion(suggestion.habit_id)}
+          return (
+            <div
+              key={suggestion.habit_id}
+              className="p-3 rounded-xl border bg-slate-800/60 border-slate-700/60 dark:bg-[#1a222e] dark:border-white/10 space-y-2 w-full transition-all"
+            >
+              {/* Top Row: Icon + Habit Title + 4d dots + Actions */}
+              <div className="flex items-center justify-between gap-2 w-full">
+                <div className="flex items-center gap-2 min-w-0 flex-1">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                    <ItemIcon className="h-3.5 w-3.5" />
+                  </div>
+                  <h3 className="text-xs font-semibold text-slate-100 dark:text-white break-words min-w-0 flex-1">
+                    {suggestion.habit_title}
+                  </h3>
+                </div>
+
+                {/* 4 Empty Days Gray Dots Badge */}
+                <div className="flex items-center gap-1 shrink-0 bg-slate-900/60 px-2 py-0.5 rounded-md border border-slate-800">
+                  <span className="text-[10px] text-slate-400 mr-0.5 font-mono">4d:</span>
+                  {[0, 1, 2, 3].map((d) => (
+                    <span
+                      key={d}
+                      className="w-1.5 h-1.5 rounded-full border border-rose-500/50 bg-rose-500/20 inline-block"
+                      title="Non completato negli ultimi 4 giorni"
                     />
                   ))}
                 </div>
-              </div>
-            )}
 
-            {tips.length > 0 && (
-              <div>
-                <h3 className="text-sm font-medium mb-2 flex items-center gap-2">
-                  <Lightbulb className="h-4 w-4 text-primary" />
-                  {t("habit_report.tips")}
-                </h3>
-                <ul className="space-y-1.5">
-                  {tips.map((tip, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="text-primary font-medium">{idx + 1}.</span>
-                      {display(tip)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="pt-2">
-              {canGenerateReport() ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={generateReport}
-                  disabled={generating}
-                  className="w-full gap-2"
-                >
-                  {generating ? (
-                    <>
-                      <RefreshCw className="h-4 w-4 animate-spin" />
-                      {t("common.generating")}
-                    </>
-                  ) : (
-                    <>
-                      <RefreshCw className="h-4 w-4" />
-                      {t("habit_report.generate_new")}
-                    </>
-                  )}
-                </Button>
-              ) : (
-                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground py-2">
-                  <Clock className="h-4 w-4" />
-                  {t("habit_report.next_report_in", { days: daysUntilNext })}
+                {/* Action buttons [ ✓ ] e [ ✕ ] */}
+                <div className="flex items-center gap-1 shrink-0">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => acceptSuggestion(
+                      suggestion.habit_id,
+                      suggestion.suggested_title,
+                      suggestion.suggested_description || suggestion.reason
+                    )}
+                    className="h-7 w-7 p-0 rounded-lg text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300"
+                    title="Accetta aggiustamento AI"
+                  >
+                    <Check className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => dismissSuggestion(suggestion.habit_id)}
+                    className="h-7 w-7 p-0 rounded-lg text-slate-400 hover:bg-slate-700/50 hover:text-slate-200"
+                    title="Ignora"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
                 </div>
-              )}
+              </div>
+
+              {/* AI Advice Box: Full text readable, no truncation, no line-through strikethrough prefix */}
+              <div className="text-xs bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-800/80 w-full text-emerald-400 leading-relaxed font-medium break-words">
+                {aiAdvice}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })}
       </div>
+
+      {/* Bottom Primary CTA */}
+      <Button
+        onClick={handleApplyAll}
+        disabled={applyingAll}
+        className="w-full h-10 font-semibold text-xs rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 shadow-md transition-all flex items-center justify-center gap-2"
+      >
+        {applyingAll ? (
+          <RefreshCw className="h-4 w-4 animate-spin" />
+        ) : (
+          <Zap className="h-4 w-4 fill-slate-950 text-slate-950" />
+        )}
+        ⚡ {t("habit_report.apply_all", "Applica Tutti gli Aggiustamenti")}
+      </Button>
     </div>
   );
 }
+
+
+
+

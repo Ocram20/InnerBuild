@@ -78,7 +78,7 @@ export default function Dashboard() {
   const [showEmergency, setShowEmergency] = useState(false);
   const [paywallReason, setPaywallReason] = useState<"ai_coach" | "recovery" | "general">("general");
   const [fabMenuOpen, setFabMenuOpen] = useState(false);
-  const { score, loading: scoreLoading } = useInnerBuildScore();
+  const { score, breakdown, loading: scoreLoading, refetch: refetchScore } = useInnerBuildScore();
 
   useEffect(() => {
     if (user) {
@@ -152,6 +152,7 @@ export default function Dashboard() {
         const { error } = await supabase.from("habit_logs").insert({ habit_id: habitId, user_id: user.id, completed_at: today });
         if (error) throw error;
       }
+      refetchScore();
     } catch (error) {
       setHabits(prev => prev.map(h => h.id === habitId ? { ...h, completed_today: habit.completed_today } : h));
       toast({ title: t("common.error"), description: t("dashboard.failed_update_habit"), variant: "destructive" });
@@ -245,7 +246,7 @@ export default function Dashboard() {
         ) : (
           <>
             <section className="animate-fade-in flex flex-col items-center justify-center py-8">
-              <InnerBuildScore score={score} />
+              <InnerBuildScore score={score} breakdown={breakdown} />
               <DailyQuote />
             </section>
 
