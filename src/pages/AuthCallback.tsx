@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -28,7 +28,7 @@ export default function AuthCallback() {
 
       if (event === "PASSWORD_RECOVERY") {
         handled.current = true;
-        navigate("/reset-password", { replace: true });
+        navigate("/reset-password", { state: { isRecovery: true }, replace: true });
       } else if (event === "SIGNED_IN" && session) {
         handled.current = true;
         navigate("/dashboard", { replace: true });

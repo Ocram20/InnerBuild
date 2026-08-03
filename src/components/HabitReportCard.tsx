@@ -41,6 +41,14 @@ export default function HabitReportCard() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [applyingAll, setApplyingAll] = useState(false);
 
+  const analyzedDays = useMemo(() => {
+    if (!report?.period_start || !report?.period_end) return 4;
+    const start = new Date(report.period_start);
+    const end = new Date(report.period_end);
+    const diff = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+    return Math.max(1, diff);
+  }, [report]);
+
   const rawSuggestions: HabitSuggestion[] = useMemo(() => {
     return report?.detailed_analysis?.habit_suggestions || [];
   }, [report]);
@@ -121,14 +129,14 @@ export default function HabitReportCard() {
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
             <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
-              {t("habit_report.four_days_no", "4 Giorni No")}
+              {report ? `Analisi ${analyzedDays}d` : "Ogni 4 Giorni"}
             </Badge>
           </div>
         </div>
 
         <p className="text-xs text-slate-400 leading-relaxed">
           {report 
-            ? t("habit_report.no_delay", "Tutti gli aggiustamenti AI per i 4 giorni no sono stati applicati! 🎉")
+            ? t("habit_report.no_delay", "Tutti gli aggiustamenti AI per l'ultimo periodo sono stati applicati! 🎉")
             : t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
         </p>
 
@@ -143,7 +151,7 @@ export default function HabitReportCard() {
             ) : (
               <Sparkle className="h-4 w-4 fill-slate-950" />
             )}
-            Analizza ultimi 4 Giorni con AI
+            Analizza andamento abitudini con AI
           </Button>
         )}
       </div>
@@ -161,7 +169,7 @@ export default function HabitReportCard() {
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
             <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
-              {t("habit_report.four_days_no", "4 Giorni No")}
+              Analisi {analyzedDays}d
             </Badge>
           </div>
           <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 leading-relaxed">
@@ -186,7 +194,7 @@ export default function HabitReportCard() {
               key={suggestion.habit_id}
               className="p-3 rounded-xl border bg-slate-800/60 border-slate-700/60 dark:bg-[#1a222e] dark:border-white/10 space-y-2 w-full transition-all"
             >
-              {/* Top Row: Icon + Habit Title + 4d dots + Actions */}
+              {/* Top Row: Icon + Habit Title + Analyzed Days Badge + Actions */}
               <div className="flex items-center justify-between gap-2 w-full">
                 <div className="flex items-center gap-2 min-w-0 flex-1">
                   <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
@@ -197,16 +205,9 @@ export default function HabitReportCard() {
                   </h3>
                 </div>
 
-                {/* 4 Empty Days Gray Dots Badge */}
+                {/* Analyzed Period Badge */}
                 <div className="flex items-center gap-1 shrink-0 bg-slate-900/60 px-2 py-0.5 rounded-md border border-slate-800">
-                  <span className="text-[10px] text-slate-400 mr-0.5 font-mono">4d:</span>
-                  {[0, 1, 2, 3].map((d) => (
-                    <span
-                      key={d}
-                      className="w-1.5 h-1.5 rounded-full border border-rose-500/50 bg-rose-500/20 inline-block"
-                      title="Non completato negli ultimi 4 giorni"
-                    />
-                  ))}
+                  <span className="text-[10px] text-slate-400 font-mono">{analyzedDays}d in calo</span>
                 </div>
 
                 {/* Action buttons [ ✓ ] e [ ✕ ] */}

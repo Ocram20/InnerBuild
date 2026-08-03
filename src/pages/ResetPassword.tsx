@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,10 +9,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Leaf, ArrowLeft, Eye, EyeOff, AlertCircle } from "lucide-react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { z } from "zod";
-
-const passwordSchema = z.string().min(6, "Password must be at least 6 characters");
+import { translateAuthError } from "@/lib/authErrorTranslator";
 
 export default function ResetPassword() {
+  const { t } = useTranslation();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -21,74 +22,57 @@ export default function ResetPassword() {
   const [errors, setErrors] = useState<{ password?: string; confirmPassword?: string }>({});
 
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
   useEffect(() => {
-    // AuthEventHandler (in App.tsx) already redirected us here when
-    // PASSWORD_RECOVERY fired, so we just need to confirm the event
-    // and handle edge cases (direct URL access, page refresh).
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY") {
+    // 1. If redirected from AuthCallback with recovery state
+    if (location.state?.isRecovery) {
+      setIsValidSession(true);
+      return;
+    }
+
+    // 2. Listen to auth state events
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY" || (event === "SIGNED_IN" && session)) {
         setIsValidSession(true);
       } else if (event === "SIGNED_OUT") {
         setIsValidSession(false);
       }
     });
 
-    // Check URL for recovery token (handles both PKCE ?code= and legacy #access_token=)
+    // 3. Check for recovery code in URL or active session
     const queryParams = new URLSearchParams(window.location.search);
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
     const hasRecoveryToken =
       queryParams.has("code") ||
       (hashParams.get("access_token") && hashParams.get("type") === "recovery");
 
-    if (hasRecoveryToken) {
-      // Token present — Supabase will exchange it and fire PASSWORD_RECOVERY
-      // Set a generous timeout in case the event fires before this component mounts
-      const timeout = setTimeout(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (isValidSession === null) {
-            setIsValidSession(!!session);
-          }
-        });
-      }, 3000);
-      return () => {
-        clearTimeout(timeout);
-        subscription.unsubscribe();
-      };
-    } else {
-      // No token in URL — check if already in a PASSWORD_RECOVERY session
-      // (e.g. user refreshed the page after arriving correctly)
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        // Only valid if there's an active session (user arrived via recovery)
-        // We can't distinguish a normal session from a recovery one after the fact,
-        // so if there's no token and no prior PASSWORD_RECOVERY event, deny access.
-        if (session) {
-          // Let onAuthStateChange decide; if no event comes, deny after timeout
-          const deny = setTimeout(() => {
-            setIsValidSession((prev) => (prev === null ? false : prev));
-          }, 1500);
-          return () => clearTimeout(deny);
-        } else {
-          setIsValidSession(false);
-        }
-      });
-    }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session || hasRecoveryToken) {
+        setIsValidSession(true);
+      } else {
+        const timeout = setTimeout(() => {
+          setIsValidSession((prev) => (prev === null ? false : prev));
+        }, 1500);
+        return () => clearTimeout(timeout);
+      }
+    });
 
     return () => subscription.unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.state]);
 
   const validateForm = () => {
     const newErrors: { password?: string; confirmPassword?: string } = {};
 
+    const passwordSchema = z.string().min(6, t("reset_password.password_too_short", { defaultValue: "La password deve contenere almeno 6 caratteri" }));
     const passwordResult = passwordSchema.safeParse(password);
     if (!passwordResult.success) {
       newErrors.password = passwordResult.error.errors[0].message;
     }
 
     if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono" });
     }
 
     setErrors(newErrors);
@@ -107,8 +91,8 @@ export default function ResetPassword() {
 
       if (error) {
         toast({
-          title: "Reset password fallito",
-          description: error.message,
+          title: t("reset_password.failed_title", { defaultValue: "Reset password fallito" }),
+          description: translateAuthError(error.message, t),
           variant: "destructive",
         });
       } else {
@@ -116,8 +100,8 @@ export default function ResetPassword() {
         await supabase.auth.signOut();
         
         toast({
-          title: "Password aggiornata",
-          description: "La tua password è stata reimpostata. Accedi con la nuova password.",
+          title: t("reset_password.success_title", { defaultValue: "Password aggiornata" }),
+          description: t("reset_password.success_desc", { defaultValue: "La tua password è stata reimpostata. Accedi con la nuova password." }),
         });
         navigate("/auth");
       }
@@ -147,7 +131,7 @@ export default function ResetPassword() {
             className="gap-2 text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to login
+            {t("reset_password.back_to_login", { defaultValue: "Torna all'accesso" })}
           </Button>
         </header>
 
@@ -157,16 +141,16 @@ export default function ResetPassword() {
               <AlertCircle className="h-8 w-8 text-destructive" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">
-              Invalid or expired link
+              {t("reset_password.invalid_link_title", { defaultValue: "Link non valido o scaduto" })}
             </h1>
             <p className="text-muted-foreground mb-6">
-              This password reset link is invalid or has expired. Please request a new one.
+              {t("reset_password.invalid_link_desc", { defaultValue: "Questo link per la reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo." })}
             </p>
             <Button
               onClick={() => navigate("/forgot-password")}
               className="gradient-primary text-primary-foreground font-medium shadow-soft"
             >
-              Request new link
+              {t("reset_password.request_new_link", { defaultValue: "Richiedi nuovo link" })}
             </Button>
           </div>
         </main>
@@ -185,7 +169,7 @@ export default function ResetPassword() {
           className="gap-2 text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to login
+          {t("reset_password.back_to_login", { defaultValue: "Torna all'accesso" })}
         </Button>
       </header>
 
@@ -198,10 +182,10 @@ export default function ResetPassword() {
               <Leaf className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
-              Create new password
+              {t("reset_password.create_new_password", { defaultValue: "Crea nuova password" })}
             </h1>
             <p className="text-muted-foreground mt-2">
-              Enter your new password below. Make sure it's at least 6 characters.
+              {t("reset_password.description", { defaultValue: "Inserisci la tua nuova password qui sotto (almeno 6 caratteri)." })}
             </p>
           </div>
 
@@ -209,7 +193,7 @@ export default function ResetPassword() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="glass rounded-2xl p-6 space-y-4 shadow-card">
               <div className="space-y-2">
-                <Label htmlFor="password">New password</Label>
+                <Label htmlFor="password">{t("reset_password.new_password", { defaultValue: "Nuova password" })}</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -236,7 +220,7 @@ export default function ResetPassword() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm new password</Label>
+                <Label htmlFor="confirmPassword">{t("reset_password.confirm_new_password", { defaultValue: "Conferma nuova password" })}</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
@@ -268,7 +252,7 @@ export default function ResetPassword() {
               className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft"
               disabled={isLoading}
             >
-              {isLoading ? "Updating..." : "Reset password"}
+              {isLoading ? t("reset_password.updating", { defaultValue: "Aggiornamento in corso..." }) : t("reset_password.submit_button", { defaultValue: "Reimposta password" })}
             </Button>
           </form>
         </div>

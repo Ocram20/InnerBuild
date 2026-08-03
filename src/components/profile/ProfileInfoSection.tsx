@@ -10,6 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { Camera, Save, Loader2, User, Clock, Mail, Lock, Eye, EyeOff, Trash2 } from "lucide-react";
 import { differenceInDays } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { translateAuthError } from "@/lib/authErrorTranslator";
 
 interface ProfileData {
   first_name: string;
@@ -293,14 +294,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       });
       if (error) throw error;
       toast({
-        title: "Conferma inviata",
-        description: "Controlla la tua email attuale per confermare il cambio di indirizzo.",
+        title: t("profile.email_confirmation_sent_title", { defaultValue: "Conferma inviata" }),
+        description: t("profile.email_confirmation_sent_desc", { defaultValue: "Controlla la tua email per confermare il cambio di indirizzo." }),
       });
     } catch (error: any) {
       console.error("Error updating email:", error);
       toast({
-        title: "Aggiornamento email fallito",
-        description: error.message,
+        title: t("profile.email_update_failed", { defaultValue: "Aggiornamento email fallito" }),
+        description: translateAuthError(error.message, t),
         variant: "destructive",
       });
     } finally {
@@ -309,6 +310,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
   };
 
   const handlePasswordChange = async () => {
+    if (!currentPassword) {
+      toast({
+        title: t("profile.password_update_failed", { defaultValue: "Aggiornamento non riuscito" }),
+        description: t("auth_errors.current_password_required", { defaultValue: "Inserisci la tua password attuale per continuare." }),
+        variant: "destructive",
+      });
+      return;
+    }
     if (newPassword !== confirmPassword) {
       toast({
         title: t("profile.password_mismatch_title"),
@@ -342,7 +351,11 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         return;
       }
 
-      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      // Pass both new password and current_password to satisfy Supabase security setting
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword,
+        current_password: currentPassword,
+      } as any);
       if (error) throw error;
 
       setCurrentPassword("");
@@ -356,7 +369,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       console.error("Error updating password:", error);
       toast({
         title: t("profile.password_update_failed"),
-        description: error.message || t("profile.password_update_failed"),
+        description: translateAuthError(error.message, t),
         variant: "destructive",
       });
     } finally {

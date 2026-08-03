@@ -127,7 +127,9 @@ serve(async (req) => {
       .eq('insight_type', 'habit_report')
       .order('created_at', { ascending: false })
       .limit(1)
-      .single();
+      .maybeSingle();
+
+    let daysToAnalyze = 7;
 
     if (lastReport) {
       const lastReportDate = new Date(lastReport.created_at);
@@ -144,22 +146,25 @@ serve(async (req) => {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
+
+      // If user hasn't generated a report in 40 days, analyze the full 40-day period (capped at 90 days)
+      daysToAnalyze = Math.min(90, Math.max(4, daysSinceReport));
     }
 
-    // Calculate date range (last 4 days)
+    // Calculate date range dynamically based on daysToAnalyze
     const endDate = new Date();
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - 4);
+    startDate.setDate(startDate.getDate() - daysToAnalyze);
     
     const startDateStr = startDate.toISOString().split('T')[0];
     const endDateStr = endDate.toISOString().split('T')[0];
 
-    console.log("Fetching habit data for analysis");
+    console.log(`Fetching habit data for ${daysToAnalyze} days analysis (${startDateStr} to ${endDateStr})`);
 
     // Fetch habits
     const { data: habits, error: habitsError } = await supabase
       .from('habits')
-      .select('id, title, description, frequency')
+      .select('id, title, description, frequency, created_at')
       .eq('user_id', userId)
       .eq('is_active', true);
 
@@ -184,32 +189,35 @@ serve(async (req) => {
 
     if (logsError) throw logsError;
 
-    // Calculate completion rates for each habit
+    // Calculate completion rates for each habit over the full analyzed period
     const habitStats = habits.map(habit => {
       const completions = (habitLogs || []).filter(log => log.habit_id === habit.id).length;
-      const expectedDays = 4;
-      const completionRate = Math.round((completions / expectedDays) * 100);
+      const habitCreated = habit.created_at ? new Date(habit.created_at) : startDate;
+      const activeDays = Math.max(1, Math.min(daysToAnalyze, Math.ceil((endDate.getTime() - habitCreated.getTime()) / (1000 * 60 * 60 * 24))));
+      const completionRate = Math.round((completions / activeDays) * 100);
       
       return {
         id: habit.id,
         title: habit.title,
         description: habit.description,
         frequency: habit.frequency,
-        completions_last_4_days: completions,
+        days_analyzed: activeDays,
+        total_period_days: daysToAnalyze,
+        completions_in_period: completions,
         completion_rate: completionRate,
       };
     });
 
     // Prepare prompt for Groq
     const analysisPrompt = `
-Analyze this user's habit performance from the last 4 days:
+Analyze this user's habit performance over the last ${daysToAnalyze} days:
 
-## Habits Performance:
+## Habits Performance (Analyzed Period: ${daysToAnalyze} days):
 ${JSON.stringify(habitStats, null, 2)}
 
 Please analyze and provide actionable suggestions. Focus on:
 1. Habits with completion rates below 50% that need simplification
-2. For each struggling habit, suggest a simpler alternative title
+2. For each struggling habit, suggest a simpler alternative title & description
 3. Provide practical tips for improvement
 
 IMPORTANT: Include the habit "id" field in your habit_suggestions so we can apply changes.

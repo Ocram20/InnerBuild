@@ -249,6 +249,7 @@ export function ToDoSection({ userId, targetDate, planningMode }: ToDoSectionPro
     const priority = getPriority(task);
     return (
       <div
+        key={task.id}
         className={`flex items-center gap-3 p-3 rounded-lg border border-l-2 transition-colors ${
           task.is_completed ? "bg-success/5 border-success/20" : "bg-muted/30 border-border/50 hover:border-border"
         } ${priorityAccent[priority]}`}
