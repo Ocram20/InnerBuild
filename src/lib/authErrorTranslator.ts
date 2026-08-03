@@ -26,6 +26,18 @@ export function translateAuthError(
   }
 
   if (
+    lower.includes("same password") ||
+    lower.includes("different password") ||
+    lower.includes("should be different") ||
+    lower.includes("cannot reuse") ||
+    lower.includes("same as")
+  ) {
+    return t("auth_errors.same_password", {
+      defaultValue: "La nuova password deve essere diversa da quella precedente.",
+    });
+  }
+
+  if (
     lower.includes("invalid login credentials") ||
     lower.includes("invalid_credentials") ||
     lower.includes("invalid grant")
@@ -37,7 +49,7 @@ export function translateAuthError(
 
   if (lower.includes("password should be at least")) {
     return t("auth_errors.password_too_short", {
-      defaultValue: "La password deve contenere almeno 6 caratteri.",
+      defaultValue: "La password deve contenere almeno 8 caratteri.",
     });
   }
 

@@ -1,3 +1,6 @@
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
 import { z } from "https://esm.sh/zod@3.23.8";
@@ -67,7 +70,7 @@ Focus ONLY on habits. Be warm, supportive, and non-judgmental. Suggest simpler v
 - "Meditate 30 min" → "5 minute breathing"`;
 }
 
-serve(async (req) => {
+serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -190,8 +193,8 @@ serve(async (req) => {
     if (logsError) throw logsError;
 
     // Calculate completion rates for each habit over the full analyzed period
-    const habitStats = habits.map(habit => {
-      const completions = (habitLogs || []).filter(log => log.habit_id === habit.id).length;
+    const habitStats = habits.map((habit: any) => {
+      const completions = (habitLogs || []).filter((log: any) => log.habit_id === habit.id).length;
       const habitCreated = habit.created_at ? new Date(habit.created_at) : startDate;
       const activeDays = Math.max(1, Math.min(daysToAnalyze, Math.ceil((endDate.getTime() - habitCreated.getTime()) / (1000 * 60 * 60 * 24))));
       const completionRate = Math.round((completions / activeDays) * 100);

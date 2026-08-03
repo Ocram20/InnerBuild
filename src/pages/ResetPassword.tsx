@@ -6,9 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Leaf, ArrowLeft, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Leaf, ArrowLeft, Eye, EyeOff, AlertCircle, Check, X } from "lucide-react";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { z } from "zod";
+import { cn } from "@/lib/utils";
 import { translateAuthError } from "@/lib/authErrorTranslator";
 
 export default function ResetPassword() {
@@ -19,7 +19,6 @@ export default function ResetPassword() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isValidSession, setIsValidSession] = useState<boolean | null>(null);
-  const [errors, setErrors] = useState<{ password?: string; confirmPassword?: string }>({});
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,27 +61,36 @@ export default function ResetPassword() {
     return () => subscription.unsubscribe();
   }, [location.state]);
 
-  const validateForm = () => {
-    const newErrors: { password?: string; confirmPassword?: string } = {};
+  const passwordRequirements = [
+    { label: t("auth_validation.min_8_chars", { defaultValue: "Almeno 8 caratteri" }), met: password.length >= 8 },
+    { label: t("auth_validation.one_number", { defaultValue: "Almeno un numero" }), met: /\d/.test(password) },
+    { label: t("auth_validation.one_upper", { defaultValue: "Almeno una lettera maiuscola" }), met: /[A-Z]/.test(password) },
+    { label: t("auth_validation.one_lower", { defaultValue: "Almeno una lettera minuscola" }), met: /[a-z]/.test(password) },
+  ];
 
-    const passwordSchema = z.string().min(6, t("reset_password.password_too_short", { defaultValue: "La password deve contenere almeno 6 caratteri" }));
-    const passwordResult = passwordSchema.safeParse(password);
-    if (!passwordResult.success) {
-      newErrors.password = passwordResult.error.errors[0].message;
-    }
-
-    if (password !== confirmPassword) {
-      newErrors.confirmPassword = t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono" });
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const allRequirementsMet = passwordRequirements.every((r) => r.met);
+  const passwordsMatch = password.length > 0 && password === confirmPassword;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    if (!allRequirementsMet) {
+      toast({
+        title: t("common.error"),
+        description: t("auth_validation.password_complexity", { defaultValue: "La password non soddisfa tutti i requisiti." }),
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!passwordsMatch) {
+      toast({
+        title: t("common.error"),
+        description: t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono." }),
+        variant: "destructive",
+      });
+      return;
+    }
 
     setIsLoading(true);
 
@@ -185,7 +193,7 @@ export default function ResetPassword() {
               {t("reset_password.create_new_password", { defaultValue: "Crea nuova password" })}
             </h1>
             <p className="text-muted-foreground mt-2">
-              {t("reset_password.description", { defaultValue: "Inserisci la tua nuova password qui sotto (almeno 6 caratteri)." })}
+              {t("reset_password.description", { defaultValue: "Inserisci la tua nuova password qui sotto." })}
             </p>
           </div>
 
@@ -200,11 +208,8 @@ export default function ResetPassword() {
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     value={password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      if (errors.password) setErrors((prev) => ({ ...prev, password: undefined }));
-                    }}
-                    className={`h-12 rounded-xl pr-12 ${errors.password ? "border-destructive" : ""}`}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="h-12 rounded-xl pr-12"
                   />
                   <button
                     type="button"
@@ -214,12 +219,37 @@ export default function ResetPassword() {
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
                 </div>
-                {errors.password && (
-                  <p className="text-sm text-destructive">{errors.password}</p>
-                )}
+
+                {/* Password Live Requirements Checklist */}
+                <div className="space-y-2 mt-3 px-1">
+                  {passwordRequirements.map((req, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div
+                        className={cn(
+                          "w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
+                          req.met ? "bg-emerald-500" : "bg-muted-foreground/20"
+                        )}
+                      >
+                        {req.met ? (
+                          <Check className="h-2.5 w-2.5 text-white" />
+                        ) : (
+                          <X className="h-2.5 w-2.5 text-muted-foreground" />
+                        )}
+                      </div>
+                      <span
+                        className={cn(
+                          "text-xs transition-colors duration-300",
+                          req.met ? "text-emerald-500 font-medium" : "text-muted-foreground"
+                        )}
+                      >
+                        {req.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2 pt-2">
                 <Label htmlFor="confirmPassword">{t("reset_password.confirm_new_password", { defaultValue: "Conferma nuova password" })}</Label>
                 <div className="relative">
                   <Input
@@ -227,11 +257,11 @@ export default function ResetPassword() {
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="••••••••"
                     value={confirmPassword}
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                      if (errors.confirmPassword) setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
-                    }}
-                    className={`h-12 rounded-xl pr-12 ${errors.confirmPassword ? "border-destructive" : ""}`}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={cn(
+                      "h-12 rounded-xl pr-12",
+                      confirmPassword && !passwordsMatch && "border-destructive"
+                    )}
                   />
                   <button
                     type="button"
@@ -241,8 +271,10 @@ export default function ResetPassword() {
                     {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
                 </div>
-                {errors.confirmPassword && (
-                  <p className="text-sm text-destructive">{errors.confirmPassword}</p>
+                {confirmPassword && !passwordsMatch && (
+                  <p className="text-xs text-destructive mt-1">
+                    {t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono" })}
+                  </p>
                 )}
               </div>
             </div>
@@ -250,7 +282,7 @@ export default function ResetPassword() {
             <Button
               type="submit"
               className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft"
-              disabled={isLoading}
+              disabled={isLoading || !allRequirementsMet || !passwordsMatch}
             >
               {isLoading ? t("reset_password.updating", { defaultValue: "Aggiornamento in corso..." }) : t("reset_password.submit_button", { defaultValue: "Reimposta password" })}
             </Button>
