@@ -69,14 +69,21 @@ export function useInnerBuildScore(): ScoreData {
       const tasksActive = totalTasks > 0;
 
       // 3. Fetch Not To-Do items (Base weight: 15)
-      const { data: notToDoData } = await untypedTable("not_to_do_items")
-        .select("id, status")
+      const { data: notToDoItems } = await untypedTable("not_to_do_items")
+        .select("id")
         .eq("user_id", user.id)
-        .or(`target_date.eq.${today},is_active.eq.true`);
+        .eq("is_active", true);
 
-      const totalNotToDo = notToDoData?.length || 0;
-      const unbrokenNotToDo =
-        notToDoData?.filter((item: any) => item.status !== "broken").length || 0;
+      const { data: notToDoLogs } = await untypedTable("not_to_do_logs")
+        .select("not_to_do_id, status")
+        .eq("user_id", user.id)
+        .eq("log_date", today);
+
+      const totalNotToDo = notToDoItems?.length || 0;
+      const activeNotToDoIds = new Set((notToDoItems || []).map((i: any) => i.id));
+      const avoidedNotToDoCount = (notToDoLogs || []).filter(
+        (l: any) => l.status === "avoided" && activeNotToDoIds.has(l.not_to_do_id)
+      ).length;
       const notToDoActive = totalNotToDo > 0;
 
       // 4. Fetch Detox / Recovery status (Base weight: 15)
@@ -157,7 +164,7 @@ export function useInnerBuildScore(): ScoreData {
 
         if (notToDoActive) {
           const weight = (BASE_WEIGHTS.not_to_do / sumActiveBaseWeight) * 100;
-          const ratio = totalNotToDo > 0 ? unbrokenNotToDo / totalNotToDo : 0;
+          const ratio = totalNotToDo > 0 ? avoidedNotToDoCount / totalNotToDo : 0;
           const points = ratio * weight;
           totalCalculatedScore += points;
           activeBreakdown.push({
@@ -165,13 +172,13 @@ export function useInnerBuildScore(): ScoreData {
             titleKey: "dashboard.breakdown.not_to_do",
             defaultTitle: "Not To-Do",
             emoji: "🚫",
-            completed: unbrokenNotToDo,
+            completed: avoidedNotToDoCount,
             total: totalNotToDo,
             weight,
             points: Math.round(points),
             progressRatio: ratio,
-            textCounter: `${unbrokenNotToDo}/${totalNotToDo}`,
-            isComplete: unbrokenNotToDo === totalNotToDo && totalNotToDo > 0,
+            textCounter: `${avoidedNotToDoCount}/${totalNotToDo}`,
+            isComplete: avoidedNotToDoCount === totalNotToDo && totalNotToDo > 0,
           });
         }
 
@@ -210,6 +217,10 @@ export function useInnerBuildScore(): ScoreData {
 
   useEffect(() => {
     calculateScore();
+    const interval = setInterval(() => {
+      calculateScore();
+    }, 3000);
+    return () => clearInterval(interval);
   }, [calculateScore]);
 
   return { score, breakdown, loading, refetch: calculateScore };

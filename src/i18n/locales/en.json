@@ -3652,6 +3652,8 @@
 
     "more_habits": "+{{count}} more habits",
 
+    "more_tasks": "+{{count}} more tasks",
+
     "no_habits": "No habits yet. Create one to get started!",
 
     "all_done": "All done for today! Great work!",

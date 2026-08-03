@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { ModuleBreakdown } from "@/hooks/useInnerBuildScore";
 import { useTranslation } from "react-i18next";
 
@@ -8,8 +9,16 @@ interface InnerBuildScoreProps {
   breakdown?: ModuleBreakdown[];
 }
 
+const CATEGORY_ROUTES: Record<string, string> = {
+  habits: "/habits",
+  tasks: "/daily-planning",
+  not_to_do: "/daily-planning",
+  detox: "/challenges",
+};
+
 export default function InnerBuildScore({ score, breakdown = [] }: InnerBuildScoreProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [animatedScore, setAnimatedScore] = useState(0);
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
@@ -97,13 +106,19 @@ export default function InnerBuildScore({ score, breakdown = [] }: InnerBuildSco
       {/* Dynamic Breakdown Pills */}
       {breakdown.length > 0 && (
         <div className="w-full mt-4 space-y-1.5 animate-fade-in">
-          {breakdown.map((item) => (
+          {breakdown.map((item) => {
+            const targetRoute = CATEGORY_ROUTES[item.key];
+            return (
               <motion.div
                 key={item.key}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="flex items-center justify-between gap-2.5 px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-800 dark:bg-[#131922] dark:border-white/10 shadow-sm backdrop-blur-sm"
+                onClick={() => targetRoute && navigate(targetRoute)}
+                className={`flex items-center justify-between gap-2.5 px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-800 dark:bg-[#131922] dark:border-white/10 shadow-sm backdrop-blur-sm ${
+                  targetRoute ? "cursor-pointer hover:bg-slate-800/90 hover:border-slate-700 dark:hover:bg-[#1b222e] dark:hover:border-white/20 transition-all duration-200 active:scale-[0.99]" : ""
+                }`}
+                title={t("common.view_all", "Vedi tutto")}
               >
                 {/* Left: Emoji + Title */}
                 <div className="flex items-center gap-2 shrink-0 min-w-[92px]">
@@ -135,7 +150,8 @@ export default function InnerBuildScore({ score, breakdown = [] }: InnerBuildSco
                   </span>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
         </div>
       )}
     </div>

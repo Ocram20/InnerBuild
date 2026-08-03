@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { CheckCircle2, Circle, Sparkles, Target } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { CheckCircle2, Circle, Sparkles, Target, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
@@ -33,6 +34,7 @@ interface TodayOverviewProps {
 
 export default function TodayOverview({ habits, onToggleHabit, getAdaptationForHabit }: TodayOverviewProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const completedCount = habits.filter(h => h.completed_today).length;
   const totalCount = habits.length;
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
@@ -66,14 +68,21 @@ export default function TodayOverview({ habits, onToggleHabit, getAdaptationForH
       <div className="relative">
         {/* Progress bar */}
         <div className="mb-4">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-2 gap-2">
             <div className="flex min-w-0 items-center gap-2">
-              <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 shadow-soft">
+              <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 shadow-soft shrink-0">
                 <Target className="h-5 w-5 text-primary" />
               </div>
               <h2 className="truncate text-base font-semibold text-foreground">{t("dashboard.todays_habits")}</h2>
+              <button
+                onClick={() => navigate("/habits")}
+                className="flex items-center gap-0.5 text-xs text-primary hover:text-primary/80 font-medium shrink-0 ml-1 transition-colors"
+              >
+                {t("common.view_all", "Vedi tutto")}
+                <ChevronRight className="h-3.5 w-3.5" />
+              </button>
             </div>
-            <span className="text-xs font-medium text-muted-foreground">{progressPercent}%</span>
+            <span className="text-xs font-medium text-muted-foreground shrink-0">{progressPercent}%</span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
