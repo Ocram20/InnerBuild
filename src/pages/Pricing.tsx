@@ -39,17 +39,8 @@ export default function Pricing() {
   ];
 
   useEffect(() => {
-    if (searchParams.get("success") === "true") {
-      toast({ title: t("pricing.welcome_premium"), description: t("pricing.subscription_active") });
-      navigate("/dashboard", { replace: true });
-    } else if (searchParams.get("canceled") === "true") {
-      toast({ title: t("pricing.checkout_canceled"), description: t("pricing.checkout_canceled_desc") });
-    }
-  }, [searchParams, toast, navigate, t]);
-
-  useEffect(() => {
-    if (!loading && subscription.subscribed) navigate("/dashboard", { replace: true });
-  }, [subscription.subscribed, loading, navigate]);
+    navigate("/?no_redirect=true#pricing", { replace: true });
+  }, [navigate]);
 
   const handleSubscribe = async () => {
     if (!user) { navigate("/auth"); return; }

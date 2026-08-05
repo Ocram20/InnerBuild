@@ -47,6 +47,8 @@ import QuickAccessTodos from "@/components/QuickAccessTodos";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { EmergencyUrgeModal } from "@/components/recovery/EmergencyUrgeModal";
 import { useTranslation } from "react-i18next";
+import { useOnboarding } from "@/hooks/useOnboarding";
+import OnboardingModal from "@/components/onboarding/OnboardingModal";
 
 interface Habit {
   id: string;
@@ -78,6 +80,7 @@ export default function Dashboard() {
   const [showEmergency, setShowEmergency] = useState(false);
   const [paywallReason, setPaywallReason] = useState<"ai_coach" | "recovery" | "general">("general");
   const [fabMenuOpen, setFabMenuOpen] = useState(false);
+  const { shouldShowOnboarding, markCompleted, skipOnboarding } = useOnboarding();
   const { score, breakdown, loading: scoreLoading, refetch: refetchScore } = useInnerBuildScore();
 
   useEffect(() => {
@@ -283,6 +286,17 @@ export default function Dashboard() {
       <CreateChallengeModal open={showCreateChallenge} onOpenChange={setShowCreateChallenge} onSuccess={fetchData} />
       <PaywallModal open={showPaywall} onOpenChange={setShowPaywall} reason={paywallReason} />
       <EmergencyUrgeModal open={showEmergency} onClose={() => setShowEmergency(false)} />
+      <OnboardingModal
+        open={shouldShowOnboarding}
+        onComplete={async (focus, prefs) => {
+          await markCompleted(focus, prefs);
+          window.location.reload();
+        }}
+        onSkip={async () => {
+          await skipOnboarding();
+          window.location.reload();
+        }}
+      />
       <BottomNavigation />
     </div>
   );

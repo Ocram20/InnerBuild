@@ -77,14 +77,18 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
     }
   };
 
-  const createCheckout = async () => {
+  const createCheckout = async (options?: { isAnnual?: boolean; priceId?: string }) => {
     if (!session?.access_token) {
       throw new Error("Not authenticated");
     }
 
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
-        body: { locale: getPreferredTranslationLanguage() },
+        body: {
+          locale: getPreferredTranslationLanguage(),
+          isAnnual: options?.isAnnual ?? false,
+          priceId: options?.priceId,
+        },
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },

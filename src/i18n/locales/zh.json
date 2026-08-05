@@ -1,5 +1,7 @@
 {
   "common": {
+    "new_task": "新建任务",
+    "new": "新建",
     "pro": "专业版",
     "light_mode": "浅色模式",
     "dark_mode": "深色模式",
@@ -15,7 +17,6 @@
     "confirm": "确认",
     "or": "或",
     "all": "全部",
-    "new": "新建",
     "open": "打开",
     "log": "记录",
     "premium": "高级版",
@@ -66,6 +67,9 @@
     "pro_tip": "小贴士"
   },
   "auth": {
+    "email_confirmed_title": "账号验证成功！",
+    "email_confirmed_desc": "您的电子邮箱已成功验证。您现在可以登录刚创建的账号了。",
+    "log_in_now": "立即登录",
     "welcome_back": "欢迎回来",
     "start_journey": "开始您的旅程",
     "sign_in_continue": "登录以继续您的成长",
@@ -159,6 +163,36 @@
     "could_not_update_status": "无法更新状态"
   },
   "landing": {
+    "everything_you_need": "为您量身打造的全方位蜕变工具",
+    "everything_you_need_sub": "从第一天起为您全方位赋能的科学工具包。",
+    "features": {
+      "smart_habit_tracking": "智能习惯追踪",
+      "smart_habit_desc": "通过可视化进度、连续打卡记录和适配真实生活的 AI 智能建议追踪每日习惯。",
+      "detox_challenges": "戒断 Detox 挑战",
+      "detox_challenges_desc": "通过基于科学的挑战（3 到 90 天）摆脱数字成瘾和消极生活习惯。",
+      "porn_recovery": "新生 (色情成瘾康复)",
+      "porn_recovery_desc": "基于神经科学的色情成瘾康复、自我掌控与专业辅导路径。",
+      "ai_coach": "专属 24/7 AI 教练",
+      "ai_coach_desc": "全天候伴您左右的 AI 教练，随时激发动力、建议习惯并帮您化解冲动。",
+      "trigger_tracking": "诱因追踪与深度 AI 分析",
+      "trigger_tracking_desc": "记录并分析引发冲动的诱因，洞察行为模式并构建稳固心理防线。",
+      "daily_planning": "每日规划与自我反思",
+      "daily_planning_desc": "使用 To-Do 待办与 Not-To-Do 禁做清单规划每一天，以感恩与情绪记录结束充实一天。",
+      "the_forge": "重生 (色情恢复)",
+      "the_forge_desc": "专门的科学计划，用于色情恢复、自我掌控及专业支持。",
+      "ai_habit_adaptation": "AI 习惯适应",
+      "ai_habit_adaptation_desc": "当您遇到困难时建议更简单的版本",
+      "learn_section": "学习板块",
+      "learn_section_desc": "关于多巴胺和大脑重塑的教育",
+      "streak_tracking": "连续记录追踪",
+      "streak_tracking_desc": "视觉进度和里程碑",
+      "micro_actions": "微行动",
+      "micro_actions_desc": "几秒钟内的小小每日胜利",
+      "not_to_do_list": "避免清单",
+      "not_to_do_desc": "追踪要避免的行为",
+      "recovery_timeline": "恢复时间线",
+      "recovery_timeline_desc": "查看大脑康复进展"
+    },
     "features_eyebrow": "核心功能",
     "your_companion": "您个人成长的完整伴侣",
     "hero_title_1": "建立您应得的生活，",
@@ -181,32 +215,6 @@
     "ready_to_start": "准备好开始建立了吗？",
     "join_thousands": "加入成千上万正在用 InnerBuild 改变生活的人们。您通往更好习惯的旅程从今天开始。",
     "get_started_free": "免费开始",
-    "features": {
-      "smart_habit_tracking": "智能习惯追踪",
-      "smart_habit_desc": "追踪每日习惯，带有视觉进度、连续记录和智能 AI 建议，适应您的真实模式。",
-      "detox_challenges": "排毒挑战",
-      "detox_challenges_desc": "通过基于科学的挑战（3至90天）摆脱数字成瘾、坏习惯和负面模式。",
-      "the_forge": "重生 (色情恢复)",
-      "the_forge_desc": "专门的科学计划，用于色情恢复、自我掌控及专业支持。",
-      "ai_coach": "个人 AI 教练",
-      "ai_coach_desc": "24/7 AI 伴侣，激励您、建议个性化习惯、帮助应对渴求并引导您的转变。",
-      "trigger_tracking": "触发器追踪与分析",
-      "trigger_tracking_desc": "记录并分析触发您冲动的因素。识别模式并通过 AI 洞察建立更强的防御。",
-      "daily_planning": "每日计划与反思",
-      "daily_planning_desc": "用待办和避免清单规划您的一天。以感恩、情绪签到和自我反思结束每一天。",
-      "ai_habit_adaptation": "AI 习惯适应",
-      "ai_habit_adaptation_desc": "当您遇到困难时建议更简单的版本",
-      "learn_section": "学习板块",
-      "learn_section_desc": "关于多巴胺和大脑重塑的教育",
-      "streak_tracking": "连续记录追踪",
-      "streak_tracking_desc": "视觉进度和里程碑",
-      "micro_actions": "微行动",
-      "micro_actions_desc": "几秒钟内的小小每日胜利",
-      "not_to_do_list": "避免清单",
-      "not_to_do_desc": "追踪要避免的行为",
-      "recovery_timeline": "恢复时间线",
-      "recovery_timeline_desc": "查看大脑康复进展"
-    },
     "stats": {
       "recovery_days": "天的恢复内容",
       "suggested_habits": "个建议习惯",
@@ -431,6 +439,7 @@
     }
   },
   "challenges": {
+    "create_new_challenge": "创建新戒断挑战",
     "start_confirmation_title": "开始挑战？",
     "start_confirmation_desc": "您确定要开始此挑战吗？您一次只能拥有一个活动挑战。",
     "start_challenge": "开始挑战",
@@ -559,22 +568,32 @@
     }
   },
   "pricing": {
-    "choose_plan": "选择您的套餐",
-    "subtitle": "免费开始，准备就绪时升级。无隐藏费用，随时取消。",
-    "free_plan": "免费套餐",
+    "choose_plan": "选择您的方案",
+    "choose_plan_title": "投资您的无限潜能",
+    "subtitle": "解锁所有高级个人成长工具，重获对习惯的掌控。",
+    "monthly_billing": "按月付费",
+    "annual_billing": "按年付费",
+    "save_badge": "省 20%（免费送 2 个月）",
+    "annual_billing_detail": "每年结算 €95.88（省 20%）",
+    "get_annual_premium": "升级至年度 PRO 专业版",
+    "get_monthly_premium": "升级至月度 PRO 专业版",
+    "guarantee_30_days": "30 天无理由退款保证",
+    "cancel_anytime": "随时可以取消订阅",
+    "secure_stripe": "通过 Stripe 实现 100% 安全支付",
+    "free_plan": "基础免费版",
+    "premium_plan": "InnerBuild PRO 专业版",
+    "most_popular": "最受青睐",
+    "forever": "永久免费",
+    "get_started_basics": "非常适合开启您的自我改变之旅。",
+    "unlock_potential": "无限制解锁全部成长潜能。",
     "free_price": "€0",
-    "forever": "/永久",
-    "get_started_basics": "从基础开始",
     "current_plan": "当前套餐",
     "get_started_free": "免费开始",
-    "premium_plan": "高级套餐",
     "premium_price": "€9.99",
     "per_month": "/月",
-    "unlock_potential": "释放您的全部潜力",
     "everything_in_free": "免费版所有内容，加上：",
     "subscribe_now": "立即订阅",
     "get_premium": "获取高级版",
-    "most_popular": "最受欢迎",
     "trust_badges": "30 天退款保证 • 随时取消 • 通过 Stripe 安全支付",
     "have_account": "已有账户？",
     "welcome_premium": "欢迎使用 InnerBuild 高级版！",
@@ -2581,5 +2600,77 @@
     "invalid_link_title": "链接无效或已过期",
     "invalid_link_desc": "此密码重置链接无效或已被使用。请重新请求新链接。",
     "request_new_link": "请求新链接"
+  },
+  "onboarding": {
+    "skip": "跳过",
+    "step_count": "第 {{current}} 步 / 共 {{total}} 步",
+    "welcome_toast_title": "工作区已就绪！",
+    "welcome_toast_desc": "您的专属工作区已成功建好！您可以随时在工具页面中增减模块。",
+    "step1": {
+      "title": "欢迎来到 InnerBuild。您想从哪里开启蜕变之旅？",
+      "subtitle": "请选择您的首要核心目标，以便我们为您打造量身定制的专属空间。",
+      "options": {
+        "productivity": {
+          "title": "重拾专注力与高效生产力",
+          "desc": "更好地规划学习、工作与日常事务"
+        },
+        "healthy_habits": {
+          "title": "培养健康且可持续的良好习惯",
+          "desc": "打造平衡、充实且充满动力的每日作息"
+        },
+        "life_reset": {
+          "title": "360° 全方位重掌人生主导权",
+          "desc": "找回人生方向、清晰头脑与全面平衡"
+        },
+        "overcome_addiction": {
+          "title": "战胜不良成瘾，重获自我掌控",
+          "desc": "磨炼自控自律，科学管理冲动欲望"
+        },
+        "porn_recovery": {
+          "title": "摆脱色情成瘾，实现心智新生",
+          "desc": "专属保密且基于神经科学的康复成长路径"
+        }
+      }
+    },
+    "step2": {
+      "title": "您希望在主页随手使用哪些工具？",
+      "subtitle": "请选择现在启用的模块。您可以随时在“工具”页面进行调整。",
+      "free_section": "已启用的免费基础工具",
+      "premium_section": "PRO 高级进阶模块",
+      "tools": {
+        "habits": {
+          "title": "习惯追踪",
+          "desc": "打卡并建立每日好习惯"
+        },
+        "challenges": {
+          "title": "戒断 Detox 挑战",
+          "desc": "摆脱坏习惯，打破消极循环"
+        },
+        "reflection": {
+          "title": "晚间反思",
+          "desc": "每日情绪记录与感恩日记"
+        },
+        "planning": {
+          "title": "每日规划",
+          "desc": "To-Do 待办与 Not-To-Do 禁做清单"
+        },
+        "the_forge": {
+          "title": "新生计划",
+          "desc": "科学戒断康复与自我主导路径"
+        },
+        "trigger": {
+          "title": "诱因 AI 深度分析",
+          "desc": "利用 AI 识别并剖析冲动诱因"
+        },
+        "coach": {
+          "title": "AI 专属教练",
+          "desc": "24/7 全天候陪伴您的成长助手"
+        }
+      },
+      "premium_notice": "您选择了 Premium 高级功能。您可以体验 PRO 方案，或仅使用免费模块。",
+      "activate_workspace": "激活专属工作区",
+      "explore_premium": "了解 PRO 方案",
+      "continue": "继续"
+    }
   }
 }

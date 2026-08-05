@@ -1,5 +1,7 @@
 {
   "common": {
+    "new_task": "New Task",
+    "new": "New",
     "pro": "PRO",
     "light_mode": "Light Mode",
     "dark_mode": "Dark Mode",
@@ -15,7 +17,6 @@
     "confirm": "Confirm",
     "or": "or",
     "all": "All",
-    "new": "New",
     "open": "Open",
     "log": "Log",
     "premium": "Premium",
@@ -66,6 +67,9 @@
     "refresh": "Refresh"
   },
   "auth": {
+    "email_confirmed_title": "Account Confirmed Successfully!",
+    "email_confirmed_desc": "Your email address has been verified. You can now log into your newly created account.",
+    "log_in_now": "Log In Now",
     "welcome_back": "Welcome Back",
     "start_journey": "Start your journey",
     "sign_in_continue": "Sign in to continue your growth",
@@ -159,6 +163,36 @@
     "could_not_update_status": "Could not update status"
   },
   "landing": {
+    "everything_you_need": "Everything You Need to Transform",
+    "everything_you_need_sub": "A complete toolkit designed to support your journey from day one.",
+    "features": {
+      "smart_habit_tracking": "Smart Habit Tracking",
+      "smart_habit_desc": "Track daily habits with visual progress, streaks, and intelligent AI suggestions.",
+      "detox_challenges": "Detox Challenges",
+      "detox_challenges_desc": "Break free from digital addiction and negative patterns with science-backed challenges (3 to 90 days).",
+      "porn_recovery": "Rebirth (Porn Recovery)",
+      "porn_recovery_desc": "A neuroscience-based path for porn recovery, self-mastery, and specialized support.",
+      "ai_coach": "Personal AI Coach",
+      "ai_coach_desc": "24/7 AI companion that motivates you, suggests habits, and helps handle urges.",
+      "trigger_tracking": "Trigger Tracking & Analysis",
+      "trigger_tracking_desc": "Log and analyze what triggers your urges. Get AI insights to build stronger defenses.",
+      "daily_planning": "Daily Planning & Reflection",
+      "daily_planning_desc": "Plan your day with to-do & not-to-do lists. End each day with gratitude and self-reflection.",
+      "the_forge": "The Renewal (Porn Recovery)",
+      "the_forge_desc": "A dedicated, science‑based program for porn recovery, self‑mastery, and specialized support.",
+      "ai_habit_adaptation": "AI Habit Adaptation",
+      "ai_habit_adaptation_desc": "Suggests easier versions when you're struggling",
+      "learn_section": "Learn Section",
+      "learn_section_desc": "Education on dopamine and brain rewiring",
+      "streak_tracking": "Streak Tracking",
+      "streak_tracking_desc": "Visual progress and milestones",
+      "micro_actions": "Micro‑Actions",
+      "micro_actions_desc": "Small daily wins in seconds",
+      "not_to_do_list": "Not‑To‑Do List",
+      "not_to_do_desc": "Track behaviors to avoid",
+      "recovery_timeline": "Recovery Timeline",
+      "recovery_timeline_desc": "See your brain healing progress"
+    },
     "features_eyebrow": "Features",
     "your_companion": "Your complete companion for personal growth",
     "hero_title_1": "Build the life you deserve,",
@@ -181,32 +215,6 @@
     "ready_to_start": "Ready to start building?",
     "join_thousands": "Join thousands of people transforming their lives with InnerBuild. Your journey to better habits starts today.",
     "get_started_free": "Get Started Free",
-    "features": {
-      "smart_habit_tracking": "Smart Habit Tracking",
-      "smart_habit_desc": "Track daily habits with visual progress, streaks, and smart AI suggestions that adapt to your real patterns.",
-      "detox_challenges": "Detox Challenges",
-      "detox_challenges_desc": "Break free from digital addiction, bad habits, and negative patterns with science‑based challenges (3 to 90 days).",
-      "the_forge": "The Renewal (Porn Recovery)",
-      "the_forge_desc": "A dedicated, science‑based program for porn recovery, self‑mastery, and specialized support.",
-      "ai_coach": "Personal AI Coach",
-      "ai_coach_desc": "24/7 AI companion that motivates you, suggests personalized habits, helps with cravings, and guides your transformation.",
-      "trigger_tracking": "Trigger Tracking & Analysis",
-      "trigger_tracking_desc": "Log and analyze what triggers your urges. Identify patterns and get AI insights to build stronger defenses.",
-      "daily_planning": "Daily Planning & Reflection",
-      "daily_planning_desc": "Plan your day with to‑do and not‑to‑do lists. End each day with gratitude, mood check‑ins, and self‑reflection.",
-      "ai_habit_adaptation": "AI Habit Adaptation",
-      "ai_habit_adaptation_desc": "Suggests easier versions when you're struggling",
-      "learn_section": "Learn Section",
-      "learn_section_desc": "Education on dopamine and brain rewiring",
-      "streak_tracking": "Streak Tracking",
-      "streak_tracking_desc": "Visual progress and milestones",
-      "micro_actions": "Micro‑Actions",
-      "micro_actions_desc": "Small daily wins in seconds",
-      "not_to_do_list": "Not‑To‑Do List",
-      "not_to_do_desc": "Track behaviors to avoid",
-      "recovery_timeline": "Recovery Timeline",
-      "recovery_timeline_desc": "See your brain healing progress"
-    },
     "stats": {
       "recovery_days": "Days of recovery content",
       "suggested_habits": "Suggested habits",
@@ -472,6 +480,7 @@
     }
   },
   "challenges": {
+    "create_new_challenge": "New Detox Challenge",
     "start_confirmation_title": "Start Challenge?",
     "start_confirmation_desc": "Are you sure you want to start this challenge? You can have one active challenge at a time.",
     "start_challenge": "Start Challenge",
@@ -601,21 +610,31 @@
   },
   "pricing": {
     "choose_plan": "Choose Your Plan",
-    "subtitle": "Start free and upgrade when you're ready. No hidden fees, cancel anytime.",
+    "choose_plan_title": "Invest in Your Potential",
+    "subtitle": "Unlock all advanced growth tools and regain control of your habits.",
+    "monthly_billing": "Monthly",
+    "annual_billing": "Annual",
+    "save_badge": "Save 20% (2 months free)",
+    "annual_billing_detail": "Billed at €95.88/year (Save 20%)",
+    "get_annual_premium": "Upgrade to Annual PRO",
+    "get_monthly_premium": "Upgrade to Monthly PRO",
+    "guarantee_30_days": "30-Day Money-Back Guarantee",
+    "cancel_anytime": "Cancel anytime",
+    "secure_stripe": "100% Secure Payment via Stripe",
     "free_plan": "Free Plan",
+    "premium_plan": "InnerBuild PRO",
+    "most_popular": "Most Popular",
+    "forever": "forever",
+    "get_started_basics": "Perfect for getting started on your journey.",
+    "unlock_potential": "Unlock full potential with unlimited access.",
     "free_price": "€0",
-    "forever": "/forever",
-    "get_started_basics": "Get started with the basics",
     "current_plan": "Current Plan",
     "get_started_free": "Get Started Free",
-    "premium_plan": "Premium Plan",
     "premium_price": "€9.99",
     "per_month": "/month",
-    "unlock_potential": "Unlock your full potential",
     "everything_in_free": "Everything in Free, plus:",
     "subscribe_now": "Subscribe Now",
     "get_premium": "Get Premium",
-    "most_popular": "Most Popular",
     "trust_badges": "30‑day money‑back guarantee • Cancel anytime • Secure payment via Stripe",
     "have_account": "Already have an account?",
     "welcome_premium": "Welcome to InnerBuild Premium!",
@@ -2663,5 +2682,77 @@
     "invalid_link_title": "Invalid or expired link",
     "invalid_link_desc": "This password reset link is invalid or has already been used. Please request a new one.",
     "request_new_link": "Request new link"
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "step_count": "Step {{current}} of {{total}}",
+    "welcome_toast_title": "Workspace Ready!",
+    "welcome_toast_desc": "Your workspace is ready! You can enable or hide tools anytime in the Tools section.",
+    "step1": {
+      "title": "Welcome to InnerBuild. Where would you like to start your journey?",
+      "subtitle": "Choose your primary focus so we can tailor your workspace.",
+      "options": {
+        "productivity": {
+          "title": "Regain Focus & Productivity",
+          "desc": "Best for organizing study, work, and daily commitments"
+        },
+        "healthy_habits": {
+          "title": "Build Healthy & Sustainable Habits",
+          "desc": "Create a balanced and empowering daily routine"
+        },
+        "life_reset": {
+          "title": "Reset My Life 360°",
+          "desc": "Find clarity, direction, and overall life balance"
+        },
+        "overcome_addiction": {
+          "title": "Overcome Addiction & Regain Control",
+          "desc": "Work on discipline and urge management"
+        },
+        "porn_recovery": {
+          "title": "Break Free From Porn & Rebirth",
+          "desc": "A confidential and dedicated neuroscience-based recovery path"
+        }
+      }
+    },
+    "step2": {
+      "title": "Which tools do you want at your fingertips?",
+      "subtitle": "Choose what to activate now. You can adjust modules anytime in Tools.",
+      "free_section": "Active Free Tools",
+      "premium_section": "Advanced PRO Modules",
+      "tools": {
+        "habits": {
+          "title": "Habits",
+          "desc": "Track and build daily habits"
+        },
+        "challenges": {
+          "title": "Detox Challenges",
+          "desc": "Break bad habits with scientific challenges"
+        },
+        "reflection": {
+          "title": "Evening Reflection",
+          "desc": "Daily mood check-in & gratitude journal"
+        },
+        "planning": {
+          "title": "Daily Planning",
+          "desc": "To-do and Not-To-Do task lists"
+        },
+        "the_forge": {
+          "title": "Rebirth Program",
+          "desc": "Scientific recovery and self-mastery path"
+        },
+        "trigger": {
+          "title": "Trigger Analysis",
+          "desc": "Analyze urge patterns with AI"
+        },
+        "coach": {
+          "title": "AI Coach",
+          "desc": "24/7 personal growth assistant"
+        }
+      },
+      "premium_notice": "You have selected Premium features. You can try Premium or proceed with active free modules.",
+      "activate_workspace": "Activate Workspace",
+      "explore_premium": "Explore PRO Plan",
+      "continue": "Continue"
+    }
   }
 }

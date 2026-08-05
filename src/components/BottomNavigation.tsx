@@ -107,16 +107,16 @@ const BottomNavigation = () => {
                       <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         <Target className="h-4 w-4 text-primary" />
                       </div>
-                      <span className="text-sm font-medium text-foreground">Nuova Abitudine</span>
+                      <span className="text-sm font-medium text-foreground">{t("create_habit.title", "Nuova Abitudine")}</span>
                     </button>
                     <button
                       onClick={() => { setFabOpen(false); setShowCreateChallenge(true); }}
                       className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-muted transition-colors text-left"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0">
-                        <Flame className="h-4 w-4 text-destructive" />
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Flame className="h-4 w-4 text-primary" />
                       </div>
-                      <span className="text-sm font-medium text-foreground">Nuova Sfida Detox</span>
+                      <span className="text-sm font-medium text-foreground">{t("challenges.create_new_challenge", "Nuova Sfida Detox")}</span>
                     </button>
                     <button
                       onClick={() => { setFabOpen(false); navigate("/daily-planning"); }}
@@ -125,12 +125,12 @@ const BottomNavigation = () => {
                       <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         <Calendar className="h-4 w-4 text-primary" />
                       </div>
-                      <span className="text-sm font-medium text-foreground">Nuova Task</span>
+                      <span className="text-sm font-medium text-foreground">{t("common.new_task", "Nuova Task")}</span>
                     </button>
                   </div>
                 </PopoverContent>
               </Popover>
-              <span className="text-[10px] font-medium text-muted-foreground mt-1">Nuovo</span>
+              <span className="text-[10px] font-medium text-muted-foreground mt-1">{t("common.new", "Nuovo")}</span>
             </div>
 
           {/* Right nav items */}

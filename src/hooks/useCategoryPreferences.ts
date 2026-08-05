@@ -16,9 +16,9 @@ export type CategoryPreferences = {
 
 const DEFAULT_PREFERENCES: CategoryPreferences = {
   habits: true,
+  challenges: true,
   "daily-planning": true,
   "evening-reflection": true,
-  challenges: false,
   coach: false,
   "trigger-tracking": false,
   "the-forge": false,
@@ -40,15 +40,17 @@ export const useCategoryPreferences = () => {
   const fetchPreferences = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from("profiles")
+      const { data, error } = await (supabase.from("profiles") as any)
         .select("category_preferences")
         .eq("user_id", user?.id)
         .maybeSingle();
 
       if (error) throw error;
       if (data?.category_preferences) {
-        setPreferences(data.category_preferences as CategoryPreferences);
+        setPreferences({
+          ...DEFAULT_PREFERENCES,
+          ...(data.category_preferences as CategoryPreferences),
+        });
       }
     } catch (error) {
       console.error("Error fetching category preferences:", error);
@@ -64,8 +66,7 @@ export const useCategoryPreferences = () => {
     setPreferences(newPreferences);
 
     try {
-      const { error } = await supabase
-        .from("profiles")
+      const { error } = await (supabase.from("profiles") as any)
         .update({ category_preferences: newPreferences })
         .eq("user_id", user.id);
 

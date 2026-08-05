@@ -19,7 +19,32 @@ export default function ActiveChallengesCard({ challenges }: ActiveChallengesCar
   const navigate = useNavigate();
   const { t } = useTranslation();
   if (challenges.length === 0) {
-    return null;
+    return (
+      <div className="rounded-2xl border border-border/60 bg-card p-5 shadow-sm">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Flame className="h-4 w-4 text-primary" />
+            </div>
+            <h2 className="text-base font-semibold text-foreground">{t("recovery.active_challenges", "Sfide Detox")}</h2>
+          </div>
+          <button
+            onClick={() => navigate("/challenges")}
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+          >
+            {t("common.view_all", "Vedi tutto")}
+            <ChevronRight className="h-3 w-3" />
+          </button>
+        </div>
+        <div
+          onClick={() => navigate("/challenges")}
+          className="p-4 rounded-xl bg-muted/20 border border-dashed border-border/60 hover:border-primary/40 transition-colors cursor-pointer text-center"
+        >
+          <p className="text-xs text-muted-foreground mb-1">{t("challenges.no_active_challenges", "Nessuna sfida detox attiva.")}</p>
+          <p className="text-xs font-semibold text-primary">{t("challenges.explore_templates", "Esplora le sfide detox →")}</p>
+        </div>
+      </div>
+    );
   }
 
   return (

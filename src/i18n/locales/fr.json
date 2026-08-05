@@ -1,5 +1,7 @@
 {
   "common": {
+    "new_task": "Nouvelle tâche",
+    "new": "Nouveau",
     "pro": "PRO",
     "light_mode": "Mode Clair",
     "dark_mode": "Mode Sombre",
@@ -15,7 +17,6 @@
     "confirm": "Confirmer",
     "or": "ou",
     "all": "Tous",
-    "new": "Nouveau",
     "open": "Ouvrir",
     "log": "Enregistrer",
     "premium": "Premium",
@@ -66,6 +67,9 @@
     "pro_tip": "Conseil Pro"
   },
   "auth": {
+    "email_confirmed_title": "Compte confirmé avec succès !",
+    "email_confirmed_desc": "Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous connecter à votre compte.",
+    "log_in_now": "Se connecter maintenant",
     "welcome_back": "Bon retour",
     "start_journey": "Commencez votre voyage",
     "sign_in_continue": "Connectez-vous pour poursuivre votre croissance",
@@ -159,6 +163,36 @@
     "could_not_update_status": "Impossible de mettre à jour le statut"
   },
   "landing": {
+    "everything_you_need": "Tout ce dont vous avez besoin pour vous transformer",
+    "everything_you_need_sub": "Une boîte à outils complète conçue pour accompagner votre parcours dès le premier jour.",
+    "features": {
+      "smart_habit_tracking": "Suivi Intelligent des Habitudes",
+      "smart_habit_desc": "Suivez vos habitudes quotidiennes avec des progrès visuels et des conseils d'IA.",
+      "detox_challenges": "Défis Detox",
+      "detox_challenges_desc": "Libérez-vous de l'addiction numérique et des schémas négatifs (3 à 90 jours).",
+      "porn_recovery": "Renaissance (Rétablissement Pornographie)",
+      "porn_recovery_desc": "Un parcours basé sur les neurosciences pour le rétablissement et le contrôle de soi.",
+      "ai_coach": "Coach IA Personnel",
+      "ai_coach_desc": "Compagnon IA 24/7 qui vous motive, suggère des habitudes et vous aide à gérer les envies.",
+      "trigger_tracking": "Suivi et Analyse des Déclencheurs",
+      "trigger_tracking_desc": "Enregistrez et analysez vos déclencheurs grâce aux analyses de l'IA.",
+      "daily_planning": "Planification et Réflexion Quotidiennes",
+      "daily_planning_desc": "Planifiez votre journée avec des listes de tâches et de non-tâches. Concluez chaque journée avec gratitude.",
+      "the_forge": "La Renaissance (Récupération de la Pornographie)",
+      "the_forge_desc": "Un programme dédié et basé sur la science pour la récupération de la pornographie, la maîtrise de soi et le soutien spécialisé.",
+      "ai_habit_adaptation": "Adaptation des habitudes par IA",
+      "ai_habit_adaptation_desc": "Suggère des versions plus faciles lorsque vous avez du mal",
+      "learn_section": "Section Apprendre",
+      "learn_section_desc": "Éducation sur la dopamine et la restructuration cérébrale",
+      "streak_tracking": "Suivi des séries",
+      "streak_tracking_desc": "Progrès visuels et jalons",
+      "micro_actions": "Micro-actions",
+      "micro_actions_desc": "Petites victoires quotidiennes en quelques secondes",
+      "not_to_do_list": "Liste des choses à ne pas faire",
+      "not_to_do_desc": "Suivez les comportements à éviter",
+      "recovery_timeline": "Chronologie de récupération",
+      "recovery_timeline_desc": "Voir les progrès de la guérison de votre cerveau"
+    },
     "features_eyebrow": "Fonctionnalités",
     "your_companion": "Votre compagnon complet pour la croissance personnelle",
     "hero_title_1": "Construisez la vie que vous méritez,",
@@ -181,32 +215,6 @@
     "ready_to_start": "Prêt à commencer à construire ?",
     "join_thousands": "Rejoignez des milliers de personnes qui transforment leur vie avec InnerBuild. Votre voyage vers de meilleures habitudes commence aujourd'hui.",
     "get_started_free": "Commencer gratuitement",
-    "features": {
-      "smart_habit_tracking": "Suivi intelligent des habitudes",
-      "smart_habit_desc": "Suivez vos habitudes quotidiennes avec un suivi visuel, des séries et des suggestions IA intelligentes qui s'adaptent à vos schémas réels.",
-      "detox_challenges": "Défis Detox",
-      "detox_challenges_desc": "Libérez-vous de la dépendance numérique, des mauvaises habitudes et des schémas négatifs avec des défis basés sur la science (de 3 à 90 jours).",
-      "the_forge": "La Renaissance (Récupération de la Pornographie)",
-      "the_forge_desc": "Un programme dédié et basé sur la science pour la récupération de la pornographie, la maîtrise de soi et le soutien spécialisé.",
-      "ai_coach": "Coach IA personnel",
-      "ai_coach_desc": "Compagnon IA disponible 24h/24 et 7j/7 qui vous motive, suggère des habitudes personnalisées, aide à gérer les envies et guide votre transformation.",
-      "trigger_tracking": "Suivi et analyse des déclencheurs",
-      "trigger_tracking_desc": "Enregistrez et analysez ce qui déclenche vos pulsions. Identifiez les schémas et obtenez des insights IA pour construire des défenses plus solides.",
-      "daily_planning": "Planification et réflexion quotidiennes",
-      "daily_planning_desc": "Planifiez votre journée avec des listes de choses à faire et à ne pas faire. Terminez chaque journée avec de la gratitude, un bilan d'humeur et une auto-réflexion.",
-      "ai_habit_adaptation": "Adaptation des habitudes par IA",
-      "ai_habit_adaptation_desc": "Suggère des versions plus faciles lorsque vous avez du mal",
-      "learn_section": "Section Apprendre",
-      "learn_section_desc": "Éducation sur la dopamine et la restructuration cérébrale",
-      "streak_tracking": "Suivi des séries",
-      "streak_tracking_desc": "Progrès visuels et jalons",
-      "micro_actions": "Micro-actions",
-      "micro_actions_desc": "Petites victoires quotidiennes en quelques secondes",
-      "not_to_do_list": "Liste des choses à ne pas faire",
-      "not_to_do_desc": "Suivez les comportements à éviter",
-      "recovery_timeline": "Chronologie de récupération",
-      "recovery_timeline_desc": "Voir les progrès de la guérison de votre cerveau"
-    },
     "stats": {
       "recovery_days": "Jours de contenu de récupération",
       "suggested_habits": "Habitudes suggérées",
@@ -431,6 +439,7 @@
     }
   },
   "challenges": {
+    "create_new_challenge": "Nouveau défi detox",
     "start_confirmation_title": "Démarrer le Défi ?",
     "start_confirmation_desc": "Voulez-vous vraiment démarrer ce défi ? Vous pouvez avoir un défi actif à la fois.",
     "start_challenge": "Démarrer le Défi",
@@ -559,22 +568,32 @@
     }
   },
   "pricing": {
-    "choose_plan": "Choisissez votre formule",
-    "subtitle": "Commencez gratuitement et passez à Premium quand vous êtes prêt. Pas de frais cachés, annulation à tout moment.",
-    "free_plan": "Formule gratuite",
+    "choose_plan": "Choisissez Votre Formule",
+    "choose_plan_title": "Investissez dans Votre Potentiel",
+    "subtitle": "Débloquez tous les outils de croissance avancés et reprenez le contrôle.",
+    "monthly_billing": "Mensuel",
+    "annual_billing": "Annuel",
+    "save_badge": "Économisez 20% (2 mois gratuits)",
+    "annual_billing_detail": "Facturé 95,88 €/an (Économie de 20%)",
+    "get_annual_premium": "Passer à PRO Annuel",
+    "get_monthly_premium": "Passer à PRO Mensuel",
+    "guarantee_30_days": "Garantie Satisfait ou Remboursé 30 Jours",
+    "cancel_anytime": "Annulez à tout moment",
+    "secure_stripe": "Paiement Sécurisé via Stripe",
+    "free_plan": "Formule Gratis",
+    "premium_plan": "InnerBuild PRO",
+    "most_popular": "Le Plus Populaire",
+    "forever": "pour toujours",
+    "get_started_basics": "Parfait pour démarrer votre parcours.",
+    "unlock_potential": "Débloquez tout votre potentiel sans limites.",
     "free_price": "€0",
-    "forever": "/pour toujours",
-    "get_started_basics": "Commencez avec les bases",
     "current_plan": "Formule actuelle",
     "get_started_free": "Commencer gratuitement",
-    "premium_plan": "Formule Premium",
     "premium_price": "€9.99",
     "per_month": "/mois",
-    "unlock_potential": "Libérez tout votre potentiel",
     "everything_in_free": "Tout ce qui est dans la formule gratuite, plus :",
     "subscribe_now": "S'abonner maintenant",
     "get_premium": "Obtenir Premium",
-    "most_popular": "Le plus populaire",
     "trust_badges": "Garantie de remboursement de 30 jours • Annulation à tout moment • Paiement sécurisé via Stripe",
     "have_account": "Vous avez déjà un compte ?",
     "welcome_premium": "Bienvenue sur InnerBuild Premium !",
@@ -2581,5 +2600,77 @@
     "invalid_link_title": "Lien invalide ou expiré",
     "invalid_link_desc": "Ce lien de réinitialisation de mot de passe est invalide ou a déjà été utilisé. Veuillez en demander un nouveau.",
     "request_new_link": "Demander un nouveau lien"
+  },
+  "onboarding": {
+    "skip": "Passer",
+    "step_count": "Étape {{current}} sur {{total}}",
+    "welcome_toast_title": "Espace de travail prêt !",
+    "welcome_toast_desc": "Votre espace de travail est prêt ! Vous pouvez personnaliser vos outils à tout moment.",
+    "step1": {
+      "title": "Bienvenue sur InnerBuild. Par où souhaitez-vous commencer votre parcours ?",
+      "subtitle": "Choisissez votre objectif principal pour nous aider à créer un espace sur mesure.",
+      "options": {
+        "productivity": {
+          "title": "Retrouver concentration et productivité",
+          "desc": "Idéal pour organiser études, travail et engagements"
+        },
+        "healthy_habits": {
+          "title": "Construire des habitudes saines et durables",
+          "desc": "Pour créer une routine quotidienne équilibrée"
+        },
+        "life_reset": {
+          "title": "Reprendre ma vie en main à 360°",
+          "desc": "Pour retrouver clarté, direction et équilibre"
+        },
+        "overcome_addiction": {
+          "title": "Surmonter une addiction et reprendre le contrôle",
+          "desc": "Travailler la discipline et la gestion des impulsions"
+        },
+        "porn_recovery": {
+          "title": "Se libérer de la pornographie et renaître",
+          "desc": "Un parcours confidentiel et dédié au rétablissement"
+        }
+      }
+    },
+    "step2": {
+      "title": "Quels outils souhaitez-vous avoir à portée de main ?",
+      "subtitle": "Choisissez quoi activer maintenant. Vous pourrez modifier vos modules dans Outils.",
+      "free_section": "Outils Gratuits Actifs",
+      "premium_section": "Modules Avancés PRO",
+      "tools": {
+        "habits": {
+          "title": "Habitudes",
+          "desc": "Suivez et construisez des habitudes"
+        },
+        "challenges": {
+          "title": "Défis Detox",
+          "desc": "Brisez les mauvaises habitudes"
+        },
+        "reflection": {
+          "title": "Réflexion du Soir",
+          "desc": "Bilan quotidien et gratitude"
+        },
+        "planning": {
+          "title": "Planification Diapason",
+          "desc": "Liste de tâches et objectifs"
+        },
+        "the_forge": {
+          "title": "Renaissance",
+          "desc": "Parcours de rétablissement scientifique"
+        },
+        "trigger": {
+          "title": "Analyse des Déclencheurs",
+          "desc": "Analysez vos impulsions par IA"
+        },
+        "coach": {
+          "title": "Coach IA",
+          "desc": "Assistant personnel 24/7"
+        }
+      },
+      "premium_notice": "Vous avez sélectionné des fonctionnalités Premium. Vous pouvez essayer PRO ou continuer gratuitement.",
+      "activate_workspace": "Activer l'Espace de Travail",
+      "explore_premium": "Découvrir la formule PRO",
+      "continue": "Continuer"
+    }
   }
 }

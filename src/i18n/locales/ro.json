@@ -1,5 +1,7 @@
 {
   "common": {
+    "new_task": "Sarcină Nouă",
+    "new": "Nou",
     "pro": "PRO",
     "light_mode": "Mod Luminos",
     "dark_mode": "Mod Întunecat",
@@ -15,7 +17,6 @@
     "confirm": "Confirmă",
     "or": "sau",
     "all": "Toate",
-    "new": "Nou",
     "open": "Deschide",
     "log": "Înregistrează",
     "premium": "Premium",
@@ -66,6 +67,9 @@
     "pro_tip": "Sfat Pro"
   },
   "auth": {
+    "email_confirmed_title": "Cont confirmat cu succes!",
+    "email_confirmed_desc": "Adresa ta de e-mail a fost verificată. Te poți conecta acum la contul creat.",
+    "log_in_now": "Conectează-te acum",
     "welcome_back": "Bine ai revenit",
     "start_journey": "Începe-ți călătoria",
     "sign_in_continue": "Conectează-te pentru a-ți continua dezvoltarea",
@@ -159,6 +163,36 @@
     "could_not_update_status": "Nu s-a putut actualiza statusul"
   },
   "landing": {
+    "everything_you_need": "Tot ce ai nevoie pentru a te transforma",
+    "everything_you_need_sub": "Un set complet de instrumente conceput pentru a-ți susține călătoria din prima zi.",
+    "features": {
+      "smart_habit_tracking": "Urmărire Inteligentă a Obiceiurilor",
+      "smart_habit_desc": "Urmărește obiceiurile zilnice cu progres vizual, serii și sugestii AI.",
+      "detox_challenges": "Provocări Detox",
+      "detox_challenges_desc": "Eliberează-te de dependența digitală și tiparele negative (de la 3 la 90 de zile).",
+      "porn_recovery": "Renașterea (Recuperare Pornografie)",
+      "porn_recovery_desc": "O cale bazată pe neuroștiință pentru recuperare și stăpânire de sine.",
+      "ai_coach": "Coach Personal AI",
+      "ai_coach_desc": "Partener AI 24/7 care te motivează, sugerează obiceiuri și te ajută cu poftele.",
+      "trigger_tracking": "Urmărire și Analiză Declanșatori",
+      "trigger_tracking_desc": "Înregistrează și analizează declanșatorii impulsurilor tale cu insight-uri AI.",
+      "daily_planning": "Planificare și Reflexie Zilnică",
+      "daily_planning_desc": "Planifică-ți ziua cu liste de lucruri de făcut și de nefăcut. Încheie ziua cu recunoștință.",
+      "the_forge": "Renașterea (Recuperare după Pornografie)",
+      "the_forge_desc": "Un program dedicat, bazat pe știință, pentru recuperarea dependenței de pornografie, stăpânirea de sine și suport specializat.",
+      "ai_habit_adaptation": "Adaptarea obișnuințelor cu AI",
+      "ai_habit_adaptation_desc": "Sugerează versiuni mai ușoare când ai dificultăți",
+      "learn_section": "Secțiunea Învață",
+      "learn_section_desc": "Educație despre dopamină și reconfigurarea creierului",
+      "streak_tracking": "Urmărirea seriilor",
+      "streak_tracking_desc": "Progres vizual și repere",
+      "micro_actions": "Micro-acțiuni",
+      "micro_actions_desc": "Mici victorii zilnice în câteva secunde",
+      "not_to_do_list": "Listă de evitat",
+      "not_to_do_desc": "Urmărește comportamentele de evitat",
+      "recovery_timeline": "Cronologia recuperării",
+      "recovery_timeline_desc": "Vezi progresul vindecării creierului"
+    },
     "features_eyebrow": "Funcționalități",
     "your_companion": "Partenerul tău complet pentru creștere personală",
     "hero_title_1": "Construiește viața pe care o meriți,",
@@ -181,32 +215,6 @@
     "ready_to_start": "Gata să începi să construiești?",
     "join_thousands": "Alătură-te miilor de oameni care își transformă viața cu InnerBuild. Călătoria ta către obișnuințe mai bune începe astăzi.",
     "get_started_free": "Începe gratuit",
-    "features": {
-      "smart_habit_tracking": "Urmărire inteligentă a obișnuințelor",
-      "smart_habit_desc": "Urmărește obișnuințele zilnice cu progres vizual, serii și sugestii AI inteligente care se adaptează la modelele tale reale.",
-      "detox_challenges": "Provocări Detox",
-      "detox_challenges_desc": "Eliberează-te de dependența digitală, obiceiurile proaste și modelele negative cu provocări bazate pe știință (de la 3 la 90 de zile).",
-      "the_forge": "Renașterea (Recuperare după Pornografie)",
-      "the_forge_desc": "Un program dedicat, bazat pe știință, pentru recuperarea dependenței de pornografie, stăpânirea de sine și suport specializat.",
-      "ai_coach": "Coach AI personal",
-      "ai_coach_desc": "Însoțitor AI disponibil non-stop, care te motivează, îți sugerează obișnuințe personalizate, te ajută cu poftele și îți ghidează transformarea.",
-      "trigger_tracking": "Urmărirea și analiza declanșatorilor",
-      "trigger_tracking_desc": "Înregistrează și analizează ce îți declanșează impulsurile. Identifică tipare și primește informații AI pentru a construi apărări mai puternice.",
-      "daily_planning": "Planificare și reflecție zilnică",
-      "daily_planning_desc": "Planifică-ți ziua cu liste de făcut și de evitat. Încheie fiecare zi cu recunoștință, verificarea stării de spirit și auto-reflecție.",
-      "ai_habit_adaptation": "Adaptarea obișnuințelor cu AI",
-      "ai_habit_adaptation_desc": "Sugerează versiuni mai ușoare când ai dificultăți",
-      "learn_section": "Secțiunea Învață",
-      "learn_section_desc": "Educație despre dopamină și reconfigurarea creierului",
-      "streak_tracking": "Urmărirea seriilor",
-      "streak_tracking_desc": "Progres vizual și repere",
-      "micro_actions": "Micro-acțiuni",
-      "micro_actions_desc": "Mici victorii zilnice în câteva secunde",
-      "not_to_do_list": "Listă de evitat",
-      "not_to_do_desc": "Urmărește comportamentele de evitat",
-      "recovery_timeline": "Cronologia recuperării",
-      "recovery_timeline_desc": "Vezi progresul vindecării creierului"
-    },
     "stats": {
       "recovery_days": "Zile de conținut de recuperare",
       "suggested_habits": "Obișnuințe sugerate",
@@ -431,6 +439,7 @@
     }
   },
   "challenges": {
+    "create_new_challenge": "Provocare Detox Nouă",
     "start_confirmation_title": "Începe Provocarea?",
     "start_confirmation_desc": "Ești sigur că vrei să începi această provocare? Poți avea o singură provocare activă la un moment dat.",
     "start_challenge": "Începe Provocarea",
@@ -559,22 +568,32 @@
     }
   },
   "pricing": {
-    "choose_plan": "Alege-ți planul",
-    "subtitle": "Începe gratuit și actualizează când ești gata. Fără costuri ascunse, anulează oricând.",
-    "free_plan": "Plan gratuit",
+    "choose_plan": "Alege Planul Tău",
+    "choose_plan_title": "Investește în Potențialul Tău",
+    "subtitle": "Deblochează toate instrumentele avansate de dezvoltare și preia din nou controlul.",
+    "monthly_billing": "Lunar",
+    "annual_billing": "Anual",
+    "save_badge": "Economisești 20% (2 luni gratis)",
+    "annual_billing_detail": "Facturat la 95.88 €/an (Economie de 20%)",
+    "get_annual_premium": "Treci la PRO Anual",
+    "get_monthly_premium": "Treci la PRO Lunar",
+    "guarantee_30_days": "Garanție de 30 de Zile",
+    "cancel_anytime": "Anulezi oricând",
+    "secure_stripe": "Plată Securizată prin Stripe",
+    "free_plan": "Plan Gratuit",
+    "premium_plan": "InnerBuild PRO",
+    "most_popular": "Cel Mai Popular",
+    "forever": "pentru totdeauna",
+    "get_started_basics": "Perfect pentru a-ți începe călătoria.",
+    "unlock_potential": "Deblochează întregul potențial fără limite.",
     "free_price": "€0",
-    "forever": "/pentru totdeauna",
-    "get_started_basics": "Începe cu elementele de bază",
     "current_plan": "Plan actual",
     "get_started_free": "Începe gratuit",
-    "premium_plan": "Plan Premium",
     "premium_price": "€9.99",
     "per_month": "/lună",
-    "unlock_potential": "Deblochează-ți întregul potențial",
     "everything_in_free": "Tot ce este în planul gratuit, plus:",
     "subscribe_now": "Abonează-te acum",
     "get_premium": "Obține Premium",
-    "most_popular": "Cel mai popular",
     "trust_badges": "Garanție de 30 de zile • Anulează oricând • Plată securizată prin Stripe",
     "have_account": "Ai deja un cont?",
     "welcome_premium": "Bun venit la InnerBuild Premium!",
@@ -2578,5 +2597,77 @@
     "invalid_link_title": "Link nevalid sau expirat",
     "invalid_link_desc": "Acest link de resetare a parolei este nevalid sau a fost deja folosit. Vă rugăm să solicitați unul nou.",
     "request_new_link": "Solicită link nou"
+  },
+  "onboarding": {
+    "skip": "Sari",
+    "step_count": "Pasul {{current}} din {{total}}",
+    "welcome_toast_title": "Spațiu de lucru pregătit!",
+    "welcome_toast_desc": "Spațiul tău de lucru este gata! Poți activa sau ascunde instrumentele oricând din secțiunea Instrumente.",
+    "step1": {
+      "title": "Bine ai venit la InnerBuild. De unde ai dori să începi călătoria?",
+      "subtitle": "Alege obiectivul principal pentru a ne ajuta să creăm un spațiu pe măsura ta.",
+      "options": {
+        "productivity": {
+          "title": "Regăsește concentrare & productivitate",
+          "desc": "Ideal pentru organizarea studiilor, muncii și sarcinilor"
+        },
+        "healthy_habits": {
+          "title": "Construiește obiceiuri sănătoase & durabile",
+          "desc": "Pentru a crea o rutină zilnică echilibrată"
+        },
+        "life_reset": {
+          "title": "Resetează-ți viața la 360°",
+          "desc": "Pentru a găsi direcție, claritate și echilibru"
+        },
+        "overcome_addiction": {
+          "title": "Depășește o dependență & preia controlul",
+          "desc": "Lucrează la disciplină și gestionarea impulsurilor"
+        },
+        "porn_recovery": {
+          "title": "Eliberează-te de pornografie & renaște",
+          "desc": "O cale confidențială dedicată recuperării"
+        }
+      }
+    },
+    "step2": {
+      "title": "Ce instrumente dorești să ai la îndemână?",
+      "subtitle": "Alege ce să activezi acum. Poți schimba orice modul din pagina Instrumente.",
+      "free_section": "Instrumente Gratuit Active",
+      "premium_section": "Module Avansate PRO",
+      "tools": {
+        "habits": {
+          "title": "Obiceiuri",
+          "desc": "Urmărește și construiește obiceiuri zilnice"
+        },
+        "challenges": {
+          "title": "Provocări Detox",
+          "desc": "Scapă de obiceiurile rele"
+        },
+        "reflection": {
+          "title": "Reflexie de Seară",
+          "desc": "Jurnal de recunoștință & check-in"
+        },
+        "planning": {
+          "title": "Planificare Zilnică",
+          "desc": "Listă de sarcini și obiective"
+        },
+        "the_forge": {
+          "title": "Renașterea",
+          "desc": "Cale științifică de recuperare"
+        },
+        "trigger": {
+          "title": "Analiză Declanșatori",
+          "desc": "Analizează tiparele impulsurilor cu AI"
+        },
+        "coach": {
+          "title": "Coach AI",
+          "desc": "Asistent personal 24/7"
+        }
+      },
+      "premium_notice": "Ai selectat funcționalități Premium. Poți încerca abonamentul PRO sau continua gratuit.",
+      "activate_workspace": "Activează Spațiul de Lucru",
+      "explore_premium": "Descoperă abonamentul PRO",
+      "continue": "Continuă"
+    }
   }
 }

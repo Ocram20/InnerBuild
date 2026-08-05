@@ -1,5 +1,7 @@
 {
   "common": {
+    "new_task": "Nova Tarefa",
+    "new": "Novo",
     "pro": "PRO",
     "light_mode": "Modo Claro",
     "dark_mode": "Modo Escuro",
@@ -15,7 +17,6 @@
     "confirm": "Confirmar",
     "or": "ou",
     "all": "Todos",
-    "new": "Novo",
     "open": "Abrir",
     "log": "Registar",
     "premium": "Premium",
@@ -66,6 +67,9 @@
     "pro_tip": "Dica Pro"
   },
   "auth": {
+    "email_confirmed_title": "Conta confirmada com sucesso!",
+    "email_confirmed_desc": "O seu e-mail foi verificado. Agora pode iniciar sessão na sua conta.",
+    "log_in_now": "Iniciar sessão agora",
     "welcome_back": "Bem-vindo de volta",
     "start_journey": "Inicie a sua jornada",
     "sign_in_continue": "Inicie sessão para continuar o seu crescimento",
@@ -159,6 +163,36 @@
     "could_not_update_status": "Não foi possível atualizar o estado"
   },
   "landing": {
+    "everything_you_need": "Tudo o que precisa para se transformar",
+    "everything_you_need_sub": "Um conjunto completo de ferramentas concebido para apoiar a sua jornada desde o primeiro dia.",
+    "features": {
+      "smart_habit_tracking": "Rastreio Inteligente de Hábitos",
+      "smart_habit_desc": "Rastreie hábitos diários com progresso visual, sequências e sugestões de IA.",
+      "detox_challenges": "Desafios Detox",
+      "detox_challenges_desc": "Livre-se do vício digital e de padrões negativos com desafios científicos (3 a 90 dias).",
+      "porn_recovery": "Renascimento (Recuperação de Pornografia)",
+      "porn_recovery_desc": "Um caminho baseado em neurociência para recuperação e autocontrolo.",
+      "ai_coach": "Coach Pessoal de IA",
+      "ai_coach_desc": "Companheiro de IA 24/7 que o motiva, sugere hábitos e ajuda a gerir os impulsos.",
+      "trigger_tracking": "Rastreio e Análise de Gatilhos",
+      "trigger_tracking_desc": "Registe e analise o que desencadeia os seus impulsos com análises de IA.",
+      "daily_planning": "Planeamento e Reflexão Diária",
+      "daily_planning_desc": "Planeie o seu dia com listas de tarefas e não-tarefas. Termine cada dia com gratidão.",
+      "the_forge": "O Renascimento (Recuperação de Pornografia)",
+      "the_forge_desc": "Um programa dedicado e baseado na ciência para recuperação de pornografia, autodomínio e apoio especializado.",
+      "ai_habit_adaptation": "Adaptação de Hábitos com IA",
+      "ai_habit_adaptation_desc": "Sugere versões mais fáceis quando está com dificuldades",
+      "learn_section": "Secção Aprender",
+      "learn_section_desc": "Educação sobre dopamina e reconfiguração cerebral",
+      "streak_tracking": "Rastreio de Sequências",
+      "streak_tracking_desc": "Progresso visual e marcos",
+      "micro_actions": "Micro-Ações",
+      "micro_actions_desc": "Pequenas vitórias diárias em segundos",
+      "not_to_do_list": "Lista de Não-Fazer",
+      "not_to_do_desc": "Acompanhe comportamentos a evitar",
+      "recovery_timeline": "Linha do Tempo de Recuperação",
+      "recovery_timeline_desc": "Veja o progresso de cura do cérebro"
+    },
     "features_eyebrow": "Funcionalidades",
     "your_companion": "O seu companheiro completo para o crescimento pessoal",
     "hero_title_1": "Construa a vida que merece,",
@@ -181,32 +215,6 @@
     "ready_to_start": "Pronto para começar a construir?",
     "join_thousands": "Junte-se a milhares de pessoas que estão a transformar as suas vidas com InnerBuild. A sua jornada para melhores hábitos começa hoje.",
     "get_started_free": "Começar Grátis",
-    "features": {
-      "smart_habit_tracking": "Rastreio Inteligente de Hábitos",
-      "smart_habit_desc": "Acompanhe hábitos diários com progresso visual, sequências e sugestões IA inteligentes que se adaptam aos seus padrões reais.",
-      "detox_challenges": "Desafios Detox",
-      "detox_challenges_desc": "Liberte-se do vício digital, maus hábitos e padrões negativos com desafios baseados na ciência (de 3 a 90 dias).",
-      "the_forge": "O Renascimento (Recuperação de Pornografia)",
-      "the_forge_desc": "Um programa dedicado e baseado na ciência para recuperação de pornografia, autodomínio e apoio especializado.",
-      "ai_coach": "Coach IA Pessoal",
-      "ai_coach_desc": "Companheiro IA disponível 24/7 que o motiva, sugere hábitos personalizados, ajuda com desejos e guia a sua transformação.",
-      "trigger_tracking": "Rastreio e Análise de Gatilhos",
-      "trigger_tracking_desc": "Registe e analise o que desencadeia os seus impulsos. Identifique padrões e obtenha insights IA para construir defesas mais fortes.",
-      "daily_planning": "Planeamento e Reflexão Diária",
-      "daily_planning_desc": "Planeie o seu dia com listas de tarefas e não-tarefas. Termine cada dia com gratidão, verificação de humor e autorreflexão.",
-      "ai_habit_adaptation": "Adaptação de Hábitos com IA",
-      "ai_habit_adaptation_desc": "Sugere versões mais fáceis quando está com dificuldades",
-      "learn_section": "Secção Aprender",
-      "learn_section_desc": "Educação sobre dopamina e reconfiguração cerebral",
-      "streak_tracking": "Rastreio de Sequências",
-      "streak_tracking_desc": "Progresso visual e marcos",
-      "micro_actions": "Micro-Ações",
-      "micro_actions_desc": "Pequenas vitórias diárias em segundos",
-      "not_to_do_list": "Lista de Não-Fazer",
-      "not_to_do_desc": "Acompanhe comportamentos a evitar",
-      "recovery_timeline": "Linha do Tempo de Recuperação",
-      "recovery_timeline_desc": "Veja o progresso de cura do cérebro"
-    },
     "stats": {
       "recovery_days": "Dias de conteúdo de recuperação",
       "suggested_habits": "Hábitos sugeridos",
@@ -431,6 +439,7 @@
     }
   },
   "challenges": {
+    "create_new_challenge": "Novo Desafio Detox",
     "start_confirmation_title": "Iniciar Desafio?",
     "start_confirmation_desc": "Tem certeza de que deseja iniciar este desafio? Você pode ter um desafio ativo por vez.",
     "start_challenge": "Iniciar Desafio",
@@ -560,21 +569,31 @@
   },
   "pricing": {
     "choose_plan": "Escolha o Seu Plano",
-    "subtitle": "Comece grátis e atualize quando estiver pronto. Sem custos ocultos, cancele quando quiser.",
-    "free_plan": "Plano Grátis",
+    "choose_plan_title": "Invista no Seu Potencial",
+    "subtitle": "Desbloqueie todas as ferramentas avançadas de crescimento e recupere o controlo.",
+    "monthly_billing": "Mensal",
+    "annual_billing": "Anual",
+    "save_badge": "Poupe 20% (2 meses grátis)",
+    "annual_billing_detail": "Faturado a €95.88/ano (Poupe 20%)",
+    "get_annual_premium": "Mudar para PRO Anual",
+    "get_monthly_premium": "Mudar para PRO Mensal",
+    "guarantee_30_days": "Garantia de 30 Dias",
+    "cancel_anytime": "Cancele quando quiser",
+    "secure_stripe": "Pagamento Seguro via Stripe",
+    "free_plan": "Plano Base",
+    "premium_plan": "InnerBuild PRO",
+    "most_popular": "Mais Popular",
+    "forever": "para sempre",
+    "get_started_basics": "Perfeito para começar a sua jornada.",
+    "unlock_potential": "Desbloqueie todo o potencial sem limites.",
     "free_price": "€0",
-    "forever": "/para sempre",
-    "get_started_basics": "Comece com o básico",
     "current_plan": "Plano Atual",
     "get_started_free": "Começar Grátis",
-    "premium_plan": "Plano Premium",
     "premium_price": "€9.99",
     "per_month": "/mês",
-    "unlock_potential": "Desbloqueie o seu pleno potencial",
     "everything_in_free": "Tudo no Grátis, mais:",
     "subscribe_now": "Subscrever Agora",
     "get_premium": "Obter Premium",
-    "most_popular": "Mais Popular",
     "trust_badges": "Garantia de 30 dias • Cancele quando quiser • Pagamento seguro via Stripe",
     "have_account": "Já tem conta?",
     "welcome_premium": "Bem-vindo ao InnerBuild Premium!",
@@ -2591,5 +2610,77 @@
     "invalid_link_title": "Link inválido ou expirado",
     "invalid_link_desc": "Este link de reposição de palavra-passe é inválido ou já foi utilizado. Solicite um novo.",
     "request_new_link": "Solicitar novo link"
+  },
+  "onboarding": {
+    "skip": "Saltar",
+    "step_count": "Passo {{current}} de {{total}}",
+    "welcome_toast_title": "Espaço de trabalho pronto!",
+    "welcome_toast_desc": "O seu espaço de trabalho está pronto! Pode personalizar ferramentas quando quiser em Ferramentas.",
+    "step1": {
+      "title": "Bem-vindo ao InnerBuild. Por onde gostaria de começar a sua jornada?",
+      "subtitle": "Escolha o seu foco principal para nos ajudar a criar um espaço à sua medida.",
+      "options": {
+        "productivity": {
+          "title": "Recuperar foco e produtividade",
+          "desc": "Ideal para organizar estudos, trabalho e compromissos"
+        },
+        "healthy_habits": {
+          "title": "Construir hábitos saudáveis e sustentáveis",
+          "desc": "Para criar uma rotina diária equilibrada"
+        },
+        "life_reset": {
+          "title": "Retomar o controlo da minha vida a 360°",
+          "desc": "Para encontrar direção, clareza e equilíbrio geral"
+        },
+        "overcome_addiction": {
+          "title": "Superar um vício e recuperar o controlo",
+          "desc": "Para trabalhar a disciplina e gestão de impulsos"
+        },
+        "porn_recovery": {
+          "title": "Libertar-me da pornografia e renascer",
+          "desc": "Um caminho confidencial e dedicado à recuperação"
+        }
+      }
+    },
+    "step2": {
+      "title": "Que ferramentas quer ter à mão?",
+      "subtitle": "Escolha o que ativar agora. Pode alterar os módulos a qualquer momento.",
+      "free_section": "Ferramentas Gratuitas Ativas",
+      "premium_section": "Módulos Avançados PRO",
+      "tools": {
+        "habits": {
+          "title": "Hábitos",
+          "desc": "Rastreie e construa hábitos diários"
+        },
+        "challenges": {
+          "title": "Desafios Detox",
+          "desc": "Quebre maus hábitos com ciência"
+        },
+        "reflection": {
+          "title": "Reflexão Noturna",
+          "desc": "Registo diário de humor e gratidão"
+        },
+        "planning": {
+          "title": "Planeamento Diário",
+          "desc": "Lista de tarefas e objetivos"
+        },
+        "the_forge": {
+          "title": "Renascimento",
+          "desc": "Caminho científico de recuperação"
+        },
+        "trigger": {
+          "title": "Análise de Gatilhos",
+          "desc": "Analise padrões impulsivos com IA"
+        },
+        "coach": {
+          "title": "Coach de IA",
+          "desc": "Assistente pessoal 24/7"
+        }
+      },
+      "premium_notice": "Selecionou funcionalidades Premium. Pode experimentar o plano PRO ou continuar gratuitamente.",
+      "activate_workspace": "Activar Espaço de Trabalho",
+      "explore_premium": "Descobrir o plano PRO",
+      "continue": "Continuar"
+    }
   }
 }
