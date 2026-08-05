@@ -40,17 +40,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = async (email: string, password: string, fullName?: string) => {
     const redirectUrl = `${window.location.origin}/`;
+    const cleanEmail = email.trim().toLowerCase();
     
-    const { error } = await supabase.auth.signUp({
-      email,
+    const { data, error } = await supabase.auth.signUp({
+      email: cleanEmail,
       password,
       options: {
         emailRedirectTo: redirectUrl,
         data: { full_name: fullName },
       },
     });
+
+    if (error) {
+      return { error: error as Error | null };
+    }
+
+    // Supabase Auth obfuscation: if the email is already registered,
+    // signUp returns a user object with an empty identities array [] instead of an error.
+    if (data?.user && (!data.user.identities || data.user.identities.length === 0)) {
+      return { error: new Error("User already registered") };
+    }
     
-    return { error: error as Error | null };
+    return { error: null };
   };
 
   const signIn = async (email: string, password: string) => {

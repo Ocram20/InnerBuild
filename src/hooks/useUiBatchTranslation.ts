@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { supabase } from "@/integrations/supabase/client";
 import {
   localizeSuggestedChallengeTitle,
@@ -16,7 +17,7 @@ function cacheKey(lang: string, s: string) {
   return `${lang}\n${s}`;
 }
 
-function tryTemplate(t: (key: string, opts?: object) => string, s: string): string {
+function tryTemplate(t: TFunction, s: string): string {
   const h = localizeSuggestedHabitTitle(t, s);
   if (h !== s) return h;
   return localizeSuggestedChallengeTitle(t, s);
@@ -64,11 +65,7 @@ export function useUiBatchTranslation(rawStrings: string[], enabled: boolean) {
     (async () => {
       try {
         const { data: sessionData } = await supabase.auth.getSession();
-        const token = sessionData.session?.access_token;
-        if (!token) {
-          if (!cancelled) setRemoteReady(true);
-          return;
-        }
+        const token = sessionData.session?.access_token || import.meta.env.VITE_SUPABASE_ANON_KEY;
 
         const res = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/translate-ui-batch`,
@@ -77,6 +74,7 @@ export function useUiBatchTranslation(rawStrings: string[], enabled: boolean) {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
+              apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
             },
             body: JSON.stringify({
               strings: payload,

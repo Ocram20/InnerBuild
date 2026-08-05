@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Mode Clair",
     "dark_mode": "Mode Sombre",
     "back": "Retour",
@@ -17,7 +18,6 @@
     "new": "Nouveau",
     "open": "Ouvrir",
     "log": "Enregistrer",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Gratuit",
     "upgrade": "Mettre à niveau",
@@ -159,6 +159,7 @@
     "could_not_update_status": "Impossible de mettre à jour le statut"
   },
   "landing": {
+    "features_eyebrow": "Fonctionnalités",
     "your_companion": "Votre compagnon complet pour la croissance personnelle",
     "hero_title_1": "Construisez la vie que vous méritez,",
     "hero_title_2": "une habitude à la fois",
@@ -2554,5 +2555,31 @@
     "energy_medium": "moyenne",
     "energy_low": "basse",
     "ring_trigger_caption": "État actuel des déclencheurs."
+  },
+  "auth_errors": {
+    "email_already_registered": "Un utilisateur avec cette adresse e-mail est déjà inscrit.",
+    "current_password_required": "Le mot de passe actuel est requis pour définir un nouveau mot de passe.",
+    "same_password": "Le nouveau mot de passe doit être différent du précédent.",
+    "invalid_credentials": "Identifiants invalides. Veuillez vérifier votre e-mail et votre mot de passe.",
+    "password_too_short": "Le mot de passe doit comporter au moins 8 caractères.",
+    "rate_limit": "Trop de requêtes. Veuillez réessayer dans quelques minutes.",
+    "token_expired": "Le lien a expiré ou est invalide. Veuillez en demander un nouveau.",
+    "password_already_used": "Ce mot de passe a déjà été utilisé. Veuillez en choisir un nouveau."
+  },
+  "reset_password": {
+    "back_to_login": "Retour à la connexion",
+    "create_new_password": "Créer un nouveau mot de passe",
+    "description": "Saisissez votre nouveau mot de passe ci-dessous.",
+    "new_password": "Nouveau mot de passe",
+    "confirm_new_password": "Confirmer le nouveau mot de passe",
+    "passwords_do_not_match": "Les mots de passe ne correspondent pas",
+    "submit_button": "Réinitialiser le mot de passe",
+    "updating": "Mise à jour en cours...",
+    "success_title": "Mot de passe mis à jour",
+    "success_desc": "Votre mot de passe a été réinitialisé. Connectez-vous avec votre nouveau mot de passe.",
+    "failed_title": "Échec de la réinitialisation du mot de passe",
+    "invalid_link_title": "Lien invalide ou expiré",
+    "invalid_link_desc": "Ce lien de réinitialisation de mot de passe est invalide ou a déjà été utilisé. Veuillez en demander un nouveau.",
+    "request_new_link": "Demander un nouveau lien"
   }
 }

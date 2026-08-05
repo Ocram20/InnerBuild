@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Light Mode",
     "dark_mode": "Dark Mode",
     "back": "Back",
@@ -17,7 +18,6 @@
     "new": "New",
     "open": "Open",
     "log": "Log",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Free",
     "upgrade": "Upgrade",
@@ -159,6 +159,7 @@
     "could_not_update_status": "Could not update status"
   },
   "landing": {
+    "features_eyebrow": "Features",
     "your_companion": "Your complete companion for personal growth",
     "hero_title_1": "Build the life you deserve,",
     "hero_title_2": "one habit at a time",
@@ -2636,5 +2637,31 @@
     "common_emotions": "Common emotions: {{emotions}}",
     "top_recommendations": "Top Recommendations",
     "generate_new": "Generate New Report"
+  },
+  "auth_errors": {
+    "email_already_registered": "A user with this email address is already registered.",
+    "current_password_required": "Current password is required to set a new password.",
+    "same_password": "The new password must be different from the previous one.",
+    "invalid_credentials": "Invalid login credentials. Please check your email and password.",
+    "password_too_short": "Password must be at least 8 characters long.",
+    "rate_limit": "Too many requests. Please try again in a few minutes.",
+    "token_expired": "The link has expired or is invalid. Please request a new one.",
+    "password_already_used": "This password has already been used before. Please choose a new one."
+  },
+  "reset_password": {
+    "back_to_login": "Back to login",
+    "create_new_password": "Create new password",
+    "description": "Enter your new password below.",
+    "new_password": "New password",
+    "confirm_new_password": "Confirm new password",
+    "passwords_do_not_match": "Passwords do not match",
+    "submit_button": "Reset password",
+    "updating": "Updating...",
+    "success_title": "Password updated",
+    "success_desc": "Your password has been reset. Log in with your new password.",
+    "failed_title": "Password reset failed",
+    "invalid_link_title": "Invalid or expired link",
+    "invalid_link_desc": "This password reset link is invalid or has already been used. Please request a new one.",
+    "request_new_link": "Request new link"
   }
 }

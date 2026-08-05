@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Modo Claro",
     "dark_mode": "Modo Oscuro",
     "back": "Atrás",
@@ -17,7 +18,6 @@
     "new": "Nuevo",
     "open": "Abrir",
     "log": "Registrar",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Gratis",
     "upgrade": "Actualizar",
@@ -159,6 +159,7 @@
     "could_not_update_status": "No se pudo actualizar el estado"
   },
   "landing": {
+    "features_eyebrow": "Funcionalidades",
     "your_companion": "Tu compañero completo para el crecimiento personal",
     "hero_title_1": "Construye la vida que mereces,",
     "hero_title_2": "un hábito a la vez",
@@ -2554,5 +2555,31 @@
     "energy_medium": "media",
     "energy_low": "baja",
     "ring_trigger_caption": "Estado actual de disparadores."
+  },
+  "auth_errors": {
+    "email_already_registered": "Un usuario con este correo electrónico ya está registrado.",
+    "current_password_required": "Se requiere la contraseña actual para establecer una nueva contraseña.",
+    "same_password": "La nueva contraseña debe ser diferente de la anterior.",
+    "invalid_credentials": "Credenciales no válidas. Por favor, verifica tu correo y contraseña.",
+    "password_too_short": "La contraseña debe tener al menos 8 caracteres.",
+    "rate_limit": "Demasiadas solicitudes. Por favor, inténtalo de nuevo en unos minutos.",
+    "token_expired": "El enlace ha caducado o no es válido. Solicita uno nuevo.",
+    "password_already_used": "Esta contraseña ya ha sido utilizada anteriormente. Por favor, elige una nueva."
+  },
+  "reset_password": {
+    "back_to_login": "Volver al inicio de sesión",
+    "create_new_password": "Crear nueva contraseña",
+    "description": "Introduce tu nueva contraseña a continuación.",
+    "new_password": "Nueva contraseña",
+    "confirm_new_password": "Confirmar nueva contraseña",
+    "passwords_do_not_match": "Las contraseñas no coinciden",
+    "submit_button": "Restablecer contraseña",
+    "updating": "Actualizando...",
+    "success_title": "Contraseña actualizada",
+    "success_desc": "Tu contraseña ha sido restablecida. Inicia sesión con la nueva contraseña.",
+    "failed_title": "Error al restablecer la contraseña",
+    "invalid_link_title": "Enlace no válido o caducado",
+    "invalid_link_desc": "Este enlace para restablecer la contraseña no es válido o ya se ha utilizado. Por favor, solicita uno nuevo.",
+    "request_new_link": "Solicitar nuevo enlace"
   }
 }

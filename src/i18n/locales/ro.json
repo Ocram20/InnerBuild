@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Mod Luminos",
     "dark_mode": "Mod Întunecat",
     "back": "Înapoi",
@@ -17,7 +18,6 @@
     "new": "Nou",
     "open": "Deschide",
     "log": "Înregistrează",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Gratuit",
     "upgrade": "Actualizează",
@@ -159,6 +159,7 @@
     "could_not_update_status": "Nu s-a putut actualiza statusul"
   },
   "landing": {
+    "features_eyebrow": "Funcționalități",
     "your_companion": "Partenerul tău complet pentru creștere personală",
     "hero_title_1": "Construiește viața pe care o meriți,",
     "hero_title_2": "câte o obișnuință pe rând",
@@ -2551,5 +2552,31 @@
     "energy_medium": "medie",
     "energy_low": "scăzută",
     "ring_trigger_caption": "Starea actuală a declanșatorilor."
+  },
+  "auth_errors": {
+    "email_already_registered": "Un utilizator cu această adresă de email este deja înregistrat.",
+    "current_password_required": "Parola curentă este necesară pentru a seta o nouă parolă.",
+    "same_password": "Noua parolă trebuie să fie diferită de cea anterioară.",
+    "invalid_credentials": "Date de autentificare invalide. Vă rugăm să verificați emailul și parola.",
+    "password_too_short": "Parola trebuie să aibă cel puțin 8 caractere.",
+    "rate_limit": "Prea multe solicitări. Vă rugăm să încercați din nou în câteva minute.",
+    "token_expired": "Link-ul a expirat sau este invalid. Vă rugăm să solicitați unul nou.",
+    "password_already_used": "Această parolă a mai fost folosită. Vă rugăm să alegeți una nouă."
+  },
+  "reset_password": {
+    "back_to_login": "Înapoi la autentificare",
+    "create_new_password": "Creează o nouă parolă",
+    "description": "Introduceți noua parolă mai jos.",
+    "new_password": "Parolă nouă",
+    "confirm_new_password": "Confirmă noua parolă",
+    "passwords_do_not_match": "Parolele nu se potrivesc",
+    "submit_button": "Resetează parola",
+    "updating": "Se actualizează...",
+    "success_title": "Parolă actualizată",
+    "success_desc": "Parola dvs. a fost resetată. Autentificați-vă cu noua parolă.",
+    "failed_title": "Resetarea parolei a eșuat",
+    "invalid_link_title": "Link nevalid sau expirat",
+    "invalid_link_desc": "Acest link de resetare a parolei este nevalid sau a fost deja folosit. Vă rugăm să solicitați unul nou.",
+    "request_new_link": "Solicită link nou"
   }
 }

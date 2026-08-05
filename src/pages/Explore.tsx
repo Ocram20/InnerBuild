@@ -124,7 +124,7 @@ const Explore = () => {
                       {t(tool.titleKey)}
                       {tool.premium && !isPremium && (
                         <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                          PRO
+                          {t("common.pro", "PRO")}
                         </span>
                       )}
                     </Label>

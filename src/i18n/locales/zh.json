@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "专业版",
     "light_mode": "浅色模式",
     "dark_mode": "深色模式",
     "back": "返回",
@@ -17,7 +18,6 @@
     "new": "新建",
     "open": "打开",
     "log": "记录",
-    "pro": "专业版",
     "premium": "高级版",
     "free": "免费",
     "upgrade": "升级",
@@ -159,6 +159,7 @@
     "could_not_update_status": "无法更新状态"
   },
   "landing": {
+    "features_eyebrow": "核心功能",
     "your_companion": "您个人成长的完整伴侣",
     "hero_title_1": "建立您应得的生活，",
     "hero_title_2": "一次一个习惯",
@@ -2554,5 +2555,31 @@
     "energy_medium": "中",
     "energy_low": "低",
     "ring_trigger_caption": "当前触发状态。"
+  },
+  "auth_errors": {
+    "email_already_registered": "使用此电子邮件地址的用户已注册。",
+    "current_password_required": "需要当前密码才能设置新密码。",
+    "same_password": "新密码必须与先前的密码不同。",
+    "invalid_credentials": "登录凭据无效。请检查您的电子邮件和密码。",
+    "password_too_short": "密码必须至少为 8 个字符。",
+    "rate_limit": "请求过多。请几分钟后再试。",
+    "token_expired": "链接已过期或无效。请重新请求新链接。",
+    "password_already_used": "此密码先前已被使用过。请选择一个新密码。"
+  },
+  "reset_password": {
+    "back_to_login": "返回登录",
+    "create_new_password": "创建新密码",
+    "description": "在下方输入您的新密码。",
+    "new_password": "新密码",
+    "confirm_new_password": "确认新密码",
+    "passwords_do_not_match": "密码不匹配",
+    "submit_button": "重置密码",
+    "updating": "更新中...",
+    "success_title": "密码已更新",
+    "success_desc": "您的密码已重置。请使用新密码登录。",
+    "failed_title": "重置密码失败",
+    "invalid_link_title": "链接无效或已过期",
+    "invalid_link_desc": "此密码重置链接无效或已被使用。请重新请求新链接。",
+    "request_new_link": "请求新链接"
   }
 }

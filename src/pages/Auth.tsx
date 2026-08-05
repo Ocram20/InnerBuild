@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import LanguageSelector from "@/components/LanguageSelector";
+import { translateAuthError } from "@/lib/authErrorTranslator";
 
 export default function Auth() {
   const { t } = useTranslation();
@@ -102,17 +103,17 @@ export default function Auth() {
       } else {
         const { error } = await signUp(email, password, fullName);
         if (error) {
-          if (error.message.includes("already registered")) {
+          if (error.message.includes("already registered") || error.message.includes("already exist")) {
             toast({
-              title: t("auth.account_exists"),
-              description: t("auth.email_already_registered"),
+              title: t("auth.account_exists", "Account esistente"),
+              description: translateAuthError(error.message, t),
               variant: "destructive",
             });
             setIsLogin(true);
           } else if (error.message.includes("Password should contain")) {
             setErrors({ password: t("auth_validation.password_complexity") });
           } else {
-            toast({ title: t("auth.signup_failed"), description: error.message, variant: "destructive" });
+            toast({ title: t("auth.signup_failed"), description: translateAuthError(error.message, t), variant: "destructive" });
           }
         } else {
           toast({

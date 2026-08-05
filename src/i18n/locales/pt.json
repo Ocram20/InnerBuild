@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Modo Claro",
     "dark_mode": "Modo Escuro",
     "back": "Voltar",
@@ -17,7 +18,6 @@
     "new": "Novo",
     "open": "Abrir",
     "log": "Registar",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Grátis",
     "upgrade": "Atualizar",
@@ -159,6 +159,7 @@
     "could_not_update_status": "Não foi possível atualizar o estado"
   },
   "landing": {
+    "features_eyebrow": "Funcionalidades",
     "your_companion": "O seu companheiro completo para o crescimento pessoal",
     "hero_title_1": "Construa a vida que merece,",
     "hero_title_2": "um hábito de cada vez",
@@ -2564,5 +2565,31 @@
     "energy_medium": "média",
     "energy_low": "baixa",
     "ring_trigger_caption": "Estado atual de gatilhos."
+  },
+  "auth_errors": {
+    "email_already_registered": "Um utilizador com este endereço de e-mail já está registado.",
+    "current_password_required": "É necessária a palavra-passe atual para definir uma nova palavra-passe.",
+    "same_password": "A nova palavra-passe deve ser diferente da anterior.",
+    "invalid_credentials": "Credenciais inválidas. Verifique o seu e-mail e palavra-passe.",
+    "password_too_short": "A palavra-passe deve ter pelo menos 8 caracteres.",
+    "rate_limit": "Demasiados pedidos. Tente novamente dentro de alguns minutos.",
+    "token_expired": "O link expirou ou é inválido. Solicite um novo.",
+    "password_already_used": "Esta palavra-passe já foi utilizada anteriormente. Escolha uma nova."
+  },
+  "reset_password": {
+    "back_to_login": "Voltar ao início de sessão",
+    "create_new_password": "Criar nova palavra-passe",
+    "description": "Insira a sua nova palavra-passe abaixo.",
+    "new_password": "Nova palavra-passe",
+    "confirm_new_password": "Confirmar nova palavra-passe",
+    "passwords_do_not_match": "As palavras-passe não coincidem",
+    "submit_button": "Repor palavra-passe",
+    "updating": "A atualizar...",
+    "success_title": "Palavra-passe atualizada",
+    "success_desc": "A sua palavra-passe foi reposta. Inicie sessão com a nova palavra-passe.",
+    "failed_title": "Falha ao repor a palavra-passe",
+    "invalid_link_title": "Link inválido ou expirado",
+    "invalid_link_desc": "Este link de reposição de palavra-passe é inválido ou já foi utilizado. Solicite um novo.",
+    "request_new_link": "Solicitar novo link"
   }
 }

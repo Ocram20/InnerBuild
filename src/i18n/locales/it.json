@@ -1,5 +1,6 @@
 {
   "common": {
+    "pro": "PRO",
     "light_mode": "Modalità Chiara",
     "dark_mode": "Modalità Scura",
     "back": "Indietro",
@@ -17,7 +18,6 @@
     "new": "Nuovo",
     "open": "Apri",
     "log": "Registra",
-    "pro": "Pro",
     "premium": "Premium",
     "free": "Gratis",
     "upgrade": "Aggiorna",
@@ -159,6 +159,7 @@
     "could_not_update_status": "Impossibile aggiornare lo stato"
   },
   "landing": {
+    "features_eyebrow": "Funzionalità",
     "your_companion": "Il tuo compagno completo per la crescita personale",
     "hero_title_1": "Costruisci la vita che meriti,",
     "hero_title_2": "un'abitudine alla volta",
@@ -2639,5 +2640,31 @@
     "common_emotions": "Emozioni comuni: {{emotions}}",
     "top_recommendations": "Raccomandazioni Principali",
     "generate_new": "Genera Nuovo Report"
+  },
+  "auth_errors": {
+    "email_already_registered": "Un utente con questo indirizzo email è già registrato.",
+    "current_password_required": "È necessaria la password attuale per impostare una nuova password.",
+    "same_password": "La nuova password deve essere diversa da quella precedente.",
+    "invalid_credentials": "Credenziali non valide. Verifica email e password.",
+    "password_too_short": "La password deve contenere almeno 8 caratteri.",
+    "rate_limit": "Troppe richieste in poco tempo. Riprova tra qualche minuto.",
+    "token_expired": "Il link è scaduto o non è valido. Richiedine uno nuovo.",
+    "password_already_used": "Questa password è già stata usata in precedenza. Scegline una nuova."
+  },
+  "reset_password": {
+    "back_to_login": "Torna all'accesso",
+    "create_new_password": "Crea nuova password",
+    "description": "Inserisci la tua nuova password qui sotto.",
+    "new_password": "Nuova password",
+    "confirm_new_password": "Conferma nuova password",
+    "passwords_do_not_match": "Le password non coincidono",
+    "submit_button": "Reimposta password",
+    "updating": "Aggiornamento in corso...",
+    "success_title": "Password aggiornata",
+    "success_desc": "La tua password è stata reimpostata. Accedi con la nuova password.",
+    "failed_title": "Reset password fallito",
+    "invalid_link_title": "Link non valido o scaduto",
+    "invalid_link_desc": "Questo link per la reimpostazione della password non è valido o è già stato usato. Per favore richiedine uno nuovo.",
+    "request_new_link": "Richiedi nuovo link"
   }
 }
