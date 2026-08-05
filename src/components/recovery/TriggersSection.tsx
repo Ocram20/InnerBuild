@@ -55,7 +55,7 @@ export function TriggersSection() {
       {
         id: "emotion",
         icon: MessageSquare,
-        category: "Stato Emotivo",
+        category: t("triggers_section.category_emotion", "Stato Emotivo"),
         question: t("triggers_section.question_emotion", "Cosa provi prima del craving?"),
         examples: t("triggers_section.examples_emotion", "Noia, solitudine, stress, frustrazione, stanchezza mentale"),
         color: "text-[#4D87D9] dark:text-[#619BF0]",
@@ -65,7 +65,7 @@ export function TriggersSection() {
       {
         id: "time",
         icon: Clock,
-        category: "Orario & Routine",
+        category: t("triggers_section.category_time", "Orario & Routine"),
         question: t("triggers_section.question_time", "In quali orari sei più vulnerabile?"),
         examples: t("triggers_section.examples_time", "Tarda sera, notte prima di dormire, weekend senza piani"),
         color: "text-[#4b9b75] dark:text-[#5ec396]",
@@ -75,7 +75,7 @@ export function TriggersSection() {
       {
         id: "where",
         icon: MapPin,
-        category: "Ambiente Fisico",
+        category: t("triggers_section.category_where", "Ambiente Fisico"),
         question: t("triggers_section.question_where", "Dove ti trovi solitamente?"),
         examples: t("triggers_section.examples_where", "In camera da solo, al computer a porte chiuse, nel letto"),
         color: "text-[#4b9b75] dark:text-[#5ec396]",
@@ -85,7 +85,7 @@ export function TriggersSection() {
       {
         id: "before",
         icon: Smartphone,
-        category: "Azione Precedente",
+        category: t("triggers_section.category_before", "Azione Precedente"),
         question: t("triggers_section.question_before", "Cosa fai subito prima dell'impulso?"),
         examples: t("triggers_section.examples_before", "Scroll infinito sui social, navigare senza meta, isolamento"),
         color: "text-[#4D87D9] dark:text-[#619BF0]",
@@ -103,7 +103,7 @@ export function TriggersSection() {
         icon: Monitor,
         trigger: t("triggers_section.trigger_computer", "PC in camera da solo di notte"),
         tip: t("triggers_section.tip_computer", "Sposta il computer in un'area comune o usa spegnimento programmato"),
-        badge: "Ambiente",
+        badge: t("triggers_section.badge_env", "Ambiente"),
         color: "text-[#4D87D9] dark:text-[#619BF0]",
         bgColor: "bg-[#4D87D9]/10",
       },
@@ -112,7 +112,7 @@ export function TriggersSection() {
         icon: Bed,
         trigger: t("triggers_section.trigger_phone_bed", "Smartphone a letto prima di dormire"),
         tip: t("triggers_section.tip_phone_bed", "Lascia il telefono in carica lontano dal letto o in un'altra stanza"),
-        badge: "Dispositivo",
+        badge: t("triggers_section.badge_device", "Dispositivo"),
         color: "text-[#4D87D9] dark:text-[#619BF0]",
         bgColor: "bg-[#4D87D9]/10",
       },
@@ -121,7 +121,7 @@ export function TriggersSection() {
         icon: Smartphone,
         trigger: t("triggers_section.trigger_social", "Scroll compulsivo & Stimolazione social"),
         tip: t("triggers_section.tip_social", "Imposta limiti di tempo o usa blocchi app dopo 15 minuti di uso"),
-        badge: "Abitudine",
+        badge: t("triggers_section.badge_habit", "Abitudine"),
         color: "text-[#4D87D9] dark:text-[#619BF0]",
         bgColor: "bg-[#4D87D9]/10",
       },
@@ -130,7 +130,7 @@ export function TriggersSection() {
         icon: Clock,
         trigger: t("triggers_section.trigger_late_nights", "Stanchezza & Notti in bianco"),
         tip: t("triggers_section.tip_late_nights", "Imposta una sveglia serale per andare a dormire a orario fisso"),
-        badge: "Fisiologico",
+        badge: t("triggers_section.badge_physiological", "Fisiologico"),
         color: "text-[#4b9b75] dark:text-[#5ec396]",
         bgColor: "bg-[#4b9b75]/10",
       },
@@ -162,7 +162,7 @@ export function TriggersSection() {
           </CardTitle>
 
           <Badge variant="outline" className="bg-[#4D87D9]/10 text-[#4D87D9] dark:text-[#619BF0] border-[#4D87D9]/30 text-xs font-semibold px-2.5 py-0.5">
-            {identifiedTriggers.length} Riconosciuti
+            {t("triggers_section.recognized", { count: identifiedTriggers.length, defaultValue: `${identifiedTriggers.length} Riconosciuti` })}
           </Badge>
         </div>
 
@@ -181,7 +181,7 @@ export function TriggersSection() {
                 : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
-            Tutti ({guidedQuestions.length + commonTriggers.length})
+            {t("triggers_section.filter_all", { count: guidedQuestions.length + commonTriggers.length, defaultValue: `Tutti (${guidedQuestions.length + commonTriggers.length})` })}
           </button>
           <button
             onClick={() => setActiveFilter("guided")}
@@ -191,7 +191,7 @@ export function TriggersSection() {
                 : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
-            Domande Guida ({guidedQuestions.length})
+            {t("triggers_section.filter_guided", { count: guidedQuestions.length, defaultValue: `Domande Guida (${guidedQuestions.length})` })}
           </button>
           <button
             onClick={() => setActiveFilter("common")}
@@ -201,7 +201,7 @@ export function TriggersSection() {
                 : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground"
             }`}
           >
-            Pattern Comuni ({commonTriggers.length})
+            {t("triggers_section.filter_common", { count: commonTriggers.length, defaultValue: `Pattern Comuni (${commonTriggers.length})` })}
           </button>
         </div>
       </CardHeader>
@@ -215,7 +215,7 @@ export function TriggersSection() {
                 <Eye className="h-3.5 w-3.5" />
                 <span>{t("triggers_section.ask_questions", "Domande Guida per la Consapevolezza")}</span>
               </p>
-              <span className="text-[11px] text-muted-foreground">Tocca per dettagli</span>
+              <span className="text-[11px] text-muted-foreground">{t("triggers_section.tap_for_details", "Tocca per dettagli")}</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -261,7 +261,7 @@ export function TriggersSection() {
                           className="mt-2.5 pt-2 border-t border-border/40 text-xs text-muted-foreground space-y-1"
                         >
                           <p className="font-medium text-foreground/80 flex items-center gap-1">
-                            <ArrowRight className="h-3 w-3 text-[#4D87D9] dark:text-[#619BF0] shrink-0" /> Esempi da osservare:
+                            <ArrowRight className="h-3 w-3 text-[#4D87D9] dark:text-[#619BF0] shrink-0" /> {t("triggers_section.examples_to_observe", "Esempi da osservare:")}
                           </p>
                           <p className="pl-4 italic">{item.examples}</p>
                         </motion.div>
@@ -323,7 +323,7 @@ export function TriggersSection() {
                             </Badge>
                           </div>
                           <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5 leading-relaxed">
-                            <span className="text-[#4b9b75] dark:text-[#5ec396] font-semibold shrink-0">→ Soluzione:</span>
+                            <span className="text-[#4b9b75] dark:text-[#5ec396] font-semibold shrink-0">→ {t("triggers_section.solution_label", "Soluzione:")}</span>
                             {item.tip}
                           </p>
                         </div>
@@ -340,7 +340,7 @@ export function TriggersSection() {
                         }`}
                       >
                         <CheckCircle2 className={`h-3.5 w-3.5 ${isIdentified ? "text-white" : "text-muted-foreground"}`} />
-                        <span className="hidden sm:inline">{isIdentified ? "Identificato" : "Segnala"}</span>
+                        <span>{isIdentified ? t("triggers_section.identified_btn", "Identificato") : t("triggers_section.report_btn", "Segnala")}</span>
                       </Button>
                     </div>
                   </motion.div>
@@ -355,7 +355,7 @@ export function TriggersSection() {
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-[#4D87D9] dark:text-[#619BF0] shrink-0" />
             <span className="text-muted-foreground">
-              <strong className="text-foreground">Suggerimento Neuroscienze:</strong> Riconoscere il trigger attiva la corteccia prefrontale, riducendo l'impulso fino al 50%.
+              <strong className="text-foreground">{t("triggers_section.neuro_tip_title", "Suggerimento Neuroscienze:")}</strong> {t("triggers_section.neuro_tip_desc", "Riconoscere il trigger attiva la corteccia prefrontale, riducendo l'impulso fino al 50%.")}
             </span>
           </div>
         </div>

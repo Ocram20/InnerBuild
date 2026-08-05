@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
 import { useAuth } from "./useAuth";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 export interface ModuleBreakdown {
   key: "habits" | "tasks" | "not_to_do" | "detox";
@@ -26,6 +27,7 @@ export interface ScoreData {
 }
 
 export function useInnerBuildScore(): ScoreData {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [score, setScore] = useState<number>(0);
   const [breakdown, setBreakdown] = useState<ModuleBreakdown[]>([]);
@@ -197,7 +199,7 @@ export function useInnerBuildScore(): ScoreData {
             weight,
             points: Math.round(points),
             progressRatio: ratio,
-            textCounter: detoxCheckedIn ? "Completato" : "0/1",
+            textCounter: detoxCheckedIn ? t("common.completed", "Completato") : "0/1",
             isComplete: !!detoxCheckedIn,
           });
         }

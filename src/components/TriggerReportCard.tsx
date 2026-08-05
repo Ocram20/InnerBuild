@@ -22,22 +22,22 @@ import { useTranslation } from "react-i18next";
 import { dateFnsLocale } from "@/lib/dateFnsLocale";
 import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
-const formatTimeBadge = (whenStr: string) => {
+const formatTimeBadge = (whenStr: string, t: any) => {
   const lower = whenStr.toLowerCase();
-  if (lower.includes("notte") || lower.includes("23") || lower.includes("01") || lower.includes("02") || lower.includes("tardi")) {
-    return { icon: "🌙", label: whenStr.includes("23") ? whenStr : `Tarda Notte (${whenStr})` };
+  if (lower.includes("notte") || lower.includes("23") || lower.includes("01") || lower.includes("02") || lower.includes("tardi") || lower.includes("night") || lower.includes("late")) {
+    return { icon: "🌙", label: whenStr.includes("23") ? whenStr : `${t("trigger_tracking.late_night", "Tarda Notte")} (${whenStr})` };
   }
-  if (lower.includes("pomeriggio") || lower.includes("14") || lower.includes("15") || lower.includes("16") || lower.includes("solitudine")) {
-    return { icon: "🌆", label: whenStr.includes("Pomeriggio") ? whenStr : `Pomeriggio in solitudine` };
+  if (lower.includes("pomeriggio") || lower.includes("14") || lower.includes("15") || lower.includes("16") || lower.includes("solitudine") || lower.includes("afternoon")) {
+    return { icon: "🌆", label: whenStr.includes("Pomeriggio") || whenStr.includes("Afternoon") ? whenStr : t("trigger_tracking.afternoon_alone", "Pomeriggio in solitudine") };
   }
-  if (lower.includes("lavoro") || lower.includes("pausa") || lower.includes("work")) {
-    return { icon: "💼", label: whenStr.includes("Pausa") ? whenStr : `Pausa Lavoro (${whenStr})` };
+  if (lower.includes("lavoro") || lower.includes("pausa") || lower.includes("work") || lower.includes("break")) {
+    return { icon: "💼", label: whenStr.includes("Pausa") || whenStr.includes("Break") ? whenStr : `${t("trigger_tracking.work_break", "Pausa Lavoro")} (${whenStr})` };
   }
-  if (lower.includes("mattin") || lower.includes("07") || lower.includes("08") || lower.includes("09")) {
-    return { icon: "🌅", label: whenStr.includes("Mattina") ? whenStr : `Mattina presto` };
+  if (lower.includes("mattin") || lower.includes("07") || lower.includes("08") || lower.includes("09") || lower.includes("morning")) {
+    return { icon: "🌅", label: whenStr.includes("Mattina") || whenStr.includes("Morning") ? whenStr : t("trigger_tracking.early_morning", "Mattina presto") };
   }
-  if (lower.includes("sera") || lower.includes("20") || lower.includes("21") || lower.includes("letto")) {
-    return { icon: "🛋️", label: whenStr.includes("Sera") ? whenStr : `Sera a casa` };
+  if (lower.includes("sera") || lower.includes("20") || lower.includes("21") || lower.includes("letto") || lower.includes("evening")) {
+    return { icon: "🛋️", label: whenStr.includes("Sera") || whenStr.includes("Evening") ? whenStr : t("trigger_tracking.evening_home", "Sera a casa") };
   }
   return { icon: "⏰", label: whenStr };
 };
@@ -105,24 +105,24 @@ export default function TriggerReportCard() {
     const getHabitKey = (text: string): { name: string; icon: string } => {
       const lower = text.toLowerCase();
       if (lower.includes("social") || lower.includes("instagram") || lower.includes("tiktok") || lower.includes("feed")) {
-        return { name: "Social Media", icon: "📱" };
+        return { name: t("trigger_tracking.social_media", "Social Media"), icon: "📱" };
       }
       if (lower.includes("porn") || lower.includes("adulti") || lower.includes("nofap") || lower.includes("video osé")) {
-        return { name: "Pornografia / Contenuti Adulti", icon: "🔞" };
+        return { name: t("trigger_tracking.adult_content", "Pornografia / Contenuti Adulti"), icon: "🔞" };
       }
       if (lower.includes("cibo") || lower.includes("junk") || lower.includes("zuccheri") || lower.includes("dolci") || lower.includes("snack") || lower.includes("spazzatura")) {
-        return { name: "Junk Food", icon: "🍔" };
+        return { name: t("trigger_tracking.junk_food", "Junk Food"), icon: "🍔" };
       }
       if (lower.includes("fumo") || lower.includes("sigarett") || lower.includes("vape") || lower.includes("nicotin")) {
-        return { name: "Fumo / Nicotina", icon: "🚬" };
+        return { name: t("trigger_tracking.smoking_nicotine", "Fumo / Nicotina"), icon: "🚬" };
       }
       if (lower.includes("video") || lower.includes("gaming") || lower.includes("giochi") || lower.includes("scherm")) {
-        return { name: "Videogiochi", icon: "🎮" };
+        return { name: t("trigger_tracking.video_games", "Videogiochi"), icon: "🎮" };
       }
       if (lower.includes("alcol") || lower.includes("bere") || lower.includes("drink")) {
-        return { name: "Alcol", icon: "🍺" };
+        return { name: t("trigger_tracking.alcohol", "Alcol"), icon: "🍺" };
       }
-      return { name: "Pattern & Inneschi Generali", icon: "⚡" };
+      return { name: t("trigger_tracking.general_patterns", "Pattern & Inneschi Generali"), icon: "⚡" };
     };
 
     mainCauses.forEach(c => {
@@ -144,8 +144,9 @@ export default function TriggerReportCard() {
     });
 
     if (Object.keys(groups).length === 0 && (mainCauses.length > 0 || timingPatterns.length > 0 || solutions.length > 0)) {
-      groups["Pattern Generali"] = {
-        habitName: "Pattern & Inneschi Generali",
+      const defaultName = t("trigger_tracking.general_patterns", "Pattern & Inneschi Generali");
+      groups[defaultName] = {
+        habitName: defaultName,
         icon: "⚡",
         causes: mainCauses,
         timings: timingPatterns,
@@ -154,7 +155,7 @@ export default function TriggerReportCard() {
     }
 
     return Object.values(groups);
-  }, [mainCauses, timingPatterns, solutions]);
+  }, [mainCauses, timingPatterns, solutions, t]);
 
   if (loading) {
     return (
@@ -213,7 +214,7 @@ export default function TriggerReportCard() {
             <div>
               <div className="flex items-center gap-2">
                 <CardTitle className="text-base font-bold text-foreground">
-                  Analisi AI Trigger & Tentazioni
+                  {t("trigger_tracking.analysis_title", "Analisi AI Trigger & Tentazioni")}
                 </CardTitle>
                 {!is_read && (
                   <Badge variant="secondary" className="text-xs bg-[#4D87D9]/15 text-[#4D87D9]">
@@ -243,7 +244,7 @@ export default function TriggerReportCard() {
       <CardContent className="pt-0 pb-4 px-4 space-y-4">
         {/* Synthetic Executive Summary */}
         <div className="p-3.5 rounded-xl bg-[#4D87D9]/10 border border-[#4D87D9]/30 text-sm text-foreground/90 leading-relaxed">
-          <span className="font-semibold text-[#4D87D9] mr-1.5">📌 Sintesi:</span>
+          <span className="font-semibold text-[#4D87D9] mr-1.5">{t("trigger_tracking.summary_prefix", "📌 Sintesi:")}</span>
           {display(summary)}
         </div>
 
@@ -253,8 +254,8 @@ export default function TriggerReportCard() {
             {badHabitGroups.map((group, gIdx) => {
               // Extract primary timing info or fallback
               const timingItem = group.timings[0];
-              const timeBadge = timingItem ? formatTimeBadge(display(timingItem.when)) : { icon: "⏰", label: "Momento critico rilevato" };
-              const freqText = timingItem ? display(timingItem.frequency) : "3 tentazioni su 4 registrate in questa fascia";
+              const timeBadge = timingItem ? formatTimeBadge(display(timingItem.when), t) : { icon: "⏰", label: t("trigger_tracking.critical_moment", "Momento critico rilevato") };
+              const freqText = timingItem ? display(timingItem.frequency) : t("trigger_tracking.default_freq", "3 tentazioni su 4 registrate in questa fascia");
 
               // Extract single concrete actionable solution
               const solItem = group.solutions[0];
@@ -262,8 +263,8 @@ export default function TriggerReportCard() {
               const actionAdvice = solItem 
                 ? display(solItem.strategy)
                 : causeItem
-                ? `Pianifica un'azione alternativa immediata appena avverti lo stimolo.`
-                : `Imposta una barriera ambientale prima di entrare in questa fascia oraria.`;
+                ? t("trigger_tracking.advice_plan_action", "Pianifica un'azione alternativa immediata appena avverti lo stimolo.")
+                : t("trigger_tracking.advice_environmental_barrier", "Imposta una barriera ambientale prima di entrare in questa fascia oraria.");
 
               return (
                 <div
@@ -279,7 +280,7 @@ export default function TriggerReportCard() {
                       </h4>
                     </div>
                     <Badge variant="outline" className="text-xs font-medium bg-[#4D87D9]/10 text-[#4D87D9] border-[#4D87D9]/30">
-                      Pattern Rilevato
+                      {t("trigger_tracking.pattern_detected", "Pattern Rilevato")}
                     </Badge>
                   </div>
 
@@ -302,7 +303,7 @@ export default function TriggerReportCard() {
                   <div className="p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-start gap-2.5 text-sm text-foreground/90 leading-relaxed">
                     <Lightbulb className="h-4 w-4 text-purple-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-semibold text-purple-400 mr-1.5">Consiglio AI:</span>
+                      <span className="font-semibold text-purple-400 mr-1.5">{t("trigger_tracking.ai_advice_prefix", "Consiglio AI:")}</span>
                       <span>{actionAdvice}</span>
                     </div>
                   </div>

@@ -173,7 +173,7 @@ export function AntiTriggerPlanSection() {
                 className="h-8 text-xs bg-[#4D87D9] hover:bg-[#3b75c7] text-white font-medium gap-1 px-3 rounded-xl shadow-md shadow-blue-950/40"
               >
                 <Plus className="h-3.5 w-3.5" />
-                <span>Nuova Ricetta</span>
+                <span>{t("anti_trigger_plan.new_recipe", "Nuova Ricetta")}</span>
               </Button>
             </motion.div>
           </div>
@@ -186,9 +186,9 @@ export function AntiTriggerPlanSection() {
           {plans.length === 0 ? (
             <div className="p-6 text-center border border-dashed border-border/60 rounded-2xl bg-slate-900/40">
               <Sparkles className="h-8 w-8 text-[#4D87D9] dark:text-[#619BF0] mx-auto mb-2" />
-              <p className="text-xs sm:text-sm font-medium text-foreground">Nessuna ricetta anti-trigger creata</p>
+              <p className="text-xs sm:text-sm font-medium text-foreground">{t("anti_trigger_plan.no_recipes", "Nessuna ricetta anti-trigger creata")}</p>
               <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
-                Crea il tuo primo piano automatizzato "SE (Trigger) ➔ ALLORA (Azione)".
+                {t("anti_trigger_plan.no_recipes_desc", "Crea il tuo primo piano automatizzato \"SE (Trigger) ➔ ALLORA (Azione)\".")}
               </p>
               <Button
                 size="sm"
@@ -197,7 +197,7 @@ export function AntiTriggerPlanSection() {
                 className="mt-3 text-xs border-[#4D87D9]/40 text-[#4D87D9] dark:text-[#619BF0] hover:bg-[#4D87D9]/10 rounded-xl"
               >
                 <Plus className="h-3.5 w-3.5 mr-1" />
-                Crea la prima ricetta
+                {t("anti_trigger_plan.create_first_recipe", "Crea la prima ricetta")}
               </Button>
             </div>
           ) : (
@@ -215,7 +215,7 @@ export function AntiTriggerPlanSection() {
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <div className="flex items-center gap-1.5 text-xs text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                         <CheckCircle2 className="h-3.5 w-3.5" />
-                        <span>Ricetta Anti-Trigger</span>
+                        <span>{t("anti_trigger_plan.recipe_badge", "Ricetta Anti-Trigger")}</span>
                       </div>
                       <Button
                         variant="ghost"
@@ -231,7 +231,7 @@ export function AntiTriggerPlanSection() {
                       {/* Badge 1: SE */}
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium">
                         <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-400 opacity-80">
-                          SE:
+                          {t("anti_trigger_plan.if_label", "SE:")}
                         </span>
                         <span>"{display(plan.trigger)}"</span>
                       </div>
@@ -242,7 +242,7 @@ export function AntiTriggerPlanSection() {
                       {/* Badge 2: ALLORA */}
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#4D87D9]/10 border border-[#4D87D9]/30 text-[#4D87D9] dark:text-[#619BF0] font-medium">
                         <span className="text-[10px] uppercase tracking-wider font-extrabold text-[#4D87D9] dark:text-[#619BF0] opacity-80">
-                          ALLORA:
+                          {t("anti_trigger_plan.then_label", "ALLORA:")}
                         </span>
                         <span>"{display(plan.action)}"</span>
                       </div>
@@ -250,7 +250,7 @@ export function AntiTriggerPlanSection() {
 
                     {plan.benefit && (
                       <p className="text-[11px] text-muted-foreground/80 mt-2 pl-1 italic">
-                        Perché: {display(plan.benefit)}
+                        {t("anti_trigger_plan.why_label", "Perché:")} {display(plan.benefit)}
                       </p>
                     )}
                   </motion.div>
@@ -267,20 +267,20 @@ export function AntiTriggerPlanSection() {
           <DialogHeader className="pb-2">
             <DialogTitle className="flex items-center gap-2 text-base font-bold text-[#4D87D9] dark:text-[#619BF0]">
               <Shield className="h-5 w-5 text-[#4D87D9] dark:text-[#619BF0]" />
-              Nuova Ricetta Anti-Trigger
+              {t("anti_trigger_plan.modal_title", "Nuova Ricetta Anti-Trigger")}
             </DialogTitle>
             <DialogDescription className="text-xs text-muted-foreground">
-              Programma una risposta automatica istantanea quando si presenta uno specifico trigger.
+              {t("anti_trigger_plan.modal_subtitle", "Programma una risposta automatica istantanea quando si presenta uno specifico trigger.")}
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3.5 py-2">
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-amber-300 flex items-center gap-1">
-                <span>SE (Qual è il trigger o situazione a rischio?)</span>
+                <span>{t("anti_trigger_plan.if_question", "SE (Qual è il trigger o situazione a rischio?)")}</span>
               </label>
               <Input
-                placeholder="Es. Mi sento solo / annoiato a tarda notte..."
+                placeholder={t("anti_trigger_plan.if_placeholder", "Es. Mi sento solo / annoiato a tarda notte...")}
                 value={newPlan.trigger}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, trigger: e.target.value }))}
                 className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
@@ -289,10 +289,10 @@ export function AntiTriggerPlanSection() {
 
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-[#4D87D9] dark:text-[#619BF0] flex items-center gap-1">
-                <span>ALLORA (Quale azione esegui immediatamente?)</span>
+                <span>{t("anti_trigger_plan.then_question", "ALLORA (Quale azione esegui immediatamente?)")}</span>
               </label>
               <Input
-                placeholder="Es. Faccio 15 piegamenti o metto il telefono in cucina..."
+                placeholder={t("anti_trigger_plan.then_placeholder", "Es. Faccio 15 piegamenti o metto il telefono in cucina...")}
                 value={newPlan.action}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, action: e.target.value }))}
                 className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
@@ -301,10 +301,10 @@ export function AntiTriggerPlanSection() {
 
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1">
-                <span>PERCHÉ (Beneficio atteso - opzionale)</span>
+                <span>{t("anti_trigger_plan.why_question", "PERCHÉ (Beneficio atteso - opzionale)")}</span>
               </label>
               <Input
-                placeholder="Es. Rompe l'automatismo e rinfresca la mente..."
+                placeholder={t("anti_trigger_plan.why_placeholder", "Es. Rompe l'automatismo e rinfresca la mente...")}
                 value={newPlan.benefit}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, benefit: e.target.value }))}
                 className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
@@ -320,7 +320,7 @@ export function AntiTriggerPlanSection() {
               onClick={() => setIsModalOpen(false)}
               className="text-xs text-muted-foreground rounded-xl"
             >
-              Annulla
+              {t("common.cancel", "Annulla")}
             </Button>
             <Button
               type="button"
@@ -330,7 +330,7 @@ export function AntiTriggerPlanSection() {
               className="text-xs bg-[#4D87D9] hover:bg-[#3b75c7] text-white font-medium gap-1 rounded-xl px-4"
             >
               {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Plus className="h-3.5 w-3.5" />}
-              Salva Ricetta
+              {t("anti_trigger_plan.save_recipe", "Salva Ricetta")}
             </Button>
           </DialogFooter>
         </DialogContent>

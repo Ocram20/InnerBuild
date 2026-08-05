@@ -10,6 +10,7 @@ import { Leaf, ArrowLeft, Eye, EyeOff, AlertCircle, Check, X } from "lucide-reac
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { cn } from "@/lib/utils";
 import { translateAuthError } from "@/lib/authErrorTranslator";
+import { isPasswordAlreadyUsed, storePasswordHash } from "@/lib/passwordHistory";
 
 export default function ResetPassword() {
   const { t } = useTranslation();
@@ -18,6 +19,13 @@ export default function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  /**
+   * Session validity states:
+   *   null  → still checking (show spinner briefly)
+   *   true  → valid recovery session (show form)
+   *   false → invalid / expired / already used (show error)
+   */
   const [isValidSession, setIsValidSession] = useState<boolean | null>(null);
 
   const navigate = useNavigate();
@@ -25,42 +33,49 @@ export default function ResetPassword() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // 1. If redirected from AuthCallback with recovery state
-    if (location.state?.isRecovery) {
+    /**
+     * Validation logic (in priority order):
+     *
+     * 1. sessionStorage flag "reset_pending" — set by AuthCallback when a valid
+     *    recovery code was successfully exchanged. This is the most reliable signal.
+     *
+     * 2. location.state.isRecovery — legacy path kept for compatibility in case
+     *    the component is reached without going through the new AuthCallback
+     *    (e.g. direct navigation in development).
+     *
+     * 3. Neither flag present → invalid link. No need to wait — show error immediately.
+     *    We do NOT fall back to "there's a session therefore it must be a recovery"
+     *    because regular logged-in sessions should not grant access to this form.
+     */
+    const hasPendingFlag = sessionStorage.getItem("reset_pending") === "1";
+
+    if (hasPendingFlag || location.state?.isRecovery) {
       setIsValidSession(true);
       return;
     }
 
-    // 2. Listen to auth state events
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "PASSWORD_RECOVERY" || (event === "SIGNED_IN" && session)) {
+    // No flag present. Give Supabase a very short window (500 ms) to fire
+    // PASSWORD_RECOVERY in case we somehow arrived here via the implicit flow.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") {
+        sessionStorage.setItem("reset_pending", "1");
         setIsValidSession(true);
-      } else if (event === "SIGNED_OUT") {
-        setIsValidSession(false);
+        subscription.unsubscribe();
       }
     });
 
-    // 3. Check for recovery code in URL or active session
-    const queryParams = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const hasRecoveryToken =
-      queryParams.has("code") ||
-      (hashParams.get("access_token") && hashParams.get("type") === "recovery");
+    const timeout = setTimeout(() => {
+      setIsValidSession((prev) => (prev === null ? false : prev));
+      subscription.unsubscribe();
+    }, 500);
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session || hasRecoveryToken) {
-        setIsValidSession(true);
-      } else {
-        const timeout = setTimeout(() => {
-          setIsValidSession((prev) => (prev === null ? false : prev));
-        }, 1500);
-        return () => clearTimeout(timeout);
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    return () => {
+      clearTimeout(timeout);
+      subscription.unsubscribe();
+    };
   }, [location.state]);
 
+  // ─── Password requirement checklist ────────────────────────────────────────
   const passwordRequirements = [
     { label: t("auth_validation.min_8_chars", { defaultValue: "Almeno 8 caratteri" }), met: password.length >= 8 },
     { label: t("auth_validation.one_number", { defaultValue: "Almeno un numero" }), met: /\d/.test(password) },
@@ -71,13 +86,16 @@ export default function ResetPassword() {
   const allRequirementsMet = passwordRequirements.every((r) => r.met);
   const passwordsMatch = password.length > 0 && password === confirmPassword;
 
+  // ─── Submit ────────────────────────────────────────────────────────────────
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!allRequirementsMet) {
       toast({
         title: t("common.error"),
-        description: t("auth_validation.password_complexity", { defaultValue: "La password non soddisfa tutti i requisiti." }),
+        description: t("auth_validation.password_complexity", {
+          defaultValue: "La password non soddisfa tutti i requisiti.",
+        }),
         variant: "destructive",
       });
       return;
@@ -86,7 +104,9 @@ export default function ResetPassword() {
     if (!passwordsMatch) {
       toast({
         title: t("common.error"),
-        description: t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono." }),
+        description: t("reset_password.passwords_do_not_match", {
+          defaultValue: "Le password non coincidono.",
+        }),
         variant: "destructive",
       });
       return;
@@ -95,6 +115,24 @@ export default function ResetPassword() {
     setIsLoading(true);
 
     try {
+      // ── Check password history ─────────────────────────────────────────────
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const alreadyUsed = await isPasswordAlreadyUsed(user.id, password);
+        if (alreadyUsed) {
+          toast({
+            title: t("reset_password.failed_title", { defaultValue: "Reset password fallito" }),
+            description: t("auth_errors.password_already_used", {
+              defaultValue:
+                "Questa password è già stata usata in precedenza. Scegline una nuova.",
+            }),
+            variant: "destructive",
+          });
+          return;
+        }
+      }
+
+      // ── Update password ────────────────────────────────────────────────────
       const { error } = await supabase.auth.updateUser({ password });
 
       if (error) {
@@ -103,22 +141,35 @@ export default function ResetPassword() {
           description: translateAuthError(error.message, t),
           variant: "destructive",
         });
-      } else {
-        // Sign out after password reset
-        await supabase.auth.signOut();
-        
-        toast({
-          title: t("reset_password.success_title", { defaultValue: "Password aggiornata" }),
-          description: t("reset_password.success_desc", { defaultValue: "La tua password è stata reimpostata. Accedi con la nuova password." }),
-        });
-        navigate("/auth");
+        return;
       }
+
+      // ── Success: store hash, clean up, redirect ────────────────────────────
+      if (user) {
+        await storePasswordHash(user.id, password);
+      }
+
+      // Remove the flag so the link is no longer valid in this tab
+      sessionStorage.removeItem("reset_pending");
+
+      // Sign out so the recovery session is invalidated
+      await supabase.auth.signOut();
+
+      toast({
+        title: t("reset_password.success_title", { defaultValue: "Password aggiornata" }),
+        description: t("reset_password.success_desc", {
+          defaultValue:
+            "La tua password è stata reimpostata. Accedi con la nuova password.",
+        }),
+      });
+
+      navigate("/auth");
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Loading state while checking session
+  // ─── Loading state ─────────────────────────────────────────────────────────
   if (isValidSession === null) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -127,7 +178,7 @@ export default function ResetPassword() {
     );
   }
 
-  // Invalid or expired link
+  // ─── Invalid / expired link ────────────────────────────────────────────────
   if (!isValidSession) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -149,16 +200,23 @@ export default function ResetPassword() {
               <AlertCircle className="h-8 w-8 text-destructive" />
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">
-              {t("reset_password.invalid_link_title", { defaultValue: "Link non valido o scaduto" })}
+              {t("reset_password.invalid_link_title", {
+                defaultValue: "Link non valido o scaduto",
+              })}
             </h1>
             <p className="text-muted-foreground mb-6">
-              {t("reset_password.invalid_link_desc", { defaultValue: "Questo link per la reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo." })}
+              {t("reset_password.invalid_link_desc", {
+                defaultValue:
+                  "Questo link per la reimpostazione della password non è valido o è già stato usato. Per favore richiedine uno nuovo.",
+              })}
             </p>
             <Button
               onClick={() => navigate("/forgot-password")}
               className="gradient-primary text-primary-foreground font-medium shadow-soft"
             >
-              {t("reset_password.request_new_link", { defaultValue: "Richiedi nuovo link" })}
+              {t("reset_password.request_new_link", {
+                defaultValue: "Richiedi nuovo link",
+              })}
             </Button>
           </div>
         </main>
@@ -166,6 +224,7 @@ export default function ResetPassword() {
     );
   }
 
+  // ─── Reset form ────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -190,18 +249,25 @@ export default function ResetPassword() {
               <Leaf className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
-              {t("reset_password.create_new_password", { defaultValue: "Crea nuova password" })}
+              {t("reset_password.create_new_password", {
+                defaultValue: "Crea nuova password",
+              })}
             </h1>
             <p className="text-muted-foreground mt-2">
-              {t("reset_password.description", { defaultValue: "Inserisci la tua nuova password qui sotto." })}
+              {t("reset_password.description", {
+                defaultValue: "Inserisci la tua nuova password qui sotto.",
+              })}
             </p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="glass rounded-2xl p-6 space-y-4 shadow-card">
+              {/* New password */}
               <div className="space-y-2">
-                <Label htmlFor="password">{t("reset_password.new_password", { defaultValue: "Nuova password" })}</Label>
+                <Label htmlFor="password">
+                  {t("reset_password.new_password", { defaultValue: "Nuova password" })}
+                </Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -216,7 +282,11 @@ export default function ResetPassword() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
                   </button>
                 </div>
 
@@ -249,8 +319,13 @@ export default function ResetPassword() {
                 </div>
               </div>
 
+              {/* Confirm password */}
               <div className="space-y-2 pt-2">
-                <Label htmlFor="confirmPassword">{t("reset_password.confirm_new_password", { defaultValue: "Conferma nuova password" })}</Label>
+                <Label htmlFor="confirmPassword">
+                  {t("reset_password.confirm_new_password", {
+                    defaultValue: "Conferma nuova password",
+                  })}
+                </Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
@@ -268,12 +343,18 @@ export default function ResetPassword() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
                   </button>
                 </div>
                 {confirmPassword && !passwordsMatch && (
                   <p className="text-xs text-destructive mt-1">
-                    {t("reset_password.passwords_do_not_match", { defaultValue: "Le password non coincidono" })}
+                    {t("reset_password.passwords_do_not_match", {
+                      defaultValue: "Le password non coincidono",
+                    })}
                   </p>
                 )}
               </div>
@@ -284,7 +365,9 @@ export default function ResetPassword() {
               className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-medium shadow-soft"
               disabled={isLoading || !allRequirementsMet || !passwordsMatch}
             >
-              {isLoading ? t("reset_password.updating", { defaultValue: "Aggiornamento in corso..." }) : t("reset_password.submit_button", { defaultValue: "Reimposta password" })}
+              {isLoading
+                ? t("reset_password.updating", { defaultValue: "Aggiornamento in corso..." })
+                : t("reset_password.submit_button", { defaultValue: "Reimposta password" })}
             </Button>
           </form>
         </div>

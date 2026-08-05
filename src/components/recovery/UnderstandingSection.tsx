@@ -3,21 +3,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Clock, Brain, ChevronLeft, ChevronRight, Activity, Sparkles, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export function UnderstandingSection() {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
       id: "super-stimulus",
-      title: "Super-Stimolo Dopaminergico",
-      subtitle: "Impatto Neurochimico",
+      title: t("understanding_section.slide1_title", "Super-Stimolo Dopaminergico"),
+      subtitle: t("understanding_section.slide1_subtitle", "Impatto Neurochimico"),
       badgeColor: "text-[#4D87D9] dark:text-[#619BF0] bg-[#4D87D9]/10 border-[#4D87D9]/30",
       icon: Zap,
       content: (
         <div className="space-y-5">
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Il cervello scambia l'iper-stimolazione digitale per un segnale biologico di massima priorità, alterando la nostra motivazione naturale.
+            {t("understanding_section.slide1_desc", "Il cervello scambia l'iper-stimolazione digitale per un segnale biologico di massima priorità, alterando la nostra motivazione naturale.")}
           </p>
 
           {/* Visual Dopamine Comparison Bar */}
@@ -27,7 +29,7 @@ export function UnderstandingSection() {
               <div className="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
                   <Activity className="h-4 w-4 text-[#4b9b75] dark:text-[#5ec396]" />
-                  Stimoli Naturali (Cibo, Sport, Relazioni)
+                  {t("understanding_section.natural_stimuli", "Stimoli Naturali (Cibo, Sport, Relazioni)")}
                 </span>
                 <span className="text-[#4b9b75] dark:text-[#5ec396]">100% - 150%</span>
               </div>
@@ -41,7 +43,7 @@ export function UnderstandingSection() {
               <div className="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
                 <span className="text-[#4D87D9] dark:text-[#619BF0] flex items-center gap-1.5">
                   <Zap className="h-4 w-4 text-[#4D87D9] dark:text-[#619BF0]" />
-                  Super-Stimolo Digitale
+                  {t("understanding_section.super_stimulus", "Super-Stimolo Digitale")}
                 </span>
                 <span className="text-[#4D87D9] dark:text-[#619BF0]">200% - 500%+</span>
               </div>
@@ -52,21 +54,21 @@ export function UnderstandingSection() {
           </div>
 
           <div className="p-3.5 rounded-xl bg-[#4D87D9]/10 border border-[#4D87D9]/20 text-xs sm:text-sm text-[#4D87D9] dark:text-[#619BF0] leading-relaxed">
-            💡 <strong>Conseguenza:</strong> I recettori si desensibilizzano temporaneamente per proteggersi. Il tempo libero consente loro di ripristinare la normale sensibilità.
+            💡 <strong>{t("understanding_section.consequence_label", "Conseguenza:")}</strong> {t("understanding_section.consequence_text", "I recettori si desensibilizzano temporaneamente per proteggersi. Il tempo libero consente loro di ripristinare la normale sensibilità.")}
           </div>
         </div>
       ),
     },
     {
       id: "reboot-timeline",
-      title: "Timeline di Neuroplasticità",
-      subtitle: "Ripristino Naturale",
+      title: t("understanding_section.slide2_title", "Timeline di Neuroplasticità"),
+      subtitle: t("understanding_section.slide2_subtitle", "Ripristino Naturale"),
       badgeColor: "text-[#4D87D9] dark:text-[#619BF0] bg-[#4D87D9]/10 border-[#4D87D9]/30",
       icon: Clock,
       content: (
         <div className="space-y-4">
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Il tuo sistema nervoso riorganizza e ripristina la naturale sensibilità dopaminergica a fasi graduali.
+            {t("understanding_section.slide2_desc", "Il tuo sistema nervoso riorganizza e ripristina la naturale sensibilità dopaminergica a fasi graduali.")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
@@ -74,11 +76,11 @@ export function UnderstandingSection() {
             <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#4D87D9]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#4D87D9] dark:bg-[#619BF0] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#4D87D9] dark:text-[#619BF0] uppercase tracking-wider block">
-                0-7 GIORNI
+                0-7 {t("common.days_upper", "GIORNI")}
               </span>
-              <h4 className="text-sm sm:text-base font-bold text-foreground">Reset Iniziale</h4>
+              <h4 className="text-sm sm:text-base font-bold text-foreground">{t("understanding_section.phase1_title", "Reset Iniziale")}</h4>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Picco di craving e riposo iniziale per i recettori sovraccaricati.
+                {t("understanding_section.phase1_desc", "Picco di craving e riposo iniziale per i recettori sovraccaricati.")}
               </p>
             </div>
 
@@ -86,11 +88,11 @@ export function UnderstandingSection() {
             <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#9B5BDB]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#9B5BDB] dark:bg-[#C377D7] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#9B5BDB] dark:text-[#C377D7] uppercase tracking-wider block">
-                8-30 GIORNI
+                8-30 {t("common.days_upper", "GIORNI")}
               </span>
-              <h4 className="text-sm sm:text-base font-bold text-foreground">Ricalibrazione</h4>
+              <h4 className="text-sm sm:text-base font-bold text-foreground">{t("understanding_section.phase2_title", "Ricalibrazione")}</h4>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Chiarezza mentale, energia e stabilità emotiva in aumento.
+                {t("understanding_section.phase2_desc", "Chiarezza mentale, energia e stabilità emotiva in aumento.")}
               </p>
             </div>
 
@@ -98,11 +100,11 @@ export function UnderstandingSection() {
             <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#4b9b75]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#4b9b75] dark:bg-[#5ec396] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#4b9b75] dark:text-[#5ec396] uppercase tracking-wider block">
-                30-90 GIORNI
+                30-90 {t("common.days_upper", "GIORNI")}
               </span>
-              <h4 className="text-sm sm:text-base font-bold text-foreground">Rinascita</h4>
+              <h4 className="text-sm sm:text-base font-bold text-foreground">{t("understanding_section.phase3_title", "Rinascita")}</h4>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Ricablaggio profondo dei circuiti della motivazione reale.
+                {t("understanding_section.phase3_desc", "Ricablaggio profondo dei circuiti della motivazione reale.")}
               </p>
             </div>
           </div>
@@ -111,14 +113,14 @@ export function UnderstandingSection() {
     },
     {
       id: "wanting-vs-liking",
-      title: "Desiderio vs Piacere",
+      title: t("understanding_section.slide3_title", "Desiderio vs Piacere"),
       subtitle: "Wanting vs Liking",
       badgeColor: "text-[#9B5BDB] dark:text-[#C377D7] bg-[#9B5BDB]/10 border-[#9B5BDB]/30",
       icon: Brain,
       content: (
         <div className="space-y-4">
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Perché l'impulso sembra travolgente anche quando non offre alcun reale appagamento.
+            {t("understanding_section.slide3_desc", "Perché l'impulso sembra travolgente anche quando non offre alcun reale appagamento.")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
@@ -127,13 +129,13 @@ export function UnderstandingSection() {
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-[#4D87D9] dark:text-[#619BF0] flex items-center gap-1.5">
                   <Sparkles className="h-4 w-4" />
-                  DESIDERIO (Wanting)
+                  {t("understanding_section.wanting_title", "DESIDERIO (Wanting)")}
                 </span>
-                <span className="text-xs bg-[#4D87D9]/20 text-[#4D87D9] dark:text-[#619BF0] px-2 py-0.5 rounded font-mono font-bold">Dopamina</span>
+                <span className="text-xs bg-[#4D87D9]/20 text-[#4D87D9] dark:text-[#619BF0] px-2 py-0.5 rounded font-mono font-bold">{t("understanding_section.wanting_tag", "Dopamina")}</span>
               </div>
-              <p className="text-sm text-foreground font-semibold">La spinta dell'anticipazione</p>
+              <p className="text-sm text-foreground font-semibold">{t("understanding_section.wanting_sub", "La spinta dell'anticipazione")}</p>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                È il motore dell'impulso ("devo averlo subito"). Promette sollievo ma non genera appagamento duraturo.
+                {t("understanding_section.wanting_desc", "È il motore dell'impulso (\"devo averlo subito\"). Promette sollievo ma non genera appagamento duraturo.")}
               </p>
             </div>
 
@@ -142,13 +144,13 @@ export function UnderstandingSection() {
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-[#4b9b75] dark:text-[#5ec396] flex items-center gap-1.5">
                   <CheckCircle2 className="h-4 w-4" />
-                  PIACERE (Liking)
+                  {t("understanding_section.liking_title", "PIACERE (Liking)")}
                 </span>
-                <span className="text-xs bg-[#4b9b75]/20 text-[#4b9b75] dark:text-[#5ec396] px-2 py-0.5 rounded font-mono font-bold">Endorfine</span>
+                <span className="text-xs bg-[#4b9b75]/20 text-[#4b9b75] dark:text-[#5ec396] px-2 py-0.5 rounded font-mono font-bold">{t("understanding_section.liking_tag", "Endorfine")}</span>
               </div>
-              <p className="text-sm text-foreground font-semibold">Il reale appagamento</p>
+              <p className="text-sm text-foreground font-semibold">{t("understanding_section.liking_sub", "Il reale appagamento")}</p>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                La gioia autentica di un'esperienza reale. Nella dipendenza, il Wanting domina soffocando il Liking.
+                {t("understanding_section.liking_desc", "La gioia autentica di un'esperienza reale. Nella dipendenza, il Wanting domina soffocando il Liking.")}
               </p>
             </div>
           </div>

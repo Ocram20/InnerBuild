@@ -12,6 +12,7 @@ import { differenceInDays } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { translateAuthError } from "@/lib/authErrorTranslator";
+import { isPasswordAlreadyUsed, storePasswordHash } from "@/lib/passwordHistory";
 
 interface ProfileData {
   first_name: string;
@@ -343,6 +344,21 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
       });
       return;
     }
+    // Check full password history (current password is already covered by isSamePassword,
+    // but history also catches older passwords the user previously used)
+    if (user) {
+      const alreadyUsed = await isPasswordAlreadyUsed(user.id, newPassword);
+      if (alreadyUsed) {
+        toast({
+          title: t("profile.password_update_failed", { defaultValue: "Aggiornamento non riuscito" }),
+          description: t("auth_errors.password_already_used", {
+            defaultValue: "Questa password è già stata usata in precedenza. Scegline una nuova.",
+          }),
+          variant: "destructive",
+        });
+        return;
+      }
+    }
     if (!allPasswordReqsMet) {
       toast({
         title: t("profile.password_update_failed", { defaultValue: "Aggiornamento non riuscito" }),
@@ -382,6 +398,11 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
         current_password: currentPassword,
       } as any);
       if (error) throw error;
+
+      // Store the new password hash in history
+      if (user) {
+        await storePasswordHash(user.id, newPassword);
+      }
 
       setCurrentPassword("");
       setNewPassword("");
@@ -502,7 +523,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
           {isUsernameChanged && !canChangeUsername && (
             <p className="text-xs text-amber-500 flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              {`Puoi cambiare il tuo username di nuovo tra ${daysRemaining} giorni.`}
+              {t("profile.username_cooldown_days", { count: daysRemaining, defaultValue: `Puoi cambiare il tuo username di nuovo tra ${daysRemaining} giorni.` })}
             </p>
           )}
         </div>
@@ -513,7 +534,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             <Mail className="h-3.5 w-3.5 text-muted-foreground" />
             {isOAuthUser && (
               <span className="text-xs text-emerald-500 font-medium flex items-center gap-1">
-                Account {authProviderName}
+                {t("profile.oauth_account_badge", { provider: authProviderName, defaultValue: `Account ${authProviderName}` })}
               </span>
             )}
           </Label>
@@ -571,7 +592,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             <div className="p-3.5 rounded-xl bg-muted/30 border border-border/40 text-xs text-muted-foreground flex items-start gap-2">
               <ShieldAlert className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                L'accesso a questo account è gestito tramite <strong>{authProviderName}</strong>. La modifica della password è disabilitata.
+                {t("profile.oauth_password_disabled", { provider: authProviderName, defaultValue: `L'accesso a questo account è gestito tramite ${authProviderName}. La modifica della password è disabilitata.` })}
               </p>
             </div>
           </div>
@@ -584,7 +605,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
             <div className="space-y-3">
               <div className="space-y-1">
                 <Label htmlFor="currentPassword" className="text-xs text-muted-foreground">
-                  Password attuale
+                  {t("profile.current_password", { defaultValue: "Password attuale" })}
                 </Label>
                 <div className="relative">
                   <Input
@@ -606,7 +627,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
 
               <div className="space-y-1">
                 <Label htmlFor="newPassword" className="text-xs text-muted-foreground">
-                  Nuova password
+                  {t("profile.new_password", { defaultValue: "Nuova password" })}
                 </Label>
                 <div className="relative">
                   <Input
@@ -656,14 +677,14 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                 )}
                 {isSamePassword && (
                   <p className="text-xs text-amber-500 mt-1">
-                    La nuova password deve essere diversa da quella attuale.
+                    {t("profile.password_must_differ", { defaultValue: "La nuova password deve essere diversa da quella attuale." })}
                   </p>
                 )}
               </div>
 
               <div className="space-y-1">
                 <Label htmlFor="confirmNewPassword" className="text-xs text-muted-foreground">
-                  Conferma nuova password
+                  {t("profile.confirm_new_password", { defaultValue: "Conferma nuova password" })}
                 </Label>
                 <Input
                   id="confirmNewPassword"
@@ -675,7 +696,7 @@ export function ProfileInfoSection({ profile, onProfileUpdate }: ProfileInfoSect
                 />
                 {confirmPassword && !passwordsMatch && (
                   <p className="text-xs text-destructive mt-1">
-                    Le password non coincidono
+                    {t("profile.passwords_do_not_match", { defaultValue: "Le password non coincidono" })}
                   </p>
                 )}
               </div>

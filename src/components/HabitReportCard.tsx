@@ -84,7 +84,7 @@ export default function HabitReportCard() {
       <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
           <Brain className="h-6 w-6 text-emerald-400" />
-          <span className="text-muted-foreground dark:text-[#6c8093]">Caricamento AI Recovery Sprint...</span>
+          <span className="text-muted-foreground dark:text-[#6c8093]">{t("habit_report.loading", "Caricamento AI Recovery Sprint...")}</span>
         </div>
       </div>
     );
@@ -129,7 +129,7 @@ export default function HabitReportCard() {
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
             <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
-              {report ? `Analisi ${analyzedDays}d` : "Ogni 4 Giorni"}
+              {report ? t("habit_report.analysis_days", { days: analyzedDays, defaultValue: `Analisi ${analyzedDays}d` }) : t("habit_report.every_4_days", "Ogni 4 Giorni")}
             </Badge>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function HabitReportCard() {
             ) : (
               <Sparkle className="h-4 w-4 fill-slate-950" />
             )}
-            Analizza andamento abitudini con AI
+            {t("habit_report.analyze_btn", "Analizza andamento abitudini con AI")}
           </Button>
         )}
       </div>
@@ -169,7 +169,7 @@ export default function HabitReportCard() {
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
             <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
-              Analisi {analyzedDays}d
+              {t("habit_report.analysis_days", { days: analyzedDays, defaultValue: `Analisi ${analyzedDays}d` })}
             </Badge>
           </div>
           <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 leading-relaxed">

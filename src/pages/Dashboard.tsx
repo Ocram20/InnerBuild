@@ -224,7 +224,7 @@ export default function Dashboard() {
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
                   {isDark ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
-                  {isDark ? "Light Mode" : "Dark Mode"}
+                  {isDark ? t("common.light_mode", "Light Mode") : t("common.dark_mode", "Dark Mode")}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate("/profile")} className="cursor-pointer">
                   <User className="h-4 w-4 mr-2" />

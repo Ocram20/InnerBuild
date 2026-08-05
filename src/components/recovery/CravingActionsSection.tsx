@@ -83,10 +83,10 @@ export function CravingActionsSection() {
         <div className="mt-3 flex items-center justify-between bg-muted/40 p-2 rounded-xl border border-border/40 text-xs">
           <span className="text-muted-foreground flex items-center gap-1.5 font-medium">
             <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-            Azione anti-impulso:
+            {t("craving_actions.anti_impulse_action", "Azione anti-impulso:")}
           </span>
           <span className="font-semibold text-emerald-400">
-            {completedActions.length}/{ACTION_IDS.length} completate ({progressPercent}%)
+            {t("craving_actions.completed_count", { completed: completedActions.length, total: ACTION_IDS.length, percent: progressPercent, defaultValue: `${completedActions.length}/${ACTION_IDS.length} completate (${progressPercent}%)` })}
           </span>
         </div>
       </CardHeader>

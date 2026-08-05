@@ -256,10 +256,10 @@ export default function TriggerHeatmap({ data, allLogs }: TriggerHeatmapProps) {
                       <div key={idx} className="p-3 rounded-lg bg-muted/50">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs text-muted-foreground">
-                            {new Date(log.created_at).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
+                            {new Date(log.created_at).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                           </span>
                           <span className="text-xs font-medium">
-                            Intensità: {log.impulse_intensity}/10
+                            {t("trigger_tracking.intensity", "Intensità")}: {log.impulse_intensity}/10
                           </span>
                         </div>
                         <div className="text-sm">

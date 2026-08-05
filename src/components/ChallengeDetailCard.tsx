@@ -498,7 +498,7 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
               {t("challenge_card.keep_going")}
             </AlertDialogCancel>
             <AlertDialogAction onClick={resetChallenge} className="rounded-xl gradient-primary text-primary-foreground">
-              {t("challenge_card.fresh_start")}
+              {t("challenge_card.fresh_start", "Ricomincia da Capo")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -508,17 +508,17 @@ export default function ChallengeDetailCard({ challenge, onUpdate }: ChallengeDe
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent className="rounded-2xl max-w-sm mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-destructive">{t("challenge_card.delete_challenge_title")}</AlertDialogTitle>
+            <AlertDialogTitle className="text-destructive">{t("challenge_card.delete_challenge_title", "Abbandona Sfida")}</AlertDialogTitle>
             <AlertDialogDescription>
-              {t("challenge_card.delete_challenge_desc")}
+              {t("challenge_card.delete_challenge_desc", "Sei sicuro di voler abbandonare questa sfida? I tuoi progressi verranno persi.")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl">
-              {t("common.cancel")}
+              {t("common.cancel", "Annulla")}
             </AlertDialogCancel>
             <AlertDialogAction onClick={deleteChallenge} className="rounded-xl bg-destructive text-destructive-foreground hover:bg-destructive/90">
-              {t("challenge_card.confirm_delete")}
+              {t("challenge_card.confirm_delete", "Abbandona")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

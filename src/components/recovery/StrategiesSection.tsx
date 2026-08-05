@@ -123,11 +123,11 @@ export function StrategiesSection() {
               <div className="p-1.5 rounded-lg bg-[#C377D7]/10 text-[#C377D7] dark:text-[#D28CE4] border border-[#C377D7]/20">
                 <Lightbulb className="h-4 w-4" />
               </div>
-              <span>Strategie di Recupero</span>
+              <span>{t("strategies_section.title", "Strategie di Recupero")}</span>
             </CardTitle>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-            Seleziona una categoria per visualizzare micro-azioni pratiche e mirate.
+            {t("strategies_section.description", "Seleziona una categoria per visualizzare micro-azioni pratiche e mirate.")}
           </p>
 
           {/* 4 Category Pill Filters */}
@@ -150,7 +150,7 @@ export function StrategiesSection() {
                   }`}
                 >
                   <CatIcon className="h-3.5 w-3.5" />
-                  <span>{cat.label}</span>
+                  <span>{t(`strategies_section.category.${cat.id}`, cat.label)}</span>
                 </motion.button>
               );
             })}
@@ -195,6 +195,7 @@ export function StrategiesSection() {
 }
 
 export function LearnGuideCTACard() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -210,13 +211,13 @@ export function LearnGuideCTACard() {
           <div className="space-y-1 max-w-lg">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#8b5cf6]/20 text-[#8b5cf6] dark:text-[#9b5bdb] border border-[#8b5cf6]/30 mb-1">
               <BookOpen className="h-3 w-3" />
-              Guida Completa
+              {t("strategies_section.complete_guide", "Guida Completa")}
             </div>
             <h3 className="text-base sm:text-lg font-bold text-white">
-              Vuoi approfondire la scienza del recupero?
+              {t("strategies_section.deep_dive_title", "Vuoi approfondire la scienza del recupero?")}
             </h3>
             <p className="text-xs sm:text-sm text-[#6c8093]">
-              Leggi le guide complete, gli studi neuroscientifici e gli articoli dedicati.
+              {t("strategies_section.deep_dive_desc", "Leggi le guide complete, gli studi neuroscientifici e gli articoli dedicati.")}
             </p>
           </div>
 
@@ -226,7 +227,7 @@ export function LearnGuideCTACard() {
               onClick={() => navigate("/learn")}
               className="w-full sm:w-auto bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 dark:bg-[#9b5bdb] text-white font-semibold text-xs sm:text-sm gap-2 h-11 px-5 rounded-xl shadow-lg shadow-purple-950/50"
             >
-              <span>Vai alla sezione Learn</span>
+              <span>{t("strategies_section.go_to_learn", "Vai alla sezione Learn")}</span>
               <ArrowRight className="h-4 w-4" />
             </Button>
           </motion.div>

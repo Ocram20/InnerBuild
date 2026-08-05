@@ -248,7 +248,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                       }`}
                     >
                       <Icon className="h-4 w-4" />
-                      <span className="text-sm">{option.label}</span>
+                      <span className="text-sm">{t(`evening_reflection.moods.${option.value}`, option.label)}</span>
                       {isSelected && <Check className="h-3 w-3 ml-1" />}
                     </button>
                   );
@@ -318,7 +318,7 @@ export function EveningReflectionSection({ userId, reflectionDate }: EveningRefl
                       }`}
                     >
                       <Icon className="h-4 w-4" />
-                      <span className="text-sm">{option.label}</span>
+                      <span className="text-sm">{t(`evening_reflection.lessons.${option.value}`, option.label)}</span>
                       {isSelected && <Check className="h-3 w-3 ml-1" />}
                     </button>
                   );

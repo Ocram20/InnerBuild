@@ -287,7 +287,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <AlertCircle className="h-4 w-4 text-orange-500" />
-              A quale cattiva abitudine è legata questa tentazione? *
+              {t("trigger_tracking.bad_habit_question", "A quale cattiva abitudine è legata questa tentazione?")} *
             </label>
 
             {/* Bad Habit Pills */}
@@ -316,7 +316,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                       <span
                         onClick={(e) => handleRemoveCustomHabit(pill.name, e)}
                         className="ml-1 p-0.5 rounded-full hover:bg-red-500/20 hover:text-red-400 opacity-70 hover:opacity-100 transition-all"
-                        title="Rimuovi abitudine"
+                        title={t("trigger_tracking.remove_habit", "Rimuovi abitudine")}
                       >
                         <X className="h-3.5 w-3.5" />
                       </span>
@@ -336,7 +336,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                 }`}
               >
                 <Plus className="h-4 w-4" />
-                <span>Altra abitudine</span>
+                <span>{t("trigger_tracking.other_habit", "Altra abitudine")}</span>
               </button>
             </div>
 
@@ -347,7 +347,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                   type="text"
                   value={customBadHabit}
                   onChange={(e) => setCustomBadHabit(e.target.value)}
-                  placeholder="Es. Fumo, Videogiochi, Shopping..."
+                  placeholder={t("trigger_tracking.custom_habit_placeholder", "Es. Fumo, Videogiochi, Shopping...")}
                   className="flex-1 px-3 py-2 rounded-xl border border-border bg-background text-sm"
                   autoFocus
                 />
@@ -359,7 +359,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                   className="rounded-xl px-3 h-9 bg-[#4D87D9] hover:bg-[#3b6eb8] text-white font-medium"
                 >
                   <Plus className="h-4 w-4 mr-1" />
-                  Aggiungi
+                  {t("common.add", "Aggiungi")}
                 </Button>
               </div>
             )}
