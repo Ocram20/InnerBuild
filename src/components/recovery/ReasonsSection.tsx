@@ -151,7 +151,7 @@ export function ReasonsSection() {
             {reasons.map((reason, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-purple-500/20 shadow-sm group hover:border-purple-500/40 transition-all"
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-purple-500/5 dark:bg-slate-900/60 border border-purple-500/20 shadow-sm group hover:border-purple-500/40 transition-all"
               >
                 <Sparkles className="h-4 w-4 text-purple-400 shrink-0" />
                 <p className="text-xs sm:text-sm text-foreground flex-1 font-medium leading-snug">
@@ -176,7 +176,7 @@ export function ReasonsSection() {
             placeholder={t("reasons_section.new_placeholder")}
             value={newReason}
             onChange={(e) => setNewReason(e.target.value)}
-            className="min-h-[70px] text-xs sm:text-sm bg-slate-950/60 border-border/60 rounded-xl focus:border-purple-500/50"
+            className="min-h-[70px] text-xs sm:text-sm bg-background dark:bg-slate-950/60 border-border/60 rounded-xl focus:border-purple-500/50"
           />
           <Button 
             size="sm" 
@@ -203,7 +203,7 @@ export function ReasonsSection() {
                 <button
                   key={reason}
                   onClick={() => addReason(reason)}
-                  className="text-xs px-3 py-1.5 rounded-full bg-slate-900/60 border border-border/40 hover:border-purple-500/40 text-muted-foreground hover:text-purple-300 transition-all font-medium"
+                  className="text-xs px-3 py-1.5 rounded-full bg-purple-500/5 dark:bg-slate-900/60 border border-border/40 hover:border-purple-500/40 text-muted-foreground hover:text-purple-600 dark:hover:text-purple-300 transition-all font-medium"
                 >
                   + {reason}
                 </button>

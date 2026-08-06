@@ -146,7 +146,7 @@ export function StrategiesSection() {
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-all ${
                     isActive
                       ? "bg-[#C377D7] dark:bg-[#D28CE4] text-white shadow-md border border-purple-400/40"
-                      : "bg-[#252d37]/50 text-[#6c8093] hover:text-foreground border border-border/50"
+                      : "bg-muted text-muted-foreground dark:bg-[#252d37]/50 dark:text-[#6c8093] hover:text-foreground border border-border/50"
                   }`}
                 >
                   <CatIcon className="h-3.5 w-3.5" />
@@ -172,7 +172,7 @@ export function StrategiesSection() {
                 return (
                   <div
                     key={strategy.id}
-                    className="flex items-start gap-3 p-3 rounded-2xl bg-[#192028]/60 border border-border/50 hover:border-[#8b5cf6]/30 transition-colors"
+                    className="flex items-start gap-3 p-3 rounded-2xl bg-card dark:bg-[#192028]/60 border border-border/50 hover:border-[#8b5cf6]/30 transition-colors"
                   >
                     <div className={`p-2 rounded-xl ${strategy.bgColor} shrink-0 mt-0.5`}>
                       <Icon className={`h-4 w-4 ${strategy.color}`} />
@@ -204,7 +204,7 @@ export function LearnGuideCTACard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.15, delay: 0.15 }}
     >
-      <Card className="relative border-[#8b5cf6]/40 bg-gradient-to-br from-[#192028] via-[#192028] to-[#192028] backdrop-blur-xl shadow-2xl overflow-hidden p-5 sm:p-6 text-foreground rounded-2xl">
+      <Card className="relative border-[#8b5cf6]/40 bg-card dark:bg-[#192028] backdrop-blur-xl shadow-2xl overflow-hidden p-5 sm:p-6 text-foreground rounded-2xl">
         <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#8b5cf6]/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -213,10 +213,10 @@ export function LearnGuideCTACard() {
               <BookOpen className="h-3 w-3" />
               {t("strategies_section.complete_guide", "Guida Completa")}
             </div>
-            <h3 className="text-base sm:text-lg font-bold text-white">
+            <h3 className="text-base sm:text-lg font-bold text-foreground dark:text-white">
               {t("strategies_section.deep_dive_title", "Vuoi approfondire la scienza del recupero?")}
             </h3>
-            <p className="text-xs sm:text-sm text-[#6c8093]">
+            <p className="text-xs sm:text-sm text-muted-foreground dark:text-[#6c8093]">
               {t("strategies_section.deep_dive_desc", "Leggi le guide complete, gli studi neuroscientifici e gli articoli dedicati.")}
             </p>
           </div>

@@ -159,7 +159,7 @@ export default function TriggerReportCard() {
 
   if (loading) {
     return (
-      <Card className="rounded-2xl border border-[#9B5BDB]/20 bg-slate-900/80 p-6 animate-pulse">
+      <Card className="rounded-2xl border border-[#9B5BDB]/20 bg-card dark:bg-slate-900/80 p-6 animate-pulse">
         <CardContent className="py-6">
           <div className="flex items-center justify-center gap-3">
             <Zap className="h-6 w-6 text-[#9B5BDB]/60" />
@@ -172,7 +172,7 @@ export default function TriggerReportCard() {
 
   if (!report) {
     return (
-      <Card className="rounded-2xl border border-[#4D87D9]/30 bg-slate-900/90 dark:bg-[#131922] p-5 shadow-lg backdrop-blur-md">
+      <Card className="rounded-2xl border border-[#4D87D9]/30 bg-card dark:bg-[#131922] p-5 shadow-lg backdrop-blur-md">
         <CardContent className="py-4">
           <div className="text-center space-y-4">
             <div className="w-14 h-14 rounded-2xl bg-[#4D87D9]/10 border border-[#4D87D9]/20 flex items-center justify-center mx-auto">

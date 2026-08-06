@@ -81,7 +81,7 @@ export default function HabitReportCard() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-6 animate-pulse">
+      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-card dark:bg-[#131922] p-6 animate-pulse">
         <div className="flex items-center justify-center gap-3">
           <Brain className="h-6 w-6 text-emerald-400" />
           <span className="text-muted-foreground dark:text-[#6c8093]">{t("habit_report.loading", "Caricamento AI Recovery Sprint...")}</span>
@@ -93,7 +93,7 @@ export default function HabitReportCard() {
   if (!isPremium) {
     return (
       <>
-        <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-5 card-glow dark:card-lift">
+        <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-card dark:bg-[#131922] p-5 card-glow dark:card-lift">
           <div className="text-center space-y-4">
             <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto relative shadow-soft">
               <Zap className="h-7 w-7 text-emerald-400" />
@@ -121,20 +121,20 @@ export default function HabitReportCard() {
   // If no report or no pending suggestions
   if (!report || pendingSuggestions.length === 0) {
     return (
-      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-3 shadow-lg backdrop-blur-md w-full">
+      <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-card dark:bg-[#131922] p-4 space-y-3 shadow-lg backdrop-blur-md w-full">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-emerald-400 fill-emerald-400 shrink-0" />
-            <h2 className="text-base font-bold text-slate-100 dark:text-white">
+            <h2 className="text-base font-bold text-foreground dark:text-white">
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
-            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
+            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
               {report ? t("habit_report.analysis_days", { days: analyzedDays, defaultValue: `Analisi ${analyzedDays}d` }) : t("habit_report.every_4_days", "Ogni 4 Giorni")}
             </Badge>
           </div>
         </div>
 
-        <p className="text-xs text-slate-400 leading-relaxed">
+        <p className="text-xs text-muted-foreground leading-relaxed">
           {report 
             ? t("habit_report.no_delay", "Tutti gli aggiustamenti AI per l'ultimo periodo sono stati applicati! 🎉")
             : t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
@@ -159,20 +159,20 @@ export default function HabitReportCard() {
   }
 
   return (
-    <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-slate-900/90 dark:bg-[#131922] p-4 space-y-4 shadow-lg backdrop-blur-md w-full">
+    <div className="rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-card dark:bg-[#131922] p-4 space-y-4 shadow-lg backdrop-blur-md w-full">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-emerald-400 fill-emerald-400 shrink-0" />
-            <h2 className="text-base font-bold text-slate-100 dark:text-white">
+            <h2 className="text-base font-bold text-foreground dark:text-white">
               {t("habit_report.sprint_title", "AI Recovery Sprint")}
             </h2>
-            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
+            <Badge variant="outline" className="text-[11px] font-semibold bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/20 px-2 py-0.5 shrink-0">
               {t("habit_report.analysis_days", { days: analyzedDays, defaultValue: `Analisi ${analyzedDays}d` })}
             </Badge>
           </div>
-          <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 leading-relaxed">
+          <p className="text-xs text-muted-foreground dark:text-slate-400 mt-0.5 leading-relaxed">
             {t("habit_report.sprint_subtitle", "Reset veloce sui tuoi pilastri per ritrovare l'inerzia.")}
           </p>
         </div>
@@ -192,7 +192,7 @@ export default function HabitReportCard() {
           return (
             <div
               key={suggestion.habit_id}
-              className="p-3 rounded-xl border bg-slate-800/60 border-slate-700/60 dark:bg-[#1a222e] dark:border-white/10 space-y-2 w-full transition-all"
+              className="p-3 rounded-xl border bg-muted/40 border-border/60 dark:bg-[#1a222e] dark:border-white/10 space-y-2 w-full transition-all"
             >
               {/* Top Row: Icon + Habit Title + Analyzed Days Badge + Actions */}
               <div className="flex items-center justify-between gap-2 w-full">
@@ -200,14 +200,14 @@ export default function HabitReportCard() {
                   <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                     <ItemIcon className="h-3.5 w-3.5" />
                   </div>
-                  <h3 className="text-xs font-semibold text-slate-100 dark:text-white break-words min-w-0 flex-1">
+                  <h3 className="text-xs font-semibold text-foreground dark:text-white break-words min-w-0 flex-1">
                     {suggestion.habit_title}
                   </h3>
                 </div>
 
                 {/* Analyzed Period Badge */}
-                <div className="flex items-center gap-1 shrink-0 bg-slate-900/60 px-2 py-0.5 rounded-md border border-slate-800">
-                  <span className="text-[10px] text-slate-400 font-mono">{analyzedDays}d in calo</span>
+                <div className="flex items-center gap-1 shrink-0 bg-muted/80 dark:bg-slate-900/60 px-2 py-0.5 rounded-md border border-border/60 dark:border-slate-800">
+                  <span className="text-[10px] text-muted-foreground font-mono">{analyzedDays}d in calo</span>
                 </div>
 
                 {/* Action buttons [ ✓ ] e [ ✕ ] */}
@@ -220,7 +220,7 @@ export default function HabitReportCard() {
                       suggestion.suggested_title,
                       suggestion.suggested_description || suggestion.reason
                     )}
-                    className="h-7 w-7 p-0 rounded-lg text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300"
+                    className="h-7 w-7 p-0 rounded-lg text-emerald-500 dark:text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-600 dark:hover:text-emerald-300"
                     title="Accetta aggiustamento AI"
                   >
                     <Check className="h-4 w-4" />
@@ -229,7 +229,7 @@ export default function HabitReportCard() {
                     size="sm"
                     variant="ghost"
                     onClick={() => dismissSuggestion(suggestion.habit_id)}
-                    className="h-7 w-7 p-0 rounded-lg text-slate-400 hover:bg-slate-700/50 hover:text-slate-200"
+                    className="h-7 w-7 p-0 rounded-lg text-muted-foreground hover:bg-muted"
                     title="Ignora"
                   >
                     <X className="h-4 w-4" />
@@ -238,7 +238,7 @@ export default function HabitReportCard() {
               </div>
 
               {/* AI Advice Box: Full text readable, no truncation, no line-through strikethrough prefix */}
-              <div className="text-xs bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-800/80 w-full text-emerald-400 leading-relaxed font-medium break-words">
+              <div className="text-xs bg-emerald-500/10 dark:bg-slate-900/80 px-3 py-2 rounded-lg border border-emerald-500/20 dark:border-slate-800/80 w-full text-emerald-700 dark:text-emerald-400 leading-relaxed font-medium break-words">
                 {aiAdvice}
               </div>
             </div>

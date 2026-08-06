@@ -64,7 +64,7 @@ export function RecoveryImpactCard({
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
-              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+              <div className="rounded-xl border border-[#4D87D9]/20 bg-muted/40 dark:bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
                 <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <Clock3 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.time_saved_label")}</span>
@@ -73,7 +73,7 @@ export function RecoveryImpactCard({
                 <p className="text-xs text-muted-foreground mt-0.5">{t("recovery_impact.hours_recovered")}</p>
               </div>
 
-              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+              <div className="rounded-xl border border-[#4D87D9]/20 bg-muted/40 dark:bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
                 <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <TrendingUp className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.energy_label")}</span>
@@ -82,7 +82,7 @@ export function RecoveryImpactCard({
                 <p className="mt-1 text-xs text-muted-foreground">{t("recovery_impact.clean_vs_relapse")}</p>
               </div>
 
-              <div className="rounded-xl border border border-[#4D87D9]/20 bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
+              <div className="rounded-xl border border-[#4D87D9]/20 bg-muted/40 dark:bg-[#192028]/60 backdrop-blur-sm p-4 hover:border-[#4D87D9]/40 transition-all shadow-sm">
                 <div className="mb-2 flex items-center gap-2 text-[#4D87D9] dark:text-[#619BF0] font-semibold">
                   <CheckSquare2 className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest">{t("recovery_impact.tasks_label")}</span>

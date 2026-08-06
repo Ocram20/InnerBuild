@@ -79,9 +79,16 @@ export default function AuthCallback() {
     run();
   }, [navigate]);
 
+  const handleLogInClick = async () => {
+    try {
+      await supabase.auth.signOut();
+    } catch {}
+    navigate("/auth", { replace: true });
+  };
+
   if (status === "loading") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#070c0a] text-foreground p-6">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-background text-foreground p-6">
         <LoadingSpinner />
         <p className="text-muted-foreground text-sm font-medium animate-pulse">
           {t("common.loading", "Verifica in corso...")}
@@ -91,16 +98,16 @@ export default function AuthCallback() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#070c0a] text-foreground p-6 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-background text-foreground p-6 relative overflow-hidden">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-md bg-card/40 border border-emerald-500/30 backdrop-blur-2xl p-8 rounded-[28px] text-center shadow-2xl space-y-6 relative z-10 animate-fade-in">
+      <div className="w-full max-w-md bg-card/90 dark:bg-[#131922]/90 border border-emerald-500/30 dark:border-emerald-500/40 backdrop-blur-2xl p-8 rounded-3xl text-center shadow-xl space-y-6 relative z-10 animate-fade-in">
         {/* Emblem Logo & Checkmark */}
-        <div className="relative mx-auto w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-          <Leaf className="h-9 w-9 text-emerald-400" />
-          <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center border-2 border-[#070c0a]">
-            <CheckCircle2 className="h-4 w-4" />
+        <div className="relative mx-auto w-20 h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
+          <Leaf className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
+          <div className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center border-2 border-card shadow-md">
+            <CheckCircle2 className="h-4 w-4 stroke-[2.5]" />
           </div>
         </div>
 
@@ -119,8 +126,8 @@ export default function AuthCallback() {
 
         {/* Action Button to Log In */}
         <Button
-          onClick={() => navigate("/auth")}
-          className="w-full h-12 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-base shadow-lg shadow-emerald-500/20 active:scale-[0.98] transition-all gap-2"
+          onClick={handleLogInClick}
+          className="w-full h-12 rounded-xl gradient-primary text-primary-foreground font-semibold text-base shadow-soft active:scale-[0.98] transition-all gap-2"
         >
           <span>{t("auth.log_in_now", "Accedi ora")}</span>
           <ArrowRight className="h-4 w-4" />

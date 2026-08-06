@@ -103,25 +103,25 @@ export function RecoveryTracker({
       <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {/* Serie Corrente: Azzurro */}
-          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#4D87D9]/30 rounded-xl shadow-sm">
+          <div className="text-center p-3.5 bg-card dark:bg-[#192028]/60 border border-[#4D87D9]/30 rounded-xl shadow-sm">
             <Flame className="h-5 w-5 text-[#4D87D9] dark:text-[#619BF0] mx-auto mb-1" />
             <p className="text-2xl font-extrabold text-[#4D87D9] dark:text-[#619BF0]">{currentStreak}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.current_streak")}</p>
           </div>
           {/* Serie Più Lunga: Oro Solo Scritte, Icone e Bordi */}
-          <div className="text-center p-3.5 bg-[#192028]/60 border border-amber-500/30 rounded-xl shadow-sm">
-            <Trophy className="h-5 w-5 text-amber-400 dark:text-amber-300 mx-auto mb-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-            <p className="text-2xl font-extrabold text-amber-400 dark:text-amber-300">{longestStreak}</p>
-            <p className="text-xs text-amber-400/90 font-semibold mt-0.5">{t("recovery_tracker.longest_streak")}</p>
+          <div className="text-center p-3.5 bg-card dark:bg-[#192028]/60 border border-amber-500/30 rounded-xl shadow-sm">
+            <Trophy className="h-5 w-5 text-amber-500 dark:text-amber-300 mx-auto mb-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+            <p className="text-2xl font-extrabold text-amber-500 dark:text-amber-300">{longestStreak}</p>
+            <p className="text-xs text-amber-600 dark:text-amber-400/90 font-semibold mt-0.5">{t("recovery_tracker.longest_streak")}</p>
           </div>
           {/* Giorni di Successo: Verde */}
-          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#4b9b75]/20 rounded-xl shadow-sm">
+          <div className="text-center p-3.5 bg-card dark:bg-[#192028]/60 border border-[#4b9b75]/20 rounded-xl shadow-sm">
             <CheckCircle2 className="h-5 w-5 text-[#4b9b75] dark:text-[#5ec396] mx-auto mb-1" />
             <p className="text-2xl font-extrabold text-foreground">{successDays}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.success_days")}</p>
           </div>
           {/* Giorni Falliti */}
-          <div className="text-center p-3.5 bg-[#192028]/60 border border-[#ef4444]/20 rounded-xl shadow-sm">
+          <div className="text-center p-3.5 bg-card dark:bg-[#192028]/60 border border-[#ef4444]/20 rounded-xl shadow-sm">
             <XCircle className="h-5 w-5 text-[#ef4444] mx-auto mb-1" />
             <p className="text-2xl font-extrabold text-foreground">{failedDays}</p>
             <p className="text-xs text-muted-foreground font-medium mt-0.5">{t("recovery_tracker.failed_days")}</p>

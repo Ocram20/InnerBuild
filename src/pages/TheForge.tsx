@@ -76,10 +76,10 @@ export default function TheForge() {
       <main className="container max-w-4xl mx-auto px-4 py-6 pb-scroll-safe">
         {!isPremium ? <LockedPreview /> : (
           <Tabs defaultValue="progress" className="w-full">
-            <TabsList className="w-full grid grid-cols-3 mb-6 h-11 bg-[#192028]/80 border border-[#252d37] rounded-xl p-1">
-              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5 rounded-lg text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><TrendingUp className="h-3.5 w-3.5" /><span>{t("the_forge.progress")}</span></TabsTrigger>
-              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5 rounded-lg text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><Shield className="h-3.5 w-3.5" /><span>{t("the_forge.manage_tab")}</span></TabsTrigger>
-              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5 rounded-lg text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><BookOpen className="h-3.5 w-3.5" /><span>{t("the_forge.learn_tab")}</span></TabsTrigger>
+            <TabsList className="w-full grid grid-cols-3 mb-6 h-11 bg-muted dark:bg-[#192028]/80 border border-border dark:border-[#252d37] rounded-xl p-1">
+              <TabsTrigger value="progress" className="text-xs sm:text-sm gap-1.5 rounded-lg text-muted-foreground dark:text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><TrendingUp className="h-3.5 w-3.5" /><span>{t("the_forge.progress")}</span></TabsTrigger>
+              <TabsTrigger value="manage" className="text-xs sm:text-sm gap-1.5 rounded-lg text-muted-foreground dark:text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><Shield className="h-3.5 w-3.5" /><span>{t("the_forge.manage_tab")}</span></TabsTrigger>
+              <TabsTrigger value="learn" className="text-xs sm:text-sm gap-1.5 rounded-lg text-muted-foreground dark:text-[#6c8093] data-[state=active]:bg-[#4D87D9] dark:data-[state=active]:bg-[#619BF0] data-[state=active]:text-white"><BookOpen className="h-3.5 w-3.5" /><span>{t("the_forge.learn_tab")}</span></TabsTrigger>
             </TabsList>
 
             <TabsContent value="progress" className="space-y-6 animate-in fade-in duration-150">

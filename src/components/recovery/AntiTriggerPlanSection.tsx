@@ -184,7 +184,7 @@ export function AntiTriggerPlanSection() {
 
         <CardContent className="px-4 sm:px-6 pb-5 pt-1 space-y-3">
           {plans.length === 0 ? (
-            <div className="p-6 text-center border border-dashed border-border/60 rounded-2xl bg-slate-900/40">
+            <div className="p-6 text-center border border-dashed border-border/60 rounded-2xl bg-muted/30 dark:bg-slate-900/40">
               <Sparkles className="h-8 w-8 text-[#4D87D9] dark:text-[#619BF0] mx-auto mb-2" />
               <p className="text-xs sm:text-sm font-medium text-foreground">{t("anti_trigger_plan.no_recipes", "Nessuna ricetta anti-trigger creata")}</p>
               <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
@@ -210,7 +210,7 @@ export function AntiTriggerPlanSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    className="p-3.5 rounded-2xl bg-slate-900/80 border border-border/60 hover:border-[#4D87D9]/30 transition-all shadow-sm group relative"
+                    className="p-3.5 rounded-2xl bg-card dark:bg-slate-900/80 border border-border/60 hover:border-[#4D87D9]/30 transition-all shadow-sm group relative"
                   >
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <div className="flex items-center gap-1.5 text-xs text-[#4D87D9] dark:text-[#619BF0] font-semibold">
@@ -229,8 +229,8 @@ export function AntiTriggerPlanSection() {
 
                     <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
                       {/* Badge 1: SE */}
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-medium">
-                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-400 opacity-80">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 font-medium">
+                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-600 dark:text-amber-400 opacity-80">
                           {t("anti_trigger_plan.if_label", "SE:")}
                         </span>
                         <span>"{display(plan.trigger)}"</span>
@@ -263,7 +263,7 @@ export function AntiTriggerPlanSection() {
 
       {/* Modern Compact Modal / Bottom Sheet */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-md bg-slate-950 border-border/80 text-foreground rounded-2xl p-5 shadow-2xl">
+        <DialogContent className="sm:max-w-md bg-background dark:bg-slate-950 border-border/80 text-foreground rounded-2xl p-5 shadow-2xl">
           <DialogHeader className="pb-2">
             <DialogTitle className="flex items-center gap-2 text-base font-bold text-[#4D87D9] dark:text-[#619BF0]">
               <Shield className="h-5 w-5 text-[#4D87D9] dark:text-[#619BF0]" />
@@ -276,14 +276,14 @@ export function AntiTriggerPlanSection() {
 
           <div className="space-y-3.5 py-2">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-amber-300 flex items-center gap-1">
+              <label className="text-xs font-semibold text-amber-600 dark:text-amber-300 flex items-center gap-1">
                 <span>{t("anti_trigger_plan.if_question", "SE (Qual è il trigger o situazione a rischio?)")}</span>
               </label>
               <Input
                 placeholder={t("anti_trigger_plan.if_placeholder", "Es. Mi sento solo / annoiato a tarda notte...")}
                 value={newPlan.trigger}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, trigger: e.target.value }))}
-                className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
+                className="bg-muted/40 dark:bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
 
@@ -295,7 +295,7 @@ export function AntiTriggerPlanSection() {
                 placeholder={t("anti_trigger_plan.then_placeholder", "Es. Faccio 15 piegamenti o metto il telefono in cucina...")}
                 value={newPlan.action}
                 onChange={(e) => setNewPlan((prev) => ({ ...prev, action: e.target.value }))}
-                className="bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
+                className="bg-muted/40 dark:bg-slate-900 border-border/60 focus:border-[#4D87D9] text-xs sm:text-sm h-10 rounded-xl"
               />
             </div>
 

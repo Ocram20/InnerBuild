@@ -51,6 +51,14 @@ export default function Landing() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const hasAuthToken = params.has("code") || hashParams.has("access_token") || hashParams.get("type") === "signup" || hashParams.get("type") === "email_confirmation";
+
+    if (hasAuthToken) {
+      navigate(`/auth/callback${window.location.search}${window.location.hash}`, { replace: true });
+      return;
+    }
+
     const noRedirect = params.get("no_redirect") === "true";
     
     if (!loading && user && !noRedirect) {

@@ -107,7 +107,7 @@ export function CravingActionsSection() {
                 className={`relative flex flex-col justify-between p-3.5 rounded-2xl text-left transition-all duration-150 border ${
                   isCompleted
                     ? "bg-emerald-500/10 border-emerald-500/60 shadow-[0_0_16px_rgba(16,185,129,0.25)]"
-                    : "bg-slate-900/60 hover:bg-slate-800/80 border-border/50 hover:border-emerald-500/30"
+                    : "bg-card hover:bg-muted/80 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border-border/50 hover:border-emerald-500/30"
                 }`}
               >
                 <div className="flex items-center justify-between w-full mb-2">

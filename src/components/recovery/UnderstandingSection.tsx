@@ -23,7 +23,7 @@ export function UnderstandingSection() {
           </p>
 
           {/* Visual Dopamine Comparison Bar */}
-          <div className="space-y-4 bg-[#0f1419]/90 p-4 rounded-2xl border border-border/60">
+          <div className="space-y-4 bg-muted/40 dark:bg-[#0f1419]/90 p-4 rounded-2xl border border-border/60">
             {/* Natural Baseline */}
             <div>
               <div className="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
@@ -33,7 +33,7 @@ export function UnderstandingSection() {
                 </span>
                 <span className="text-[#4b9b75] dark:text-[#5ec396]">100% - 150%</span>
               </div>
-              <div className="h-3.5 w-full bg-slate-800 rounded-full overflow-hidden p-0.5">
+              <div className="h-3.5 w-full bg-muted dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
                 <div className="h-full bg-[#4b9b75] dark:bg-[#5ec396] rounded-full w-[40%]" />
               </div>
             </div>
@@ -47,7 +47,7 @@ export function UnderstandingSection() {
                 </span>
                 <span className="text-[#4D87D9] dark:text-[#619BF0]">200% - 500%+</span>
               </div>
-              <div className="h-3.5 w-full bg-slate-800 rounded-full overflow-hidden p-0.5">
+              <div className="h-3.5 w-full bg-muted dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
                 <div className="h-full bg-gradient-to-r from-[#4D87D9] to-[#9B5BDB] rounded-full w-[92%]" />
               </div>
             </div>
@@ -73,7 +73,7 @@ export function UnderstandingSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
             {/* Phase 1 */}
-            <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#4D87D9]/30 space-y-1.5 relative overflow-hidden">
+            <div className="p-4 rounded-2xl bg-card dark:bg-[#0f1419]/90 border border-[#4D87D9]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#4D87D9] dark:bg-[#619BF0] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#4D87D9] dark:text-[#619BF0] uppercase tracking-wider block">
                 0-7 {t("common.days_upper", "GIORNI")}
@@ -85,7 +85,7 @@ export function UnderstandingSection() {
             </div>
 
             {/* Phase 2 */}
-            <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#9B5BDB]/30 space-y-1.5 relative overflow-hidden">
+            <div className="p-4 rounded-2xl bg-card dark:bg-[#0f1419]/90 border border-[#9B5BDB]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#9B5BDB] dark:bg-[#C377D7] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#9B5BDB] dark:text-[#C377D7] uppercase tracking-wider block">
                 8-30 {t("common.days_upper", "GIORNI")}
@@ -97,7 +97,7 @@ export function UnderstandingSection() {
             </div>
 
             {/* Phase 3 */}
-            <div className="p-4 rounded-2xl bg-[#0f1419]/90 border border-[#4b9b75]/30 space-y-1.5 relative overflow-hidden">
+            <div className="p-4 rounded-2xl bg-card dark:bg-[#0f1419]/90 border border-[#4b9b75]/30 space-y-1.5 relative overflow-hidden">
               <div className="h-1 bg-[#4b9b75] dark:bg-[#5ec396] absolute top-0 left-0 right-0" />
               <span className="text-xs font-extrabold text-[#4b9b75] dark:text-[#5ec396] uppercase tracking-wider block">
                 30-90 {t("common.days_upper", "GIORNI")}
@@ -168,7 +168,7 @@ export function UnderstandingSection() {
   return (
     <div className="space-y-3">
       {/* Slide Navigation Controls */}
-      <Card className="border-border/60 bg-[#192028]/95 backdrop-blur-md shadow-xl overflow-hidden rounded-3xl relative">
+      <Card className="border-border/60 bg-card dark:bg-[#192028]/95 backdrop-blur-md shadow-xl overflow-hidden rounded-3xl relative">
         <CardContent className="p-5 sm:p-7 space-y-5">
           {/* Header Controls */}
           <div className="flex items-center justify-between">
@@ -192,7 +192,7 @@ export function UnderstandingSection() {
                 variant="outline"
                 size="icon"
                 onClick={prevSlide}
-                className="h-9 w-9 rounded-full border-border/60 bg-slate-900/60 hover:bg-slate-800"
+                className="h-9 w-9 rounded-full border-border/60 bg-background hover:bg-muted dark:bg-slate-900/60 dark:hover:bg-slate-800"
               >
                 <ChevronLeft className="h-4 w-4 text-foreground" />
               </Button>
@@ -200,7 +200,7 @@ export function UnderstandingSection() {
                 variant="outline"
                 size="icon"
                 onClick={nextSlide}
-                className="h-9 w-9 rounded-full border-border/60 bg-slate-900/60 hover:bg-slate-800"
+                className="h-9 w-9 rounded-full border-border/60 bg-background hover:bg-muted dark:bg-slate-900/60 dark:hover:bg-slate-800"
               >
                 <ChevronRight className="h-4 w-4 text-foreground" />
               </Button>
@@ -230,7 +230,7 @@ export function UnderstandingSection() {
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentSlide
                     ? "w-8 bg-[#4D87D9] dark:bg-[#619BF0]"
-                    : "w-2 bg-slate-700 hover:bg-slate-600"
+                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                 }`}
               />
             ))}

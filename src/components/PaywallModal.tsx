@@ -12,6 +12,7 @@ interface PaywallModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   reason?: PaywallReason;
+  onUpgrade?: () => void;
 }
 
 const reasonIcons: Record<PaywallReason, React.ReactNode> = {
@@ -28,7 +29,7 @@ const featureKeys = [
   "paywall.features.recovery", "paywall.features.trigger_tracking", "paywall.features.learn", "paywall.features.priority",
 ];
 
-export default function PaywallModal({ open, onOpenChange, reason = "general" }: PaywallModalProps) {
+export default function PaywallModal({ open, onOpenChange, reason = "general", onUpgrade }: PaywallModalProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const reasonTitleKey = `paywall.${reason}_title`;
@@ -36,7 +37,11 @@ export default function PaywallModal({ open, onOpenChange, reason = "general" }:
 
   const handleUpgrade = () => {
     onOpenChange(false);
-    navigate("/pricing");
+    if (onUpgrade) {
+      onUpgrade();
+    } else {
+      navigate("/pricing");
+    }
   };
 
   return (

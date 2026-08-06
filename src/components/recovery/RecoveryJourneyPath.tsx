@@ -143,11 +143,11 @@ export function RecoveryJourneyPath({ progress }: Props) {
               </p>
             </div>
           </div>
-          <span className="text-2xl sm:text-3xl p-1.5 rounded-xl bg-slate-900/60 border border-border/40 shadow-sm">{progress.currentPhase.icon}</span>
+          <span className="text-2xl sm:text-3xl p-1.5 rounded-xl bg-muted/60 dark:bg-slate-900/60 border border-border/40 shadow-sm">{progress.currentPhase.icon}</span>
         </div>
 
         {/* Phase description */}
-        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed bg-slate-950/40 p-3 rounded-xl border border-border/30">
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed bg-muted/40 dark:bg-slate-950/40 p-3 rounded-xl border border-border/30">
           {t(`recovery_journey.phases.${progress.currentPhase.id}.description`)}
         </p>
 
@@ -200,15 +200,15 @@ export function RecoveryJourneyPath({ progress }: Props) {
 
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-2.5 text-center">
-          <div className="rounded-xl bg-[#192028]/60 border border-[#4b9b75]/20 p-2.5 shadow-sm">
+          <div className="rounded-xl bg-[#4b9b75]/10 border border-[#4b9b75]/20 p-2.5 shadow-sm">
             <p className="text-sm font-bold text-[#4b9b75] dark:text-[#5ec396]">{progress.successCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.clean_days")}</p>
           </div>
-          <div className="rounded-xl bg-[#192028]/60 border border-[#ef4444]/20 p-2.5 shadow-sm">
+          <div className="rounded-xl bg-[#ef4444]/10 border border-[#ef4444]/20 p-2.5 shadow-sm">
             <p className="text-sm font-bold text-[#ef4444]">{progress.failureCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.setbacks")}</p>
           </div>
-          <div className="rounded-xl bg-[#192028]/60 border border-[#8b5cf6]/20 p-2.5 shadow-sm">
+          <div className="rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 p-2.5 shadow-sm">
             <p className="text-sm font-bold text-[#8b5cf6] dark:text-[#9b5bdb]">{progress.debriefCount}</p>
             <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{t("recovery_journey.debriefs", "Debrief")}</p>
           </div>
@@ -219,7 +219,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
           variant="outline"
           size="sm"
           onClick={fetchAIInsight}
-          className="w-full gap-2 text-xs h-10 border-border/60 bg-slate-900/40 hover:bg-slate-900/80 rounded-xl transition-all"
+          className="w-full gap-2 text-xs h-10 border-border/60 bg-muted/30 hover:bg-muted dark:bg-slate-900/40 dark:hover:bg-slate-900/80 rounded-xl transition-all"
         >
           <Sparkles className="h-3.5 w-3.5 text-primary animate-pulse" />
           <span>{alreadyUsedToday ? t("recovery_journey.view_insight") : t("recovery_journey.ai_insight")}</span>
@@ -227,7 +227,7 @@ export function RecoveryJourneyPath({ progress }: Props) {
         </Button>
 
         {expanded && (
-          <div className="rounded-xl bg-slate-950/70 border border-border/50 p-4 animate-fade-in shadow-inner">
+          <div className="rounded-xl bg-muted/50 dark:bg-slate-950/70 border border-border/50 p-4 animate-fade-in shadow-inner">
             {aiLoading ? (
               <div className="flex items-center justify-center gap-2 py-3">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />

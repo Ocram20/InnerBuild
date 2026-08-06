@@ -85,11 +85,11 @@ export function FailureDebriefSection() {
               <Button
                 variant="outline"
                 onClick={() => setShowHistory(true)}
-                className="flex items-center gap-2 h-11 rounded-xl border-border/60 bg-slate-900/40 hover:bg-slate-900/80"
+                className="flex items-center gap-2 h-11 rounded-xl border-border/60 bg-muted/60 hover:bg-muted dark:bg-slate-900/40 dark:hover:bg-slate-900/80"
               >
-                <History className="w-4 h-4 text-muted-foreground" />
-                <span className="hidden sm:inline text-xs">{t("failure_debrief.history")}</span>
-                <span className="text-[10px] font-bold bg-[#6c8093]/20 text-[#6c8093] dark:text-slate-300 border border-[#6c8093]/30 px-2 py-0.5 rounded-full">
+                <History className="w-4 h-4 text-foreground/80" />
+                <span className="hidden sm:inline text-xs text-foreground">{t("failure_debrief.history")}</span>
+                <span className="text-[10px] font-bold bg-muted-foreground/15 text-foreground dark:text-slate-300 border border-border/40 px-2 py-0.5 rounded-full">
                   {completedDebriefs.length}
                 </span>
               </Button>
