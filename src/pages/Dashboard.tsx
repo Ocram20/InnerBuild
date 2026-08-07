@@ -65,7 +65,7 @@ export default function Dashboard() {
   const { subscription, openPortal } = useSubscription();
   const { isPremium } = usePremiumLimits();
   const { journey, checkIns, hasCheckedInToday, checkIn } = useRecoveryJourney();
-  const { preferences, loading: prefsLoading } = useCategoryPreferences();
+  const { preferences, loading: prefsLoading, saveAllPreferences } = useCategoryPreferences();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -290,11 +290,12 @@ export default function Dashboard() {
         open={shouldShowOnboarding}
         onComplete={async (focus, prefs) => {
           await markCompleted(focus, prefs);
-          window.location.reload();
+          await saveAllPreferences(prefs);
+          fetchDataSilently();
         }}
         onSkip={async () => {
           await skipOnboarding();
-          window.location.reload();
+          fetchDataSilently();
         }}
       />
       <BottomNavigation />

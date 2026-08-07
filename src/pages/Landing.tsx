@@ -50,6 +50,22 @@ export default function Landing() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   useEffect(() => {
+    const scrollToPricingIfNeeded = () => {
+      if (window.location.hash === "#pricing") {
+        setTimeout(() => {
+          const el = document.getElementById("pricing");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 150);
+      }
+    };
+    scrollToPricingIfNeeded();
+    window.addEventListener("hashchange", scrollToPricingIfNeeded);
+    return () => window.removeEventListener("hashchange", scrollToPricingIfNeeded);
+  }, []);
+
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
     const hasAuthToken = params.has("code") || hashParams.has("access_token") || hashParams.get("type") === "signup" || hashParams.get("type") === "email_confirmation";
@@ -262,7 +278,7 @@ export default function Landing() {
                     const el = document.getElementById("pricing");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="h-14 rounded-full border-border/70 bg-card/40 px-8 text-base font-medium backdrop-blur transition-all duration-300 hover:bg-card hover:scale-[1.02] active:scale-95"
+                  className="h-14 rounded-full border border-[#C377D7]/40 bg-[#f4e6f8]/80 dark:bg-[#C377D7]/20 px-8 text-base font-bold text-[#8A3DB8] dark:text-[#D28CE4] backdrop-blur shadow-sm transition-all duration-300 hover:bg-[#C377D7] hover:text-white dark:hover:bg-[#C377D7] dark:hover:text-white hover:border-[#C377D7] hover:shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] active:scale-95"
                 >
                   {t("landing.view_pricing")}
                 </Button>

@@ -83,5 +83,25 @@ export const useCategoryPreferences = () => {
     }
   };
 
-  return { preferences, loading, updatePreference };
+  const saveAllPreferences = async (newPreferences: CategoryPreferences) => {
+    if (!user) return;
+    setPreferences(newPreferences);
+
+    try {
+      const { error } = await (supabase.from("profiles") as any)
+        .update({ category_preferences: newPreferences })
+        .eq("user_id", user.id);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error("Error saving category preferences:", error);
+      toast({
+        title: t("common.error"),
+        description: t("explore.settings.update_error"),
+        variant: "destructive",
+      });
+    }
+  };
+
+  return { preferences, loading, updatePreference, setPreferences, saveAllPreferences, refetch: fetchPreferences };
 };

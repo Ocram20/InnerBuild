@@ -92,10 +92,15 @@ export function useOnboarding() {
         updateData.category_preferences = categoryPreferences;
       }
 
-      await supabase
+      const { error } = await supabase
         .from("profiles")
         .update(updateData)
         .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Failed to save onboarding in profile DB:", error);
+        throw error;
+      }
     } catch (err) {
       console.error("Failed to save onboarding in profile DB:", err);
     }

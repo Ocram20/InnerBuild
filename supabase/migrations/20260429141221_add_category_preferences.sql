@@ -1,1 +1,1 @@
-ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS category_preferences JSONB DEFAULT '{"habits": true, "daily-planning": true, "evening-reflection": true, "challenges": false, "coach": false, "trigger-tracking": false, "the-forge": false}'::JSONB;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS category_preferences JSONB DEFAULT '{"habits": true, "daily-planning": true, "evening-reflection": true, "challenges": true, "coach": false, "trigger-tracking": false, "the-forge": false}'::JSONB;

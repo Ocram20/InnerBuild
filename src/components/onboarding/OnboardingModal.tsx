@@ -176,8 +176,14 @@ export default function OnboardingModal({ open, onComplete, onSkip }: Onboarding
 
   const handlePaywallUpgrade = async () => {
     setShowPaywall(false);
-    await submitOnboarding(toolsState);
-    navigate("/pricing");
+    const freeOnlyPrefs: CategoryPreferences = {
+      ...toolsState,
+      "the-forge": false,
+      "trigger-tracking": false,
+      coach: false,
+    };
+    await submitOnboarding(freeOnlyPrefs);
+    navigate("/?no_redirect=true#pricing");
   };
 
   const handlePaywallClose = async (isOpen: boolean) => {

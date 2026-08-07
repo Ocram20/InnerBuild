@@ -12,7 +12,7 @@
  *      3. After the change we hash & store the new password and prune old entries.
  */
 
-import bcrypt from "bcryptjs";
+import { hash, compare } from "bcryptjs";
 import { supabase } from "@/integrations/supabase/client";
 
 const SALT_ROUNDS = 10;
@@ -50,9 +50,9 @@ export async function isPasswordAlreadyUsed(
 
     if (error || !data || data.length === 0) return false;
 
-    // bcrypt.compare handles the per-hash salt automatically
+    // compare handles the per-hash salt automatically
     for (const row of data as PasswordHistoryRow[]) {
-      const match = await bcrypt.compare(plainPassword, row.password_hash);
+      const match = await compare(plainPassword, row.password_hash);
       if (match) return true;
     }
 
@@ -75,11 +75,11 @@ export async function storePasswordHash(
   plainPassword: string
 ): Promise<void> {
   try {
-    const hash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
+    const passwordHash = await hash(plainPassword, SALT_ROUNDS);
 
     const { error: insertError } = await (supabase as any)
       .from("password_history")
-      .insert({ user_id: userId, password_hash: hash });
+      .insert({ user_id: userId, password_hash: passwordHash });
 
     if (insertError) {
       console.error("passwordHistory: insert error", insertError);
