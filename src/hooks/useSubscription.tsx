@@ -77,7 +77,7 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
     }
   };
 
-  const createCheckout = async (options?: { isAnnual?: boolean; priceId?: string }) => {
+  const createCheckout = async (options?: { isAnnual?: boolean; priceId?: string; couponId?: string }) => {
     if (!session?.access_token) {
       throw new Error("Not authenticated");
     }
@@ -88,13 +88,23 @@ export function useSubscription(options: UseSubscriptionOptions = {}) {
           locale: getPreferredTranslationLanguage(),
           isAnnual: options?.isAnnual ?? false,
           priceId: options?.priceId,
+          couponId: options?.couponId,
         },
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },
       });
       
-      if (error) throw error;
+      if (error) {
+        let errorMessage = error.message;
+        if (error.context && typeof error.context.json === "function") {
+          try {
+            const body = await error.context.json();
+            if (body?.error) errorMessage = body.error;
+          } catch (_) {}
+        }
+        throw new Error(errorMessage);
+      }
       
       if (data?.url) {
         window.location.href = data.url;

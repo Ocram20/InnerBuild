@@ -1,3 +1,6 @@
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
@@ -192,27 +195,74 @@ serve(async (req) => {
     const { origin } = new URL(req.url);
     const baseUrl = req.headers.get("origin") || origin;
 
-    const session = await stripe.checkout.sessions.create({
-      customer: customerId,
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency: "eur",
-            unit_amount: 999,
-            recurring: { interval: "month" },
-            product_data: {
-              name: checkoutCopy.name,
-              description: checkoutCopy.description,
-            },
+    const isAnnual = Boolean(requestBody?.isAnnual);
+    const couponId = requestBody?.couponId || Deno.env.get("STRIPE_ANNUAL_COUPON_ID") || "n6FBk13r";
+    const productId = Deno.env.get("STRIPE_PRODUCT_ID")?.trim();
+    const priceId = requestBody?.priceId || Deno.env.get("STRIPE_PRICE_ID")?.trim();
+
+    let lineItem: Stripe.Checkout.SessionCreateParams.LineItem;
+
+    if (priceId) {
+      lineItem = { price: priceId, quantity: 1 };
+    } else if (productId) {
+      lineItem = {
+        quantity: 1,
+        price_data: {
+          currency: "eur",
+          unit_amount: 999,
+          recurring: { interval: "month" },
+          product: productId,
+        },
+      };
+    } else {
+      lineItem = {
+        quantity: 1,
+        price_data: {
+          currency: "eur",
+          unit_amount: 999,
+          recurring: { interval: "month" },
+          product_data: {
+            name: checkoutCopy.name,
+            description: checkoutCopy.description,
           },
         },
-      ],
+      };
+    }
+
+    const sessionParams: Stripe.Checkout.SessionCreateParams = {
+      customer: customerId,
+      line_items: [lineItem],
       mode: "subscription",
       locale: checkoutLocale,
       success_url: `${baseUrl}/dashboard?success=true`,
       cancel_url: `${baseUrl}/pricing?canceled=true`,
-    });
+    };
+
+    if (isAnnual && couponId) {
+      try {
+        sessionParams.discounts = [{ coupon: couponId }];
+        const session = await stripe.checkout.sessions.create(sessionParams);
+        return new Response(JSON.stringify({ url: session.url }), {
+          headers: jsonHeaders,
+          status: 200,
+        });
+      } catch (couponError: any) {
+        console.warn("Checkout with coupon failed, attempting promotion_code:", couponError?.message);
+        try {
+          const promoParams = { ...sessionParams, discounts: [{ promotion_code: couponId }] };
+          const session = await stripe.checkout.sessions.create(promoParams);
+          return new Response(JSON.stringify({ url: session.url }), {
+            headers: jsonHeaders,
+            status: 200,
+          });
+        } catch (promoError: any) {
+          console.error("Checkout with discount failed:", couponError?.message);
+          throw couponError;
+        }
+      }
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: jsonHeaders,
