@@ -80,6 +80,7 @@ export function useOnboarding() {
 
     try {
       const updateData: Record<string, unknown> = {
+        user_id: user.id,
         has_completed_onboarding: true,
         updated_at: new Date().toISOString(),
       };
@@ -92,10 +93,8 @@ export function useOnboarding() {
         updateData.category_preferences = categoryPreferences;
       }
 
-      const { error } = await supabase
-        .from("profiles")
-        .update(updateData)
-        .eq("user_id", user.id);
+      const { error } = await (supabase.from("profiles") as any)
+        .upsert(updateData, { onConflict: "user_id" });
 
       if (error) {
         console.error("Failed to save onboarding in profile DB:", error);
