@@ -6,7 +6,7 @@ import { useAdminAccess } from "@/hooks/useAdminAccess";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Home, Crown, CreditCard, Loader2 } from "lucide-react";
+import { ArrowLeft, Home, Crown, CreditCard, Loader2, Bell, ChevronRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { ProfileInfoSection } from "@/components/profile/ProfileInfoSection";
@@ -214,6 +214,28 @@ export default function Profile() {
               <LoadingSpinner />
             </div>
           )}
+
+          {/* Notification Settings Link */}
+          <button
+            type="button"
+            onClick={() => navigate("/notification-settings")}
+            className="w-full text-left glass rounded-2xl p-4 transition-all duration-300 hover:shadow-soft hover:scale-[1.01] active:scale-[0.98] flex items-center justify-between group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0 transition-transform group-hover:scale-105">
+                <Bell className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-foreground">
+                  {t("notifications_settings.title", "Impostazioni Notifiche")}
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  {t("notifications_settings.subtitle", "Controllo granulare promemoria PWA")}
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          </button>
 
           <WhatsWorkingSection />
           <ActivityCalendar />

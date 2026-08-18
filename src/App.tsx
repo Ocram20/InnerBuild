@@ -25,6 +25,7 @@ import Explore from "./pages/Explore";
 import TriggerTracking from "./pages/TriggerTracking";
 import Learn from "./pages/Learn";
 import EveningReflection from "./pages/EveningReflection";
+import NotificationSettings from "./pages/NotificationSettings";
 import Admin from "./pages/Admin";
 import ChallengeJourney from "./pages/ChallengeJourney";
 import NotFound from "./pages/NotFound";
@@ -112,6 +113,14 @@ const App = () => (
                 element={
                   <ProtectedRoute requireSubscription={false}>
                     <EveningReflection />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/notification-settings" 
+                element={
+                  <ProtectedRoute requireSubscription={false}>
+                    <NotificationSettings />
                   </ProtectedRoute>
                 } 
               />
