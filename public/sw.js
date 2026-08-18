@@ -14,7 +14,7 @@ self.addEventListener("push", (event) => {
     title: "InnerBuild Reminder",
     body: "Prenditi un momento per la tua crescita oggi!",
     icon: "/pwa-icon-192.png",
-    badge: "/favicon.png",
+    badge: "/badge-96x96.png",
     data: { url: "/dashboard" },
   };
 
@@ -29,7 +29,7 @@ self.addEventListener("push", (event) => {
   const options = {
     body: notificationData.body,
     icon: notificationData.icon || "/pwa-icon-192.png",
-    badge: notificationData.badge || "/favicon.png",
+    badge: notificationData.badge || "/badge-96x96.png",
     vibrate: [100, 50, 100],
     data: notificationData.data || { url: "/dashboard" },
     actions: notificationData.actions || [

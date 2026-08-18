@@ -50,7 +50,7 @@ export function useNotificationScheduler() {
                 reg.showNotification(title, {
                   body,
                   icon: "/pwa-icon-192.png",
-                  badge: "/favicon.png",
+                  badge: "/badge-96x96.png",
                   vibrate: [100, 50, 100],
                   data: { url },
                 } as NotificationOptions);
@@ -61,7 +61,7 @@ export function useNotificationScheduler() {
                   new Notification(title, {
                     body,
                     icon: "/pwa-icon-192.png",
-                    badge: "/favicon.png",
+                    badge: "/badge-96x96.png",
                   });
                 } catch (e) {
                   console.error("Standard notification fallback error:", e);
@@ -72,7 +72,7 @@ export function useNotificationScheduler() {
               new Notification(title, {
                 body,
                 icon: "/pwa-icon-192.png",
-                badge: "/favicon.png",
+                badge: "/badge-96x96.png",
               });
             } catch (e) {
               console.error("Standard notification creation error:", e);
