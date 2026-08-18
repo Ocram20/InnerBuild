@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import LandingFooter from "@/components/LandingFooter";
 import LandingAppPreview from "@/components/LandingAppPreview";
+import FeatureShowcase from "@/components/FeatureShowcase";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -120,24 +121,6 @@ export default function Landing() {
       setCheckoutLoading(false);
     }
   };
-
-  const mainFeatureDefs = [
-    { icon: Target, titleKey: "landing.features.smart_habit_tracking", descKey: "landing.features.smart_habit_desc", color: "text-emerald-500", bgColor: "bg-emerald-500/10" },
-    { icon: Flame, titleKey: "landing.features.detox_challenges", descKey: "landing.features.detox_challenges_desc", color: "text-orange-500", bgColor: "bg-orange-500/10" },
-    { icon: Eye, titleKey: "landing.features.the_forge", descKey: "landing.features.the_forge_desc", color: "text-violet-500", bgColor: "bg-violet-500/10" },
-    { icon: Bot, titleKey: "landing.features.ai_coach", descKey: "landing.features.ai_coach_desc", color: "text-primary", bgColor: "bg-primary/10" },
-    { icon: ShieldAlert, titleKey: "landing.features.trigger_tracking", descKey: "landing.features.trigger_tracking_desc", color: "text-rose-500", bgColor: "bg-rose-500/10" },
-    { icon: CalendarCheck, titleKey: "landing.features.daily_planning", descKey: "landing.features.daily_planning_desc", color: "text-indigo-500", bgColor: "bg-indigo-500/10" },
-  ];
-
-  const additionalFeatureDefs = [
-    { icon: Brain, titleKey: "landing.features.ai_habit_adaptation" },
-    { icon: BookOpen, titleKey: "landing.features.learn_section" },
-    { icon: Shield, titleKey: "landing.features.streak_tracking" },
-    { icon: Zap, titleKey: "landing.features.micro_actions" },
-    { icon: Ban, titleKey: "landing.features.not_to_do_list" },
-    { icon: Clock, titleKey: "landing.features.recovery_timeline" },
-  ];
 
   const statDefs = [
     { value: "90+", labelKey: "landing.stats.recovery_days" },
@@ -312,53 +295,19 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Main Features — bento */}
-        <section className="px-4 py-16 md:py-24">
-          <div className="mx-auto max-w-6xl">
-            <ScrollReveal className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t("landing.features_eyebrow", "Funzionalità")}</p>
-              <h2 className="text-balance text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
-                {t("landing.everything_you_need", "Tutto ciò che serve per trasformarti")}
-              </h2>
-            </ScrollReveal>
+        {/* Interactive Feature Showcase Section */}
+        <section className="px-4 py-12 md:py-20 overflow-hidden">
+          <ScrollReveal className="mb-8 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t("landing.features_eyebrow", "Funzionalità")}</p>
+            <h2 className="text-balance text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              {t("landing.everything_you_need", "Tutto ciò che serve per trasformarti")}
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+              Esplora gli strumenti interattivi di InnerBuild e guarda come funzionano in anteprima.
+            </p>
+          </ScrollReveal>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {mainFeatureDefs.map((feat, idx) => {
-                const Icon = feat.icon;
-                return (
-                  <ScrollReveal key={feat.titleKey} delay={idx * 60} variant="scale">
-                    <div className="premium-card group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1">
-                      <div>
-                        <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${feat.bgColor}`}>
-                          <Icon className={`h-6 w-6 ${feat.color}`} />
-                        </div>
-                        <h3 className="mb-2 text-xl font-bold tracking-tight text-foreground">{t(feat.titleKey)}</h3>
-                        <p className="text-sm leading-relaxed text-muted-foreground">{t(feat.descKey)}</p>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
-
-            {/* Additional features — elegant chips */}
-            <ScrollReveal className="mt-12" delay={300}>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                {additionalFeatureDefs.map((feat) => {
-                  const Icon = feat.icon;
-                  return (
-                    <div
-                      key={feat.titleKey}
-                      className="premium-card flex flex-col items-center gap-2 rounded-2xl p-4 text-center transition-all duration-300 hover:border-primary/40 hover:-translate-y-0.5"
-                    >
-                      <Icon className="h-5 w-5 text-primary" />
-                      <span className="text-xs font-semibold text-foreground">{t(feat.titleKey)}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
-          </div>
+          <FeatureShowcase />
         </section>
 
         {/* Stats bar */}
