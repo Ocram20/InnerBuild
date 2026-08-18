@@ -303,7 +303,7 @@ export default function Landing() {
               {t("landing.everything_you_need", "Tutto ciò che serve per trasformarti")}
             </h2>
             <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-              Esplora gli strumenti interattivi di InnerBuild e guarda come funzionano in anteprima.
+              {t("landing.features_sub", "Esplora gli strumenti interattivi di InnerBuild e guarda come funzionano in anteprima.")}
             </p>
           </ScrollReveal>
 

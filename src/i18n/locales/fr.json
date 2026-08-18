@@ -205,6 +205,7 @@
   "landing": {
     "everything_you_need": "Tout ce dont vous avez besoin pour vous transformer",
     "everything_you_need_sub": "Une boîte à outils complète conçue pour accompagner votre parcours dès le premier jour.",
+    "features_sub": "Explorez les outils interactifs d'InnerBuild et voyez comment ils fonctionnent en aperçu.",
     "features": {
       "smart_habit_tracking": "Suivi Intelligent des Habitudes",
       "smart_habit_desc": "Suivez vos habitudes quotidiennes avec des progrès visuels et des conseils d'IA.",
