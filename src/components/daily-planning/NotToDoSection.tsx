@@ -72,7 +72,7 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
       console.error("Error fetching not-to-do items:", itemsError);
     } else {
       const typedData: NotToDoItem[] = (itemsData || []).map((item: any) => {
-        const log = logsData?.find((l: any) => l.item_id === item.id);
+        const log = logsData?.find((l: any) => l.not_to_do_id === item.id || l.item_id === item.id);
         return {
           id: item.id,
           title: item.title,
@@ -136,18 +136,37 @@ export function NotToDoSection({ userId, targetDate, planningMode }: NotToDoSect
         .select()
         .single();
       error = res.error;
-    } else {
-      const res = await untypedTable("not_to_do_logs")
-        .insert({
-          not_to_do_id: item.id,
-          user_id: userId,
-          log_date: targetDate,
-          status: newStatus,
-        })
-        .select()
-        .single();
-      error = res.error;
       if (res.data) newLogId = res.data.id;
+    } else {
+      // Check if a log already exists for this not_to_do item on this target date to prevent 409 Conflict
+      const { data: existingLog } = await untypedTable("not_to_do_logs")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("not_to_do_id", item.id)
+        .eq("log_date", targetDate)
+        .maybeSingle();
+
+      if (existingLog) {
+        const res = await untypedTable("not_to_do_logs")
+          .update({ status: newStatus })
+          .eq("id", existingLog.id)
+          .select()
+          .single();
+        error = res.error;
+        if (res.data) newLogId = res.data.id;
+      } else {
+        const res = await untypedTable("not_to_do_logs")
+          .insert({
+            not_to_do_id: item.id,
+            user_id: userId,
+            log_date: targetDate,
+            status: newStatus,
+          })
+          .select()
+          .single();
+        error = res.error;
+        if (res.data) newLogId = res.data.id;
+      }
     }
 
     if (error) {
