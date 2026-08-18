@@ -41,9 +41,15 @@ export default function NotificationSettings() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const [permissionStatus, setPermissionStatus] = useState<NotificationPermission>(
-    typeof window !== "undefined" && "Notification" in window ? Notification.permission : "default"
-  );
+  const [permissionStatus, setPermissionStatus] = useState<NotificationPermission>(() => {
+    try {
+      return typeof window !== "undefined" && "Notification" in window && Notification?.permission
+        ? Notification.permission
+        : "default";
+    } catch {
+      return "default";
+    }
+  });
 
   const [saving, setSaving] = useState(false);
   const [testingNotification, setTestingNotification] = useState<string | null>(null);
@@ -396,7 +402,7 @@ export default function NotificationSettings() {
           <div className="space-y-2.5 pt-1">
             {habitConfigs.length > 0 ? (
               habitConfigs.map((habit) => {
-                const localizedTitle = localizeSuggestedHabitTitle(habit.rawTitle, t);
+                const localizedTitle = localizeSuggestedHabitTitle(t, habit.rawTitle);
                 const habitTemplate = t(
                   "notifications_settings.templates.habit",
                   `È ora di ${localizedTitle}. Bastano pochi minuti per costruire costanza!`,

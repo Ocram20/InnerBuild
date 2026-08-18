@@ -2,6 +2,7 @@ import type { TFunction } from "i18next";
 import { supportedTranslationLanguages } from "@/lib/language";
 
 function normalize(s: string) {
+  if (typeof s !== "string") return "";
   return (s || "")
     .trim()
     .toLowerCase()
