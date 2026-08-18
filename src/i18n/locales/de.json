@@ -64,7 +64,8 @@
     "pro_tip": "Pro-Tipp",
     "because_gives_me": "Weil es mir gibt",
     "month": "Monat",
-    "refresh": "Aktualisieren"
+    "refresh": "Aktualisieren",
+    "add": "Aggiungi"
   },
   "auth": {
     "email_confirmed_title": "Konto erfolgreich bestätigt!",
@@ -318,6 +319,47 @@
       "terms": "Nutzungsbedingungen",
       "copyright": "© {{year}} InnerBuild. Alle Rechte vorbehalten. Mit Liebe für dein Wachstum gebaut <3.",
       "back_to_top": "Nach oben"
+    },
+    "privacy": {
+      "title": "Informativa Privacy",
+      "last_updated": "Ultimo aggiornamento: Febbraio 2026",
+      "back_home": "Torna alla Home",
+      "s1_title": "1. Introduzione",
+      "s1_content": "InnerBuild (\"noi\", \"nostro\") gestisce l'applicazione InnerBuild. Questa pagina ti informa sulle nostre politiche riguardanti la raccolta, l'uso e la divulgazione dei dati personali quando utilizzi il nostro servizio e sulle scelte che hai associate a quei dati.",
+      "s2_title": "2. Raccolta e Utilizzo delle Informazioni",
+      "s2_content": "Raccogliamo diversi tipi di informazioni per vari scopi per fornire e migliorare il nostro servizio.",
+      "s2_item1": "Indirizzo email per autenticazione e comunicazione",
+      "s2_item2": "Dati sulle abitudini e log personali che scegli di registrare",
+      "s2_item3": "Analisi sull'utilizzo per migliorare la nostra piattaforma",
+      "s2_item4": "Informazioni sul dispositivo per risolvere problemi",
+      "s3_title": "3. Sicurezza",
+      "s3_content": "La sicurezza dei tuoi dati è importante per noi, ma ricorda che nessun metodo di trasmissione su Internet o metodo di archiviazione elettronica è sicuro al 100%. Sebbene ci sforziamo di usare mezzi commercialmente accettabili per proteggere i tuoi dati personali, non possiamo garantirne la sicurezza assoluta.",
+      "s4_title": "4. Modifiche a Questa Informativa Privacy",
+      "s4_content": "Potremmo aggiornare la nostra Informativa Privacy di tanto in tanto. Ti notificheremo eventuali modifiche aggiornando la data \"Ultimo aggiornamento\" su questa pagina.",
+      "s5_title": "5. Contattaci",
+      "s5_content": "Se hai domande su questa Informativa Privacy, contattaci a"
+    },
+    "terms": {
+      "title": "Termini di Servizio",
+      "last_updated": "Ultimo aggiornamento: Febbraio 2026",
+      "back_home": "Torna alla Home",
+      "s1_title": "1. Accettazione dei Termini",
+      "s1_content": "Accedendo e utilizzando l'applicazione InnerBuild, accetti e accetti di essere vincolato dai termini e dalle disposizioni di questo accordo. Se non accetti di rispettare quanto sopra, non utilizzare questo servizio.",
+      "s2_title": "2. Licenza di Utilizzo",
+      "s2_content": "È concessa l'autorizzazione a scaricare temporaneamente una copia dei materiali (informazioni o software) su InnerBuild solo per la visione transitoria personale e non commerciale. Questa è la concessione di una licenza, non un trasferimento di titolo, e in base a questa licenza non puoi:",
+      "s2_item1": "Modificare o copiare i materiali",
+      "s2_item2": "Utilizzare i materiali per qualsiasi scopo commerciale o per qualsiasi display pubblico",
+      "s2_item3": "Tentare di decompilare o decodificare qualsiasi software contenuto su InnerBuild",
+      "s2_item4": "Rimuovere qualsiasi nota di copyright o altre notazioni di proprietà dai materiali",
+      "s2_item5": "Trasferire i materiali a un'altra persona o \"mirroring\" i materiali su qualsiasi altro server",
+      "s3_title": "3. Disclaimer",
+      "s3_content": "I materiali su InnerBuild sono forniti \"così come sono\". InnerBuild non rilascia garanzie, espresse o implicite, e con il presente nega e invalida tutte le altre garanzie, inclusi, senza limitazione, garanzie o condizioni implicite di commerciabilità, idoneità per uno scopo particolare, o non violazione di proprietà intellettuale o altra violazione di diritti.",
+      "s4_title": "4. Limitazioni",
+      "s4_content": "In nessun caso InnerBuild o i suoi fornitori saranno responsabili per qualsiasi danno (inclusi, senza limitazione, danni per perdita di dati o profitto, o dovuti a interruzione di attività) derivanti dall'uso o dall'impossibilità di utilizzare i materiali su InnerBuild.",
+      "s5_title": "5. Accuratezza dei Materiali",
+      "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
+      "s6_title": "6. Contattaci",
+      "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
     }
   },
   "explore": {
@@ -771,7 +813,15 @@
       "3": "Du machst es schon besser, indem du einfach hier bist",
       "4": "Beständigkeit schlägt Perfektion jedes Mal",
       "5": "Heute ist eine neue Gelegenheit zu wachsen"
-    }
+    },
+    "failed_clear": "Cancellazione chat fallita",
+    "hey_there": "Ciao! 👋",
+    "not_authenticated": "Non autenticato. Effettua l'accesso.",
+    "rate_limit": "Limite richieste superato. Riprova tra un momento.",
+    "auth_required": "Autenticazione richiesta. Accedi di nuovo.",
+    "api_error": "Chiave API non valida o quota superata.",
+    "failed_response": "Risposta fallita",
+    "failed_send": "Invio messaggio fallito"
   },
   "learn": {
     "title": "Lernen",
@@ -896,7 +946,10 @@
     "understanding_desc": "Moderne Online-Pornografie ist darauf ausgelegt, das Belohnungssystem deines Gehirns zu kapern. Die Wissenschaft dahinter zu verstehen, ist der erste Schritt zur Freiheit.",
     "brain_science_title": "Was im Gehirn passiert",
     "strategies_title": "Praktische Recovery-Strategien",
-    "strategies_desc": "Recovery bedeutet nicht nur aufzuhören – es bedeutet, ein Leben aufzubauen, in dem du die Flucht nicht brauchst. Diese Strategien adressieren sowohl das Verhalten als auch die zugrunde liegenden Bedürfnisse."
+    "strategies_desc": "Recovery bedeutet nicht nur aufzuhören – es bedeutet, ein Leben aufzubauen, in dem du die Flucht nicht brauchst. Diese Strategien adressieren sowohl das Verhalten als auch die zugrunde liegenden Bedürfnisse.",
+    "complete_guide_link": "Guida completa",
+    "manage_guide_link": "Guida gestione completa",
+    "learn_guide_link": "Guida apprendimento completo"
   },
   "trigger_tracking": {
     "analysis_title": "AI-Auslöser & Drang-Analyse",
@@ -992,7 +1045,8 @@
       "anger": "Wut",
       "loneliness": "Einsamkeit",
       "tiredness": "Müdigkeit",
-      "excitement": "Aufregung"
+      "excitement": "Aufregung",
+      "other": "Altro"
     },
     "situations": {
       "social_media": "Soziale Medien",
@@ -1029,7 +1083,11 @@
       "morning": "Morgen",
       "afternoon": "Nachmittag",
       "evening": "Abend"
-    }
+    },
+    "specify_emotion": "Specifica l'emozione",
+    "specify_situation": "Specifica la situazione",
+    "specify_location": "Specifica il luogo",
+    "required_field": "Campo obbligatorio"
   },
   "evening_reflection": {
     "moods": {
@@ -1247,7 +1305,18 @@
     "habit_updated_desc": "Geändert zu „{{title}}“",
     "failed_update_habit": "Die Gewohnheit konnte nicht aktualisiert werden",
     "suggestion_ignored_title": "Vorschlag ignoriert",
-    "suggestion_ignored_desc": "Die Gewohnheit bleibt unverändert"
+    "suggestion_ignored_desc": "Die Gewohnheit bleibt unverändert",
+    "four_days_no": "4 Giorni No",
+    "apply_all": "Applica Tutti gli Aggiustamenti",
+    "recovery_target": "Target Salvagente",
+    "adjustment_applied": "Aggiustamento Applicato!",
+    "all_applied_title": "Modalità Salvagente Attiva! ⚡",
+    "all_applied_desc": "Tutti gli aggiustamenti sono stati applicati per i prossimi 4 giorni.",
+    "declining": "in calo",
+    "accept_tooltip": "Accetta aggiustamento AI",
+    "dismiss_tooltip": "Ignora",
+    "default_advice": "Riduci l'obiettivo per ritrovare l'inerzia",
+    "badge_focus": "Focus {{days}}g"
   },
   "not_found": {
     "title": "404",
@@ -1881,14 +1950,21 @@
     "the_science": "Die Wissenschaft",
     "daily_steps": "Tägliche Schritte",
     "day_of": "Tag {{current}} / {{total}}",
-    "paused": "Pausiert"
+    "paused": "Pausiert",
+    "start_confirm_title": "Iniziare questa sfida?",
+    "start_confirm_desc": "Sei sicuro di voler iniziare questa sfida di {{days}} giorni? Una volta iniziata, non potrai annullare.",
+    "reset_confirm_title": "Ricominciare la sfida?",
+    "reset_confirm_desc": "Questo resetterà i tuoi progressi al giorno 0 e ripristinerà tutti i jolly. Sei sicuro?",
+    "delete_confirm_title": "Eliminare questa sfida?",
+    "delete_confirm_desc": "Questa azione è irreversibile. Tutti i progressi verranno persi. Sei sicuro di voler eliminare questa sfida?"
   },
   "today_overview": {
     "more_habits": "+{{count}} weitere Gewohnheiten",
     "no_habits": "Noch keine Gewohnheiten. Erstelle eine, um zu beginnen!",
     "all_done": "Alles erledigt für heute! Gute Arbeit!",
     "lets_go": "Lass uns den Tag nutzen!",
-    "left_count": "{{count}} übrig – du schaffst das!"
+    "left_count": "{{count}} übrig – du schaffst das!",
+    "more_tasks": "+{{count}} altre task"
   },
   "micro_actions": {
     "title": "Schnelle Erfolge",
@@ -2672,5 +2748,23 @@
       "explore_premium": "PRO-Paket entdecken",
       "continue": "Weiter"
     }
+  },
+  "manage_summary": {
+    "emergency_title": "Emergenza Impulso",
+    "emergency_desc": "Strumenti immediati per gestire le voglie intense",
+    "actions_title": "Azioni Contro Voglie",
+    "actions_desc": "5 azioni rapide per interrompere il ciclo",
+    "triggers_title": "Identifica Trigger",
+    "triggers_desc": "Riconosci i segnali e i pattern",
+    "plan_title": "Piano Anti-Trigger",
+    "plan_desc": "Prepara risposte per ogni situazione"
+  },
+  "learn_summary": {
+    "understanding_title": "Comprendere il Problema",
+    "understanding_desc": "Come la pornografia moderna influenza il cervello",
+    "brain_title": "Scienza del Cervello",
+    "brain_desc": "Il sistema di ricompensa e il recupero",
+    "strategies_title": "Strategie di Recovery",
+    "strategies_desc": "Tecniche pratiche per la guarigione"
   }
 }

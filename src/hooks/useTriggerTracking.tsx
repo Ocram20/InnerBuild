@@ -93,18 +93,30 @@ export function useTriggerTracking() {
   }) => {
     if (!user) return false;
 
-    const { error } = await untypedTable("trigger_logs")
-      .insert({
-        user_id: user.id,
-        bad_habit: data.bad_habit || null,
-        impulse_intensity: data.impulse_intensity,
-        emotion: data.emotion,
-        situation: data.situation,
-        time_context: data.time_context,
-        location_context: data.location_context || null,
-        was_alone: data.was_alone,
-        notes: data.notes || null,
-      });
+    const payload: Record<string, unknown> = {
+      user_id: user.id,
+      impulse_intensity: data.impulse_intensity,
+      emotion: data.emotion,
+      situation: data.situation,
+      time_context: data.time_context,
+      location_context: data.location_context || null,
+      was_alone: data.was_alone,
+      notes: data.notes || null,
+    };
+
+    if (data.bad_habit) {
+      payload.bad_habit = data.bad_habit;
+    }
+
+    let { error } = await untypedTable("trigger_logs").insert(payload);
+
+    // Fallback if bad_habit column is not in DB schema yet
+    if (error && (error as any).code === "PGRST204" && payload.bad_habit) {
+      console.warn("Retrying trigger log insert without bad_habit column:", error);
+      delete payload.bad_habit;
+      const retryResult = await untypedTable("trigger_logs").insert(payload);
+      error = retryResult.error;
+    }
 
     if (error) {
       console.error("Error logging trigger:", error);

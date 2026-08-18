@@ -1,3 +1,6 @@
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
 import { z } from "https://esm.sh/zod@3.23.8";
@@ -117,7 +120,7 @@ Respond ONLY with a valid JSON object: {"suggestions": ["suggestion1", "suggesti
         Authorization: `Bearer ${GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-120b",
         messages: [
           {
             role: "system",

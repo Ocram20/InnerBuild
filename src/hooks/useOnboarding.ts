@@ -26,7 +26,7 @@ export function useOnboarding() {
     }
 
     checkOnboardingStatus();
-  }, [user]);
+  }, [user?.id]);
 
   const checkOnboardingStatus = async () => {
     if (!user) return;
@@ -43,23 +43,51 @@ export function useOnboarding() {
 
     try {
       setLoading(true);
-      const { data, error } = await supabase
+      
+      // Try to fetch profile onboarding status
+      const { data: profile, error: profileError } = await supabase
         .from("profiles")
-        .select("has_completed_onboarding")
+        .select("has_completed_onboarding, primary_focus, category_preferences")
         .eq("user_id", user.id)
         .maybeSingle();
 
-      if (error) {
-        console.warn("Error fetching onboarding status:", error);
+      if (profileError) {
+        console.warn("Onboarding check profile notice:", profileError.message || profileError);
       }
 
-      const completed = (data as { has_completed_onboarding?: boolean })?.has_completed_onboarding === true;
-      if (completed) {
+      const hasOnboardingFlag = (profile as any)?.has_completed_onboarding === true;
+      const hasProfilePreferences = !!((profile as any)?.primary_focus || (profile as any)?.category_preferences);
+
+      if (hasOnboardingFlag || hasProfilePreferences) {
         localStorage.setItem(localKey, "true");
         setShouldShowOnboarding(false);
-      } else {
-        setShouldShowOnboarding(true);
+        setLoading(false);
+        return;
       }
+
+      // Fallback check: check if user already has active habits (existing user)
+      const { count: habitCount } = await supabase
+        .from("habits")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id);
+
+      if (habitCount && habitCount > 0) {
+        // User already has habits, they have used the app before
+        localStorage.setItem(localKey, "true");
+        setShouldShowOnboarding(false);
+        setLoading(false);
+        return;
+      }
+
+      // If profile error occurred, do not force onboarding on users
+      if (profileError && !profile) {
+        setShouldShowOnboarding(false);
+        setLoading(false);
+        return;
+      }
+
+      // Only show onboarding for brand new users
+      setShouldShowOnboarding(true);
     } catch (err) {
       console.error("Onboarding check error:", err);
       setShouldShowOnboarding(false);
@@ -97,11 +125,10 @@ export function useOnboarding() {
         .upsert(updateData, { onConflict: "user_id" });
 
       if (error) {
-        console.error("Failed to save onboarding in profile DB:", error);
-        throw error;
+        console.warn("Notice updating profile onboarding:", error.message || error);
       }
     } catch (err) {
-      console.error("Failed to save onboarding in profile DB:", err);
+      console.warn("Notice updating profile onboarding:", err);
     }
   };
 
@@ -114,6 +141,11 @@ export function useOnboarding() {
     loading,
     markCompleted,
     skipOnboarding,
-    dismissModal: () => setShouldShowOnboarding(false),
+    dismissModal: () => {
+      if (user) {
+        localStorage.setItem(`innerbuild_onboarding_${user.id}`, "true");
+      }
+      setShouldShowOnboarding(false);
+    },
   };
 }

@@ -1,5 +1,6 @@
 {
   "common": {
+    "add": "Add",
     "new_task": "New Task",
     "new": "New",
     "pro": "PRO",
@@ -1322,7 +1323,18 @@
     "habit_updated_desc": "Changed to \"{{title}}\"",
     "failed_update_habit": "Couldn't update the habit",
     "suggestion_ignored_title": "Suggestion ignored",
-    "suggestion_ignored_desc": "The habit stays unchanged"
+    "suggestion_ignored_desc": "The habit stays unchanged",
+    "apply_all": "Apply All Adjustments",
+    "all_applied_title": "Lifesaver Mode Active! ⚡",
+    "all_applied_desc": "All AI adjustments have been applied to regain momentum.",
+    "declining": "{{days}}d Focus",
+    "badge_focus": "{{days}}d Focus",
+    "accept_tooltip": "Accept AI adjustment",
+    "dismiss_tooltip": "Ignore",
+    "default_advice": "Reduce target to regain momentum",
+    "four_days_no": "4 Giorni No",
+    "recovery_target": "Target Salvagente",
+    "adjustment_applied": "Aggiustamento Applicato!"
   },
   "not_found": {
     "title": "404",

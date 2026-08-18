@@ -1,3 +1,6 @@
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
 
@@ -95,7 +98,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-120b",
         messages: [
           {
             role: "system",
@@ -112,7 +115,7 @@ serve(async (req) => {
     if (!response.ok) {
       const err = await response.text();
       console.error("Groq translate-ui-batch:", response.status, err);
-      throw new Error("AI API error");
+      throw new Error(`AI API error (${response.status})`);
     }
 
     const groqData = await response.json();

@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { normalizeBadHabitName, COMMON_BAD_HABIT_PRESETS } from "@/lib/habitNormalizer";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 interface TriggerLogModalProps {
   open: boolean;
@@ -64,6 +65,9 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
   const [isCustomHabitSelected, setIsCustomHabitSelected] = useState(false);
   const [activeHabitPills, setActiveHabitPills] = useState<Array<{ name: string; icon: string }>>([]);
   const [customNamesList, setCustomNamesList] = useState<string[]>([]);
+
+  const pillNames = activeHabitPills.map(p => p.name);
+  const { display: displayPillName } = useUiBatchTranslation(pillNames, pillNames.length > 0);
 
   const [intensity, setIntensity] = useState(5);
   const [emotion, setEmotion] = useState("");
@@ -311,7 +315,7 @@ export default function TriggerLogModal({ open, onOpenChange, onSubmit }: Trigge
                     }`}
                   >
                     <span>{pill.icon}</span>
-                    <span>{pill.name}</span>
+                    <span>{displayPillName(pill.name)}</span>
                     {isCustomUserAdded && (
                       <span
                         onClick={(e) => handleRemoveCustomHabit(pill.name, e)}

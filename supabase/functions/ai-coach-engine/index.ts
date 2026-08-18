@@ -1,3 +1,6 @@
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
 
@@ -207,7 +210,7 @@ Return your analysis as valid JSON matching the format specified in the system p
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-120b",
         messages: [
           { role: "system", content: getSystemPrompt(language) },
           { role: "user", content: analysisPrompt }

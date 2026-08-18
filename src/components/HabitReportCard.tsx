@@ -21,6 +21,7 @@ import PaywallModal from "@/components/PaywallModal";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { useHabitReport, HabitSuggestion } from "@/hooks/useHabitReport";
+import { useUiBatchTranslation } from "@/hooks/useUiBatchTranslation";
 
 export default function HabitReportCard() {
   const { t } = useTranslation();
@@ -56,6 +57,19 @@ export default function HabitReportCard() {
   const pendingSuggestions = useMemo(() => {
     return rawSuggestions.filter(s => s.status !== "accepted" && s.status !== "dismissed");
   }, [rawSuggestions]);
+
+  // Collect all dynamic strings (habit titles & AI advice) for dynamic batch translation
+  const rawStringsToTranslate = useMemo(() => {
+    const list: string[] = [];
+    pendingSuggestions.forEach(s => {
+      if (s.habit_title) list.push(s.habit_title);
+      const advice = s.suggested_description || s.suggested_title || s.reason || "";
+      if (advice) list.push(advice);
+    });
+    return list;
+  }, [pendingSuggestions]);
+
+  const { display } = useUiBatchTranslation(rawStringsToTranslate, rawStringsToTranslate.length > 0);
 
   const handleApplyAll = async () => {
     if (pendingSuggestions.length === 0) return;
@@ -181,13 +195,15 @@ export default function HabitReportCard() {
       {/* Habit Cards (AI Suggestions) */}
       <div className="space-y-3">
         {pendingSuggestions.map((suggestion) => {
-          const aiAdvice = suggestion.suggested_description || suggestion.suggested_title || suggestion.reason || "Riduci l'obiettivo per ritrovare l'inerzia";
+          const rawAdvice = suggestion.suggested_description || suggestion.suggested_title || suggestion.reason || t("habit_report.default_advice", "Riduci l'obiettivo per ritrovare l'inerzia");
+          const habitTitle = display(suggestion.habit_title);
+          const aiAdvice = display(rawAdvice);
 
-          const titleLower = suggestion.habit_title.toLowerCase();
+          const titleLower = (suggestion.habit_title || "").toLowerCase();
           let ItemIcon = Sparkles;
-          if (titleLower.includes("acqua") || titleLower.includes("salute") || titleLower.includes("sonno")) ItemIcon = Heart;
-          else if (titleLower.includes("lettura") || titleLower.includes("studio") || titleLower.includes("piano") || titleLower.includes("suonare")) ItemIcon = BookOpen;
-          else if (titleLower.includes("allenamento") || titleLower.includes("passi") || titleLower.includes("palestra")) ItemIcon = Dumbbell;
+          if (titleLower.includes("acqua") || titleLower.includes("salute") || titleLower.includes("sonno") || titleLower.includes("water") || titleLower.includes("sleep")) ItemIcon = Heart;
+          else if (titleLower.includes("lettura") || titleLower.includes("studio") || titleLower.includes("piano") || titleLower.includes("suonare") || titleLower.includes("read") || titleLower.includes("book")) ItemIcon = BookOpen;
+          else if (titleLower.includes("allenamento") || titleLower.includes("passi") || titleLower.includes("palestra") || titleLower.includes("workout") || titleLower.includes("exercise")) ItemIcon = Dumbbell;
 
           return (
             <div
@@ -201,13 +217,15 @@ export default function HabitReportCard() {
                     <ItemIcon className="h-3.5 w-3.5" />
                   </div>
                   <h3 className="text-xs font-semibold text-foreground dark:text-white break-words min-w-0 flex-1">
-                    {suggestion.habit_title}
+                    {habitTitle}
                   </h3>
                 </div>
 
                 {/* Analyzed Period Badge */}
                 <div className="flex items-center gap-1 shrink-0 bg-muted/80 dark:bg-slate-900/60 px-2 py-0.5 rounded-md border border-border/60 dark:border-slate-800">
-                  <span className="text-[10px] text-muted-foreground font-mono">{analyzedDays}d in calo</span>
+                  <span className="text-[10px] text-muted-foreground font-mono">
+                    {t("habit_report.badge_focus", { days: analyzedDays, defaultValue: `${analyzedDays}d Focus` })}
+                  </span>
                 </div>
 
                 {/* Action buttons [ ✓ ] e [ ✕ ] */}
@@ -221,7 +239,7 @@ export default function HabitReportCard() {
                       suggestion.suggested_description || suggestion.reason
                     )}
                     className="h-7 w-7 p-0 rounded-lg text-emerald-500 dark:text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-600 dark:hover:text-emerald-300"
-                    title="Accetta aggiustamento AI"
+                    title={t("habit_report.accept_tooltip", "Accetta aggiustamento AI")}
                   >
                     <Check className="h-4 w-4" />
                   </Button>
@@ -230,7 +248,7 @@ export default function HabitReportCard() {
                     variant="ghost"
                     onClick={() => dismissSuggestion(suggestion.habit_id)}
                     className="h-7 w-7 p-0 rounded-lg text-muted-foreground hover:bg-muted"
-                    title="Ignora"
+                    title={t("habit_report.dismiss_tooltip", "Ignora")}
                   >
                     <X className="h-4 w-4" />
                   </Button>

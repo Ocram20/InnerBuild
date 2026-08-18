@@ -236,7 +236,7 @@ Return your analysis as valid JSON matching the format specified.`;
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-120b",
         messages: [
           { role: "system", content: getSystemPrompt(language) },
           { role: "user", content: analysisPrompt }
@@ -254,6 +254,13 @@ Return your analysis as valid JSON matching the format specified.`;
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: "Rate limit exceeded. Please try again in a minute." }), {
           status: 429,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      if (response.status === 404) {
+        return new Response(JSON.stringify({ error: "Groq API error (404 Not Found). Please verify your GROQ_API_KEY in Supabase secrets." }), {
+          status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }

@@ -1,4 +1,7 @@
 // @ts-ignore
+// @ts-nocheck
+declare const Deno: any;
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 // @ts-ignore
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.89.0";
@@ -130,7 +133,7 @@ CRITICAL RULES for Coherence and Value:
         Authorization: `Bearer ${GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-120b",
         messages: [
           { role: "system", content: `You are a calm recovery coach. Respond only with valid JSON. Respond entirely in ${lang}.` },
           { role: "user", content: prompt },

@@ -1,5 +1,6 @@
 {
   "common": {
+    "add": "Aggiungi",
     "new_task": "Nuova Task",
     "new": "Nuovo",
     "pro": "PRO",
@@ -1326,7 +1327,12 @@
     "habit_updated_desc": "Cambiata in \"{{title}}\"",
     "failed_update_habit": "Impossibile aggiornare l'abitudine",
     "suggestion_ignored_title": "Suggerimento ignorato",
-    "suggestion_ignored_desc": "L'abitudine resta invariata"
+    "suggestion_ignored_desc": "L'abitudine resta invariata",
+    "declining": "Focus {{days}}g",
+    "badge_focus": "Focus {{days}}g",
+    "accept_tooltip": "Accetta aggiustamento AI",
+    "dismiss_tooltip": "Ignora",
+    "default_advice": "Riduci l'obiettivo per ritrovare l'inerzia"
   },
   "not_found": {
     "title": "404",
