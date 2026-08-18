@@ -31,8 +31,14 @@ import ChallengeJourney from "./pages/ChallengeJourney";
 import NotFound from "./pages/NotFound";
 import I18nDocumentSync from "./components/I18nDocumentSync";
 import AuthCallback from "./pages/AuthCallback";
+import { useNotificationScheduler } from "@/hooks/useNotificationScheduler";
 
 const queryClient = new QueryClient();
+
+function NotificationSchedulerRunner() {
+  useNotificationScheduler();
+  return null;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -43,6 +49,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <I18nDocumentSync />
+            <NotificationSchedulerRunner />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/auth" element={<Auth />} />
