@@ -357,6 +357,7 @@ export type Database = {
           lesson_learned: string | null
           location: string | null
           mood: string | null
+          original_language: string | null
           signal_details: string | null
           time_of_day: string | null
           trigger: string | null
@@ -379,6 +380,7 @@ export type Database = {
           lesson_learned?: string | null
           location?: string | null
           mood?: string | null
+          original_language?: string | null
           signal_details?: string | null
           time_of_day?: string | null
           trigger?: string | null
@@ -401,6 +403,7 @@ export type Database = {
           lesson_learned?: string | null
           location?: string | null
           mood?: string | null
+          original_language?: string | null
           signal_details?: string | null
           time_of_day?: string | null
           trigger?: string | null

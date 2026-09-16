@@ -125,13 +125,31 @@ export function useFailureDebrief() {
 
     setSaving(true);
     try {
-      const { data, error } = await untypedTable("failure_debriefs")
+      const language = i18n.resolvedLanguage || i18n.language || "it";
+      let data: any = null;
+      let error: any = null;
+
+      const firstAttempt = await untypedTable("failure_debriefs")
         .insert({
           user_id: user.id,
-          original_language: i18n.resolvedLanguage || i18n.language || "it",
+          original_language: language,
         })
         .select()
         .single();
+
+      if (firstAttempt.error && firstAttempt.error.code === "PGRST204") {
+        const retryAttempt = await untypedTable("failure_debriefs")
+          .insert({
+            user_id: user.id,
+          })
+          .select()
+          .single();
+        data = retryAttempt.data;
+        error = retryAttempt.error;
+      } else {
+        data = firstAttempt.data;
+        error = firstAttempt.error;
+      }
 
       if (error) throw error;
 
@@ -150,7 +168,7 @@ export function useFailureDebrief() {
     } finally {
       setSaving(false);
     }
-  }, [user, toast, fetchDebriefs]);
+  }, [user, toast, fetchDebriefs, i18n.resolvedLanguage, i18n.language]);
 
   const updateDebrief = useCallback(async (
     debriefId: string,
