@@ -1,0 +1,7 @@
+{
+  "name": "InnerBuild",
+  "description": "Build better habits and transform your life with InnerBuild",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
