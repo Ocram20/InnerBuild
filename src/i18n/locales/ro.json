@@ -210,17 +210,17 @@
       "smart_habit_tracking": "Urmărire Inteligentă a Obiceiurilor",
       "smart_habit_desc": "Urmărește obiceiurile zilnice cu progres vizual, serii și sugestii AI.",
       "detox_challenges": "Provocări Detox",
-      "detox_challenges_desc": "Eliberează-te de dependența digitală și tiparele negative (de la 3 la 90 de zile).",
+      "detox_challenges_desc": "Resetare a dopaminei de la 3 la 90 de zile pentru a combate dependența de rețele sociale, zahăr, jocuri sau amânare.",
       "porn_recovery": "Renașterea (Recuperare Pornografie)",
-      "porn_recovery_desc": "O cale bazată pe neuroștiință pentru recuperare și stăpânire de sine.",
-      "ai_coach": "Coach Personal AI",
-      "ai_coach_desc": "Partener AI 24/7 care te motivează, sugerează obiceiuri și te ajută cu poftele.",
-      "trigger_tracking": "Urmărire și Analiză Declanșatori",
-      "trigger_tracking_desc": "Înregistrează și analizează declanșatorii impulsurilor tale cu insight-uri AI.",
-      "daily_planning": "Planificare și Reflexie Zilnică",
-      "daily_planning_desc": "Planifică-ți ziua cu liste de lucruri de făcut și de nefăcut. Încheie ziua cu recunoștință.",
-      "the_forge": "Renașterea (Recuperare după Pornografie)",
-      "the_forge_desc": "Un program dedicat, bazat pe știință, pentru recuperarea dependenței de pornografie, stăpânirea de sine și suport specializat.",
+      "porn_recovery_desc": "Protocol neuroștiințific pentru a elimina recidivele, a monitoriza seria de abstinență și a recăpăta controlul.",
+      "ai_coach": "Coach IA Personal",
+      "ai_coach_desc": "Suport SOS activ 24/7. Discută cu Coach-ul în clipele de tentație maximă pentru a dezarma impulsul în 90 de secunde.",
+      "trigger_tracking": "Declanșatori & Analiză Tipare",
+      "trigger_tracking_desc": "Identifică ce îți declanșează impulsurile (ore, emoții, oboseală) și lasă IA să îți creeze bariere de protecție din timp.",
+      "daily_planning": "Planificare & Reflecție Zilnică",
+      "daily_planning_desc": "Începe ziua cu prioritățile tale (De Făcut & De Evitat) și încheie cu check-in-ul de seară de energie și recunoștință.",
+      "the_forge": "Renașterea (Recuperare Pornografie)",
+      "the_forge_desc": "Protocol neuroștiințific pentru a elimina recidivele, a monitoriza seria de abstinență și a recăpăta controlul.",
       "ai_habit_adaptation": "Adaptarea obișnuințelor cu AI",
       "ai_habit_adaptation_desc": "Sugerează versiuni mai ușoare când ai dificultăți",
       "learn_section": "Secțiunea Învață",
@@ -400,7 +400,8 @@
       "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
       "s6_title": "6. Contattaci",
       "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
-    }
+    },
+    "loved_by_people": "Iubit de mii de oameni"
   },
   "explore": {
     "title": "Instrumente",
@@ -418,17 +419,17 @@
       "habits": "Obișnuințe",
       "habits_desc": "Urmărește și construiește obișnuințe zilnice",
       "detox_challenges": "Provocări Detox",
-      "detox_challenges_desc": "Provocări pentru a rupe obiceiurile proaste",
+      "detox_challenges_desc": "Depășește obiceiurile proaste",
       "evening_reflection": "Reflecție de seară",
       "evening_reflection_desc": "Verificare zilnică și recunoștință",
       "daily_planning": "Planificare zilnică",
-      "daily_planning_desc": "Liste de făcut și obiective",
+      "daily_planning_desc": "Organizează sarcinile și lucrurile de evitat",
       "trigger_tracking": "Urmărirea declanșatorilor",
-      "trigger_tracking_desc": "Înregistrează impulsurile și analiza tiparelor AI",
+      "trigger_tracking_desc": "Înregistrează și analizează-ți impulsurile",
       "the_forge": "Renașterea",
-      "the_forge_desc": "Calea științifică spre libertate",
+      "the_forge_desc": "Instrumente științifice pentru călătoria ta",
       "ai_coach": "Coach AI",
-      "ai_coach_desc": "Ghid personal bazat pe AI"
+      "ai_coach_desc": "Ghidul tău personal"
     }
   },
   "habits": {
@@ -655,13 +656,13 @@
     "subtitle": "Deblochează toate instrumentele avansate de dezvoltare și preia din nou controlul.",
     "monthly_billing": "Lunar",
     "annual_billing": "Anual",
-    "save_badge": "Economisești 20% (2 luni gratis)",
-    "annual_billing_detail": "Facturat la 95.88 €/an (Economie de 20%)",
+    "save_badge": "Economisești 20%",
+    "annual_billing_detail": "Facturat €95.88/an (Economisești 20%)",
     "get_annual_premium": "Treci la PRO Anual",
     "get_monthly_premium": "Treci la PRO Lunar",
     "guarantee_30_days": "Garanție de 30 de Zile",
     "cancel_anytime": "Anulezi oricând",
-    "secure_stripe": "Plată Securizată prin Stripe",
+    "secure_stripe": "Plată Sigură prin Stripe",
     "free_plan": "Plan Gratuit",
     "premium_plan": "InnerBuild PRO",
     "most_popular": "Cel Mai Popular",
@@ -669,20 +670,20 @@
     "get_started_basics": "Perfect pentru a-ți începe călătoria.",
     "unlock_potential": "Deblochează întregul potențial fără limite.",
     "free_price": "€0",
-    "current_plan": "Plan actual",
-    "get_started_free": "Începe gratuit",
+    "current_plan": "Plan Actual",
+    "get_started_free": "Începe Gratuit",
     "premium_price": "€9.99",
     "per_month": "/lună",
     "everything_in_free": "Tot ce este în planul gratuit, plus:",
     "subscribe_now": "Abonează-te acum",
     "get_premium": "Obține Premium",
-    "trust_badges": "Garanție de 30 de zile • Anulează oricând • Plată securizată prin Stripe",
+    "trust_badges": "Garanție de rambursare 30 de zile • Anulezi oricând • Plată sigură prin Stripe",
     "have_account": "Ai deja un cont?",
     "welcome_premium": "Bun venit la InnerBuild Premium!",
     "subscription_active": "Abonamentul tău este acum activ. Bucură-te!",
     "checkout_canceled": "Plată anulată",
     "checkout_canceled_desc": "Nicio problemă – te poți abona oricând.",
-    "checkout_failed": "Nu s-a putut începe plata. Încearcă din nou.",
+    "checkout_failed": "Inițierea comenzii a eșuat. Te rugăm să încerci din nou.",
     "free_features": {
       "habits": "Până la 5 obișnuințe",
       "challenges": "1 provocare detox activă",
@@ -704,6 +705,67 @@
       "habit_adaptation": "Sugestii de adaptare a obișnuințelor cu AI",
       "learn": "Secțiunea Învață (articole, ghiduri și cronologie)",
       "priority": "Acces prioritar la funcțiile noi"
+    },
+    "header_badge": "👑 SISTEM DE RESETARE A DOPAMINEI ȘI CREȘTERE PRIN IA",
+    "hero_title": "Preia din Nou Controlul Minții Tale",
+    "hero_subtitle": "Activează motorul predictiv IA pentru a rupe dependențele digitale, a elimina recidivele și a construi o disciplină de fier fără a te baza doar pe voință.",
+    "free_subtitle": "Pentru a începe urmărirea obiceiurilor de bază în mod autonom.",
+    "monthly_price": "€9.99",
+    "annual_price": "€7.99",
+    "pro_subtitle": "Sistemul complet asistat de IA pentru a elimina declanșatorii de la rădăcină.",
+    "free_features_list": [
+      "Până la 5 obiceiuri zilnice",
+      "1 provocare detox activă",
+      "Urmărire de bază cu serii",
+      "Planificare zilnică (De Făcut & De Evitat)",
+      "Reflecție de seară și recunoștință",
+      "Calendar de bază al activităților"
+    ],
+    "pro_features_list": [
+      {
+        "title": "Buton SOS Anti-Recidivă (Coach IA 24/7)",
+        "desc": "Dezarmează impulsurile în 90 de secunde noaptea târziu."
+      },
+      {
+        "title": "Radar Predictiv al Declanșatorilor",
+        "desc": "IA combină starea de spirit, energia și orele pentru a te avertiza ÎNAINTE de momentul vulnerabil."
+      },
+      {
+        "title": "Protocol Neuro-Reset „Renașterea”",
+        "desc": "Recuperare cu serii și etape cheie (Zilele 3, 7, 14, 30, 90)."
+      },
+      {
+        "title": "Rutină Auto-Adaptivă prin IA",
+        "desc": "Recalibrează obiceiurile în zilele grele pentru a nu pierde impulsul."
+      },
+      {
+        "title": "Obiceiuri și Provocări Detox Nelimitate",
+        "desc": "Fără limite pentru evoluția ta."
+      },
+      {
+        "title": "Analiză Săptămânală „Ce funcționează”",
+        "desc": "Raport despre tiparele tale la fiecare 7 zile."
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 INCLUSE GRATUIT ASTĂZI (Valoare Totală: €247)",
+      "bonus_1_title": "Protocol de Urgență „Primele 7 Zile Fără Recidivă”",
+      "bonus_1_value": "€97",
+      "bonus_2_title": "Kit „Ecran Blindat” Configurare Anti-Declanșatori",
+      "bonus_2_value": "€97",
+      "bonus_3_title": "Șablon Rutină Înainte de Somn „Dopamină Curată”",
+      "bonus_3_value": "€53",
+      "free_badge": "GRATIS"
+    },
+    "value_summary": "Valoare totală de peste €340+ — Astăzi pentru mai puțin de €0,27 pe zi.",
+    "cta_button": "👑 Deblochează InnerBuild PRO + 3 Bonusuri",
+    "guarantee_box": {
+      "title": "Garanție „Schimbare în 14 Zile sau Banii Înapoi 100%”",
+      "desc": "Încearcă InnerBuild PRO timp de 14 zile. Dacă Coach-ul IA 24/7 și analiza predictivă a declanșatorilor nu te ajută să scapi de obiceiurile dăunătoare mai rapid decât orice aplicație, îți returnăm fiecare ban cu un clic. Fără întrebări."
+    },
+    "privacy_box": {
+      "title": "100% Invizibil în App Store & Google Play (Tehnologie PWA Zero-Trace)",
+      "desc": "Traseul tău de recuperare este strict confidențial. InnerBuild folosește o arhitectură Web-App criptată: se instalează într-un clic și NU lasă nicio urmă în istoricul de achiziții Apple sau Google, extrase de cont ori partajare în familie."
     }
   },
   "profile": {
@@ -1403,7 +1465,8 @@
     "home": "Acasă",
     "tools": "Instrumente",
     "learn": "Învață",
-    "profile": "Profil"
+    "profile": "Profil",
+    "pricing": "Prețuri"
   },
   "habit_tips": {
     "one_min_tip": "Sfat de 1 minut",
@@ -1515,7 +1578,7 @@
   },
   "activity_calendar": {
     "title": "Istoricul progresului",
-    "subtitle": "Apasă pe o zi pentru a vedea jurnalul",
+    "subtitle": "Apasă pe o zi pentru a vedea sau edita jurnalul",
     "legend": {
       "done": "Făcut",
       "not_done": "Nefăcut",
@@ -1576,7 +1639,10 @@
     "available_in": "Disponibil în {{days}} zile",
     "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
     "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
-    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì.",
+    "teaser_title": "🔒 IA a descoperit tipare ascunse în zilele tale",
+    "teaser_desc": "Corelând check-in-urile și obiceiurile tale, motorul predictiv a identificat blocajele din calea consecvenței și 1 ajustare rapidă pentru această săptămână.",
+    "teaser_cta": "Deblochează Analiza ta IA + 3 Bonusuri PRO ->"
   },
   "recovery_tracker": {
     "title": "Provocarea de recuperare",

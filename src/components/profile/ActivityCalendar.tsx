@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, startOfToday, isBefore } from "date-fns";
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, startOfToday, isAfter } from "date-fns";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { untypedTable } from "@/integrations/supabase/untyped-client";
@@ -43,8 +43,6 @@ export function ActivityCalendar() {
 
   // Localized day names
   const dayNames = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(2024, 0, i); // Jan 2024 starts on Monday, but day 0 = Sun for index 0
-    // Use a known Sunday as base: Jan 7 2024 is a Sunday
     const base = new Date(2024, 0, 7 + i);
     return format(base, "EEE", { locale: dateLocale });
   });
@@ -131,7 +129,7 @@ export function ActivityCalendar() {
       days.forEach(day => {
         const dateStr = format(day, "yyyy-MM-dd");
         const relevantHabitIds = new Set(
-          habitsFull.filter((h) => habitWasTrackedOnDate(h, day)).map((h) => h.id)
+          habitsFull.filter((h) => h.is_active || habitWasTrackedOnDate(h, day)).map((h) => h.id)
         );
         const completedIds = habitsByDate.get(dateStr) || new Set<string>();
         const habitsCompleted = [...completedIds].filter((id) => relevantHabitIds.has(id)).length;
@@ -186,7 +184,7 @@ export function ActivityCalendar() {
 
   const handleDayClick = (date: Date) => {
     const today = startOfToday();
-    if (isBefore(date, today)) {
+    if (!isAfter(date, today)) {
       setSelectedDate(date);
     }
   };
@@ -253,7 +251,7 @@ export function ActivityCalendar() {
               {days.map(day => {
                 const isCurrentDay = isToday(day);
                 const today = startOfToday();
-                const isTodayOrFuture = !isBefore(day, today);
+                const isFuture = isAfter(day, today);
                 const dateStr = format(day, "yyyy-MM-dd");
                 const hasActivity = hasActivityOnDay(day);
 
@@ -261,12 +259,12 @@ export function ActivityCalendar() {
                   <button
                     key={dateStr}
                     onClick={() => handleDayClick(day)}
-                    disabled={isTodayOrFuture}
+                    disabled={isFuture}
                     className={cn(
                       "aspect-square flex flex-col items-center justify-center rounded-lg text-sm transition-all",
                       "hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-primary/20",
                       isCurrentDay && "ring-2 ring-primary bg-primary/10",
-                      isTodayOrFuture && "opacity-30 cursor-not-allowed",
+                      isFuture && "opacity-30 cursor-not-allowed",
                       hasActivity && !isCurrentDay && "bg-accent/30"
                     )}
                   >
@@ -291,7 +289,11 @@ export function ActivityCalendar() {
         <DayDetailModal
           date={selectedDate}
           open={!!selectedDate}
-          onClose={() => setSelectedDate(null)}
+          onClose={() => {
+            setSelectedDate(null);
+            fetchMonthActivities();
+          }}
+          onUpdated={fetchMonthActivities}
         />
       )}
     </>

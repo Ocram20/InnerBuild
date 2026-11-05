@@ -210,17 +210,17 @@
       "smart_habit_tracking": "Smart Habit Tracking",
       "smart_habit_desc": "Track daily habits with visual progress, streaks, and intelligent AI suggestions.",
       "detox_challenges": "Detox Challenges",
-      "detox_challenges_desc": "Break free from digital addiction and negative patterns with science-backed challenges (3 to 90 days).",
-      "porn_recovery": "Rebirth (Porn Recovery)",
-      "porn_recovery_desc": "A neuroscience-based path for porn recovery, self-mastery, and specialized support.",
+      "detox_challenges_desc": "Dopamine resets from 3 to 90 days to conquer addictions to social media, sugar, gaming, or procrastination.",
+      "porn_recovery": "The Renewal (Porn Recovery)",
+      "porn_recovery_desc": "Neuro-scientific protocol to zero out relapses, track abstinence streaks, and regain control.",
       "ai_coach": "Personal AI Coach",
-      "ai_coach_desc": "24/7 AI companion that motivates you, suggests habits, and helps handle urges.",
-      "trigger_tracking": "Trigger Tracking & Analysis",
-      "trigger_tracking_desc": "Log and analyze what triggers your urges. Get AI insights to build stronger defenses.",
+      "ai_coach_desc": "24/7 SOS support. Talk with the Coach in peak temptation moments to defuse cravings in 90 seconds.",
+      "trigger_tracking": "Triggers & Pattern Analysis",
+      "trigger_tracking_desc": "Pinpoint what sparks your cravings (hours, emotions, fatigue) and let AI build your defenses before you stumble.",
       "daily_planning": "Daily Planning & Reflection",
-      "daily_planning_desc": "Plan your day with to-do & not-to-do lists. End each day with gratitude and self-reflection.",
+      "daily_planning_desc": "Start your day with focused priorities (To-Do & Not To-Do) and wrap up with an evening energy & gratitude check-in.",
       "the_forge": "The Renewal (Porn Recovery)",
-      "the_forge_desc": "A dedicated, science‑based program for porn recovery, self‑mastery, and specialized support.",
+      "the_forge_desc": "Neuro-scientific protocol to zero out relapses, track abstinence streaks, and regain control.",
       "ai_habit_adaptation": "AI Habit Adaptation",
       "ai_habit_adaptation_desc": "Suggests easier versions when you're struggling",
       "learn_section": "Learn Section",
@@ -400,7 +400,8 @@
       "s5_content": "The materials appearing on InnerBuild's website could include technical, typographical, or photographic errors. InnerBuild does not warrant that any of the materials on its website are accurate, complete or current. InnerBuild may make changes to the materials contained on its website at any time without notice.",
       "s6_title": "6. Contact Us",
       "s6_content": "If you have any questions about these Terms of Service, please contact us at"
-    }
+    },
+    "loved_by_people": "Loved by thousands of people"
   },
   "explore": {
     "title": "Tools",
@@ -418,17 +419,17 @@
       "habits": "Habits",
       "habits_desc": "Track and build daily habits",
       "detox_challenges": "Detox Challenges",
-      "detox_challenges_desc": "Challenges to break bad habits",
+      "detox_challenges_desc": "Break free from bad habits",
       "evening_reflection": "Evening Reflection",
       "evening_reflection_desc": "Daily check‑in and gratitude",
       "daily_planning": "Daily Planning",
-      "daily_planning_desc": "To‑do lists and goals",
+      "daily_planning_desc": "Plan tasks and things to avoid",
       "trigger_tracking": "Trigger Tracking",
-      "trigger_tracking_desc": "Log urges and AI pattern analysis",
+      "trigger_tracking_desc": "Log and analyze your urges",
       "the_forge": "The Renewal",
-      "the_forge_desc": "Scientific path to freedom",
+      "the_forge_desc": "Science‑based tools for your journey",
       "ai_coach": "AI Coach",
-      "ai_coach_desc": "Personal AI‑powered guidance"
+      "ai_coach_desc": "Your personal guide"
     }
   },
   "habits": {
@@ -655,13 +656,13 @@
     "subtitle": "Unlock all advanced growth tools and regain control of your habits.",
     "monthly_billing": "Monthly",
     "annual_billing": "Annual",
-    "save_badge": "Save 20% (2 months free)",
-    "annual_billing_detail": "Billed at €95.88/year (Save 20%)",
+    "save_badge": "Save 20%",
+    "annual_billing_detail": "Billed €95.88/year (Save 20%)",
     "get_annual_premium": "Upgrade to Annual PRO",
     "get_monthly_premium": "Upgrade to Monthly PRO",
-    "guarantee_30_days": "30-Day Money-Back Guarantee",
+    "guarantee_30_days": "30-Day Guarantee",
     "cancel_anytime": "Cancel anytime",
-    "secure_stripe": "100% Secure Payment via Stripe",
+    "secure_stripe": "Secure Payment via Stripe",
     "free_plan": "Free Plan",
     "premium_plan": "InnerBuild PRO",
     "most_popular": "Most Popular",
@@ -670,13 +671,13 @@
     "unlock_potential": "Unlock full potential with unlimited access.",
     "free_price": "€0",
     "current_plan": "Current Plan",
-    "get_started_free": "Get Started Free",
+    "get_started_free": "Start Free",
     "premium_price": "€9.99",
     "per_month": "/month",
     "everything_in_free": "Everything in Free, plus:",
     "subscribe_now": "Subscribe Now",
     "get_premium": "Get Premium",
-    "trust_badges": "30‑day money‑back guarantee • Cancel anytime • Secure payment via Stripe",
+    "trust_badges": "30-day money-back guarantee • Cancel anytime • Secure payment via Stripe",
     "have_account": "Already have an account?",
     "welcome_premium": "Welcome to InnerBuild Premium!",
     "subscription_active": "Your subscription is now active. Enjoy!",
@@ -704,6 +705,67 @@
       "habit_adaptation": "AI habit adaptation suggestions",
       "learn": "Learn section (articles, guides & timeline)",
       "priority": "Priority access to new features"
+    },
+    "header_badge": "👑 DOPAMINE RESET SYSTEM & AI GROWTH",
+    "hero_title": "Regain Control of Your Mind",
+    "hero_subtitle": "Unlock the predictive AI engine to break digital addictions, zero out relapses, and forge iron discipline without relying on willpower alone.",
+    "free_subtitle": "To start tracking your fundamentals independently.",
+    "monthly_price": "€9.99",
+    "annual_price": "€7.99",
+    "pro_subtitle": "The complete 'Done-With-You' AI system to eliminate triggers at the root.",
+    "free_features_list": [
+      "Up to 5 daily habits",
+      "1 active detox challenge",
+      "Basic streak tracking",
+      "Daily planning (To-Do & Not To-Do)",
+      "Evening reflection & gratitude",
+      "Basic activity calendar"
+    ],
+    "pro_features_list": [
+      {
+        "title": "Anti-Relapse SOS Button (24/7 AI Coach)",
+        "desc": "Defuse cravings in 90 seconds late at night."
+      },
+      {
+        "title": "Predictive Trigger Radar",
+        "desc": "AI cross-references mood, energy, and times to warn you BEFORE vulnerability strikes."
+      },
+      {
+        "title": "Neuro-Reset Protocol 'The Renewal'",
+        "desc": "Porn recovery with streaks and milestones (Days 3, 7, 14, 30, 90)."
+      },
+      {
+        "title": "AI Auto-Adaptive Routine",
+        "desc": "Recalibrates habits on tough days so you never lose momentum."
+      },
+      {
+        "title": "Unlimited Habits & Detox Challenges",
+        "desc": "No caps on your personal transformation."
+      },
+      {
+        "title": "Weekly 'What's Working' Analysis",
+        "desc": "In-depth pattern reports every 7 days."
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 INCLUDED FREE TODAY (Total Value: €247)",
+      "bonus_1_title": "Emergency Protocol 'First 7 Days Relapse-Free'",
+      "bonus_1_value": "€97",
+      "bonus_2_title": "'Armored Screen' Anti-Trigger Setup Kit",
+      "bonus_2_value": "€97",
+      "bonus_3_title": "'Clean Dopamine' Pre-Sleep Routine Template",
+      "bonus_3_value": "€53",
+      "free_badge": "FREE"
+    },
+    "value_summary": "Total value over €340+ — Today for less than €0.27 per day.",
+    "cta_button": "👑 Unlock InnerBuild PRO + 3 Bonuses",
+    "guarantee_box": {
+      "title": "\"14-Day Breakthrough or 100% Refund\" Guarantee",
+      "desc": "Try InnerBuild PRO for 14 days. If the 24/7 AI Coach and predictive trigger analysis don't help you break bad habits faster than any app you've tried, we'll refund every cent with one click. Zero questions asked."
+    },
+    "privacy_box": {
+      "title": "100% Invisible on App Store & Google Play (Zero-Trace PWA Tech)",
+      "desc": "Your recovery journey is strictly private. InnerBuild uses encrypted Web-App architecture: it installs in 1 click on your phone without leaving any trace in Apple or Google purchase histories, store bank statements, or family sharing prompts."
     }
   },
   "profile": {
@@ -1421,7 +1483,8 @@
     "home": "Home",
     "tools": "Tools",
     "learn": "Learn",
-    "profile": "Profile"
+    "profile": "Profile",
+    "pricing": "Pricing"
   },
   "habit_tips": {
     "one_min_tip": "1‑Min Tip",
@@ -1533,7 +1596,7 @@
   },
   "activity_calendar": {
     "title": "Progress History",
-    "subtitle": "Click a day to see your log",
+    "subtitle": "Click on a day to view or edit the log",
     "legend": {
       "done": "Done",
       "not_done": "Not done",
@@ -1594,7 +1657,10 @@
     "available_in": "Available in {{days}} days",
     "insight_fallback_improving": "Something in your week is moving in a good direction — keep noticing what helps you.",
     "insight_fallback_protect": "The habits and routines you are keeping matter — they are worth protecting.",
-    "insight_fallback_adjustment": "Pick one small, realistic tweak for the week ahead and build from there."
+    "insight_fallback_adjustment": "Pick one small, realistic tweak for the week ahead and build from there.",
+    "teaser_title": "🔒 AI detected hidden patterns in your daily logs",
+    "teaser_desc": "By cross-referencing your check-ins and habits, the predictive engine pinpointed what's holding back your consistency and 1 rapid tweak for this week.",
+    "teaser_cta": "Unlock your AI Analysis + 3 PRO Bonuses ->"
   },
   "recovery_tracker": {
     "title": "Recovery Challenge",

@@ -209,18 +209,18 @@
     "features": {
       "smart_habit_tracking": "智能习惯追踪",
       "smart_habit_desc": "通过可视化进度、连续打卡记录和适配真实生活的 AI 智能建议追踪每日习惯。",
-      "detox_challenges": "戒断 Detox 挑战",
-      "detox_challenges_desc": "通过基于科学的挑战（3 到 90 天）摆脱数字成瘾和消极生活习惯。",
-      "porn_recovery": "新生 (色情成瘾康复)",
-      "porn_recovery_desc": "基于神经科学的色情成瘾康复、自我掌控与专业辅导路径。",
-      "ai_coach": "专属 24/7 AI 教练",
-      "ai_coach_desc": "全天候伴您左右的 AI 教练，随时激发动力、建议习惯并帮您化解冲动。",
-      "trigger_tracking": "诱因追踪与深度 AI 分析",
-      "trigger_tracking_desc": "记录并分析引发冲动的诱因，洞察行为模式并构建稳固心理防线。",
-      "daily_planning": "每日规划与自我反思",
-      "daily_planning_desc": "使用 To-Do 待办与 Not-To-Do 禁做清单规划每一天，以感恩与情绪记录结束充实一天。",
-      "the_forge": "重生 (色情恢复)",
-      "the_forge_desc": "专门的科学计划，用于色情恢复、自我掌控及专业支持。",
+      "detox_challenges": "多巴胺排毒挑战",
+      "detox_challenges_desc": "3 至 90 天多巴胺重置计划，彻底告别社交媒体沉迷、糖瘾、电子游戏沉溺或拖延内耗。",
+      "porn_recovery": "新生计划（色情戒断与神经重置）",
+      "porn_recovery_desc": "基于神经科学原理打造的戒瘾复苏协议，彻底杜绝复发，记录连续戒断天数并夺回人生主导权。",
+      "ai_coach": "私人专属 AI 教练",
+      "ai_coach_desc": "24/7 紧急救援在线。在诱惑最为强烈的时刻倾诉交流，90 秒内化解冲动与渴求。",
+      "trigger_tracking": "诱因识别与行为模式分析",
+      "trigger_tracking_desc": "精准定位诱发冲动的根本因素（作息时间、情绪波动、疲惫状态），让 AI 在你薄弱失控前先一步构建坚固防线。",
+      "daily_planning": "每日日程规划与晚间复盘",
+      "daily_planning_desc": "晨间明确核心优先级（必办清单与禁忌清单），晚间沉淀能量状态与感恩记录。",
+      "the_forge": "新生计划（色情戒断与神经重置）",
+      "the_forge_desc": "基于神经科学原理打造的戒瘾复苏协议，彻底杜绝复发，记录连续戒断天数并夺回人生主导权。",
       "ai_habit_adaptation": "AI 习惯适应",
       "ai_habit_adaptation_desc": "当您遇到困难时建议更简单的版本",
       "learn_section": "学习板块",
@@ -400,7 +400,8 @@
       "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
       "s6_title": "6. Contattaci",
       "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
-    }
+    },
+    "loved_by_people": "深受数千人喜爱"
   },
   "explore": {
     "title": "工具",
@@ -418,17 +419,17 @@
       "habits": "习惯",
       "habits_desc": "追踪和培养日常习惯",
       "detox_challenges": "排毒挑战",
-      "detox_challenges_desc": "打破坏习惯的挑战",
+      "detox_challenges_desc": "摆脱不良习惯",
       "evening_reflection": "晚间反思",
       "evening_reflection_desc": "每日签到和感恩",
       "daily_planning": "每日计划",
-      "daily_planning_desc": "待办清单和目标",
+      "daily_planning_desc": "规划任务与待避免事项",
       "trigger_tracking": "触发器追踪",
-      "trigger_tracking_desc": "记录冲动和 AI 模式分析",
+      "trigger_tracking_desc": "记录并分析您的冲动",
       "the_forge": "重生",
-      "the_forge_desc": "通往自由的科学之路",
+      "the_forge_desc": "为您旅程提供的科学工具",
       "ai_coach": "AI 教练",
-      "ai_coach_desc": "基于 AI 的个人指导"
+      "ai_coach_desc": "你的个人向导"
     }
   },
   "habits": {
@@ -655,34 +656,34 @@
     "subtitle": "解锁所有高级个人成长工具，重获对习惯的掌控。",
     "monthly_billing": "按月付费",
     "annual_billing": "按年付费",
-    "save_badge": "省 20%（免费送 2 个月）",
-    "annual_billing_detail": "每年结算 €95.88（省 20%）",
+    "save_badge": "立省 20%",
+    "annual_billing_detail": "每年 €95.88（立省 20%）",
     "get_annual_premium": "升级至年度 PRO 专业版",
     "get_monthly_premium": "升级至月度 PRO 专业版",
-    "guarantee_30_days": "30 天无理由退款保证",
-    "cancel_anytime": "随时可以取消订阅",
-    "secure_stripe": "通过 Stripe 实现 100% 安全支付",
-    "free_plan": "基础免费版",
-    "premium_plan": "InnerBuild PRO 专业版",
-    "most_popular": "最受青睐",
+    "guarantee_30_days": "30天无忧保障",
+    "cancel_anytime": "随时可取消",
+    "secure_stripe": "Stripe 安全支付",
+    "free_plan": "基础版",
+    "premium_plan": "InnerBuild PRO",
+    "most_popular": "最受欢迎",
     "forever": "永久免费",
     "get_started_basics": "非常适合开启您的自我改变之旅。",
     "unlock_potential": "无限制解锁全部成长潜能。",
     "free_price": "€0",
-    "current_plan": "当前套餐",
-    "get_started_free": "免费开始",
+    "current_plan": "当前方案",
+    "get_started_free": "免费开启",
     "premium_price": "€9.99",
     "per_month": "/月",
     "everything_in_free": "免费版所有内容，加上：",
     "subscribe_now": "立即订阅",
     "get_premium": "获取高级版",
-    "trust_badges": "30 天退款保证 • 随时取消 • 通过 Stripe 安全支付",
-    "have_account": "已有账户？",
+    "trust_badges": "30天退款保障 • 随时取消 • Stripe安全认证支付",
+    "have_account": "已有账号？",
     "welcome_premium": "欢迎使用 InnerBuild 高级版！",
     "subscription_active": "您的订阅现已激活，尽情享受吧！",
     "checkout_canceled": "支付已取消",
     "checkout_canceled_desc": "没问题——您可以随时订阅。",
-    "checkout_failed": "开始支付失败，请重试。",
+    "checkout_failed": "发起结账失败，请重试。",
     "free_features": {
       "habits": "最多 5 个习惯",
       "challenges": "1 个活跃排毒挑战",
@@ -704,6 +705,67 @@
       "habit_adaptation": "AI 习惯适应建议",
       "learn": "学习板块（文章、指南和时间线）",
       "priority": "优先体验新功能"
+    },
+    "header_badge": "👑 多巴胺重置系统与 AI 成长引擎",
+    "hero_title": "重新掌控你的心智",
+    "hero_subtitle": "开启 AI 预测引擎，彻底摆脱数字成瘾，杜绝复发，无需仅凭意志力即可铸就钢铁般的自律。",
+    "free_subtitle": "适合自主开启基础习惯追踪。",
+    "monthly_price": "€9.99",
+    "annual_price": "€7.99",
+    "pro_subtitle": "AI 全程伴你消除核心诱因的完整进阶系统。",
+    "free_features_list": [
+      "最多 5 个每日习惯",
+      "1 个进行中的排毒挑战",
+      "基础连续打卡追踪",
+      "每日规划（待办与禁忌清单）",
+      "晚间复盘与感恩日记",
+      "基础活动日历"
+    ],
+    "pro_features_list": [
+      {
+        "title": "防复发 SOS 紧急按键（24/7 AI 教练）",
+        "desc": "深夜 90 秒内化解冲动与渴求。"
+      },
+      {
+        "title": "预测性诱因雷达",
+        "desc": "AI 结合情绪、能量与作息，在薄弱时刻前抢先预警。"
+      },
+      {
+        "title": "神经重置协议「新生计划」",
+        "desc": "戒瘾复苏追踪与里程碑突破（第 3、7、14、30、90 天）。"
+      },
+      {
+        "title": "AI 自适应智能日程",
+        "desc": "疲惫日子动态微调习惯，绝不丢失前行动力。"
+      },
+      {
+        "title": "无限制习惯与排毒挑战",
+        "desc": "蜕变无上限，进阶无束缚。"
+      },
+      {
+        "title": "每周深度分析「哪些方法有效」",
+        "desc": "每 7 天生成一次专属行为模式报告。"
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 今日免费包含（总价值：€247）",
+      "bonus_1_title": "应急救援方案「前7天无复发突破」",
+      "bonus_1_value": "€97",
+      "bonus_2_title": "防诱因「护甲屏幕」配置套件",
+      "bonus_2_value": "€97",
+      "bonus_3_title": "睡前「纯净多巴胺」习惯模版",
+      "bonus_3_value": "€53",
+      "free_badge": "免费"
+    },
+    "value_summary": "总价值超 €340+ — 今日仅需不到 €0.27/天。",
+    "cta_button": "👑 立即解锁 InnerBuild PRO + 3大独家礼包",
+    "guarantee_box": {
+      "title": "“14天蜕变突破，否则100%全额退款”保障",
+      "desc": "体验 InnerBuild PRO 14天。如果 24/7 全天候 AI 教练与预测性诱因雷达无法比你用过的任何软件更迅速地斩断坏习惯，点击一次即可全额退款，绝无任何刁难。"
+    },
+    "privacy_box": {
+      "title": "App Store 与 Google Play 100% 无痕隐私（Zero-Trace PWA 专属技术）",
+      "desc": "你的自律与戒瘾蜕变完全私密。InnerBuild 采用端到端加密网页应用架构：手机一键安装，绝不留存任何 Apple / Google 购买记录、账单明细或家庭共享提醒。"
     }
   },
   "profile": {
@@ -1403,7 +1465,8 @@
     "home": "首页",
     "tools": "工具",
     "learn": "学习",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "pricing": "价格"
   },
   "habit_tips": {
     "one_min_tip": "1 分钟小贴士",
@@ -1515,7 +1578,7 @@
   },
   "activity_calendar": {
     "title": "进度历史",
-    "subtitle": "点击某一天查看您的日志",
+    "subtitle": "点击某一天以查看或编辑记录",
     "legend": {
       "done": "已完成",
       "not_done": "未完成",
@@ -1576,7 +1639,10 @@
     "available_in": "{{days}} 天后可用",
     "insight_fallback_improving": "本周已有一些积极变化——继续留意对你有帮助的事情。",
     "insight_fallback_protect": "你正在坚持的习惯很重要——值得继续守护。",
-    "insight_fallback_adjustment": "下周只选一个小而可行的调整，再逐步加强。"
+    "insight_fallback_adjustment": "下周只选一个小而可行的调整，再逐步加强。",
+    "teaser_title": "🔒 AI 发现并锁定了你日常生活中的隐秘规律",
+    "teaser_desc": "通过多维交叉比对你的每日打卡与作息习惯，预测引擎已定位影响自律持久度的阻碍，并提炼出 1 项本周即可见效的快速调整方案。",
+    "teaser_cta": "立即解锁专属 AI 深度分析 + 3 大 PRO 独家特权 ->"
   },
   "recovery_tracker": {
     "title": "恢复挑战",

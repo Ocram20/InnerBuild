@@ -210,17 +210,17 @@
       "smart_habit_tracking": "Tracciamento Abitudini Smart",
       "smart_habit_desc": "Traccia le abitudini quotidiane con progressi visivi, serie e suggerimenti AI intelligenti che si adattano ai tuoi schemi reali.",
       "detox_challenges": "Sfide Detox",
-      "detox_challenges_desc": "Liberati dalla dipendenza digitale, dalle cattive abitudini e dai pattern negativi con sfide basate sulla scienza (da 3 a 90 giorni).",
+      "detox_challenges_desc": "Reset dopaminico da 3 a 90 giorni per spezzare la dipendenza da social, zuccheri, gaming o procrastinazione.",
       "porn_recovery": "La rinascita (Recupero Pornografia)",
-      "porn_recovery_desc": "Un percorso basato sulle neuroscienze per il recupero dalla pornografia, il self-mastery e supporto specializzato.",
+      "porn_recovery_desc": "Protocollo neuro-scientifico per azzerare le ricadute, tracciare la serie di astinenza e riprendere il controllo.",
       "ai_coach": "Coach AI Personale",
-      "ai_coach_desc": "Compagno AI disponibile 24/7 che ti motiva, suggerisce abitudini personalizzate, aiuta con le voglie e guida la tua trasformazione.",
-      "trigger_tracking": "Tracciamento & Analisi Trigger",
-      "trigger_tracking_desc": "Registra e analizza cosa scatena i tuoi impulsi. Identifica pattern e ottieni insight AI per costruire difese più forti.",
+      "ai_coach_desc": "Supporto SOS attivo 24/7. Parla con il Coach nei momenti di forte tentazione per disinnescare l'impulso in 90 secondi.",
+      "trigger_tracking": "Trigger & Analisi Pattern",
+      "trigger_tracking_desc": "Individua cosa scatena i tuoi impulsi (orari, emozioni, stanchezza) e lascia che l'AI costruisca le tue difese prima che tu cada.",
       "daily_planning": "Pianificazione & Riflessione Quotidiana",
-      "daily_planning_desc": "Pianifica la tua giornata con liste di cose da fare e da non fare. Concludi ogni giorno con gratitudine, check-in dell'umore e auto-riflessione.",
+      "daily_planning_desc": "Inizia la giornata con le tue priorità (To-Do e Not To-Do) e chiudila con il check-in serale di energia e gratitudine.",
       "the_forge": "La rinascita (Recupero Pornografia)",
-      "the_forge_desc": "Un percorso basato sulle neuroscienze per il recupero dalla pornografia, il self-mastery e supporto specializzato.",
+      "the_forge_desc": "Protocollo neuro-scientifico per azzerare le ricadute, tracciare la serie di astinenza e riprendere il controllo.",
       "ai_habit_adaptation": "Adattamento Abitudini AI",
       "ai_habit_adaptation_desc": "Suggerisce versioni più facili quando fai fatica",
       "learn_section": "Sezione Impara",
@@ -400,7 +400,8 @@
       "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
       "s6_title": "6. Contattaci",
       "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
-    }
+    },
+    "loved_by_people": "Amato da migliaia di persone"
   },
   "explore": {
     "title": "Strumenti",
@@ -418,17 +419,17 @@
       "habits": "Abitudini",
       "habits_desc": "Traccia e costruisci abitudini quotidiane",
       "detox_challenges": "Sfide Detox",
-      "detox_challenges_desc": "Rompi le cattive abitudini",
+      "detox_challenges_desc": "Supera le cattive abitudini",
       "evening_reflection": "Riflessione",
       "evening_reflection_desc": "Check-in e gratitudine",
-      "daily_planning": "Pianificazione",
-      "daily_planning_desc": "Lista cose da fare e obiettivi",
-      "trigger_tracking": "Trigger",
-      "trigger_tracking_desc": "Analisi pattern impulsivi",
+      "daily_planning": "Pianificazione Giornaliera",
+      "daily_planning_desc": "Organizza compiti e cose da evitare",
+      "trigger_tracking": "Tracciamento Trigger",
+      "trigger_tracking_desc": "Registra e analizza i tuoi impulsi",
       "the_forge": "La rinascita",
-      "the_forge_desc": "Percorso scientifico di recupero",
+      "the_forge_desc": "Strumenti scientifici per il tuo percorso",
       "ai_coach": "Coach AI",
-      "ai_coach_desc": "Assistant"
+      "ai_coach_desc": "La tua guida personale"
     }
   },
   "habits": {
@@ -654,7 +655,7 @@
     "subtitle": "Sblocca tutti gli strumenti avanzati di crescita e riconquista il controllo.",
     "monthly_billing": "Mensile",
     "annual_billing": "Annuale",
-    "save_badge": "Risparmi il 20% (2 mesi gratis)",
+    "save_badge": "Risparmi 20%",
     "annual_billing_detail": "Fatturati €95.88/anno (Risparmi il 20%)",
     "get_annual_premium": "Passa a PRO Annuale",
     "get_monthly_premium": "Passa a PRO Mensile",
@@ -702,6 +703,67 @@
       "habit_adaptation": "Suggerimenti adattamento abitudini AI",
       "learn": "Sezione Impara (articoli, guide & timeline)",
       "priority": "Accesso prioritario a nuove funzionalità"
+    },
+    "header_badge": "👑 SISTEMA DI RESET DOPAMINICO & CRESCITA AI",
+    "hero_title": "Riprendi il Controllo della Tua Mente",
+    "hero_subtitle": "Sblocca il motore predittivo AI per spezzare le dipendenze digitali, azzerare le ricadute e costruire una disciplina d'acciaio senza usare la sola forza di volontà.",
+    "free_subtitle": "Per iniziare a tracciare le basi in autonomia.",
+    "monthly_price": "€9.99",
+    "annual_price": "€7.99",
+    "pro_subtitle": "Il sistema completo 'Fatto con Te' dall'AI per eliminare i trigger alla radice.",
+    "free_features_list": [
+      "Fino a 5 abitudini quotidiane",
+      "1 sfida detox attiva",
+      "Tracciamento base con serie",
+      "Pianificazione giornaliera (To-Do & Not To-Do)",
+      "Riflessione serale e gratitudine",
+      "Calendario attività base"
+    ],
+    "pro_features_list": [
+      {
+        "title": "Pulsante SOS Anti-Ricaduta (Coach AI 24/7)",
+        "desc": "Disinnesca gli impulsi in 90 secondi a tarda notte."
+      },
+      {
+        "title": "Radar Predittivo dei Trigger",
+        "desc": "L'AI incrocia umore, energia e orari per avvisarti PRIMA del momento di debolezza."
+      },
+      {
+        "title": "Protocollo Neuro-Reset \"La Rinascita\"",
+        "desc": "Porn Recovery con serie e milestone (Giorni 3, 7, 14, 30, 90)."
+      },
+      {
+        "title": "Routine Auto-Adattiva AI",
+        "desc": "Ricalibra le abitudini nei giorni pesanti per non farti perdere lo slancio."
+      },
+      {
+        "title": "Abitudini e Sfide Detox Illimitate",
+        "desc": "Nessun limite alla tua trasformazione personale."
+      },
+      {
+        "title": "Analisi Settimanale \"Cosa sta funzionando\"",
+        "desc": "Report sui tuoi pattern ogni 7 giorni."
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 INCLUSI GRATIS OGGI (Valore Totale: €247)",
+      "bonus_1_title": "Protocollo d'Emergenza \"Primi 7 Giorni Senza Ricadute\"",
+      "bonus_1_value": "€97",
+      "bonus_2_title": "Kit \"Schermo Blindato\" Setup Anti-Trigger",
+      "bonus_2_value": "€97",
+      "bonus_3_title": "Template Routine Pre-Sonno \"Dopamina Pulita\"",
+      "bonus_3_value": "€53",
+      "free_badge": "GRATIS"
+    },
+    "value_summary": "Valore totale oltre €340+ — Oggi a meno di €0,27 al giorno.",
+    "cta_button": "👑 Sblocca InnerBuild PRO + 3 Bonus",
+    "guarantee_box": {
+      "title": "Garanzia \"Svolta in 14 Giorni o Rimborsato al 100%\"",
+      "desc": "Prova InnerBuild PRO per 14 giorni. Se il Coach AI 24/7 e l'analisi predittiva dei trigger non ti aiutano a spezzare le cattive abitudini più velocemente di qualsiasi altra app provata finora, ti rimborsiamo ogni centesimo con un clic. Zero domande."
+    },
+    "privacy_box": {
+      "title": "100% Invisibile su App Store & Google Play (Tecnologia Zero-Trace PWA)",
+      "desc": "Il tuo percorso di recupero è strettamente privato. InnerBuild usa un'architettura Web-App criptata: si installa in 1 clic sul telefono ma NON lascia alcuna traccia nella cronologia acquisti di Apple o Google, sull'estratto conto dello store o nei suggerimenti condivisi in famiglia."
     }
   },
   "profile": {
@@ -1419,7 +1481,8 @@
     "home": "Home",
     "tools": "Strumenti",
     "learn": "Impara",
-    "profile": "Profilo"
+    "profile": "Profilo",
+    "pricing": "Prezzi"
   },
   "habit_tips": {
     "one_min_tip": "Consiglio da 1 Min",
@@ -1531,7 +1594,7 @@
   },
   "activity_calendar": {
     "title": "Cronologia dei progressi",
-    "subtitle": "Clicca su un giorno per vedere il log",
+    "subtitle": "Clicca su un giorno per vedere o modificare il log",
     "legend": {
       "done": "Fatto",
       "not_done": "Non fatto",
@@ -1592,7 +1655,10 @@
     "available_in": "Disponibile in {{days}} gg",
     "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
     "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
-    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì.",
+    "teaser_title": "🔒 L'AI ha rilevato pattern nascosti nelle tue giornate",
+    "teaser_desc": "Incrociando i tuoi check-in e le tue abitudini, il motore predittivo ha identificato gli ostacoli che frenano la tua costanza e 1 aggiustamento rapido per questa settimana.",
+    "teaser_cta": "Sblocca la tua Analisi AI + 3 Bonus PRO ->"
   },
   "recovery_tracker": {
     "title": "Sfida di Recovery",

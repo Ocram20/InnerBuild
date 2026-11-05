@@ -209,18 +209,18 @@
     "features": {
       "smart_habit_tracking": "Suivi Intelligent des Habitudes",
       "smart_habit_desc": "Suivez vos habitudes quotidiennes avec des progrès visuels et des conseils d'IA.",
-      "detox_challenges": "Défis Detox",
-      "detox_challenges_desc": "Libérez-vous de l'addiction numérique et des schémas négatifs (3 à 90 jours).",
-      "porn_recovery": "Renaissance (Rétablissement Pornographie)",
-      "porn_recovery_desc": "Un parcours basé sur les neurosciences pour le rétablissement et le contrôle de soi.",
+      "detox_challenges": "Défis Détox",
+      "detox_challenges_desc": "Réinitialisation dopaminergique de 3 à 90 jours pour rompre l'addiction aux écrans, sucre, jeux ou procrastination.",
+      "porn_recovery": "La Renaissance (Sevrage Pornographie)",
+      "porn_recovery_desc": "Protocole neuro-scientifique pour éliminer les rechutes, suivre les séries d'abstinence et reprendre le contrôle.",
       "ai_coach": "Coach IA Personnel",
-      "ai_coach_desc": "Compagnon IA 24/7 qui vous motive, suggère des habitudes et vous aide à gérer les envies.",
-      "trigger_tracking": "Suivi et Analyse des Déclencheurs",
-      "trigger_tracking_desc": "Enregistrez et analysez vos déclencheurs grâce aux analyses de l'IA.",
-      "daily_planning": "Planification et Réflexion Quotidiennes",
-      "daily_planning_desc": "Planifiez votre journée avec des listes de tâches et de non-tâches. Concluez chaque journée avec gratitude.",
-      "the_forge": "La Renaissance (Récupération de la Pornographie)",
-      "the_forge_desc": "Un programme dédié et basé sur la science pour la récupération de la pornographie, la maîtrise de soi et le soutien spécialisé.",
+      "ai_coach_desc": "Soutien SOS actif 24h/24 et 7j/7. Dialoguez avec le Coach lors des fortes tentations pour désamorcer l'impulsion en 90 secondes.",
+      "trigger_tracking": "Déclencheurs & Analyse de Schémas",
+      "trigger_tracking_desc": "Identifiez ce qui déclenche vos pulsions (horaires, émotions, fatigue) et laissez l'IA bâtir vos défenses avant l'écueil.",
+      "daily_planning": "Planification & Réflexion Quotidienne",
+      "daily_planning_desc": "Commencez la journée avec vos priorités (À faire & À éviter) et terminez par le bilan du soir d'énergie et de gratitude.",
+      "the_forge": "La Renaissance (Sevrage Pornographie)",
+      "the_forge_desc": "Protocole neuro-scientifique pour éliminer les rechutes, suivre les séries d'abstinence et reprendre le contrôle.",
       "ai_habit_adaptation": "Adaptation des habitudes par IA",
       "ai_habit_adaptation_desc": "Suggère des versions plus faciles lorsque vous avez du mal",
       "learn_section": "Section Apprendre",
@@ -400,7 +400,8 @@
       "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
       "s6_title": "6. Contattaci",
       "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
-    }
+    },
+    "loved_by_people": "Aimé par des milliers de personnes"
   },
   "explore": {
     "title": "Outils",
@@ -418,17 +419,17 @@
       "habits": "Habitudes",
       "habits_desc": "Suivez et construisez des habitudes quotidiennes",
       "detox_challenges": "Défis Detox",
-      "detox_challenges_desc": "Défis pour briser les mauvaises habitudes",
+      "detox_challenges_desc": "Libérez-vous des mauvaises habitudes",
       "evening_reflection": "Réflexion du soir",
       "evening_reflection_desc": "Bilan quotidien et gratitude",
       "daily_planning": "Planification quotidienne",
-      "daily_planning_desc": "Listes de choses à faire et objectifs",
+      "daily_planning_desc": "Planifiez vos tâches et choses à éviter",
       "trigger_tracking": "Suivi des déclencheurs",
-      "trigger_tracking_desc": "Enregistrez les pulsions et l'analyse des schémas par IA",
+      "trigger_tracking_desc": "Enregistrez et analysez vos pulsions",
       "the_forge": "La Renaissance",
-      "the_forge_desc": "Chemin scientifique vers la liberté",
+      "the_forge_desc": "Outils scientifiques pour votre parcours",
       "ai_coach": "Coach IA",
-      "ai_coach_desc": "Guide personnel basé sur l'IA"
+      "ai_coach_desc": "Votre guide personnel"
     }
   },
   "habits": {
@@ -655,34 +656,34 @@
     "subtitle": "Débloquez tous les outils de croissance avancés et reprenez le contrôle.",
     "monthly_billing": "Mensuel",
     "annual_billing": "Annuel",
-    "save_badge": "Économisez 20% (2 mois gratuits)",
-    "annual_billing_detail": "Facturé 95,88 €/an (Économie de 20%)",
+    "save_badge": "Économisez 20%",
+    "annual_billing_detail": "Facturé 95,88 €/an (20% d'économie)",
     "get_annual_premium": "Passer à PRO Annuel",
     "get_monthly_premium": "Passer à PRO Mensuel",
-    "guarantee_30_days": "Garantie Satisfait ou Remboursé 30 Jours",
-    "cancel_anytime": "Annulez à tout moment",
+    "guarantee_30_days": "Garantie 30 Jours",
+    "cancel_anytime": "Résiliez à tout moment",
     "secure_stripe": "Paiement Sécurisé via Stripe",
-    "free_plan": "Formule Gratis",
+    "free_plan": "Plan Gratuit",
     "premium_plan": "InnerBuild PRO",
     "most_popular": "Le Plus Populaire",
     "forever": "pour toujours",
     "get_started_basics": "Parfait pour démarrer votre parcours.",
     "unlock_potential": "Débloquez tout votre potentiel sans limites.",
-    "free_price": "€0",
-    "current_plan": "Formule actuelle",
-    "get_started_free": "Commencer gratuitement",
+    "free_price": "0 €",
+    "current_plan": "Plan Actuel",
+    "get_started_free": "Commencer Gratuitement",
     "premium_price": "€9.99",
     "per_month": "/mois",
     "everything_in_free": "Tout ce qui est dans la formule gratuite, plus :",
     "subscribe_now": "S'abonner maintenant",
     "get_premium": "Obtenir Premium",
-    "trust_badges": "Garantie de remboursement de 30 jours • Annulation à tout moment • Paiement sécurisé via Stripe",
+    "trust_badges": "Garantie de remboursement 30 jours • Annulez à tout moment • Paiement sécurisé via Stripe",
     "have_account": "Vous avez déjà un compte ?",
     "welcome_premium": "Bienvenue sur InnerBuild Premium !",
     "subscription_active": "Votre abonnement est maintenant actif. Profitez-en bien !",
     "checkout_canceled": "Paiement annulé",
     "checkout_canceled_desc": "Pas de problème – vous pouvez vous abonner à tout moment.",
-    "checkout_failed": "Échec du lancement du paiement. Veuillez réessayer.",
+    "checkout_failed": "Échec du démarrage de la commande. Veuillez réessayer.",
     "free_features": {
       "habits": "Jusqu'à 5 habitudes",
       "challenges": "1 défi detox actif",
@@ -704,6 +705,67 @@
       "habit_adaptation": "Suggestions d'adaptation des habitudes par IA",
       "learn": "Section Apprendre (articles, guides et chronologie)",
       "priority": "Accès prioritaire aux nouvelles fonctionnalités"
+    },
+    "header_badge": "👑 SYSTÈME DE RÉINITIALISATION DE DOPAMINE & CROISSANCE IA",
+    "hero_title": "Reprenez le Contrôle de Votre Esprit",
+    "hero_subtitle": "Débloquez le moteur prédictif IA pour briser les dépendances numériques, éradiquer les rechutes et forger une discipline d'acier sans compter uniquement sur la volonté.",
+    "free_subtitle": "Pour commencer à suivre les bases en toute autonomie.",
+    "monthly_price": "9,99 €",
+    "annual_price": "7,99 €",
+    "pro_subtitle": "Le système IA complet pour éliminer les déclencheurs à la racine.",
+    "free_features_list": [
+      "Jusqu'à 5 habitudes quotidiennes",
+      "1 défi détox actif",
+      "Suivi basique avec séries",
+      "Planification quotidienne (À faire & À ne pas faire)",
+      "Réflexion du soir & gratitude",
+      "Calendrier d'activités de base"
+    ],
+    "pro_features_list": [
+      {
+        "title": "Bouton SOS Anti-Rechute (Coach IA 24/7)",
+        "desc": "Désamorcez les pulsions en 90 secondes au milieu de la nuit."
+      },
+      {
+        "title": "Radar Prédictif des Déclencheurs",
+        "desc": "L'IA croise humeur, énergie et horaires pour vous avertir AVANT le moment de vulnérabilité."
+      },
+      {
+        "title": "Protocole Neuro-Reset « La Renaissance »",
+        "desc": "Sevrage avec séries et étapes clés (Jours 3, 7, 14, 30, 90)."
+      },
+      {
+        "title": "Routine Auto-Adaptative IA",
+        "desc": "Recalibre les habitudes les jours difficiles pour préserver votre élan."
+      },
+      {
+        "title": "Habitudes et Défis Détox Illimités",
+        "desc": "Aucune limite à votre transformation."
+      },
+      {
+        "title": "Analyse Hebdomadaire « Ce qui fonctionne »",
+        "desc": "Rapport complet sur vos schémas tous les 7 jours."
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 INCLUS GRATUITEMENT AUJOURD'HUI (Valeur Totale : 247 €)",
+      "bonus_1_title": "Protocole d'Urgence « 7 Premiers Jours Sans Rechute »",
+      "bonus_1_value": "97 €",
+      "bonus_2_title": "Kit « Écran Blindé » Configuration Anti-Déclencheurs",
+      "bonus_2_value": "97 €",
+      "bonus_3_title": "Modèle Routine Pré-Sommeil « Dopamine Propre »",
+      "bonus_3_value": "53 €",
+      "free_badge": "GRATUIT"
+    },
+    "value_summary": "Valeur totale de plus de 340 €+ — Aujourd'hui pour moins de 0,27 € par jour.",
+    "cta_button": "👑 Débloquer InnerBuild PRO + 3 Bonus",
+    "guarantee_box": {
+      "title": "Garantie « Déclic en 14 Jours ou Remboursé à 100% »",
+      "desc": "Testez InnerBuild PRO pendant 14 jours. Si le Coach IA 24/7 et l'analyse prédictive des déclencheurs ne vous aident pas à briser vos mauvaises habitudes plus vite que toute autre application, nous vous remboursons chaque centime en un clic. Aucune question."
+    },
+    "privacy_box": {
+      "title": "100% Invisible sur App Store & Google Play (Technologie PWA Zero-Trace)",
+      "desc": "Votre parcours de guérison est strictement confidentiel. InnerBuild utilise une architecture Web-App cryptée : s'installe en 1 clic sur votre téléphone sans laisser aucune trace dans l'historique d'achats Apple ou Google, vos relevés bancaires ou le partage familial."
     }
   },
   "profile": {
@@ -1403,7 +1465,8 @@
     "home": "Accueil",
     "tools": "Outils",
     "learn": "Apprendre",
-    "profile": "Profil"
+    "profile": "Profil",
+    "pricing": "Tarifs"
   },
   "habit_tips": {
     "one_min_tip": "Astuce en 1 min",
@@ -1515,7 +1578,7 @@
   },
   "activity_calendar": {
     "title": "Historique des progrès",
-    "subtitle": "Cliquez sur un jour pour voir votre journal",
+    "subtitle": "Cliquez sur un jour pour voir ou modifier le journal",
     "legend": {
       "done": "Fait",
       "not_done": "Non fait",
@@ -1576,7 +1639,10 @@
     "available_in": "Disponible dans {{days}} jours",
     "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
     "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
-    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì.",
+    "teaser_title": "🔒 L'IA a détecté des schémas cachés dans vos journées",
+    "teaser_desc": "En croisant vos bilans et vos habitudes, le moteur prédictif a identifié les freins à votre régularité et 1 ajustement rapide pour cette semaine.",
+    "teaser_cta": "Débloquez votre Analyse IA + 3 Bonus PRO ->"
   },
   "recovery_tracker": {
     "title": "Défi de récupération",

@@ -1,39 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { useSubscription } from "@/hooks/useSubscription";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
 import LandingFooter from "@/components/LandingFooter";
 import LandingAppPreview from "@/components/LandingAppPreview";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { useToast } from "@/hooks/use-toast";
 import { 
   Leaf, 
   Sparkles, 
-  CheckCircle2, 
   ArrowRight,
   Moon,
   Sun,
-  Flame,
-  Bot,
-  BookOpen,
-  Brain,
-  Shield,
-  Zap,
-  Clock,
-  Ban,
-  ShieldAlert,
-  Eye,
-  Target,
-  CalendarCheck,
-  Crown,
-  Check,
-  Lock,
-  ShieldCheck,
-  Loader2,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -42,29 +21,14 @@ import { useTranslation } from "react-i18next";
 export default function Landing() {
   const { t } = useTranslation();
   const { user, loading } = useAuth();
-  const { createCheckout } = useSubscription();
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
-  const { toast } = useToast();
-
-  const [isAnnual, setIsAnnual] = useState(true);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   useEffect(() => {
-    const scrollToPricingIfNeeded = () => {
-      if (window.location.hash === "#pricing") {
-        setTimeout(() => {
-          const el = document.getElementById("pricing");
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 150);
-      }
-    };
-    scrollToPricingIfNeeded();
-    window.addEventListener("hashchange", scrollToPricingIfNeeded);
-    return () => window.removeEventListener("hashchange", scrollToPricingIfNeeded);
-  }, []);
+    if (window.location.hash === "#pricing") {
+      navigate("/pricing", { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -104,24 +68,6 @@ export default function Landing() {
 
   const isDark = theme === "dark";
 
-  const handleSubscribe = async () => {
-    if (!user) {
-      navigate("/auth?mode=signup");
-      return;
-    }
-    setCheckoutLoading(true);
-    try {
-      await createCheckout({ isAnnual });
-    } catch (error) {
-      toast({
-        title: t("common.error", "Errore"),
-        description: t("pricing.checkout_failed", "Impossibile avviare il pagamento. Riprova più tardi."),
-        variant: "destructive",
-      });
-      setCheckoutLoading(false);
-    }
-  };
-
   const statDefs = [
     { value: "90+", labelKey: "landing.stats.recovery_days" },
     { value: "50+", labelKey: "landing.stats.suggested_habits" },
@@ -146,40 +92,28 @@ export default function Landing() {
     { stars: 4, quoteKey: "landing.testimonials_data.t6", author: "Giulia T." },
   ];
 
-  const freeFeatures = [
-    t("pricing.free_features.habits", "Tracciamento Abitudini (base)"),
-    t("pricing.free_features.challenges", "Sfide Detox (base)"),
-    t("pricing.free_features.tracking", "Tracciamento Streak Base"),
-    t("pricing.free_features.quotes", "Citazioni Motivazionali Giornaliere"),
-    t("pricing.free_features.planning", "Pianificazione Task Giornaliera"),
-    t("pricing.free_features.reflection", "Riflessione Serale Base"),
-    t("pricing.free_features.profile", "Profilo Utente & Statistiche Base"),
-  ];
-
-  const premiumFeatures = [
-    t("pricing.premium_features.unlimited_habits", "Abitudini Illimitate & Adattamento AI"),
-    t("pricing.premium_features.unlimited_challenges", "Sfide Detox Illimitate"),
-    t("pricing.premium_features.ai_coach", "AI Coach Personale H24"),
-    t("pricing.premium_features.recovery", "The Forge: Programma di Recovery Scientifico"),
-    t("pricing.premium_features.trigger_tracking", "Analisi & Heatmap Trigger con AI"),
-    t("pricing.premium_features.habit_adaptation", "Raccomandazioni Personalizzate AI"),
-    t("pricing.premium_features.learn", "Accesso Completo alla Sezione Impara"),
-    t("pricing.premium_features.priority", "Supporto Prioritario"),
-  ];
-
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header — floating pill nav */}
       <header className="sticky top-0 safe-area-header z-50 px-3 pt-3 md:pt-4">
-        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-2 rounded-full border border-border/60 bg-card/70 px-3 py-2 pl-4 shadow-lg backdrop-blur-xl md:px-4">
+        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-2 rounded-full border border-border/60 bg-card/70 px-3 py-2 pl-3 sm:pl-4 shadow-lg backdrop-blur-xl md:px-4">
           <div className="flex min-w-0 items-center gap-2">
             <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full gradient-primary shadow-soft md:h-9 md:w-9">
               <Leaf className="h-4 w-4 text-primary-foreground md:h-[18px] md:w-[18px]" />
             </div>
-            <span className="notranslate truncate text-base font-bold tracking-tight text-foreground md:text-lg" translate="no">InnerBuild</span>
+            <span className="notranslate hidden sm:inline truncate text-base font-bold tracking-tight text-foreground md:text-lg" translate="no">
+              InnerBuild
+            </span>
           </div>
 
           <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/pricing")}
+              className="hidden h-9 rounded-full px-3 text-xs font-medium text-foreground sm:inline-flex md:text-sm"
+            >
+              {t("nav.pricing", "Prezzi")}
+            </Button>
             <LanguageSelector />
             <Button
               variant="ghost"
@@ -201,7 +135,7 @@ export default function Landing() {
                 <Button
                   variant="ghost"
                   onClick={() => navigate("/auth")}
-                  className="hidden h-9 rounded-full px-3 text-xs font-medium sm:inline-flex md:text-sm"
+                  className="hidden h-9 rounded-full px-3 text-xs font-medium text-foreground sm:inline-flex md:text-sm"
                 >
                   {t("auth.sign_in")}
                 </Button>
@@ -257,10 +191,7 @@ export default function Landing() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => {
-                    const el = document.getElementById("pricing");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={() => navigate("/pricing")}
                   className="h-14 rounded-full border border-[#C377D7]/40 bg-[#f4e6f8]/80 dark:bg-[#C377D7]/20 px-8 text-base font-bold text-[#8A3DB8] dark:text-[#D28CE4] backdrop-blur shadow-sm transition-all duration-300 hover:bg-[#C377D7] hover:text-white dark:hover:bg-[#C377D7] dark:hover:text-white hover:border-[#C377D7] hover:shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] active:scale-95"
                 >
                   {t("landing.view_pricing")}
@@ -283,7 +214,9 @@ export default function Landing() {
                   <div className="flex items-center gap-1 text-xs text-accent">
                     ★★★★★
                   </div>
-                  <p className="text-xs font-medium text-muted-foreground">{t("landing.loved_by_people")}</p>
+                  <p className="text-xs font-medium text-muted-foreground">
+                    {t("landing.loved_by_people", "Amato da migliaia di persone")}
+                  </p>
                 </div>
               </div>
             </ScrollReveal>
@@ -357,162 +290,6 @@ export default function Landing() {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Enhanced Pricing Section with Monthly/Annual Toggle & Emerald Glow */}
-        <section id="pricing" className="relative overflow-hidden px-4 py-20 md:py-28">
-          <div className="relative max-w-5xl mx-auto">
-            <ScrollReveal className="text-center mb-4">
-              <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                <Crown className="h-3.5 w-3.5 mr-2 text-emerald-400" />
-                {t("pricing.choose_plan", "Scegli il tuo piano")}
-              </Badge>
-            </ScrollReveal>
-            <ScrollReveal className="text-center mb-10" delay={100}>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
-                {t("pricing.choose_plan_title", "Investi nel tuo potenziale")}
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-                {t("pricing.subtitle", "Sblocca tutti gli strumenti avanzati per la tua crescita e riconquista il controllo.")}
-              </p>
-
-              {/* Monthly / Annual Toggle */}
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <span className={`text-sm font-semibold transition-colors ${!isAnnual ? "text-foreground font-bold" : "text-muted-foreground"}`}>
-                  {t("pricing.monthly_billing", "Mensile")}
-                </span>
-                <Switch
-                  checked={isAnnual}
-                  onCheckedChange={setIsAnnual}
-                  className="data-[state=checked]:bg-emerald-500"
-                />
-                <span className={`text-sm font-semibold flex items-center gap-2 transition-colors ${isAnnual ? "text-foreground font-bold" : "text-muted-foreground"}`}>
-                  {t("pricing.annual_billing", "Annuale")}
-                  <Badge className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[11px] font-bold px-2 py-0.5 animate-pulse">
-                    {t("pricing.save_badge", "Risparmi il 20% (2 mesi gratis)")}
-                  </Badge>
-                </span>
-              </div>
-            </ScrollReveal>
-
-            {/* Pricing Cards Grid */}
-            <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto mb-12">
-              {/* Free Plan Card */}
-              <ScrollReveal variant="scale" delay={150}>
-                <div className="h-full rounded-3xl border border-border/60 bg-card/60 backdrop-blur-xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold mb-4">
-                      {t("pricing.free_plan", "Piano Base")}
-                    </div>
-                    <div className="flex items-baseline gap-1 mb-2">
-                      <span className="text-4xl md:text-5xl font-extrabold text-foreground">€0</span>
-                      <span className="text-muted-foreground text-sm">/{t("pricing.forever", "per sempre")}</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-6">{t("pricing.get_started_basics", "Perfetto per iniziare il tuo percorso.")}</p>
-
-                    <div className="space-y-3 mb-8">
-                      {freeFeatures.map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-sm text-foreground/90">
-                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                            <Check className="h-3.5 w-3.5 text-emerald-400" />
-                          </div>
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate(user ? "/dashboard" : "/auth?mode=signup")}
-                    className="w-full h-12 rounded-2xl font-semibold border-border/80 hover:bg-card"
-                  >
-                    {user ? t("pricing.current_plan", "Il tuo piano attuale") : t("pricing.get_started_free", "Inizia Gratis")}
-                  </Button>
-                </div>
-              </ScrollReveal>
-
-              {/* Premium Plan Card with Emerald Glow */}
-              <ScrollReveal variant="scale" delay={250}>
-                <div className="h-full rounded-3xl border-2 border-emerald-500/60 bg-card dark:bg-gradient-to-b dark:from-emerald-950/30 dark:via-slate-900/80 dark:to-card/90 backdrop-blur-xl p-8 flex flex-col justify-between relative overflow-hidden shadow-lg dark:shadow-[0_0_40px_-5px_rgba(16,185,129,0.35)] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-[0_0_50px_0px_rgba(16,185,129,0.45)]">
-                  {/* Più Popolare Badge */}
-                  <div className="absolute top-0 right-0">
-                    <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 text-xs font-black tracking-wide px-4 py-1.5 rounded-bl-2xl shadow-md flex items-center gap-1.5 uppercase">
-                      <Sparkles className="h-3.5 w-3.5 fill-slate-950 text-slate-950" />
-                      {t("pricing.most_popular", "Più Popolare")}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-4">
-                      <Crown className="h-3.5 w-3.5" />
-                      {t("pricing.premium_plan", "InnerBuild PRO")}
-                    </div>
-                    
-                    <div className="flex items-baseline gap-1 mb-1">
-                      <span className="text-4xl md:text-5xl font-extrabold text-foreground">
-                        {isAnnual ? "€7.99" : "€9.99"}
-                      </span>
-                      <span className="text-muted-foreground text-sm">/{t("common.month", "mese")}</span>
-                    </div>
-                    {isAnnual && (
-                      <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
-                        {t("pricing.annual_billing_detail", "Fatturati €95.88/anno (Risparmi il 20%)")}
-                      </p>
-                    )}
-                    <p className="text-xs text-muted-foreground mb-6">{t("pricing.unlock_potential", "Sblocca tutto il potenziale senza limiti.")}</p>
-
-                    <div className="space-y-3 mb-8">
-                      {premiumFeatures.map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-sm font-medium text-foreground">
-                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 dark:bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                            <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-                          </div>
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <Button
-                      onClick={handleSubscribe}
-                      disabled={checkoutLoading}
-                      className="w-full h-13 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-base shadow-lg shadow-emerald-500/25 transition-all duration-300 active:scale-95 gap-2"
-                    >
-                      {checkoutLoading ? (
-                        <>
-                          <Loader2 className="h-5 w-5 animate-spin" />
-                          <span>{t("common.loading", "Caricamento...")}</span>
-                        </>
-                      ) : (
-                        <>
-                          <Crown className="h-5 w-5" />
-                          <span>{isAnnual ? t("pricing.get_annual_premium", "Passa a PRO Annuale") : t("pricing.get_monthly_premium", "Passa a PRO Mensile")}</span>
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-
-            {/* Reassurance Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground font-medium pt-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span>{t("pricing.guarantee_30_days", "Garanzia di 30 Giorni")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span>{t("pricing.cancel_anytime", "Annulla quando vuoi")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span>{t("pricing.secure_stripe", "Pagamento Sicuro via Stripe")}</span>
               </div>
             </div>
           </div>

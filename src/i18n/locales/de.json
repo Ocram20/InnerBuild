@@ -209,18 +209,18 @@
     "features": {
       "smart_habit_tracking": "Smart-Gewohnheits-Tracking",
       "smart_habit_desc": "Verfolgen Sie tägliche Gewohnheiten mit visuellem Fortschritt, Streaks und KI-Tipps.",
-      "detox_challenges": "Detox-Herausforderungen",
-      "detox_challenges_desc": "Befreien Sie sich von digitaler Sucht und negativen Verhaltensmustern (3 bis 90 Tage).",
-      "porn_recovery": "Neuanfang (Pornografie-Erholung)",
-      "porn_recovery_desc": "Ein neurowissenschaftlicher Pfad zur Erholung, Selbstbeherrschung und Spezialbetreuung.",
+      "detox_challenges": "Detox-Challenges",
+      "detox_challenges_desc": "Dopamin-Reset von 3 bis 90 Tagen gegen Abhängigkeiten von Social Media, Zucker, Gaming oder Aufschieberitis.",
+      "porn_recovery": "Die Erneuerung (Porn-Recovery)",
+      "porn_recovery_desc": "Neurowissenschaftliches Protokoll, um Rückfälle zu eliminieren, Abstinenz-Serien zu erfassen und die Kontrolle zurückzugewinnen.",
       "ai_coach": "Persönlicher KI-Coach",
-      "ai_coach_desc": "24/7 KI-Begleiter, der Sie motiviert, Gewohnheiten vorschlägt und Ihr Verlangen lenkt.",
-      "trigger_tracking": "Trigger-Erfassung & Analyse",
-      "trigger_tracking_desc": "Erfassen und analysieren Sie Ihre Auslöser mit KI-Erkenntnissen für stärkere Abwehr.",
-      "daily_planning": "Tägliche Planung & Reflexion",
-      "daily_planning_desc": "Planen Sie Ihren Tag mit To-Do- und Not-To-Do-Listen. Schließen Sie jeden Tag mit Dankbarkeit ab.",
-      "the_forge": "Der Neubeginn (Pornografie-Erholung)",
-      "the_forge_desc": "Ein spezielles, wissenschaftlich fundiertes Programm für Porno-Recovery, Selbstbeherrschung und spezialisierte Unterstützung.",
+      "ai_coach_desc": "24/7 SOS-Support. Sprich in Momenten starker Versuchung mit dem Coach, um das Verlangen in 90 Sekunden zu entschärfen.",
+      "trigger_tracking": "Trigger & Verhaltensmuster-Analyse",
+      "trigger_tracking_desc": "Erkenne, was Impulse auslöst (Uhrzeit, Emotionen, Müdigkeit), und lass die KI Schutzstrategien aufbauen, bevor du fällst.",
+      "daily_planning": "Tagesplanung & Reflexion",
+      "daily_planning_desc": "Starte mit klaren Prioritäten (To-Do & Not To-Do) und beende den Tag mit dem abendlichen Energie- und Dankbarkeits-Check-in.",
+      "the_forge": "Die Erneuerung (Porn-Recovery)",
+      "the_forge_desc": "Neurowissenschaftliches Protokoll, um Rückfälle zu eliminieren, Abstinenz-Serien zu erfassen und die Kontrolle zurückzugewinnen.",
       "ai_habit_adaptation": "KI-Gewohnheitsanpassung",
       "ai_habit_adaptation_desc": "Schlägt einfachere Versionen vor, wenn du Schwierigkeiten hast",
       "learn_section": "Lernbereich",
@@ -400,7 +400,8 @@
       "s5_content": "I materiali che appaiono su InnerBuild potrebbero includere errori tecnici, tipografici o fotografici. InnerBuild non garantisce che qualsiasi dei materiali sul suo sito web sia accurato, completo o attuale. InnerBuild può apportare modifiche ai materiali contenuti sul suo sito web in qualsiasi momento senza preavviso.",
       "s6_title": "6. Contattaci",
       "s6_content": "Se hai domande su questi Termini di Servizio, contattaci a"
-    }
+    },
+    "loved_by_people": "Von Tausenden Menschen geliebt"
   },
   "explore": {
     "title": "Tools",
@@ -418,17 +419,17 @@
       "habits": "Gewohnheiten",
       "habits_desc": "Verfolge und baue tägliche Gewohnheiten auf",
       "detox_challenges": "Detox-Challenges",
-      "detox_challenges_desc": "Herausforderungen, um schlechte Gewohnheiten zu brechen",
+      "detox_challenges_desc": "Befreie dich von schlechten Gewohnheiten",
       "evening_reflection": "Abendreflexion",
       "evening_reflection_desc": "Täglicher Check-in und Dankbarkeit",
       "daily_planning": "Tägliche Planung",
-      "daily_planning_desc": "Aufgabenlisten und Ziele",
+      "daily_planning_desc": "Aufgaben und No-Gos planen",
       "trigger_tracking": "Trigger-Tracking",
-      "trigger_tracking_desc": "Erfasse Impulse und KI-Musteranalyse",
+      "trigger_tracking_desc": "Erfasse und analysiere deine Impulse",
       "the_forge": "Der Neubeginn",
-      "the_forge_desc": "Wissenschaftlich basierter Weg zur Freiheit",
-      "ai_coach": "KI-Coach",
-      "ai_coach_desc": "Personalisierte KI-gestützte Anleitung"
+      "the_forge_desc": "Wissenschaftlich fundierte Werkzeuge für deine Reise",
+      "ai_coach": "KI‑Coach",
+      "ai_coach_desc": "Dein persönlicher Guide"
     }
   },
   "habits": {
@@ -655,16 +656,16 @@
     "subtitle": "Schalten Sie alle erweiterten Tools für Ihr Wachstum frei und übernehmen Sie wieder die Kontrolle.",
     "monthly_billing": "Monatlich",
     "annual_billing": "Jährlich",
-    "save_badge": "20% Sparen (2 Monate gratis)",
-    "annual_billing_detail": "Abrechnung 95.88 €/Jahr (20% Sparen)",
+    "save_badge": "20% sparen",
+    "annual_billing_detail": "Abrechnung €95.88/Jahr (20% Rabatt)",
     "get_annual_premium": "Zu PRO Jährlich wechseln",
     "get_monthly_premium": "Zu PRO Monatlich wechseln",
-    "guarantee_30_days": "30 Tage Geld-zurück-Garantie",
+    "guarantee_30_days": "30-Tage-Garantie",
     "cancel_anytime": "Jederzeit kündbar",
     "secure_stripe": "Sichere Zahlung via Stripe",
     "free_plan": "Basis-Plan",
     "premium_plan": "InnerBuild PRO",
-    "most_popular": "Beliebtestes",
+    "most_popular": "Am beliebtesten",
     "forever": "für immer",
     "get_started_basics": "Perfekt für den Einstieg in Ihre Reise.",
     "unlock_potential": "Schalten Sie volles Potenzial ohne Grenzen frei.",
@@ -676,13 +677,13 @@
     "everything_in_free": "Alles im kostenlosen Plan, plus:",
     "subscribe_now": "Jetzt abonnieren",
     "get_premium": "Premium erhalten",
-    "trust_badges": "30-tägige Geld-zurück-Garantie • Jederzeit kündbar • Sichere Zahlung über Stripe",
+    "trust_badges": "30 Tage Geld-zurück-Garantie • Jederzeit kündbar • Sichere Zahlung via Stripe",
     "have_account": "Bereits ein Konto?",
     "welcome_premium": "Willkommen bei InnerBuild Premium!",
     "subscription_active": "Dein Abonnement ist jetzt aktiv. Viel Freude damit!",
     "checkout_canceled": "Checkout abgebrochen",
     "checkout_canceled_desc": "Kein Problem – du kannst jederzeit ein Abonnement abschließen.",
-    "checkout_failed": "Checkout konnte nicht gestartet werden. Bitte versuche es erneut.",
+    "checkout_failed": "Checkout konnte nicht gestartet werden. Bitte erneut versuchen.",
     "free_features": {
       "habits": "Bis zu 5 Gewohnheiten",
       "challenges": "1 aktive Detox-Challenge",
@@ -704,6 +705,67 @@
       "habit_adaptation": "KI-Gewohnheitsanpassungsvorschläge",
       "learn": "Lernbereich (Artikel, Guides & Zeitachse)",
       "priority": "Priorisierter Zugang zu neuen Funktionen"
+    },
+    "header_badge": "👑 DOPAMIN-RESET-SYSTEM & KI-WACHSTUM",
+    "hero_title": "Gewinne die Kontrolle über deinen Geist zurück",
+    "hero_subtitle": "Aktiviere die prädiktive KI-Engine, um digitale Süchte zu durchbrechen, Rückfälle zu eliminieren und eiserne Disziplin aufzubauen – ohne dich nur auf Willenskraft zu verlassen.",
+    "free_subtitle": "Um die Grundlagen selbstständig zu erfassen.",
+    "monthly_price": "€9.99",
+    "annual_price": "€7.99",
+    "pro_subtitle": "Das vollständige KI-System, um Trigger an der Wurzel zu beseitigen.",
+    "free_features_list": [
+      "Bis zu 5 tägliche Gewohnheiten",
+      "1 aktive Detox-Challenge",
+      "Basis-Tracking mit Serien",
+      "Tagesplanung (To-Do & Not To-Do)",
+      "Abendliche Reflexion & Dankbarkeit",
+      "Basis-Aktivitätskalender"
+    ],
+    "pro_features_list": [
+      {
+        "title": "Anti-Rückfall SOS-Button (24/7 KI-Coach)",
+        "desc": "Entschärfe Gelüste in 90 Sekunden zu später Stunde."
+      },
+      {
+        "title": "Prädiktives Trigger-Radar",
+        "desc": "Die KI gleicht Stimmung, Energie und Uhrzeiten ab, um dich VOR dem Schwachpunkt zu warnen."
+      },
+      {
+        "title": "Neuro-Reset-Protokoll „Die Erneuerung“",
+        "desc": "Porn-Recovery mit Serien und Meilensteinen (Tag 3, 7, 14, 30, 90)."
+      },
+      {
+        "title": "KI-Auto-Adaptive Routine",
+        "desc": "Passt Gewohnheiten an schweren Tagen an, damit du den Schwung nicht verlierst."
+      },
+      {
+        "title": "Unbegrenzte Gewohnheiten & Detox-Challenges",
+        "desc": "Keine Limits für deine persönliche Weiterentwicklung."
+      },
+      {
+        "title": "Wöchentliche „Was funktioniert“-Analyse",
+        "desc": "Bericht über deine Verhaltensmuster alle 7 Tage."
+      }
+    ],
+    "bonus_box": {
+      "title": "🎁 HEUTE KOSTENLOS ENTHALTEN (Gesamtwert: €247)",
+      "bonus_1_title": "Notfall-Protokoll „Erste 7 Tage ohne Rückfall“",
+      "bonus_1_value": "€97",
+      "bonus_2_title": "„Gepanzertes Display“ Anti-Trigger Setup-Kit",
+      "bonus_2_value": "€97",
+      "bonus_3_title": "„Sauberes Dopamin“ Pre-Schlaf Routine-Vorlage",
+      "bonus_3_value": "€53",
+      "free_badge": "GRATIS"
+    },
+    "value_summary": "Gesamtwert über €340+ — Heute für unter €0,27 pro Tag.",
+    "cta_button": "👑 InnerBuild PRO + 3 Boni freischalten",
+    "guarantee_box": {
+      "title": "Garantie „14-Tage-Durchbruch oder 100% Geld zurück“",
+      "desc": "Teste InnerBuild PRO 14 Tage lang. Wenn der 24/7 KI-Coach und die prädiktive Trigger-Analyse dir nicht helfen, schlechte Gewohnheiten schneller abzulegen als jede andere App, erstatten wir jeden Cent mit einem Klick. Ohne Wenn und Aber."
+    },
+    "privacy_box": {
+      "title": "100% Unsichtbar im App Store & Google Play (Zero-Trace PWA-Technologie)",
+      "desc": "Dein Erholungsweg ist streng privat. InnerBuild nutzt eine verschlüsselte Web-App-Architektur: mit 1 Klick installiert, hinterlässt jedoch keinerlei Spuren in Kaufhistorien von Apple oder Google, auf Kontoauszügen oder in Familienfreigaben."
     }
   },
   "profile": {
@@ -1403,7 +1465,8 @@
     "home": "Startseite",
     "tools": "Tools",
     "learn": "Lernen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "pricing": "Preise"
   },
   "habit_tips": {
     "one_min_tip": "1‑Minuten-Tipp",
@@ -1515,7 +1578,7 @@
   },
   "activity_calendar": {
     "title": "Fortschrittsverlauf",
-    "subtitle": "Klicke auf einen Tag, um dein Protokoll zu sehen",
+    "subtitle": "Klicke auf einen Tag, um das Protokoll anzuzeigen oder zu bearbeiten",
     "legend": {
       "done": "Erledigt",
       "not_done": "Nicht erledigt",
@@ -1576,7 +1639,10 @@
     "available_in": "Verfügbar in {{days}} Tagen",
     "insight_fallback_improving": "Qualcosa nella tua settimana sta andando nella direzione giusta — continua a notare cosa ti aiuta.",
     "insight_fallback_protect": "Le abitudini che stai mantenendo contano — meritano di essere protette.",
-    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì."
+    "insight_fallback_adjustment": "Scegli un piccolo aggiustamento realistico per la prossima settimana e costruisci da lì.",
+    "teaser_title": "🔒 Die KI hat verborgene Muster in deinen Tagen erkannt",
+    "teaser_desc": "Durch den Abgleich deiner Check-ins und Gewohnheiten hat das Vorhersagesystem die Hürden deiner Beständigkeit sowie 1 schnelle Anpassung für diese Woche ermittelt.",
+    "teaser_cta": "Schalte deine KI-Analyse + 3 PRO-Boni frei ->"
   },
   "recovery_tracker": {
     "title": "Recovery-Challenge",

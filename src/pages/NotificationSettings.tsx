@@ -8,6 +8,11 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { localizeSuggestedHabitTitle } from "@/lib/templateLocalization";
 import {
+  registerNotificationServiceWorker,
+  showAppNotification,
+  markPastScheduledTimesAsFiredToday,
+} from "@/lib/notifications";
+import {
   ArrowLeft,
   Bell,
   BellRing,
@@ -86,11 +91,46 @@ export default function NotificationSettings() {
   const [initialSnapshot, setInitialSnapshot] = useState<string>("");
   const [isDirty, setIsDirty] = useState<boolean>(false);
 
+  // Register Service Worker on mount
+  useEffect(() => {
+    registerNotificationServiceWorker();
+  }, []);
+
   // Fetch active habits, detox challenges, and recovery journey status from Supabase
   useEffect(() => {
     if (!user) return;
     fetchUserDataAndSettings();
   }, [user]);
+
+  const persistPreferencesToStorage = (
+    detox: ToolNotificationConfig,
+    evening: ToolNotificationConfig,
+    dailyPlanning: ToolNotificationConfig,
+    renewal: ToolNotificationConfig,
+    habits: HabitNotificationConfig[],
+    activeDetox: boolean,
+    activeRenewal: boolean
+  ) => {
+    const preferences = {
+      detox,
+      evening,
+      dailyPlanning,
+      renewal,
+      habits: habits.map((h) => ({
+        id: h.id,
+        rawTitle: h.rawTitle,
+        enabled: h.enabled,
+        time: h.time,
+      })),
+      hasActiveDetoxChallenges: activeDetox,
+      hasActiveRenewalJourney: activeRenewal,
+      updatedAt: new Date().toISOString(),
+    };
+
+    markPastScheduledTimesAsFiredToday(preferences);
+    localStorage.setItem("innerbuild_notification_preferences", JSON.stringify(preferences));
+    window.dispatchEvent(new Event("innerbuild-notifications-updated"));
+  };
 
   const fetchUserDataAndSettings = async () => {
     if (!user) return;
@@ -113,7 +153,8 @@ export default function NotificationSettings() {
         .eq("status", "active");
 
       const activeDetoxCount = (challengesData || []).length;
-      setHasActiveDetoxChallenges(activeDetoxCount > 0);
+      const activeDetoxStatus = activeDetoxCount > 0;
+      setHasActiveDetoxChallenges(activeDetoxStatus);
 
       // 3. Fetch ACTIVE Renewal Recovery Journey (is_active = true)
       const { data: journeyData } = await supabase
@@ -131,7 +172,7 @@ export default function NotificationSettings() {
       let loadedEvening = { enabled: true, time: "21:30" };
       let loadedDailyPlanning = { enabled: true, time: "08:00" };
       let loadedRenewal = { enabled: true, time: "20:00" };
-      let savedHabitsMap = new Map<string, { enabled: boolean; time: string }>();
+      const savedHabitsMap = new Map<string, { enabled: boolean; time: string }>();
 
       const savedPreferencesStr = localStorage.getItem("innerbuild_notification_preferences");
 
@@ -143,7 +184,7 @@ export default function NotificationSettings() {
           if (parsed.dailyPlanning) loadedDailyPlanning = parsed.dailyPlanning;
           if (parsed.renewal) loadedRenewal = parsed.renewal;
           if (parsed.habits && Array.isArray(parsed.habits)) {
-            parsed.habits.forEach((h: any) => {
+            parsed.habits.forEach((h: { id: string; enabled?: boolean; time?: string }) => {
               savedHabitsMap.set(h.id, { enabled: h.enabled ?? true, time: h.time ?? "08:30" });
             });
           }
@@ -170,6 +211,17 @@ export default function NotificationSettings() {
 
       setHabitConfigs(syncedHabits);
 
+      // Auto-persist synced state immediately so defaults work without requiring manual save
+      persistPreferencesToStorage(
+        loadedDetox,
+        loadedEvening,
+        loadedDailyPlanning,
+        loadedRenewal,
+        syncedHabits,
+        activeDetoxStatus,
+        activeJourneyStatus
+      );
+
       // 6. Record initial snapshot for dirty state check
       const snapshot = JSON.stringify({
         detox: loadedDetox,
@@ -186,7 +238,7 @@ export default function NotificationSettings() {
     }
   };
 
-  // Re-evaluate dirty state whenever any config changes
+  // Re-evaluate dirty state and auto-save whenever any config changes
   useEffect(() => {
     if (!initialSnapshot) return;
 
@@ -198,8 +250,30 @@ export default function NotificationSettings() {
       habits: habitConfigs.map((h) => ({ id: h.id, enabled: h.enabled, time: h.time })),
     });
 
-    setIsDirty(currentSnapshot !== initialSnapshot);
-  }, [detoxConfig, eveningConfig, dailyPlanningConfig, renewalConfig, habitConfigs, initialSnapshot]);
+    const dirty = currentSnapshot !== initialSnapshot;
+    setIsDirty(dirty);
+
+    if (dirty) {
+      persistPreferencesToStorage(
+        detoxConfig,
+        eveningConfig,
+        dailyPlanningConfig,
+        renewalConfig,
+        habitConfigs,
+        hasActiveDetoxChallenges,
+        hasActiveRenewalJourney
+      );
+    }
+  }, [
+    detoxConfig,
+    eveningConfig,
+    dailyPlanningConfig,
+    renewalConfig,
+    habitConfigs,
+    initialSnapshot,
+    hasActiveDetoxChallenges,
+    hasActiveRenewalJourney,
+  ]);
 
   const handleRequestPermission = async () => {
     if (!("Notification" in window)) {
@@ -212,16 +286,41 @@ export default function NotificationSettings() {
     }
 
     try {
+      await registerNotificationServiceWorker();
       const permission = await Notification.requestPermission();
       setPermissionStatus(permission);
       if (permission === "granted") {
+        persistPreferencesToStorage(
+          detoxConfig,
+          eveningConfig,
+          dailyPlanningConfig,
+          renewalConfig,
+          habitConfigs,
+          hasActiveDetoxChallenges,
+          hasActiveRenewalJourney
+        );
+        await showAppNotification({
+          title: "InnerBuild",
+          body: t(
+            "notifications_settings.permission_granted",
+            "Notifiche Attivate! Ora riceverai i promemoria nei momenti pianificati."
+          ),
+          tag: "innerbuild-permission-granted",
+          url: "/notification-settings",
+        });
         toast({
-          title: t("notifications_settings.permission_granted", "Notifiche Attivate! Ora riceverai i promemoria nei momenti pianificati."),
+          title: t(
+            "notifications_settings.permission_granted",
+            "Notifiche Attivate! Ora riceverai i promemoria nei momenti pianificati."
+          ),
         });
       } else if (permission === "denied") {
         toast({
           title: t("notifications_settings.inactive", "Notifiche Bloccate"),
-          description: t("notifications_settings.permission_denied", "Abilita i permessi dalle impostazioni del browser per ricevere i promemoria."),
+          description: t(
+            "notifications_settings.permission_denied",
+            "Abilita i permessi dalle impostazioni del browser per ricevere i promemoria."
+          ),
           variant: "destructive",
         });
       }
@@ -234,23 +333,15 @@ export default function NotificationSettings() {
     if (!isDirty || saving) return;
     setSaving(true);
 
-    const preferences = {
-      detox: detoxConfig,
-      evening: eveningConfig,
-      dailyPlanning: dailyPlanningConfig,
-      renewal: renewalConfig,
-      habits: habitConfigs.map((h) => ({
-        id: h.id,
-        rawTitle: h.rawTitle,
-        enabled: h.enabled,
-        time: h.time,
-      })),
+    persistPreferencesToStorage(
+      detoxConfig,
+      eveningConfig,
+      dailyPlanningConfig,
+      renewalConfig,
+      habitConfigs,
       hasActiveDetoxChallenges,
-      hasActiveRenewalJourney,
-      updatedAt: new Date().toISOString(),
-    };
-
-    localStorage.setItem("innerbuild_notification_preferences", JSON.stringify(preferences));
+      hasActiveRenewalJourney
+    );
 
     const newSnapshot = JSON.stringify({
       detox: detoxConfig,
@@ -266,32 +357,53 @@ export default function NotificationSettings() {
       setIsDirty(false);
       toast({
         title: t("notifications_settings.saved_title", "Impostazioni Salvate"),
-        description: t("notifications_settings.saved_success", "I tuoi orari e i promemoria sono stati aggiornati con successo."),
+        description: t(
+          "notifications_settings.saved_success",
+          "I tuoi orari e i promemoria sono stati aggiornati con successo."
+        ),
       });
-    }, 400);
+    }, 300);
   };
 
-  const handleTestNotification = (toolKey: string, title: string, body: string) => {
+  const handleTestNotification = async (toolKey: string, title: string, body: string) => {
     setTestingNotification(toolKey);
 
-    if (permissionStatus === "granted" && "Notification" in window) {
-      try {
-        new Notification(title, {
-          body: body,
-          icon: "/pwa-icon-192.png",
-          badge: "/favicon.png",
-        });
-      } catch (e) {
-        console.error("Failed to send browser notification:", e);
+    try {
+      let currentPerm = permissionStatus;
+      if ("Notification" in window && Notification.permission === "default") {
+        currentPerm = await Notification.requestPermission();
+        setPermissionStatus(currentPerm);
+      } else if ("Notification" in window) {
+        currentPerm = Notification.permission;
+        setPermissionStatus(currentPerm);
       }
+
+      await showAppNotification({
+        title,
+        body,
+        tag: `innerbuild-test-${toolKey}-${Date.now()}`,
+        url: "/notification-settings",
+      });
+
+      if (currentPerm === "denied") {
+        toast({
+          title: `🔔 ${title}`,
+          description: `${body} (${t(
+            "notifications_settings.permission_denied",
+            "Abilita i permessi nelle impostazioni del browser per ricevere la notifica di sistema."
+          )})`,
+        });
+      } else {
+        toast({
+          title: `🔔 ${title}`,
+          description: body,
+        });
+      }
+    } catch (e) {
+      console.error("Failed to send test notification:", e);
+    } finally {
+      setTimeout(() => setTestingNotification(null), 1000);
     }
-
-    toast({
-      title: `🔔 ${title}`,
-      description: body,
-    });
-
-    setTimeout(() => setTestingNotification(null), 1000);
   };
 
   return (

@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.png", "apple-touch-icon.png", "badge-96x96.png", "badge.png"],
+      includeAssets: ["favicon.png", "apple-touch-icon.png", "badge-96x96.png", "badge.png", "sw-push.js"],
       manifest: {
         name: "InnerBuild",
         short_name: "InnerBuild",
@@ -51,7 +51,8 @@ export default defineConfig(({ mode }) => ({
       workbox: {
         navigateFallback: "/index.html",
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
-        maximumFileSizeToCacheInBytes: 3000000,
+        maximumFileSizeToCacheInBytes: 10000000,
+        importScripts: ["/sw-push.js"],
       },
     }),
   ].filter(Boolean),

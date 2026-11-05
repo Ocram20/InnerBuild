@@ -183,7 +183,7 @@ export default function OnboardingModal({ open, onComplete, onSkip }: Onboarding
       coach: false,
     };
     await submitOnboarding(freeOnlyPrefs);
-    navigate("/?no_redirect=true#pricing");
+    navigate("/pricing");
   };
 
   const handlePaywallClose = async (isOpen: boolean) => {
